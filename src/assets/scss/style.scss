@@ -1,0 +1,17 @@
+@import './_variables';
+@import './custom/_override';
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+@import './custom/_utilities';
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: "DM Sans", sans-serif;
+}
