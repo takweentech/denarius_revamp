@@ -1,1 +1,77 @@
-<p>header works!</p>
+<nav
+  class="navbar row navbar-expand-lg navbar-light position-absolute w-100 top-0 px-3"
+  style="z-index: 1000"
+>
+  <div class="d-flex align-items-center p-0 justify-content-between">
+    <div class="d-flex align-items-center col-md-2 gap-2">
+      <a class="navbar-brand text-white fw-bold" href="#">
+        <img src="assets/images/takween1.svg" alt="Logo" height="40" />
+      </a>
+    </div>
+
+    <button
+      class="navbar-toggler border-0 text-white"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse col-md-7" id="navbarNav">
+      <ul class="navbar-nav gap-3">
+        <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="#">
+            {{ "NAVBAR.HOME" | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="#">
+            {{ "NAVBAR.ABOUT" | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="#">
+            {{ "NAVBAR.INVESTOR" | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="#">
+            {{ "NAVBAR.OPPORTUNITIES" | translate }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="collapse navbar-collapse col-md-4" id="navbarNav">
+      <ul class="navbar-nav gap-3">
+        <li>
+          <button
+            class="btn btn-secondary border-0 rounded-5 px-3 py-2 order-1 order-lg-0"
+            [ngClass]="{
+              'ff-arabic': lang === 'en',
+              'ff-english': lang === 'ar'
+            }"
+            (click)="onLangChange()"
+          >
+            {{ lang === "en" ? "عربي" : "English" }}
+          </button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-white fw-bold" href="#">
+            {{ "NAVBAR.LOGIN" | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link text-secondary fw-bold d-flex align-items-center gap-2"
+            href="#"
+          >
+            {{ "NAVBAR.EXPLORE_OPPORTUNITIES" | translate }}
+            <img src="assets/icons/home/stats.svg" alt="" />
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
