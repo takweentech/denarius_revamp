@@ -8,4 +8,4 @@ export const WEB_ROUTES = {
     AUTH: {
         ROOT: "auth"
     }
-} as const;
+};
