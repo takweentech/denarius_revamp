@@ -10,7 +10,7 @@
           alt="Investment Image"
         />
 
-        <div class="card-body">
+        <div class="card-body mx-3">
           <div class="d-flex justify-content-between text-muted">
             <small>
               {{ opportunity.durationInMonths }}
@@ -81,7 +81,7 @@
 
           <div
             *ngIf="opportunity.annualReturn === 100"
-            class="row gap-3 d-flex"
+            class="row p-3 gap-3 d-flex"
           >
             <button
               class="btn btn-outline-primary col-9"
@@ -94,7 +94,10 @@
             </button>
           </div>
 
-          <div class="row gap-3 d-flex" *ngIf="opportunity.annualReturn < 100">
+          <div
+            class="row gap-3 p-3 d-flex"
+            *ngIf="opportunity.annualReturn < 100"
+          >
             <button
               class="btn btn-dark col-9"
               [routerLink]="['/opportunity', opportunity.issuanceNumber]"
