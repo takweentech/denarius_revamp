@@ -5,6 +5,11 @@ $utilities: (
       25: .25,
       50: .5,
       75: .75,
-      100: 1,
+      100: 1)),
+  'viewport-height': (property: height,
+    class: vh,
+    responsive: true,
+    values: (100: "100vh", // Add quotes to treat as a string
+      70: "70vh"
     ))
 );

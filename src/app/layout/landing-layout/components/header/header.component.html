@@ -1,77 +1,76 @@
-<nav
-  class="navbar row navbar-expand-lg navbar-light position-absolute w-100 top-0 px-3"
-  style="z-index: 1000"
->
-  <div class="d-flex align-items-center p-0 justify-content-between">
-    <div class="d-flex align-items-center col-md-2 gap-2">
-      <a class="navbar-brand text-white fw-bold" href="#">
-        <img src="assets/images/takween1.svg" alt="Logo" height="40" />
+<header>
+  <div class="container d-flex justify-content-between align-items-center">
+    <!-- NAV 1 -->
+    <nav class="nav-1">
+      <!-- LOGO -->
+      <a href=""
+         class="logo">
+        <img src="assets/images/takween1.svg"
+             alt="">
+      </a>
+      <ul class="d-none d-lg-flex">
+        <li><a href="">الرئيسية</a></li>
+        <li><a href="">من نحن</a></li>
+        <li><a href="">مستثمر</a></li>
+        <li><a href="">طالب تمويل</a></li>
+      </ul>
+    </nav>
+    <!-- NAV 2 -->
+    <nav class="nav-2 d-none d-lg-flex">
+      <ul>
+        <li><a href="">تسجل دخول</a></li>
+        <li><a href=""
+             class="text-secondary">استعرض الفرص</a></li>
+      </ul>
+    </nav>
+
+    <!-- Nav Toggle Button -->
+    <button class="navbar-toggler collapsed navicon justify-content-end d-flex d-lg-none"
+            [ngClass]="{'open':navbarToggler}"
+            type="button"
+            (click)="openSidebar(content)">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+
+<ng-template #content
+             let-offcanvas>
+  <div class="offcanvas-header d-flex align-items-center justify-content-between">
+    <h4 class="offcanvas-title">القائمة</h4>
+    <button type="button"
+            class="navbar-toggler"
+            aria-label="Close"
+            (click)="offcanvas.dismiss('Cross click')">
+      <i class="fas fa-close"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column gap-3">
+    <nav class="mb-auto">
+      <ul class="nav navbar-nav navbar p-0 gap-2">
+        <li class="w-100"><a class="text-primary text-start"
+             href="">الرئيسية</a></li>
+        <li class="w-100"><a class="text-primary text-start"
+             href="">من نحن</a></li>
+        <li class="w-100"><a class="text-primary text-start"
+             href="">مستثمر</a></li>
+        <li class="w-100"><a class="text-primary text-start"
+             href="">طالب تمويل</a></li>
+      </ul>
+    </nav>
+    <div class="extra-nav d-flex justify-content-stretch  gap-2">
+      <a href="javascript:void(0);"
+         (click)=" offcanvas.dismiss()"
+         class="btn btn-outline-primary  flex-grow-1">
+        تسجل دخول
+      </a>
+      <a href="javascript:void(0);"
+         (click)="offcanvas.dismiss() "
+         class="btn btn-primary  flex-grow-1">
+        <span>استعرض الفرص</span>
       </a>
     </div>
 
-    <button
-      class="navbar-toggler border-0 text-white"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse col-md-7" id="navbarNav">
-      <ul class="navbar-nav gap-3">
-        <li class="nav-item">
-          <a class="nav-link text-white fw-bold" href="#">
-            {{ "NAVBAR.HOME" | translate }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white fw-bold" href="#">
-            {{ "NAVBAR.ABOUT" | translate }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white fw-bold" href="#">
-            {{ "NAVBAR.INVESTOR" | translate }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white fw-bold" href="#">
-            {{ "NAVBAR.OPPORTUNITIES" | translate }}
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <div class="collapse navbar-collapse col-md-4" id="navbarNav">
-      <ul class="navbar-nav gap-3">
-        <li>
-          <button
-            class="btn btn-secondary border-0 rounded-5 px-3 py-2 order-1 order-lg-0"
-            [ngClass]="{
-              'ff-arabic': lang === 'en',
-              'ff-english': lang === 'ar'
-            }"
-            (click)="onLangChange()"
-          >
-            {{ lang === "en" ? "عربي" : "English" }}
-          </button>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link text-white fw-bold" href="#">
-            {{ "NAVBAR.LOGIN" | translate }}
-          </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link text-secondary fw-bold d-flex align-items-center gap-2"
-            href="#"
-          >
-            {{ "NAVBAR.EXPLORE_OPPORTUNITIES" | translate }}
-            <img src="assets/icons/home/stats.svg" alt="" />
-          </a>
-        </li>
-      </ul>
-    </div>
   </div>
-</nav>
+</ng-template>

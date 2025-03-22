@@ -1,110 +1,98 @@
-<footer class="site-footer bg-dark" id="footer">
-  <div class="footer-top py-2 px-5">
-    <div class="px-5">
-      <div class="row">
-        <!--  -->
-        <div class="col-xl-6 col-lg-6 col-sm-12 col-md-6">
-          <div class="widget widget_about">
-            <div class="footer-logo logo-white">
-              <a routerLink="/index">
-                <img
-                  class="w-200px"
-                  src="assets/images/takween1.svg"
-                  alt="Takween Logo"
-                />
+<footer>
+  <div class="container d-flex flex-column gap-4">
+    <div class="row gap-lg-4 gap-0">
+      <!-- LOGO -->
+      <div class="d-flex flex-column col-12 col-lg-7 logo">
+        <a href="">
+          <img src="assets/images/takween1.svg"
+               alt="">
+        </a>
+        <p>شركة تكوين المالية هي شركة سعودية مصرحة من هيئة السوق المالية بتاريخ شركة تكوين المالية هي شركة سعودية مصرحة
+          من
+          هيئة السوق المالية بتاريخ شركة تكوين المالية هي شركة سعودية مصرحة من هيئة السوق المالية بتاريخ شركة تكوين
+          المالية هي شركة سعودية مصرحة من هيئة السوق المالية بتاريخ </p>
+        <div>
+          <h5>يمكنك متابعتنا في منصات التواصل</h5>
+          <ul>
+            <li>
+              <a href="">
+                <i class="fa-brands fa-linkedin"></i>
               </a>
-            </div>
-            <p>{{ "FOOTER.DISCLAIMER" | translate }}</p>
-            <h3 class="text-white">{{ "FOOTER.FOLLOW_US" | translate }}</h3>
-            <div class="d-flex gap-3">
-              <a href="#" class="text-white"><i class="fab fa-x fa-lg"></i></a>
-              <a href="#" class="text-white"
-                ><i class="fab fa-youtube fa-lg"></i
-              ></a>
-              <a href="#" class="text-white"
-                ><i class="fab fa-linkedin fa-lg"></i
-              ></a>
-            </div>
-          </div>
-        </div>
-        <!--  -->
-        <div class="col-xl-2 col-lg-2 col-sm-12 m-3 col-md-2">
-          <h3>{{ "FOOTER.ABOUT_US" | translate }}</h3>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.BLOG" | translate
-              }}</a>
             </li>
             <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.COMPLIANCE" | translate
-              }}</a>
+              <a href="">
+                <i class="fa-brands fa-youtube"></i>
+              </a>
             </li>
             <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.TERMS" | translate
-              }}</a>
-            </li>
-            <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.PRIVACY" | translate
-              }}</a>
-            </li>
-            <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.FAQ" | translate
-              }}</a>
-            </li>
-            <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.DISCLOSURES" | translate
-              }}</a>
+              <a href="">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
             </li>
           </ul>
-        </div>
-        <!--  -->
-        <div class="col-xl-2 col-lg-2 m-3 col-sm-12 gap-1 px-1 col-md-2">
-          <h3>{{ "FOOTER.SERVICES" | translate }}</h3>
-          <ul class="list-unstyled">
-            <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.INVESTOR" | translate
-              }}</a>
-            </li>
-            <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.FUND_APPLICANT" | translate
-              }}</a>
-            </li>
-            <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.APPLY_FUNDING" | translate
-              }}</a>
-            </li>
-            <li>
-              <a href="#" class="text-decoration-none">{{
-                "FOOTER.REGISTER_INVESTOR" | translate
-              }}</a>
-            </li>
-          </ul>
-          <br />
-          <!--  -->
-          <h3>{{ "FOOTER.CONTACT_US" | translate }}</h3>
-          <p class="mb-1">
-            <i class="fas fa-phone-alt text-primary me-2"></i>
-            {{ "FOOTER.PHONE" | translate }}
-          </p>
-          <p>
-            <i class="fas fa-envelope text-primary me-2"></i>
-            {{ "FOOTER.EMAIL" | translate }}
-          </p>
-        </div>
-        <!--  -->
-        <div class="text-center col-sm-12 col-md-12">
-          <h5 class="text-white">{{ "FOOTER.COPYRIGHT" | translate }}</h5>
         </div>
       </div>
+      <!-- Nav 1 -->
+      <nav class="col">
+        <ul>
+          <li class="list-title">
+            من نحن
+          </li>
+          <li>
+            <a href="">المدونة</a>
+          </li>
+          <li>
+            <a href="">الالتزام بالشرعية</a>
+          </li>
+          <li>
+            <a href="">الشروط والأحكام</a>
+          </li>
+          <li>
+            <a href="">سياسة الخصوصية</a>
+          </li>
+          <li>
+            <a href="">الأسئلة الشائعة</a>
+          </li>
+          <li>
+            <a href="">الافصاحات</a>
+
+          </li>
+        </ul>
+      </nav>
+      <!-- Nav 2 -->
+      <nav class="col">
+        <ul>
+          <li class="list-title">
+            خدماتنا
+          </li>
+          <li>
+            <a href="">مستثمر</a>
+          </li>
+          <li>
+            <a href="">طالب تمويل</a>
+          </li>
+          <li>
+            <a href="">قدم طلبك التمويلي</a>
+          </li>
+          <li>
+            <a href="">سجل كمستثمر</a>
+          </li>
+        </ul>
+
+        <ul>
+          <li class="list-title">
+            تواصل معنا
+          </li>
+          <li>
+            <a href="">+966 150505050</a>
+          </li>
+          <li>
+            <a href="">info{{'@'}}takween.sa</a>
+          </li>
+        </ul>
+      </nav>
     </div>
+    <!-- Copyright -->
+    <p class="copyright">جميع الحقوق محفوظة لشركة تكوين المالية 2025</p>
   </div>
 </footer>
