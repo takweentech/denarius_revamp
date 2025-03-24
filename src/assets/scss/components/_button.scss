@@ -10,6 +10,7 @@ button {
 }
 
 
+
 .btn {
     display: flex;
     flex-direction: row;
@@ -20,6 +21,11 @@ button {
     font-weight: 400;
     font-size: 14px;
     line-height: 18px;
+
+    &.btn-icon {
+        padding: 10px;
+        font-size: 18px;
+    }
 
 
 

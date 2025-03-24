@@ -75,16 +75,22 @@
       </button>
     </div>
 
-    <div class="row gap-3 p-3 d-flex"
+    <div class="row gx-2 py-3"
          *ngIf="opportunity.annualReturn < 100">
-      <button class="btn btn-dark col-9"
-              [routerLink]="['/opportunity', opportunity.issuanceNumber]">
-        {{ "INVESTMENT_OPPORTUNITIES.INVEST_NOW" | translate }}
-      </button>
-      <button class="btn border-1 col-2 btn btn-outline-primary">
-        <img src="assets/icons/opportunity-card/save.svg"
-             alt="" />
-      </button>
+      <div class="col-10">
+        <button class="btn btn-dark w-100"
+                [routerLink]="['/opportunity', opportunity.issuanceNumber]">
+          {{ "INVESTMENT_OPPORTUNITIES.INVEST_NOW" | translate }}
+        </button>
+      </div>
+
+      <div class="col">
+
+        <button class="btn btn-icon border-1 w-100 btn btn-outline-primary">
+          <i class="fa-regular fa-bookmark"></i>
+        </button>
+      </div>
+
     </div>
   </div>
 </div>
