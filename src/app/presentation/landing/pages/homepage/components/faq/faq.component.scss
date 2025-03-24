@@ -1,0 +1,81 @@
+.container {
+    .intro-text {
+        h6 {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 18px;
+            letter-spacing: 0.05em;
+            color: #5C6574;
+        }
+
+        h3 {
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 140%;
+            max-width: 400px;
+            color: #0F111D;
+        }
+    }
+
+    .list {
+        list-style: none;
+    }
+
+    .faq {
+        h5 {
+            font-weight: 700;
+            font-size: 20px;
+            line-height: 175%;
+            color: #0F111D;
+        }
+
+        .accordion {
+            gap: 1rem;
+            display: flex;
+            flex-direction: column;
+
+            .accordion-item {
+                border: none;
+                box-shadow: none;
+                background-color: transparent;
+
+                .accordion-button {
+                    height: 63px;
+                    background: #F9FAFC;
+                    border-radius: 4px;
+                    box-shadow: none;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 175%;
+                    letter-spacing: 0.04em;
+                    color: #0F111D;
+
+
+
+                    &::after {
+                        margin-inline-start: auto;
+                        margin-inline-end: initial;
+                    }
+                }
+
+                .accordion-body {
+                    background-color: transparent;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 175%;
+                    letter-spacing: 0.01em;
+                    color: #0F111D;
+                    padding-bottom: 0;
+
+                }
+            }
+        }
+
+
+
+
+
+
+
+    }
+}
