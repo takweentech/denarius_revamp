@@ -1,3 +1,35 @@
-<app-hero></app-hero>
+<div
+  style="
+    background-image: url('assets/images/bg2.svg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 33vh;
+  "
+  class="d-flex flex-column justify-content-center row gap-5 text-center"
+>
+  <app-header />
 
-<router-outlet></router-outlet>
+  <div class="w-100 text-center">
+    <h1 class="fw-bold text-white">
+      {{ "INVESTMENT_OPPORTUNITIES.TITLE" | translate }}
+    </h1>
+    <h6 class="text-white">
+      {{ "INVESTMENT_OPPORTUNITIES.SUBTITLE" | translate }}
+    </h6>
+  </div>
+</div>
+<!-- <app-hero></app-hero> -->
+
+<section class="container pt-6">
+  <h2 class="fw-bold text-center mb-5">أحدث الفرص الاستثمارية</h2>
+  <div class="row g-4">
+    @for (item of opportunities; track $index) {
+    <div class="col-12 col-md-6 col-lg-4">
+      <app-opportunity-card [opportunity]="item"></app-opportunity-card>
+    </div>
+    }
+  </div>
+</section>
+
+<!-- <router-outlet></router-outlet> -->
