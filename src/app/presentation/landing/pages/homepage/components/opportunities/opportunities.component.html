@@ -1,15 +1,16 @@
-<h2 class="fw-bold text-center m-5">أحدث الفرص الاستثمارية</h2>
-<div class="container">
-  <app-investment-opportunities></app-investment-opportunities>
-</div>
-<div class="container">
-  <a class="text-secondary justify-content-end d-flex fw-bold">
-    <img
-      src="assets/icons/opportunity-card/Arrow1.svg"
-      class="ms-2"
-      width="20"
-      alt="Arrow Right"
-    />
+<section class="container pt-6">
+  <h2 class="fw-bold text-center mb-5">أحدث الفرص الاستثمارية</h2>
+  <div class="row g-4">
+    @for (item of opportunities; track $index) {
+    <div class="col-12 col-md-6 col-lg-4">
+      <app-opportunity-card [opportunity]="item"></app-opportunity-card>
+    </div>
+    }
+  </div>
+  <a href=""
+     class="text-secondary justify-content-end d-flex gap-2 align-items-center fw-bold mt-4">
     الفرص الاستثمارية
+    <i class="fa-solid fa-arrow-left"></i>
   </a>
-</div>
+
+</section>
