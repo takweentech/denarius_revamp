@@ -1,0 +1,15 @@
+{
+  "INVESTMENT_OPPORTUNITIES": {
+    "TITLE": "Investment Opportunities",
+    "SUBTITLE": "Carefully Selected Opportunities",
+    "ISSUE_NUMBER": "Issue Number",
+    "MONTHS": "Months",
+    "COMPLETED": "Completed",
+    "DAYS_LEFT": "Days Until Closing",
+    "RETURN_ON_INVESTMENT": "Return on Investment",
+    "ANNUAL_RETURN": "Annual Return",
+    "DETAILS": "View Details",
+    "INVEST_NOW": "Invest Now",
+    "EXPLORE_MORE": "Explore More Opportunities"
+  }
+}
