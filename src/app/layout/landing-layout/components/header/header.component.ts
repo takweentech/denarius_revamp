@@ -15,6 +15,6 @@ export class HeaderComponent {
   navbarToggler: boolean = false;
 
   openSidebar(content: TemplateRef<any>) {
-    this.offcanvasService.open(content, { position: 'bottom', panelClass: 'vh-40 rounded-top-1' });
+    this.offcanvasService.open(content, { position: 'bottom', panelClass: 'vh-30 rounded-top-1' });
   }
 }
