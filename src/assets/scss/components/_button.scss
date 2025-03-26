@@ -27,6 +27,11 @@ button {
         font-size: 18px;
     }
 
+    &.btn-rounded {
+        border-radius: 45px;
+
+    }
+
 
 
     &.btn-primary {
@@ -38,6 +43,16 @@ button {
     &.btn-transparent {
         background-color: transparent;
         border: none;
+        color: white;
+    }
+
+    &.btn-white {
+        background-color: white;
+        color: var(--primary-color);
+    }
+
+    &.btn-outline-white {
+        border-color: white;
         color: white;
     }
 

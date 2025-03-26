@@ -1,0 +1,36 @@
+.container {
+    .intro-text {
+        h6 {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 18px;
+            letter-spacing: 0.05em;
+            color: #303A42;
+
+        }
+
+        h1 {
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 140%;
+            color: #0F111D;
+            max-width: 427px;
+        }
+    }
+
+    h4 {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 165%;
+        letter-spacing: 0.02em;
+        color: #13ADB7;
+
+    }
+
+    p {
+        font-weight: 700;
+        font-size: 18px;
+        line-height: 165%;
+        color: #676A6A;
+    }
+}

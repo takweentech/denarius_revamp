@@ -3,7 +3,8 @@ export const WEB_ROUTES = {
         ROOT: ""
     },
     OPPORTUNITIES: {
-        ROOT: "opportunities"
+        ROOT: "opportunities",
+        DETAILS: "details",
     },
     AUTH: {
         ROOT: "auth"
