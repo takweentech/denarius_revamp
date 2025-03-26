@@ -9,17 +9,17 @@
              alt="">
       </a>
       <ul class="d-none d-lg-flex">
-        <li><a href="">الرئيسية</a></li>
-        <li><a href="">من نحن</a></li>
-        <li><a href="">مستثمر</a></li>
-        <li><a href="">طالب تمويل</a></li>
+        <li><a [routerLink]="'/'">الرئيسية</a></li>
+        <li><a [routerLink]="'/'">من نحن</a></li>
+        <li><a [routerLink]="'/'">مستثمر</a></li>
+        <li><a [routerLink]="'/'">طالب تمويل</a></li>
       </ul>
     </nav>
     <!-- NAV 2 -->
     <nav class="nav-2 d-none d-lg-flex">
       <ul>
-        <li><a href="">تسجل دخول</a></li>
-        <li><a href=""
+        <li><a [routerLink]="'/'">تسجل دخول</a></li>
+        <li><a [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT"
              class="text-secondary">استعرض الفرص</a></li>
       </ul>
     </nav>

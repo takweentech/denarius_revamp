@@ -1,0 +1,25 @@
+.hero {
+    background-image: url('/assets/images/bg2.svg');
+    background-size: cover;
+    background-position: top;
+    background-repeat: no-repeat;
+    min-height: 312px;
+    height: 35vh;
+    width: 100%;
+
+    h1 {
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 72px;
+        text-align: center;
+        color: #E9ECEB;
+        margin-top: 4rem;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        color: #E9ECEB;
+    }
+}

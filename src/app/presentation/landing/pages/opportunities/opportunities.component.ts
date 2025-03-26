@@ -1,12 +1,15 @@
-import { Component } from '@angular/core';
-import { HeroComponent } from './components/hero/hero.component';
-import { RouterOutlet } from '@angular/router';
+import { Component } from "@angular/core";
+import { TranslateModule } from "@ngx-translate/core";
+import { RouterOutlet } from "@angular/router";
 
 @Component({
-  selector: 'app-opportunities',
-  imports: [HeroComponent, RouterOutlet],
-  templateUrl: './opportunities.component.html',
-  styleUrl: './opportunities.component.scss'
+  selector: "app-opportunities",
+  standalone: true,
+  imports: [
+    TranslateModule,
+    RouterOutlet,
+  ],
+  template: "<router-outlet></router-outlet>",
 })
 export class OpportunitiesComponent {
 

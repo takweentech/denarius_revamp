@@ -1,13 +1,16 @@
 import { Component } from "@angular/core";
 import { OpportunityCardComponent } from "../../../../../../shared/components/opportunity-card/opportunity-card.component";
+import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-opportunities",
-  imports: [OpportunityCardComponent],
+  imports: [OpportunityCardComponent, RouterLink],
   templateUrl: "./opportunities.component.html",
   styleUrl: "./opportunities.component.scss",
 })
 export class OpportunitiesComponent {
+  WEB_ROUTES = WEB_ROUTES;
   opportunities: any[] = [
     {
       image: "assets/images/tower.svg",
