@@ -1,11 +1,11 @@
-import { Component } from '@angular/core';
-import { OpportunityCardComponent } from '../../../../../../shared/components/opportunity-card/opportunity-card.component';
+import { Component } from "@angular/core";
+import { OpportunityCardComponent } from "../../../../../../shared/components/opportunity-card/opportunity-card.component";
 
 @Component({
-  selector: 'app-listing',
+  selector: "app-listing",
   imports: [OpportunityCardComponent],
-  templateUrl: './listing.component.html',
-  styleUrl: './listing.component.scss',
+  templateUrl: "./listing.component.html",
+  styleUrl: "./listing.component.scss",
 })
 export class ListingComponent {
   opportunities: any[] = [
@@ -151,7 +151,7 @@ export class ListingComponent {
       stockValue: 0,
       programName: null,
       dividends: [],
-      id: 5,
+      id: 6,
     },
   ];
 }
