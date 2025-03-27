@@ -1,1 +1,17 @@
-<p>opportunities works!</p>
+<section class="container pt-6">
+  <h2 class="fw-bold text-center mb-5">أحدث الفرص الاستثمارية</h2>
+  <div class="row g-4">
+    @for (item of opportunities; track $index) {
+    <div class="col-12 col-md-6 col-lg-4">
+      <app-opportunity-card [opportunity]="item"></app-opportunity-card>
+    </div>
+    }
+  </div>
+  <a [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT"
+     class=" text-primary justify-content-end d-flex gap-2 align-items-center fw-bold mt-4">
+    <span class="text-decoration-underline">
+      الفرص الاستثمارية
+    </span>
+    <i class="fa-solid fa-arrow-left"></i>
+  </a>
+</section>

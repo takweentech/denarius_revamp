@@ -1,1 +1,76 @@
-<p>header works!</p>
+<header>
+  <div class="container d-flex justify-content-between align-items-center">
+    <!-- NAV 1 -->
+    <nav class="nav-1">
+      <!-- LOGO -->
+      <a href=""
+         class="logo">
+        <img src="assets/images/takween1.svg"
+             alt="">
+      </a>
+      <ul class="d-none d-lg-flex">
+        <li><a [routerLink]="'/'">الرئيسية</a></li>
+        <li><a [routerLink]="'/'">من نحن</a></li>
+        <li><a [routerLink]="'/'">مستثمر</a></li>
+        <li><a [routerLink]="'/'">طالب تمويل</a></li>
+      </ul>
+    </nav>
+    <!-- NAV 2 -->
+    <nav class="nav-2 d-none d-lg-flex">
+      <ul>
+        <li><a [routerLink]="'/'">تسجل دخول</a></li>
+        <li><a [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT"
+             class="text-secondary">استعرض الفرص</a></li>
+      </ul>
+    </nav>
+
+    <!-- Nav Toggle Button -->
+    <button class="navbar-toggler collapsed navicon justify-content-end d-flex d-lg-none"
+            [ngClass]="{'open':navbarToggler}"
+            type="button"
+            (click)="openSidebar(content)">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </div>
+</header>
+
+
+<ng-template #content
+             let-offcanvas>
+  <div class="offcanvas-header d-flex align-items-center justify-content-between">
+    <h4 class="offcanvas-title">القائمة</h4>
+    <button type="button"
+            class="navbar-toggler"
+            aria-label="Close"
+            (click)="offcanvas.dismiss('Cross click')">
+      <i class="fas fa-close"></i>
+    </button>
+  </div>
+  <div class="offcanvas-body d-flex flex-column gap-3">
+    <nav class="mb-auto">
+      <ul class="nav navbar-nav navbar p-0 gap-2">
+        <li class="w-100"><a class="text-primary text-start"
+             href="">الرئيسية</a></li>
+        <li class="w-100"><a class="text-primary text-start"
+             href="">من نحن</a></li>
+        <li class="w-100"><a class="text-primary text-start"
+             href="">مستثمر</a></li>
+        <li class="w-100"><a class="text-primary text-start"
+             href="">طالب تمويل</a></li>
+      </ul>
+    </nav>
+    <div class="extra-nav d-flex justify-content-stretch  gap-2">
+      <a href="javascript:void(0);"
+         (click)=" offcanvas.dismiss()"
+         class="btn btn-outline-primary  flex-grow-1">
+        تسجل دخول
+      </a>
+      <a href="javascript:void(0);"
+         (click)="offcanvas.dismiss() "
+         class="btn btn-primary  flex-grow-1">
+        <span>استعرض الفرص</span>
+      </a>
+    </div>
+
+  </div>
+</ng-template>

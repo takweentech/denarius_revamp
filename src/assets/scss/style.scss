@@ -1,17 +1,39 @@
-@import './_variables';
-@import './custom/_override';
-/* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
 @import './custom/_utilities';
-
+@import './custom/_override';
+@import 'bootstrap/scss/bootstrap.scss';
+@import './_variables';
+@import './components/_button';
+@import './components/_card';
 
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    box-sizing: border-box !important;
 }
 
 
 body {
-    font-family: "DM Sans", sans-serif;
+    font-family: "Tajawal", sans-serif;
+
+}
+
+
+a,
+p,
+ul,
+li,
+span,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0;
+}
+
+.vh-30 {
+    height: 30vh !important;
 }

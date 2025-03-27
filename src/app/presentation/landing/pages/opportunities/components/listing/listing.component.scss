@@ -1,0 +1,41 @@
+.hero {
+    background-image: url('/assets/images/homepage-hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 312px;
+    height: 35vh;
+    width: 100%;
+    position: relative;
+
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: #00354F;
+        opacity: 0.8;
+        content: "";
+        height: 100%;
+        width: 100%;
+    }
+
+    h1 {
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 72px;
+        text-align: center;
+        color: #E9ECEB;
+        margin-top: 4rem;
+        z-index: 2;
+        position: relative;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        color: #E9ECEB;
+        z-index: 2;
+        position: relative;
+    }
+}

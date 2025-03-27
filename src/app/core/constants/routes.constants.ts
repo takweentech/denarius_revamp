@@ -3,9 +3,11 @@ export const WEB_ROUTES = {
         ROOT: ""
     },
     OPPORTUNITIES: {
-        ROOT: "opportunities"
+        ROOT: "opportunities",
+        DETAILS: "details",
+        PAYMENT: "payment",
     },
     AUTH: {
         ROOT: "auth"
     }
-} as const;
+};
