@@ -1,1 +1,408 @@
-<p>payment works!</p>
+<div
+  class="progress w-100"
+  style="height: 6px; border-radius: 10px; overflow: hidden"
+>
+  <div
+    class="progress-bar bg-success"
+    role="progressbar"
+    [style.width.%]="selectedOpportunity.annualReturn"
+  ></div>
+</div>
+<div class="row d-flex gap-4 mx-3 my-4">
+  <div class="row gap-5 col-md-7 col-sm-12">
+    <div class="row col-sm-12 col-md-6">
+      <h3>{{ "CHECKOUT_PAGE.INVESTMENT_STEP" | translate }}</h3>
+      <strong> {{ "CHECKOUT_PAGE.SELECT_BONDS" | translate }} </strong>
+      <h5 class="">
+        <img
+          class=""
+          src="assets/icons/InvestmentOpportunities/calculator.svg"
+          alt=""
+        />
+        {{ "CHECKOUT_PAGE.BONDS_COUNT" | translate }}
+      </h5>
+      <input
+        class="col-md-10 col-sm-12 shadow-sm border-1 rounded-1"
+        type="number"
+        placeholder="10"
+      />
+      <div class="col-12 p-md-0 my-4">
+        <strong>
+          {{ "CHECKOUT_PAGE.MIN_INVESTMENT" | translate }}
+          <strong
+            style="direction: ltr; unicode-bidi: isolate"
+            class="fs-5 d-inline-flex align-items-center gap-1"
+          >
+            <img
+              src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+              alt="currency"
+              width="12"
+              height="12"
+            />
+            <span #countUpNumber></span>
+          </strong>
+        </strong>
+        <br />
+        <strong>
+          {{ "CHECKOUT_PAGE.MAX_INVESTMENT" | translate }}
+          <strong
+            style="direction: ltr; unicode-bidi: isolate"
+            class="fs-5 d-inline-flex align-items-center gap-1"
+          >
+            <img
+              src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+              alt="currency"
+              width="12"
+              height="12"
+            />
+            <span #countUpNumber></span>
+          </strong>
+        </strong>
+      </div>
+      <strong>
+        {{ "CHECKOUT_PAGE.UNLIMITED_INVESTMENT" | translate }}
+        <a href=""> {{ "CHECKOUT_PAGE.UPGRADE_ACCOUNT" | translate }} </a>
+      </strong>
+    </div>
+    <div
+      style="background-color: #f9f9f9"
+      class="row gap-3 shadow-sm rounded-3 col-md-6 col-sm-12"
+    >
+      <div class="">
+        <ul class="list-unstyled row gap-3">
+          <li class="d-flex justify-content-between py-2 border-bottom">
+            <span class="fw-bold">
+              <img
+                class="px-2"
+                src="assets/icons/details/adjustments.svg"
+                alt=""
+              />
+              {{ "CHECKOUT_PAGE.TOTAL_INVESTMENT_AMOUNT" | translate }}
+            </span>
+            <strong
+              style="
+                font-size: 20px !important;
+                direction: ltr;
+                unicode-bidi: isolate;
+              "
+              class="fs-5 text-dark d-inline-flex align-items-center gap-1"
+            >
+              <img
+                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                alt="currency"
+                width="15"
+                height="15"
+              />
+              <span> 15,000</span>
+            </strong>
+          </li>
+          <li class="d-flex justify-content-between py-2 border-bottom">
+            <span class="fw-bold">
+              <img
+                class="px-2"
+                src="assets/icons/payment/adjustments.svg"
+                alt=""
+              />
+              {{ "CHECKOUT_PAGE.TOTAL_EXPECTED_RETURN" | translate }}
+            </span>
+            <strong
+              style="
+                font-size: 20px !important;
+                direction: ltr;
+                unicode-bidi: isolate;
+              "
+              class="fs-5 text-dark d-inline-flex align-items-center gap-1"
+            >
+              <img
+                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                alt="currency"
+                width="15"
+                height="15"
+              />
+              <span> 3,000</span>
+            </strong>
+          </li>
+          <li class="d-flex justify-content-between py-2 border-bottom">
+            <span class="fw-bold">
+              <img
+                class="px-2"
+                src="assets/icons/payment/adjustments.svg"
+                alt=""
+              />
+              {{ "CHECKOUT_PAGE.AGENCY_FEE" | translate }}
+            </span>
+            <strong
+              style="
+                font-size: 20px !important;
+                direction: ltr;
+                unicode-bidi: isolate;
+              "
+              class="fs-5 text-dark d-inline-flex align-items-center gap-1"
+            >
+              <img
+                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                alt="currency"
+                width="15"
+                height="15"
+              />
+              <span> 0</span>
+            </strong>
+          </li>
+          <li class="d-flex justify-content-between py-2 border-bottom">
+            <span class="fw-bold">
+              <img
+                class="px-2"
+                src="assets/icons/payment/adjustments.svg"
+                alt=""
+              />
+              {{ "CHECKOUT_PAGE.VAT" | translate }}
+            </span>
+            <strong
+              style="
+                font-size: 20px !important;
+                direction: ltr;
+                unicode-bidi: isolate;
+              "
+              class="fs-5 text-dark d-inline-flex align-items-center gap-1"
+            >
+              <img
+                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                alt="currency"
+                width="15"
+                height="15"
+              />
+              <span> 0</span>
+            </strong>
+          </li>
+          <li class="d-flex justify-content-between py-2">
+            <span class="fw-bold">
+              <img
+                class="px-2"
+                src="assets/icons/payment/adjustments.svg"
+                alt=""
+              />
+              {{ "CHECKOUT_PAGE.NET_RETURN" | translate }}
+            </span>
+            <strong
+              style="
+                font-size: 20px !important;
+                direction: ltr;
+                unicode-bidi: isolate;
+              "
+              class="fs-5 text-dark d-inline-flex align-items-center gap-1"
+            >
+              <img
+                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                alt="currency"
+                width="15"
+                height="15"
+              />
+              <span> 15,000</span>
+            </strong>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <strong class="me-auto">
+            {{ "CHECKOUT_PAGE.ISSUE_DURATION" | translate }}
+          </strong>
+        </div>
+      </div>
+    </div>
+    <div class="col-12">
+      <h4>{{ "CHECKOUT_PAGE.PAYMENT_SCHEDULE" | translate }}</h4>
+      <table class="table table-striped text-center">
+        <thead class="table-dark">
+          <tr>
+            <th scope="col" class="text-white">
+              {{ "CHECKOUT_PAGE.PAYMENT_NUMBER" | translate }}
+            </th>
+            <th scope="col" class="text-white">
+              {{ "CHECKOUT_PAGE.AMOUNT" | translate }}
+            </th>
+            <th scope="col" class="text-white">
+              {{ "CHECKOUT_PAGE.AGENCY_FEE" | translate }}
+            </th>
+            <th scope="col" class="text-white">
+              {{ "CHECKOUT_PAGE.VAT" | translate }}
+            </th>
+            <th scope="col" class="text-white">
+              {{ "CHECKOUT_PAGE.NET_PROFIT" | translate }}
+            </th>
+            <th scope="col" class="text-white">
+              {{ "CHECKOUT_PAGE.DISTRIBUTION_DATE" | translate }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let payment of paymentSchedule">
+            <td>{{ payment.id }}</td>
+            <td>
+              <strong
+                style="direction: ltr; unicode-bidi: isolate"
+                class="fs-5 d-inline-flex align-items-center gap-1"
+              >
+                <img
+                  src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                  alt="currency"
+                  width="12"
+                  height="12"
+                />
+                <span>{{ payment.amount }}</span>
+              </strong>
+            </td>
+            <td>
+              <strong
+                style="direction: ltr; unicode-bidi: isolate"
+                class="fs-5 d-inline-flex align-items-center gap-1"
+              >
+                <img
+                  src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                  alt="currency"
+                  width="12"
+                  height="12"
+                />
+                <span>{{ payment.agencyFee }}</span>
+              </strong>
+            </td>
+            <td>
+              <strong
+                style="direction: ltr; unicode-bidi: isolate"
+                class="fs-5 d-inline-flex align-items-center gap-1"
+              >
+                <img
+                  src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                  alt="currency"
+                  width="12"
+                  height="12"
+                />
+                <span>{{ payment.vat }}</span>
+              </strong>
+            </td>
+            <td>
+              <strong
+                style="direction: ltr; unicode-bidi: isolate"
+                class="fs-5 d-inline-flex align-items-center gap-1"
+              >
+                <img
+                  src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                  alt="currency"
+                  width="12"
+                  height="12"
+                />
+                <span>{{ payment.netProfit }}</span>
+              </strong>
+            </td>
+            <td>{{ payment.distributionDate }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="col-md-5 my-4 my-md-0 col-sm-12">
+    <div
+      style="background-color: #f9f9f9"
+      class="card p-md-4 p-sm-0 shadow-sm rounded-4 border-0"
+    >
+      <h5 class="fw-bold text-dark">
+        {{ "CHECKOUT_PAGE.PAYMENT_METHOD" | translate }}
+      </h5>
+      <div
+        class="p-3 border m-2 border-danger border-1 shadow-sm bg-white rounded-3 d-flex justify-content-between align-items-center"
+      >
+        <div class="d-flex align-items-center gap-2">
+          <img
+            src="assets/icons/details/Radio1.svg"
+            alt="currency"
+            width="16"
+            height="16"
+          />
+          <span class="text-dark">{{
+            "CHECKOUT_PAGE.INVESTMENT_WALLET" | translate
+          }}</span>
+        </div>
+        <strong class="fs-5 d-inline-flex fw-light align-items-center gap-1">
+          <span class="text-dark">{{
+            "CHECKOUT_PAGE.BALANCE" | translate
+          }}</span>
+          <strong
+            style="direction: ltr; unicode-bidi: isolate"
+            class="fs-5 d-inline-flex align-items-center gap-1"
+          >
+            <img
+              src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+              alt="currency"
+              width="12"
+              height="12"
+            />
+            <span class="text-dark fw-bold"> 19,500</span>
+          </strong>
+        </strong>
+      </div>
+      <span class="text-danger">
+        لا يوجد لديك رصيد كافي، يمكنك شحن محفظتك
+        <a href="#" class="text-primary fw-bold"> من هنا </a>
+      </span>
+      <hr />
+
+      <div class="row d-flex m-3 justify-content-between">
+        <h3 class="fw-bold col">
+          {{ "CHECKOUT_PAGE.TOTAL_AMOUNT" | translate }}
+        </h3>
+        <strong
+          style="direction: ltr; unicode-bidi: isolate; font-size: 28px"
+          class="fs-5 d-inline-flex col justify-content-start align-items-center gap-1"
+        >
+          <img
+            src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+            alt="currency"
+            width="19"
+            height="19"
+          />
+          <h3 class="text-dark mt-2 fw-bold">10,000</h3>
+        </strong>
+      </div>
+
+      <div class="mt-3 row">
+        <strong class="col-1">
+          <input
+            class="p-0"
+            type="checkbox"
+            id="terms"
+            checked
+            style="transform: scale(1.5)"
+          />
+        </strong>
+        <strong class="col-11" for="terms">
+          <span class="fw-light">
+            {{ "CHECKOUT_PAGE.TERMS_AGREEMENT" | translate }}
+          </span>
+          <a href="#" class="text-primary fw-bold">{{
+            "CHECKOUT_PAGE.TERMS_CONDITIONS" | translate
+          }}</a>
+          <span class="fw-light">
+            {{ "CHECKOUT_PAGE.TERMS" | translate }}
+          </span>
+        </strong>
+        <p class="text-muted small mt-2"></p>
+      </div>
+
+      <div class="m-5">
+        <div class="d-flex row d-flex gap-3 m-5">
+          <button
+            [routerLink]="['/successful', selectedOpportunity.issuanceNumber]"
+            class="btn btn-dark col-md-7 col-sm-12 flex-grow-1 py-2"
+          >
+            {{ "CHECKOUT_PAGE.CONFIRM_PAYMENT" | translate }}
+          </button>
+          <button class="btn btn-light col-md-3 col-sm-12 flex-grow-1 py-2">
+            {{ "CHECKOUT_PAGE.CANCEL" | translate }}
+          </button>
+        </div>
+
+        <p class="text-muted small mt-3 text-center">
+          {{ "CHECKOUT_PAGE.PAYMENT_CONFIRMATION_MESSAGE" | translate }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
