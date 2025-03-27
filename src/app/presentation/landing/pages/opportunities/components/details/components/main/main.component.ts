@@ -1,0 +1,40 @@
+import { NgClass, NgIf } from '@angular/common';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { TranslateModule } from '@ngx-translate/core';
+import { WEB_ROUTES } from '../../../../../../../../core/constants/routes.constants';
+
+@Component({
+  selector: 'app-main',
+  imports: [TranslateModule, NgbAccordionModule, RouterLink, NgClass],
+  templateUrl: './main.component.html',
+  styleUrl: './main.component.scss'
+})
+export class MainComponent {
+  WEB_ROUTES = WEB_ROUTES;
+  selectedOpportunity = {
+    image: "assets/images/tower.svg",
+    issuanceNumber: 2,
+    durationInMonths: 18,
+    displayName: "مرابحة عقاري 2025-001",
+    annualReturn: 100,
+    rri: 13.5,
+    roi: 13.5,
+    expectedReturn: 13.5,
+    dueDate: "0",
+    startDate: new Date("2025-03-10").toISOString(),
+    endDate: "",
+    dividendDate: "",
+    displaySummary: "",
+    status: "",
+    miniSuccess: 0,
+    businessSector: 0,
+    investorMinLimit: 0,
+    stockCount: 0,
+    stockValue: 0,
+    programName: null,
+    dividends: [],
+    id: 1,
+  }
+}

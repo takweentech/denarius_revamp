@@ -5,6 +5,7 @@ export const WEB_ROUTES = {
     OPPORTUNITIES: {
         ROOT: "opportunities",
         DETAILS: "details",
+        PAYMENT: "payment",
     },
     AUTH: {
         ROOT: "auth"
