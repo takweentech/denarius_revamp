@@ -29,8 +29,8 @@ export class TranslationService {
   }
 
 
-  onLangChange() {
-    localStorage.setItem(this.languageKey, this.language == 'ar' ? 'en' : 'ar')
+  onLangChange(lang?: string) {
+    localStorage.setItem(this.languageKey, lang ? lang : this.language == 'ar' ? 'en' : 'ar')
     location.reload();
   }
 

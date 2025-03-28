@@ -3,11 +3,12 @@ import { Component, inject, TemplateRef, } from "@angular/core";
 import { NgbCollapseModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
 import { RouterLink } from "@angular/router";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-header",
   standalone: true,
-  imports: [CommonModule, NgbCollapseModule, RouterLink],
+  imports: [CommonModule, NgbCollapseModule, RouterLink, TranslatePipe],
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",
 })
