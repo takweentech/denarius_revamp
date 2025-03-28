@@ -3,10 +3,16 @@ import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.consta
 import { TranslateModule } from "@ngx-translate/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
+import { CurrencyAmountComponent } from "../../../../../../../../shared/components/currency-amount/currency-amount.component";
 
 @Component({
   selector: "app-payment",
-  imports: [TranslateModule, CommonModule, RouterModule],
+  imports: [
+    TranslateModule,
+    CommonModule,
+    RouterModule,
+    CurrencyAmountComponent,
+  ],
   templateUrl: "./payment.component.html",
   styleUrl: "./payment.component.scss",
 })
