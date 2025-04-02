@@ -1,4 +1,26 @@
 {
+  "HOMEPAGE": {},
+  "OPPORTUNITIES": {},
+  "OPPORTUNITIES_DETAILS": {},
+  "OPPOTUNITIES_PAYMENT": {},
+  "LAYOUT": {
+    "HEADER": {
+      "NAV_1": {
+        "ITEM_1": "الرئيسية",
+        "ITEM_2": "من نحن",
+        "ITEM_3": "المستثمر",
+        "ITEM_4": "طلب تمويل"
+      },
+      "NAV_2": {
+        "ITEM_1": "تسجيل الدخول",
+        "ITEM_2": "تصفح الفرص"
+      }
+    },
+    "FOOTER": {
+      "ENGLISH": "إنجليزي",
+      "ARABIC": "عربي"
+    }
+  },
   "INVESTMENT_OPPORTUNITIES": {
     "TITLE": "الفرص الاستثمارية",
     "SUBTITLE": "فرص مختارة بعناية",

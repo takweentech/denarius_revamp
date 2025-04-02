@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import AOS from "aos";
 @Component({
   selector: 'app-hero',
   imports: [],
@@ -7,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './hero.component.scss'
 })
 export class HeroComponent {
-
+  constructor() {
+    AOS.init();
+  }
 }

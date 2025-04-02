@@ -3,7 +3,7 @@
        class="card-img-top rounded-top-4"
        alt="Investment Image" />
 
-  <div class="card-body mx-3">
+  <div class="card-body d-flex flex-column gap-2 mx-3">
     <div class="d-flex justify-content-between text-muted">
       <small>
         {{ opportunity.durationInMonths }}
@@ -16,8 +16,8 @@
     </div>
 
     <h5 class="fw-bold mt-2">{{ opportunity.displayName }}</h5>
-    <div class="row d-flex">
-      <div class="d-flex col-2 justify-content-start my-2">
+    <div class="d-flex gap-4 justify-content-between">
+      <div class="d-flex justify-content-start my-2">
         <div class="">
           <img *ngIf="opportunity.annualReturn === 100"
                src="assets/icons/opportunity-card/succes-green.svg"
@@ -63,39 +63,17 @@
       {{ "INVESTMENT_OPPORTUNITIES.ANNUAL_RETURN" | translate }}
     </p>
 
-    <div *ngIf="opportunity.annualReturn === 100"
-         class="row p-3 gap-3 d-flex">
-      <button class="btn btn-outline-primary col-9"
-              [routerLink]="[
-          '/',
-          webRoutes.OPPORTUNITIES.ROOT,
-          webRoutes.OPPORTUNITIES.DETAILS,
-        ]">
-        {{ "INVESTMENT_OPPORTUNITIES.DETAILS" | translate }}
-      </button>
-      <button class="btn border-1 col-2 btn btn-outline-primary">
-        <img src="assets/icons/opportunity-card/save.svg"
-             alt="" />
-      </button>
-    </div>
 
-    <div class="row gx-2 py-3"
-         *ngIf="opportunity.annualReturn < 100">
-      <div class="col-10">
+
+    <!-- Actions -->
+    <div class="row gx-2 py-3">
+      <div class="col">
         <button class="btn btn-dark w-100"
                 [routerLink]="[
             '/',
             webRoutes.OPPORTUNITIES.ROOT,
-            webRoutes.OPPORTUNITIES.DETAILS,
-            opportunity.id
-          ]">
+            webRoutes.OPPORTUNITIES.DETAILS          ]">
           {{ "INVESTMENT_OPPORTUNITIES.INVEST_NOW" | translate }}
-        </button>
-      </div>
-
-      <div class="col">
-        <button class="btn btn-icon border-1 w-100 btn btn-outline-primary">
-          <i class="fa-regular fa-bookmark"></i>
         </button>
       </div>
     </div>

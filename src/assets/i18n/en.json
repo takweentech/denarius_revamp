@@ -1,15 +1,24 @@
 {
-  "INVESTMENT_OPPORTUNITIES": {
-    "TITLE": "Investment Opportunities",
-    "SUBTITLE": "Carefully Selected Opportunities",
-    "ISSUE_NUMBER": "Issue Number",
-    "MONTHS": "Months",
-    "COMPLETED": "Completed",
-    "DAYS_LEFT": "Days Until Closing",
-    "RETURN_ON_INVESTMENT": "Return on Investment",
-    "ANNUAL_RETURN": "Annual Return",
-    "DETAILS": "View Details",
-    "INVEST_NOW": "Invest Now",
-    "EXPLORE_MORE": "Explore More Opportunities"
+  "HOMEPAGE": {},
+  "OPPORTUNITIES": {},
+  "OPPORTUNITIES_DETAILS": {},
+  "OPPOTUNITIES_PAYMENT": {},
+  "LAYOUT": {
+    "HEADER": {
+      "NAV_1": {
+        "ITEM_1": "Home",
+        "ITEM_2": "About",
+        "ITEM_3": "Investor",
+        "ITEM_4": "Request Funding"
+      },
+      "NAV_2": {
+        "ITEM_1": "Sign in",
+        "ITEM_2": "Browse Opportunities"
+      }
+    },
+    "FOOTER": {
+      "ENGLISH": "English",
+      "ARABIC": "Arabic"
+    }
   }
 }
