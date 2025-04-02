@@ -29,9 +29,16 @@ export const OPPORTUNITIES_ROUTES: Route[] = [
       {
         path: WEB_ROUTES.OPPORTUNITIES.PAYMENT,
         loadComponent: () =>
-          import("./components/details/components/payment/payment.component").then(
-            (m) => m.PaymentComponent
-          ),
+          import(
+            "./components/details/components/payment/payment.component"
+          ).then((m) => m.PaymentComponent),
+      },
+      {
+        path: WEB_ROUTES.OPPORTUNITIES.SUCCESS,
+        loadComponent: () =>
+          import(
+            "./components/details/components/success/success.component"
+          ).then((m) => m.SuccessComponent),
       },
     ],
     providers: [],
