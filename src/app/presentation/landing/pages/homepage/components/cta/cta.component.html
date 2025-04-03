@@ -10,23 +10,17 @@
 
   <div class="row">
     <div class="col-12 col-md-5">
-      <div
-        class="position-relative d-flex funding justify-content-center align-items-center"
-        [ngStyle]="{
+      <div class="position-relative d-flex funding justify-content-center align-items-center"
+           [ngStyle]="{
           transform: currentLang === 'ar' ? 'scaleX(1)' : 'scaleX(-1)'
-        }"
-      >
-        <img
-          class="w-100 h-100"
-          src="assets/images/funding.svg"
-          alt="Outer Circle"
-        />
+        }">
+        <img class="w-100 h-100"
+             src="assets/images/funding.svg"
+             alt="Outer Circle" />
 
-        <img
-          class="position-absolute rounded-circle"
-          src="assets/images/towers2.svg"
-          alt="Inner Image"
-        />
+        <img class="position-absolute rounded-circle"
+             src="assets/images/towers2.svg"
+             alt="Inner Image" />
       </div>
     </div>
     <div class="col-12 col-md-7 d-flex flex-column gap-4">
@@ -64,12 +58,12 @@
           </p>
         </div>
       </div>
-      <a
-        class="text-start w-100 text-primary text-decoration-underline"
-        href=""
-      >
-        {{ "HOMEPAGE.CTA.CTA_BUTTON" | translate }}
-      </a>
+      <div class="d-flex justify-content-end">
+        <a class=" text-primary text-decoration-underline"
+           href="">
+          {{ "HOMEPAGE.CTA.CTA_BUTTON" | translate }}
+        </a>
+      </div>
     </div>
   </div>
 </section>

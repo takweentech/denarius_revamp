@@ -1,0 +1,7 @@
+.rotate {
+    transform: rotate(180deg);
+
+    html[dir=rtl] & {
+        transform: rotate(0deg);
+    }
+}

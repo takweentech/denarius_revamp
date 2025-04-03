@@ -7,46 +7,34 @@
         <h3>{{ "OPPOTUNITIES_PAYMENT.INVESTMENT_STEP" | translate }}</h3>
         <strong> {{ "OPPOTUNITIES_PAYMENT.SELECT_BONDS" | translate }} </strong>
         <h5 class="">
-          <img
-            class=""
-            src="assets/icons/InvestmentOpportunities/calculator.svg"
-            alt=""
-          />
+          <img class=""
+               src="assets/icons/InvestmentOpportunities/calculator.svg"
+               alt="" />
           {{ "OPPOTUNITIES_PAYMENT.BONDS_COUNT" | translate }}
         </h5>
-        <input
-          class="col-md-10 col-sm-12 form-control"
-          type="number"
-          placeholder="10"
-        />
+        <input class="col-md-10 col-sm-12 form-control"
+               type="number"
+               placeholder="10" />
         <div class="col-12 p-md-0 my-4">
           <strong>
             {{ "OPPOTUNITIES_PAYMENT.MIN_INVESTMENT" | translate }}
-            <strong
-              style="direction: ltr; unicode-bidi: isolate"
-              class="fs-5 d-inline-flex align-items-center gap-1"
-            >
-              <img
-                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
-                alt="currency"
-                width="12"
-                height="12"
-              />
+            <strong style="direction: ltr; unicode-bidi: isolate"
+                    class="fs-5 d-inline-flex align-items-center gap-1">
+              <img src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="currency"
+                   width="12"
+                   height="12" />
             </strong>
           </strong>
           <br />
           <strong>
             {{ "OPPOTUNITIES_PAYMENT.MAX_INVESTMENT" | translate }}
-            <strong
-              style="direction: ltr; unicode-bidi: isolate"
-              class="fs-5 d-inline-flex align-items-center gap-1"
-            >
-              <img
-                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
-                alt="currency"
-                width="12"
-                height="12"
-              />
+            <strong style="direction: ltr; unicode-bidi: isolate"
+                    class="fs-5 d-inline-flex align-items-center gap-1">
+              <img src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="currency"
+                   width="12"
+                   height="12" />
             </strong>
           </strong>
         </div>
@@ -62,78 +50,58 @@
           <ul class="list-unstyled row gap-3">
             <li class="d-flex justify-content-between py-2 border-bottom">
               <span class="fw-bold mt-1">
-                <img
-                  class="px-2"
-                  src="assets/icons/details/adjustments.svg"
-                  alt=""
-                />
+                <img class="px-2"
+                     src="assets/icons/details/adjustments.svg"
+                     alt="" />
                 {{ "OPPOTUNITIES_PAYMENT.TOTAL_INVESTMENT_AMOUNT" | translate }}
               </span>
-              <app-currency-amount
-                [amount]="15000"
-                [size]="5"
-                [extraClass]="'fw-light text-dark'"
-              ></app-currency-amount>
+              <app-currency-amount [amount]="15000"
+                                   [size]="5"
+                                   [extraClass]="'fw-light text-dark'"></app-currency-amount>
             </li>
             <li class="d-flex justify-content-between py-2 border-bottom">
               <span class="fw-bold mt-1">
-                <img
-                  class="px-2"
-                  src="assets/icons/details/adjustments.svg"
-                  alt=""
-                />
+                <img class="px-2"
+                     src="assets/icons/details/adjustments.svg"
+                     alt="" />
                 {{ "OPPOTUNITIES_PAYMENT.TOTAL_EXPECTED_RETURN" | translate }}
               </span>
-              <app-currency-amount
-                [amount]="3000"
-                [size]="5"
-                [extraClass]="'fw-light text-dark'"
-              ></app-currency-amount>
+              <app-currency-amount [amount]="3000"
+                                   [size]="5"
+                                   [extraClass]="'fw-light text-dark'"></app-currency-amount>
             </li>
             <li class="d-flex justify-content-between py-2 border-bottom">
               <span class="fw-bold mt-1">
-                <img
-                  class="px-2"
-                  src="assets/icons/details/adjustments.svg"
-                  alt=""
-                />
+                <img class="px-2"
+                     src="assets/icons/details/adjustments.svg"
+                     alt="" />
                 {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
               </span>
-              <app-currency-amount
-                [amount]="0"
-                [size]="5"
-                [extraClass]="'fw-light text-dark'"
-              ></app-currency-amount>
+              <app-currency-amount [amount]="0"
+                                   [size]="5"
+                                   [extraClass]="'fw-light text-dark'"></app-currency-amount>
             </li>
             <li class="d-flex justify-content-between py-2 border-bottom">
               <span class="fw-bold mt-1">
-                <img
-                  class="px-2"
-                  src="assets/icons/details/adjustments.svg"
-                  alt=""
-                />
+                <img class="px-2"
+                     src="assets/icons/details/adjustments.svg"
+                     alt="" />
                 {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
               </span>
-              <app-currency-amount
-                [amount]="0"
-                [size]="5"
-                [extraClass]="'fw-light text-dark'"
-              ></app-currency-amount>
+              <app-currency-amount [amount]="0"
+                                   [size]="5"
+                                   [extraClass]="'fw-light text-dark'"></app-currency-amount>
             </li>
             <li class="d-flex justify-content-between py-2">
               <span class="fw-bold mt-1">
-                <img
-                  class="px-2"
-                  src="assets/icons/details/adjustments.svg"
-                  alt=""
-                />
+                <img class="px-2"
+                     src="assets/icons/details/adjustments.svg"
+                     alt="" />
                 {{ "OPPOTUNITIES_PAYMENT.NET_RETURN" | translate }}
               </span>
-              <app-currency-amount
-                [amount]="15000"
-                [size]="5"
-                [extraClass]="'fw-light text-dark'"
-              ></app-currency-amount>
+              <app-currency-amount [amount]="15000"
+                                   [size]="5"
+                                   [extraClass]="'fw-light text-dark'"></app-currency-amount>
             </li>
           </ul>
           <div class="d-flex">
@@ -153,22 +121,28 @@
         <table class="table table-striped text-center">
           <thead>
             <tr>
-              <th scope="col" class="text-white">
+              <th scope="col"
+                  class="text-white">
                 {{ "OPPOTUNITIES_PAYMENT.PAYMENT_NUMBER" | translate }}
               </th>
-              <th scope="col" class="text-white">
+              <th scope="col"
+                  class="text-white">
                 {{ "OPPOTUNITIES_PAYMENT.AMOUNT" | translate }}
               </th>
-              <th scope="col" class="text-white">
+              <th scope="col"
+                  class="text-white">
                 {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
               </th>
-              <th scope="col" class="text-white">
+              <th scope="col"
+                  class="text-white">
                 {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
               </th>
-              <th scope="col" class="text-white">
+              <th scope="col"
+                  class="text-white">
                 {{ "OPPOTUNITIES_PAYMENT.NET_PROFIT" | translate }}
               </th>
-              <th scope="col" class="text-white">
+              <th scope="col"
+                  class="text-white">
                 {{ "OPPOTUNITIES_PAYMENT.DISTRIBUTION_DATE" | translate }}
               </th>
             </tr>
@@ -178,38 +152,30 @@
               <td>{{ payment.id }}</td>
 
               <td>
-                <app-currency-amount
-                  [amount]="payment.amount"
-                  [size]="5"
-                  extraClass="fw-light"
-                >
+                <app-currency-amount [amount]="payment.amount"
+                                     [size]="5"
+                                     extraClass="fw-light">
                 </app-currency-amount>
               </td>
 
               <td>
-                <app-currency-amount
-                  [amount]="payment.agencyFee"
-                  [size]="5"
-                  extraClass="fw-light"
-                >
+                <app-currency-amount [amount]="payment.agencyFee"
+                                     [size]="5"
+                                     extraClass="fw-light">
                 </app-currency-amount>
               </td>
 
               <td>
-                <app-currency-amount
-                  [amount]="payment.vat"
-                  [size]="5"
-                  extraClass="fw-light"
-                >
+                <app-currency-amount [amount]="payment.vat"
+                                     [size]="5"
+                                     extraClass="fw-light">
                 </app-currency-amount>
               </td>
 
               <td>
-                <app-currency-amount
-                  [amount]="payment.netProfit"
-                  [size]="5"
-                  extraClass="fw-light"
-                >
+                <app-currency-amount [amount]="payment.netProfit"
+                                     [size]="5"
+                                     extraClass="fw-light">
                 </app-currency-amount>
               </td>
 
@@ -222,78 +188,63 @@
   </div>
   <!-- Payment method -->
   <div class="col-lg-5 col-12">
-    <div
-      class="card card-light-blue py-5 px-3 px-md-5 shadow-sm rounded-4 border-0"
-    >
+    <div class="card card-light-blue py-5 px-3 px-md-4 shadow-sm rounded-4 border-0">
       <h5 class="fw-bold text-dark">
         {{ "OPPOTUNITIES_PAYMENT.PAYMENT_METHOD" | translate }}
       </h5>
       <div
-        class="p-3 border m-2 border-danger border-1 shadow-sm bg-white rounded-3 d-flex justify-content-between align-items-center"
-      >
+           class="p-3 border my-2 border-1 shadow-sm bg-white rounded-3 d-flex justify-content-between align-items-center">
         <div class="d-flex align-items-center gap-2">
-          <img
-            src="assets/icons/details/Radio1.svg"
-            alt="currency"
-            width="16"
-            height="16"
-          />
+          <img src="assets/icons/details/Radio1.svg"
+               alt="currency"
+               width="16"
+               height="16" />
           <span class="text-dark">{{
             "OPPOTUNITIES_PAYMENT.INVESTMENT_WALLET" | translate
-          }}</span>
+            }}</span>
         </div>
         <strong class="fs-5 d-inline-flex fw-light align-items-center gap-1">
           <span class="text-dark">{{
             "OPPOTUNITIES_PAYMENT.BALANCE" | translate
-          }}</span>
-          <app-currency-amount
-            [amount]="19500"
-            [size]="6"
-            [extraClass]="'fw-bold text-dark'"
-          ></app-currency-amount>
+            }}</span>
+          <app-currency-amount [amount]="19500"
+                               [size]="6"
+                               [extraClass]="'fw-bold text-dark'"></app-currency-amount>
         </strong>
       </div>
-      <span class="text-danger">
+      <!-- <span class="text-danger">
         {{ "OPPOTUNITIES_PAYMENT.INSUFFICIENT_BALANCE_TEXT" | translate }}
-        <a href="#" class="text-primary fw-bold">
+        <a href="#"
+           class="text-primary fw-bold">
           {{ "OPPOTUNITIES_PAYMENT.INSUFFICIENT_BALANCE_LINK" | translate }}
         </a>
-      </span>
+      </span> -->
       <hr />
 
       <div class="row d-flex my-3 justify-content-between align-items-center">
         <h3 class="fw-bold col">
           {{ "OPPOTUNITIES_PAYMENT.TOTAL_AMOUNT" | translate }}
         </h3>
-        <strong
-          class="fs-5 d-inline-flex col justify-content-end align-items-center gap-1"
-        >
-          <app-currency-amount
-            [amount]="10000"
-            [size]="2"
-            [extraClass]="'fw-bold text-dark'"
-            [countUp]="true"
-          ></app-currency-amount>
+        <strong class="fs-5 d-inline-flex col justify-content-end align-items-center gap-1">
+          <app-currency-amount [amount]="10000"
+                               [size]="2"
+                               [extraClass]="'fw-bold text-dark'"
+                               [countUp]="true"></app-currency-amount>
         </strong>
       </div>
 
-      <div class="mt-3 row">
-        <strong class="col-1">
-          <input
-            class="p-0"
-            type="checkbox"
-            id="terms"
-            checked
-            style="transform: scale(1.5)"
-          />
-        </strong>
-        <strong class="col-11" for="terms">
+      <div class="mt-3 d-flex align-items-start gap-2">
+        <input type="checkbox"
+               id="terms"
+               checked />
+        <strong for="terms">
           <span class="fw-light">
             {{ "OPPOTUNITIES_PAYMENT.TERMS_AGREEMENT" | translate }}
           </span>
-          <a href="#" class="text-primary fw-bold">{{
+          <a href="#"
+             class="text-primary fw-bold">{{
             "OPPOTUNITIES_PAYMENT.TERMS_CONDITIONS" | translate
-          }}</a>
+            }}</a>
           <span class="fw-light">
             {{ "OPPOTUNITIES_PAYMENT.TERMS" | translate }}
           </span>
@@ -304,8 +255,7 @@
       <div class="my-5">
         <div class="row g-2">
           <div class="col-md-8 col-12">
-            <button
-              [routerLink]="
+            <button [routerLink]="
                 '/' +
                 WEB_ROUTES.OPPORTUNITIES.ROOT +
                 '/' +
@@ -313,8 +263,7 @@
                 '/' +
                 WEB_ROUTES.OPPORTUNITIES.SUCCESS
               "
-              class="btn btn-primary py-2 w-100"
-            >
+                    class="btn btn-primary py-2 w-100">
               {{ "OPPOTUNITIES_PAYMENT.CONFIRM_PAYMENT" | translate }}
             </button>
           </div>
