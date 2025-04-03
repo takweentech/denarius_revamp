@@ -16,30 +16,8 @@ export class CurrencyAmountComponent implements OnInit {
   displayedAmount: number = 0;
 
   ngOnInit(): void {
-    if (this.countUp) {
-      this.animateCountUp();
-    } else {
-      this.displayedAmount = this.amount;
-    }
   }
 
-  animateCountUp(): void {
-    const duration = 2000;
-    const fps = 30;
-    const steps = Math.floor(duration / fps);
-    let step = 0;
-
-    const counter = setInterval(() => {
-      step++;
-      const progress = step / steps;
-      this.displayedAmount = Math.floor(this.amount * progress);
-
-      if (step >= steps) {
-        this.displayedAmount = this.amount;
-        clearInterval(counter);
-      }
-    }, fps);
-  }
 
   get iconSizeClass(): string {
     return "currency-icon-size-" + this.size;

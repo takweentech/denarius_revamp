@@ -90,7 +90,6 @@
   },
   "OPPORTUNITIES": {
     "MAIN_TITLE": "أحدث الفرص الاستثمارية",
-
     "TITLE": "الفرص الاستثمارية",
     "SUBTITLE": "فرص مختارة بعناية",
     "ISSUE_NUMBER": "رقم الإصدار",
@@ -106,7 +105,6 @@
   "OPPORTUNITIES_DETAILS": {
     "COMPLETED": "مكتملة",
     "DAYS_LEFT": "يوماً على الإغلاق",
-
     "INVESTMENT_OPPORTUNITIES": "الفرص الاستثمارية",
     "ISSUE_NUMBER": "رقم الإصدار",
     "NOT_AVAILABLE": "غير متاح",
@@ -207,6 +205,7 @@
         "ITEM_4": "طلب تمويل"
       },
       "NAV_2": {
+        "TITLE": "القائمة",
         "ITEM_1": "تسجيل الدخول",
         "ITEM_2": "تصفح الفرص"
       }
@@ -233,6 +232,7 @@
       "REGISTER_INVESTOR": "سجل كمستثمر",
       "CONTACT_US": "تواصل معنا",
       "PHONE": "+966 150505050",
+      "EMAIL": "email@email.com",
       "COPYRIGHT": "جميع الحقوق محفوظة لشركة تكوين المالية 2025جميع الحقوق محفوظة لشركة تكوين المالية "
     },
     "HEADER_2": {

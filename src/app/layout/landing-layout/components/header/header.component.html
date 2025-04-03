@@ -38,7 +38,7 @@
 <ng-template #content
              let-offcanvas>
   <div class="offcanvas-header d-flex align-items-center justify-content-between">
-    <h4 class="offcanvas-title">القائمة</h4>
+    <h4 class="offcanvas-title">{{'LAYOUT.HEADER.NAV_2.TITLE' | translate}}</h4>
     <button type="button"
             class="navbar-toggler"
             aria-label="Close"
@@ -50,25 +50,25 @@
     <nav class="mb-auto">
       <ul class="nav navbar-nav navbar p-0 gap-2">
         <li class="w-100"><a class="text-primary text-start"
-             href="">الرئيسية</a></li>
+             href="">{{'LAYOUT.HEADER.NAV_1.ITEM_1' | translate}}</a></li>
         <li class="w-100"><a class="text-primary text-start"
-             href="">من نحن</a></li>
+             href="">{{'LAYOUT.HEADER.NAV_1.ITEM_2' | translate}}</a></li>
         <li class="w-100"><a class="text-primary text-start"
-             href="">مستثمر</a></li>
+             href="">{{'LAYOUT.HEADER.NAV_1.ITEM_3' | translate}}</a></li>
         <li class="w-100"><a class="text-primary text-start"
-             href="">طالب تمويل</a></li>
+             href="">{{'LAYOUT.HEADER.NAV_1.ITEM_4' | translate}}</a></li>
       </ul>
     </nav>
     <div class="extra-nav d-flex justify-content-stretch  gap-2">
       <a href="javascript:void(0);"
          (click)=" offcanvas.dismiss()"
          class="btn btn-outline-primary  flex-grow-1">
-        تسجل دخول
+        {{'LAYOUT.HEADER.NAV_2.ITEM_1' | translate}}
       </a>
       <a href="javascript:void(0);"
          (click)="offcanvas.dismiss() "
          class="btn btn-primary  flex-grow-1">
-        <span>استعرض الفرص</span>
+        <span>{{'LAYOUT.HEADER.NAV_2.ITEM_2' | translate}}</span>
       </a>
     </div>
 

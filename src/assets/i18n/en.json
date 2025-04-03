@@ -190,6 +190,7 @@
         "ITEM_4": "Request Funding"
       },
       "NAV_2": {
+        "TITLE": "Menu",
         "ITEM_1": "Sign in",
         "ITEM_2": "Browse Opportunities"
       }
@@ -216,6 +217,7 @@
       "REGISTER_INVESTOR": "Register as Investor",
       "CONTACT_US": "Contact Us",
       "PHONE": "+966 150505050",
+      "EMAIL": "email@email.com",
       "COPYRIGHT": "© 2025 Takween Financial. All rights reserved."
     },
     "HEADER_2": {
@@ -223,7 +225,6 @@
       "ISSUE_NUMBER": "Issue Number"
     }
   },
-
   "OPPORTUNITIES": {
     "MAIN_TITLE": "Latest Investment Opportunities",
     "TITLE": "Investment Opportunities",
@@ -238,7 +239,6 @@
     "INVEST_NOW": "Invest Now",
     "EXPLORE_MORE": "Explore More Opportunities"
   },
-
   "SUCCESS_PAGE": {
     "TITLE": "Investment Opportunities",
     "ISSUE_NUMBER": "Issue Number",
