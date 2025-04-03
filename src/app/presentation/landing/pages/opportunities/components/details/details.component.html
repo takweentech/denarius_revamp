@@ -1,21 +1,17 @@
 <!-- HERO -->
-<section class="d-flex flex-column justify-content-center gap-2 text-center hero">
+<section
+  class="d-flex flex-column justify-content-center gap-2 text-center hero"
+>
   <div class="container position-relative">
     <div class="d-flex gap-3 flex-column">
       <h1>
-        مرابحة عقارية 001-2025
+        {{ "LAYOUT.HEADER_2.TITLE" | translate }}
       </h1>
-      <p>
-        رقم الإصدار 3
-      </p>
+      <p>{{ "LAYOUT.HEADER_2.ISSUE_NUMBER" | translate }} 3</p>
     </div>
-    <img class="d-none d-lg-block"
-         src="assets/images/sharia.svg"
-         alt="" />
+    <img class="d-none d-lg-block" src="assets/images/sharia.svg" alt="" />
   </div>
 </section>
-
-
 
 <div class="container mt-5 pb-6">
   <router-outlet></router-outlet>

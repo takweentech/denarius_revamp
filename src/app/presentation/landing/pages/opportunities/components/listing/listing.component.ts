@@ -1,9 +1,10 @@
 import { Component } from "@angular/core";
 import { OpportunityCardComponent } from "../../../../../../shared/components/opportunity-card/opportunity-card.component";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
   selector: "app-listing",
-  imports: [OpportunityCardComponent],
+  imports: [OpportunityCardComponent, TranslateModule],
   templateUrl: "./listing.component.html",
   styleUrl: "./listing.component.scss",
 })

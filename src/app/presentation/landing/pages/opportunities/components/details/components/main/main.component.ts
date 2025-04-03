@@ -1,15 +1,22 @@
-import { NgClass, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
-import { TranslateModule } from '@ngx-translate/core';
-import { WEB_ROUTES } from '../../../../../../../../core/constants/routes.constants';
+import { NgClass, NgIf } from "@angular/common";
+import { Component } from "@angular/core";
+import { RouterLink } from "@angular/router";
+import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
+import { TranslateModule } from "@ngx-translate/core";
+import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
+import { CurrencyAmountComponent } from "../../../../../../../../shared/components/currency-amount/currency-amount.component";
 
 @Component({
-  selector: 'app-main',
-  imports: [TranslateModule, NgbAccordionModule, RouterLink, NgClass],
-  templateUrl: './main.component.html',
-  styleUrl: './main.component.scss'
+  selector: "app-main",
+  imports: [
+    TranslateModule,
+    NgbAccordionModule,
+    RouterLink,
+    NgClass,
+    CurrencyAmountComponent,
+  ],
+  templateUrl: "./main.component.html",
+  styleUrl: "./main.component.scss",
 })
 export class MainComponent {
   WEB_ROUTES = WEB_ROUTES;
@@ -36,5 +43,5 @@ export class MainComponent {
     programName: null,
     dividends: [],
     id: 1,
-  }
+  };
 }
