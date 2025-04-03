@@ -1,0 +1,17 @@
+<svg width="454" height="471" viewBox="0 0 454 471" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="227" cy="235.5" r="178.138" stroke="#DBE3E3" stroke-width="1.5"/>
+  <circle cx="227" cy="235.5" r="203.069" stroke="#DBE3E3" stroke-width="1.5"/>
+  <circle cx="227" cy="235.5" r="226.25" stroke="#DBE3E3" stroke-width="1.5"/>
+
+  <!-- dashed paths -->
+  <g transform="translate(0, -29)">
+
+  <path d="M227.297 444C325.44 444 405 364.44 405 266.297C405 168.154 325.44 88.5941 227.297 88.5941" stroke="#13ADB7" stroke-linejoin="round" stroke-dasharray="5 12"/>
+  <path d="M228 88L0 88" stroke="#13ADB7" stroke-dasharray="5 12"/>
+  <path d="M230 444.473L81.2623 436.53" stroke="#13ADB7" stroke-dasharray="5 12"/>
+</g>
+  <!-- نقاط -->
+  <circle cx="320" cy="28" r="7" fill="#13ADB7"/> 
+  <circle cx="120" cy="436" r="7" fill="#FFC107"/> 
+  <circle cx="428" cy="230" r="7" fill="#000000"/> 
+</svg>

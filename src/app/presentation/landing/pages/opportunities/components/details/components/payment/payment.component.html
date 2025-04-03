@@ -4,15 +4,15 @@
     <!-- Details -->
     <div class="d-flex flex-column flex-xl-row gap-3">
       <div class="w-100 d-flex flex-column gap-2">
-        <h3>{{ "CHECKOUT_PAGE.INVESTMENT_STEP" | translate }}</h3>
-        <strong> {{ "CHECKOUT_PAGE.SELECT_BONDS" | translate }} </strong>
+        <h3>{{ "OPPOTUNITIES_PAYMENT.INVESTMENT_STEP" | translate }}</h3>
+        <strong> {{ "OPPOTUNITIES_PAYMENT.SELECT_BONDS" | translate }} </strong>
         <h5 class="">
           <img
             class=""
             src="assets/icons/InvestmentOpportunities/calculator.svg"
             alt=""
           />
-          {{ "CHECKOUT_PAGE.BONDS_COUNT" | translate }}
+          {{ "OPPOTUNITIES_PAYMENT.BONDS_COUNT" | translate }}
         </h5>
         <input
           class="col-md-10 col-sm-12 form-control"
@@ -21,7 +21,7 @@
         />
         <div class="col-12 p-md-0 my-4">
           <strong>
-            {{ "CHECKOUT_PAGE.MIN_INVESTMENT" | translate }}
+            {{ "OPPOTUNITIES_PAYMENT.MIN_INVESTMENT" | translate }}
             <strong
               style="direction: ltr; unicode-bidi: isolate"
               class="fs-5 d-inline-flex align-items-center gap-1"
@@ -36,7 +36,7 @@
           </strong>
           <br />
           <strong>
-            {{ "CHECKOUT_PAGE.MAX_INVESTMENT" | translate }}
+            {{ "OPPOTUNITIES_PAYMENT.MAX_INVESTMENT" | translate }}
             <strong
               style="direction: ltr; unicode-bidi: isolate"
               class="fs-5 d-inline-flex align-items-center gap-1"
@@ -51,8 +51,10 @@
           </strong>
         </div>
         <strong>
-          {{ "CHECKOUT_PAGE.UNLIMITED_INVESTMENT" | translate }}
-          <a href=""> {{ "CHECKOUT_PAGE.UPGRADE_ACCOUNT" | translate }} </a>
+          {{ "OPPOTUNITIES_PAYMENT.UNLIMITED_INVESTMENT" | translate }}
+          <a href="">
+            {{ "OPPOTUNITIES_PAYMENT.UPGRADE_ACCOUNT" | translate }}
+          </a>
         </strong>
       </div>
       <div class="w-100">
@@ -65,7 +67,7 @@
                   src="assets/icons/details/adjustments.svg"
                   alt=""
                 />
-                {{ "CHECKOUT_PAGE.TOTAL_INVESTMENT_AMOUNT" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.TOTAL_INVESTMENT_AMOUNT" | translate }}
               </span>
               <app-currency-amount
                 [amount]="15000"
@@ -80,7 +82,7 @@
                   src="assets/icons/details/adjustments.svg"
                   alt=""
                 />
-                {{ "CHECKOUT_PAGE.TOTAL_EXPECTED_RETURN" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.TOTAL_EXPECTED_RETURN" | translate }}
               </span>
               <app-currency-amount
                 [amount]="3000"
@@ -95,7 +97,7 @@
                   src="assets/icons/details/adjustments.svg"
                   alt=""
                 />
-                {{ "CHECKOUT_PAGE.AGENCY_FEE" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
               </span>
               <app-currency-amount
                 [amount]="0"
@@ -110,7 +112,7 @@
                   src="assets/icons/details/adjustments.svg"
                   alt=""
                 />
-                {{ "CHECKOUT_PAGE.VAT" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
               </span>
               <app-currency-amount
                 [amount]="0"
@@ -125,7 +127,7 @@
                   src="assets/icons/details/adjustments.svg"
                   alt=""
                 />
-                {{ "CHECKOUT_PAGE.NET_RETURN" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.NET_RETURN" | translate }}
               </span>
               <app-currency-amount
                 [amount]="15000"
@@ -136,7 +138,7 @@
           </ul>
           <div class="d-flex">
             <strong class="me-auto">
-              {{ "CHECKOUT_PAGE.ISSUE_DURATION" | translate }}
+              {{ "OPPOTUNITIES_PAYMENT.ISSUE_DURATION" | translate }}
             </strong>
           </div>
         </div>
@@ -144,28 +146,30 @@
     </div>
     <!-- Table -->
     <div class="col-12">
-      <h4 class="mb-2">{{ "CHECKOUT_PAGE.PAYMENT_SCHEDULE" | translate }}</h4>
+      <h4 class="mb-2">
+        {{ "OPPOTUNITIES_PAYMENT.PAYMENT_SCHEDULE" | translate }}
+      </h4>
       <div class="table-container">
         <table class="table table-striped text-center">
           <thead>
             <tr>
               <th scope="col" class="text-white">
-                {{ "CHECKOUT_PAGE.PAYMENT_NUMBER" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.PAYMENT_NUMBER" | translate }}
               </th>
               <th scope="col" class="text-white">
-                {{ "CHECKOUT_PAGE.AMOUNT" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.AMOUNT" | translate }}
               </th>
               <th scope="col" class="text-white">
-                {{ "CHECKOUT_PAGE.AGENCY_FEE" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
               </th>
               <th scope="col" class="text-white">
-                {{ "CHECKOUT_PAGE.VAT" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
               </th>
               <th scope="col" class="text-white">
-                {{ "CHECKOUT_PAGE.NET_PROFIT" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.NET_PROFIT" | translate }}
               </th>
               <th scope="col" class="text-white">
-                {{ "CHECKOUT_PAGE.DISTRIBUTION_DATE" | translate }}
+                {{ "OPPOTUNITIES_PAYMENT.DISTRIBUTION_DATE" | translate }}
               </th>
             </tr>
           </thead>
@@ -222,7 +226,7 @@
       class="card card-light-blue py-5 px-3 px-md-5 shadow-sm rounded-4 border-0"
     >
       <h5 class="fw-bold text-dark">
-        {{ "CHECKOUT_PAGE.PAYMENT_METHOD" | translate }}
+        {{ "OPPOTUNITIES_PAYMENT.PAYMENT_METHOD" | translate }}
       </h5>
       <div
         class="p-3 border m-2 border-danger border-1 shadow-sm bg-white rounded-3 d-flex justify-content-between align-items-center"
@@ -235,12 +239,12 @@
             height="16"
           />
           <span class="text-dark">{{
-            "CHECKOUT_PAGE.INVESTMENT_WALLET" | translate
+            "OPPOTUNITIES_PAYMENT.INVESTMENT_WALLET" | translate
           }}</span>
         </div>
         <strong class="fs-5 d-inline-flex fw-light align-items-center gap-1">
           <span class="text-dark">{{
-            "CHECKOUT_PAGE.BALANCE" | translate
+            "OPPOTUNITIES_PAYMENT.BALANCE" | translate
           }}</span>
           <app-currency-amount
             [amount]="19500"
@@ -250,14 +254,16 @@
         </strong>
       </div>
       <span class="text-danger">
-        لا يوجد لديك رصيد كافي، يمكنك شحن محفظتك
-        <a href="#" class="text-primary fw-bold"> من هنا </a>
+        {{ "OPPOTUNITIES_PAYMENT.INSUFFICIENT_BALANCE_TEXT" | translate }}
+        <a href="#" class="text-primary fw-bold">
+          {{ "OPPOTUNITIES_PAYMENT.INSUFFICIENT_BALANCE_LINK" | translate }}
+        </a>
       </span>
       <hr />
 
       <div class="row d-flex my-3 justify-content-between align-items-center">
         <h3 class="fw-bold col">
-          {{ "CHECKOUT_PAGE.TOTAL_AMOUNT" | translate }}
+          {{ "OPPOTUNITIES_PAYMENT.TOTAL_AMOUNT" | translate }}
         </h3>
         <strong
           class="fs-5 d-inline-flex col justify-content-end align-items-center gap-1"
@@ -266,6 +272,7 @@
             [amount]="10000"
             [size]="2"
             [extraClass]="'fw-bold text-dark'"
+            [countUp]="true"
           ></app-currency-amount>
         </strong>
       </div>
@@ -282,13 +289,13 @@
         </strong>
         <strong class="col-11" for="terms">
           <span class="fw-light">
-            {{ "CHECKOUT_PAGE.TERMS_AGREEMENT" | translate }}
+            {{ "OPPOTUNITIES_PAYMENT.TERMS_AGREEMENT" | translate }}
           </span>
           <a href="#" class="text-primary fw-bold">{{
-            "CHECKOUT_PAGE.TERMS_CONDITIONS" | translate
+            "OPPOTUNITIES_PAYMENT.TERMS_CONDITIONS" | translate
           }}</a>
           <span class="fw-light">
-            {{ "CHECKOUT_PAGE.TERMS" | translate }}
+            {{ "OPPOTUNITIES_PAYMENT.TERMS" | translate }}
           </span>
         </strong>
         <p class="text-muted small mt-2"></p>
@@ -308,18 +315,18 @@
               "
               class="btn btn-primary py-2 w-100"
             >
-              {{ "CHECKOUT_PAGE.CONFIRM_PAYMENT" | translate }}
+              {{ "OPPOTUNITIES_PAYMENT.CONFIRM_PAYMENT" | translate }}
             </button>
           </div>
           <div class="col-md-4 col-12">
             <button class="btn btn-light py-2 w-100">
-              {{ "CHECKOUT_PAGE.CANCEL" | translate }}
+              {{ "OPPOTUNITIES_PAYMENT.CANCEL" | translate }}
             </button>
           </div>
         </div>
 
         <p class="text-muted small mt-4">
-          {{ "CHECKOUT_PAGE.PAYMENT_CONFIRMATION_MESSAGE" | translate }}
+          {{ "OPPOTUNITIES_PAYMENT.PAYMENT_CONFIRMATION_MESSAGE" | translate }}
         </p>
       </div>
     </div>

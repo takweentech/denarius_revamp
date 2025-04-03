@@ -1,36 +1,48 @@
 .container {
-    .intro-text {
-        h6 {
-            font-weight: 500;
-            font-size: 14px;
-            line-height: 18px;
-            letter-spacing: 0.05em;
-            color: #303A42;
-
-        }
-
-        h1 {
-            font-weight: 700;
-            font-size: 32px;
-            line-height: 140%;
-            color: #0F111D;
-            max-width: 427px;
-        }
+  .intro-text {
+    h6 {
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 18px;
+      letter-spacing: 0.05em;
+      color: #303a42;
     }
 
-    h4 {
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 165%;
-        letter-spacing: 0.02em;
-        color: #13ADB7;
-
+    h1 {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 140%;
+      color: #0f111d;
+      max-width: 427px;
     }
+  }
 
-    p {
-        font-weight: 700;
-        font-size: 18px;
-        line-height: 165%;
-        color: #676A6A;
-    }
+  h4 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 165%;
+    letter-spacing: 0.02em;
+    color: #13adb7;
+  }
+
+  p {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 165%;
+    color: #676a6a;
+  }
+}
+.funding {
+  width: 454px;
+  height: 471px;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
+
+  @media (max-width: 480px) {
+    width: 90%;
+    height: auto;
+  }
 }

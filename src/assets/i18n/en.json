@@ -1,8 +1,186 @@
 {
-  "HOMEPAGE": {},
-  "OPPORTUNITIES": {},
-  "OPPORTUNITIES_DETAILS": {},
-  "OPPOTUNITIES_PAYMENT": {},
+  "HOMEPAGE": {
+    "HERO": {
+      "TITLE_LINE_1": "Join Us on Your",
+      "TITLE_LINE_2": "Real Estate Investment Journey",
+      "SUBTITLE": "We open new horizons in financing through the latest financial technologies",
+      "BUTTON_INVESTOR": "Investor",
+      "BUTTON_APPLICANT": "Funding Applicant"
+    },
+    "COMPLIANCE": {
+      "TITLE": "Committed to Islamic Sharia Law",
+      "SUBTITLE": "We adhere to the principles and rulings of Islamic Sharia through a dedicated committee of qualified scholars.",
+      "READ_MORE": "Read More",
+      "BOX_1": {
+        "TITLE": "Review of All Agreements, Contracts, and Operations",
+        "DESC": "The Sharia Committee reviews and approves all documents related to the company's operations."
+      },
+      "BOX_2": {
+        "TITLE": "Ongoing Monitoring of Company Activities",
+        "DESC": "The Sharia Committee performs regular reviews to ensure our continuous commitment to Sharia compliance."
+      }
+    },
+    "CTA": {
+      "SUBTITLE": "Takween Finance",
+      "TITLE": "Your funding journey is digital through our technologies and integration with various entities",
+      "BOX_1": {
+        "TITLE": "Get a quick financing offer and track the process from your account",
+        "DESC": "Short or long-term financing, up to 10 years"
+      },
+      "BOX_2": {
+        "TITLE": "Get funding quickly thanks to our technologies",
+        "DESC": "Financing up to 20 million SAR"
+      },
+      "BOX_3": {
+        "TITLE": "We work with you to structure the payment plan to suit your cash flow",
+        "DESC": "Financing up to 20 million SAR"
+      },
+      "BOX_4": {
+        "TITLE": "Early payment option with no extra fees",
+        "DESC": "Financing up to 20 million SAR"
+      },
+      "CTA_BUTTON": "Submit your funding request now"
+    },
+    "CTA_BANNER": {
+      "TITLE": "Your partner in the journey, who truly understands you",
+      "SUBTITLE": "We work closely with you to discuss your actual needs and offer you the right financing",
+      "CONTACT_US": "Contact Us",
+      "APPLY_NOW": "Apply Now"
+    },
+    "FAQ": {
+      "SUBTITLE": "Invest in promising opportunities and grow",
+      "TITLE": "Investing is now easier and closer with your financial partner",
+      "BULLET_1": "Start investing from just 1,000 SAR in listed opportunities",
+      "BULLET_2": "Returns up to 19% annually",
+      "BULLET_3": "Track your periodic distributions easily from your account",
+      "CTA": "Register now",
+      "ACCORDION_TITLE": "We accompany you on your investment journey",
+      "QUESTIONS": {
+        "Q1": {
+          "QUESTION": "Is the company authorized?",
+          "ANSWER": "Yes, the company is authorized by the Capital Market Authority under the FinTech Lab"
+        },
+        "Q2": {
+          "QUESTION": "What is the minimum investment?",
+          "ANSWER": "The minimum investment is 1,000 SAR"
+        },
+        "Q3": {
+          "QUESTION": "Can I withdraw anytime?",
+          "ANSWER": "It depends on the terms of each investment opportunity"
+        },
+        "Q4": {
+          "QUESTION": "Are profits guaranteed?",
+          "ANSWER": "No, all investments carry some degree of risk"
+        }
+      }
+    },
+    "LICENCE": {
+      "TITLE": "Licensed by the Capital Market Authority",
+      "DESCRIPTION": "Takween Financial Company is licensed by the Capital Market Authority within the Financial Technology Lab."
+    },
+    "PARTNERS": {
+      "SUBTITLE": "To provide a trusted and secure experience",
+      "TITLE": "We integrate with many trusted entities and companies to deliver an exceptional and digital experience that serves your goals and drives growth"
+    }
+  },
+  "INVESTMENT_OPPORTUNITIES": {
+    "TITLE": "Investment Opportunities",
+    "SUBTITLE": "Carefully Selected Opportunities",
+    "MAIN_TITLE": "Latest Investment Opportunities"
+  },
+  "OPPORTUNITIES_DETAILS": {
+    "DESCRIPTION": "A real estate investment opportunity in the heart of Riyadh, consisting of five villas with a modern Saudi designA real estate investment opportunity in the heart of Riyadh, consisting of five villas with a modern Saudi designA real estate investment opportunity in the heart of Riyadh, consisting of five villas with a modern Saudi designA real estate investment opportunity in the heart of Riyadh, consisting of five villas with a modern Saudi designA real estate investment opportunity in the heart of Riyadh, consisting of five villas with a modern Saudi design",
+    "INVESTMENT_OPPORTUNITIES": "Investment Opportunities",
+    "ISSUE_NUMBER": "Issue Number",
+    "NOT_AVAILABLE": "Not Available",
+    "INSTALLMENT_PLAN": "Installment Plan",
+    "FINANCIAL_INFO": "Financial Information",
+    "DOCUMENTS": "Documents",
+    "TOTAL_PROFIT": "Total Profit",
+    "QUARTERLY_PROFIT_DISTRIBUTION": "Quarterly Profit Distribution",
+    "OVERVIEW": "Overview",
+    "EXPECTED_RETURN": "Expected Return",
+    "CALCULATE_EXPECTED_RETURN": "Calculate Expected Return",
+    "SELECT_SUKUK_NUMBER": "Select Number of Sukuk",
+    "CALCULATE_RETURN": "Calculate Return",
+    "TOTAL_INVESTMENT_AMOUNT": "Total Investment Amount",
+    "TOTAL_EXPECTED_RETURN": "Total Expected Return",
+    "AGENCY_FEE": "Agency Fee",
+    "VAT": "Value Added Tax",
+    "NET_RETURN": "Net Return",
+    "ISSUE_DURATION": "Issue Duration",
+    "MONTHS": "Months",
+    "DAYS_TO_CLOSE": "Days Remaining",
+    "COMPLETE": "Complete",
+    "SHARE_INVESTMENT": "Share Investment",
+    "INVEST_NOW": "Invest Now",
+    "RETURN_ON_INVESTMENT": "Return on Investment",
+    "ANNUAL_RETURN": "Annual Return",
+    "SUCCESS_ICON": "Success",
+    "PENDING_ICON": "Pending",
+    "VIEW_DETAILS": "View Details",
+    "DOWNLOAD_DOCUMENTS": "Download Documents",
+    "EXPECTED_ISSUE_VALUE": "Expected Issue Value",
+    "SHARIA_COMPLIANT": "Sharia Compliant",
+    "ISSUE_VALUE": "Issue Value",
+    "QUARTERLY": "Quarterly",
+    "PROFIT_DISTRIBUTION": "Profit Distribution",
+    "PAYMENT_SCHEDULE": "Payment Schedule",
+    "COMPLETED": "Completed"
+  },
+  "OPPOTUNITIES_PAYMENT": {
+    "INSUFFICIENT_BALANCE_TEXT": "You don't have enough balance, you can top up your wallet",
+    "INSUFFICIENT_BALANCE_LINK": "here",
+    "INVESTMENT_OPPORTUNITIES": "Investment Opportunities",
+    "ISSUE_NUMBER": "Issue Number",
+    "NOT_AVAILABLE": "Not Available",
+    "DESCRIPTION": "Select the number of bonds and proceed with payment to complete your investment.",
+    "SELECT_BONDS": "Select the number of bonds to invest in",
+    "BONDS_COUNT": "Number of Bonds",
+    "UNLIMITED_INVESTMENT": "For unlimited investment, you can request an  ",
+    "CALCULATE_EXPECTED_RETURN": "Calculate Expected Return",
+    "CALCULATE": "Calculate Return",
+    "VAT": "Value Added Tax",
+    "NET_RETURN": "Net Return",
+    "ISSUE_DURATION": "Issue Duration",
+    "WALLET_BALANCE": "Investment Wallet",
+    "AGREE_TERMS": "I acknowledge that I have read",
+    "TERMS_AND_CONDITIONS": "Terms & Conditions",
+    "CONFIRM_MESSAGE": "By clicking the confirm button, the amount will be deducted from the investment wallet balance.",
+    "PAYMENT_NUMBER": "Payment Number",
+    "TERMS": "The platform and all documents and information related to the investment opportunity. I fully acknowledge and understand that the platform does not provide any recommendations, and I fully acknowledge and understand that the platform does not provide any recommendations, and I fully acknowledge and understand that the platform does not provide any recommendations...",
+    "AMOUNT": "Amount",
+    "TITLE": "Complete Investment Process",
+    "PAYMENT_METHOD": "Payment Method",
+    "INVESTMENT_WALLET": "Investment Wallet",
+    "BALANCE": "Balance",
+    "TOTAL_AMOUNT": "Total Amount",
+    "TERMS_AGREEMENT": "I acknowledge that I have read",
+    "TERMS_CONDITIONS": "Terms & Conditions",
+    "CONFIRM_PAYMENT": "Confirm & Pay",
+    "CANCEL": "Cancel",
+    "PAYMENT_CONFIRMATION_MESSAGE": "By clicking the confirm button, the amount will be deducted from the investment wallet balance.",
+    "MIN_INVESTMENT": "Minimum investment = 1 bond with a value of",
+    "MAX_INVESTMENT": "Maximum investment = 25 bonds with a value of",
+    "UPGRADE_ACCOUNT": " account upgrade",
+    "NUMBER_OF_SUKUK": "Number of Bonds",
+    "SELECT_SUKUK_AMOUNT": "Select the number of bonds to invest in",
+    "EXPECTED_RETURN": "Calculate Expected Return",
+    "TOTAL_INVESTMENT_AMOUNT": "Total Investment Amount",
+    "TOTAL_EXPECTED_RETURN": "Total Expected Return",
+    "AGENCY_FEE": "Agency Fee",
+    "VAT_TAX": "Value Added Tax",
+    "NET_PROFIT": "Net Profit",
+    "DURATION": "Issue Duration",
+    "PAYMENT_SCHEDULE": "Payment Schedule",
+    "PAYMENT_DETAILS": "Payment Details",
+    "DISTRIBUTION_DATE": "Distribution Date",
+    "INVESTMENT_STEP": "Your Investment Begins with a Step",
+    "MINIMUM_SUKUK": "Minimum Investment",
+    "MAXIMUM_SUKUK": "Maximum Investment",
+    "CONFIRM_TERMS": "I fully acknowledge and understand that the platform does not provide any recommendations",
+    "READ_TERMS": "View Terms & Conditions"
+  },
   "LAYOUT": {
     "HEADER": {
       "NAV_1": {
@@ -12,13 +190,62 @@
         "ITEM_4": "Request Funding"
       },
       "NAV_2": {
+        "TITLE": "Menu",
         "ITEM_1": "Sign in",
         "ITEM_2": "Browse Opportunities"
       }
     },
     "FOOTER": {
+      "ABOUT_TITLE": "About Us",
+      "SOCIAL_TITLE": "Follow us on social media",
       "ENGLISH": "English",
-      "ARABIC": "Arabic"
+      "ARABIC": "Arabic",
+      "DESCRIPTION": "Takween Financial is a Saudi company licensed by the Capital Market Authority. We are committed to Sharia compliance and innovation in financial technology.",
+      "FOLLOW_US": "Follow us on social platforms",
+      "ABOUT_US": "About Us",
+      "BLOG": "Blog",
+      "COMPLIANCE": "Sharia Compliance",
+      "TERMS": "Terms & Conditions",
+      "PRIVACY": "Privacy Policy",
+      "FAQ": "FAQ",
+      "DISCLOSURES": "Disclosures",
+      "LANGUAGES": "Languages",
+      "SERVICES": "Our Services",
+      "INVESTOR": "Investor",
+      "FUND_APPLICANT": "Funding Applicant",
+      "APPLY_FUNDING": "Apply for Funding",
+      "REGISTER_INVESTOR": "Register as Investor",
+      "CONTACT_US": "Contact Us",
+      "PHONE": "+966 150505050",
+      "EMAIL": "email@email.com",
+      "COPYRIGHT": "© 2025 Takween Financial. All rights reserved."
+    },
+    "HEADER_2": {
+      "TITLE": "Real Estate Murabaha 001-2025",
+      "ISSUE_NUMBER": "Issue Number"
     }
+  },
+  "OPPORTUNITIES": {
+    "MAIN_TITLE": "Latest Investment Opportunities",
+    "TITLE": "Investment Opportunities",
+    "SUBTITLE": "Carefully Selected Opportunities",
+    "ISSUE_NUMBER": "Issue Number",
+    "MONTHS": "Months",
+    "COMPLETED": "Completed",
+    "DAYS_LEFT": "Days Until Closing",
+    "RETURN_ON_INVESTMENT": "Return on Investment",
+    "ANNUAL_RETURN": "Annual Return",
+    "DETAILS": "View Details",
+    "INVEST_NOW": "Invest Now",
+    "EXPLORE_MORE": "Explore More Opportunities"
+  },
+  "SUCCESS_PAGE": {
+    "TITLE": "Investment Opportunities",
+    "ISSUE_NUMBER": "Issue Number",
+    "NOT_AVAILABLE": "Not Available",
+    "SUCCESS_MESSAGE": "Investment Completed Successfully",
+    "THANK_YOU": "Thank You for Your Trust",
+    "VIEW_INVESTMENTS": "View My Investments",
+    "AUTO_REDIRECT": "You will be automatically redirected to the investments page in 5 seconds"
   }
 }

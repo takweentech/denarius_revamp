@@ -2,10 +2,11 @@ import { Component } from "@angular/core";
 import { OpportunityCardComponent } from "../../../../../../shared/components/opportunity-card/opportunity-card.component";
 import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
 import { RouterLink } from "@angular/router";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
   selector: "app-opportunities",
-  imports: [OpportunityCardComponent, RouterLink],
+  imports: [OpportunityCardComponent, TranslateModule, RouterLink],
   templateUrl: "./opportunities.component.html",
   styleUrl: "./opportunities.component.scss",
 })

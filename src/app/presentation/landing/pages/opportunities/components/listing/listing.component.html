@@ -1,20 +1,25 @@
 <!-- Hero -->
-<section class="d-flex flex-column justify-content-center gap-2 text-center hero">
-    <h1>
-        الفرص الاستثمارية
-    </h1>
-    <p>
-        فرص مختارة بعناية
-    </p>
+<section
+  class="d-flex flex-column justify-content-center gap-2 text-center hero"
+>
+  <h1>
+    {{ "INVESTMENT_OPPORTUNITIES.TITLE" | translate }}
+  </h1>
+  <p>
+    {{ "INVESTMENT_OPPORTUNITIES.SUBTITLE" | translate }}
+  </p>
 </section>
+
 <!-- Listing -->
 <section class="container pt-6 pb-6">
-    <h2 class="fw-bold text-center mb-5">أحدث الفرص الاستثمارية</h2>
-    <div class="row g-4">
-        @for (item of opportunities; track $index) {
-        <div class="col-12 col-md-6 col-lg-4">
-            <app-opportunity-card [opportunity]="item"></app-opportunity-card>
-        </div>
-        }
+  <h2 class="fw-bold text-center mb-5">
+    {{ "INVESTMENT_OPPORTUNITIES.MAIN_TITLE" | translate }}
+  </h2>
+  <div class="row g-4">
+    @for (item of opportunities; track $index) {
+    <div class="col-12 col-md-6 col-lg-4">
+      <app-opportunity-card [opportunity]="item"></app-opportunity-card>
     </div>
+    }
+  </div>
 </section>

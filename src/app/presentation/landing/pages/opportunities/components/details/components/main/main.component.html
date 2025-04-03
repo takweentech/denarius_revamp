@@ -4,7 +4,7 @@
   <div class="col-12 col-lg-8 d-flex flex-column gap-4">
     <img class="rounded" src="assets/images/towers.svg" alt="" />
     <p>
-      {{ "OPPORTUNITY_PAGE.DESCRIPTION" | translate }}
+      {{ "OPPORTUNITIES_DETAILS.DESCRIPTION" | translate }}
     </p>
     <div class="flex-column d-flex">
       <div class="accordion d-flex flex-column gap-4" id="faqAccordion">
@@ -20,7 +20,7 @@
             >
               <div class="d-flex align-items-center gap-2">
                 <img src="assets/icons/details/eye.svg" alt="" />
-                {{ "OPPORTUNITY_PAGE.OVERVIEW" | translate }}
+                {{ "OPPORTUNITIES_DETAILS.OVERVIEW" | translate }}
               </div>
             </button>
           </h2>
@@ -31,7 +31,7 @@
             data-bs-parent="#faqAccordion"
           >
             <div class="accordion-body bg-transparent border-0">
-              {{ "OPPORTUNITY_PAGE.OVERVIEW_CONTENT" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.OVERVIEW_CONTENT" | translate }}
             </div>
           </div>
         </div>
@@ -48,7 +48,7 @@
             >
               <div class="d-flex align-items-center gap-2">
                 <img src="assets/icons/details/calculator.svg" alt="" />
-                {{ "OPPORTUNITY_PAGE.PAYMENT_SCHEDULE" | translate }}
+                {{ "OPPORTUNITIES_DETAILS.PAYMENT_SCHEDULE" | translate }}
               </div>
             </button>
           </h2>
@@ -59,7 +59,7 @@
             data-bs-parent="#faqAccordion"
           >
             <div class="accordion-body bg-transparent border-0">
-              {{ "OPPORTUNITY_PAGE.DOCUMENTS" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.DOCUMENTS" | translate }}
             </div>
           </div>
         </div>
@@ -76,7 +76,7 @@
             >
               <div class="d-flex align-items-center gap-2">
                 <img src="assets/icons/details/Percent.svg" alt="" />
-                {{ "OPPORTUNITY_PAGE.FINANCIAL_INFO" | translate }}
+                {{ "OPPORTUNITIES_DETAILS.FINANCIAL_INFO" | translate }}
               </div>
             </button>
           </h2>
@@ -87,7 +87,7 @@
             data-bs-parent="#faqAccordion"
           >
             <div class="accordion-body bg-transparent border-0">
-              {{ "OPPORTUNITY_PAGE.FINANCIAL_INFO_CONTENT" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.FINANCIAL_INFO_CONTENT" | translate }}
             </div>
           </div>
         </div>
@@ -104,7 +104,7 @@
             >
               <div class="d-flex align-items-center gap-2">
                 <img src="assets/icons/details/download.svg" alt="" />
-                {{ "OPPORTUNITY_PAGE.DOCUMENTS" | translate }}
+                {{ "OPPORTUNITIES_DETAILS.DOCUMENTS" | translate }}
               </div>
             </button>
           </h2>
@@ -115,7 +115,7 @@
             data-bs-parent="#faqAccordion"
           >
             <div class="accordion-body bg-transparent border-0">
-              {{ "OPPORTUNITY_PAGE.DOCUMENTS_CONTENT" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.DOCUMENTS_CONTENT" | translate }}
             </div>
           </div>
         </div>
@@ -126,7 +126,7 @@
     <div class="card border-0 p-3">
       <div class="d-flex justify-content-between align-items-center">
         <h5 class="fw-bold">
-          {{ "OPPORTUNITY_PAGE.ISSUE_VALUE" | translate }}
+          {{ "OPPORTUNITIES_DETAILS.ISSUE_VALUE" | translate }}
         </h5>
         <img
           class="bg-dark shadow-sm rounded-2 border-1"
@@ -137,18 +137,12 @@
       </div>
 
       <div>
-        <strong
-          style="font-size: 30px !important; unicode-bidi: isolate"
-          class="fs-5 text-dark d-flex align-items-center gap-1"
-        >
-          <span>450,000</span>
-          <img
-            src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
-            alt="currency"
-            width="19"
-            height="19"
-          />
-        </strong>
+        <app-currency-amount
+          [amount]="450000"
+          [size]="3"
+          [extraClass]="'text-dark d-flex align-items-center gap-1'"
+          [countUp]="true"
+        ></app-currency-amount>
       </div>
 
       <div class="justify-content-between">
@@ -161,10 +155,10 @@
                     <span class="text-muted small">
                       {{
                         selectedOpportunity.annualReturn === 100
-                          ? ("INVESTMENT_OPPORTUNITIES.COMPLETED" | translate)
+                          ? ("OPPORTUNITIES_DETAILS.COMPLETED" | translate)
                           : selectedOpportunity.dueDate +
                             " " +
-                            ("INVESTMENT_OPPORTUNITIES.DAYS_LEFT" | translate)
+                            ("OPPORTUNITIES_DETAILS.DAYS_LEFT" | translate)
                       }}
                     </span>
                     {{ selectedOpportunity.annualReturn }}%
@@ -195,7 +189,7 @@
                 src="assets/icons/details/activity.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.RETURN_ON_INVESTMENT" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.RETURN_ON_INVESTMENT" | translate }}
             </div>
             <span class="text-dark"> 30% </span>
           </li>
@@ -206,7 +200,7 @@
                 src="assets/icons/details/activity.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.ANNUAL_RETURN" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.ANNUAL_RETURN" | translate }}
             </div>
             <span class="text-dark"> 15% </span>
           </li>
@@ -217,10 +211,10 @@
                 src="assets/icons/details/activity.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.ISSUE_DURATION" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.ISSUE_DURATION" | translate }}
             </div>
             <span class="text-dark">
-              24 {{ "OPPORTUNITY_PAGE.MONTHS" | translate }}
+              24 {{ "OPPORTUNITIES_DETAILS.MONTHS" | translate }}
             </span>
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
@@ -230,7 +224,7 @@
                 src="assets/icons/details/activity.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.ISSUE_NUMBER" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.ISSUE_NUMBER" | translate }}
             </div>
             <span class="text-dark"> 3 </span>
           </li>
@@ -241,10 +235,10 @@
                 src="assets/icons/details/activity.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.PROFIT_DISTRIBUTION" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.PROFIT_DISTRIBUTION" | translate }}
             </div>
             <span class="text-dark">
-              {{ "OPPORTUNITY_PAGE.QUARTERLY" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.QUARTERLY" | translate }}
             </span>
           </li>
         </ul>
@@ -260,7 +254,7 @@
           "
           class="btn btn-primary w-100 rounded-2 mt-3"
         >
-          {{ "OPPORTUNITY_PAGE.INVEST_NOW" | translate }} ⏣
+          {{ "OPPORTUNITIES_DETAILS.INVEST_NOW" | translate }} ⏣
         </a>
       </div>
     </div>
@@ -268,17 +262,19 @@
       <div class="d-flex align-items-center gap-2 mb-4">
         <img src="assets/icons/details/calculator1.svg" alt="" />
         <h5>
-          {{ "OPPORTUNITY_PAGE.CALCULATE_EXPECTED_RETURN" | translate }}
+          {{ "OPPORTUNITIES_DETAILS.CALCULATE_EXPECTED_RETURN" | translate }}
         </h5>
       </div>
       <div class="row m-2 gap-2 mb-4">
-        <label>{{ "OPPORTUNITY_PAGE.SELECT_SUKUK_NUMBER" | translate }}</label>
+        <label>{{
+          "OPPORTUNITIES_DETAILS.SELECT_SUKUK_NUMBER" | translate
+        }}</label>
         <input
           class="form-control col-12 shadow-sm border-0 rounded-1"
           type="number"
         />
         <button class="col-12 gap-2 btn bg-white border-dark text-dark">
-          {{ "OPPORTUNITY_PAGE.CALCULATE_RETURN" | translate }}
+          {{ "OPPORTUNITIES_DETAILS.CALCULATE_RETURN" | translate }}
           <img src="assets/icons/details/calculator.svg" alt="" />
         </button>
       </div>
@@ -291,25 +287,17 @@
                 src="assets/icons/details/adjustments.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.TOTAL_INVESTMENT_AMOUNT" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.TOTAL_INVESTMENT_AMOUNT" | translate }}
             </div>
-            <strong
-              style="
-                font-size: 20px !important;
-                direction: ltr;
-                unicode-bidi: isolate;
+            <app-currency-amount
+              [amount]="15000"
+              [size]="5"
+              [extraClass]="
+                'text-dark d-flex align-items-center fw-light gap-1'
               "
-              class="fs-5 text-dark d-flex align-items-center gap-1"
-            >
-              <img
-                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
-                alt="currency"
-                width="15"
-                height="15"
-              />
-              <span>15,000</span>
-            </strong>
+            ></app-currency-amount>
           </li>
+
           <li class="d-flex justify-content-between py-2 border-bottom">
             <div class="d-flex align-items-center fw-regular">
               <img
@@ -317,25 +305,17 @@
                 src="assets/icons/details/adjustments.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.TOTAL_EXPECTED_RETURN" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.TOTAL_EXPECTED_RETURN" | translate }}
             </div>
-            <strong
-              style="
-                font-size: 20px !important;
-                direction: ltr;
-                unicode-bidi: isolate;
+            <app-currency-amount
+              [amount]="3000"
+              [size]="5"
+              [extraClass]="
+                'text-dark d-flex align-items-center fw-light gap-1'
               "
-              class="fs-5 text-dark d-flex align-items-center gap-1"
-            >
-              <img
-                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
-                alt="currency"
-                width="15"
-                height="15"
-              />
-              <span>3,000</span>
-            </strong>
+            ></app-currency-amount>
           </li>
+
           <li class="d-flex justify-content-between py-2 border-bottom">
             <div class="d-flex align-items-center fw-regular">
               <img
@@ -343,25 +323,17 @@
                 src="assets/icons/details/adjustments.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.AGENCY_FEE" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.AGENCY_FEE" | translate }}
             </div>
-            <strong
-              style="
-                font-size: 20px !important;
-                direction: ltr;
-                unicode-bidi: isolate;
+            <app-currency-amount
+              [amount]="0"
+              [size]="5"
+              [extraClass]="
+                'text-dark d-flex align-items-center fw-light gap-1'
               "
-              class="fs-5 text-dark d-flex align-items-center gap-1"
-            >
-              <img
-                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
-                alt="currency"
-                width="15"
-                height="15"
-              />
-              <span>0</span>
-            </strong>
+            ></app-currency-amount>
           </li>
+
           <li class="d-flex justify-content-between py-2 border-bottom">
             <div class="d-flex align-items-center fw-regular">
               <img
@@ -369,25 +341,17 @@
                 src="assets/icons/details/adjustments.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.VAT" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.VAT" | translate }}
             </div>
-            <strong
-              style="
-                font-size: 20px !important;
-                direction: ltr;
-                unicode-bidi: isolate;
+            <app-currency-amount
+              [amount]="0"
+              [size]="5"
+              [extraClass]="
+                'text-dark d-flex align-items-center fw-light gap-1'
               "
-              class="fs-5 text-dark d-flex align-items-center gap-1"
-            >
-              <img
-                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
-                alt="currency"
-                width="15"
-                height="15"
-              />
-              <span>0</span>
-            </strong>
+            ></app-currency-amount>
           </li>
+
           <li class="d-flex justify-content-between py-2 border-bottom">
             <div class="d-flex align-items-center fw-regular">
               <img
@@ -395,30 +359,21 @@
                 src="assets/icons/details/adjustments.svg"
                 alt=""
               />
-              {{ "OPPORTUNITY_PAGE.NET_RETURN" | translate }}
+              {{ "OPPORTUNITIES_DETAILS.NET_RETURN" | translate }}
             </div>
-            <strong
-              style="
-                font-size: 20px !important;
-                direction: ltr;
-                unicode-bidi: isolate;
+            <app-currency-amount
+              [amount]="15000"
+              [size]="5"
+              [extraClass]="
+                'text-dark d-flex align-items-center fw-light gap-1'
               "
-              class="fs-5 text-dark d-flex align-items-center gap-1"
-            >
-              <img
-                src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
-                alt="currency"
-                width="15"
-                height="15"
-              />
-              <span>15,000</span>
-            </strong>
+            ></app-currency-amount>
           </li>
         </ul>
         <div class="d-flex mt-2">
           <strong class="me-auto fw-light"
-            >{{ "OPPORTUNITY_PAGE.ISSUE_DURATION" | translate }} 24
-            {{ "OPPORTUNITY_PAGE.MONTHS" | translate }}</strong
+            >{{ "OPPORTUNITIES_DETAILS.ISSUE_DURATION" | translate }} 24
+            {{ "OPPORTUNITIES_DETAILS.MONTHS" | translate }}</strong
           >
         </div>
       </div>

@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { TranslateModule } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-licence',
-  imports: [],
-  templateUrl: './licence.component.html',
-  styleUrl: './licence.component.scss'
+  selector: "app-licence",
+  imports: [TranslateModule],
+  templateUrl: "./licence.component.html",
+  styleUrl: "./licence.component.scss",
 })
-export class LicenceComponent {
-
-}
+export class LicenceComponent {}

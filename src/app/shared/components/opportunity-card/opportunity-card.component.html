@@ -1,16 +1,18 @@
 <div class="card shadow-sm rounded-4 border-0 w-100">
-  <img [src]="opportunity.image"
-       class="card-img-top rounded-top-4"
-       alt="Investment Image" />
+  <img
+    [src]="opportunity.image"
+    class="card-img-top rounded-top-4"
+    alt="Investment Image"
+  />
 
   <div class="card-body d-flex flex-column gap-2 mx-3">
     <div class="d-flex justify-content-between text-muted">
       <small>
         {{ opportunity.durationInMonths }}
-        {{ "INVESTMENT_OPPORTUNITIES.MONTHS" | translate }}
+        {{ "OPPORTUNITIES.MONTHS" | translate }}
       </small>
       <small>
-        {{ "INVESTMENT_OPPORTUNITIES.ISSUE_NUMBER" | translate }}
+        {{ "OPPORTUNITIES.ISSUE_NUMBER" | translate }}
         {{ opportunity.issuanceNumber }}
       </small>
     </div>
@@ -19,12 +21,16 @@
     <div class="d-flex gap-4 justify-content-between">
       <div class="d-flex justify-content-start my-2">
         <div class="">
-          <img *ngIf="opportunity.annualReturn === 100"
-               src="assets/icons/opportunity-card/succes-green.svg"
-               width="24" />
-          <img *ngIf="opportunity.annualReturn < 100"
-               src="assets/icons/opportunity-card/pending.svg"
-               width="24" />
+          <img
+            *ngIf="opportunity.annualReturn === 100"
+            src="assets/icons/opportunity-card/succes-green.svg"
+            width="24"
+          />
+          <img
+            *ngIf="opportunity.annualReturn < 100"
+            src="assets/icons/opportunity-card/pending.svg"
+            width="24"
+          />
         </div>
       </div>
       <div class="justify-content-start p-0 col-10">
@@ -32,11 +38,11 @@
           <span class="fw-bold text-dark">
             <span class="text-muted small">
               {{
-              opportunity.annualReturn === 100
-              ? ("INVESTMENT_OPPORTUNITIES.COMPLETED" | translate)
-              : opportunity.dueDate +
-              " " +
-              ("INVESTMENT_OPPORTUNITIES.DAYS_LEFT" | translate)
+                opportunity.annualReturn === 100
+                  ? ("OPPORTUNITIES.COMPLETED" | translate)
+                  : opportunity.dueDate +
+                    " " +
+                    ("OPPORTUNITIES.DAYS_LEFT" | translate)
               }}
             </span>
             {{ opportunity.annualReturn }}%
@@ -44,36 +50,39 @@
         </div>
 
         <div class="progress">
-          <div class="progress-bar"
-               [ngClass]="{
+          <div
+            class="progress-bar"
+            [ngClass]="{
               'bg-success': opportunity.annualReturn === 100,
               'bg-dark': opportunity.annualReturn < 100
             }"
-               role="progressbar"
-               [style.width.%]="opportunity.annualReturn"></div>
+            role="progressbar"
+            [style.width.%]="opportunity.annualReturn"
+          ></div>
         </div>
       </div>
     </div>
 
     <p class="text-muted small mb-2">
       %{{ opportunity.roi }}
-      {{ "INVESTMENT_OPPORTUNITIES.RETURN_ON_INVESTMENT" | translate }}
+      {{ "OPPORTUNITIES.RETURN_ON_INVESTMENT" | translate }}
       <br />
       %{{ opportunity.rri }}
-      {{ "INVESTMENT_OPPORTUNITIES.ANNUAL_RETURN" | translate }}
+      {{ "OPPORTUNITIES.ANNUAL_RETURN" | translate }}
     </p>
-
-
 
     <!-- Actions -->
     <div class="row gx-2 py-3">
       <div class="col">
-        <button class="btn btn-dark w-100"
-                [routerLink]="[
+        <button
+          class="btn btn-dark w-100"
+          [routerLink]="[
             '/',
             webRoutes.OPPORTUNITIES.ROOT,
-            webRoutes.OPPORTUNITIES.DETAILS          ]">
-          {{ "INVESTMENT_OPPORTUNITIES.INVEST_NOW" | translate }}
+            webRoutes.OPPORTUNITIES.DETAILS
+          ]"
+        >
+          {{ "OPPORTUNITIES.INVEST_NOW" | translate }}
         </button>
       </div>
     </div>
