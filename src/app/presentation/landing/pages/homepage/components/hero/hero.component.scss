@@ -14,8 +14,8 @@ section {
         position: absolute;
         top: 0;
         left: 0;
-        background: #00354F;
-        opacity: 0.8;
+        background: var(--primary-color);
+        opacity: .7;
         content: "";
         height: 100%;
         width: 100%;

@@ -22,7 +22,7 @@
     font-size: 18px;
     line-height: 165%;
     letter-spacing: 0.02em;
-    color: #13adb7;
+    color: var(--secondary-color);
   }
 
   p {
@@ -32,6 +32,7 @@
     color: #676a6a;
   }
 }
+
 .funding {
   width: 454px;
   height: 471px;

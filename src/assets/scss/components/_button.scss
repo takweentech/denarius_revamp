@@ -41,6 +41,14 @@ button {
         color: white;
     }
 
+
+    &.btn-secondary {
+        border: none;
+        background-color: var(--secondary-color);
+        color: white;
+    }
+
+
     &.btn-transparent {
         background-color: transparent;
         border: none;
@@ -56,6 +64,12 @@ button {
         border-color: white;
         color: white;
     }
+
+    &.btn-outline-primary {
+        border-color: var(--primary-color);
+        color: var(--primary-color);
+    }
+
 
 
 }

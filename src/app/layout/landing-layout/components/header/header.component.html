@@ -3,9 +3,9 @@
     <!-- NAV 1 -->
     <nav class="nav-1">
       <!-- LOGO -->
-      <a href=""
+      <a [routerLink]="'/'"
          class="logo">
-        <img src="assets/images/takween1.svg"
+        <img [src]="cmsAssetsUrl + APP_CONFIG.logoPath"
              alt="">
       </a>
       <ul class="d-none d-lg-flex">
@@ -19,8 +19,7 @@
     <nav class="nav-2 d-none d-lg-flex">
       <ul>
         <li><a [routerLink]="'/'">{{'LAYOUT.HEADER.NAV_2.ITEM_1' | translate}}</a></li>
-        <li><a [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT"
-             class="text-secondary">{{'LAYOUT.HEADER.NAV_2.ITEM_2' | translate}}</a></li>
+        <li><a [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT">{{'LAYOUT.HEADER.NAV_2.ITEM_2' | translate}}</a></li>
       </ul>
     </nav>
 

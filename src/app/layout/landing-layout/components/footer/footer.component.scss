@@ -1,5 +1,5 @@
 footer {
-    background-color: #1A2B38;
+    background-color: var(--primary-color);
     padding: 1.5rem 0;
 
     .container {
@@ -27,6 +27,7 @@ footer {
             ul {
                 display: flex;
                 gap: 1rem;
+                list-style: none;
 
                 a i {
                     font-size: 2rem;
@@ -46,6 +47,7 @@ footer {
                 display: flex;
                 flex-direction: column;
                 gap: .8rem;
+                list-style: none;
 
                 .list-title {
                     font-weight: 700;

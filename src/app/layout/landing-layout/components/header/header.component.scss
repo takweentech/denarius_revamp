@@ -19,6 +19,16 @@ header {
         }
     }
 
+    .nav-2 {
+        ul li {
+            &:last-child {
+                a {
+                    color: var(--secondary-color);
+                }
+            }
+        }
+    }
+
 
 
 

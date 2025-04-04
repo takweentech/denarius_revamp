@@ -1,6 +1,7 @@
 export const environment = {
     production: false,
-    defaultLang: 'en',
+    defaultLang: 'ar',
     apiUrl: '',
-    cmsUrl: 'http://localhost:1337/api',
+    cmsUrl: 'https://sharikekcms.paramej.com/api',
+    cmsAssetsUrl: 'https://sharikekcms.paramej.com/',
 } as const;
