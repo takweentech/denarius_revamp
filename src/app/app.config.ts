@@ -1,18 +1,15 @@
 import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { routes } from './app.routes';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ConfigService } from './core/services/config.service';
-// import { environment } from '../environments/environment';
+import { StrapiTranslateLoader } from './core/strapi/strapi-loader';
 
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+
+export function httpLoaderFactory() {
+  return new StrapiTranslateLoader();
 }
-
-// const httpLoaderFactory: (http: HttpClient) => TranslateHttpLoader = (http: HttpClient) =>
-//   new TranslateHttpLoader(http, environment.cmsUrl + '/content?locale=', '');
 
 function initializeApp(configService: ConfigService) {
   return () => configService.loadConfig();
@@ -35,7 +32,7 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom([TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
+        useFactory: httpLoaderFactory,
         deps: [HttpClient],
       },
     })])]
