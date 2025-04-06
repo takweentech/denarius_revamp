@@ -33,6 +33,19 @@ export const routes: Routes = [
     ],
   },
   {
+    path: WEB_ROUTES.ABOUT_US.ROOT,
+    component: LandingLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadComponent: () =>
+          import(
+            "./presentation/landing/pages/about-us/about-us.component"
+          ).then((m) => m.AboutUsComponent),
+      },
+    ],
+  },
+  {
     path: "showcase",
     component: ShowcaseComponent,
   },

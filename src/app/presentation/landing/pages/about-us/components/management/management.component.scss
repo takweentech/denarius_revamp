@@ -1,0 +1,25 @@
+.pic {
+  padding: 0;
+  width: 112px;
+  height: 112px;
+}
+.fa-brands {
+  color: gray;
+}
+.orgbox {
+  width: 656px;
+  height: 156px;
+  gap: 24px;
+  border-radius: 6px;
+  padding: 20px;
+
+  background-color: #f9fafb;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    height: auto;
+  }
+}
+.showbtn {
+  width: 158px;
+  height: 36px;
+}
