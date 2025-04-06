@@ -247,5 +247,43 @@
     "THANK_YOU": "Thank You for Your Trust",
     "VIEW_INVESTMENTS": "View My Investments",
     "AUTO_REDIRECT": "You will be automatically redirected to the investments page in 5 seconds"
+  },
+  "ABOUT_US": {
+    "executives": {
+      "title": "Executive Management",
+      "subtitle": "60+ years of accumulated experience",
+      "structure": {
+        "title": "Organizational Structure",
+        "description": "The team consists of elite experts with high competencies and extensive experience in local and global markets.",
+        "button": "View Organizational Structure"
+      },
+      "members": {
+        "mohamed": {
+          "name": "Mohamed",
+          "position": "Head of Arrangement Department",
+          "experience": "More than 10 years of experience in the same field"
+        },
+        "abdullah": {
+          "name": "Abdullah",
+          "position": "Chief Technology Officer",
+          "experience": "More than 10 years of experience in the same field"
+        },
+        "ahmed": {
+          "name": "Ahmed",
+          "position": "Chief Financial Officer",
+          "experience": "More than 10 years of experience in the same field"
+        },
+        "saoud": {
+          "name": "Saoud",
+          "position": "Compliance Manager",
+          "experience": "More than 10 years of experience in the same field"
+        },
+        "saleem": {
+          "name": "Saleem",
+          "position": "Credit Manager",
+          "experience": "More than 10 years of experience in the same field"
+        }
+      }
+    }
   }
 }
