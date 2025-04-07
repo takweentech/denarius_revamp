@@ -8,6 +8,9 @@ export const WEB_ROUTES = {
     PAYMENT: "payment",
     SUCCESS: "success",
   },
+  ABOUT_US: {
+    ROOT: "about-us",
+  },
   AUTH: {
     ROOT: "auth",
   },
