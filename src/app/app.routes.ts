@@ -3,6 +3,7 @@ import { WEB_ROUTES } from "./core/constants/routes.constants";
 import { LandingLayoutComponent } from "./layout/landing-layout/landing-layout.component";
 import { ShowcaseComponent } from "./shared/components/showcase/showcase.component";
 import { OPPORTUNITIES_ROUTES } from "./presentation/landing/pages/opportunities/opportunities.routes";
+import { SERVICES_ROUTES } from "./presentation/landing/pages/services/services.routes";
 
 export const routes: Routes = [
   {
@@ -29,6 +30,20 @@ export const routes: Routes = [
             "./presentation/landing/pages/opportunities/opportunities.component"
           ).then((m) => m.OpportunitiesComponent),
         children: OPPORTUNITIES_ROUTES,
+      },
+    ],
+  },
+  {
+    path: WEB_ROUTES.SERVICES.ROOT,
+    component: LandingLayoutComponent,
+    children: [
+      {
+        path: "",
+        loadComponent: () =>
+          import(
+            "./presentation/landing/pages/services/services.component"
+          ).then((m) => m.ServicesComponent),
+        children: SERVICES_ROUTES,
       },
     ],
   },

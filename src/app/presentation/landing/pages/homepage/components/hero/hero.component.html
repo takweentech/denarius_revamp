@@ -1,14 +1,13 @@
-<section>
-  <div
-    class="container"
-    data-aos="fade-up"
-    data-aos-easing="linear"
-    data-aos-duration="400"
-  >
+<section [ngStyle]="{
+  backgroundImage: 'url(' + CMS_ASSETS_URL + imagePath+ ')'
+}">
+  <div class="container"
+       data-aos="fade-up"
+       data-aos-easing="linear"
+       data-aos-duration="400">
     <div class="d-flex flex-column gap-1">
       <h1>
-        <span>{{ "HOMEPAGE.HERO.TITLE_LINE_1" | translate }}</span
-        ><br />
+        <span>{{ "HOMEPAGE.HERO.TITLE_LINE_1" | translate }}</span><br />
         <span>{{ "HOMEPAGE.HERO.TITLE_LINE_2" | translate }}</span>
       </h1>
       <p>{{ "HOMEPAGE.HERO.SUBTITLE" | translate }}</p>

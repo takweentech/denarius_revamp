@@ -6,46 +6,14 @@
     </div>
 
     <div class="row g-4">
+      @for (item of partners; track $index) {
       <div class="col-12 col-md-3">
         <div class="partner-card">
-          <img src="assets/images/partner.png" alt="" />
+          <img [src]="CMS_ASSETS_URL + item?.image?.url"
+               alt="" />
         </div>
       </div>
-      <div class="col-12 col-md-3">
-        <div class="partner-card">
-          <img src="assets/images/partner.png" alt="" />
-        </div>
-      </div>
-      <div class="col-12 col-md-3">
-        <div class="partner-card">
-          <img src="assets/images/partner.png" alt="" />
-        </div>
-      </div>
-      <div class="col-12 col-md-3">
-        <div class="partner-card">
-          <img src="assets/images/partner.png" alt="" />
-        </div>
-      </div>
-      <div class="col-12 col-md-3">
-        <div class="partner-card">
-          <img src="assets/images/partner.png" alt="" />
-        </div>
-      </div>
-      <div class="col-12 col-md-3">
-        <div class="partner-card">
-          <img src="assets/images/partner.png" alt="" />
-        </div>
-      </div>
-      <div class="col-12 col-md-3">
-        <div class="partner-card">
-          <img src="assets/images/partner.png" alt="" />
-        </div>
-      </div>
-      <div class="col-12 col-md-3">
-        <div class="partner-card">
-          <img src="assets/images/partner.png" alt="" />
-        </div>
-      </div>
+      }
     </div>
   </div>
 </section>

@@ -1,0 +1,38 @@
+<!-- Hero -->
+<section class="d-flex flex-column justify-content-center gap-2 text-center hero">
+    <h1>
+        خدمات متكاملة
+        تلبي طلباتك
+    </h1>
+    <p>
+        {{ "INVESTMENT_OPPORTUNITIES.SUBTITLE" | translate }}
+    </p>
+</section>
+
+<!-- Intro -->
+<app-intro></app-intro>
+
+<!-- Listing -->
+<section class="container pt-6 pb-6">
+    <h2 class="fw-bold text-center mb-5">
+        نتجاوز مجرد إدارة الاستثمارات لنحقق الأهداف المالية لعملائنا
+    </h2>
+    <div class="row g-4">
+        @for (item of [1,2]; track $index) {
+        <div class="col-12 col-md-6 col-lg-4">
+            <div>
+                <img src=""
+                     alt="">
+                <h2>إدارة الأصول</h2>
+                <p>نطوع خبراتنا لنضمن أن استثمارات العملاء يتم إدارتها بطريقة فعالة تتوافق مع الأهداف الاستثمارية</p>
+                <button class="btn btn-primary">
+                    المزيد
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+</section>
+
+<!-- Contact -->
+<app-contact></app-contact>
