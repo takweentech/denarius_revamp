@@ -5,7 +5,7 @@
         تلبي طلباتك
     </h1>
     <p>
-        {{ "INVESTMENT_OPPORTUNITIES.SUBTITLE" | translate }}
+        خدمات مختارة بعناية
     </p>
 </section>
 
@@ -13,21 +13,24 @@
 <app-intro></app-intro>
 
 <!-- Listing -->
-<section class="container pt-6 pb-6">
+<section class="container pb-6">
     <h2 class="fw-bold text-center mb-5">
         نتجاوز مجرد إدارة الاستثمارات لنحقق الأهداف المالية لعملائنا
     </h2>
     <div class="row g-4">
-        @for (item of [1,2]; track $index) {
+        @for (item of [1,2,3,4,5,6]; track $index) {
         <div class="col-12 col-md-6 col-lg-4">
-            <div>
-                <img src=""
+            <div class="d-flex flex-column gap-3">
+                <img class="rounded"
+                     src="assets/images/service.png"
                      alt="">
-                <h2>إدارة الأصول</h2>
+                <h4>إدارة الأصول</h4>
                 <p>نطوع خبراتنا لنضمن أن استثمارات العملاء يتم إدارتها بطريقة فعالة تتوافق مع الأهداف الاستثمارية</p>
-                <button class="btn btn-primary">
-                    المزيد
-                </button>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-sm btn-primary">
+                        المزيد
+                    </button>
+                </div>
             </div>
         </div>
         }
