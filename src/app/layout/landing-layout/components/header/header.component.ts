@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, inject, TemplateRef, } from "@angular/core";
+import { Component, HostListener, inject, TemplateRef, } from "@angular/core";
 import { NgbCollapseModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
 import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
 import { RouterLink } from "@angular/router";
@@ -18,9 +18,16 @@ export class HeaderComponent {
   private offcanvasService = inject(NgbOffcanvas);
   private configService = inject(ConfigService);
   navbarToggler: boolean = false;
+  sticky: boolean = false;
   WEB_ROUTES = WEB_ROUTES;
   APP_CONFIG = this.configService.getConfig();
   cmsAssetsUrl = environment.cmsAssetsUrl;
+
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    this.sticky = window.scrollY > 100;
+  }
+
   openSidebar(content: TemplateRef<any>) {
     this.offcanvasService.open(content, { position: 'bottom', panelClass: 'vh-30 rounded-top-1' });
   }
