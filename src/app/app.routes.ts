@@ -4,11 +4,13 @@ import { LandingLayoutComponent } from "./layout/landing-layout/landing-layout.c
 import { ShowcaseComponent } from "./shared/components/showcase/showcase.component";
 import { OPPORTUNITIES_ROUTES } from "./presentation/landing/pages/opportunities/opportunities.routes";
 import { SERVICES_ROUTES } from "./presentation/landing/pages/services/services.routes";
+import { homepageResolver } from "./presentation/landing/pages/homepage/homepage.resolver";
 
 export const routes: Routes = [
   {
     path: WEB_ROUTES.HOME.ROOT,
     component: LandingLayoutComponent,
+    resolve: { content: homepageResolver },
     children: [
       {
         path: "",

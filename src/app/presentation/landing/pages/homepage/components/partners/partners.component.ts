@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from "@angular/core";
 import { TranslateModule } from "@ngx-translate/core";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { StrapiService } from "../../../../../../core/strapi/strapi.service";
-import { takeUntil } from "rxjs";
 import { environment } from "../../../../../../../environments/environment";
 
 
@@ -20,12 +19,12 @@ export class PartnersComponent extends BaseComponent implements OnInit {
   private readonly strapiService = inject(StrapiService);
 
   ngOnInit(): void {
-    this.strapiService.get('/partners?populate=*').pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.partners = response;
-      }
-    })
+    // this.strapiService.get('/partners?populate=*').pipe(
+    //   takeUntil(this.destroy$)
+    // ).subscribe({
+    //   next: (response) => {
+    //     this.partners = response;
+    //   }
+    // })
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +12,13 @@ export class StrapiService {
 
   get(url: string, lang?: string) {
     return this.http.get(environment.cmsUrl + url).pipe(map((data: any) => data.data))
+  }
+
+  getContentByPage(pageName: string, lang?: string) {
+    return this.http.get(environment.cmsUrl + pageName).pipe(
+      tap(data => console.log(data)),
+      map((data: any) => data.data)
+    )
   }
 
 }

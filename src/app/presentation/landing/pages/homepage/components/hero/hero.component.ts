@@ -6,6 +6,7 @@ import { NgStyle } from "@angular/common";
 import { environment } from "../../../../../../../environments/environment";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { takeUntil } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: "app-hero",
   imports: [TranslateModule, NgStyle],
@@ -16,6 +17,8 @@ export class HeroComponent extends BaseComponent implements OnInit {
   imagePath!: string;
   CMS_ASSETS_URL = environment.cmsAssetsUrl;
   private readonly strapiService = inject(StrapiService);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  content = this.activatedRoute.snapshot.data['content']['hero'];
   constructor() {
     super();
     AOS.init();
@@ -23,12 +26,5 @@ export class HeroComponent extends BaseComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.strapiService.get('/hero?populate=*').pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.imagePath = response.image.url;
-      }
-    })
   }
 }
