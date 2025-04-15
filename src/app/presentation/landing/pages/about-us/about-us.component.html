@@ -5,13 +5,15 @@
   <div class="container position-relative">
     <div class="d-flex gap-3 flex-column">
       <h1>
-        خبرات استثمارية <br />
-        تخدم أهدافك
+        {{ "ABOUT_US.HERO.HEADING" | translate }} <br />
+        {{ "ABOUT_US.HERO.SUBHEADING" | translate }}
       </h1>
       <div class="d-flex gap-2 justify-content-center">
-        <p>الرئيسية</p>
+        <p>{{ "ABOUT_US.HERO.BREADCRUMB.HOME" | translate }}</p>
         <p>></p>
-        <p class="fw-bold">من نحن</p>
+        <p class="fw-bold">
+          {{ "ABOUT_US.HERO.BREADCRUMB.CURRENT" | translate }}
+        </p>
       </div>
     </div>
   </div>
