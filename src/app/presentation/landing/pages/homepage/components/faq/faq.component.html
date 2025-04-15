@@ -1,7 +1,7 @@
 <section class="container pt-6 pb-6">
   <div class="d-flex flex-column gap-4 mb-5 intro-text">
-    <h6>{{ "HOMEPAGE.FAQ.SUBTITLE" | translate }}</h6>
-    <h3>{{ "HOMEPAGE.FAQ.TITLE" | translate }}</h3>
+    <h6>{{ content.subtitle }}</h6>
+    <h3>{{ content.title }}</h3>
   </div>
 
   <div class="row">
@@ -10,15 +10,15 @@
         <ul class="d-flex flex-column gap-3 list">
           <li class="d-flex gap-2 align-items-center">
             <img src="assets/icons/bullet.svg" alt="" />
-            {{ "HOMEPAGE.FAQ.BULLET_1" | translate }}
+            {{ content.point[0].tip }}
           </li>
           <li class="d-flex gap-2 align-items-center">
             <img src="assets/icons/bullet.svg" alt="" />
-            {{ "HOMEPAGE.FAQ.BULLET_2" | translate }}
+            {{ content.point[1].tip }}
           </li>
           <li class="d-flex gap-2 align-items-center">
             <img src="assets/icons/bullet.svg" alt="" />
-            {{ "HOMEPAGE.FAQ.BULLET_3" | translate }}
+            {{ content.point[2].tip }}
           </li>
         </ul>
         <a
@@ -30,9 +30,9 @@
       </div>
 
       <div class="d-flex flex-column gap-4 faq">
-        <h5>{{ "HOMEPAGE.FAQ.ACCORDION_TITLE" | translate }}</h5>
+        <h5>{{ content.accordion_title }}</h5>
 
-        <div ngbAccordion>
+        <!-- <div ngbAccordion>
           <ng-container *ngFor="let item of faqItems; let i = index">
             <div ngbAccordionItem [collapsed]="i !== 0">
               <h2 ngbAccordionHeader>
@@ -45,6 +45,22 @@
                   <ng-template>
                     {{ item.answer | translate }}
                   </ng-template>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </div> -->
+        <div ngbAccordion>
+          <ng-container *ngFor="let item of faqItems; let i = index">
+            <div ngbAccordionItem [collapsed]="i !== 0">
+              <h2 ngbAccordionHeader>
+                <button ngbAccordionButton>
+                  {{ item.question }}
+                </button>
+              </h2>
+              <div ngbAccordionCollapse>
+                <div ngbAccordionBody>
+                  {{ item.answer }}
                 </div>
               </div>
             </div>

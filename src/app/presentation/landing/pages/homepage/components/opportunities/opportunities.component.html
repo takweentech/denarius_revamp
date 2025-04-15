@@ -1,6 +1,6 @@
 <section class="container pt-6">
   <h2 class="fw-bold text-center mb-5">
-    {{ "OPPORTUNITIES.MAIN_TITLE" | translate }}
+    {{ content.title }}
   </h2>
   <div class="row g-4">
     @for (item of opportunities; track $index) {
@@ -9,8 +9,10 @@
     </div>
     }
   </div>
-  <a [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT"
-     class="text-primary justify-content-end d-flex gap-2 align-items-center fw-bold mt-4">
+  <a
+    [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT"
+    class="text-primary justify-content-end d-flex gap-2 align-items-center fw-bold mt-4"
+  >
     <span class="text-decoration-underline">
       {{ "OPPORTUNITIES.TITLE" | translate }}
     </span>

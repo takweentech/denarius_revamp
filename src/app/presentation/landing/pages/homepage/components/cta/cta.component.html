@@ -1,67 +1,72 @@
 <section class="container pt-6 pb-6">
   <div class="d-flex flex-column gap-4 mb-5 intro-text">
     <h6>
-      {{ "HOMEPAGE.CTA.SUBTITLE" | translate }}
+      {{ content.subtitle }}
     </h6>
     <h1>
-      {{ "HOMEPAGE.CTA.TITLE" | translate }}
+      {{ content.title }}
     </h1>
   </div>
 
   <div class="row">
     <div class="col-12 col-md-5">
-      <div class="position-relative d-flex funding justify-content-center align-items-center"
-           [ngStyle]="{
+      <div
+        class="position-relative d-flex funding justify-content-center align-items-center"
+        [ngStyle]="{
           transform: currentLang === 'ar' ? 'scaleX(1)' : 'scaleX(-1)'
-        }">
-        <img class="w-100 h-100"
-             src="assets/images/funding.svg"
-             alt="Outer Circle" />
+        }"
+      >
+        <img
+          class="w-100 h-100"
+          src="assets/images/funding.svg"
+          alt="Outer Circle"
+        />
 
-        <img class="position-absolute rounded-circle"
-             src="assets/images/towers2.svg"
-             alt="Inner Image" />
+        <img
+          class="position-absolute rounded-circle"
+          [src]="imagePath"
+          alt="Inner Image"
+        />
       </div>
     </div>
     <div class="col-12 col-md-7 d-flex flex-column gap-4">
       <div class="row">
         <div class="col-12 col-md-6 g-5 d-flex flex-column gap-2">
           <h4>
-            {{ "HOMEPAGE.CTA.BOX_1.TITLE" | translate }}
+            {{ content.box[0].title }}
           </h4>
           <p>
-            {{ "HOMEPAGE.CTA.BOX_1.DESC" | translate }}
+            {{ content.box[0].description }}
           </p>
         </div>
         <div class="col-12 col-md-6 g-5 d-flex flex-column gap-2">
           <h4>
-            {{ "HOMEPAGE.CTA.BOX_2.TITLE" | translate }}
+            {{ content.box[1].title }}
           </h4>
           <p>
-            {{ "HOMEPAGE.CTA.BOX_2.DESC" | translate }}
+            {{ content.box[1].description }}
           </p>
         </div>
         <div class="col-12 col-md-6 g-5 d-flex flex-column gap-2">
           <h4>
-            {{ "HOMEPAGE.CTA.BOX_3.TITLE" | translate }}
+            {{ content.box[2].title }}
           </h4>
           <p>
-            {{ "HOMEPAGE.CTA.BOX_3.DESC" | translate }}
+            {{ content.box[2].description }}
           </p>
         </div>
         <div class="col-12 col-md-6 g-5 d-flex flex-column gap-2">
           <h4>
-            {{ "HOMEPAGE.CTA.BOX_4.TITLE" | translate }}
+            {{ content.box[3].title }}
           </h4>
           <p>
-            {{ "HOMEPAGE.CTA.BOX_4.DESC" | translate }}
+            {{ content.box[3].description }}
           </p>
         </div>
       </div>
       <div class="d-flex justify-content-end">
-        <a class=" text-primary text-decoration-underline"
-           href="">
-          {{ "HOMEPAGE.CTA.CTA_BUTTON" | translate }}
+        <a class="text-primary text-decoration-underline" href="">
+          {{ content.cta_button }}
         </a>
       </div>
     </div>

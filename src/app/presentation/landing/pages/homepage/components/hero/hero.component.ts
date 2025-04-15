@@ -18,13 +18,11 @@ export class HeroComponent extends BaseComponent implements OnInit {
   CMS_ASSETS_URL = environment.cmsAssetsUrl;
   private readonly strapiService = inject(StrapiService);
   private readonly activatedRoute = inject(ActivatedRoute);
-  content = this.activatedRoute.snapshot.data['content']['hero'];
+  content = this.activatedRoute.snapshot.data["content"]["hero"];
   constructor() {
     super();
     AOS.init();
   }
 
-
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 }
