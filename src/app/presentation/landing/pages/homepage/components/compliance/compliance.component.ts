@@ -13,12 +13,10 @@ import { BaseComponent } from "../../../../../../core/base/base.component";
   styleUrl: "./compliance.component.scss",
 })
 export class ComplianceComponent extends BaseComponent implements OnInit {
-  CMS_ASSETS_URL = environment.cmsAssetsUrl;
   private readonly activatedRoute = inject(ActivatedRoute);
   content = this.activatedRoute.snapshot.data["content"]["compliance"];
   constructor() {
     super();
-    AOS.init();
   }
 
   ngOnInit(): void {}

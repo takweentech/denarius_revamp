@@ -2,9 +2,7 @@ import { CommonModule } from "@angular/common";
 import { Component, OnInit, inject } from "@angular/core";
 import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
-import { environment } from "../../../../../../../environments/environment";
 import { ActivatedRoute } from "@angular/router";
-import AOS from "aos";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 
 @Component({
@@ -14,12 +12,10 @@ import { BaseComponent } from "../../../../../../core/base/base.component";
   styleUrl: "./faq.component.scss",
 })
 export class FaqComponent extends BaseComponent implements OnInit {
-  CMS_ASSETS_URL = environment.cmsAssetsUrl;
   private readonly activatedRoute = inject(ActivatedRoute);
   content = this.activatedRoute.snapshot.data["content"]["faq"];
   constructor() {
     super();
-    AOS.init();
   }
 
   ngOnInit(): void {}

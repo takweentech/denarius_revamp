@@ -3,8 +3,6 @@ import { OpportunityCardComponent } from "../../../../../../shared/components/op
 import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
-import { environment } from "../../../../../../../environments/environment";
-import AOS from "aos";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 @Component({
   selector: "app-opportunities",
@@ -13,12 +11,10 @@ import { BaseComponent } from "../../../../../../core/base/base.component";
   styleUrl: "./opportunities.component.scss",
 })
 export class OpportunitiesComponent extends BaseComponent implements OnInit {
-  CMS_ASSETS_URL = environment.cmsAssetsUrl;
   private readonly activatedRoute = inject(ActivatedRoute);
   content = this.activatedRoute.snapshot.data["content"]["opportunities"];
   constructor() {
     super();
-    AOS.init();
   }
 
   ngOnInit(): void {}
