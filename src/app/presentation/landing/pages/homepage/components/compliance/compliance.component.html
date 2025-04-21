@@ -1,32 +1,32 @@
 <section>
-  >
   <div
-    class="container"
     class="compliance"
     data-aos="fade-up"
     data-aos-easing="linear"
     data-aos-duration="400"
   >
-    <div class="row mx-auto g-5 justify-content-between">
-      <div class="col-12 col-md-6 d-flex flex-column gap-4 right-text">
-        <h1>{{ content.title }}</h1>
-        <p>{{ content.subtitle }}</p>
-        <a href="">
-          <button class="btn btn-rounded btn-secondary">
-            {{ "HOMEPAGE.COMPLIANCE.READ_MORE" | translate }}
-          </button>
-        </a>
-      </div>
-      <div
-        class="col-12 col-md-6 left-text d-flex flex-column gap-4 justify-content-between"
-      >
-        <div>
-          <h6>{{ content.box[0].title }}</h6>
-          <p>{{ content.box[0].description }}</p>
+    <div class="container px-0">
+      <div class="row mx-auto g-5 justify-content-between">
+        <div class="col-12 col-md-6 d-flex flex-column gap-4 right-text">
+          <h1>{{ content.title }}</h1>
+          <p>{{ content.subtitle }}</p>
+          <a href="">
+            <button class="btn btn-rounded btn-secondary">
+              {{ "HOMEPAGE.COMPLIANCE.READ_MORE" | translate }}
+            </button>
+          </a>
         </div>
-        <div>
-          <h6>{{ content.box[1].title }}</h6>
-          <p>{{ content.box[1].description }}</p>
+        <div
+          class="col-12 col-md-6 left-text d-flex flex-column gap-4 justify-content-between"
+        >
+          <div>
+            <h6>{{ content.box[0].title }}</h6>
+            <p>{{ content.box[0].description }}</p>
+          </div>
+          <div>
+            <h6>{{ content.box[1].title }}</h6>
+            <p>{{ content.box[1].description }}</p>
+          </div>
         </div>
       </div>
     </div>
