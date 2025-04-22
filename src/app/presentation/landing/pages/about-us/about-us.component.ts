@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { TranslateModule } from "@ngx-translate/core";
 import { OverviewComponent } from "./components/overview/overview.component";
 import { ValuesComponent } from "./components/values/values.component";
@@ -6,6 +6,8 @@ import { MembersComponent } from "./components/members/members.component";
 import { ManagementComponent } from "./components/management/management.component";
 import { ComplianceComponent } from "../homepage/components/compliance/compliance.component";
 import { RisknoticeComponent } from "./components/risknotice/risknotice.component";
+import { BaseComponent } from "../../../../core/base/base.component";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-about-us",
@@ -21,4 +23,12 @@ import { RisknoticeComponent } from "./components/risknotice/risknotice.componen
   templateUrl: "./about-us.component.html",
   styleUrl: "./about-us.component.scss",
 })
-export class AboutUsComponent {}
+export class AboutUsComponent extends BaseComponent implements OnInit {
+  private readonly activatedRoute = inject(ActivatedRoute);
+  content = this.activatedRoute.snapshot.data["content"]["header"];
+  constructor() {
+    super();
+  }
+
+  ngOnInit(): void {}
+}

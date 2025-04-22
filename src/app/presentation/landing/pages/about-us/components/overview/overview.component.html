@@ -7,29 +7,13 @@
   <div class="position-relative container justify-contenr-center gap-4 d-flex">
     <div class="row mobile">
       <div class="col-md-6 col-12">
-        <h1 class="fw-bold">خبرات استثمارية لخدمة أهدافك</h1>
+        <h1 class="fw-bold">{{ content.title }}</h1>
 
         <p class="fw-light">
-          شركة تام المالية هي شركة مالية استثمارية تقدم منتجات وحلول استثمارية
-          مبتكرة ومتوافقة مع الشريعة الإسلامية على مستوى عالمي للمؤسسات والشركات
-          العائلية والمستثمرين المؤهلين والأفراد لدى تام المالية نخبة من
-          المهنيين ذوي الخبرات الواسعة والمتنوعة في تقديم خدمات إدارة الأصول،
-          بما في ذلك إدارة الصناديق والمحافظ الاستثمارية، والاستشارات، والأسواق
-          المالية، والاستثمارات العقارية.
+          {{ content.description }}
         </p>
-        <p class="fw-light">
-          شركة تام المالية هي شركة مالية استثمارية تقدم منتجات وحلول استثمارية
-          مبتكرة ومتوافقة مع الشريعة الإسلامية على مستوى عالمي للمؤسسات والشركات
-          العائلية والمستثمرين المؤهلين والأفراد. لدى تام المالية نخبة من
-          المهنيين ذوي الخبرات الواسعة والمتنوعة في تقديم خدمات إدارة الأصول،
-          بما في ذلك إدارة الصناديق والمحافظ الاستثمارية، والاستشارات، والأسواق
-          المالية، والاستثمارات العقارية.
-        </p>
-        <p class="fw-light">
-          تأسست شركة تام المالية عام 2024 سجل تجاري دقم xxxxx ورأس المال المدفوع
-          25.5 مليون ريال سعودي. وحصلت على ترخيص هيئة السوق المالية لنشاط
-          الترتيب وإدارة الاستثمارات بتاريخ 1/10/2024 ورقم xxxx
-        </p>
+        <p class="fw-light"></p>
+        <p class="fw-light"></p>
       </div>
       <div class="col-md-6 col-12 d-flex row gap-4">
         <div class="d-flex gap-3">
@@ -39,10 +23,9 @@
             alt=""
           />
           <div class="gap-2 row">
-            <h4 class="fw-bold">2024</h4>
+            <h4 class="fw-bold">{{ content.box[0].title }}</h4>
             <p class="fw-light">
-              تأسست تام المالية على يد نخبة من ذوي الخبرات المالية والاستثمارية
-              عام 2024
+              {{ content.box[0].description }}
             </p>
           </div>
         </div>
@@ -53,9 +36,9 @@
             alt=""
           />
           <div class="gap-2 row">
-            <h4 class="fw-bold">24297-12​</h4>
+            <h4 class="fw-bold">{{ content.box[1].title }}​</h4>
             <p class="fw-light">
-              شركة تام المالية مرخصة من هيئة السوق المالية بترخيص رقم 12-24297
+              {{ content.box[1].description }}
             </p>
           </div>
         </div>
@@ -66,16 +49,27 @@
             alt=""
           />
           <div class="gap-2 row">
-            <app-currency-amount
+            <div class="d-flex">
+              <h4 class="fw-bold">
+                {{ content.box[2].title }}
+              </h4>
+              <img
+                class="riyal"
+                src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                alt=""
+              />
+            </div>
+
+            <!-- <app-currency-amount
               [amount]="500000000000"
               [shorten]="true"
               [countUp]="true"
               [size]="3"
               extraClass="fw-bold"
             >
-            </app-currency-amount>
+            </app-currency-amount> -->
             <p class="fw-light">
-              xw متوقع أن تبلغ الأصول المدارة للشركة 500 مليار ريال سعودي
+              {{ content.box[2].description }}
             </p>
           </div>
         </div>
@@ -86,10 +80,9 @@
             alt=""
           />
           <div class="gap-2 row">
-            <h4 class="fw-bold">الرياض</h4>
+            <h4 class="fw-bold">{{ content.box[3].title }}</h4>
             <p class="fw-light">
-              يقع المركز الرئيسي لشركة تام المالية بمدينة الرياض بالمملكة
-              العربية السعودية
+              {{ content.box[3].description }}
             </p>
           </div>
         </div>

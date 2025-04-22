@@ -2,21 +2,20 @@
   <div class="members container d-flex flex-column justify-content-center">
     <div class="row gap-5 d-flex">
       <div class="text-center">
-        <h2 class="fw-bold m-1">أعضاء مجلس الإدارة لشركة تام المالية</h2>
-        <p>نخب من قطاعات استثمارية ومالية وعقارية</p>
+        <h2 class="fw-bold m-1">{{ content.title }}</h2>
+        <p>{{ content.subtitle }}</p>
       </div>
       <div class="row justify-content-center cards d-flex">
         <div
           class="col-12 d-flex flex-column justify-content-center text-center row gap-3 col-md-3"
         >
           <img class="" src="assets/icons/about-us/manager.svg" alt="" />
-          <h4 class="fw-bold">محمد عبدالغني</h4>
+          <h4 class="fw-bold">{{ content.member[0].name }}</h4>
           <div class="gap-2 flex-column d-flex">
-            <h6 class="col-12">رئيس مجلس الإدارة</h6>
+            <h6 class="col-12">{{ content.member[0].role }}</h6>
 
             <p class="col-12 fw-light">
-              الاستثماري خبرة لمدة 30 عاماً في القطاع الاستثماري خبرة لمدة 30
-              عاماً في القطاع الاستثماري
+              {{ content.member[0].summary }}
             </p>
             <a class="mx-auto" href="">
               <i class="fa-brands fa-linkedin"></i>
@@ -25,13 +24,12 @@
         </div>
         <div class="col-12 text-center row gap-3 col-md-3">
           <img class="" src="assets/icons/about-us/manager.svg" alt="" />
-          <h4 class="fw-bold">محمد عبدالغني</h4>
+          <h4 class="fw-bold">{{ content.member[1].name }}</h4>
           <div class="gap-2 flex-column d-flex">
-            <h6 class="col-12">رئيس مجلس الإدارة</h6>
+            <h6 class="col-12">{{ content.member[1].role }}</h6>
 
             <p class="col-12 fw-light">
-              الاستثماري خبرة لمدة 30 عاماً في القطاع الاستثماري خبرة لمدة 30
-              عاماً في القطاع الاستثماري
+              {{ content.member[1].summary }}
             </p>
             <a class="mx-auto" href="">
               <i class="fa-brands fa-linkedin"></i>
@@ -40,13 +38,12 @@
         </div>
         <div class="col-12 text-center row gap-3 col-md-3">
           <img class="" src="assets/icons/about-us/manager.svg" alt="" />
-          <h4 class="fw-bold">محمد عبدالغني</h4>
+          <h4 class="fw-bold">{{ content.member[2].name }}</h4>
           <div class="gap-2 flex-column d-flex">
-            <h6 class="col-12">رئيس مجلس الإدارة</h6>
+            <h6 class="col-12">{{ content.member[2].role }}</h6>
 
             <p class="col-12 fw-light">
-              الاستثماري خبرة لمدة 30 عاماً في القطاع الاستثماري خبرة لمدة 30
-              عاماً في القطاع الاستثماري
+              {{ content.member[2].summary }}
             </p>
             <a class="mx-auto" href="">
               <i class="fa-brands fa-linkedin"></i>
@@ -55,13 +52,12 @@
         </div>
         <div class="col-12 text-center row gap-3 col-md-3">
           <img class="" src="assets/icons/about-us/manager.svg" alt="" />
-          <h4 class="fw-bold">محمد عبدالغني</h4>
+          <h4 class="fw-bold">{{ content.member[3].name }}</h4>
           <div class="gap-2 flex-column d-flex">
-            <h6 class="col-12">رئيس مجلس الإدارة</h6>
+            <h6 class="col-12">{{ content.member[3].role }}</h6>
 
             <p class="col-12 fw-light">
-              الاستثماري خبرة لمدة 30 عاماً في القطاع الاستثماري خبرة لمدة 30
-              عاماً في القطاع الاستثماري
+              {{ content.member[3].summary }}
             </p>
             <a class="mx-auto" href="">
               <i class="fa-brands fa-linkedin"></i>
