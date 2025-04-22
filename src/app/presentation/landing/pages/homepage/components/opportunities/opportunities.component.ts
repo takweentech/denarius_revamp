@@ -1,16 +1,23 @@
-import { Component } from "@angular/core";
+import { Component, OnInit, inject } from "@angular/core";
 import { OpportunityCardComponent } from "../../../../../../shared/components/opportunity-card/opportunity-card.component";
 import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
-import { RouterLink } from "@angular/router";
+import { ActivatedRoute, RouterLink } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
-
+import { BaseComponent } from "../../../../../../core/base/base.component";
 @Component({
   selector: "app-opportunities",
   imports: [OpportunityCardComponent, TranslateModule, RouterLink],
   templateUrl: "./opportunities.component.html",
   styleUrl: "./opportunities.component.scss",
 })
-export class OpportunitiesComponent {
+export class OpportunitiesComponent extends BaseComponent implements OnInit {
+  private readonly activatedRoute = inject(ActivatedRoute);
+  content = this.activatedRoute.snapshot.data["content"]["opportunities"];
+  constructor() {
+    super();
+  }
+
+  ngOnInit(): void {}
   WEB_ROUTES = WEB_ROUTES;
   opportunities: any[] = [
     {

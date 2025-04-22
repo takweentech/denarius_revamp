@@ -1,6 +1,10 @@
 import { CommonModule } from "@angular/common";
-import { Component, HostListener } from "@angular/core";
+import { Component, inject, HostListener, OnInit } from "@angular/core";
 import { TranslateModule, TranslateService } from "@ngx-translate/core";
+import { environment } from "../../../../../../../environments/environment";
+import { ActivatedRoute } from "@angular/router";
+import { BaseComponent } from "../../../../../../core/base/base.component";
+import AOS from "aos";
 
 @Component({
   selector: "app-cta",
@@ -8,18 +12,34 @@ import { TranslateModule, TranslateService } from "@ngx-translate/core";
   templateUrl: "./cta.component.html",
   styleUrl: "./cta.component.scss",
 })
-export class CtaComponent {
-  currentLang: string;
-  isSmallScreen: boolean = window.innerWidth < 768;
-  screenSize: string = "";
+export class CtaComponent extends BaseComponent implements OnInit {
+  imagePath!: string;
+  CMS_ASSETS_URL = environment.cmsAssetsUrl;
+
+  private readonly activatedRoute = inject(ActivatedRoute);
+  content = this.activatedRoute.snapshot.data["content"]["cta"];
 
   constructor(private translate: TranslateService) {
+    super();
+    AOS.init();
     this.currentLang = this.translate.currentLang || "ar";
     this.translate.onLangChange.subscribe((event) => {
       this.currentLang = event.lang;
     });
+  }
+
+  ngOnInit(): void {
+    const image = this.content?.image?.url;
+    if (image) {
+      this.imagePath = this.CMS_ASSETS_URL + image;
+    }
+
     this.updateScreenSize();
   }
+
+  currentLang: string;
+  isSmallScreen: boolean = window.innerWidth < 768;
+  screenSize: string = "";
 
   @HostListener("window:resize", ["$event"])
   onResize(event?: Event) {

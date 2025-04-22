@@ -1,16 +1,15 @@
 <section class="container pb-6 pt-6">
   <div class="d-flex flex-column gap-5">
     <div class="text-center d-flex flex-column gap-3 align-items-center">
-      <h6>{{ "HOMEPAGE.PARTNERS.SUBTITLE" | translate }}</h6>
-      <h1>{{ "HOMEPAGE.PARTNERS.TITLE" | translate }}</h1>
+      <h6>{{ content.subtitle }}</h6>
+      <h1>{{ content.title }}</h1>
     </div>
 
     <div class="row g-4">
       @for (item of partners; track $index) {
       <div class="col-12 col-md-3">
         <div class="partner-card">
-          <img [src]="CMS_ASSETS_URL + item?.image?.url"
-               alt="" />
+          <img [src]="CMS_ASSETS_URL + item?.image?.url" alt="" />
         </div>
       </div>
       }

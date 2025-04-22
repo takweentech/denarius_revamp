@@ -3,8 +3,8 @@ import { TranslateModule } from "@ngx-translate/core";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { StrapiService } from "../../../../../../core/strapi/strapi.service";
 import { environment } from "../../../../../../../environments/environment";
-
-
+import AOS from "aos";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-partners",
@@ -17,6 +17,12 @@ export class PartnersComponent extends BaseComponent implements OnInit {
   CMS_ASSETS_URL = environment.cmsAssetsUrl;
 
   private readonly strapiService = inject(StrapiService);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  content = this.activatedRoute.snapshot.data["content"]["partners"];
+  constructor() {
+    super();
+    AOS.init();
+  }
 
   ngOnInit(): void {
     // this.strapiService.get('/partners?populate=*').pipe(
