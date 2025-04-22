@@ -249,41 +249,125 @@
     "AUTO_REDIRECT": "You will be automatically redirected to the investments page in 5 seconds"
   },
   "ABOUT_US": {
-    "executives": {
-      "title": "Executive Management",
-      "subtitle": "60+ years of accumulated experience",
-      "structure": {
-        "title": "Organizational Structure",
-        "description": "The team consists of elite experts with high competencies and extensive experience in local and global markets.",
-        "button": "View Organizational Structure"
+    "MANAGEMENT": {
+      "TITLE": "Executive Management",
+      "SUBTITLE": "60+ years of accumulated experience",
+      "STRUCTURE": {
+        "TITLE": "Organizational Structure",
+        "DESCRIPTION": "The team includes a group of highly qualified experts with extended experience in local and global markets.",
+        "BUTTON": "View Organizational Structure"
       },
-      "members": {
-        "mohamed": {
-          "name": "Mohamed",
-          "position": "Head of Arrangement Department",
-          "experience": "More than 10 years of experience in the same field"
+      "MEMBERS": {
+        "MOHAMED": {
+          "NAME": "Mohamed",
+          "POSITION": "Head of Arrangement Department",
+          "EXPERIENCE": "Over 10 years of experience in the field"
         },
-        "abdullah": {
-          "name": "Abdullah",
-          "position": "Chief Technology Officer",
-          "experience": "More than 10 years of experience in the same field"
+        "ABDULLAH": {
+          "NAME": "Abdullah",
+          "POSITION": "Chief Technology Officer (CTO)",
+          "EXPERIENCE": "Over 10 years of experience in the field"
         },
-        "ahmed": {
-          "name": "Ahmed",
-          "position": "Chief Financial Officer",
-          "experience": "More than 10 years of experience in the same field"
+        "AHMED": {
+          "NAME": "Ahmed",
+          "POSITION": "Chief Financial Officer (CFO)",
+          "EXPERIENCE": "Over 10 years of experience in the field"
         },
-        "saoud": {
-          "name": "Saoud",
-          "position": "Compliance Manager",
-          "experience": "More than 10 years of experience in the same field"
+        "SAOUD": {
+          "NAME": "Saoud",
+          "POSITION": "Head of Compliance Department",
+          "EXPERIENCE": "Over 10 years of experience in the field"
         },
-        "saleem": {
-          "name": "Saleem",
-          "position": "Credit Manager",
-          "experience": "More than 10 years of experience in the same field"
+        "SALEEM": {
+          "NAME": "Saleem",
+          "POSITION": "Head of Credit Department",
+          "EXPERIENCE": "Over 10 years of experience in the field"
         }
       }
+    },
+    "MEMBERS": {
+      "TITLE": "Board Members of Tam Financial Company",
+      "SUBTITLE": "A selection from investment, financial, and real estate sectors",
+      "MEMBER_NAME": "Mohamed Abdelghani",
+      "MEMBER_TITLE": "Chairman of the Board",
+      "MEMBER_DESC": "Over 30 years of experience in the investment sector with a proven track record in financial leadership."
+    },
+    "OVERVIEW": {
+      "HEADING": "Investment Experience to Serve Your Goals",
+      "PARAGRAPH_1": "Tam Financial Company is an investment financial institution offering innovative, Shariah-compliant investment products and solutions at a global level for institutions, family businesses, qualified investors, and individuals. Tam's team consists of professionals with extensive and diverse experience in asset management services, including fund and portfolio management, consulting, financial markets, and real estate investments.",
+      "PARAGRAPH_2": "Tam Financial Company offers innovative, Shariah-compliant investment solutions to institutions, family businesses, qualified investors, and individuals. Tam's team consists of professionals with extensive and diverse experience in asset management services, including fund and portfolio management, consulting, financial markets, and real estate investments.",
+      "PARAGRAPH_3": "Tam Financial was established in 2024 with a commercial registration number DQUM xxxxx and a paid-up capital of SAR 25.5 million. The company received a license from the Capital Market Authority for arranging and investment management activities on 1/10/2024, license number xxxx.",
+      "CARD_1": {
+        "YEAR": "2024",
+        "TEXT": "Tam Financial was founded in 2024 by a group of experienced financial and investment professionals."
+      },
+      "CARD_2": {
+        "LICENSE": "24297-12​",
+        "TEXT": "Tam Financial is licensed by the Capital Market Authority under license number 12-24297"
+      },
+      "CARD_3": {
+        "TEXT": "It is expected that the company's assets under management will reach SAR 500 billion"
+      },
+      "CARD_4": {
+        "CITY": "Riyadh",
+        "TEXT": "The company’s headquarters is located in Riyadh, Saudi Arabia"
+      }
+    },
+    "RISKNOTICE": {
+      "TITLE": "Risk Disclaimer",
+      "DESCRIPTION": "The user acknowledges that Tam Financial Company... (repeated disclaimer text)"
+    },
+    "VALUES": {
+      "VISION": {
+        "ICON_TEXT": "Innovative investment solutions",
+        "TITLE": "Our Vision",
+        "DESCRIPTION": "To be the leading company in providing innovative and Shariah-compliant investment solutions, achieving sustainable growth and outstanding returns for our clients."
+      },
+      "MISSION": {
+        "ICON_TEXT": "Commitment to the highest standards of transparency and governance",
+        "TITLE": "Our Mission",
+        "DESCRIPTION": "We are committed to delivering world-class investment products compliant with Shariah by employing top experts and providing innovative solutions tailored to the needs of institutions, family businesses, and individuals, while upholding the highest standards of transparency and governance."
+      },
+      "GOAL": {
+        "ICON_TEXT": "Creating sustainable value for our clients",
+        "TITLE": "Our Goal",
+        "DESCRIPTION": "To create sustainable value for our clients through efficient asset management, advanced financial and investment solutions, and promoting sustainable growth across financial markets and real estate investments while adhering to ethical practices and global standards."
+      }
+    },
+    "HERO": {
+      "HEADING": "Investment Experience",
+      "SUBHEADING": "That Serves Your Goals",
+      "BREADCRUMB": {
+        "HOME": "Home",
+        "CURRENT": "About Us"
+      }
+    }
+  },
+  "SERVICES": {
+    "HERO": {
+      "HEADING": "Comprehensive Services",
+      "SUBHEADING": "That Meet Your Needs",
+      "DESCRIPTION": "Carefully selected services"
+    },
+    "LISTING": {
+      "TITLE": "We go beyond just managing investments to achieve our clients’ financial goals",
+      "CARD": {
+        "TITLE": "Asset Management",
+        "DESCRIPTION": "We leverage our expertise to ensure that client investments are managed efficiently and aligned with their investment goals",
+        "BUTTON": "More"
+      }
+    },
+    "INTRO": {
+      "HEADING": "Investment Experience to Serve Your Goals",
+      "DESCRIPTION": "Tam Financial is an investment company providing innovative, Shariah-compliant investment products and solutions at a global level for institutions, family businesses, qualified investors, and individuals. Tam is supported by a team of professionals with extensive and diverse experience in asset management services, including fund and portfolio management, consulting, financial markets, and real estate investments. Tam Financial is an investment company providing innovative, Shariah-compliant investment products and solutions at a global level for institutions, family businesses, qualified investors, and individuals. Tam is supported by a team of professionals with extensive and diverse experience in asset management services, including fund and portfolio management, consulting, financial markets, and real estate investments. Tam Financial was established in 2024 with commercial registration DQUM xxxxx and a paid-up capital of SAR 25.5 million. The company obtained a license from the Capital Market Authority for arranging and investment management on 1/10/2024, license number xxxx.",
+      "CARD": {
+        "YEAR": "2024",
+        "TEXT": "Tam Financial was founded in 2024 by a group of experienced financial and investment professionals."
+      }
+    },
+    "CTA": {
+      "DESCRIPTION": "Our team includes top experts with high-level competencies and extensive experience in local and global markets, enabling us to provide innovative and effective solutions. Contact us today to achieve your financial goals with confidence!",
+      "BUTTON": "Contact Us"
     }
   }
 }
