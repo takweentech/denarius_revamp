@@ -1,55 +1,47 @@
 <div class="container">
   <div class="d-flex row justify-content-center">
-    <!-- كارت -->
+    <!-- card -->
     <div class="col-md-4 col-12 d-flex flex-column gap-4">
-      <!-- الجزء العلوي الثابت -->
       <div
         class="text-center d-flex flex-column align-items-center gap-3 header-fixed"
       >
         <img class="vector" src="assets/icons/about-us/eye.svg" alt="" />
-        <p>حلول استثمارية مبتكرة</p>
-        <h4 class="fw-bold">رؤيتنا</h4>
+        <p>{{ content.item[0].subtitle }}</p>
+        <h4 class="fw-bold">{{ content.item[0].title }}</h4>
       </div>
 
-      <!-- النص -->
       <p class="">
-        أن نكون الشركة الرائدة في تقديم الحلول الاستثمارية المبتكرة والمتوافقة
-        مع الشريعة الإسلامية، مع تحقيق نمو مستدام وعوائد متميزة لعملائنا.
+        {{ content.item[0].description }}
       </p>
     </div>
 
-    <!-- باقي الكروت بنفس التنسيق -->
+    <!--  card  -->
     <div class="col-md-4 col-12 d-flex flex-column gap-4">
       <div
         class="text-center d-flex flex-column align-items-center gap-3 header-fixed"
       >
         <img class="vector" src="assets/icons/about-us/Rectangle.svg" alt="" />
-        <p>الالتزام بأعلى معايير الشفافية والحوكمة</p>
-        <h4 class="fw-bold">رسالتنا</h4>
+        <p>{{ content.item[1].subtitle }}</p>
+        <h4 class="fw-bold">{{ content.item[1].title }}</h4>
       </div>
 
       <p class="">
-        نلتزم بتقديم منتجات استثمارية عالمية المستوى، متوافقة مع الشريعة
-        الإسلامية، من خلال توظيف نخبة من الخبراء المتخصصين، وتوفير حلول
-        استثمارية مبتكرة تلبي احتياجات المؤسسات، والشركات العائلية، والأفراد، مع
-        الالتزام بأعلى معايير الشفافية والحوكمة.
+        {{ content.item[1].description }}
       </p>
     </div>
+    <!--  card  -->
 
     <div class="col-md-4 col-12 d-flex flex-column gap-4">
       <div
         class="text-center d-flex flex-column align-items-center gap-3 header-fixed"
       >
         <img class="vector" src="assets/icons/about-us/Image.svg" alt="" />
-        <p>تحقيق قيمة مستدامة لعملائنا</p>
-        <h4 class="fw-bold">هدفنا</h4>
+        <p>{{ content.item[2].subtitle }}</p>
+        <h4 class="fw-bold">{{ content.item[2].title }}</h4>
       </div>
 
       <p class="">
-        تحقيق قيمة مستدامة لعملائنا من خلال إدارة أصول فعالة، وتقديم حلول مالية
-        واستثمارية متطورة، وتعزيز النمو المستدام عبر الأسواق المالية
-        والاستثمارات العقارية، مع الالتزام بالممارسات الأخلاقية وأفضل المعايير
-        العالمية.
+        {{ content.item[2].description }}
       </p>
     </div>
   </div>
