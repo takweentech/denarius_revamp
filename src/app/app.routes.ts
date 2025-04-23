@@ -5,6 +5,7 @@ import { ShowcaseComponent } from "./shared/components/showcase/showcase.compone
 import { OPPORTUNITIES_ROUTES } from "./presentation/landing/pages/opportunities/opportunities.routes";
 import { SERVICES_ROUTES } from "./presentation/landing/pages/services/services.routes";
 import { homepageResolver } from "./presentation/landing/pages/homepage/homepage.resolver";
+import { aboutResolver } from "./presentation/landing/pages/about-us/about-us.resolver";
 
 export const routes: Routes = [
   {
@@ -59,6 +60,7 @@ export const routes: Routes = [
           import(
             "./presentation/landing/pages/about-us/about-us.component"
           ).then((m) => m.AboutUsComponent),
+        resolve: { content: aboutResolver },
       },
     ],
   },

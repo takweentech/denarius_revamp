@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { TranslationService } from './core/services/translation.service';
 import { environment } from '../environments/environment';
-import { StrapiService } from './core/strapi/strapi.service';
+import { SplashScreenService } from './core/services/loading.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,8 @@ import { StrapiService } from './core/strapi/strapi.service';
 export class AppComponent {
   title = 'denarius';
   private translationService = inject(TranslationService);
-  private strapiService = inject(StrapiService);
+  private readonly splashScreen = inject(SplashScreenService);
+
 
   constructor() {
     this.translationService.init(environment.defaultLang);

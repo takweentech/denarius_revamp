@@ -26,3 +26,16 @@
     align-items: center;
   }
 }
+.riyal {
+  width: 18px;
+  height: 18px;
+}
+.force-ltr {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+}
+.curruncy {
+  font-size: 24px;
+  direction: ltr;
+  unicode-bidi: isolate;
+}
