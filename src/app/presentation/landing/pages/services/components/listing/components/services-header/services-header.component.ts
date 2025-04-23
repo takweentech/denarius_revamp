@@ -1,18 +1,18 @@
 import { Component, OnInit, inject } from "@angular/core";
 import { BaseComponent } from "../../../../../../../../core/base/base.component";
-import { ActivatedRoute } from "@angular/router";
 import { StrapiService } from "../../../../../../../../core/strapi/strapi.service";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
-  selector: "app-intro",
+  selector: "app-services-header",
   imports: [],
-  templateUrl: "./intro.component.html",
-  styleUrl: "./intro.component.scss",
+  templateUrl: "./services-header.component.html",
+  styleUrl: "./services-header.component.scss",
 })
-export class IntroComponent extends BaseComponent implements OnInit {
+export class ServicesHeaderComponent extends BaseComponent implements OnInit {
   private readonly strapiService = inject(StrapiService);
   private readonly activatedRoute = inject(ActivatedRoute);
-  content = this.activatedRoute.snapshot.data["content"]["intro"];
+  content = this.activatedRoute.snapshot.data["content"]["header"];
   constructor() {
     super();
   }

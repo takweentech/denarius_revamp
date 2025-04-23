@@ -5,6 +5,7 @@ import { ShowcaseComponent } from "./shared/components/showcase/showcase.compone
 import { OPPORTUNITIES_ROUTES } from "./presentation/landing/pages/opportunities/opportunities.routes";
 import { SERVICES_ROUTES } from "./presentation/landing/pages/services/services.routes";
 import { homepageResolver } from "./presentation/landing/pages/homepage/homepage.resolver";
+import { servicesResolver } from "./presentation/landing/pages/services/services.resolver";
 
 export const routes: Routes = [
   {
@@ -38,6 +39,7 @@ export const routes: Routes = [
   {
     path: WEB_ROUTES.SERVICES.ROOT,
     component: LandingLayoutComponent,
+
     children: [
       {
         path: "",
@@ -45,6 +47,7 @@ export const routes: Routes = [
           import(
             "./presentation/landing/pages/services/services.component"
           ).then((m) => m.ServicesComponent),
+        resolve: { content: servicesResolver },
         children: SERVICES_ROUTES,
       },
     ],

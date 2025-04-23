@@ -1,40 +1,138 @@
 <!-- Hero -->
-<section class="d-flex flex-column justify-content-center gap-2 text-center hero">
-    <h1>
-        خدمات متكاملة
-        تلبي طلباتك
-    </h1>
-    <p>
-        خدمات مختارة بعناية
-    </p>
-</section>
-
+<app-services-header></app-services-header>
 <!-- Intro -->
 <app-intro></app-intro>
 
 <!-- Listing -->
 <section class="container pb-6">
-    <h2 class="fw-bold text-center mb-5">
-        نتجاوز مجرد إدارة الاستثمارات لنحقق الأهداف المالية لعملائنا
-    </h2>
-    <div class="row g-4">
-        @for (item of [1,2,3,4,5,6]; track $index) {
-        <div class="col-12 col-md-6 col-lg-4">
-            <div class="d-flex flex-column gap-3">
-                <img class="rounded"
-                     src="assets/images/service.png"
-                     alt="">
-                <h4>إدارة الأصول</h4>
-                <p>نطوع خبراتنا لنضمن أن استثمارات العملاء يتم إدارتها بطريقة فعالة تتوافق مع الأهداف الاستثمارية</p>
-                <div class="d-flex justify-content-end">
-                    <button class="btn btn-sm btn-primary">
-                        المزيد
-                    </button>
-                </div>
-            </div>
+  <h2 class="fw-bold text-center mb-5">
+    {{ content.title }}
+  </h2>
+  <div class="row g-4">
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="d-flex flex-column gap-3">
+        <img
+          class="rounded"
+          [src]="CMS_ASSETS_URL + content.card[0].image.url"
+          alt=""
+        />
+        <h4>{{ content.card[0].title }}</h4>
+        <p>
+          {{ content.card[0].description }}
+        </p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-primary">
+            {{ content.card[0].button }}
+          </button>
         </div>
-        }
+      </div>
     </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="d-flex flex-column gap-3">
+        <img
+          class="rounded"
+          [src]="CMS_ASSETS_URL + content.card[1].image.url"
+          alt=""
+        />
+        <h4>{{ content.card[1].title }}</h4>
+        <p>
+          {{ content.card[1].description }}
+        </p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-primary">
+            {{ content.card[1].button }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="d-flex flex-column gap-3">
+        <img
+          class="rounded"
+          [src]="CMS_ASSETS_URL + content.card[2].image.url"
+          alt=""
+        />
+        <h4>{{ content.card[2].title }}</h4>
+        <p>
+          {{ content.card[2].description }}
+        </p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-primary">
+            {{ content.card[2].button }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="d-flex flex-column gap-3">
+        <img
+          class="rounded"
+          [src]="CMS_ASSETS_URL + content.card[3].image.url"
+          alt=""
+        />
+        <h4>{{ content.card[3].title }}</h4>
+        <p>
+          {{ content.card[3].description }}
+        </p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-primary">
+            {{ content.card[3].button }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="d-flex flex-column gap-3">
+        <img
+          class="rounded"
+          [src]="CMS_ASSETS_URL + content.card[4].image.url"
+          alt=""
+        />
+        <h4>{{ content.card[4].title }}</h4>
+        <p>
+          {{ content.card[4].description }}
+        </p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-primary">
+            {{ content.card[4].button }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="d-flex flex-column gap-3">
+        <img
+          class="rounded"
+          [src]="CMS_ASSETS_URL + content.card[5].image.url"
+          alt=""
+        />
+        <h4>{{ content.card[5].title }}</h4>
+        <p>
+          {{ content.card[5].description }}
+        </p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-primary">
+            {{ content.card[5].button }}
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- @for (item of [1,2,3,4,5,6]; track $index) {
+    <div class="col-12 col-md-6 col-lg-4">
+      <div class="d-flex flex-column gap-3">
+        <img class="rounded" src="assets/images/service.png" alt="" />
+        <h4>إدارة الأصول</h4>
+        <p>
+          نطوع خبراتنا لنضمن أن استثمارات العملاء يتم إدارتها بطريقة فعالة
+          تتوافق مع الأهداف الاستثمارية
+        </p>
+        <div class="d-flex justify-content-end">
+          <button class="btn btn-sm btn-primary">المزيد</button>
+        </div>
+      </div>
+    </div>
+    } -->
+  </div>
 </section>
 
 <!-- Contact -->
