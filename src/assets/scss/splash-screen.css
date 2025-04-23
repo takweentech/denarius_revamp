@@ -18,8 +18,8 @@ body splash-screen {
 }
 
 body splash-screen img {
-    width: 120px;
-    max-width: 120px;
+    width: 100%;
+    max-width: 200px;
 }
 
 body splash-screen .spinner {
