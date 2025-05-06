@@ -1,0 +1,24 @@
+nav {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #e6eff5;
+
+  .logo {
+    width: 200px;
+  }
+
+  .profile {
+
+    button {
+      &::after {
+        display: none;
+      }
+    }
+
+    img {
+      width: 50px;
+      height: auto;
+    }
+  }
+}

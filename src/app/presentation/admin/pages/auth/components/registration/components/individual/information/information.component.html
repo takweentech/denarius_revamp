@@ -1,0 +1,60 @@
+<div class="justify-content-center d-flex">
+  <form class="row d-flex gy-3  col-12 justify-content-center">
+    <!-- Identity number -->
+    <div class="form-group col-12">
+      <label class="form-label">رقم الهوية <span class="text-danger">*</span></label>
+      <input type="number"
+             class="profile-control"
+             inputmode="numeric"
+             pattern="[0-9]*"
+             placeholder="0000000000" />
+    </div>
+    <!-- Date of birth -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label">تاريخ الميلاد <span class="text-danger">*</span></label>
+      <input type="date"
+             class="profile-control"
+             placeholder="0000000000" />
+    </div>
+    <!-- Phone number -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label">رقم الجوال <span class="text-danger">*</span></label>
+      <input type="tel"
+             class="profile-control"
+             placeholder="+966 5xxxxxxxx" />
+    </div>
+    <!-- Email -->
+    <div class="form-group col-12">
+      <label class="form-label">البريد الإلكتروني <span class="text-danger">*</span></label>
+      <input dir="ltr"
+             type="email"
+             class="profile-control"
+             placeholder="mail@domain.com" />
+    </div>
+    <!-- Password -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label">كلمة المرور <span class="text-danger">*</span></label>
+      <input type="password"
+             class="profile-control"
+             placeholder="" />
+    </div>
+    <!-- Password confirmation -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label">تأكيد كلمة المرور <span class="text-danger">*</span></label>
+      <input type="password"
+             class="profile-control"
+             placeholder="" />
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <input type="checkbox"
+             id="terms"
+             class="m-0" />
+      <label for="terms"
+             class="form-label mb-0">
+        أوافق على
+        <a class="text-primary text-decoration-underline"
+           href=""> الشروط والأحكام </a>
+      </label>
+    </div>
+  </form>
+</div>

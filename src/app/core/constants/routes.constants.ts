@@ -2,6 +2,15 @@ export const WEB_ROUTES = {
   HOME: {
     ROOT: "",
   },
+  DASHBOARD: {
+    ROOT: "dashboard",
+  },
+  AUTH: {
+    ROOT: "auth",
+    SIGN_UP: "sign-up",
+    SIGN_IN: "sign-in",
+    REGISTRATION: "registration",
+  },
   OPPORTUNITIES: {
     ROOT: "opportunities",
     DETAILS: "details",
@@ -14,8 +23,5 @@ export const WEB_ROUTES = {
   },
   ABOUT_US: {
     ROOT: "about-us",
-  },
-  AUTH: {
-    ROOT: "auth",
-  },
+  }
 };

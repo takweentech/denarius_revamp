@@ -1,0 +1,16 @@
+<nav class=" d-flex flex-column sidebar">
+  <ul class="list-unstyled gap-2 sidebar-menu  d-sm-flex flex-column w-100">
+    @for (item of sidebarItems; track $index) {
+    <li class="justify-content-between text-center position-relative">
+      <a [routerLink]="item.route"
+         [routerLinkActiveOptions]="{ exact: false }"
+         routerLinkActive="active">
+        <i [class]="item.icon"></i>
+        <span class="sidebar-text fs-6 mt-2 d-sm-none d-md-none d-lg-inline">
+          {{ item.label }}
+        </span>
+      </a>
+    </li>
+    }
+  </ul>
+</nav>

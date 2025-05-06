@@ -1,0 +1,35 @@
+.container {
+    h6 {
+        margin-bottom: 80px;
+        color: var(--dark-gray-color);
+
+        a {}
+    }
+
+    p {
+        color: var(--dark-gray-color);
+    }
+
+    .cards {
+        width: 100%;
+        max-width: 626px;
+
+        .shadow-card {
+            padding: 28px;
+            border: 1px solid transparent;
+
+            &:hover {
+
+                background: #F5F9FF;
+                border: 1px solid var(--primary-color);
+
+            }
+        }
+    }
+
+
+
+
+
+
+}

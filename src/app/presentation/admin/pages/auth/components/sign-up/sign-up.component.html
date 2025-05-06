@@ -1,0 +1,48 @@
+<div class="container d-flex flex-column justify-content-center h-100 align-items-center">
+    <h6 class="d-flex gap-2">
+        هل لديك حساب بالفعل؟ <a class="text-primary"
+           [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_IN ">سجل دخول</a>
+    </h6>
+
+    <div class="d-flex cards flex-column align-items-center gap-5 w-100">
+        <div class="d-flex flex-column gap-3">
+            <h1 class="fw-semibold">انضم إلينا</h1>
+            <p>رحلة الاستثمار تبدأ من هنا، بخطوات بسيطة يمكنك إنشاء الحساب الاستثماري وحقق أهدافك</p>
+        </div>
+        <div class="w-100 d-flex flex-column gap-4">
+            <a class="shadow-card d-flex justify-content-between align-items-center w-100"
+               [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.REGISTRATION + '/' + InvestorType.INDIVIDUAL">
+
+                <div class="d-flex align-items-center gap-5">
+                    <i class="fs-3 fa-regular fa-user"></i>
+
+                    <div>
+                        <h5>
+                            فرد
+                        </h5>
+                        <p>
+                            افتح حسابك الاستثماري وابدأ رحلتك الاستثمارية
+                        </p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <a class="shadow-card d-flex justify-content-between align-items-center w-100"
+               [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.REGISTRATION + '/' + InvestorType.COMPANY">
+                <div class="d-flex align-items-center gap-5">
+                    <i class="fs-3 fa-regular fa-building"></i>
+
+                    <div>
+                        <h5>
+                            شركة
+                        </h5>
+                        <p>
+                            أنشئ الحساب الاستثماري لشركتك
+                        </p>
+                    </div>
+                </div>
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,272 @@
+<form class="row gy-4 d-flex">
+       <!-- Social Status -->
+       <div class="col-12 form-group">
+              <label class="form-label">الحالة الاجتماعية</label>
+              <div class="d-flex flex-column flex-md-row">
+                     <input type="radio"
+                            id="single"
+                            name="social_status"
+                            class="d-none" />
+                     <label for="single"
+                            class="btn btn-option-select">أعزب</label>
+
+                     <input type="radio"
+                            id="married"
+                            name="social_status"
+                            class="d-none" />
+                     <label for="married"
+                            class="btn btn-option-select">متزوج</label>
+
+                     <input type="radio"
+                            id="divorced"
+                            name="social_status"
+                            class="d-none" />
+                     <label for="divorced"
+                            class="btn btn-option-select">مطلق</label>
+
+                     <input type="radio"
+                            id="widowed"
+                            name="social_status"
+                            class="d-none" />
+                     <label for="widowed"
+                            class="btn btn-option-select">أرمل</label>
+              </div>
+       </div>
+
+       <!-- Family Members -->
+       <div class="col-12 form-group">
+              <label class="form-label">عدد أفراد الأسرة</label>
+              <input type="number"
+                     class="profile-control"
+                     placeholder="0" />
+       </div>
+
+       <!-- Education Level -->
+       <div class="col-12 form-group">
+              <label class="form-label">حدد المستوى التعليمي</label>
+              <div class="d-flex flex-column flex-md-row">
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="edu_primary"
+                                   name="education"
+                                   class="d-none" />
+                            <label for="edu_primary"
+                                   class="btn btn-option-select">ابتدائي</label>
+                     </div>
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="edu_middle"
+                                   name="education"
+                                   class="d-none" />
+                            <label for="edu_middle"
+                                   class="btn btn-option-select">متوسط</label>
+                     </div>
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="edu_high"
+                                   name="education"
+                                   class="d-none" />
+                            <label for="edu_high"
+                                   class="btn btn-option-select">ثانوي</label>
+                     </div>
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="edu_diploma"
+                                   name="education"
+                                   class="d-none" />
+                            <label for="edu_diploma"
+                                   class="btn btn-option-select">دبلوم</label>
+                     </div>
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="edu_university"
+                                   name="education"
+                                   class="d-none" />
+                            <label for="edu_university"
+                                   class="btn btn-option-select">جامعي</label>
+                     </div>
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="edu_postgrad"
+                                   name="education"
+                                   class="d-none" />
+                            <label for="edu_postgrad"
+                                   class="btn btn-option-select">دراسات عليا</label>
+                     </div>
+              </div>
+       </div>
+
+       <!-- Job Status -->
+       <div class="col-12">
+              <label class="form-label">الحالة الوظيفية</label>
+              <div class="d-flex flex-column flex-md-row">
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="job_private"
+                                   name="job_status"
+                                   class="d-none" />
+                            <label for="job_private"
+                                   class="btn btn-option-select">موظف قطاع خاص</label>
+                     </div>
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="job_gov"
+                                   name="job_status"
+                                   class="d-none" />
+                            <label for="job_gov"
+                                   class="btn btn-option-select">موظف قطاع حكومي</label>
+                     </div>
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="job_retired"
+                                   name="job_status"
+                                   class="d-none" />
+                            <label for="job_retired"
+                                   class="btn btn-option-select">متقاعد</label>
+                     </div>
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="job_student"
+                                   name="job_status"
+                                   class="d-none" />
+                            <label for="job_student"
+                                   class="btn btn-option-select">طالب</label>
+                     </div>
+                     <div class="col d-flex p-0">
+                            <input type="radio"
+                                   id="job_unemployed"
+                                   name="job_status"
+                                   class="d-none" />
+                            <label for="job_unemployed"
+                                   class="btn btn-option-select">لا أعمل</label>
+                     </div>
+              </div>
+
+       </div>
+
+       <!-- Job Info -->
+       <div class="col-12 form-group">
+              <div class="bg-light p-2 rounded row mx-auto g-2">
+                     <div class=" col-sm-6">
+                            <label class="">جهة العمل</label>
+                            <input type="text"
+                                   class="profile-control"
+                                   placeholder="اسم الشركة/المؤسسة" />
+                     </div>
+                     <div class=" col-sm-6">
+                            <label class="">المسمى الوظيفي</label>
+                            <input type="text"
+                                   class="profile-control"
+                                   placeholder="المسمى" />
+                     </div>
+                     <div class="col-sm-6">
+                            <label class="">سنوات الخدمة</label>
+                            <input type="text"
+                                   class="profile-control"
+                                   placeholder="3" />
+                     </div>
+                     <div class="col-sm-6">
+                            <label class="">المدينة</label>
+                            <input type="text"
+                                   class="profile-control"
+                                   placeholder="المدينة" />
+                     </div>
+              </div>
+       </div>
+
+       <!-- Annual Income -->
+       <div class="col-12 mt-2 form-group">
+              <label class="form-label">الدخل السنوي؟ (بالريال)</label>
+              <div class="d-flex flex-column flex-md-row">
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="income_0_100k"
+                                   name="annual_income"
+                                   class="d-none" />
+                            <label for="income_0_100k"
+                                   class="btn btn-option-select">0 إلى 100 الف</label>
+                     </div>
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="income_100k_600k"
+                                   name="annual_income"
+                                   class="d-none" />
+                            <label for="income_100k_600k"
+                                   class="btn btn-option-select">100,001-600,000</label>
+                     </div>
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="income_600k_5m"
+                                   name="annual_income"
+                                   class="d-none" />
+                            <label for="income_600k_5m"
+                                   class="btn btn-option-select">600,001-5,000,000</label>
+                     </div>
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="income_5m_10m"
+                                   name="annual_income"
+                                   class="d-none" />
+                            <label for="income_5m_10m"
+                                   class="btn btn-option-select">5,000,001-10,000,000</label>
+                     </div>
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="income_10m_plus"
+                                   name="annual_income"
+                                   class="d-none" />
+                            <label for="income_10m_plus"
+                                   class="btn btn-option-select">أكثر من 10 مليون</label>
+                     </div>
+              </div>
+       </div>
+
+       <!-- Net Wealth -->
+       <div class="col-12 mt-2 form-group">
+              <label class="form-label">
+                     صافي الثروة التقديري (باستثناء المنزل)-(بالريال السعودي)
+              </label>
+              <div class="d-flex flex-column flex-md-row">
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="wealth_0_100k"
+                                   name="net_wealth"
+                                   class="d-none" />
+                            <label for="wealth_0_100k"
+                                   class="btn btn-option-select">0 إلى 100 الف</label>
+                     </div>
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="wealth_100k_300k"
+                                   name="net_wealth"
+                                   class="d-none" />
+                            <label for="wealth_100k_300k"
+                                   class="btn btn-option-select">100,001-600,000</label>
+                     </div>
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="wealth_300k_600k"
+                                   name="net_wealth"
+                                   class="d-none" />
+                            <label for="wealth_300k_600k"
+                                   class="btn btn-option-select">600,001-5,000,000</label>
+                     </div>
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="wealth_1_5m_5m"
+                                   name="net_wealth"
+                                   class="d-none" />
+                            <label for="wealth_1_5m_5m"
+                                   class="btn btn-option-select">5,000,001-10,000,000</label>
+                     </div>
+                     <div class="col p-0">
+                            <input type="radio"
+                                   id="wealth_10m_plus"
+                                   name="net_wealth"
+                                   class="d-none" />
+                            <label for="wealth_10m_plus"
+                                   class="btn btn-option-select">أكثر من 10 مليون</label>
+                     </div>
+              </div>
+       </div>
+</form>

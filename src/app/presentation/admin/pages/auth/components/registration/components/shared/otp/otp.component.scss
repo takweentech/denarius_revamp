@@ -1,0 +1,17 @@
+.otp-inputs {
+  gap: 0.5rem;
+
+  input {
+    width: 56px;
+    height: 60px;
+    font-size: 2rem;
+    text-align: center;
+
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

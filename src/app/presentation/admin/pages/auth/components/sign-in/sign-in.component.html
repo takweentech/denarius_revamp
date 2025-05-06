@@ -1,0 +1,34 @@
+<div class="container d-flex flex-column justify-content-center h-100 align-items-center">
+    <h6 class="d-flex gap-2">
+        ليس لديك حساب؟<a class="text-primary"
+           [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_UP ">التسجيل</a>
+    </h6>
+
+    <div class="d-flex cards flex-column align-items-center gap-5 w-100">
+        <div class="d-flex flex-column gap-3">
+            <h1 class="fw-semibold">تسجيل الدخول</h1>
+            <p>رحلة الاستثمار تبدأ من هنا، بخطوات بسيطة يمكنك إنشاء الحساب الاستثماري وحقق أهدافك</p>
+        </div>
+        <div class="w-100 d-flex flex-column gap-4">
+            <!-- Email -->
+            <div class="form-group">
+                <label class="form-label"
+                       for="">البريد الإلكتروني</label>
+                <input type="text"
+                       class="profile-control">
+            </div>
+            <!-- Password -->
+            <div class="d-flex flex-column gap-3">
+                <div class="form-group">
+                    <label class="form-label"
+                           for=""> كلمة المرور</label>
+                    <input type="password"
+                           class="profile-control">
+                </div>
+                <a href="">نسيت كلمة المرور؟</a>
+            </div>
+            <button (click)="onSignIn()"
+                    class="btn btn-primary p-3"> تسجيل الدخول</button>
+        </div>
+    </div>
+</div>

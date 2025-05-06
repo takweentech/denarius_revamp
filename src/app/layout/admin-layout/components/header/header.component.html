@@ -1,0 +1,28 @@
+<nav class="navbar-expand-lg navbar-light ">
+  <div class="container-fluid d-flex align-items-center py-0  justify-content-between">
+    <div class="d-flex">
+      <a class="navbar-brand text-white fw-bold"
+         href="#">
+        <img class="logo"
+             src="assets/images/Takween-Logo.svg"
+             alt="Logo" />
+      </a>
+    </div>
+    <div ngbDropdown
+         class="d-inline-block profile">
+      <button type="button"
+              id="dropdownBasic1"
+              ngbDropdownToggle>
+        <img src="assets/images/mewees.svg"
+             alt="Profile"
+             class="rounded-circle profile-img" />
+      </button>
+      <div ngbDropdownMenu
+           aria-labelledby="dropdownBasic1">
+        <button ngbDropdownItem>Action - 1</button>
+        <button ngbDropdownItem>Another Action</button>
+        <button ngbDropdownItem>Something else is here</button>
+      </div>
+    </div>
+  </div>
+</nav>
