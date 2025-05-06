@@ -1,7 +1,5 @@
 <!-- Hero -->
-<section
-  class="d-flex flex-column justify-content-center gap-2 text-center hero"
->
+<section class="d-flex flex-column justify-content-center gap-2 text-center hero">
   <h1>
     {{ "INVESTMENT_OPPORTUNITIES.TITLE" | translate }}
   </h1>
@@ -16,7 +14,7 @@
     {{ "INVESTMENT_OPPORTUNITIES.MAIN_TITLE" | translate }}
   </h2>
   <div class="row g-4">
-    @for (item of opportunities; track $index) {
+    @for (item of opportunities(); track $index) {
     <div class="col-12 col-md-6 col-lg-4">
       <app-opportunity-card [opportunity]="item"></app-opportunity-card>
     </div>

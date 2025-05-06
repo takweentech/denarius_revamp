@@ -1,6 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { OpportunityCardComponent } from "../../../../../../shared/components/opportunity-card/opportunity-card.component";
 import { TranslateModule } from "@ngx-translate/core";
+import { Opportunity } from "../../../../../../core/models/opportunity";
+import { BaseComponent } from "../../../../../../core/base/base.component";
+import { takeUntil } from "rxjs";
+import { OpportunityService } from "../../../../../../data/opportunity.service";
 
 @Component({
   selector: "app-listing",
@@ -8,151 +12,27 @@ import { TranslateModule } from "@ngx-translate/core";
   templateUrl: "./listing.component.html",
   styleUrl: "./listing.component.scss",
 })
-export class ListingComponent {
-  opportunities: any[] = [
-    {
-      image: "assets/images/tower.svg",
-      issuanceNumber: 2,
-      durationInMonths: 18,
-      displayName: "مرابحة عقاري 2025-001",
-      annualReturn: 100,
-      rri: 13.5,
-      roi: 13.5,
-      expectedReturn: 13.5,
-      dueDate: "0",
-      startDate: new Date("2025-03-10").toISOString(),
-      endDate: "",
-      dividendDate: "",
-      displaySummary: "",
-      status: "",
-      miniSuccess: 0,
-      businessSector: 0,
-      investorMinLimit: 0,
-      stockCount: 0,
-      stockValue: 0,
-      programName: null,
-      dividends: [],
-      id: 1,
-    },
-    {
-      image: "assets/images/tower.svg",
-      issuanceNumber: 3,
-      durationInMonths: 18,
-      displayName: "مرابحة عقاري 2025-002",
-      annualReturn: 30,
-      rri: 13.5,
-      roi: 13.5,
-      expectedReturn: 13.5,
-      dueDate: "10",
-      startDate: new Date("2025-03-20").toISOString(),
-      endDate: "",
-      dividendDate: "",
-      displaySummary: "",
-      status: "",
-      miniSuccess: 0,
-      businessSector: 0,
-      investorMinLimit: 0,
-      stockCount: 0,
-      stockValue: 0,
-      programName: null,
-      dividends: [],
-      id: 2,
-    },
-    {
-      image: "assets/images/tower.svg",
-      issuanceNumber: 4,
-      durationInMonths: 18,
-      displayName: "مرابحة عقاري 2025-003",
-      annualReturn: 100,
-      rri: 13.5,
-      roi: 13.5,
-      expectedReturn: 13.5,
-      dueDate: "0",
-      startDate: new Date("2025-04-01").toISOString(),
-      endDate: "",
-      dividendDate: "",
-      displaySummary: "",
-      status: "",
-      miniSuccess: 0,
-      businessSector: 0,
-      investorMinLimit: 0,
-      stockCount: 0,
-      stockValue: 0,
-      programName: null,
-      dividends: [],
-      id: 3,
-    },
-    {
-      image: "assets/images/tower.svg",
-      issuanceNumber: 5,
-      durationInMonths: 12,
-      displayName: "مرابحة عقاري 2025-004",
-      annualReturn: 50,
-      rri: 10.2,
-      roi: 10.2,
-      expectedReturn: 10.2,
-      dueDate: "15",
-      startDate: new Date("2025-04-15").toISOString(),
-      endDate: "",
-      dividendDate: "",
-      displaySummary: "",
-      status: "",
-      miniSuccess: 0,
-      businessSector: 0,
-      investorMinLimit: 0,
-      stockCount: 0,
-      stockValue: 0,
-      programName: null,
-      dividends: [],
-      id: 4,
-    },
-    {
-      image: "assets/images/tower.svg",
-      issuanceNumber: 6,
-      durationInMonths: 24,
-      displayName: "مرابحة عقاري 2025-005",
-      annualReturn: 75,
-      rri: 12.8,
-      roi: 12.8,
-      expectedReturn: 12.8,
-      dueDate: "5",
-      startDate: new Date("2025-05-01").toISOString(),
-      endDate: "",
-      dividendDate: "",
-      displaySummary: "",
-      status: "",
-      miniSuccess: 0,
-      businessSector: 0,
-      investorMinLimit: 0,
-      stockCount: 0,
-      stockValue: 0,
-      programName: null,
-      dividends: [],
-      id: 5,
-    },
-    {
-      image: "assets/images/tower.svg",
-      issuanceNumber: 7,
-      durationInMonths: 24,
-      displayName: "مرابحة عقاري 2025-005",
-      annualReturn: 75,
-      rri: 12.8,
-      roi: 12.8,
-      expectedReturn: 12.8,
-      dueDate: "5",
-      startDate: new Date("2025-05-01").toISOString(),
-      endDate: "",
-      dividendDate: "",
-      displaySummary: "",
-      status: "",
-      miniSuccess: 0,
-      businessSector: 0,
-      investorMinLimit: 0,
-      stockCount: 0,
-      stockValue: 0,
-      programName: null,
-      dividends: [],
-      id: 6,
-    },
-  ];
+export class ListingComponent extends BaseComponent implements OnInit {
+  private readonly opportunityService = inject(OpportunityService);
+  opportunities = signal<Opportunity[]>([]);
+  ngOnInit(): void {
+    this.getOpportunities();
+  }
+
+  getOpportunities(): void {
+    this.opportunityService.getPaged({
+      pageNumber: 1,
+      pageSize: 6,
+      filter: {
+      },
+      orderByValue: [
+        {
+        }
+      ]
+    }).pipe(takeUntil(this.destroy$)).subscribe({
+      next: (response) => {
+        this.opportunities.set(response.data);
+      }
+    })
+  }
 }

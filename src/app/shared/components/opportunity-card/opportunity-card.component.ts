@@ -4,6 +4,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { RouterModule } from "@angular/router";
 import { InvestmentOpportunity } from "./opportunity.model";
 import { WEB_ROUTES } from "../../../core/constants/routes.constants";
+import { Opportunity } from "../../../core/models/opportunity";
 
 @Component({
   selector: "app-opportunity-card",
@@ -14,5 +15,5 @@ import { WEB_ROUTES } from "../../../core/constants/routes.constants";
 })
 export class OpportunityCardComponent {
   webRoutes = WEB_ROUTES;
-  @Input() opportunity!: InvestmentOpportunity;
+  @Input() opportunity!: any;
 }
