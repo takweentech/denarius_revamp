@@ -37,12 +37,11 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
   initForm() {
     this.signUpForm = this.fb.group({});
-
     this.steps.forEach((step) => {
       const group = this.fb.group({});
       this.signUpForm.addControl(step.key, group);
       step.controls?.forEach(control => {
-        group.addControl(control.key, this.fb.control(null));
+        group.addControl(control.key, this.fb.control(control.value));
       });
     });
   }
@@ -62,7 +61,8 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         } else {
           // Bind OTP id
           if (currentStep.key === 'information') {
-            (this.signUpForm.controls['otp'] as FormGroup).controls['otpId'].setValue(response.data['otpId'])
+            (this.signUpForm.controls['otp'] as FormGroup).controls['otpId'].setValue(response.data['otpId']);
+            (this.signUpForm.controls['otp'] as FormGroup).controls['token'].setValue(response.data['token'])
           }
           this.stepperInstance.next();
           this.currentIndex.set(this.currentIndex() + 1);

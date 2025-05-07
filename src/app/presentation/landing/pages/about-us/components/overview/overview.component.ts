@@ -1,11 +1,10 @@
 import { Component, OnInit, inject } from "@angular/core";
-import { CurrencyAmountComponent } from "../../../../../../shared/components/currency-amount/currency-amount.component";
 import { ActivatedRoute } from "@angular/router";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 
 @Component({
   selector: "app-overview",
-  imports: [CurrencyAmountComponent],
+  imports: [],
   templateUrl: "./overview.component.html",
   styleUrl: "./overview.component.scss",
 })
@@ -16,5 +15,5 @@ export class OverviewComponent extends BaseComponent implements OnInit {
     super();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 }

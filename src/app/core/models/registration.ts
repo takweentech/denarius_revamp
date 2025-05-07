@@ -9,5 +9,6 @@ export interface IndividualInitialSignUpDto {
 
 export interface IndividualOtpSignUpDto {
     otp: string,
-    otpId: string
+    otpId: string,
+    token?: string
 }

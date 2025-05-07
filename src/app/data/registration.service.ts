@@ -17,7 +17,7 @@ export class RegistrationApiService {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/InitialIndividualInvestorSignUp`, data)
     }
 
-    verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto): Observable<HttpCustomResponse<{}>> {
-        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/VerifyIndividualInvestorOTP`, data)
+    verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto, token?: string): Observable<HttpCustomResponse<{}>> {
+        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/VerifyIndividualInvestorOTP`, data, { headers: { Authorization: token as string } })
     }
 }

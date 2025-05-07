@@ -18,7 +18,7 @@ type StepType = 'individual' | 'company';
 
 interface StepControl {
   key: string;
-  value?: string | number;
+  value?: string | number | Date;
   validators?: Validators[];
 }
 
@@ -48,27 +48,33 @@ export class RegistrationService {
         controls: [
           {
             key: 'idNumber',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: '1234567891'
           },
           {
             key: 'birhtdate',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: new Date()
           },
           {
             key: 'phoneNumber',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: '966512345678'
           },
           {
             key: 'email',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: 'email@email.com'
           },
           {
             key: 'password',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: 'email@email.com'
           },
           {
             key: 'confirmPassword',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: 'email@email.com'
           },
         ]
       },
@@ -80,7 +86,11 @@ export class RegistrationService {
         apiHandler: (data: IndividualOtpSignUpDto) => this.verifyIndividualInvestorOTP(data),
         controls: [
           {
+            key: 'token',
+          },
+          {
             key: 'otp',
+            validators: [Validators.required]
           },
           {
             key: 'otpId',
@@ -89,8 +99,8 @@ export class RegistrationService {
       },
       {
         key: 'address',
-        title: 'العنوان الوطني',
-        description: 'معلومات العنوان الوطني',
+        title: 'National Address',
+        description: 'National Address Information',
         component: AddressComponent,
       },
       {
@@ -157,7 +167,7 @@ export class RegistrationService {
   }
 
   verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto): Observable<HttpCustomResponse<{}>> {
-    return this.registrationApiService.verifyIndividualInvestorOTP(data);
+    return this.registrationApiService.verifyIndividualInvestorOTP({ otp: data.otp, otpId: data.otpId }, data.token);
   }
 
 
