@@ -1,5 +1,6 @@
 <div class="card shadow-sm rounded-4 border-0 w-100">
-  <img [src]="'/assets/images/Takween-Logo.svg'"
+  <img (error)="opportunity.image = '/assets/images/Takween-Logo.svg'"
+       [src]="opportunity.image "
        class="card-img-top rounded-top-4"
        alt="Investment Image" />
 
@@ -18,16 +19,10 @@
     <div class="d-flex gap-2 flex-column">
       <h5 class="fw-bold">{{ opportunity.displayName }}</h5>
       <div class="d-flex gap-4 justify-content-between">
-        <div class="justify-content-between p-0 col-12">
-          <div class="fw-bold text-dark">
+        <div class="p-0 col-12">
+          <div class="fw-bold d-flex justify-content-between text-dark">
             <span class="text-muted small">
-              {{
-              opportunity.annualReturn === 100
-              ? ("OPPORTUNITIES.COMPLETED" | translate)
-              : opportunity.dueDate +
-              " " +
-              ("OPPORTUNITIES.DAYS_LEFT" | translate)
-              }}
+              {{opportunity.dueDate | timeDiff}}
             </span>
             <span> {{ opportunity.annualReturn }}%</span>
           </div>
@@ -54,14 +49,15 @@
 
     <!-- Actions -->
     <div class="col">
-      <button class="btn btn-primary w-100"
-              [routerLink]="[
+      <a class="btn btn-primary w-100"
+         [routerLink]="[
           '/',
           webRoutes.OPPORTUNITIES.ROOT,
-          webRoutes.OPPORTUNITIES.DETAILS
+          webRoutes.OPPORTUNITIES.DETAILS,
+          opportunity.id
         ]">
         {{ "OPPORTUNITIES.INVEST_NOW" | translate }}
-      </button>
+      </a>
     </div>
   </div>
 </div>

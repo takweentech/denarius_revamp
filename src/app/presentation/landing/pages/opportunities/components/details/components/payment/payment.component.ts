@@ -1,9 +1,10 @@
-import { Component } from "@angular/core";
+import { Component, inject } from "@angular/core";
 import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
 import { TranslateModule } from "@ngx-translate/core";
 import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
+import { ActivatedRoute, RouterModule } from "@angular/router";
 import { CurrencyAmountComponent } from "../../../../../../../../shared/components/currency-amount/currency-amount.component";
+import { Opportunity } from "../../../../../../../../core/models/opportunity";
 
 @Component({
   selector: "app-payment",
@@ -17,6 +18,8 @@ import { CurrencyAmountComponent } from "../../../../../../../../shared/componen
   styleUrl: "./payment.component.scss",
 })
 export class PaymentComponent {
+  private readonly activatedRoute = inject(ActivatedRoute);
+  opportunity: Opportunity = this.activatedRoute.parent?.snapshot.data['opportunity']?.data;
   WEB_ROUTES = WEB_ROUTES;
   selectedOpportunity = {
     image: "assets/images/tower.svg",
@@ -84,4 +87,10 @@ export class PaymentComponent {
       distributionDate: "01/03/2025",
     },
   ];
+
+
+  constructor() {
+  }
+
+
 }

@@ -1,10 +1,11 @@
 import { NgClass, NgIf } from "@angular/common";
-import { Component } from "@angular/core";
-import { RouterLink } from "@angular/router";
+import { Component, inject } from "@angular/core";
+import { ActivatedRoute, RouterLink } from "@angular/router";
 import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
 import { CurrencyAmountComponent } from "../../../../../../../../shared/components/currency-amount/currency-amount.component";
+import { Opportunity } from "../../../../../../../../core/models/opportunity";
 
 @Component({
   selector: "app-main",
@@ -19,6 +20,9 @@ import { CurrencyAmountComponent } from "../../../../../../../../shared/componen
   styleUrl: "./main.component.scss",
 })
 export class MainComponent {
+  private readonly activatedRoute = inject(ActivatedRoute);
+  opportunity: Opportunity = this.activatedRoute.snapshot.data['opportunity']?.data;
+
   WEB_ROUTES = WEB_ROUTES;
   selectedOpportunity = {
     image: "assets/images/tower.svg",
@@ -44,4 +48,5 @@ export class MainComponent {
     dividends: [],
     id: 1,
   };
+
 }

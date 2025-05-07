@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
-import { RouterOutlet } from "@angular/router";
+import { Component, inject } from "@angular/core";
+import { ActivatedRoute, RouterOutlet } from "@angular/router";
 import { TranslateModule } from "@ngx-translate/core";
+import { Opportunity } from "../../../../../../core/models/opportunity";
 
 @Component({
   standalone: true,
@@ -9,4 +10,7 @@ import { TranslateModule } from "@ngx-translate/core";
   templateUrl: "./details.component.html",
   styleUrl: "./details.component.scss",
 })
-export class DetailsComponent {}
+export class DetailsComponent {
+  private readonly activatedRoute = inject(ActivatedRoute);
+  opportunity: Opportunity = this.activatedRoute.snapshot.data['opportunity']?.data;
+}
