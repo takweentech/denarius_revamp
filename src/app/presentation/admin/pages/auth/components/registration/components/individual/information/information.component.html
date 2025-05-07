@@ -1,48 +1,54 @@
 <div class="justify-content-center d-flex">
-  <form class="row d-flex gy-3  col-12 justify-content-center">
+  <form [formGroup]="formGroup"
+        class="row d-flex gy-3  col-12 justify-content-center">
     <!-- Identity number -->
     <div class="form-group col-12">
-      <label class="form-label">رقم الهوية <span class="text-danger">*</span></label>
+      <label class="form-label"> ID number <span class="text-danger">*</span></label>
       <input type="number"
-             class="profile-control"
+             class="form-control"
              inputmode="numeric"
-             pattern="[0-9]*"
-             placeholder="0000000000" />
+             formControlName="idNumber"
+             pattern="[0-9]*" />
     </div>
     <!-- Date of birth -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">تاريخ الميلاد <span class="text-danger">*</span></label>
+      <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
       <input type="date"
-             class="profile-control"
+             class="form-control"
+             formControlName="birhtdate"
              placeholder="0000000000" />
     </div>
     <!-- Phone number -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">رقم الجوال <span class="text-danger">*</span></label>
+      <label class="form-label"> Phone number <span class="text-danger">*</span></label>
       <input type="tel"
-             class="profile-control"
+             class="form-control"
+             formControlName="phoneNumber"
              placeholder="+966 5xxxxxxxx" />
     </div>
     <!-- Email -->
     <div class="form-group col-12">
-      <label class="form-label">البريد الإلكتروني <span class="text-danger">*</span></label>
+      <label class="form-label"> Email <span class="text-danger">*</span></label>
       <input dir="ltr"
              type="email"
-             class="profile-control"
+             class="form-control"
+             formControlName="email"
              placeholder="mail@domain.com" />
     </div>
     <!-- Password -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">كلمة المرور <span class="text-danger">*</span></label>
+      <label class="form-label"> Password <span class="text-danger">*</span></label>
       <input type="password"
-             class="profile-control"
+             class="form-control"
+             formControlName="password"
              placeholder="" />
     </div>
     <!-- Password confirmation -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">تأكيد كلمة المرور <span class="text-danger">*</span></label>
+      <label class="form-label"> Password confirmation <span class="text-danger">*</span></label>
       <input type="password"
-             class="profile-control"
+             formControlName="confirmPassword"
+             class="form-control"
              placeholder="" />
     </div>
     <div class="d-flex align-items-center gap-2">
@@ -51,9 +57,9 @@
              class="m-0" />
       <label for="terms"
              class="form-label mb-0">
-        أوافق على
+        I agree to the
         <a class="text-primary text-decoration-underline"
-           href=""> الشروط والأحكام </a>
+           href=""> Terms and Conditions </a>
       </label>
     </div>
   </form>

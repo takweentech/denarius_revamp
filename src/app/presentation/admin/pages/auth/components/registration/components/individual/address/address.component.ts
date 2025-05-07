@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-address',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './address.component.scss'
 })
 export class AddressComponent {
+  @Input() formGroup!: FormGroup;
 
 }

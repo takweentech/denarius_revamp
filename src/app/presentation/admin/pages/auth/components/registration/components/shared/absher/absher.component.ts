@@ -1,4 +1,5 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-absher',
@@ -7,6 +8,8 @@ import { AfterViewInit, Component } from '@angular/core';
   styleUrl: './absher.component.scss',
 })
 export class AbsherComponent implements AfterViewInit {
+  @Input() formGroup!: FormGroup;
+
   ngAfterViewInit(): void {
     const inputs = Array.from(document.querySelectorAll('.otp-inputs input'));
 

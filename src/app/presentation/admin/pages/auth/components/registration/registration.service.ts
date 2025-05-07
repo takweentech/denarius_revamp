@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { InformationComponent } from './components/individual/information/information.component';
 import { InformationComponent as CompanyInformation } from './components/company/information/information.component';
@@ -9,12 +9,16 @@ import { DisclosureComponent } from './components/individual/disclosure/disclosu
 import { FinancialComponent } from './components/individual/financial/financial.component';
 import { AbsherComponent } from './components/shared/absher/absher.component';
 import { BusinessComponent } from './components/company/business/business.component';
+import { RegistrationApiService } from '../../../../../../data/registration.service';
+import { IndividualInitialSignUpDto } from '../../../../../../core/models/registration';
+import { Observable } from 'rxjs';
+import { HttpCustomResponse } from '../../../../../../core/models/http';
 
 type StepType = 'individual' | 'company';
 
 interface StepControl {
   key: string;
-  validators: Validators[];
+  validators?: Validators[];
 }
 
 interface Step {
@@ -23,19 +27,49 @@ interface Step {
   description: string;
   controls?: StepControl[];
   component?: any;
+  apiHandler?: (data: any) => Observable<HttpCustomResponse<{}>>;
 }
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class RegistrationService {
-  steps: Record<StepType, Step[]> = {
+  private readonly registrationApiService = inject(RegistrationApiService);
+  private steps: Record<StepType, Step[]> = {
     individual: [
       {
         key: 'information',
-        title: 'تسجيل حساب مستثمر فرد',
-        description: 'قم بتعبئة البيانات الأساسية',
+        title: 'Register an individual investor account',
+        description: 'Fill in the basic information',
         component: InformationComponent,
+        apiHandler: (data: IndividualInitialSignUpDto) => this.initialIndividualInvestorSignUp(data),
+        controls: [
+          {
+            key: 'idNumber',
+            validators: [Validators.required]
+          },
+          {
+            key: 'birhtdate',
+            validators: [Validators.required]
+          },
+          {
+            key: 'phoneNumber',
+            validators: [Validators.required]
+          },
+          {
+            key: 'email',
+            validators: [Validators.required]
+          },
+          {
+            key: 'password',
+            validators: [Validators.required]
+          },
+          {
+            key: 'confirmPassword',
+            validators: [Validators.required]
+          },
+        ]
       },
       {
         key: 'otp',
@@ -102,9 +136,16 @@ export class RegistrationService {
       },
     ],
   };
-  constructor() {}
+  constructor() { }
 
   getStepByType(type: StepType): Step[] {
     return this.steps[type];
   }
+
+  initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<any> {
+    return this.registrationApiService.initialIndividualInvestorSignUp(data);
+  }
+
+
+
 }

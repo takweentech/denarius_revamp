@@ -1,13 +1,14 @@
 <div class="container d-flex flex-column justify-content-center h-100 align-items-center">
     <h6 class="d-flex gap-2">
-        هل لديك حساب بالفعل؟ <a class="text-primary"
-           [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_IN ">سجل دخول</a>
+        Already have an account?<a class="text-primary"
+           [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_IN ">Sign in</a>
     </h6>
 
     <div class="d-flex cards flex-column align-items-center gap-5 w-100">
         <div class="d-flex flex-column gap-3">
-            <h1 class="fw-semibold">انضم إلينا</h1>
-            <p>رحلة الاستثمار تبدأ من هنا، بخطوات بسيطة يمكنك إنشاء الحساب الاستثماري وحقق أهدافك</p>
+            <h1 class="fw-semibold">Sign up</h1>
+            <p>Your investment journey begins here. With simple steps, you can create an investment account and achieve
+                your goals.</p>
         </div>
         <div class="w-100 d-flex flex-column gap-4">
             <a class="shadow-card d-flex justify-content-between align-items-center w-100"
@@ -16,12 +17,12 @@
                 <div class="d-flex align-items-center gap-5">
                     <i class="fs-3 fa-regular fa-user"></i>
 
-                    <div>
+                    <div class="d-flex flex-column gap-2">
                         <h5>
-                            فرد
+                            Individual
                         </h5>
-                        <p>
-                            افتح حسابك الاستثماري وابدأ رحلتك الاستثمارية
+                        <p class="small">
+                            Open your investment account and start your investment journey.
                         </p>
                     </div>
                 </div>
@@ -32,13 +33,12 @@
                 <div class="d-flex align-items-center gap-5">
                     <i class="fs-3 fa-regular fa-building"></i>
 
-                    <div>
+                    <div class="d-flex flex-column gap-2">
                         <h5>
-                            شركة
+                            Company
                         </h5>
-                        <p>
-                            أنشئ الحساب الاستثماري لشركتك
-                        </p>
+                        <p class="small">
+                            Create your company's investment account </p>
                     </div>
                 </div>
                 <i class="fa-solid fa-arrow-left"></i>

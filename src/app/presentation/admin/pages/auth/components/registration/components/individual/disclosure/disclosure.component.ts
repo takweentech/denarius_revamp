@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-disclosure',
@@ -7,5 +8,6 @@ import { Component } from '@angular/core';
   styleUrl: './disclosure.component.scss'
 })
 export class DisclosureComponent {
+  @Input() formGroup!: FormGroup;
 
 }

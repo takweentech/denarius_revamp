@@ -16,98 +16,12 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #040058e5;
-  /* overlay color */
+  background-color: var(--primary-color);
   z-index: 1;
+  opacity: .8;
 }
 
 .content {
   position: relative;
   z-index: 2;
-}
-
-.downlogo {
-  margin-top: 120px;
-  margin-left: 25px;
-}
-
-.move {
-  animation: smoothBounce 2s infinite ease-in-out;
-}
-
-.discreption {
-  margin-left: 25px;
-}
-
-@media screen and (max-width: 768px) {
-  .discreption {
-    margin-left: 0;
-  }
-}
-
-@keyframes smoothBounce {
-  0% {
-    transform: translateY(1) rotate(1deg);
-  }
-
-  25% {
-    transform: translateY(-2px) rotate(2deg);
-  }
-
-  50% {
-    transform: translateY(0) rotate(0deg);
-  }
-
-  75% {
-    transform: translateY(2px) rotate(-2deg);
-  }
-
-  100% {
-    transform: translateY(0) rotate(0deg);
-  }
-}
-
-/* Responsive tweaks for mobile screens */
-@media (max-width: 575.98px) {
-  .content {
-    flex-direction: column !important;
-    align-items: center !important;
-    padding: 15px;
-  }
-
-  .content>a img {
-    max-width: 80% !important;
-    height: auto;
-    margin-bottom: 15px;
-  }
-
-  .dots .col-5 {
-    width: 100% !important;
-    text-align: center !important;
-  }
-
-  .dots img {
-    width: 40px !important;
-    height: 45px !important;
-  }
-
-  .discreption {
-    margin-top: 20px !important;
-    text-align: center !important;
-  }
-
-  .discreption strong {
-    font-size: 0.9rem !important;
-    line-height: 1.5;
-  }
-
-  .downlogo {
-    position: relative !important;
-    margin-top: 20px;
-    text-align: center;
-  }
-
-  .background-container {
-    height: auto !important;
-  }
 }

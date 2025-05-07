@@ -1,4 +1,5 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-otp',
@@ -6,6 +7,8 @@ import { Component, AfterViewInit } from '@angular/core';
   styleUrls: ['./otp.component.scss'],
 })
 export class OtpComponent implements AfterViewInit {
+  @Input() formGroup!: FormGroup;
+
   ngAfterViewInit(): void {
     const inputs = Array.from(document.querySelectorAll('.otp-inputs input'));
 
