@@ -1,12 +1,35 @@
-export interface Opportunity { };
+export interface Opportunity {
+    id: number;
+    displayName: string;
+    displaySummary: string;
+    image: string;
+    status: string;
+    issuanceNumber: number;
+    dividendDate: string;
+    miniSuccess: number;
+    businessSector: number;
+    investorMinLimit: number;
+    annualReturn: number;
+    rri: number;
+    roi: number;
+    expectedReturn: number;
+    stockCount: number;
+    stockValue: number;
+    durationInMonths: number;
+    dueDate: string; // ISO date string
+    startDate: string; // ISO date string
+    endDate: string; // ISO date string
+    programName: string;
+    dividends: any[];
+};
 export interface OpportunityFilter {
-    pageNumber?: number,
-    pageSize?: number,
+    pageNumber: number,
+    pageSize: number,
     filter?: {
-        name?: string,
+        name?: string | null,
         statusId?: number,
-        nameEn?: string,
-        nameAr?: string,
+        nameEn?: string | null,
+        nameAr?: string | null,
         isDeleted?: boolean
     },
     orderByValue?: [

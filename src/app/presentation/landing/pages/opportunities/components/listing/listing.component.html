@@ -13,11 +13,27 @@
   <h2 class="fw-bold text-center mb-5">
     {{ "INVESTMENT_OPPORTUNITIES.MAIN_TITLE" | translate }}
   </h2>
-  <div class="row g-4">
+  <div class="row g-4 mb-5">
     @for (item of opportunities(); track $index) {
     <div class="col-12 col-md-6 col-lg-4">
       <app-opportunity-card [opportunity]="item"></app-opportunity-card>
     </div>
     }
   </div>
+
+  <!-- Pagination -->
+  @if (opportunities().length < total()
+    &&
+    opportunities().length){
+    <div
+    class="col d-flex justify-content-center">
+    <button (click)="onLoadMore()"
+            class="btn btn-primary">
+      Load more
+    </button>
+    </div>
+    }
+
+
+
 </section>
