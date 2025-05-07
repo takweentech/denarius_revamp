@@ -4,7 +4,6 @@ import { ActivatedRoute, RouterLink } from "@angular/router";
 import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
-import { CurrencyAmountComponent } from "../../../../../../../../shared/components/currency-amount/currency-amount.component";
 import { Opportunity } from "../../../../../../../../core/models/opportunity";
 
 @Component({
@@ -14,7 +13,6 @@ import { Opportunity } from "../../../../../../../../core/models/opportunity";
     NgbAccordionModule,
     RouterLink,
     NgClass,
-    CurrencyAmountComponent,
   ],
   templateUrl: "./main.component.html",
   styleUrl: "./main.component.scss",

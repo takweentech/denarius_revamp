@@ -10,14 +10,15 @@ import { FinancialComponent } from './components/individual/financial/financial.
 import { AbsherComponent } from './components/shared/absher/absher.component';
 import { BusinessComponent } from './components/company/business/business.component';
 import { RegistrationApiService } from '../../../../../../data/registration.service';
-import { IndividualInitialSignUpDto } from '../../../../../../core/models/registration';
-import { Observable } from 'rxjs';
+import { IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
+import { map, Observable, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
 
 type StepType = 'individual' | 'company';
 
 interface StepControl {
   key: string;
+  value?: string | number;
   validators?: Validators[];
 }
 
@@ -73,9 +74,18 @@ export class RegistrationService {
       },
       {
         key: 'otp',
-        title: 'تسجيل حساب مستثمر فرد',
-        description: 'تحقق من رقم الجوال',
+        title: 'Register an individual investor account',
+        description: 'Verify mobile number',
         component: OtpComponent,
+        apiHandler: (data: IndividualOtpSignUpDto) => this.verifyIndividualInvestorOTP(data),
+        controls: [
+          {
+            key: 'otp',
+          },
+          {
+            key: 'otpId',
+          }
+        ]
       },
       {
         key: 'address',
@@ -142,9 +152,17 @@ export class RegistrationService {
     return this.steps[type];
   }
 
-  initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<any> {
-    return this.registrationApiService.initialIndividualInvestorSignUp(data);
+  initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
+    return this.registrationApiService.initialIndividualInvestorSignUp(data)
   }
+
+  verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto): Observable<HttpCustomResponse<{}>> {
+    return this.registrationApiService.verifyIndividualInvestorOTP(data);
+  }
+
+
+
+
 
 
 

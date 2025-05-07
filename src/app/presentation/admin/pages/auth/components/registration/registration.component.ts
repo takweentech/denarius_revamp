@@ -56,12 +56,18 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
       takeUntil(this.destroy$),
       finalize(() => this.loading.set(false))
     ).subscribe({
-      next: (response) => {
+      next: (response: any) => {
         if (response.status !== 200) {
           alert(response.message)
         } else {
+          // Bind OTP id
+          if (currentStep.key === 'information') {
+            (this.signUpForm.controls['otp'] as FormGroup).controls['otpId'].setValue(response.data['otpId'])
+          }
           this.stepperInstance.next();
           this.currentIndex.set(this.currentIndex() + 1);
+
+
         }
       }
     })

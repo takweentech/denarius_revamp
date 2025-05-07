@@ -6,3 +6,8 @@ export interface IndividualInitialSignUpDto {
     password: string,
     confirmPassword: string
 }
+
+export interface IndividualOtpSignUpDto {
+    otp: string,
+    otpId: string
+}

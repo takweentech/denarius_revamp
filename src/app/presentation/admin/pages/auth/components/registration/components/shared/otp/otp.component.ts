@@ -1,48 +1,14 @@
 import { Component, AfterViewInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { NgOtpInputComponent } from 'ng-otp-input';
 
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.scss'],
+  imports: [NgOtpInputComponent, ReactiveFormsModule]
 })
-export class OtpComponent implements AfterViewInit {
+export class OtpComponent {
   @Input() formGroup!: FormGroup;
 
-  ngAfterViewInit(): void {
-    const inputs = Array.from(document.querySelectorAll('.otp-inputs input'));
-
-    (inputs[inputs.length - 1] as HTMLElement).focus();
-
-    inputs.forEach((input, index) => {
-      input.addEventListener('input', () => {
-        const currentInput = input as HTMLInputElement;
-
-        if (currentInput.value.length === 1 && index > 0) {
-          (inputs[index - 1] as HTMLElement).focus();
-        }
-
-        if (index === 0) {
-          const code = inputs
-            .map((i) => (i as HTMLInputElement).value)
-            .reverse()
-            .join('');
-          console.log('OTP Code:', code);
-        }
-      });
-
-      input.addEventListener('keydown', (e) => {
-        const event = e as KeyboardEvent;
-        const currentInput = input as HTMLInputElement;
-
-        if (
-          event.key === 'Backspace' &&
-          currentInput.value === '' &&
-          index < inputs.length - 1
-        ) {
-          (inputs[index + 1] as HTMLElement).focus();
-        }
-      });
-    });
-  }
 }
