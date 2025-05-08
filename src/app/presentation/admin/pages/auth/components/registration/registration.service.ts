@@ -98,6 +98,32 @@ export class RegistrationService {
         description:
           'Financial and social information',
         component: FinancialComponent,
+        controls: [
+          {
+            key: 'maritalStatus',
+          },
+          {
+            key: 'familyMembersCount',
+          },
+          {
+            key: 'educationLevel',
+          },
+          {
+            key: 'employmentStatus',
+          },
+          {
+            key: 'jobTitle',
+          },
+          {
+            key: 'yearsOfExperience',
+          },
+          {
+            key: 'annualIncome',
+          },
+          {
+            key: 'netWealth',
+          },
+        ]
       },
       {
         key: 'investment',
