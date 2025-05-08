@@ -1,0 +1,9 @@
+@for (toast of toastService.toasts; track toast) {
+<ngb-toast [autohide]="true"
+           [ngClass]="toast.classname"
+           [delay]="5000">
+    <div class="text-white">
+        {{ toast.text }}
+    </div>
+</ngb-toast>
+}

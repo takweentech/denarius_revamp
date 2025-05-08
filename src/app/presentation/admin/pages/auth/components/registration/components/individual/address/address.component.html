@@ -1,87 +1,106 @@
-<div class="justify-content-center d-flex">
-  <div class="col-12">
-    <!-- ====== User Information Summary ====== -->
-    <div class="d-flex justify-content-center row">
-      <div class="shadow-sm px-2 py-3 bg-light justify-content-center row d-flex rounded-3">
-        <!-- ====== Full Name ====== -->
-        <div class="col-12 mb-2">
-          <h6 class="mb-1">Full name</h6>
-          <h6 class="fw-bold">محمد بن عبدالله بن عبدالرحمن عويس</h6>
-        </div>
+<div class="d-flex flex-column gap-4">
+  <!-- ====== User Information Summary ====== -->
+  <div class="shadow-sm px-2 py-2 bg-light row g-1 rounded-3">
+    <!-- ====== Full Name ====== -->
+    <div class="col-4 d-flex flex-column gap-1">
+      <small>Full name</small>
+      <span class="fw-bold">{{step.resolvedData?.englishFirstName + ' ' + step.resolvedData?.englishLastName}}
+      </span>
+    </div>
+    <!-- ====== Date of birth ====== -->
+    <div class="col-4 d-flex flex-column gap-1">
+      <small>Date of Birth </small>
+      <span class="fw-bold">{{step.resolvedData?.dateOfBirthH }}</span>
+    </div>
+    <!-- ====== Place of birth ====== -->
+    <div class="col-4 d-flex flex-column gap-1">
+      <small>Place of Birth </small>
+      <span class="fw-bold">{{step.resolvedData?.placeOfBirth }}</span>
+    </div>
+    <!-- ====== Nationality ====== -->
+    <div class="col-4 d-flex flex-column gap-1">
+      <small>Nationality</small>
+      <span class="fw-bold">سعودي</span>
+    </div>
+    <!-- ====== ID Expiry Date ====== -->
+    <div class="col-4 d-flex flex-column gap-1">
+      <small>ID Expiry Date </small>
+      <span class="fw-bold">{{step.resolvedData?.idExpiryDate}}</span>
+    </div>
+  </div>
 
-        <!-- ====== Gender ====== -->
-        <div class="col-12 col-md-7">
-          <h6 class="mb-1">Gender</h6>
-          <h6 class="fw-bold">ذكر</h6>
-        </div>
 
-        <!-- ====== Nationality ====== -->
-        <div class="col-12 col-md-5">
-          <h6 class="mb-1">Nationality</h6>
-          <h6 class="fw-bold">سعودي</h6>
-        </div>
-
-        <!-- ====== ID Expiry Date ====== -->
-        <div class="col-12 mt-2">
-          <h6 class="mb-1">ID Expiry Date </h6>
-          <h6 class="fw-bold">10/10/1450</h6>
-        </div>
+  @for (item of step.resolvedData?.address?.addressListList; track $index) {
+  <div class="d-flex gap-3 flex-column">
+    <h6>Address {{$index + 1}}</h6>
+    <div class="row  g-1 shadow-sm px-2 py-2 bg-light  rounded-3 border">
+      <!-- ====== District ====== -->
+      <div class="col-4 d-flex flex-column gap-1">
+        <small>District </small>
+        <span class="fw-bold">{{item.district}}
+        </span>
+      </div>
+      <!-- ====== Street Name ====== -->
+      <div class="col-4 d-flex flex-column gap-1">
+        <small>Street Name </small>
+        <span class="fw-bold">{{item.streetName }}</span>
+      </div>
+      <!-- ====== City ====== -->
+      <div class="col-4 d-flex flex-column gap-1">
+        <small>City </small>
+        <span class="fw-bold">{{item.city }}</span>
+      </div>
+      <!-- ====== Building Number ====== -->
+      <div class="col-4 d-flex flex-column gap-1">
+        <small>Building Number</small>
+        <span class="fw-bold">{{item.buildingNumber}}</span>
+      </div>
+      <!-- ====== Postal Code ====== -->
+      <div class="col-4 d-flex flex-column gap-1">
+        <small>Postal Code </small>
+        <span class="fw-bold">{{item.postCode}}</span>
       </div>
     </div>
+  </div>
+  }
 
-    <!-- ====== National Address Form ====== -->
-    <form class="row mt-4 d-flex justify-content-center">
+  <!-- ====== Custom Address ====== -->
+  <div class="d-flex gap-3 flex-column">
+    <h6>Custom Address</h6>
+    <form class="row g-2 row  g-1 shadow-sm px-2 py-2 bg-light  rounded-3 border">
       <!-- ====== District Name ====== -->
       <div class="form-group col-12 col-md-6">
-        <label class="form-label"> District Name</label>
+        <label class="form-label small"> District Name</label>
         <input type="text"
-               class="form-control"
-               placeholder="الحي" />
+               class="form-control" />
       </div>
 
       <!-- ====== Street Name ====== -->
       <div class="form-group col-12 col-md-6">
-        <label class="form-label">Street Name</label>
+        <label class="form-label small">Street Name</label>
         <input type="text"
-               class="form-control"
-               placeholder="اسم الشارع" />
+               class="form-control" />
       </div>
 
       <!-- ====== City ====== -->
       <div class="form-group col-12 col-md-6">
-        <label class="form-label">City</label>
+        <label class="form-label small">City</label>
         <input type="text"
-               class="form-control"
-               placeholder="المدينة" />
-      </div>
-
-      <!-- ====== Region ====== -->
-      <div class="form-group col-12 col-md-6">
-        <label class="form-label">Region</label>
-        <select class="form-control">
-          <option selected
-                  disabled>اختر المنطقة</option>
-          <option value="riyadh">الرياض</option>
-          <option value="jeddah">جدة</option>
-          <option value="dammam">الدمام</option>
-          <option value="mecca">مكة</option>
-        </select>
+               class="form-control" />
       </div>
 
       <!-- ====== Postal Code ====== -->
       <div class="form-group col-12 col-md-6">
-        <label class="form-label">Postal Code</label>
+        <label class="form-label small">Postal Code</label>
         <input type="text"
-               class="form-control"
-               placeholder="000000" />
+               class="form-control" />
       </div>
 
       <!-- ====== Additional Code ====== -->
       <div class="form-group col-12 col-md-6">
-        <label class="form-label">Additional Code </label>
+        <label class="form-label small">Additional Code </label>
         <input type="text"
-               class="form-control"
-               placeholder="1234" />
+               class="form-control" />
       </div>
     </form>
   </div>

@@ -52,12 +52,12 @@
             </div>
 
             <ng-container
-                          *ngComponentOutlet="item.component; inputs: { formGroup: signUpForm.get(item.key) }"></ng-container>
+                          *ngComponentOutlet="item.component; inputs: { formGroup: signUpForm.get(item.key), step: item }"></ng-container>
 
             <div class="d-flex justify-content-center">
               <div class="w-100 mx-auto">
                 <button type="button"
-                        [disabled]="steps.length == currentIndex() || loading()"
+                        [disabled]=" loading() || signUpForm.get(item.key)?.invalid"
                         (click)="onNext()"
                         class="btn btn-primary p-3 w-100">
                   Next

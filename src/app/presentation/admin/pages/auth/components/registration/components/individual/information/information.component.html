@@ -1,66 +1,64 @@
-<div class="justify-content-center d-flex">
-  <form [formGroup]="formGroup"
-        class="row d-flex gy-3  col-12 justify-content-center">
-    <!-- Identity number -->
-    <div class="form-group col-12">
-      <label class="form-label"> ID number <span class="text-danger">*</span></label>
-      <input type="number"
-             class="form-control"
-             inputmode="numeric"
-             formControlName="idNumber"
-             pattern="[0-9]*" />
-    </div>
-    <!-- Date of birth -->
-    <div class="form-group col-12 col-md-6">
-      <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
-      <input type="date"
-             class="form-control"
-             formControlName="birhtdate"
-             placeholder="yyyy-mm-dd" />
-    </div>
-    <!-- Phone number -->
-    <div class="form-group col-12 col-md-6">
-      <label class="form-label"> Phone number <span class="text-danger">*</span></label>
-      <input type="tel"
-             class="form-control"
-             formControlName="phoneNumber"
-             placeholder="+966 5xxxxxxxx" />
-    </div>
-    <!-- Email -->
-    <div class="form-group col-12">
-      <label class="form-label"> Email <span class="text-danger">*</span></label>
-      <input dir="ltr"
-             type="email"
-             class="form-control"
-             formControlName="email"
-             placeholder="mail@domain.com" />
-    </div>
-    <!-- Password -->
-    <div class="form-group col-12 col-md-6">
-      <label class="form-label"> Password <span class="text-danger">*</span></label>
-      <input type="password"
-             class="form-control"
-             formControlName="password"
-             placeholder="" />
-    </div>
-    <!-- Password confirmation -->
-    <div class="form-group col-12 col-md-6">
-      <label class="form-label"> Password confirmation <span class="text-danger">*</span></label>
-      <input type="password"
-             formControlName="confirmPassword"
-             class="form-control"
-             placeholder="" />
-    </div>
-    <div class="d-flex align-items-center gap-2">
-      <input type="checkbox"
-             id="terms"
-             class="m-0" />
-      <label for="terms"
-             class="form-label mb-0">
-        I agree to the
-        <a class="text-primary text-decoration-underline"
-           href=""> Terms and Conditions </a>
-      </label>
-    </div>
-  </form>
-</div>
+<form [formGroup]="formGroup"
+      class="row d-flex gy-4  col-12 justify-content-center">
+  <!-- Identity number -->
+  <div class="form-group col-12">
+    <label class="form-label"> ID number <span class="text-danger">*</span></label>
+    <input type="number"
+           class="form-control"
+           inputmode="numeric"
+           formControlName="idNumber"
+           pattern="[0-9]*" />
+  </div>
+  <!-- Date of birth -->
+  <div class="form-group col-12 col-md-6">
+    <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
+    <input type="date"
+           class="form-control"
+           formControlName="birhtdate"
+           placeholder="yyyy-mm-dd" />
+  </div>
+  <!-- Phone number -->
+  <div class="form-group col-12 col-md-6">
+    <label class="form-label"> Phone number <span class="text-danger">*</span></label>
+    <input type="tel"
+           class="form-control"
+           formControlName="phoneNumber"
+           placeholder="+966 5xxxxxxxx" />
+  </div>
+  <!-- Email -->
+  <div class="form-group col-12">
+    <label class="form-label"> Email <span class="text-danger">*</span></label>
+    <input dir="ltr"
+           type="email"
+           class="form-control"
+           formControlName="email"
+           placeholder="mail@domain.com" />
+  </div>
+  <!-- Password -->
+  <div class="form-group col-12 col-md-6">
+    <label class="form-label"> Password <span class="text-danger">*</span></label>
+    <input type="password"
+           class="form-control"
+           formControlName="password"
+           placeholder="" />
+  </div>
+  <!-- Password confirmation -->
+  <div class="form-group col-12 col-md-6">
+    <label class="form-label"> Password confirmation <span class="text-danger">*</span></label>
+    <input type="password"
+           formControlName="confirmPassword"
+           class="form-control"
+           placeholder="" />
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <input type="checkbox"
+           id="terms"
+           class="m-0" />
+    <label for="terms"
+           class="form-label mb-0">
+      I agree to the
+      <a class="text-primary text-decoration-underline"
+         href=""> Terms and Conditions </a>
+    </label>
+  </div>
+</form>

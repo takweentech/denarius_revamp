@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Step } from '../../../models/registration.model';
 
 @Component({
   selector: 'app-disclosure',
@@ -9,5 +10,5 @@ import { FormGroup } from '@angular/forms';
 })
 export class DisclosureComponent {
   @Input() formGroup!: FormGroup;
-
+  @Input() step!: Step<{}>;
 }

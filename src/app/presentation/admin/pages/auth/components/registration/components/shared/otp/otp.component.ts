@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { NgOtpInputComponent } from 'ng-otp-input';
+import { Step } from '../../../models/registration.model';
 
 @Component({
   selector: 'app-otp',
@@ -10,5 +11,6 @@ import { NgOtpInputComponent } from 'ng-otp-input';
 })
 export class OtpComponent {
   @Input() formGroup!: FormGroup;
+  @Input() step!: Step<{}>;
 
 }

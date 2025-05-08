@@ -1,49 +1,16 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { Step } from '../../../models/registration.model';
+import { NgOtpInputComponent } from 'ng-otp-input';
 
 @Component({
   selector: 'app-absher',
-  imports: [],
+  imports: [NgOtpInputComponent],
   templateUrl: './absher.component.html',
   styleUrl: './absher.component.scss',
 })
-export class AbsherComponent implements AfterViewInit {
+export class AbsherComponent {
   @Input() formGroup!: FormGroup;
+  @Input() step!: Step<{}>;
 
-  ngAfterViewInit(): void {
-    const inputs = Array.from(document.querySelectorAll('.otp-inputs input'));
-
-    (inputs[inputs.length - 1] as HTMLElement).focus();
-
-    inputs.forEach((input, index) => {
-      input.addEventListener('input', () => {
-        const currentInput = input as HTMLInputElement;
-
-        if (currentInput.value.length === 1 && index > 0) {
-          (inputs[index - 1] as HTMLElement).focus();
-        }
-
-        if (index === 0) {
-          const code = inputs
-            .map((i) => (i as HTMLInputElement).value)
-            .reverse()
-            .join('');
-          console.log('OTP Code:', code);
-        }
-      });
-
-      input.addEventListener('keydown', (e) => {
-        const event = e as KeyboardEvent;
-        const currentInput = input as HTMLInputElement;
-
-        if (
-          event.key === 'Backspace' &&
-          currentInput.value === '' &&
-          index < inputs.length - 1
-        ) {
-          (inputs[index + 1] as HTMLElement).focus();
-        }
-      });
-    });
-  }
 }

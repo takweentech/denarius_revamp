@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from '../../../../../../core/base/base.component';
+import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 
 @Component({
   selector: 'app-registration',
@@ -16,6 +17,7 @@ import { BaseComponent } from '../../../../../../core/base/base.component';
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
   private readonly registrationService = inject(RegistrationService);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private toastService = inject(ToastService);
   private readonly fb = inject(FormBuilder);
   steps = this.registrationService.getStepByType(this.activatedRoute.snapshot.params['type']);
 
@@ -40,30 +42,44 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
     this.steps.forEach((step) => {
       const group = this.fb.group({});
       this.signUpForm.addControl(step.key, group);
-      step.controls?.forEach(control => {
-        group.addControl(control.key, this.fb.control(control.value));
+      step.controls?.forEach((control) => {
+        group.addControl(control.key, this.fb.control(control.value ?? null, control.validators ?? []));
       });
     });
+
+
+    console.log(this.signUpForm)
   }
 
 
   onNext() {
     const currentStep = this.steps[this.currentIndex() - 1];
     const stepFormVal = this.signUpForm.controls[currentStep.key].value;
+
+    // No api handler case
+    if (!currentStep.apiHandler) {
+      this.stepperInstance.next();
+      this.currentIndex.set(this.currentIndex() + 1);
+      return
+    }
+
     this.loading.set(true);
+
     currentStep.apiHandler!(stepFormVal)?.pipe(
       takeUntil(this.destroy$),
       finalize(() => this.loading.set(false))
     ).subscribe({
       next: (response: any) => {
         if (response.status !== 200) {
-          alert(response.message)
+          this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
         } else {
           // Bind OTP id
           if (currentStep.key === 'information') {
             (this.signUpForm.controls['otp'] as FormGroup).controls['otpId'].setValue(response.data['otpId']);
             (this.signUpForm.controls['otp'] as FormGroup).controls['token'].setValue(response.data['token'])
           }
+
+          //Next
           this.stepperInstance.next();
           this.currentIndex.set(this.currentIndex() + 1);
 

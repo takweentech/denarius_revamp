@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Step } from '../../../models/registration.model';
 
 @Component({
   selector: 'app-information',
@@ -9,4 +10,5 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 })
 export class InformationComponent {
   @Input() formGroup!: FormGroup;
+  @Input() step!: Step<{}>;
 }

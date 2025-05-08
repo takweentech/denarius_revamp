@@ -67,3 +67,44 @@ select {
         color: var(--gray-color); // بدل #a1a1a1
     }
 }
+
+
+.btn-option-select {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: var(--black-color);
+    border-color: #e5e7eb;
+    border-radius: 0;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    // box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* shadow-sm */
+    padding-left: 0;
+    /* px-0 */
+    padding-right: 0;
+    // white-space: nowrap !important;
+
+
+    &:hover {
+        background-color: var(--gray-color);
+        color: var(--white-color);
+    }
+
+    &.active,
+    input[type="radio"]:checked+& {
+        background-color: var(--light-color);
+        border-color: var(--light-color);
+        color: var(--white-color);
+    }
+}
+
+input[type="radio"]:checked+label.btn-option-select {
+    background-color: var(--gray-color) !important;
+    border-color: var(--gray-color) !important;
+    color: var(--white-color) !important;
+}

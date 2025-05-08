@@ -11,25 +11,13 @@ import { AbsherComponent } from './components/shared/absher/absher.component';
 import { BusinessComponent } from './components/company/business/business.component';
 import { RegistrationApiService } from '../../../../../../data/registration.service';
 import { IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
-import { map, Observable, tap } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
+import { Step } from './models/registration.model';
 
 type StepType = 'individual' | 'company';
 
-interface StepControl {
-  key: string;
-  value?: string | number | Date;
-  validators?: Validators[];
-}
 
-interface Step {
-  key: string;
-  title: string;
-  description: string;
-  controls?: StepControl[];
-  component?: any;
-  apiHandler?: (data: any) => Observable<HttpCustomResponse<{}>>;
-}
 
 
 @Injectable({
@@ -37,7 +25,7 @@ interface Step {
 })
 export class RegistrationService {
   private readonly registrationApiService = inject(RegistrationApiService);
-  private steps: Record<StepType, Step[]> = {
+  private steps: Record<StepType, Step<{}>[]> = {
     individual: [
       {
         key: 'information',
@@ -90,12 +78,13 @@ export class RegistrationService {
           },
           {
             key: 'otp',
-            validators: [Validators.required]
+            validators: [Validators.required, Validators.minLength(4)]
           },
           {
             key: 'otpId',
           }
-        ]
+        ],
+        resolvedData: {}
       },
       {
         key: 'address',
@@ -105,27 +94,27 @@ export class RegistrationService {
       },
       {
         key: 'financial',
-        title: 'المعلومات الشخصية',
+        title: 'Financial and social information',
         description:
-          'تبعاً للمتطلبات التشريعية، يتوجب عليك الإجابة على بعض الأسئلة',
+          'Financial and social information',
         component: FinancialComponent,
       },
       {
         key: 'investment',
-        title: 'المعلومات الاستثمارية',
-        description: 'أخبرنا عن معرفتك الاستثمارية',
+        title: 'Investment information',
+        description: 'Tell us about your investment knowledge',
         component: InvestmentComponent,
       },
       {
         key: 'disclosure',
-        title: 'الإفصاحات',
-        description: 'يرجى الإجابة على الأسئلة التالية',
+        title: 'Disclosures',
+        description: 'Please answer the following questions.',
         component: DisclosureComponent,
       },
       {
         key: 'absher',
-        title: 'التحقق من البيانات',
-        description: 'قمنا بإرسال رمز على رقمك المسجل في آبشر',
+        title: 'Data verification',
+        description: 'We have sent a code to your Absher registered number.',
         component: AbsherComponent,
       },
     ],
@@ -158,7 +147,7 @@ export class RegistrationService {
   };
   constructor() { }
 
-  getStepByType(type: StepType): Step[] {
+  getStepByType(type: StepType): Step<{}>[] {
     return this.steps[type];
   }
 
@@ -167,7 +156,14 @@ export class RegistrationService {
   }
 
   verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto): Observable<HttpCustomResponse<{}>> {
-    return this.registrationApiService.verifyIndividualInvestorOTP({ otp: data.otp, otpId: data.otpId }, data.token);
+    return this.registrationApiService.verifyIndividualInvestorOTP({ otp: data.otp, otpId: data.otpId }, data.token).pipe(
+      tap((response) => {
+        const step = this.steps['individual'].find(item => item.key === 'address');
+        if (step) {
+          step.resolvedData = response.data;
+        }
+      })
+    );
   }
 
 
