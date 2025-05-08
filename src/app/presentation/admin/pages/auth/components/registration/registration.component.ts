@@ -46,9 +46,6 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         group.addControl(control.key, this.fb.control(control.value ?? null, control.validators ?? []));
       });
     });
-
-
-    console.log(this.signUpForm)
   }
 
 

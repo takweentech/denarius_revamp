@@ -1,4 +1,5 @@
-<form class="row gy-4 d-flex">
+<form class="row gy-4"
+      [formGroup]="formGroup">
        <!-- Social Status -->
        <div class="col-12 form-group">
               <label class="form-label">Marital status
@@ -7,10 +8,10 @@
                      @for (item of martialStatusList; track $index) {
                      <div class="col">
                             <input type="radio"
-                                   [id]="'martialStatusList-' + item.value"
-                                   name="martialStatusList"
+                                   [id]="'maritalStatus-' + item.value"
+                                   formControlName="maritalStatus"
                                    class="d-none" />
-                            <label [for]="'martialStatusList-' + item.value"
+                            <label [for]="'maritalStatus-' + item.value"
                                    class="btn btn-option-select">{{item.label}}</label>
                      </div>
                      }
@@ -21,6 +22,7 @@
        <div class="col-12 form-group">
               <label class="form-label">Number of family members</label>
               <input type="number"
+                     formControlName="familyMembersCount"
                      class="form-control"
                      placeholder="0" />
        </div>
@@ -32,10 +34,10 @@
                      @for (item of educationLevelList; track $index) {
                      <div class="col d-flex p-0">
                             <input type="radio"
-                                   [id]="'educationLevelList-' + item.value"
-                                   name="educationLevelList"
+                                   [id]="'educationLevel-' + item.value"
+                                   formControlName="educationLevel"
                                    class="d-none" />
-                            <label [for]="'educationLevelList-' + item.value"
+                            <label [for]="'educationLevel-' + item.value"
                                    class="btn btn-option-select">{{item.label}}</label>
                      </div>
                      }
@@ -49,10 +51,10 @@
                      @for (item of employmentStatusList; track $index) {
                      <div class="col d-flex p-0">
                             <input type="radio"
-                                   [id]="'employmentStatusList-' + item.value"
-                                   name="employmentStatusList"
+                                   [id]="'employmentStatus-' + item.value"
+                                   formControlName="employmentStatus"
                                    class="d-none" />
-                            <label [for]="'employmentStatusList-' + item.value"
+                            <label [for]="'employmentStatus-' + item.value"
                                    class="btn btn-option-select">{{item.label}}</label>
                      </div>
                      }
@@ -66,13 +68,14 @@
                      <div class=" col-sm-6 ">
                             <label class="small">Job title</label>
                             <input type="text"
+                                   formControlName="jobTitle"
                                    class="form-control" />
                      </div>
                      <div class="col-sm-6">
                             <label class="small">Years of service</label>
                             <input type="text"
-                                   class="form-control"
-                                   placeholder="3" />
+                                   formControlName="yearsOfExperience"
+                                   class="form-control" />
                      </div>
               </div>
        </div>
@@ -84,10 +87,10 @@
                      @for (item of annualIncomeList; track $index) {
                      <div class="col p-0">
                             <input type="radio"
-                                   [id]="'annualIncomeList-' + item.value"
-                                   name="annualIncomeList"
+                                   [id]="'annualIncome-' + item.value"
+                                   formControlName="annualIncome"
                                    class="d-none" />
-                            <label [for]="'annualIncomeList-' + item.value"
+                            <label [for]="'annualIncome-' + item.value"
                                    class="btn btn-option-select">{{item.label}} </label>
                      </div>
                      }
@@ -103,10 +106,10 @@
                      @for (item of netWorthList; track $index) {
                      <div class="col-12 p-0">
                             <input type="radio"
-                                   [id]="'netWorthList-' + item.value"
-                                   name="netWorthList"
+                                   [id]="'netWealth-' + item.value"
+                                   formControlName="netWealth"
                                    class="d-none" />
-                            <label [for]="'netWorthList-' + item.value"
+                            <label [for]="'netWealth-' + item.value"
                                    class="btn btn-option-select">{{item.label}}</label>
                      </div>
                      }

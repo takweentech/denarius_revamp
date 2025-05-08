@@ -56,37 +56,37 @@ export class RegistrationService {
           {
             key: 'idNumber',
             validators: [Validators.required],
-            // value: '1234567891'
+            value: '1234567891'
           },
           {
             key: 'birhtdate',
             validators: [Validators.required, minimumAgeValidator(18)],
-            // value: new Date()
+            value: new Date()
           },
           {
             key: 'phoneNumber',
             validators: [Validators.required],
-            // value: '966512345678'
+            value: '966512345678'
           },
           {
             key: 'email',
             validators: [Validators.required, Validators.email],
-            // value: 'email@email.com'
+            value: 'email@email.com'
           },
           {
             key: 'password',
             validators: [Validators.required],
-            // value: 'email@email.com'
+            value: 'email@email.com'
           },
           {
             key: 'confirmPassword',
             validators: [Validators.required],
-            // value: 'email@email.com'
+            value: 'email@email.com'
           },
           {
             key: 'terms',
             validators: [Validators.requiredTrue],
-            // value: 'email@email.com'
+            value: 'email@email.com'
           },
         ]
       },
@@ -115,6 +115,26 @@ export class RegistrationService {
         title: 'National Address',
         description: 'National Address Information',
         component: AddressComponent,
+        controls: [
+          {
+            key: 'street',
+          },
+          {
+            key: 'district',
+          },
+          {
+            key: 'city',
+          },
+          {
+            key: 'region',
+          },
+          {
+            key: 'postalCode',
+          },
+          {
+            key: 'additionalCode',
+          },
+        ]
       },
       {
         key: 'financial',
@@ -154,12 +174,52 @@ export class RegistrationService {
         title: 'Investment information',
         description: 'Tell us about your investment knowledge',
         component: InvestmentComponent,
+        controls: [
+          {
+            key: 'riskTolerance',
+          },
+          {
+            key: 'investmentExperience',
+          },
+          {
+            key: 'investmentHorizon',
+          },
+          {
+            key: 'investmentGoal',
+          },
+          {
+            key: 'isBeneficiary',
+          },
+          {
+            key: 'beneficiaryIdNumber',
+          },
+        ]
       },
       {
         key: 'disclosure',
         title: 'Disclosures',
         description: 'Please answer the following questions.',
         component: DisclosureComponent,
+        controls: [
+          {
+            key: 'workedInFinancialSector',
+          },
+          {
+            key: 'isBoardMember',
+          },
+          {
+            key: 'hasRelationWithBoardMember',
+          },
+          {
+            key: 'holdsHighPosition',
+          },
+          {
+            key: 'hasRelativeInHighPosition',
+          },
+          {
+            key: 'hasUSCitizenship',
+          },
+        ]
       },
       {
         key: 'absher',

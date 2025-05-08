@@ -27,81 +27,65 @@
       <small>ID Expiry Date </small>
       <span class="fw-bold">{{step.resolvedData?.idExpiryDate}}</span>
     </div>
-  </div>
-
-
-  @for (item of step.resolvedData?.address?.addressListList; track $index) {
-  <div class="d-flex gap-3 flex-column">
-    <h6>Address {{$index + 1}}</h6>
-    <div class="row  g-1 shadow-sm px-2 py-2 bg-light  rounded-3 border">
-      <!-- ====== District ====== -->
-      <div class="col-4 d-flex flex-column gap-1">
-        <small>District </small>
-        <span class="fw-bold">{{item.district}}
-        </span>
-      </div>
-      <!-- ====== Street Name ====== -->
-      <div class="col-4 d-flex flex-column gap-1">
-        <small>Street Name </small>
-        <span class="fw-bold">{{item.streetName }}</span>
-      </div>
-      <!-- ====== City ====== -->
-      <div class="col-4 d-flex flex-column gap-1">
-        <small>City </small>
-        <span class="fw-bold">{{item.city }}</span>
-      </div>
-      <!-- ====== Building Number ====== -->
-      <div class="col-4 d-flex flex-column gap-1">
-        <small>Building Number</small>
-        <span class="fw-bold">{{item.buildingNumber}}</span>
-      </div>
-      <!-- ====== Postal Code ====== -->
-      <div class="col-4 d-flex flex-column gap-1">
-        <small>Postal Code </small>
-        <span class="fw-bold">{{item.postCode}}</span>
-      </div>
+    <!-- Addresses -->
+    @for (item of step.resolvedData?.address?.addressListList; track $index) {
+    <div class="col-12 d-flex flex-column gap-1">
+      <small>Address {{$index + 1}} </small>
+      <span class="fw-bold">{{item.district}}, {{item.streetName}}, {{item.city }}, {{item.buildingNumber}},
+        {{item.postCode}}</span>
     </div>
+    }
   </div>
-  }
 
-  <!-- ====== Custom Address ====== -->
-  <div class="d-flex gap-3 flex-column">
-    <h6>Custom Address</h6>
-    <form class="row g-2 row  g-1 shadow-sm px-2 py-2 bg-light  rounded-3 border">
-      <!-- ====== District Name ====== -->
-      <div class="form-group col-12 col-md-6">
-        <label class="form-label small"> District Name</label>
-        <input type="text"
-               class="form-control" />
-      </div>
 
-      <!-- ====== Street Name ====== -->
-      <div class="form-group col-12 col-md-6">
-        <label class="form-label small">Street Name</label>
-        <input type="text"
-               class="form-control" />
-      </div>
+  <form [formGroup]="formGroup"
+        class="row g-2 row  g-1">
+    <!-- ====== District Name ====== -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label small"> District Name</label>
+      <input type="text"
+             formControlName="district"
+             class="form-control" />
+    </div>
 
-      <!-- ====== City ====== -->
-      <div class="form-group col-12 col-md-6">
-        <label class="form-label small">City</label>
-        <input type="text"
-               class="form-control" />
-      </div>
+    <!-- ====== Street Name ====== -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label small">Street Name</label>
+      <input type="text"
+             formControlName="street"
+             class="form-control" />
+    </div>
 
-      <!-- ====== Postal Code ====== -->
-      <div class="form-group col-12 col-md-6">
-        <label class="form-label small">Postal Code</label>
-        <input type="text"
-               class="form-control" />
-      </div>
+    <!-- ====== City ====== -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label small">City</label>
+      <input type="text"
+             formControlName="city"
+             class="form-control" />
+    </div>
 
-      <!-- ====== Additional Code ====== -->
-      <div class="form-group col-12 col-md-6">
-        <label class="form-label small">Additional Code </label>
-        <input type="text"
-               class="form-control" />
-      </div>
-    </form>
-  </div>
+    <!-- ====== Region ====== -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label small">Region</label>
+      <input type="text"
+             formControlName="region"
+             class="form-control" />
+    </div>
+
+    <!-- ====== Postal Code ====== -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label small">Postal Code</label>
+      <input type="text"
+             formControlName="postalCode"
+             class="form-control" />
+    </div>
+
+    <!-- ====== Additional Code ====== -->
+    <div class="form-group col-12 col-md-6">
+      <label class="form-label small">Additional Code </label>
+      <input type="text"
+             formControlName="additionalCode"
+             class="form-control" />
+    </div>
+  </form>
 </div>
