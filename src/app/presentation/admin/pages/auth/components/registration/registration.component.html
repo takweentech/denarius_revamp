@@ -57,7 +57,7 @@
             <div class="d-flex justify-content-center">
               <div class="w-100 mx-auto">
                 <button type="button"
-                        [disabled]=" loading() || signUpForm.get(item.key)?.invalid"
+                        [disabled]=" loading()"
                         (click)="onNext()"
                         class="btn btn-primary p-3 w-100">
                   Next

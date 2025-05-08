@@ -56,6 +56,12 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
     const currentStep = this.steps[this.currentIndex() - 1];
     const stepFormVal = this.signUpForm.controls[currentStep.key].value;
 
+    //Check if step isn't valid
+    if (this.signUpForm.controls[currentStep.key].invalid) {
+      this.signUpForm.controls[currentStep.key].markAllAsTouched();
+      return
+    }
+
     // No api handler case
     if (!currentStep.apiHandler) {
       this.stepperInstance.next();

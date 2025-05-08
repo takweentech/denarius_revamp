@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { InformationComponent } from './components/individual/information/information.component';
 import { InformationComponent as CompanyInformation } from './components/company/information/information.component';
 import { OtpComponent } from './components/shared/otp/otp.component';
@@ -16,6 +16,25 @@ import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
 
 type StepType = 'individual' | 'company';
+
+function minimumAgeValidator(minAge: number) {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const birthDate = new Date(control.value);
+    const today = new Date();
+
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const monthDiff = today.getMonth() - birthDate.getMonth();
+    const dayDiff = today.getDate() - birthDate.getDate();
+
+    // Adjust age if the birthday hasn’t occurred yet this year
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+      age--;
+    }
+
+    return age >= minAge ? null : { minimumAge: { requiredAge: minAge, actualAge: age } };
+  };
+}
+
 
 
 
@@ -37,32 +56,37 @@ export class RegistrationService {
           {
             key: 'idNumber',
             validators: [Validators.required],
-            value: '1234567891'
+            // value: '1234567891'
           },
           {
             key: 'birhtdate',
-            validators: [Validators.required],
-            value: new Date()
+            validators: [Validators.required, minimumAgeValidator(18)],
+            // value: new Date()
           },
           {
             key: 'phoneNumber',
             validators: [Validators.required],
-            value: '966512345678'
+            // value: '966512345678'
           },
           {
             key: 'email',
-            validators: [Validators.required],
-            value: 'email@email.com'
+            validators: [Validators.required, Validators.email],
+            // value: 'email@email.com'
           },
           {
             key: 'password',
             validators: [Validators.required],
-            value: 'email@email.com'
+            // value: 'email@email.com'
           },
           {
             key: 'confirmPassword',
             validators: [Validators.required],
-            value: 'email@email.com'
+            // value: 'email@email.com'
+          },
+          {
+            key: 'terms',
+            validators: [Validators.requiredTrue],
+            // value: 'email@email.com'
           },
         ]
       },

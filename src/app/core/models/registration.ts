@@ -4,7 +4,8 @@ export interface IndividualInitialSignUpDto {
     phoneNumber: string,
     email: string,
     password: string,
-    confirmPassword: string
+    confirmPassword: string,
+    terms: boolean
 }
 
 export interface IndividualOtpSignUpDto {

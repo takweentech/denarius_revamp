@@ -8,6 +8,12 @@
            inputmode="numeric"
            formControlName="idNumber"
            pattern="[0-9]*" />
+    @if (formGroup.get('idNumber')?.errors?.['required'] && formGroup.get('idNumber')?.touched ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      This field is required
+    </small>
+    }
   </div>
   <!-- Date of birth -->
   <div class="form-group col-12 col-md-6">
@@ -16,6 +22,18 @@
            class="form-control"
            formControlName="birhtdate"
            placeholder="yyyy-mm-dd" />
+    @if (formGroup.get('birhtdate')?.errors?.['required'] && formGroup.get('birhtdate')?.touched ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      This field is required
+    </small>
+    }
+    @if (formGroup.get('birhtdate')?.errors?.['minimumAge'] ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      You must be at least 18 years old.
+    </small>
+    }
   </div>
   <!-- Phone number -->
   <div class="form-group col-12 col-md-6">
@@ -24,6 +42,12 @@
            class="form-control"
            formControlName="phoneNumber"
            placeholder="+966 5xxxxxxxx" />
+    @if (formGroup.get('phoneNumber')?.errors?.['required'] && formGroup.get('phoneNumber')?.touched ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      This field is required
+    </small>
+    }
   </div>
   <!-- Email -->
   <div class="form-group col-12">
@@ -33,6 +57,18 @@
            class="form-control"
            formControlName="email"
            placeholder="mail@domain.com" />
+    @if (formGroup.get('email')?.errors?.['required'] && formGroup.get('email')?.touched ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      This field is required
+    </small>
+    }
+    @if (formGroup.get('email')?.errors?.['email'] ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      Invalid email address
+    </small>
+    }
   </div>
   <!-- Password -->
   <div class="form-group col-12 col-md-6">
@@ -41,6 +77,12 @@
            class="form-control"
            formControlName="password"
            placeholder="" />
+    @if (formGroup.get('password')?.errors?.['required'] && formGroup.get('password')?.touched ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      This field is required
+    </small>
+    }
   </div>
   <!-- Password confirmation -->
   <div class="form-group col-12 col-md-6">
@@ -49,10 +91,17 @@
            formControlName="confirmPassword"
            class="form-control"
            placeholder="" />
+    @if (formGroup.get('confirmPassword')?.errors?.['required'] && formGroup.get('confirmPassword')?.touched ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      This field is required
+    </small>
+    }
   </div>
   <div class="d-flex align-items-center gap-2">
     <input type="checkbox"
            id="terms"
+           formControlName="terms"
            class="m-0" />
     <label for="terms"
            class="form-label mb-0">
