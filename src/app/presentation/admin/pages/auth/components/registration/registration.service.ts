@@ -269,27 +269,35 @@ export class RegistrationService {
         controls: [
           {
             key: 'commercialRegistrationNumber',
+            validators: [Validators.required]
           },
           {
             key: 'authorizedPersonId',
+            validators: [Validators.required]
           },
           {
             key: 'authorizedPersonBirthDate',
+            validators: [Validators.required]
           },
           {
             key: 'mobileNumber',
+            validators: [Validators.required]
           },
           {
             key: 'email',
+            validators: [Validators.required]
           },
           {
             key: 'password',
+            validators: [Validators.required]
           },
           {
             key: 'confirmPassword',
+            validators: [Validators.required]
           },
           {
             key: 'acceptTerms',
+            validators: [Validators.required]
           },
         ]
       },
@@ -316,6 +324,24 @@ export class RegistrationService {
         title: 'مرحباً شركة تكوين تك',
         description: 'معلومات الشركة والشخص المفوض',
         component: BusinessComponent,
+        controls: [
+          {
+            key: 'annualRevenue',
+            validators: [Validators.required]
+          },
+          {
+            key: 'employeeCount',
+            validators: [Validators.required]
+          },
+          {
+            key: 'investmentExperience',
+            validators: [Validators.required]
+          },
+          {
+            key: 'riskTolerance',
+            validators: [Validators.required]
+          },
+        ]
       },
       {
         key: 'absher',

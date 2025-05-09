@@ -1,26 +1,18 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { LookupService } from '../../../../../../../../../core/services/lookup.service';
+import { Step } from '../../../models/registration.model';
 
 @Component({
   selector: 'app-business',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './business.component.html',
   styleUrl: './business.component.scss',
 })
 export class BusinessComponent {
-  selectedFile: File | null = null;
-
-  openFileInput() {
-    const fileInput = document.getElementById('fileInput') as HTMLInputElement;
-    if (fileInput) {
-      fileInput.click();
-    }
-  }
-
-  onFileSelected(event: any) {
-    this.selectedFile = event.target.files[0];
-    if (this.selectedFile) {
-      console.log('file selected', this.selectedFile.name);
-    }
-  }
+  private readonly lookupService = inject(LookupService);
+  @Input() formGroup!: FormGroup;
+  @Input() step!: Step<{}>;
+  investmentExperienceList = this.lookupService.getInvestmentExperienceList();
+  riskToleranceList = this.lookupService.getRiskToleranceList();
 }

@@ -1,22 +1,22 @@
-<div class="row gy-4">
+<div class="d-flex  flex-column gap-4">
   <!-- ====== User Information Summary ====== -->
   <div class="col-12 shadow-sm px-2 py-3 bg-light  rounded-3">
     <div class="row">
       <!-- ====== Full Name ====== -->
       <div class="col-12">
-        <h6 class="mb-1">الاسم التجاري للشركة</h6>
+        <h6 class="mb-1">Company trade name</h6>
         <h6 class="fw-bold">شركة تكوين تك لتقنية المعلومات</h6>
       </div>
 
       <!-- ====== Gender ====== -->
       <div class="col-12 mt-3 col-md-6">
-        <h6 class="mb-1">النوع</h6>
+        <h6 class="mb-1">Type</h6>
         <h6 class="fw-bold">ذات مسؤولية محدودة</h6>
       </div>
 
       <!-- ====== ID Expiry Date ====== -->
       <div class="col-12 mt-3 col-md-6 mt-2">
-        <h6 class="mb-1">تاريخ انتهاء السجل</h6>
+        <h6 class="mb-1">Record expiration date</h6>
         <h6 class="fw-bold">10/10/1450</h6>
       </div>
     </div>
@@ -26,108 +26,97 @@
   <div class="col-12 shadow-sm px-2 py-3 bg-light  rounded-3">
     <!-- ====== Full Name ====== -->
     <div class="col-12">
-      <h6 class="mb-1">اسم الشخص المفوض</h6>
+      <h6 class="mb-1">Name of authorized person</h6>
       <h6 class="fw-bold">محمد بن عبدالله بن عبدالرحمن عويس</h6>
     </div>
     <div class="row d-flex px-0 justify-content-between">
       <div class="col-12 mt-3 col-md-2">
-        <h6 class="mb-1">النوع</h6>
+        <h6 class="mb-1">Gender</h6>
         <h6 class="fw-bold">ذكر</h6>
       </div>
 
       <!-- ====== Nationality ====== -->
       <div class="col-12 mt-3 col-md-2">
-        <h6 class="mb-1">الجنسية</h6>
+        <h6 class="mb-1">Nationality</h6>
         <h6 class="fw-bold">سعودي</h6>
       </div>
       <!--  -->
       <div class="col-12 mt-3 col-md-2">
-        <h6 class="mb-1">المسمى</h6>
+        <h6 class="mb-1">Position</h6>
         <h6 class="fw-bold">مدير</h6>
-      </div>
-
-      <!-- ====== ID Expiry Date ====== -->
-      <div class="col-12 mt-3 col-md-5">
-        <h6 class="mb-1">تاريخ انتهاء الهوية</h6>
-        <h6 class="fw-bold">10/10/1450</h6>
       </div>
     </div>
   </div>
-  <!-- ====== National Address Form ====== -->
-  <form class="d-flex flex-column justify-content-center col-12 ">
+  <form class="d-flex flex-column col-12 ">
     <div class="row">
-      <!-- ====== District Name ====== -->
       <div class="form-group col-12 col-md-6">
-        <h6 class="text-dark">
-          حجم الأعمال السنوية
-
-          <img src="assets/icons/registeration/Saudi_Riyal_Symbol-d.svg"
-               alt="" />
-        </h6>
+        <label class="form-label">
+          Annual business volume
+        </label>
         <input type="text"
+               class="form-control"
                placeholder="1,000,000" />
       </div>
-
-      <!-- ====== Street Name ====== -->
       <div class="form-group col-12 col-md-6">
-        <h6 class="text-dark">عدد الموظفين العاملين</h6>
+        <label class="form-label">
+          Number of working employees
+        </label>
         <input type="number"
+               class="form-control"
                placeholder=" 10" />
       </div>
     </div>
 
     <div class="row">
-      <!-- -->
+      <!--Risk Tolerance-->
       <div class="col-12 form-group col-md-6">
-        <h6 class="text-dark">القدرة على تحمل المخاطر</h6>
+        <label class="form-label">
+          Risk Tolerance
+        </label>
         <div class="d-flex flex-column flex-md-row">
-          <input type="radio"
-                 id="risk_low"
-                 name="risk"
-                 class="d-none" />
-          <label for="risk_low"
-                 class="btn btn-option-select">منخفضة</label>
-
-          <input type="radio"
-                 id="risk_med"
-                 name="risk"
-                 class="d-none" />
-          <label for="risk_med"
-                 class="btn btn-option-select">متوسطة</label>
-
-          <input type="radio"
-                 id="risk_high"
-                 name="risk"
-                 class="d-none" />
-          <label for="risk_high"
-                 class="btn btn-option-select">مرتفعة</label>
+          @for (item of riskToleranceList; track $index) {
+          <div class="col">
+            <input type="radio"
+                   [id]="'riskTolerance-' + item.value"
+                   [value]="item.value"
+                   formControlName="riskTolerance"
+                   class="d-none" />
+            <label [for]="'riskTolerance-' + item.value"
+                   class="btn btn-option-select">{{item.label}}</label>
+          </div>
+          }
         </div>
+        @if (formGroup.get('riskTolerance')?.errors?.['required'] &&
+        formGroup.get('riskTolerance')?.touched ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          This field is required
+        </small>
+        }
       </div>
-      <!-- -->
+      <!--Investment Experience-->
       <div class="col-12 form-group col-md-6">
-        <h6 class="text-dark">الخبرة الاستثمارية</h6>
+        <label class="form-label">Investment Experience</label>
         <div class="d-flex flex-column flex-md-row">
-          <input type="radio"
-                 id="exp_low"
-                 name="experience"
-                 class="d-none" />
-          <label for="exp_low"
-                 class="btn btn-option-select">منخفضة</label>
-
-          <input type="radio"
-                 id="exp_med"
-                 name="experience"
-                 class="d-none" />
-          <label for="exp_med"
-                 class="btn btn-option-select">متوسطة</label>
-
-          <input type="radio"
-                 id="exp_high"
-                 name="experience"
-                 class="d-none" />
-          <label for="exp_high"
-                 class="btn btn-option-select">عالية</label>
+          @for (item of riskToleranceList; track $index) {
+          <div class="col">
+            <input type="radio"
+                   [id]="'investmentExperience-' + item.value"
+                   [value]="item.value"
+                   formControlName="investmentExperience"
+                   class="d-none" />
+            <label [for]="'investmentExperience-' + item.value"
+                   class="btn btn-option-select">{{item.label}}</label>
+          </div>
+          }
         </div>
+        @if (formGroup.get('investmentExperience')?.errors?.['required'] &&
+        formGroup.get('investmentExperience')?.touched ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          This field is required
+        </small>
+        }
       </div>
     </div>
 
@@ -141,24 +130,14 @@
           <br />
           <input type="file"
                  id="fileInput"
-                 class="position-absolute opacity-0 w-100 h-100"
-                 style="cursor: pointer; top: 0; left: 0"
-                 (change)="onFileSelected($event)" />
-          <button class="btn mb-3 p-2 btn-primary col-12"
-                  (click)="openFileInput()">
+                 class="position-absolute opacity-0 w-100 h-100" />
+          <button class="btn mb-3 p-2 btn-primary col-12">
             تصفح الملفات
             <img src="assets/icons/registeration/upload.svg"
                  alt="upload" />
           </button>
-          <span *ngIf="selectedFile"
-                class="d-block mt-2">{{
-            selectedFile.name
-            }}</span>
         </div>
       </div>
-      <h6 class="mt-1 fw-light text-dark">
-        يمكن طلب مستندات إضافية أثناء عملية مراجعة البيانات
-      </h6>
     </div>
   </form>
 </div>

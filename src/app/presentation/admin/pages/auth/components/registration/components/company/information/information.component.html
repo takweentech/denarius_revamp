@@ -1,16 +1,31 @@
-<form class="d-flex flex-column gap-4">
+<form class="d-flex flex-column gap-4"
+      [formGroup]="formGroup">
   <div class="row">
     <div class="form-group col-12 col-md-6">
       <label class="form-label">Commercial registration number <span class="text-danger"></span></label>
       <input class="form-control"
              formControlName="commercialRegistrationNumber"
              type="text" />
+      @if (formGroup.get('commercialRegistrationNumber')?.errors?.['required'] &&
+      formGroup.get('commercialRegistrationNumber')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
     <div class="form-group col-12 col-md-6">
       <label class="form-label">Commissioner's ID number</label>
       <input class="form-control"
              formControlName="authorizedPersonId"
              type="text" />
+      @if (formGroup.get('authorizedPersonId')?.errors?.['required'] &&
+      formGroup.get('authorizedPersonId')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
   </div>
   <div class="row">
@@ -20,6 +35,13 @@
              formControlName="authorizedPersonBirthDate"
              type="date"
              placeholder="0000000000" />
+      @if (formGroup.get('authorizedPersonBirthDate')?.errors?.['required'] &&
+      formGroup.get('authorizedPersonBirthDate')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
     <div class="form-group col-12 col-md-6">
       <label class="form-label">Phone number</label>
@@ -27,6 +49,13 @@
              formControlName="mobileNumber"
              type="tel"
              placeholder="+966 5xxxxxxxx" />
+      @if (formGroup.get('mobileNumber')?.errors?.['required'] &&
+      formGroup.get('mobileNumber')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
   </div>
   <div class="form-group col-12">
@@ -35,6 +64,13 @@
            formControlName="email"
            type="email"
            placeholder="mail@domain.com" />
+    @if (formGroup.get('email')?.errors?.['required'] &&
+    formGroup.get('email')?.touched ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      This field is required
+    </small>
+    }
   </div>
   <div class="row">
     <div class="form-group col-12 col-md-6">
@@ -43,6 +79,13 @@
              formControlName="password"
              type="password"
              placeholder="" />
+      @if (formGroup.get('password')?.errors?.['required'] &&
+      formGroup.get('password')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
     <div class="form-group col-12 col-md-6">
       <label class="form-label">Password Confirmation</label>
@@ -50,6 +93,13 @@
              formControlName="confirmPassword"
              type="password"
              placeholder="" />
+      @if (formGroup.get('confirmPassword')?.errors?.['required'] &&
+      formGroup.get('confirmPassword')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
   </div>
   <div class="d-flex align-items-center gap-2">
