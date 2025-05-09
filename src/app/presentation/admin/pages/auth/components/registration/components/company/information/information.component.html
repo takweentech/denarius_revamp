@@ -1,58 +1,67 @@
-<div class="justify-content-center d-flex gap-4">
-  <form class="row d-flex col-12 justify-content-center">
+<form class="d-flex flex-column gap-4">
+  <div class="row">
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">رقم السجل التجاري *</label>
-      <input class="profile-control"
-             type="text"
-             placeholder="0000000000" />
+      <label class="form-label">Commercial registration number <span class="text-danger"></span></label>
+      <input class="form-control"
+             formControlName="commercialRegistrationNumber"
+             type="text" />
     </div>
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">رقم الهوية للمفوض *</label>
-      <input class="profile-control"
-             type="text"
-             placeholder="0000000000" />
+      <label class="form-label">Commissioner's ID number</label>
+      <input class="form-control"
+             formControlName="authorizedPersonId"
+             type="text" />
     </div>
+  </div>
+  <div class="row">
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">تاريخ الميلاد *</label>
-      <input class="profile-control"
+      <label class="form-label">Date of Birth</label>
+      <input class="form-control"
+             formControlName="authorizedPersonBirthDate"
              type="date"
              placeholder="0000000000" />
     </div>
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">رقم الجوال *</label>
-      <input class="profile-control"
+      <label class="form-label">Phone number</label>
+      <input class="form-control"
+             formControlName="mobileNumber"
              type="tel"
              placeholder="+966 5xxxxxxxx" />
     </div>
-    <div class="form-group col-12">
-      <label class="form-label">البريد الإلكتروني *</label>
-      <input class="profile-control"
-             type="email"
-             placeholder="mail@domain.com" />
-    </div>
+  </div>
+  <div class="form-group col-12">
+    <label class="form-label">Email</label>
+    <input class="form-control"
+           formControlName="email"
+           type="email"
+           placeholder="mail@domain.com" />
+  </div>
+  <div class="row">
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">كلمة المرور *</label>
-      <input class="profile-control"
+      <label class="form-label">Password</label>
+      <input class="form-control"
+             formControlName="password"
              type="password"
              placeholder="" />
     </div>
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">تأكيد كلمة المرور *</label>
-      <input class="profile-control"
+      <label class="form-label">Password Confirmation</label>
+      <input class="form-control"
+             formControlName="confirmPassword"
              type="password"
              placeholder="" />
     </div>
-    <div>
-      <input class="profile-control"
-             type="checkbox"
-             id="terms"
-             class="form-check-input" />
-      <label for="terms"
-             class="form-check-label form-label">
-        أوافق على
-        <a class="text-primary"
-           href=""> الشروط والأحكام </a>
-      </label>
-    </div>
-  </form>
-</div>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    <input type="checkbox"
+           id="terms"
+           formControlName="acceptTerms"
+           class="m-0" />
+    <label for="terms"
+           class="form-label mb-0">
+      I agree to the
+      <a class="text-primary text-decoration-underline"
+         href=""> Terms and Conditions </a>
+    </label>
+  </div>
+</form>

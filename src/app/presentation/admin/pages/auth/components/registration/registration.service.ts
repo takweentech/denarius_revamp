@@ -10,7 +10,7 @@ import { FinancialComponent } from './components/individual/financial/financial.
 import { AbsherComponent } from './components/shared/absher/absher.component';
 import { BusinessComponent } from './components/company/business/business.component';
 import { RegistrationApiService } from '../../../../../../data/registration.service';
-import { IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
+import { IndividualCompletionDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
 import { Observable, of, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
@@ -86,7 +86,6 @@ export class RegistrationService {
           {
             key: 'terms',
             validators: [Validators.requiredTrue],
-            value: 'email@email.com'
           },
         ]
       },
@@ -118,21 +117,27 @@ export class RegistrationService {
         controls: [
           {
             key: 'street',
+            validators: [Validators.required]
           },
           {
             key: 'district',
+            validators: [Validators.required]
           },
           {
             key: 'city',
+            validators: [Validators.required]
           },
           {
             key: 'region',
+            validators: [Validators.required]
           },
           {
             key: 'postalCode',
+            validators: [Validators.required]
           },
           {
             key: 'additionalCode',
+            validators: [Validators.required]
           },
         ]
       },
@@ -145,27 +150,35 @@ export class RegistrationService {
         controls: [
           {
             key: 'maritalStatus',
+            validators: [Validators.required]
           },
           {
             key: 'familyMembersCount',
+            validators: [Validators.required]
           },
           {
             key: 'educationLevel',
+            validators: [Validators.required]
           },
           {
             key: 'employmentStatus',
+            validators: [Validators.required]
           },
           {
             key: 'jobTitle',
+            validators: [Validators.required]
           },
           {
             key: 'yearsOfExperience',
+            validators: [Validators.required]
           },
           {
             key: 'annualIncome',
+            validators: [Validators.required]
           },
           {
             key: 'netWealth',
+            validators: [Validators.required]
           },
         ]
       },
@@ -177,21 +190,27 @@ export class RegistrationService {
         controls: [
           {
             key: 'riskTolerance',
+            validators: [Validators.required]
           },
           {
             key: 'investmentExperience',
+            validators: [Validators.required]
           },
           {
             key: 'investmentHorizon',
+            validators: [Validators.required]
           },
           {
             key: 'investmentGoal',
+            validators: [Validators.required]
           },
           {
             key: 'isBeneficiary',
+            validators: [Validators.required]
           },
           {
             key: 'beneficiaryIdNumber',
+            validators: [Validators.required]
           },
         ]
       },
@@ -203,23 +222,36 @@ export class RegistrationService {
         controls: [
           {
             key: 'workedInFinancialSector',
+            validators: [Validators.required]
+
           },
           {
             key: 'isBoardMember',
+            validators: [Validators.required]
+
           },
           {
             key: 'hasRelationWithBoardMember',
+            validators: [Validators.required]
+
           },
           {
             key: 'holdsHighPosition',
+            validators: [Validators.required]
+
           },
           {
             key: 'hasRelativeInHighPosition',
+            validators: [Validators.required]
+
           },
           {
             key: 'hasUSCitizenship',
+            validators: [Validators.required]
+
           },
-        ]
+        ],
+        apiHandler: (data: IndividualCompletionDto) => this.completeIndividualInvestorRegestration(data),
       },
       {
         key: 'absher',
@@ -231,15 +263,53 @@ export class RegistrationService {
     company: [
       {
         key: 'information',
-        title: 'تسجيل حساب مستثمر شركة',
-        description: 'قم بتعبئة البيانات الأساسية',
+        title: 'Register a company investor account',
+        description: 'Fill in the basic information',
         component: CompanyInformation,
+        controls: [
+          {
+            key: 'commercialRegistrationNumber',
+          },
+          {
+            key: 'authorizedPersonId',
+          },
+          {
+            key: 'authorizedPersonBirthDate',
+          },
+          {
+            key: 'mobileNumber',
+          },
+          {
+            key: 'email',
+          },
+          {
+            key: 'password',
+          },
+          {
+            key: 'confirmPassword',
+          },
+          {
+            key: 'acceptTerms',
+          },
+        ]
       },
       {
         key: 'otp',
-        title: 'تسجيل حساب مستثمر فرد',
-        description: 'تحقق من رقم الجوال',
+        title: 'Register an individual investor account',
+        description: 'Verify mobile number',
         component: OtpComponent,
+        controls: [
+          {
+            key: 'token',
+          },
+          {
+            key: 'otp',
+            validators: [Validators.required, Validators.minLength(4)]
+          },
+          {
+            key: 'otpId',
+          }
+        ],
       },
       {
         key: 'business',
@@ -274,6 +344,10 @@ export class RegistrationService {
         }
       })
     );
+  }
+
+  completeIndividualInvestorRegestration(data: IndividualCompletionDto) {
+    return this.registrationApiService.completeIndividualInvestorRegestration(data)
   }
 
 

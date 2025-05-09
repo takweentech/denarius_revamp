@@ -1,11 +1,11 @@
 import { Component, inject, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Step } from '../../../models/registration.model';
 import { LookupService } from '../../../../../../../../../core/services/lookup.service';
 
 @Component({
   selector: 'app-investment',
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: './investment.component.html',
   styleUrl: './investment.component.scss'
 })

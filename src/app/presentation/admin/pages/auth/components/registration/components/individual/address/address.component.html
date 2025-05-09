@@ -42,50 +42,98 @@
         class="row g-2 row  g-1">
     <!-- ====== District Name ====== -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label small"> District Name</label>
+      <label for="district"
+             class="form-label small"> District Name</label>
       <input type="text"
+             id="district"
              formControlName="district"
              class="form-control" />
+      @if (formGroup.get('district')?.errors?.['required'] && formGroup.get('district')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
 
     <!-- ====== Street Name ====== -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label small">Street Name</label>
+      <label for="street"
+             class="form-label small">Street Name</label>
       <input type="text"
+             id="street"
              formControlName="street"
              class="form-control" />
+      @if (formGroup.get('street')?.errors?.['required'] && formGroup.get('street')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
 
     <!-- ====== City ====== -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label small">City</label>
+      <label for="city"
+             class="form-label small">City</label>
       <input type="text"
+             id="city"
              formControlName="city"
              class="form-control" />
+      @if (formGroup.get('city')?.errors?.['required'] && formGroup.get('city')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
 
     <!-- ====== Region ====== -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label small">Region</label>
+      <label for="region"
+             class="form-label small">Region</label>
       <input type="text"
+             id="region"
              formControlName="region"
              class="form-control" />
+      @if (formGroup.get('region')?.errors?.['required'] && formGroup.get('region')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
 
     <!-- ====== Postal Code ====== -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label small">Postal Code</label>
+      <label for="postalCode"
+             class="form-label small">Postal Code</label>
       <input type="text"
+             id="postalCode"
              formControlName="postalCode"
              class="form-control" />
+      @if (formGroup.get('postalCode')?.errors?.['required'] && formGroup.get('postalCode')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
 
     <!-- ====== Additional Code ====== -->
     <div class="form-group col-12 col-md-6">
-      <label class="form-label small">Additional Code </label>
+      <label for="additionalCode"
+             class="form-label small">Additional Code </label>
       <input type="text"
+             id="additionalCode"
              formControlName="additionalCode"
              class="form-control" />
+      @if (formGroup.get('additionalCode')?.errors?.['required'] && formGroup.get('additionalCode')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        This field is required
+      </small>
+      }
     </div>
   </form>
 </div>

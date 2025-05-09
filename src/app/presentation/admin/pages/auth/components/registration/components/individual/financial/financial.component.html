@@ -10,12 +10,19 @@
                             <input type="radio"
                                    [id]="'maritalStatus-' + item.value"
                                    formControlName="maritalStatus"
+                                   [value]="item.value"
                                    class="d-none" />
                             <label [for]="'maritalStatus-' + item.value"
-                                   class="btn btn-option-select">{{item.label}}</label>
+                                   class="btn btn-option-select">{{item.label}} </label>
                      </div>
                      }
               </div>
+              @if (formGroup.get('maritalStatus')?.errors?.['required'] && formGroup.get('maritalStatus')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
        <!-- Family Members -->
@@ -23,8 +30,14 @@
               <label class="form-label">Number of family members</label>
               <input type="number"
                      formControlName="familyMembersCount"
-                     class="form-control"
-                     placeholder="0" />
+                     class="form-control" />
+              @if (formGroup.get('familyMembersCount')?.errors?.['required'] &&
+              formGroup.get('familyMembersCount')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
        <!-- Education Level -->
@@ -36,12 +49,20 @@
                             <input type="radio"
                                    [id]="'educationLevel-' + item.value"
                                    formControlName="educationLevel"
+                                   [value]="item.value"
                                    class="d-none" />
                             <label [for]="'educationLevel-' + item.value"
                                    class="btn btn-option-select">{{item.label}}</label>
                      </div>
                      }
               </div>
+              @if (formGroup.get('educationLevel')?.errors?.['required'] &&
+              formGroup.get('educationLevel')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
        <!-- Job Status -->
@@ -52,6 +73,7 @@
                      <div class="col d-flex p-0">
                             <input type="radio"
                                    [id]="'employmentStatus-' + item.value"
+                                   [value]="item.value"
                                    formControlName="employmentStatus"
                                    class="d-none" />
                             <label [for]="'employmentStatus-' + item.value"
@@ -59,23 +81,44 @@
                      </div>
                      }
               </div>
+              @if (formGroup.get('employmentStatus')?.errors?.['required'] &&
+              formGroup.get('employmentStatus')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
 
        </div>
 
        <!-- Job Info -->
        <div class="col-12 form-group">
-              <div class="bg-body-tertiary p-2 py-3 rounded row mx-auto g-2">
+              <div class="bg-body-tertiary p-2 py-3 rounded row mx-auto gx-2">
                      <div class=" col-sm-6 ">
                             <label class="small">Job title</label>
                             <input type="text"
                                    formControlName="jobTitle"
                                    class="form-control" />
+                            @if (formGroup.get('jobTitle')?.errors?.['required'] &&
+                            formGroup.get('jobTitle')?.touched ) {
+                            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                                   <i class="fa-solid fa-circle-exclamation"></i>
+                                   This field is required
+                            </small>
+                            }
                      </div>
                      <div class="col-sm-6">
                             <label class="small">Years of service</label>
                             <input type="text"
                                    formControlName="yearsOfExperience"
                                    class="form-control" />
+                            @if (formGroup.get('yearsOfExperience')?.errors?.['required'] &&
+                            formGroup.get('yearsOfExperience')?.touched ) {
+                            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                                   <i class="fa-solid fa-circle-exclamation"></i>
+                                   This field is required
+                            </small>
+                            }
                      </div>
               </div>
        </div>
@@ -88,6 +131,7 @@
                      <div class="col p-0">
                             <input type="radio"
                                    [id]="'annualIncome-' + item.value"
+                                   [value]="item.value"
                                    formControlName="annualIncome"
                                    class="d-none" />
                             <label [for]="'annualIncome-' + item.value"
@@ -95,6 +139,13 @@
                      </div>
                      }
               </div>
+              @if (formGroup.get('annualIncome')?.errors?.['required'] &&
+              formGroup.get('annualIncome')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
        <!-- Net Worth -->
@@ -108,11 +159,19 @@
                             <input type="radio"
                                    [id]="'netWealth-' + item.value"
                                    formControlName="netWealth"
+                                   [value]="item.value"
                                    class="d-none" />
                             <label [for]="'netWealth-' + item.value"
                                    class="btn btn-option-select">{{item.label}}</label>
                      </div>
                      }
               </div>
+              @if (formGroup.get('netWealth')?.errors?.['required'] &&
+              formGroup.get('netWealth')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 </form>

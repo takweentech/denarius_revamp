@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpCustomResponse, HttpPagedResponse } from '../core/models/http';
 import { Opportunity, OpportunityFilter } from '../core/models/opportunity';
-import { IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../core/models/registration';
+import { IndividualCompletionDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../core/models/registration';
 
 @Injectable({
     providedIn: 'root'
@@ -19,5 +19,10 @@ export class RegistrationApiService {
 
     verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto, token?: string): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/VerifyIndividualInvestorOTP`, data, { headers: { Authorization: token as string } })
+    }
+
+
+    completeIndividualInvestorRegestration(data: IndividualCompletionDto): Observable<HttpCustomResponse<{}>> {
+        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/CompleteIndividualInvestorRegestrationStep`, data)
     }
 }

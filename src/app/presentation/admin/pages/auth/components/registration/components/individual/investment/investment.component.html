@@ -1,40 +1,59 @@
-<form class="row d-flex">
-       <!-- -->
-       <div class="col-12 form-group col-md-6">
-              <label class="form-label">Investment experience</label>
-              <div class="d-flex flex-column flex-md-row">
-                     @for (item of investmentExperienceList; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   id="exp_low"
-                                   name="experience"
-                                   class="d-none" />
-                            <label for="exp_low"
-                                   class="btn btn-option-select">{{item.label}}</label>
+<form class="d-flex flex-column gap-4"
+      [formGroup]="formGroup">
+       <div class="row">
+              <!-- Investment experience-->
+              <div class="col-12 form-group col-md-6">
+                     <label class="form-label">Investment experience</label>
+                     <div class="d-flex flex-column flex-md-row">
+                            @for (item of investmentExperienceList; track $index) {
+                            <div class="col">
+                                   <input type="radio"
+                                          [id]="'riskTolerance-' + item.value"
+                                          [value]="item.value"
+                                          formControlName="riskTolerance"
+                                          class="d-none" />
+                                   <label [for]="'riskTolerance-' + item.value"
+                                          class="btn btn-option-select">{{item.label}}</label>
+                            </div>
+                            }
                      </div>
+                     @if (formGroup.get('riskTolerance')?.errors?.['required'] &&
+                     formGroup.get('riskTolerance')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            This field is required
+                     </small>
+                     }
+              </div>
+
+              <!--Risk Tolerance -->
+              <div class="col-12 form-group col-md-6">
+                     <label class="form-label"> Risk Tolerance </label>
+                     <div class="d-flex flex-column flex-md-row">
+                            @for (item of riskToleranceList; track $index) {
+                            <div class="col">
+                                   <input type="radio"
+                                          [id]="'investmentExperience-' + item.value"
+                                          [value]="item.value"
+                                          formControlName="investmentExperience"
+                                          class="d-none" />
+                                   <label [for]="'investmentExperience-' + item.value"
+                                          class="btn btn-option-select">{{item.label}}</label>
+                            </div>
+                            }
+                     </div>
+                     @if (formGroup.get('investmentExperience')?.errors?.['required'] &&
+                     formGroup.get('investmentExperience')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            This field is required
+                     </small>
                      }
               </div>
        </div>
 
-       <!-- -->
-       <div class="col-12 form-group col-md-6">
-              <label class="form-label"> Risk Tolerance </label>
-              <div class="d-flex flex-column flex-md-row">
-                     @for (item of riskToleranceList; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   id="exp_low"
-                                   name="experience"
-                                   class="d-none" />
-                            <label for="exp_low"
-                                   class="btn btn-option-select">{{item.label}}</label>
-                     </div>
-                     }
-              </div>
-       </div>
-
-       <!--   -->
-       <div class="col-12 form-group mt-2 col-md-10">
+       <!-- What is the investment period during which you expect to recover your money? -->
+       <div class="col-12 form-group col-md-10">
               <label class="form-label">
                      What is the investment period during which you expect to recover your money?
 
@@ -43,57 +62,92 @@
                      @for (item of investmentPeriodList; track $index) {
                      <div class="col">
                             <input type="radio"
-                                   id="exp_low"
-                                   name="experience"
+                                   [id]="'investmentHorizon-' + item.value"
+                                   [value]="item.value"
+                                   formControlName="investmentHorizon"
                                    class="d-none" />
-                            <label for="exp_low"
+                            <label [for]="'investmentHorizon-' + item.value"
                                    class="btn btn-option-select">{{item.label}}</label>
                      </div>
                      }
               </div>
+              @if (formGroup.get('investmentHorizon')?.errors?.['required'] &&
+              formGroup.get('investmentHorizon')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
-       <!-- -->
-       <div class="col-12 form-group mt-2">
+       <!--What are your investment objectives?-->
+       <div class="col-12 form-group">
               <label class="form-label">What are your investment objectives?</label>
               <div class="d-flex flex-column flex-md-row">
                      @for (item of investmentObjectivesList; track $index) {
                      <div class="col">
                             <input type="radio"
-                                   id="exp_low"
-                                   name="experience"
+                                   [id]="'investmentGoal-' + item.value"
+                                   [value]="item.value"
+                                   formControlName="investmentGoal"
                                    class="d-none" />
-                            <label for="exp_low"
+                            <label [for]="'investmentGoal-' + item.value"
                                    class="btn btn-option-select">{{item.label}}</label>
                      </div>
                      }
               </div>
+              @if (formGroup.get('investmentGoal')?.errors?.['required'] &&
+              formGroup.get('investmentGoal')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
-       <!-- -->
-       <div class="col-12 form-group mt-4 col-md-6">
-              <label class="form-label">Are you the real beneficiary of the account?</label>
-              <div class="d-flex flex-column flex-md-row">
-                     <input type="radio"
-                            id="beneficiary_yes"
-                            name="beneficiary"
-                            class="d-none" />
-                     <label for="beneficiary_yes"
-                            class="btn btn-option-select">Yes</label>
+       <div class="row">
+              <!--Are you the real beneficiary of the account?-->
+              <div class="col-12 form-group col-md-6">
+                     <label class="form-label">Are you the real beneficiary of the account?</label>
+                     <div class="d-flex flex-column flex-md-row">
+                            <input type="radio"
+                                   [id]="'isBeneficiary-' + true"
+                                   [value]="true"
+                                   formControlName="isBeneficiary"
+                                   class="d-none" />
+                            <label [for]="'isBeneficiary-' + true"
+                                   class="btn btn-option-select">Yes</label>
 
-                     <input type="radio"
-                            id="beneficiary_no"
-                            name="beneficiary"
-                            class="d-none" />
-                     <label for="beneficiary_no"
-                            class="btn btn-option-select">No</label>
+                            <input type="radio"
+                                   [id]="'isBeneficiary-' + false"
+                                   [value]="false"
+                                   formControlName="isBeneficiary"
+                                   class="d-none" />
+                            <label [for]="'isBeneficiary-' + false"
+                                   class="btn btn-option-select">No</label>
+                     </div>
+                     @if (formGroup.get('isBeneficiary')?.errors?.['required'] &&
+                     formGroup.get('isBeneficiary')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            This field is required
+                     </small>
+                     }
               </div>
-       </div>
 
-       <!--    -->
-       <div class="form-group mt-4 col-12 form-group col-md-6">
-              <label class="form-label">Beneficiary ID number</label>
-              <input type="text"
-                     class="form-control"
-                     placeholder="0123456789" />
+              <!--Beneficiary ID number-->
+              <div class="form-group col-12 form-group col-md-6">
+                     <label class="form-label">Beneficiary ID number</label>
+                     <input type="text"
+                            class="form-control"
+                            formControlName="beneficiaryIdNumber"
+                            placeholder="0123456789" />
+                     @if (formGroup.get('beneficiaryIdNumber')?.errors?.['required'] &&
+                     formGroup.get('beneficiaryIdNumber')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            This field is required
+                     </small>
+                     }
+              </div>
        </div>
 </form>

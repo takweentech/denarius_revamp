@@ -8,19 +8,28 @@
               </label>
               <div class="d-flex col-md-6">
                      <input type="radio"
-                            id="financial_yes"
-                            name="financial"
+                            formControlName="workedInFinancialSector"
+                            [id]="'workedInFinancialSector-' + true"
+                            [value]="true"
                             class="d-none" />
-                     <label for="financial_yes"
+                     <label [for]="'workedInFinancialSector-' + true"
                             class="btn btn-option-select">Yes</label>
 
                      <input type="radio"
-                            id="financial_no"
-                            name="financial"
+                            formControlName="workedInFinancialSector"
+                            [id]="'workedInFinancialSector-' + false"
+                            [value]="false"
                             class="d-none" />
-                     <label for="financial_no"
+                     <label [for]="'workedInFinancialSector-' + false"
                             class="btn btn-option-select">No</label>
               </div>
+              @if (formGroup.get('workedInFinancialSector')?.errors?.['required'] &&
+              formGroup.get('workedInFinancialSector')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
        <!-- Question 2 -->
@@ -30,21 +39,31 @@
                      company?
 
               </label>
-              <div class="d-flex col-md-4">
+
+              <div class="d-flex col-md-6">
                      <input type="radio"
-                            id="executive_yes"
-                            name="executive"
+                            formControlName="isBoardMember"
+                            [id]="'isBoardMember-' + true"
+                            [value]="true"
                             class="d-none" />
-                     <label for="executive_yes"
+                     <label [for]="'isBoardMember-' + true"
                             class="btn btn-option-select">Yes</label>
 
                      <input type="radio"
-                            id="executive_no"
-                            name="executive"
+                            formControlName="isBoardMember"
+                            [id]="'isBoardMember-' + false"
+                            [value]="false"
                             class="d-none" />
-                     <label for="executive_no"
+                     <label [for]="'isBoardMember-' + false"
                             class="btn btn-option-select">No</label>
               </div>
+              @if (formGroup.get('isBoardMember')?.errors?.['required'] &&
+              formGroup.get('isBoardMember')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
        <!-- Question 3 -->
@@ -54,21 +73,32 @@
                      of a listed company?
 
               </label>
-              <div class="d-flex col-md-4">
+
+              <div class="d-flex col-md-6">
                      <input type="radio"
-                            id="relation_yes"
-                            name="relation"
+                            formControlName="hasRelationWithBoardMember"
+                            [id]="'hasRelationWithBoardMember-' + true"
+                            [value]="true"
                             class="d-none" />
-                     <label for="relation_yes"
+                     <label [for]="'hasRelationWithBoardMember-' + true"
                             class="btn btn-option-select">Yes</label>
 
                      <input type="radio"
-                            id="relation_no"
-                            name="relation"
+                            formControlName="hasRelationWithBoardMember"
+                            [id]="'hasRelationWithBoardMember-' + false"
+                            [value]="false"
                             class="d-none" />
-                     <label for="relation_no"
+                     <label [for]="'hasRelationWithBoardMember-' + false"
                             class="btn btn-option-select">No</label>
               </div>
+
+              @if (formGroup.get('hasRelationWithBoardMember')?.errors?.['required'] &&
+              formGroup.get('hasRelationWithBoardMember')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
        <!-- Question 4 -->
@@ -77,21 +107,31 @@
                      Are you assigned senior duties in the Kingdom or a foreign country, or are you in a senior
                      management position, or are you employed by an international organization?
               </label>
-              <div class="d-flex col-md-4">
+              <div clss="d-flex col-md-6">
                      <input type="radio"
-                            id="govtask_yes"
-                            name="govtask"
+                            formControlName="hasRelativeInHighPosition"
+                            [id]="'hasRelativeInHighPosition-' + true"
+                            [value]="true"
                             class="d-none" />
-                     <label for="govtask_yes"
+                     <label [for]="'hasRelativeInHighPosition-' + true"
                             class="btn btn-option-select">Yes</label>
 
                      <input type="radio"
-                            id="govtask_no"
-                            name="govtask"
+                            formControlName="hasRelativeInHighPosition"
+                            [id]="'hasRelativeInHighPosition-' + false"
+                            [value]="false"
                             class="d-none" />
-                     <label for="govtask_no"
+                     <label [for]="'hasRelativeInHighPosition-' + false"
                             class="btn btn-option-select">No</label>
               </div>
+
+              @if (formGroup.get('hasRelativeInHighPosition')?.errors?.['required'] &&
+              formGroup.get('hasRelativeInHighPosition')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
        <!-- Question 5 -->
@@ -100,21 +140,32 @@
                      Are you related to someone who holds high-ranking positions in the Kingdom, a foreign
                      country, or an international organization?
               </label>
-              <div class="d-flex col-md-4">
+
+              <div clss="d-flex col-md-6">
                      <input type="radio"
-                            id="relative_yes"
-                            name="relative"
+                            formControlName="holdsHighPosition"
+                            [id]="'holdsHighPosition-' + true"
+                            [value]="true"
                             class="d-none" />
-                     <label for="relative_yes"
+                     <label [for]="'holdsHighPosition-' + true"
                             class="btn btn-option-select">Yes</label>
 
                      <input type="radio"
-                            id="relative_no"
-                            name="relative"
+                            formControlName="holdsHighPosition"
+                            [id]="'holdsHighPosition-' + false"
+                            [value]="false"
                             class="d-none" />
-                     <label for="relative_no"
+                     <label [for]="'holdsHighPosition-' + false"
                             class="btn btn-option-select">No</label>
               </div>
+
+              @if (formGroup.get('holdsHighPosition')?.errors?.['required'] &&
+              formGroup.get('holdsHighPosition')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 
        <!-- Question 6 -->
@@ -122,20 +173,31 @@
               <label class="form-label">
                      Are you a US citizen?
               </label>
-              <div class="d-flex col-md-4">
+
+              <div clss="d-flex col-md-6">
                      <input type="radio"
-                            id="us_citizen_yes"
-                            name="us_citizen"
+                            formControlName="hasUSCitizenship"
+                            [id]="'hasUSCitizenship-' + true"
+                            [value]="true"
                             class="d-none" />
-                     <label for="us_citizen_yes"
+                     <label [for]="'hasUSCitizenship-' + true"
                             class="btn btn-option-select">Yes</label>
 
                      <input type="radio"
-                            id="us_citizen_no"
-                            name="us_citizen"
+                            formControlName="hasUSCitizenship"
+                            [id]="'hasUSCitizenship-' + false"
+                            [value]="false"
                             class="d-none" />
-                     <label for="us_citizen_no"
+                     <label [for]="'hasUSCitizenship-' + false"
                             class="btn btn-option-select">No</label>
               </div>
+
+              @if (formGroup.get('hasUSCitizenship')?.errors?.['required'] &&
+              formGroup.get('hasUSCitizenship')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
 </form>

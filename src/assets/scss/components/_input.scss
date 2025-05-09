@@ -91,8 +91,7 @@ select {
 
 
     &:hover {
-        background-color: var(--gray-color);
-        color: var(--white-color);
+        opacity: .8;
     }
 
     &.active,
@@ -104,7 +103,7 @@ select {
 }
 
 input[type="radio"]:checked+label.btn-option-select {
-    background-color: var(--gray-color) !important;
+    background-color: var(--primary-color) !important;
     border-color: var(--gray-color) !important;
-    color: var(--white-color) !important;
+    color: white !important;
 }
