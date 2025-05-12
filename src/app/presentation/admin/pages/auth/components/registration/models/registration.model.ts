@@ -19,6 +19,11 @@ export interface Step<T> {
 }
 
 
+export interface IndividualAddress {
+
+}
+
+
 
 export interface PersonalData {
     dateOfBirthH: string;
@@ -38,7 +43,7 @@ export interface PersonalData {
     address: AddressData;
 }
 
-interface Address {
+export interface IndividualAddress {
     additionalNumber: number;
     buildingNumber: number;
     city: string;
@@ -50,6 +55,6 @@ interface Address {
 }
 
 interface AddressData {
-    addressListList: Address[];
+    addressListList: IndividualAddress[];
     logId: number;
 }

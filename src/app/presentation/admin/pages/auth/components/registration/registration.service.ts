@@ -119,10 +119,10 @@ export class RegistrationService {
             key: 'city',
             validators: [Validators.required]
           },
-          {
-            key: 'region',
-            validators: [Validators.required]
-          },
+          // {
+          //   key: 'region',
+          //   validators: [Validators.required]
+          // },
           {
             key: 'postalCode',
             validators: [Validators.required]

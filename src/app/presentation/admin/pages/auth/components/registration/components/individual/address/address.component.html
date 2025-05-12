@@ -1,38 +1,46 @@
 <div class="d-flex flex-column gap-4">
-  <!-- ====== User Information Summary ====== -->
-  <div class="shadow-sm px-2 py-2 bg-light row g-1 rounded-3">
-    <!-- ====== Full Name ====== -->
+  <!--  User Information Summary  -->
+  <div class="shadow-sm border px-2 py-3 bg-light row g-1 rounded-3">
+    <!--  Full Name  -->
     <div class="col-4 d-flex flex-column gap-1">
       <small>Full name</small>
       <span class="fw-bold">{{step.resolvedData?.englishFirstName + ' ' + step.resolvedData?.englishLastName}}
       </span>
     </div>
-    <!-- ====== Date of birth ====== -->
+    <!--  Date of birth  -->
     <div class="col-4 d-flex flex-column gap-1">
       <small>Date of Birth </small>
       <span class="fw-bold">{{step.resolvedData?.dateOfBirthH }}</span>
     </div>
-    <!-- ====== Place of birth ====== -->
+    <!--  Place of birth  -->
     <div class="col-4 d-flex flex-column gap-1">
       <small>Place of Birth </small>
       <span class="fw-bold">{{step.resolvedData?.placeOfBirth }}</span>
     </div>
-    <!-- ====== Nationality ====== -->
+    <!--  Nationality  -->
     <div class="col-4 d-flex flex-column gap-1">
       <small>Nationality</small>
       <span class="fw-bold">سعودي</span>
     </div>
-    <!-- ====== ID Expiry Date ====== -->
+    <!--  ID Expiry Date  -->
     <div class="col-4 d-flex flex-column gap-1">
       <small>ID Expiry Date </small>
       <span class="fw-bold">{{step.resolvedData?.idExpiryDate}}</span>
     </div>
     <!-- Addresses -->
     @for (item of step.resolvedData?.address?.addressListList; track $index) {
-    <div class="col-12 d-flex flex-column gap-1">
-      <small>Address {{$index + 1}} </small>
-      <span class="fw-bold">{{item.district}}, {{item.streetName}}, {{item.city }}, {{item.buildingNumber}},
-        {{item.postCode}}</span>
+    <div class="col-12">
+      <div class="d-flex flex-column gap-1">
+        <small>Address {{$index + 1}} </small>
+        <div class="d-flex justify-content-between gap-1">
+          <span class="fw-bold">{{item.district}}, {{item.streetName}}, {{item.city }}, {{item.buildingNumber}},
+            {{item.postCode}}</span>
+          <button type="button"
+                  class="small"
+                  (click)="onSelectAddress(item)">Select this address</button>
+        </div>
+      </div>
+
     </div>
     }
   </div>
@@ -40,7 +48,7 @@
 
   <form [formGroup]="formGroup"
         class="row g-2 row  g-1">
-    <!-- ====== District Name ====== -->
+    <!--  District Name  -->
     <div class="form-group col-12 col-md-6">
       <label for="district"
              class="form-label small"> District Name</label>
@@ -56,7 +64,7 @@
       }
     </div>
 
-    <!-- ====== Street Name ====== -->
+    <!--  Street Name  -->
     <div class="form-group col-12 col-md-6">
       <label for="street"
              class="form-label small">Street Name</label>
@@ -72,7 +80,7 @@
       }
     </div>
 
-    <!-- ====== City ====== -->
+    <!--  City  -->
     <div class="form-group col-12 col-md-6">
       <label for="city"
              class="form-label small">City</label>
@@ -88,8 +96,8 @@
       }
     </div>
 
-    <!-- ====== Region ====== -->
-    <div class="form-group col-12 col-md-6">
+    <!--  Region  -->
+    <!-- <div class="form-group col-12 col-md-6">
       <label for="region"
              class="form-label small">Region</label>
       <input type="text"
@@ -102,9 +110,9 @@
         This field is required
       </small>
       }
-    </div>
+    </div> -->
 
-    <!-- ====== Postal Code ====== -->
+    <!--  Postal Code  -->
     <div class="form-group col-12 col-md-6">
       <label for="postalCode"
              class="form-label small">Postal Code</label>
@@ -120,7 +128,7 @@
       }
     </div>
 
-    <!-- ====== Additional Code ====== -->
+    <!--  Additional Code  -->
     <div class="form-group col-12 col-md-6">
       <label for="additionalCode"
              class="form-label small">Additional Code </label>
