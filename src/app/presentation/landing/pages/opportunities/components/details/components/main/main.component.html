@@ -12,109 +12,35 @@
     <div class="flex-column d-flex">
       <div class="accordion d-flex flex-column gap-3"
            id="faqAccordion">
+
+
+        @for (item of opportunity.opportunitySections; track $index) {
         <div class="accordion-item border-0 bg-transparent">
           <h2 class="accordion-header"
-              id="headingOne">
+              id="heading{{$index}}">
             <button class="accordion-button rounded gap-2 collapsed d-flex justify-content-between bg-white text-dark border shadow-none"
                     type="button"
                     data-bs-toggle="collapse"
-                    data-bs-target="#collapseOne"
-                    aria-expanded="false"
-                    aria-controls="collapseOne">
+                    [attr.data-bs-target]="'#collapse' + $index"
+                    [attr.aria-controls]="'collapse' + $index"
+                    aria-expanded="false">
               <div class="d-flex align-items-center gap-2">
                 <img src="assets/icons/details/eye.svg"
                      alt="" />
-                {{ "OPPORTUNITIES_DETAILS.OVERVIEW" | translate }}
+                {{item.title}}
               </div>
             </button>
           </h2>
-          <div id="collapseOne"
-               class="accordion-collapse collapse"
-               aria-labelledby="headingOne"
+          <div class="accordion-collapse collapse"
+               [attr.id]="'collapse' + $index"
+               [attr.aria-labelledby]="'heading' + $index"
                data-bs-parent="#faqAccordion">
             <div class="accordion-body bg-transparent border-0">
-              {{ "OPPORTUNITIES_DETAILS.OVERVIEW_CONTENT" | translate }}
+              {{ item.description }}
             </div>
           </div>
         </div>
-
-        <div class="accordion-item border-0 bg-transparent">
-          <h2 class="accordion-header"
-              id="headingTwo">
-            <button class="accordion-button rounded gap-2 collapsed d-flex justify-content-between bg-white text-dark border shadow-none"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseTwo"
-                    aria-expanded="false"
-                    aria-controls="collapseTwo">
-              <div class="d-flex align-items-center gap-2">
-                <img src="assets/icons/details/calculator.svg"
-                     alt="" />
-                {{ "OPPORTUNITIES_DETAILS.PAYMENT_SCHEDULE" | translate }}
-              </div>
-            </button>
-          </h2>
-          <div id="collapseTwo"
-               class="accordion-collapse collapse"
-               aria-labelledby="headingTwo"
-               data-bs-parent="#faqAccordion">
-            <div class="accordion-body bg-transparent border-0">
-              {{ "OPPORTUNITIES_DETAILS.DOCUMENTS" | translate }}
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item border-0 bg-transparent">
-          <h2 class="accordion-header"
-              id="headingThree">
-            <button class="accordion-button rounded gap-2 collapsed d-flex justify-content-between bg-white text-dark border shadow-none"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseThree"
-                    aria-expanded="false"
-                    aria-controls="collapseThree">
-              <div class="d-flex align-items-center gap-2">
-                <img src="assets/icons/details/Percent.svg"
-                     alt="" />
-                {{ "OPPORTUNITIES_DETAILS.FINANCIAL_INFO" | translate }}
-              </div>
-            </button>
-          </h2>
-          <div id="collapseThree"
-               class="accordion-collapse collapse"
-               aria-labelledby="headingThree"
-               data-bs-parent="#faqAccordion">
-            <div class="accordion-body bg-transparent border-0">
-              {{ "OPPORTUNITIES_DETAILS.FINANCIAL_INFO_CONTENT" | translate }}
-            </div>
-          </div>
-        </div>
-
-        <div class="accordion-item border-0 bg-transparent">
-          <h2 class="accordion-header"
-              id="headingFour">
-            <button class="accordion-button rounded gap-2 collapsed d-flex justify-content-between bg-white text-dark border shadow-none"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#collapseFour"
-                    aria-expanded="false"
-                    aria-controls="collapseFour">
-              <div class="d-flex align-items-center gap-2">
-                <img src="assets/icons/details/download.svg"
-                     alt="" />
-                {{ "OPPORTUNITIES_DETAILS.DOCUMENTS" | translate }}
-              </div>
-            </button>
-          </h2>
-          <div id="collapseFour"
-               class="accordion-collapse collapse"
-               aria-labelledby="headingFour"
-               data-bs-parent="#faqAccordion">
-            <div class="accordion-body bg-transparent border-0">
-              {{ "OPPORTUNITIES_DETAILS.DOCUMENTS_CONTENT" | translate }}
-            </div>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </div>

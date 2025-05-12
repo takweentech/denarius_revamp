@@ -18,6 +18,7 @@
                 <label class="form-label"
                        for="">Email</label>
                 <input type="text"
+                       placeholder="Enter email address..."
                        formControlName="userName"
                        class="form-control">
                 @if (form.get('userName')?.errors?.['required'] && form.get('userName')?.touched ) {
@@ -35,6 +36,7 @@
                     <div class="input-group">
                         <input type="password"
                                #password
+                               placeholder="Password"
                                formControlName="password"
                                class="form-control">
                         <span class="input-group-text">

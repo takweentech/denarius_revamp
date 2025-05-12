@@ -21,7 +21,17 @@ export interface Opportunity {
     endDate: string; // ISO date string
     programName: string;
     dividends: any[];
+    opportunitySections: Section[];
 };
+
+interface Section {
+    id: number,
+    title: string,
+    description: string,
+    isViewable: boolean,
+}
+
+
 export interface OpportunityFilter {
     pageNumber: number,
     pageSize: number,
