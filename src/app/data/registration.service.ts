@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpCustomResponse, HttpPagedResponse } from '../core/models/http';
 import { Opportunity, OpportunityFilter } from '../core/models/opportunity';
-import { IndividualCompletionDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../core/models/registration';
+import { IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../core/models/registration';
 
 @Injectable({
     providedIn: 'root'
@@ -17,12 +17,18 @@ export class RegistrationApiService {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/InitialIndividualInvestorSignUp`, data)
     }
 
-    verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto, token?: string): Observable<HttpCustomResponse<{}>> {
-        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/VerifyIndividualInvestorOTP`, data, { headers: { Authorization: token as string } })
+    verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {
+        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/VerifyIndividualInvestorOTP`, { ...data, otpId }, { headers: { Authorization: token as string } })
     }
 
 
-    completeIndividualInvestorRegestration(data: IndividualCompletionDto): Observable<HttpCustomResponse<{}>> {
-        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/CompleteIndividualInvestorRegestrationStep`, data)
+    completeIndividualInvestorRegestration(data: IndividualCompletionDto, token?: string): Observable<HttpCustomResponse<{}>> {
+        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/CompleteIndividualInvestorRegestrationStep`, data, { headers: { Authorization: token as string } })
+    }
+
+    finalizeIndividualInvestorRegestration(data: IndividualFinalizationDto, token?: string, otpId?: string, otp?: string): Observable<HttpCustomResponse<{}>> {
+        const body = { ...data };
+        delete body.otp;
+        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/FinalizeIndividualInvestorRegestration`, body, { params: { otpId: otpId as string, otp: otp as string }, headers: { Authorization: token as string } })
     }
 }

@@ -14,6 +14,10 @@ export interface IndividualOtpSignUpDto {
     token?: string
 }
 
+export interface IndividualFinalizationDto extends IndividualCompletionDto {
+    otp?: string
+}
+
 
 export interface IndividualCompletionDto {
     idNumber: string,

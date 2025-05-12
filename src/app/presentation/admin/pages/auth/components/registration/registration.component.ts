@@ -20,7 +20,8 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   private toastService = inject(ToastService);
   private readonly fb = inject(FormBuilder);
   steps = this.registrationService.getStepByType(this.activatedRoute.snapshot.params['type']);
-
+  tempToken!: string;
+  otpId!: string;
   @ViewChild('stepperRef', { static: false }) stepperRef!: ElementRef;
   private stepperInstance!: Stepper;
   currentIndex = signal<number>(1);
@@ -51,7 +52,31 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
   onNext() {
     const currentStep = this.steps[this.currentIndex() - 1];
-    const stepFormVal = this.signUpForm.controls[currentStep.key].value;
+    let stepFormVal = this.signUpForm.controls[currentStep.key].value;
+
+    // Collect form values from disclosure
+    if (currentStep.key === 'disclosure') {
+      stepFormVal = {
+        ...this.signUpForm.controls['information'].value,
+        ...this.signUpForm.controls['address'].value,
+        ...this.signUpForm.controls['financial'].value,
+        ...this.signUpForm.controls['investment'].value,
+        ...this.signUpForm.controls['disclosure'].value,
+      }
+    }
+
+    // Collect form values from absher
+    if (currentStep.key === 'absher') {
+      stepFormVal = {
+        ...this.signUpForm.controls[currentStep.key].value,
+        ...this.signUpForm.controls['information'].value,
+        ...this.signUpForm.controls['address'].value,
+        ...this.signUpForm.controls['financial'].value,
+        ...this.signUpForm.controls['investment'].value,
+        ...this.signUpForm.controls['disclosure'].value,
+      }
+    }
+
 
     //Check if step isn't valid
     if (this.signUpForm.controls[currentStep.key].invalid) {
@@ -68,7 +93,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
     this.loading.set(true);
 
-    currentStep.apiHandler!(stepFormVal)?.pipe(
+    currentStep.apiHandler!(stepFormVal, this.tempToken, this.otpId, this.signUpForm.value)?.pipe(
       takeUntil(this.destroy$),
       finalize(() => this.loading.set(false))
     ).subscribe({
@@ -76,10 +101,10 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         if (response.status !== 200) {
           this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
         } else {
-          // Bind OTP id
+          // Store OTP id and temporary token
           if (currentStep.key === 'information') {
-            (this.signUpForm.controls['otp'] as FormGroup).controls['otpId'].setValue(response.data['otpId']);
-            (this.signUpForm.controls['otp'] as FormGroup).controls['token'].setValue(response.data['token'])
+            this.tempToken = response.data['token'];
+            this.otpId = response.data['otpId'];
           }
 
           //Next

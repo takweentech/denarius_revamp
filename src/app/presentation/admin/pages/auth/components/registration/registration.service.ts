@@ -10,8 +10,8 @@ import { FinancialComponent } from './components/individual/financial/financial.
 import { AbsherComponent } from './components/shared/absher/absher.component';
 import { BusinessComponent } from './components/company/business/business.component';
 import { RegistrationApiService } from '../../../../../../data/registration.service';
-import { IndividualCompletionDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
-import { Observable, of, tap } from 'rxjs';
+import { IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
+import { Observable, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
 
@@ -94,18 +94,12 @@ export class RegistrationService {
         title: 'Register an individual investor account',
         description: 'Verify mobile number',
         component: OtpComponent,
-        apiHandler: (data: IndividualOtpSignUpDto) => this.verifyIndividualInvestorOTP(data),
+        apiHandler: (data: IndividualOtpSignUpDto, token?: string, otpId?: string) => this.verifyIndividualInvestorOTP(data, token, otpId),
         controls: [
-          {
-            key: 'token',
-          },
           {
             key: 'otp',
             validators: [Validators.required, Validators.minLength(4)]
           },
-          {
-            key: 'otpId',
-          }
         ],
         resolvedData: {}
       },
@@ -121,7 +115,8 @@ export class RegistrationService {
           },
           {
             key: 'district',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: 1
           },
           {
             key: 'city',
@@ -210,7 +205,7 @@ export class RegistrationService {
           },
           {
             key: 'beneficiaryIdNumber',
-            validators: [Validators.required]
+            value: 0
           },
         ]
       },
@@ -251,13 +246,20 @@ export class RegistrationService {
 
           },
         ],
-        apiHandler: (data: IndividualCompletionDto) => this.completeIndividualInvestorRegestration(data),
+        apiHandler: (data: IndividualCompletionDto, token?: string, otpId?: string) => this.completeIndividualInvestorRegestration(data, token),
       },
       {
         key: 'absher',
         title: 'Data verification',
         description: 'We have sent a code to your Absher registered number.',
         component: AbsherComponent,
+        controls: [
+          {
+            key: 'otp',
+            validators: [Validators.required]
+          }
+        ],
+        apiHandler: (data: IndividualFinalizationDto, token?: string, otpId?: string) => this.finalizeIndividualInvestorRegestration(data, token, otpId)
       },
     ],
     company: [
@@ -361,8 +363,8 @@ export class RegistrationService {
     return this.registrationApiService.initialIndividualInvestorSignUp(data)
   }
 
-  verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto): Observable<HttpCustomResponse<{}>> {
-    return this.registrationApiService.verifyIndividualInvestorOTP({ otp: data.otp, otpId: data.otpId }, data.token).pipe(
+  verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {
+    return this.registrationApiService.verifyIndividualInvestorOTP(data, token, otpId).pipe(
       tap((response) => {
         const step = this.steps['individual'].find(item => item.key === 'address');
         if (step) {
@@ -372,8 +374,13 @@ export class RegistrationService {
     );
   }
 
-  completeIndividualInvestorRegestration(data: IndividualCompletionDto) {
-    return this.registrationApiService.completeIndividualInvestorRegestration(data)
+  completeIndividualInvestorRegestration(data: IndividualCompletionDto, token?: string) {
+    return this.registrationApiService.completeIndividualInvestorRegestration(data, token)
+  }
+
+
+  finalizeIndividualInvestorRegestration(data: IndividualFinalizationDto, token?: string, otpId?: string) {
+    return this.registrationApiService.finalizeIndividualInvestorRegestration(data, token, otpId, data.otp)
   }
 
 

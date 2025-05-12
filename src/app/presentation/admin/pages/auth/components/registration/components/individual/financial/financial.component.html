@@ -96,7 +96,7 @@
               <div class="bg-body-tertiary p-2 py-3 rounded row mx-auto gx-2">
                      <div class=" col-sm-6 ">
                             <label class="small">Job title</label>
-                            <input type="text"
+                            <input type="number"
                                    formControlName="jobTitle"
                                    class="form-control" />
                             @if (formGroup.get('jobTitle')?.errors?.['required'] &&
@@ -109,7 +109,7 @@
                      </div>
                      <div class="col-sm-6">
                             <label class="small">Years of service</label>
-                            <input type="text"
+                            <input type="number"
                                    formControlName="yearsOfExperience"
                                    class="form-control" />
                             @if (formGroup.get('yearsOfExperience')?.errors?.['required'] &&

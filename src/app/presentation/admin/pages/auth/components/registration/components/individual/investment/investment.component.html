@@ -111,7 +111,7 @@
                      <div class="d-flex flex-column flex-md-row">
                             <input type="radio"
                                    [id]="'isBeneficiary-' + true"
-                                   [value]="true"
+                                   [value]="0"
                                    formControlName="isBeneficiary"
                                    class="d-none" />
                             <label [for]="'isBeneficiary-' + true"
@@ -119,7 +119,7 @@
 
                             <input type="radio"
                                    [id]="'isBeneficiary-' + false"
-                                   [value]="false"
+                                   [value]="1"
                                    formControlName="isBeneficiary"
                                    class="d-none" />
                             <label [for]="'isBeneficiary-' + false"
@@ -137,7 +137,7 @@
               <!--Beneficiary ID number-->
               <div class="form-group col-12 form-group col-md-6">
                      <label class="form-label">Beneficiary ID number</label>
-                     <input type="text"
+                     <input type="number"
                             class="form-control"
                             formControlName="beneficiaryIdNumber"
                             placeholder="0123456789" />
