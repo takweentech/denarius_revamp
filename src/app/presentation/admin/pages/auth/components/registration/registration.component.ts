@@ -8,6 +8,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
+import { TokenService } from '../../../../../../core/services/token.service';
 
 @Component({
   selector: 'app-registration',
@@ -18,6 +19,7 @@ import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
   private readonly registrationService = inject(RegistrationService);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly tokenService = inject(TokenService);
   private readonly router = inject(Router);
   private toastService = inject(ToastService);
   private readonly fb = inject(FormBuilder);
@@ -116,6 +118,8 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
           // Authenticate user 
           if (currentStep.key === 'absher') {
+            this.tokenService.setToken(response.data?.token);
+            this.tokenService.setUser(response.data?.profileInfo);
             this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT])
           }
 

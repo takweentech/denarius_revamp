@@ -17,6 +17,7 @@ import { environment } from "../../../../../environments/environment";
 export class HeaderComponent {
   private offcanvasService = inject(NgbOffcanvas);
   private configService = inject(ConfigService);
+
   navbarToggler: boolean = false;
   sticky: boolean = false;
   WEB_ROUTES = WEB_ROUTES;
@@ -31,4 +32,5 @@ export class HeaderComponent {
   openSidebar(content: TemplateRef<any>) {
     this.offcanvasService.open(content, { position: 'bottom', panelClass: 'vh-30 rounded-top-1' });
   }
+
 }

@@ -63,7 +63,7 @@ export class RegistrationService {
           {
             key: 'phoneNumber',
             validators: [Validators.required],
-            value: '966512345678'
+            value: '512345678'
           },
           {
             key: 'email',
@@ -363,7 +363,7 @@ export class RegistrationService {
 
   // Individual handlers
   initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
-    return this.registrationApiService.initialIndividualInvestorSignUp(data)
+    return this.registrationApiService.initialIndividualInvestorSignUp({ ...data, phoneNumber: '966' + data.phoneNumber })
   }
 
   verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {

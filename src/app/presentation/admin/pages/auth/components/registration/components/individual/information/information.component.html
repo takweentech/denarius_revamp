@@ -38,10 +38,25 @@
   <!-- Phone number -->
   <div class="form-group col-12 col-md-6">
     <label class="form-label"> Phone number <span class="text-danger">*</span></label>
-    <input type="tel"
-           class="form-control"
-           formControlName="phoneNumber"
-           placeholder="+966 5xxxxxxxx" />
+    <div class="input-group">
+
+
+      @if (translationService.language === 'en') {
+      <span class="input-group-text"
+            dir="ltr">+966</span>
+      }
+
+      <input type="tel"
+             class="form-control"
+             formControlName="phoneNumber"
+             placeholder="+966 5xxxxxxxx" />
+
+      @if (translationService.language === 'ar') {
+      <span class="input-group-text"
+            dir="ltr">+966</span>
+      }
+    </div>
+
     @if (formGroup.get('phoneNumber')?.errors?.['required'] && formGroup.get('phoneNumber')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
@@ -73,24 +88,52 @@
   <!-- Password -->
   <div class="form-group col-12 col-md-6">
     <label class="form-label"> Password <span class="text-danger">*</span></label>
-    <input type="password"
-           class="form-control"
-           formControlName="password"
-           placeholder="" />
+    <div class="input-group">
+      <input type="password"
+             formControlName="password"
+             #password
+             class="form-control"
+             id="password">
+
+      <span class="input-group-text">
+        @if (password.type === 'password') {
+        <i (click)="password.type = 'text'"
+           class="fa-solid fa-eye text-primary cursor-pointer"></i>
+        }@else {
+        <i (click)="password.type = 'password'"
+           class="fa-solid fa-eye-slash text-primary cursor-pointer"></i>
+        }
+      </span>
+    </div>
+
     @if (formGroup.get('password')?.errors?.['required'] && formGroup.get('password')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
       This field is required
     </small>
     }
+
   </div>
   <!-- Password confirmation -->
   <div class="form-group col-12 col-md-6">
     <label class="form-label"> Password confirmation <span class="text-danger">*</span></label>
-    <input type="password"
-           formControlName="confirmPassword"
-           class="form-control"
-           placeholder="" />
+    <div class="input-group">
+      <input type="password"
+             formControlName="confirmPassword"
+             #confirmPassword
+             class="form-control"
+             id="password">
+
+      <span class="input-group-text">
+        @if (confirmPassword.type === 'password') {
+        <i (click)="confirmPassword.type = 'text'"
+           class="fa-solid fa-eye text-primary cursor-pointer"></i>
+        }@else {
+        <i (click)="confirmPassword.type = 'password'"
+           class="fa-solid fa-eye-slash text-primary cursor-pointer"></i>
+        }
+      </span>
+    </div>
     @if (formGroup.get('confirmPassword')?.errors?.['required'] && formGroup.get('confirmPassword')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
