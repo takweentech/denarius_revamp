@@ -13,37 +13,37 @@ interface SidebarItem {
 export class SidebarService {
   private items: SidebarItem[] = [
     {
-      label: 'ملخص الحساب',
+      label: 'Account Summary',
       icon: 'fa-solid fa-user',
       route: '/' + WEB_ROUTES.DASHBOARD.ROOT,
     },
     {
-      label: 'المعاملات المالية',
+      label: 'Financial transactions',
       icon: 'fa-solid fa-user',
       route: '/profile-management/transactions',
     },
     {
-      label: 'الملف الشخصي',
+      label: 'Profile',
       icon: 'fa-solid fa-user',
       route: '/profile-management/profile',
     },
     {
-      label: 'الاستثمارات',
+      label: 'Investments',
       icon: 'fa-solid fa-user',
       route: '/profile-management/investments',
     },
     {
-      label: 'جدول الأرباح',
+      label: 'Earnings',
       icon: 'fa-solid fa-user',
       route: '/profile-management/profit',
     },
     {
-      label: 'المحفظة الاستثمارية',
+      label: 'Wallet',
       icon: 'fa-solid fa-user',
       route: '/profile-management/wallet',
     },
     {
-      label: 'الإعدادات',
+      label: 'Settings',
       icon: 'fa-solid fa-user',
       route: '/profile-management/settings',
     },

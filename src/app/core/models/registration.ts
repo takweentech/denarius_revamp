@@ -8,7 +8,24 @@ export interface IndividualInitialSignUpDto {
     terms: boolean
 }
 
+export interface CompanyInitialSignUpDto {
+    commercialRegistrationNumber: string,
+    authorizedPersonId: string,
+    authorizedPersonBirthDate: string,
+    mobileNumber: string,
+    email: string,
+    password: string,
+    confirmPassword: string,
+    acceptTerms: boolean
+}
+
 export interface IndividualOtpSignUpDto {
+    otp: string,
+    otpId: string,
+    token?: string
+}
+
+export interface CompanyOtpSignUpDto {
     otp: string,
     otpId: string,
     token?: string

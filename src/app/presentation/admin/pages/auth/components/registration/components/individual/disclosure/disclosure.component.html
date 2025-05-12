@@ -6,7 +6,7 @@
               <label class="form-label">
                      Have you worked in the financial sector within the past five years?
               </label>
-              <div class="d-flex col-md-6">
+              <div class="d-flex">
                      <input type="radio"
                             formControlName="workedInFinancialSector"
                             [id]="'workedInFinancialSector-' + true"
@@ -40,7 +40,7 @@
 
               </label>
 
-              <div class="d-flex col-md-6">
+              <div class="d-flex">
                      <input type="radio"
                             formControlName="isBoardMember"
                             [id]="'isBoardMember-' + true"
@@ -74,7 +74,7 @@
 
               </label>
 
-              <div class="d-flex col-md-6">
+              <div class="d-flex">
                      <input type="radio"
                             formControlName="hasRelationWithBoardMember"
                             [id]="'hasRelationWithBoardMember-' + true"
@@ -107,22 +107,25 @@
                      Are you assigned senior duties in the Kingdom or a foreign country, or are you in a senior
                      management position, or are you employed by an international organization?
               </label>
-              <div clss="d-flex col-md-6">
-                     <input type="radio"
-                            formControlName="hasRelativeInHighPosition"
-                            [id]="'hasRelativeInHighPosition-' + true"
-                            [value]="0"
-                            class="d-none" />
-                     <label [for]="'hasRelativeInHighPosition-' + true"
-                            class="btn btn-option-select">Yes</label>
-
-                     <input type="radio"
-                            formControlName="hasRelativeInHighPosition"
-                            [id]="'hasRelativeInHighPosition-' + false"
-                            [value]="1"
-                            class="d-none" />
-                     <label [for]="'hasRelativeInHighPosition-' + false"
-                            class="btn btn-option-select">No</label>
+              <div clss="d-flex">
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="hasRelativeInHighPosition"
+                                   [id]="'hasRelativeInHighPosition-' + true"
+                                   [value]="0"
+                                   class="d-none" />
+                            <label [for]="'hasRelativeInHighPosition-' + true"
+                                   class="btn btn-option-select">Yes</label>
+                     </div>
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="hasRelativeInHighPosition"
+                                   [id]="'hasRelativeInHighPosition-' + false"
+                                   [value]="1"
+                                   class="d-none" />
+                            <label [for]="'hasRelativeInHighPosition-' + false"
+                                   class="btn btn-option-select">No</label>
+                     </div>
               </div>
 
               @if (formGroup.get('hasRelativeInHighPosition')?.errors?.['required'] &&
@@ -141,22 +144,26 @@
                      country, or an international organization?
               </label>
 
-              <div clss="d-flex col-md-6">
-                     <input type="radio"
-                            formControlName="holdsHighPosition"
-                            [id]="'holdsHighPosition-' + true"
-                            [value]="0"
-                            class="d-none" />
-                     <label [for]="'holdsHighPosition-' + true"
-                            class="btn btn-option-select">Yes</label>
+              <div clss="d-flex">
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="holdsHighPosition"
+                                   [id]="'holdsHighPosition-' + true"
+                                   [value]="0"
+                                   class="d-none" />
+                            <label [for]="'holdsHighPosition-' + true"
+                                   class="btn btn-option-select">Yes</label>
+                     </div>
 
-                     <input type="radio"
-                            formControlName="holdsHighPosition"
-                            [id]="'holdsHighPosition-' + false"
-                            [value]="1"
-                            class="d-none" />
-                     <label [for]="'holdsHighPosition-' + false"
-                            class="btn btn-option-select">No</label>
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="holdsHighPosition"
+                                   [id]="'holdsHighPosition-' + false"
+                                   [value]="1"
+                                   class="d-none" />
+                            <label [for]="'holdsHighPosition-' + false"
+                                   class="btn btn-option-select">No</label>
+                     </div>
               </div>
 
               @if (formGroup.get('holdsHighPosition')?.errors?.['required'] &&
@@ -174,22 +181,26 @@
                      Are you a US citizen?
               </label>
 
-              <div clss="d-flex col-md-6">
-                     <input type="radio"
-                            formControlName="hasUSCitizenship"
-                            [id]="'hasUSCitizenship-' + true"
-                            [value]="0"
-                            class="d-none" />
-                     <label [for]="'hasUSCitizenship-' + true"
-                            class="btn btn-option-select">Yes</label>
+              <div clss="d-flex">
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="hasUSCitizenship"
+                                   [id]="'hasUSCitizenship-' + true"
+                                   [value]="0"
+                                   class="d-none" />
+                            <label [for]="'hasUSCitizenship-' + true"
+                                   class="btn btn-option-select">Yes</label>
 
-                     <input type="radio"
-                            formControlName="hasUSCitizenship"
-                            [id]="'hasUSCitizenship-' + false"
-                            [value]="1"
-                            class="d-none" />
-                     <label [for]="'hasUSCitizenship-' + false"
-                            class="btn btn-option-select">No</label>
+                     </div>
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="hasUSCitizenship"
+                                   [id]="'hasUSCitizenship-' + false"
+                                   [value]="1"
+                                   class="d-none" />
+                            <label [for]="'hasUSCitizenship-' + false"
+                                   class="btn btn-option-select">No</label>
+                     </div>
               </div>
 
               @if (formGroup.get('hasUSCitizenship')?.errors?.['required'] &&

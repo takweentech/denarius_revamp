@@ -1,12 +1,13 @@
 import { AfterViewInit, Component, ElementRef, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { RegistrationService } from './registration.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Stepper from 'bs-stepper';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
+import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 
 @Component({
   selector: 'app-registration',
@@ -17,6 +18,7 @@ import { ToastService } from '../../../../../../shared/components/toast/toast.se
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
   private readonly registrationService = inject(RegistrationService);
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private toastService = inject(ToastService);
   private readonly fb = inject(FormBuilder);
   steps = this.registrationService.getStepByType(this.activatedRoute.snapshot.params['type']);
@@ -110,6 +112,12 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
           //Next
           this.stepperInstance.next();
           this.currentIndex.set(this.currentIndex() + 1);
+
+
+          // Authenticate user 
+          if (currentStep.key === 'absher') {
+            this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT])
+          }
 
 
         }

@@ -90,6 +90,13 @@ export const routes: Routes = [
     path: "",
     component: AdminLayoutComponent,
     children: [
+      {
+        path: WEB_ROUTES.DASHBOARD.ROOT,
+        loadComponent: () =>
+          import(
+            "./presentation/admin/pages/dashboard/dashboard.component"
+          ).then((m) => m.DashboardComponent),
+      },
     ]
   },
 

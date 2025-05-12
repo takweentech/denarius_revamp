@@ -10,7 +10,7 @@ import { FinancialComponent } from './components/individual/financial/financial.
 import { AbsherComponent } from './components/shared/absher/absher.component';
 import { BusinessComponent } from './components/company/business/business.component';
 import { RegistrationApiService } from '../../../../../../data/registration.service';
-import { IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
+import { CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
 import { Observable, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
@@ -34,9 +34,6 @@ function minimumAgeValidator(minAge: number) {
     return age >= minAge ? null : { minimumAge: { requiredAge: minAge, actualAge: age } };
   };
 }
-
-
-
 
 
 @Injectable({
@@ -76,12 +73,12 @@ export class RegistrationService {
           {
             key: 'password',
             validators: [Validators.required],
-            value: 'email@email.com'
+            value: 'QWE47ab3c2@@'
           },
           {
             key: 'confirmPassword',
             validators: [Validators.required],
-            value: 'email@email.com'
+            value: 'QWE47ab3c2@@'
           },
           {
             key: 'terms',
@@ -271,11 +268,14 @@ export class RegistrationService {
         controls: [
           {
             key: 'commercialRegistrationNumber',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: '1234567891'
+
           },
           {
             key: 'authorizedPersonId',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: '1234567891'
           },
           {
             key: 'authorizedPersonBirthDate',
@@ -283,48 +283,50 @@ export class RegistrationService {
           },
           {
             key: 'mobileNumber',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: '966512345678'
           },
           {
             key: 'email',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: 'email@email.com'
+
           },
           {
             key: 'password',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: 'email@email.com'
           },
           {
             key: 'confirmPassword',
-            validators: [Validators.required]
+            validators: [Validators.required],
+            value: 'email@email.com'
           },
           {
             key: 'acceptTerms',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
-        ]
+        ],
+        apiHandler: (data: CompanyInitialSignUpDto, token?: string, otpId?: string) => this.initialCompanyInvestorSignUp(data)
       },
       {
         key: 'otp',
         title: 'Register an individual investor account',
         description: 'Verify mobile number',
         component: OtpComponent,
+        apiHandler: (data: CompanyOtpSignUpDto, token?: string, otpId?: string) => this.verifyCompanyInvestorOTP(data, token, otpId),
         controls: [
-          {
-            key: 'token',
-          },
           {
             key: 'otp',
             validators: [Validators.required, Validators.minLength(4)]
           },
-          {
-            key: 'otpId',
-          }
         ],
+        resolvedData: {}
       },
       {
         key: 'business',
-        title: 'مرحباً شركة تكوين تك',
-        description: 'معلومات الشركة والشخص المفوض',
+        title: 'Business Infromation',
+        description: 'Tell us more about your business',
         component: BusinessComponent,
         controls: [
           {
@@ -359,6 +361,7 @@ export class RegistrationService {
     return this.steps[type];
   }
 
+  // Individual handlers
   initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
     return this.registrationApiService.initialIndividualInvestorSignUp(data)
   }
@@ -381,6 +384,23 @@ export class RegistrationService {
 
   finalizeIndividualInvestorRegestration(data: IndividualFinalizationDto, token?: string, otpId?: string) {
     return this.registrationApiService.finalizeIndividualInvestorRegestration(data, token, otpId, data.otp)
+  }
+
+
+  // Company handlers
+  initialCompanyInvestorSignUp(data: CompanyInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
+    return this.registrationApiService.initialCompanyInvestorSignUp(data)
+  }
+
+  verifyCompanyInvestorOTP(data: CompanyOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {
+    return this.registrationApiService.verifyCompanyInvestorOTP(data, token, otpId).pipe(
+      tap((response) => {
+        const step = this.steps['individual'].find(item => item.key === 'business');
+        if (step) {
+          step.resolvedData = response.data;
+        }
+      })
+    );
   }
 
 
