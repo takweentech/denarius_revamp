@@ -13,8 +13,8 @@ interface SidebarItem {
 export class SidebarService {
   private items: SidebarItem[] = [
     {
-      label: 'Account Summary',
-      icon: 'fa-solid fa-user',
+      label: 'Dashboard',
+      icon: 'fa-solid fa-home',
       route: '/' + WEB_ROUTES.DASHBOARD.ROOT,
     },
     {
