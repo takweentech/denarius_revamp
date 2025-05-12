@@ -10,26 +10,68 @@
             <p>Your investment journey begins here. With simple steps, you can create an investment account and achieve
                 your goals.</p>
         </div>
-        <div class="w-100 d-flex flex-column gap-4">
+        <form [formGroup]="form"
+              class="w-100 d-flex flex-column gap-4"
+              (submit)="onSignIn()">
             <!-- Email -->
             <div class="form-group">
                 <label class="form-label"
                        for="">Email</label>
                 <input type="text"
+                       formControlName="userName"
                        class="form-control">
+                @if (form.get('userName')?.errors?.['required'] && form.get('userName')?.touched ) {
+                <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    This field is required
+                </small>
+                }
             </div>
             <!-- Password -->
             <div class="d-flex flex-column gap-3">
                 <div class="form-group">
                     <label class="form-label"
                            for="">Password</label>
-                    <input type="password"
-                           class="form-control">
+                    <div class="input-group">
+                        <input type="password"
+                               #password
+                               formControlName="password"
+                               class="form-control">
+                        <span class="input-group-text">
+                            @if (password.type === 'password') {
+                            <i (click)="password.type = 'text'"
+                               class="fa-solid fa-eye text-primary cursor-pointer"></i>
+                            }@else {
+                            <i (click)="password.type = 'password'"
+                               class="fa-solid fa-eye-slash text-primary cursor-pointer"></i>
+                            }
+                        </span>
+                    </div>
+
+                    @if (form.get('password')?.errors?.['required'] && form.get('password')?.touched ) {
+                    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                        <i class="fa-solid fa-circle-exclamation"></i>
+                        This field is required
+                    </small>
+                    }
                 </div>
-                <a href=""> Forgot password?</a>
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <input type="checkbox"
+                               id="terms"
+                               formControlName="rememberMe"
+                               class="m-0" />
+                        <label for="terms"
+                               class="form-label mb-0">
+                            Remember me
+                        </label>
+                    </div>
+                    <a href=""
+                       class="text-primary"> Forgot password?</a>
+                </div>
             </div>
-            <button (click)="onSignIn()"
+            <button [disabled]="loading()"
                     class="btn btn-primary p-3"> Log in</button>
-        </div>
+        </form>
     </div>
 </div>

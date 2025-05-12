@@ -1,3 +1,10 @@
+export interface SignInDto {
+    userName: string,
+    password: string,
+    rememberMe: boolean
+}
+
+
 export interface IndividualInitialSignUpDto {
     idNumber: string,
     birhtdate: string,

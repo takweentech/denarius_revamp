@@ -4,7 +4,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpCustomResponse, HttpPagedResponse } from '../core/models/http';
 import { Opportunity, OpportunityFilter } from '../core/models/opportunity';
-import { CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../core/models/registration';
+import { CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto, SignInDto } from '../core/models/registration';
 
 @Injectable({
     providedIn: 'root'
@@ -12,6 +12,11 @@ import { CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, 
 export class RegistrationApiService {
     private readonly http = inject(HttpClient);
     private readonly baseUrl = 'Accounts';
+
+
+    signIn(data: SignInDto): Observable<HttpCustomResponse<{}>> {
+        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/ValidateLogin`, data)
+    }
 
     initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/InitialIndividualInvestorSignUp`, data)
