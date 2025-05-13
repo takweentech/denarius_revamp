@@ -256,7 +256,8 @@ export class RegistrationService {
             validators: [Validators.required]
           }
         ],
-        apiHandler: (data: IndividualFinalizationDto, token?: string, otpId?: string) => this.finalizeIndividualInvestorRegestration(data, token, otpId)
+        apiHandler: (data: IndividualFinalizationDto, token?: string, otpId?: string) => this.finalizeIndividualInvestorRegestration(data, token, otpId),
+        nextButtonText: 'Finish Registration'
       },
     ],
     company: [

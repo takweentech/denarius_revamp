@@ -2,8 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { HttpCustomResponse, HttpPagedResponse } from '../core/models/http';
-import { Opportunity, OpportunityFilter } from '../core/models/opportunity';
+import { HttpCustomResponse } from '../core/models/http';
 import { CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto, SignInDto } from '../core/models/registration';
 
 @Injectable({

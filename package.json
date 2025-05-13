@@ -25,6 +25,7 @@
     "aos": "^2.3.4",
     "bootstrap": "^5.3.3",
     "bs-stepper": "^1.7.0",
+    "ng-apexcharts": "^1.15.0",
     "ng-otp-input": "^2.0.7",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",

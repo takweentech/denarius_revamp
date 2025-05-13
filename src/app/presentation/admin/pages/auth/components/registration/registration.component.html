@@ -60,7 +60,7 @@
                         [disabled]=" loading()"
                         (click)="onNext()"
                         class="btn btn-primary p-3 w-100">
-                  Next
+                  {{item.nextButtonText || 'Next'}}
                 </button>
               </div>
             </div>

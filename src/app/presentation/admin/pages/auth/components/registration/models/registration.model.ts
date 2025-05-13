@@ -16,6 +16,7 @@ export interface Step<T> {
     component?: any;
     apiHandler?: (stepData: any, token?: string, otpId?: string, formData?: any) => Observable<HttpCustomResponse<{}>>;
     resolvedData?: T;
+    nextButtonText?: string;
 }
 
 
