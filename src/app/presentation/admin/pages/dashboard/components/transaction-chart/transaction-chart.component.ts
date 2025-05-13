@@ -32,7 +32,7 @@ export class TransactionChartComponent {
         width: 380,
         type: "pie"
       },
-      labels: ["Team A", "Team B", "Team C", "Team D", "Team E"],
+      labels: ["Transaction A", "Transaction B", "Transaction C", "Transaction D", "Transaction E"],
       responsive: [
         {
           breakpoint: 480,

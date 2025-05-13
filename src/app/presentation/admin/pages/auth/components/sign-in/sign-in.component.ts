@@ -7,6 +7,7 @@ import { RegistrationApiService } from '../../../../../../data/registration.serv
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
+import { ProfileService } from '../../../../../../data/profile.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -17,6 +18,7 @@ import { ToastService } from '../../../../../../shared/components/toast/toast.se
 export class SignInComponent extends BaseComponent {
   WEB_ROUTES = WEB_ROUTES;
   private readonly registrationService = inject(RegistrationApiService);
+  private readonly profileService = inject(ProfileService);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
   private readonly tokenService = inject(TokenService);
@@ -41,8 +43,7 @@ export class SignInComponent extends BaseComponent {
             return
           }
           this.tokenService.setToken(response.data?.token);
-          this.tokenService.setUser(response.data?.profileInfo);
-          this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
+          this.getUserProfile();
         },
         error: (err) => {
 
@@ -51,6 +52,21 @@ export class SignInComponent extends BaseComponent {
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  getUserProfile(): void {
+    this.profileService.getUserProfile().pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loading.set(false)),
+    ).subscribe({
+      next: (response: any) => {
+        this.tokenService.setUser(response.data?.profileInfo);
+        this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
+      },
+      error: (err) => {
+
+      }
+    })
   }
 
 }

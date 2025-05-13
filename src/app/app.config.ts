@@ -1,10 +1,11 @@
 import { APP_INITIALIZER, ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ConfigService } from './core/services/config.service';
 import { StrapiTranslateLoader } from './core/strapi/strapi-loader';
+import { authInterceptor } from './core/interceptors/token.interceptor';
 
 
 export function httpLoaderFactory() {
@@ -23,11 +24,12 @@ export const appConfig: ApplicationConfig = {
       deps: [ConfigService],
       multi: true,
     },
+
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes, withInMemoryScrolling({
       scrollPositionRestoration: "enabled",
     })),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([authInterceptor])),
 
     importProvidersFrom([TranslateModule.forRoot({
       loader: {

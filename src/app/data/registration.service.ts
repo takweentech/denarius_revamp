@@ -4,7 +4,6 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpCustomResponse } from '../core/models/http';
 import { CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto, SignInDto } from '../core/models/registration';
-
 @Injectable({
     providedIn: 'root'
 })
@@ -16,6 +15,7 @@ export class RegistrationApiService {
     signIn(data: SignInDto): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/ValidateLogin`, data)
     }
+
 
     initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/InitialIndividualInvestorSignUp`, data)
