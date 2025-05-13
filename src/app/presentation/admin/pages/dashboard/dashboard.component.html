@@ -1,10 +1,10 @@
 <main class="d-flex flex-column gap-5">
     <!-- Information -->
     <section>
-        <div class="row mx-auto">
-            <div class="col-8 d-flex flex-column gap-3">
+        <div class="row g-4">
+            <div class="col-lg-12 col-xl-8 d-flex flex-column gap-3">
                 <h5 class="card-title text-primary">Personal Information</h5>
-                <div class="card bg-white py-3 px-3 row flex-row h-100">
+                <div class="card bg-white py-3 px-3 row mx-auto w-100 flex-row h-100">
                     <div class="d-flex col-2 flex-column gap-2 align-items-center justify-content-center">
                         <div class="initials bg-primary d-flex justify-content-center align-items-center">
                             <h3>{{user.name | initials}}</h3>
@@ -15,40 +15,37 @@
 
                     <div class="col-10">
                         <div class="row g-2">
-                            <div class="col-6 d-flex flex-column">
+                            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column">
                                 <small>Fullname</small>
                                 <span class="text-lg fw-bold">{{user.name}}</span>
                             </div>
-                            <div class="col-6 d-flex flex-column">
+                            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column">
                                 <small>Phone Number</small>
                                 <span class="text-lg fw-bold">{{user.phoneNumber || 'N/A'}}</span>
                             </div>
-                            <div class="col-6 d-flex flex-column">
+                            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column">
                                 <small>Email</small>
                                 <span class="text-lg fw-bold">{{user.email || 'N/A'}}</span>
                             </div>
-                            <div class="col-6 d-flex flex-column">
+                            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column">
                                 <small>ID number</small>
                                 <span class="text-lg fw-bold">{{user.idNumber}}</span>
                             </div>
-                            <div class="col-6 d-flex flex-column">
-                                <small>ID number</small>
-                                <span class="text-lg fw-bold">{{user.idNumber}}</span>
-                            </div>
-                            <div class="col-6 d-flex flex-column">
-                                <small>ID number</small>
-                                <span class="text-lg fw-bold">{{user.idNumber}}</span>
+                            <div class="col-12 col-md-6 col-lg-4 d-flex flex-column">
+                                <small>Birth date</small>
+                                <span
+                                      class="text-lg fw-bold">{{user.birthDay}}/{{user.birthMonth}}/{{user.birthYear}}</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-4 d-flex flex-column gap-3 ">
+            <div class="col-lg-12 col-xl-4 d-flex flex-column gap-3 ">
                 <h5 class="card-title text-primary">Wallet</h5>
                 <div class="card bg-primary text-white h-100 py-3 px-3 d-flex gap-2">
                     <div class="col-6 d-flex flex-column">
                         <small>Balance</small>
-                        <span class="text-lg fw-bold">{{user.totalStocksFund}} <img
+                        <span class="text-lg fw-bold">{{user.ibanbalance}} <img
                                  src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt=""></span>
                     </div>
@@ -75,8 +72,8 @@
 
     <!-- Stats -->
     <section>
-        <div class="row">
-            <div class="col-3">
+        <div class="row g-2">
+            <div class="col-md-12 col-lg-6 col-xl-3">
                 <div class="card stats-card  bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
                     <div class="icon success">
                         <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
@@ -90,7 +87,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-md-12 col-lg-6 col-xl-3">
                 <div class="card stats-card  bg-white py-3 px-3 d-flex flex-row  align-items-center gap-3 h-100">
                     <div class="icon danger">
                         <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
@@ -104,7 +101,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-md-12 col-lg-6 col-xl-3">
                 <div class="card stats-card  bg-white py-3 px-3 d-flex flex-row  align-items-center gap-3 h-100">
                     <div class="icon primary">
                         <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
@@ -118,7 +115,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-md-12 col-lg-6 col-xl-3">
                 <div class="card stats-card  bg-white py-3 px-3 d-flex flex-row  align-items-center gap-3 h-100">
                     <div class="icon warning">
                         <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
@@ -137,8 +134,8 @@
 
     <!-- Transactions -->
     <section>
-        <div class="row">
-            <div class="col-4 d-flex flex-column gap-3">
+        <div class="row g-4">
+            <div class="col-md-12 col-lg-3 col-xl-4 d-flex flex-column gap-3">
                 <h5 class="card-title text-primary">Transactions Distrubution</h5>
 
                 <div class="card bg-white">
@@ -148,7 +145,7 @@
                 </div>
 
             </div>
-            <div class="col-8 d-flex flex-column gap-3">
+            <div class="col-md-12 col-lg-9 col-xl-8 d-flex flex-column gap-3">
                 <h5 class="card-title text-primary">Recent Transactions</h5>
 
                 <div class="card bg-white h-100 p-2">

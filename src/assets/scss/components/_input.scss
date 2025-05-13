@@ -81,7 +81,7 @@ select {
     padding: 12px 20px;
     font-size: 1rem;
     color: var(--black-color);
-    border-color: #e5e7eb;
+    border: 1px solid #2E404D;
     border-radius: 0;
     text-align: center;
     cursor: pointer;
@@ -95,6 +95,9 @@ select {
 
     &:hover {
         opacity: .8;
+        border: 1px solid !important;
+        border-color: #2E404D !important;
+
     }
 
     &.active,

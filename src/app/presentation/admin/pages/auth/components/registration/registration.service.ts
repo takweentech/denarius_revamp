@@ -53,32 +53,32 @@ export class RegistrationService {
           {
             key: 'idNumber',
             validators: [Validators.required],
-            value: '1234567891'
+            // value: '1234567891'
           },
           {
             key: 'birhtdate',
             validators: [Validators.required, minimumAgeValidator(18)],
-            value: new Date()
+            // value: new Date()
           },
           {
             key: 'phoneNumber',
             validators: [Validators.required],
-            value: '512345678'
+            // value: '512345678'
           },
           {
             key: 'email',
             validators: [Validators.required, Validators.email],
-            value: 'email@email.com'
+            // value: 'email@email.com'
           },
           {
             key: 'password',
             validators: [Validators.required],
-            value: 'QWE47ab3c2@@'
+            // value: 'QWE47ab3c2@@'
           },
           {
             key: 'confirmPassword',
             validators: [Validators.required],
-            value: 'QWE47ab3c2@@'
+            // value: 'QWE47ab3c2@@'
           },
           {
             key: 'terms',
@@ -285,7 +285,7 @@ export class RegistrationService {
           {
             key: 'mobileNumber',
             validators: [Validators.required],
-            value: '966512345678'
+            value: '512345678'
           },
           {
             key: 'email',
@@ -390,7 +390,7 @@ export class RegistrationService {
 
   // Company handlers
   initialCompanyInvestorSignUp(data: CompanyInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
-    return this.registrationApiService.initialCompanyInvestorSignUp(data)
+    return this.registrationApiService.initialCompanyInvestorSignUp({ ...data, mobileNumber: '966' + data.mobileNumber })
   }
 
   verifyCompanyInvestorOTP(data: CompanyOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {
