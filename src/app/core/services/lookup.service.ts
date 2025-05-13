@@ -1,9 +1,36 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
+import { Lookup } from '../models/lookup';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LookupService {
+    private readonly http = inject(HttpClient);
+    private readonly baseUrl = 'Lookup';
+
+    getNetWorth(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/GetNetWorth`)
+    }
+
+    getAnnualIncome(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/GetAnnualIncome`)
+    }
+
+    getEducationLevel(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/EducationLevel`)
+    }
+
+    getEmploymentStatus(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/EmploymentStatus`)
+    }
+
+    getMartialStatus(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/MaritalStatus`)
+    }
+
     getMartialStatusList() {
         return [
             {

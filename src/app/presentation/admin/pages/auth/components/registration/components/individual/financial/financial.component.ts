@@ -1,7 +1,10 @@
-import { AfterViewInit, Component, inject, Input } from '@angular/core';
+import { AfterViewInit, Component, inject, Input, OnInit, signal } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Step } from '../../../models/registration.model';
 import { LookupService } from '../../../../../../../../../core/services/lookup.service';
+import { BaseComponent } from '../../../../../../../../../core/base/base.component';
+import { Lookup } from '../../../../../../../../../core/models/lookup';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-financial',
@@ -9,13 +12,92 @@ import { LookupService } from '../../../../../../../../../core/services/lookup.s
   templateUrl: './financial.component.html',
   styleUrl: './financial.component.scss',
 })
-export class FinancialComponent {
+export class FinancialComponent extends BaseComponent implements OnInit {
+
   private readonly lookupService = inject(LookupService);
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
-  martialStatusList = this.lookupService.getMartialStatusList();
-  educationLevelList = this.lookupService.getEducationLevelList();
-  employmentStatusList = this.lookupService.getEmploymentStatusList();
-  annualIncomeList = this.lookupService.getAnnualIncomeList();
-  netWorthList = this.lookupService.getEstimatedNetWorthList();
+  martialStatusList = signal<Lookup[]>([]);
+  employmentStatusList = signal<Lookup[]>([]);
+  educationLevelList = signal<Lookup[]>([]);
+  annualIncomeList = signal<Lookup[]>([]);
+  netWorthList = signal<Lookup[]>([]);
+
+
+  ngOnInit(): void {
+    this.getNetWorth();
+    this.getAnnualIncome();
+    this.getEducationLevel();
+    this.getEmploymentStatus();
+    this.getMartialStatus();
+  }
+
+  getMartialStatus(): void {
+    this.lookupService.getMartialStatus().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (response) => {
+        this.martialStatusList.set(response);
+      },
+      error: (error) => {
+
+      }
+    })
+  }
+
+  getEmploymentStatus(): void {
+    this.lookupService.getEmploymentStatus().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (response) => {
+        this.employmentStatusList.set(response);
+      },
+      error: (error) => {
+
+      }
+    })
+  }
+
+  getEducationLevel(): void {
+    this.lookupService.getEducationLevel().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (response) => {
+        this.educationLevelList.set(response);
+      },
+      error: (error) => {
+
+      }
+    })
+  }
+
+  getAnnualIncome(): void {
+    this.lookupService.getAnnualIncome().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (response) => {
+        this.annualIncomeList.set(response);
+      },
+      error: (error) => {
+
+      }
+    })
+  }
+
+
+  getNetWorth(): void {
+    {
+      this.lookupService.getNetWorth().pipe(
+        takeUntil(this.destroy$)
+      ).subscribe({
+        next: (response) => {
+          this.netWorthList.set(response);
+        },
+        error: (error) => {
+
+        }
+      })
+    }
+  }
+
 }

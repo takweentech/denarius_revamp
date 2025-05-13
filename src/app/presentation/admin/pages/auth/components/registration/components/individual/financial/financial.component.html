@@ -5,15 +5,15 @@
               <label class="form-label">Marital status
               </label>
               <div class="d-flex flex-column flex-md-row">
-                     @for (item of martialStatusList; track $index) {
+                     @for (item of martialStatusList(); track $index) {
                      <div class="col">
                             <input type="radio"
-                                   [id]="'maritalStatus-' + item.value"
+                                   [id]="'maritalStatus-' + item.id"
                                    formControlName="maritalStatus"
-                                   [value]="item.value"
+                                   [value]="item.id"
                                    class="d-none" />
-                            <label [for]="'maritalStatus-' + item.value"
-                                   class="btn btn-option-select">{{item.label}} </label>
+                            <label [for]="'maritalStatus-' + item.id"
+                                   class="btn btn-option-select">{{item.englishName}} </label>
                      </div>
                      }
               </div>
@@ -43,16 +43,16 @@
        <!-- Education Level -->
        <div class="col-12 form-group">
               <label class="form-label">Specify educational level</label>
-              <div class="d-flex flex-column flex-md-row">
-                     @for (item of educationLevelList; track $index) {
+              <div class="d-flex flex-column">
+                     @for (item of educationLevelList(); track $index) {
                      <div class="col d-flex p-0">
                             <input type="radio"
-                                   [id]="'educationLevel-' + item.value"
+                                   [id]="'educationLevel-' + item.id"
                                    formControlName="educationLevel"
-                                   [value]="item.value"
+                                   [value]="item.id"
                                    class="d-none" />
-                            <label [for]="'educationLevel-' + item.value"
-                                   class="btn btn-option-select">{{item.label}}</label>
+                            <label [for]="'educationLevel-' + item.id"
+                                   class="btn btn-option-select">{{item.englishName}}</label>
                      </div>
                      }
               </div>
@@ -68,16 +68,16 @@
        <!-- Job Status -->
        <div class="col-12">
               <label class="form-label">Employment status</label>
-              <div class="d-flex flex-column flex-md-row">
-                     @for (item of employmentStatusList; track $index) {
+              <div class="d-flex flex-column">
+                     @for (item of employmentStatusList(); track $index) {
                      <div class="col d-flex p-0">
                             <input type="radio"
-                                   [id]="'employmentStatus-' + item.value"
-                                   [value]="item.value"
+                                   [id]="'employmentStatus-' + item.id"
+                                   [value]="item.id"
                                    formControlName="employmentStatus"
                                    class="d-none" />
-                            <label [for]="'employmentStatus-' + item.value"
-                                   class="btn btn-option-select">{{item.label}}</label>
+                            <label [for]="'employmentStatus-' + item.id"
+                                   class="btn btn-option-select">{{item.englishName}}</label>
                      </div>
                      }
               </div>
@@ -127,15 +127,15 @@
        <div class="col-12 mt-2 form-group">
               <label class="form-label">Annual income? (in riyals)</label>
               <div class="d-flex flex-column">
-                     @for (item of annualIncomeList; track $index) {
+                     @for (item of annualIncomeList(); track $index) {
                      <div class="col p-0">
                             <input type="radio"
-                                   [id]="'annualIncome-' + item.value"
-                                   [value]="item.value"
+                                   [id]="'annualIncome-' + item.id"
+                                   [value]="item.id"
                                    formControlName="annualIncome"
                                    class="d-none" />
-                            <label [for]="'annualIncome-' + item.value"
-                                   class="btn btn-option-select">{{item.label}} </label>
+                            <label [for]="'annualIncome-' + item.id"
+                                   class="btn btn-option-select">{{item.englishName}} </label>
                      </div>
                      }
               </div>
@@ -154,15 +154,15 @@
                      Estimated net worth (excluding house) - (in Saudi Riyals)
               </label>
               <div class="d-flex flex-column">
-                     @for (item of netWorthList; track $index) {
+                     @for (item of netWorthList(); track $index) {
                      <div class="col-12 p-0">
                             <input type="radio"
-                                   [id]="'netWealth-' + item.value"
+                                   [id]="'netWealth-' + item.id"
                                    formControlName="netWealth"
-                                   [value]="item.value"
+                                   [value]="item.id"
                                    class="d-none" />
-                            <label [for]="'netWealth-' + item.value"
-                                   class="btn btn-option-select">{{item.label}}</label>
+                            <label [for]="'netWealth-' + item.id"
+                                   class="btn btn-option-select">{{item.englishName}}</label>
                      </div>
                      }
               </div>

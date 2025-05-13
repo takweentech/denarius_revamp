@@ -83,7 +83,7 @@
        <!--What are your investment objectives?-->
        <div class="col-12 form-group">
               <label class="form-label">What are your investment objectives?</label>
-              <div class="d-flex flex-column flex-md-row">
+              <div class="d-flex flex-column">
                      @for (item of investmentObjectivesList; track $index) {
                      <div class="col">
                             <input type="radio"
@@ -104,50 +104,50 @@
               </small>
               }
        </div>
-       <div class="row">
-              <!--Are you the real beneficiary of the account?-->
-              <div class="col-12 form-group col-md-6">
-                     <label class="form-label">Are you the real beneficiary of the account?</label>
-                     <div class="d-flex flex-column flex-md-row">
-                            <input type="radio"
-                                   [id]="'isBeneficiary-' + true"
-                                   [value]="0"
-                                   formControlName="isBeneficiary"
-                                   class="d-none" />
-                            <label [for]="'isBeneficiary-' + true"
-                                   class="btn btn-option-select">Yes</label>
+       <!--Are you the real beneficiary of the account?-->
+       <div class="col-12 form-group">
+              <label class="form-label">Are you the real beneficiary of the account?</label>
+              <div class="d-flex flex-column flex-md-row">
+                     <input type="radio"
+                            [id]="'isBeneficiary-' + true"
+                            [value]="1"
+                            formControlName="isBeneficiary"
+                            class="d-none" />
+                     <label [for]="'isBeneficiary-' + true"
+                            class="btn btn-option-select">Yes</label>
 
-                            <input type="radio"
-                                   [id]="'isBeneficiary-' + false"
-                                   [value]="1"
-                                   formControlName="isBeneficiary"
-                                   class="d-none" />
-                            <label [for]="'isBeneficiary-' + false"
-                                   class="btn btn-option-select">No</label>
-                     </div>
-                     @if (formGroup.get('isBeneficiary')?.errors?.['required'] &&
-                     formGroup.get('isBeneficiary')?.touched ) {
-                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                            This field is required
-                     </small>
-                     }
+                     <input type="radio"
+                            [id]="'isBeneficiary-' + false"
+                            [value]="0"
+                            formControlName="isBeneficiary"
+                            class="d-none" />
+                     <label [for]="'isBeneficiary-' + false"
+                            class="btn btn-option-select">No</label>
               </div>
-
-              <!--Beneficiary ID number-->
-              <div class="form-group col-12 form-group col-md-6">
-                     <label class="form-label">Beneficiary ID number</label>
-                     <input type="number"
-                            class="form-control"
-                            formControlName="beneficiaryIdNumber"
-                            placeholder="0123456789" />
-                     @if (formGroup.get('beneficiaryIdNumber')?.errors?.['required'] &&
-                     formGroup.get('beneficiaryIdNumber')?.touched ) {
-                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                            This field is required
-                     </small>
-                     }
-              </div>
+              @if (formGroup.get('isBeneficiary')?.errors?.['required'] &&
+              formGroup.get('isBeneficiary')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
        </div>
+
+       <!--Beneficiary ID number-->
+       @if (formGroup.get('isBeneficiary')?.value === 1) {
+       <div class="form-group col-12 form-group">
+              <label class="form-label">Beneficiary ID number</label>
+              <input type="number"
+                     class="form-control"
+                     formControlName="beneficiaryIdNumber"
+                     placeholder="0123456789" />
+              @if (formGroup.get('beneficiaryIdNumber')?.errors?.['required'] &&
+              formGroup.get('beneficiaryIdNumber')?.touched ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                     <i class="fa-solid fa-circle-exclamation"></i>
+                     This field is required
+              </small>
+              }
+       </div>
+       }
 </form>
