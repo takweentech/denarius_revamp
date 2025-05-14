@@ -19,32 +19,27 @@ export class SidebarService {
     },
     {
       label: 'Financial transactions',
-      icon: 'fa-solid fa-user',
+      icon: 'fa-solid fa-list',
       route: '/profile-management/transactions',
     },
     {
-      label: 'Profile',
-      icon: 'fa-solid fa-user',
-      route: '/profile-management/profile',
-    },
-    {
       label: 'Investments',
-      icon: 'fa-solid fa-user',
+      icon: 'fa-solid fa-line-chart',
       route: '/profile-management/investments',
     },
     {
       label: 'Earnings',
-      icon: 'fa-solid fa-user',
+      icon: 'fa-solid fa-dollar',
       route: '/profile-management/profit',
     },
     {
       label: 'Wallet',
-      icon: 'fa-solid fa-user',
+      icon: 'fa-solid fa-wallet',
       route: '/profile-management/wallet',
     },
     {
       label: 'Settings',
-      icon: 'fa-solid fa-user',
+      icon: 'fa-solid fa-cog',
       route: '/profile-management/settings',
     },
   ]

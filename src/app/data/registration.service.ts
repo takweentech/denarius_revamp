@@ -13,7 +13,7 @@ export class RegistrationApiService {
 
 
     signIn(data: SignInDto): Observable<HttpCustomResponse<{}>> {
-        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/ValidateLogin`, data)
+        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/AdminLogin`, data)
     }
 
 

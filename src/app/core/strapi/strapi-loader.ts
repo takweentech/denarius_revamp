@@ -9,7 +9,7 @@ export class StrapiTranslateLoader implements TranslateLoader {
 
     getTranslation(lang: string): Observable<any> {
         const url = `${environment.cmsUrl}/content?locale=${lang}`;
-        return this.http.get<any>(url, { headers: { 'Authorization': '' } }).pipe(
+        return this.http.get<any>(url).pipe(
             map(response => {
                 return response.data.CONTENT;
             })

@@ -14,3 +14,37 @@
         }
     }
 }
+
+
+.backoffice-table {
+    thead tr {
+        border-bottom: 1px solid #F2F4F7;
+
+
+        th {
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 140%;
+            white-space: nowrap;
+            padding: .5rem;
+        }
+    }
+
+    tbody tr {
+        &:not(:last-child) {
+            border-bottom: 1px solid #F2F4F7;
+        }
+
+        &:last-child {
+            border-color: transparent;
+        }
+
+        td {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+            white-space: nowrap;
+            padding: 1rem .5rem;
+        }
+    }
+}

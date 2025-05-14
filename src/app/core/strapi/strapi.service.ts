@@ -16,7 +16,6 @@ export class StrapiService {
 
   getContentByPage(pageName: string, lang?: string) {
     return this.http.get(environment.cmsUrl + pageName).pipe(
-      tap(data => console.log(data)),
       map((data: any) => data.data)
     )
   }

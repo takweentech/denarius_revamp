@@ -1,23 +1,24 @@
 import { Component, ViewChild } from '@angular/core';
-
 import { ChartComponent, NgApexchartsModule } from "ng-apexcharts";
-
 import {
   ApexNonAxisChartSeries,
   ApexResponsive,
-  ApexChart
+  ApexChart,
+  ApexLegend
 } from "ng-apexcharts";
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
   chart: ApexChart;
-  responsive: ApexResponsive[];
   labels: any;
+  responsive: ApexResponsive[];
+  legend: ApexLegend;
+  dataLabels: ApexDataLabels
 };
-
 
 @Component({
   selector: 'app-transaction-chart',
+  standalone: true,
   imports: [NgApexchartsModule],
   templateUrl: './transaction-chart.component.html',
   styleUrl: './transaction-chart.component.scss'
@@ -25,6 +26,7 @@ export type ChartOptions = {
 export class TransactionChartComponent {
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: ChartOptions;
+
   constructor() {
     this.chartOptions = {
       series: [44, 55, 13, 43, 22],
@@ -33,19 +35,25 @@ export class TransactionChartComponent {
         type: "pie"
       },
       labels: ["Transaction A", "Transaction B", "Transaction C", "Transaction D", "Transaction E"],
+      legend: {
+        show: false
+      },
+      dataLabels: {
+        enabled: false
+      },
       responsive: [
         {
-          breakpoint: 480,
+          breakpoint: 2000,
           options: {
             chart: {
-              width: 200
+              width: 400
             },
             legend: {
-              position: "bottom"
+              show: false // ⬅ Make sure it's also false in responsive settings
             }
           }
         }
-      ],
+      ]
     };
   }
 }

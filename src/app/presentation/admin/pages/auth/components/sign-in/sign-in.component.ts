@@ -42,7 +42,7 @@ export class SignInComponent extends BaseComponent {
             this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
             return
           }
-          this.tokenService.setToken(response.data?.token);
+          this.tokenService.setToken(response.data);
           this.getUserProfile();
         },
         error: (err) => {
@@ -60,7 +60,7 @@ export class SignInComponent extends BaseComponent {
       finalize(() => this.loading.set(false)),
     ).subscribe({
       next: (response: any) => {
-        this.tokenService.setUser(response.data?.profileInfo);
+        this.tokenService.setUser(response.data);
         this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
       },
       error: (err) => {

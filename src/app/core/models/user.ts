@@ -69,4 +69,46 @@ export interface User {
     id: number;
     isComplete: boolean | null;
     completePercent: number;
-} 
+}
+
+
+
+export interface UserProfileData {
+    userProfile: UserProfile;
+    investmentAccount: InvestmentAccount;
+    financialSummary: FinancialSummary;
+    recentTransactions: any[];
+    financialDistribution: any;
+    investmentPerformance: InvestmentPerformance;
+}
+
+export interface UserProfile {
+    fullName: string;
+    profileImageUrl: string;
+    accountType: string;
+    nationalId: string;
+    nationality: string | null;
+    startDate: string;
+    expiryDate: string;
+}
+
+export interface InvestmentAccount {
+    bankName: string;
+    accountHolderName: string;
+    accountNumber: string | null;
+    iban: string | null;
+    balance: number;
+    openingDate: string;
+    expiryDate: string;
+}
+
+export interface FinancialSummary {
+    totalDeposits: number;
+    totalInvestments: number;
+    totalProfits: number;
+    expectedProfits: number;
+}
+
+export interface InvestmentPerformance {
+    performanceData: any[];
+}
