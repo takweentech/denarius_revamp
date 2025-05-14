@@ -10,7 +10,7 @@ import { FinancialComponent } from './components/individual/financial/financial.
 import { AbsherComponent } from './components/shared/absher/absher.component';
 import { BusinessComponent } from './components/company/business/business.component';
 import { RegistrationApiService } from '../../../../../../data/registration.service';
-import { CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
+import { CompanyFinalizationDto, CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
 import { Observable, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
@@ -296,12 +296,12 @@ export class RegistrationService {
           {
             key: 'password',
             validators: [Validators.required],
-            value: 'email@email.com'
+            value: 'QWE47ab3c2@@'
           },
           {
             key: 'confirmPassword',
             validators: [Validators.required],
-            value: 'email@email.com'
+            value: 'QWE47ab3c2@@'
           },
           {
             key: 'acceptTerms',
@@ -346,13 +346,28 @@ export class RegistrationService {
             key: 'riskTolerance',
             validators: [Validators.required]
           },
-        ]
+          {
+            key: 'establishmentContract',
+            validators: [Validators.required],
+          },
+        ],
+        resolvedData: {}
+
       },
       {
         key: 'absher',
-        title: 'التحقق من البيانات',
-        description: 'قمنا بإرسال رمز على رقمك المسجل في آبشر',
+        title: 'Data verification',
+        description: 'We have sent a code to your Absher registered number.',
+        apiHandler: (data: CompanyFinalizationDto, token?: string, otpId?: string) => this.finalizeCompanyInvestorRegestration(data, token, otpId),
         component: AbsherComponent,
+        controls: [
+          {
+            key: 'otp',
+            validators: [Validators.required]
+          }
+        ],
+        nextButtonText: 'Finish Registration'
+
       },
     ],
   };
@@ -396,12 +411,17 @@ export class RegistrationService {
   verifyCompanyInvestorOTP(data: CompanyOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {
     return this.registrationApiService.verifyCompanyInvestorOTP(data, token, otpId).pipe(
       tap((response) => {
-        const step = this.steps['individual'].find(item => item.key === 'business');
+        const step = this.steps['company'].find(item => item.key === 'business');
         if (step) {
           step.resolvedData = response.data;
         }
       })
     );
+  }
+
+
+  finalizeCompanyInvestorRegestration(data: CompanyFinalizationDto, token?: string, otpId?: string) {
+    return this.registrationApiService.finalizeCompanyInvestorRegestration(data, token, otpId, data.otp)
   }
 
 

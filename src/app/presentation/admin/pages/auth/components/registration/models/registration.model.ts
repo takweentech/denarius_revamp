@@ -24,8 +24,6 @@ export interface IndividualAddress {
 
 }
 
-
-
 export interface PersonalData {
     dateOfBirthH: string;
     englishFirstName: string;
@@ -42,6 +40,45 @@ export interface PersonalData {
     logId: number;
     placeOfBirth: string;
     address: AddressData;
+}
+
+
+export interface CompanyData {
+    crName: string;
+    crNumber: number;
+    crEntityNumber: number;
+    issueDate: string; // ISO string
+    expiryDate: string; // ISO string
+    crMainNumber: number | null;
+    parties: {
+        name: string;
+        birthDate: string; // "YYYY/MM/DD"
+        sharesCount: number;
+        gross: number;
+        identity: {
+            id: string;
+            type: string;
+        };
+        relation: {
+            id: number;
+            name: string;
+        };
+        nationality: {
+            id: string;
+            name: string;
+        };
+    }[];
+    businessType: {
+        id: string;
+        name: string;
+    };
+    status: string | null;
+    cancellation: string | null;
+    address: string | null;
+    location: string | null;
+    company: string | null;
+    capital: number | null;
+    activities: any | null;
 }
 
 export interface IndividualAddress {

@@ -23,8 +23,14 @@ export interface CompanyInitialSignUpDto {
     email: string,
     password: string,
     confirmPassword: string,
-    acceptTerms: boolean
+    acceptTerms?: boolean
 }
+
+export interface CompanyFinalizationDto extends CompanyInitialSignUpDto {
+    otp?: string
+
+}
+
 
 export interface IndividualOtpSignUpDto {
     otp: string,
@@ -41,6 +47,7 @@ export interface CompanyOtpSignUpDto {
 export interface IndividualFinalizationDto extends IndividualCompletionDto {
     otp?: string
 }
+
 
 
 export interface IndividualCompletionDto {

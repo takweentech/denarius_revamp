@@ -10,6 +10,7 @@ import { ToastService } from '../../../../../../shared/components/toast/toast.se
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { ProfileService } from '../../../../../../data/profile.service';
+import { InvestorType } from '../../../../../../core/enums/investor.enums';
 
 @Component({
   selector: 'app-registration',
@@ -71,8 +72,8 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
       }
     }
 
-    // Collect form values from absher
-    if (currentStep.key === 'absher') {
+    // Collect individual form values for last step
+    if (currentStep.key === 'absher' && this.activatedRoute.snapshot.params['type'] === InvestorType.INDIVIDUAL) {
       stepFormVal = {
         ...this.signUpForm.controls[currentStep.key].value,
         ...this.signUpForm.controls['information'].value,
@@ -80,6 +81,15 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         ...this.signUpForm.controls['financial'].value,
         ...this.signUpForm.controls['investment'].value,
         ...this.signUpForm.controls['disclosure'].value,
+      }
+    }
+
+    // Collect company form values for last step
+    if (currentStep.key === 'absher' && this.activatedRoute.snapshot.params['type'] === InvestorType.COMPANY) {
+      stepFormVal = {
+        ...this.signUpForm.controls[currentStep.key].value,
+        ...this.signUpForm.controls['business'].value,
+        ...this.signUpForm.controls['information'].value
       }
     }
 

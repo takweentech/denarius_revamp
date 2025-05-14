@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpCustomResponse } from '../core/models/http';
-import { CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto, SignInDto } from '../core/models/registration';
+import { CompanyFinalizationDto, CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto, SignInDto } from '../core/models/registration';
 @Injectable({
     providedIn: 'root'
 })
@@ -16,7 +16,7 @@ export class RegistrationApiService {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/AdminLogin`, data)
     }
 
-
+    // Individual
     initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/InitialIndividualInvestorSignUp`, data)
     }
@@ -24,7 +24,6 @@ export class RegistrationApiService {
     verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/VerifyIndividualInvestorOTP`, { ...data, otpId }, { headers: { Authorization: token as string } })
     }
-
 
     completeIndividualInvestorRegestration(data: IndividualCompletionDto, token?: string): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/CompleteIndividualInvestorRegestrationStep`, data, { headers: { Authorization: token as string } })
@@ -36,7 +35,7 @@ export class RegistrationApiService {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/FinalizeIndividualInvestorRegestration`, body, { params: { otpId: otpId as string, otp: otp as string }, headers: { Authorization: token as string } })
     }
 
-
+    // Company
     initialCompanyInvestorSignUp(data: CompanyInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/InitialCompanyInvestorSignUp`, data)
     }
@@ -44,4 +43,12 @@ export class RegistrationApiService {
     verifyCompanyInvestorOTP(data: CompanyOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/VerifyOTPCompnay`, { ...data, otpId }, { headers: { Authorization: token as string } })
     }
+
+    finalizeCompanyInvestorRegestration(data: CompanyFinalizationDto, token?: string, otpId?: string, otp?: string): Observable<HttpCustomResponse<{}>> {
+        const body = { ...data };
+        delete body.otp;
+        delete body.acceptTerms;
+        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/FinalizeCompanyRegestration`, body, { params: { otpId: otpId as string, otp: otp as string }, headers: { Authorization: token as string } })
+    }
+
 }
