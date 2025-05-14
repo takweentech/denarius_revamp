@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 
 const EXCLUDED_URLS = [
     environment.cmsUrl,
+    '/Accounts/',
     '/public/' // wildcard-style match example
 ];
 

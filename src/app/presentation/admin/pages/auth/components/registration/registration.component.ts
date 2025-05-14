@@ -121,6 +121,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
           // Authenticate user 
           if (currentStep.key === 'absher') {
             this.tokenService.setToken(response.data?.token);
+            this.getUserProfile();
           }
 
 
