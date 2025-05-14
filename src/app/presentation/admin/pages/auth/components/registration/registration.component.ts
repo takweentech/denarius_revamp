@@ -9,6 +9,7 @@ import { BaseComponent } from '../../../../../../core/base/base.component';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { TokenService } from '../../../../../../core/services/token.service';
+import { ProfileService } from '../../../../../../data/profile.service';
 
 @Component({
   selector: 'app-registration',
@@ -20,6 +21,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   private readonly registrationService = inject(RegistrationService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
+  private readonly profileService = inject(ProfileService);
   private readonly router = inject(Router);
   private toastService = inject(ToastService);
   private readonly fb = inject(FormBuilder);
@@ -119,8 +121,6 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
           // Authenticate user 
           if (currentStep.key === 'absher') {
             this.tokenService.setToken(response.data?.token);
-            this.tokenService.setUser(response.data?.profileInfo);
-            this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT])
           }
 
 
@@ -134,6 +134,21 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   onPrev() {
     this.stepperInstance.previous();
     this.currentIndex.set(this.currentIndex() - 1);
+  }
+
+  getUserProfile(): void {
+    this.profileService.getUserProfile().pipe(
+      takeUntil(this.destroy$),
+      finalize(() => this.loading.set(false)),
+    ).subscribe({
+      next: (response) => {
+        this.tokenService.setUser(response.data);
+        this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
+      },
+      error: (err) => {
+
+      }
+    })
   }
 
 

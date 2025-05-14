@@ -59,7 +59,7 @@ export class SignInComponent extends BaseComponent {
       takeUntil(this.destroy$),
       finalize(() => this.loading.set(false)),
     ).subscribe({
-      next: (response: any) => {
+      next: (response) => {
         this.tokenService.setUser(response.data);
         this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
       },
