@@ -6,11 +6,15 @@
         thead th {
             background-color: var(--primary-color) !important;
             font-weight: 500;
-            font-size: 16px;
+            font-size: 14px;
             line-height: 140%;
             color: #FFFFFF;
             white-space: nowrap;
+        }
 
+        tbody tr {
+            font-weight: 500;
+            font-size: 14px;
         }
     }
 }

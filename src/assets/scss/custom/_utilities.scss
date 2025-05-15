@@ -20,5 +20,9 @@ $utilities: (
     responsive: true,
     values: (100: 100vh,
       30: 30vh,
-      70: 70vh))
+      70: 70vh)),
+  'height': (property: height,
+    class: h,
+    responsive: true,
+    values: (fit: fit-content)),
 );

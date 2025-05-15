@@ -20,9 +20,21 @@ export interface Opportunity {
     startDate: string; // ISO date string
     endDate: string; // ISO date string
     programName: string;
-    dividends: any[];
+    dividends: Dividend[];
     opportunitySections: Section[];
 };
+
+interface Dividend {
+    id: number
+    paymentDate: string
+    initialBalance: number
+    nominalValue: number
+    earn: number
+    agencyFee: number
+    vat: number
+    net: number
+    opportunityId: number
+}
 
 interface Section {
     id: number,
