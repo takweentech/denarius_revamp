@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BrandingComponent } from "./components/branding/branding.component";
 import { RouterOutlet } from '@angular/router';
+import { TranslationService } from '../../../../core/services/translation.service';
 
 @Component({
   selector: 'app-auth',
@@ -9,5 +10,8 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './auth.component.scss'
 })
 export class AuthComponent {
-
+  translationService = inject(TranslationService);
+  onLangChange(): void {
+    this.translationService.onLangChange();
+  }
 }

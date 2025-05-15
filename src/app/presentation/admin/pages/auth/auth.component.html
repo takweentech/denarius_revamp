@@ -1,8 +1,14 @@
 <div class="row g-0 h-100">
-  <div class="d-none d-lg-flex col-12 col-lg-5">
+  <div class="d-none d-lg-flex col-12 col-lg-5 position-sticky top-0 h-100">
     <app-branding></app-branding>
   </div>
   <div class="col-12 col-lg-7 max-height overflow-y-scroll ">
+    <a href="javascript:void(0)"
+       (click)="onLangChange()"
+       class="text-decoration-none cursor-pointer text-primary position-absolute top-1 end-1">
+      <i class="fa-solid fa-globe"></i>
+      {{translationService.language === 'en' ? 'Arabic' : 'English'}}
+    </a>
     <div class="col-md-10 col-lg-10 h-100  col-xl-8 content-container d-flex align-items-center mx-auto">
       <router-outlet></router-outlet>
     </div>
