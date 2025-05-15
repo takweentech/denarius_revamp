@@ -270,13 +270,11 @@ export class RegistrationService {
           {
             key: 'commercialRegistrationNumber',
             validators: [Validators.required],
-            value: '1234567891'
-
           },
           {
             key: 'authorizedPersonId',
             validators: [Validators.required],
-            value: '1234567891'
+            value: '1011254777'
           },
           {
             key: 'authorizedPersonBirthDate',
@@ -285,23 +283,18 @@ export class RegistrationService {
           {
             key: 'mobileNumber',
             validators: [Validators.required],
-            value: '512345678'
           },
           {
             key: 'email',
             validators: [Validators.required],
-            value: 'email@email.com'
-
           },
           {
             key: 'password',
             validators: [Validators.required],
-            value: 'QWE47ab3c2@@'
           },
           {
             key: 'confirmPassword',
             validators: [Validators.required],
-            value: 'QWE47ab3c2@@'
           },
           {
             key: 'acceptTerms',

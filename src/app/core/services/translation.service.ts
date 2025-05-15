@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 export class TranslationService {
   defaultLanguage!: string;
   public language!: string;
-  public languageKey = 'preferredLanguage';
+  public languageKey = 'sharikekPreferredLanguage';
 
   constructor(private translateService: TranslateService) {
   }
