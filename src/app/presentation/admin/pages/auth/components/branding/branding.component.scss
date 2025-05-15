@@ -1,27 +1,43 @@
 :host {
   display: block;
   width: 100%;
-}
 
-.background-container {
-  background-image: url("/assets/images/branding.jpg");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
+  .background-container {
+    background-image: url("/assets/images/branding.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
 
-.overlay {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: var(--primary-color);
-  z-index: 1;
-  opacity: .8;
-}
 
-.content {
-  position: relative;
-  z-index: 2;
+  img {
+    width: 200px;
+    height: auto;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary-color);
+    z-index: 1;
+    opacity: .8;
+  }
+
+  .content {
+    position: relative;
+    z-index: 2;
+  }
+
+  p {
+    max-width: 600px;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 38px;
+    color: #FFFFFF;
+
+
+  }
 }

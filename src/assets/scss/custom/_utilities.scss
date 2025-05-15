@@ -24,5 +24,5 @@ $utilities: (
   'height': (property: height,
     class: h,
     responsive: true,
-    values: (fit: fit-content)),
+    values: (fit: fit-content, 100: 100%)),
 );
