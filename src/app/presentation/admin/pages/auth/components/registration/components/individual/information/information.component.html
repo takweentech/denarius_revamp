@@ -2,7 +2,8 @@
       class="row d-flex gy-4  col-12 justify-content-center">
   <!-- Identity number -->
   <div class="form-group col-12">
-    <label class="form-label"> ID number <span class="text-danger">*</span></label>
+    <label class="form-label"> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.FORM.ID_NUMBER.LABEL' | translate}}
+      <span class="text-danger">*</span></label>
     <input type="number"
            class="form-control"
            inputmode="numeric"
@@ -17,7 +18,8 @@
   </div>
   <!-- Date of birth -->
   <div class="form-group col-12 col-md-6">
-    <label class="form-label">Date of Birth<span class="text-danger">*</span></label>
+    <label class="form-label">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.FORM.BIRTH_DATE.LABEL' |
+      translate}}<span class="text-danger">*</span></label>
     <input type="date"
            class="form-control"
            formControlName="birhtdate"
@@ -37,7 +39,8 @@
   </div>
   <!-- Phone number -->
   <div class="form-group col-12 col-md-6">
-    <label class="form-label"> Phone number <span class="text-danger">*</span></label>
+    <label class="form-label"> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.FORM.PHONE_NUMBER.LABEL' |
+      translate}} <span class="text-danger">*</span></label>
     <div class="input-group">
 
 
@@ -66,12 +69,12 @@
   </div>
   <!-- Email -->
   <div class="form-group col-12">
-    <label class="form-label"> Email <span class="text-danger">*</span></label>
+    <label class="form-label"> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.FORM.EMAIL.LABEL' | translate}}
+      <span class="text-danger">*</span></label>
     <input dir="ltr"
            type="email"
            class="form-control"
-           formControlName="email"
-           placeholder="mail@domain.com" />
+           formControlName="email" />
     @if (formGroup.get('email')?.errors?.['required'] && formGroup.get('email')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
@@ -87,7 +90,8 @@
   </div>
   <!-- Password -->
   <div class="form-group col-12 col-md-6">
-    <label class="form-label"> Password <span class="text-danger">*</span></label>
+    <label class="form-label"> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.FORM.PASSWORD.LABEL' | translate}}
+      <span class="text-danger">*</span></label>
     <div class="input-group">
       <input type="password"
              formControlName="password"
@@ -116,7 +120,8 @@
   </div>
   <!-- Password confirmation -->
   <div class="form-group col-12 col-md-6">
-    <label class="form-label"> Password confirmation <span class="text-danger">*</span></label>
+    <label class="form-label"> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.FORM.PASSWORD_CONFIRMATION.LABEL' |
+      translate}} <span class="text-danger">*</span></label>
     <div class="input-group">
       <input type="password"
              formControlName="confirmPassword"
@@ -148,9 +153,10 @@
            class="m-0" />
     <label for="terms"
            class="form-label mb-0">
-      I agree to the
+      {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.TERMS.LABEL' | translate}}
       <a class="text-primary text-decoration-underline"
-         href=""> Terms and Conditions </a>
+         href=""> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.TERMS.LINK' | translate}}
+      </a>
     </label>
   </div>
 </form>

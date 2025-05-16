@@ -4,24 +4,23 @@
 
        <div class="col-12 form-group px-0">
               <label class="form-label">
-                     Have you worked in the financial sector within the past five years?
+                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.FINANCIAL_SECTOR'
+                     |
+                     translate}}
               </label>
               <div class="d-flex">
-                     <input type="radio"
-                            formControlName="workedInFinancialSector"
-                            [id]="'workedInFinancialSector-' + true"
-                            [value]="0"
-                            class="d-none" />
-                     <label [for]="'workedInFinancialSector-' + true"
-                            class="btn btn-option-select">Yes</label>
+                     @for (item of yesNoLists; track $index) {
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="workedInFinancialSector"
+                                   [id]="'workedInFinancialSector-' + item.value"
+                                   [value]="item.value"
+                                   class="d-none" />
+                            <label [for]="'workedInFinancialSector-' + item.value"
+                                   class="btn btn-option-select">{{item | lang}}</label>
 
-                     <input type="radio"
-                            formControlName="workedInFinancialSector"
-                            [id]="'workedInFinancialSector-' + false"
-                            [value]="1"
-                            class="d-none" />
-                     <label [for]="'workedInFinancialSector-' + false"
-                            class="btn btn-option-select">No</label>
+                     </div>
+                     }
               </div>
               @if (formGroup.get('workedInFinancialSector')?.errors?.['required'] &&
               formGroup.get('workedInFinancialSector')?.touched ) {
@@ -35,27 +34,25 @@
        <!-- Question 2 -->
        <div class="col-12 form-group px-0">
               <label class="form-label">
-                     Are you a member of the board of directors, audit committee, or senior executive of a listed
-                     company?
+                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_MEMBER'
+                     |
+                     translate}}
 
               </label>
 
               <div class="d-flex">
-                     <input type="radio"
-                            formControlName="isBoardMember"
-                            [id]="'isBoardMember-' + true"
-                            [value]="0"
-                            class="d-none" />
-                     <label [for]="'isBoardMember-' + true"
-                            class="btn btn-option-select">Yes</label>
+                     @for (item of yesNoLists; track $index) {
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="isBoardMember"
+                                   [id]="'isBoardMember-' + item.value"
+                                   [value]="item.value"
+                                   class="d-none" />
+                            <label [for]="'isBoardMember-' + item.value"
+                                   class="btn btn-option-select">{{item | lang}}</label>
 
-                     <input type="radio"
-                            formControlName="isBoardMember"
-                            [id]="'isBoardMember-' + false"
-                            [value]="1"
-                            class="d-none" />
-                     <label [for]="'isBoardMember-' + false"
-                            class="btn btn-option-select">No</label>
+                     </div>
+                     }
               </div>
               @if (formGroup.get('isBoardMember')?.errors?.['required'] &&
               formGroup.get('isBoardMember')?.touched ) {
@@ -69,27 +66,26 @@
        <!-- Question 3 -->
        <div class="col-12 form-group px-0">
               <label class="form-label">
-                     Do you have a relationship with a board member, audit committee member, or senior executive
-                     of a listed company?
+                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_BOARD_MEMBER'
+                     |
+                     translate}}
 
               </label>
 
               <div class="d-flex">
-                     <input type="radio"
-                            formControlName="hasRelationWithBoardMember"
-                            [id]="'hasRelationWithBoardMember-' + true"
-                            [value]="0"
-                            class="d-none" />
-                     <label [for]="'hasRelationWithBoardMember-' + true"
-                            class="btn btn-option-select">Yes</label>
 
-                     <input type="radio"
-                            formControlName="hasRelationWithBoardMember"
-                            [id]="'hasRelationWithBoardMember-' + false"
-                            [value]="1"
-                            class="d-none" />
-                     <label [for]="'hasRelationWithBoardMember-' + false"
-                            class="btn btn-option-select">No</label>
+                     @for (item of yesNoLists; track $index) {
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="hasRelationWithBoardMember"
+                                   [id]="'hasRelationWithBoardMember-' + item.value"
+                                   [value]="item.value"
+                                   class="d-none" />
+                            <label [for]="'hasRelationWithBoardMember-' + item.value"
+                                   class="btn btn-option-select">{{item | lang}}</label>
+
+                     </div>
+                     }
               </div>
 
               @if (formGroup.get('hasRelationWithBoardMember')?.errors?.['required'] &&
@@ -104,28 +100,24 @@
        <!-- Question 4 -->
        <div class="col-12 form-group px-0">
               <label class="form-label">
-                     Are you assigned senior duties in the Kingdom or a foreign country, or are you in a senior
-                     management position, or are you employed by an international organization?
+                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_SENIOR'
+                     |
+                     translate}}
               </label>
               <div class="d-flex">
+
+                     @for (item of yesNoLists; track $index) {
                      <div class="col">
                             <input type="radio"
                                    formControlName="hasRelativeInHighPosition"
-                                   [id]="'hasRelativeInHighPosition-' + true"
-                                   [value]="0"
+                                   [id]="'hasRelativeInHighPosition-' + item.value"
+                                   [value]="item.value"
                                    class="d-none" />
-                            <label [for]="'hasRelativeInHighPosition-' + true"
-                                   class="btn btn-option-select">Yes</label>
+                            <label [for]="'hasRelativeInHighPosition-' + item.value"
+                                   class="btn btn-option-select">{{item | lang}}</label>
+
                      </div>
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="hasRelativeInHighPosition"
-                                   [id]="'hasRelativeInHighPosition-' + false"
-                                   [value]="1"
-                                   class="d-none" />
-                            <label [for]="'hasRelativeInHighPosition-' + false"
-                                   class="btn btn-option-select">No</label>
-                     </div>
+                     }
               </div>
 
               @if (formGroup.get('hasRelativeInHighPosition')?.errors?.['required'] &&
@@ -140,30 +132,25 @@
        <!-- Question 5 -->
        <div class="col-12 form-group px-0">
               <label class="form-label">
-                     Are you related to someone who holds high-ranking positions in the Kingdom, a foreign
-                     country, or an international organization?
+                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_RELATED'
+                     |
+                     translate}}
               </label>
 
               <div class="d-flex">
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="holdsHighPosition"
-                                   [id]="'holdsHighPosition-' + true"
-                                   [value]="0"
-                                   class="d-none" />
-                            <label [for]="'holdsHighPosition-' + true"
-                                   class="btn btn-option-select">Yes</label>
-                     </div>
 
+                     @for (item of yesNoLists; track $index) {
                      <div class="col">
                             <input type="radio"
                                    formControlName="holdsHighPosition"
-                                   [id]="'holdsHighPosition-' + false"
-                                   [value]="1"
+                                   [id]="'holdsHighPosition-' + item.value"
+                                   [value]="item.value"
                                    class="d-none" />
-                            <label [for]="'holdsHighPosition-' + false"
-                                   class="btn btn-option-select">No</label>
+                            <label [for]="'holdsHighPosition-' + item.value"
+                                   class="btn btn-option-select">{{item | lang}}</label>
+
                      </div>
+                     }
               </div>
 
               @if (formGroup.get('holdsHighPosition')?.errors?.['required'] &&
@@ -177,30 +164,25 @@
 
        <!-- Question 6 -->
        <div class="col-12 form-group px-0">
-              <label class="form-label">
-                     Are you a US citizen?
+              <label class="form-label"> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_US_CITIZEN'
+                     |
+                     translate}}
               </label>
 
               <div class="d-flex">
+
+                     @for (item of yesNoLists; track $index) {
                      <div class="col">
                             <input type="radio"
                                    formControlName="hasUSCitizenship"
-                                   [id]="'hasUSCitizenship-' + true"
-                                   [value]="0"
+                                   [id]="'hasUSCitizenship-' + item.value"
+                                   [value]="item.value"
                                    class="d-none" />
-                            <label [for]="'hasUSCitizenship-' + true"
-                                   class="btn btn-option-select">Yes</label>
+                            <label [for]="'hasUSCitizenship-' + item.value"
+                                   class="btn btn-option-select">{{item | lang}}</label>
 
                      </div>
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="hasUSCitizenship"
-                                   [id]="'hasUSCitizenship-' + false"
-                                   [value]="1"
-                                   class="d-none" />
-                            <label [for]="'hasUSCitizenship-' + false"
-                                   class="btn btn-option-select">No</label>
-                     </div>
+                     }
               </div>
 
               @if (formGroup.get('hasUSCitizenship')?.errors?.['required'] &&

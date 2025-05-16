@@ -3,34 +3,11 @@
        <div class="row">
               <!-- Investment experience-->
               <div class="col-12 form-group col-md-6">
-                     <label class="form-label">Investment experience</label>
+                     <label class="form-label">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.INVESTMENT_EXPERIENCE'
+                            |
+                            translate}}</label>
                      <div class="d-flex flex-column flex-md-row">
                             @for (item of investmentExperienceList; track $index) {
-                            <div class="col">
-                                   <input type="radio"
-                                          [id]="'riskTolerance-' + item.value"
-                                          [value]="item.value"
-                                          formControlName="riskTolerance"
-                                          class="d-none" />
-                                   <label [for]="'riskTolerance-' + item.value"
-                                          class="btn btn-option-select">{{item.label}}</label>
-                            </div>
-                            }
-                     </div>
-                     @if (formGroup.get('riskTolerance')?.errors?.['required'] &&
-                     formGroup.get('riskTolerance')?.touched ) {
-                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                            This field is required
-                     </small>
-                     }
-              </div>
-
-              <!--Risk Tolerance -->
-              <div class="col-12 form-group col-md-6">
-                     <label class="form-label"> Risk Tolerance </label>
-                     <div class="d-flex flex-column flex-md-row">
-                            @for (item of riskToleranceList; track $index) {
                             <div class="col">
                                    <input type="radio"
                                           [id]="'investmentExperience-' + item.value"
@@ -38,7 +15,7 @@
                                           formControlName="investmentExperience"
                                           class="d-none" />
                                    <label [for]="'investmentExperience-' + item.value"
-                                          class="btn btn-option-select">{{item.label}}</label>
+                                          class="btn btn-option-select">{{item | lang}}</label>
                             </div>
                             }
                      </div>
@@ -50,12 +27,42 @@
                      </small>
                      }
               </div>
+
+              <!--Risk Tolerance -->
+              <div class="col-12 form-group col-md-6">
+                     <label class="form-label">
+                            {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.RISK_TOLERANCE'
+                            |
+                            translate}} </label>
+                     <div class="d-flex flex-column flex-md-row">
+                            @for (item of riskToleranceList; track $index) {
+                            <div class="col">
+                                   <input type="radio"
+                                          [id]="'riskTolerance-' + item.value"
+                                          [value]="item.value"
+                                          formControlName="riskTolerance"
+                                          class="d-none" />
+                                   <label [for]="'riskTolerance-' + item.value"
+                                          class="btn btn-option-select">{{item | lang}}</label>
+                            </div>
+                            }
+                     </div>
+                     @if (formGroup.get('riskTolerance')?.errors?.['required'] &&
+                     formGroup.get('riskTolerance')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            This field is required
+                     </small>
+                     }
+              </div>
        </div>
 
        <!-- What is the investment period during which you expect to recover your money? -->
        <div class="col-12 form-group">
               <label class="form-label">
-                     What is the investment period during which you expect to recover your money?
+                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.INVESTMENT_PERIOD'
+                     |
+                     translate}}
 
               </label>
               <div class="d-flex flex-column flex-md-row">
@@ -67,7 +74,7 @@
                                    formControlName="investmentHorizon"
                                    class="d-none" />
                             <label [for]="'investmentHorizon-' + item.value"
-                                   class="btn btn-option-select">{{item.label}}</label>
+                                   class="btn btn-option-select">{{item | lang}}</label>
                      </div>
                      }
               </div>
@@ -82,7 +89,11 @@
 
        <!--What are your investment objectives?-->
        <div class="col-12 form-group">
-              <label class="form-label">What are your investment objectives?</label>
+              <label class="form-label">
+                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.INVESTMENT_OBJECTIVES'
+                     |
+                     translate}}
+              </label>
               <div class="d-flex flex-column">
                      @for (item of investmentObjectivesList; track $index) {
                      <div class="col">
@@ -92,7 +103,7 @@
                                    formControlName="investmentGoal"
                                    class="d-none" />
                             <label [for]="'investmentGoal-' + item.value"
-                                   class="btn btn-option-select">{{item.label}}</label>
+                                   class="btn btn-option-select">{{item | lang}}</label>
                      </div>
                      }
               </div>
@@ -106,23 +117,27 @@
        </div>
        <!--Are you the real beneficiary of the account?-->
        <div class="col-12 form-group">
-              <label class="form-label">Are you the real beneficiary of the account?</label>
-              <div class="d-flex flex-column flex-md-row">
-                     <input type="radio"
-                            [id]="'isBeneficiary-' + true"
-                            [value]="1"
-                            formControlName="isBeneficiary"
-                            class="d-none" />
-                     <label [for]="'isBeneficiary-' + true"
-                            class="btn btn-option-select">Yes</label>
+              <label class="form-label">
 
-                     <input type="radio"
-                            [id]="'isBeneficiary-' + false"
-                            [value]="0"
-                            formControlName="isBeneficiary"
-                            class="d-none" />
-                     <label [for]="'isBeneficiary-' + false"
-                            class="btn btn-option-select">No</label>
+                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.IS_BENEFICIARY'
+                     |
+                     translate}}
+              </label>
+              <div class="d-flex flex-column flex-md-row">
+
+
+                     @for (item of yesNoLists; track $index) {
+                     <div class="col">
+                            <input type="radio"
+                                   formControlName="isBeneficiary"
+                                   [id]="'isBeneficiary-' + item.value"
+                                   [value]="item.value"
+                                   class="d-none" />
+                            <label [for]="'isBeneficiary-' + item.value"
+                                   class="btn btn-option-select">{{item | lang}}</label>
+
+                     </div>
+                     }
               </div>
               @if (formGroup.get('isBeneficiary')?.errors?.['required'] &&
               formGroup.get('isBeneficiary')?.touched ) {
@@ -136,7 +151,11 @@
        <!--Beneficiary ID number-->
        @if (formGroup.get('isBeneficiary')?.value === 0) {
        <div class="form-group col-12 form-group">
-              <label class="form-label">Beneficiary ID number</label>
+              <label class="form-label">
+                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.BENEFICIARY_ID'
+                     |
+                     translate}}
+              </label>
               <input type="number"
                      class="form-control"
                      formControlName="beneficiaryIdNumber"

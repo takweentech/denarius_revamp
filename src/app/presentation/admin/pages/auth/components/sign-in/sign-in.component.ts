@@ -8,10 +8,11 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { ProfileService } from '../../../../../../data/profile.service';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, TranslatePipe],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss'
 })

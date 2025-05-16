@@ -1,14 +1,14 @@
 <div class="container d-flex flex-column justify-content-center h-100 align-items-center">
     <h6 class="d-flex gap-2">
-        Already have an account?<a class="text-primary"
-           [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_IN ">Sign in</a>
+        {{'AUTHENTICATION.SIGN_UP.HAS_ACCOUNT' | translate }}<a class="text-primary"
+           [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_IN ">
+            {{'AUTHENTICATION.SIGN_UP.SIGN_IN' | translate }}</a>
     </h6>
 
     <div class="d-flex cards flex-column align-items-center gap-5 w-100">
         <div class="d-flex flex-column gap-3">
-            <h1 class="fw-semibold">Sign up</h1>
-            <p>Your investment journey begins here. With simple steps, you can create an investment account and achieve
-                your goals.</p>
+            <h1 class="fw-semibold"> {{'AUTHENTICATION.SIGN_UP.TITLE' | translate }}</h1>
+            <p>{{'AUTHENTICATION.SIGN_UP.DESCRIPTION' | translate }}</p>
         </div>
         <div class="w-100 d-flex flex-column gap-4">
             <a class="shadow-card d-flex justify-content-between align-items-center w-100"
@@ -19,10 +19,10 @@
 
                     <div class="d-flex flex-column gap-2">
                         <h5>
-                            Individual
+                            {{'AUTHENTICATION.SIGN_UP.INDIVIDUAL.TITLE' | translate }}
                         </h5>
                         <p class="small">
-                            Open your investment account and start your investment journey.
+                            {{'AUTHENTICATION.SIGN_UP.INDIVIDUAL.DESCRIPTION' | translate }}
                         </p>
                     </div>
                 </div>
@@ -35,10 +35,11 @@
 
                     <div class="d-flex flex-column gap-2">
                         <h5>
-                            Company
+                            {{'AUTHENTICATION.SIGN_UP.COMPANY.TITLE' | translate }}
+
                         </h5>
-                        <p class="small">
-                            Create your company's investment account </p>
+                        <p class="small"> {{'AUTHENTICATION.SIGN_UP.COMPANY.DESCRIPTION' | translate }}
+                        </p>
                     </div>
                 </div>
                 <i class="fa-solid fa-arrow-left"></i>

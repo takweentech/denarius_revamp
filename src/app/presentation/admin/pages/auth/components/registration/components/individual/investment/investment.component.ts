@@ -2,10 +2,12 @@ import { Component, inject, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Step } from '../../../models/registration.model';
 import { LookupService } from '../../../../../../../../../core/services/lookup.service';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LangPipe } from '../../../../../../../../../shared/pipes/lang.pipe';
 
 @Component({
   selector: 'app-investment',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe, LangPipe],
   templateUrl: './investment.component.html',
   styleUrl: './investment.component.scss'
 })
@@ -17,4 +19,5 @@ export class InvestmentComponent {
   riskToleranceList = this.lookupService.getRiskToleranceList();
   investmentPeriodList = this.lookupService.getInvestmentPeriodList();
   investmentObjectivesList = this.lookupService.getInvestmentObjectivesList();
+  yesNoLists = this.lookupService.getYesNoOptions();
 }

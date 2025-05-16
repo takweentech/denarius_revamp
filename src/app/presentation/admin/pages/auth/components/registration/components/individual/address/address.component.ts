@@ -1,11 +1,12 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IndividualAddress, PersonalData, Step } from '../../../models/registration.model';
+import { TranslatePipe } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-address',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe],
   templateUrl: './address.component.html',
   styleUrl: './address.component.scss'
 })

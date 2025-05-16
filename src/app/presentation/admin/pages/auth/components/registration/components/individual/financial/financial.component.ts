@@ -5,15 +5,16 @@ import { LookupService } from '../../../../../../../../../core/services/lookup.s
 import { BaseComponent } from '../../../../../../../../../core/base/base.component';
 import { Lookup } from '../../../../../../../../../core/models/lookup';
 import { takeUntil } from 'rxjs';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LangPipe } from '../../../../../../../../../shared/pipes/lang.pipe';
 
 @Component({
   selector: 'app-financial',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, TranslatePipe, LangPipe],
   templateUrl: './financial.component.html',
   styleUrl: './financial.component.scss',
 })
 export class FinancialComponent extends BaseComponent implements OnInit {
-
   private readonly lookupService = inject(LookupService);
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
@@ -22,7 +23,6 @@ export class FinancialComponent extends BaseComponent implements OnInit {
   educationLevelList = signal<Lookup[]>([]);
   annualIncomeList = signal<Lookup[]>([]);
   netWorthList = signal<Lookup[]>([]);
-
 
   ngOnInit(): void {
     this.getNetWorth();

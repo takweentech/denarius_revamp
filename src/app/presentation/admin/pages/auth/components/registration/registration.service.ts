@@ -45,8 +45,8 @@ export class RegistrationService {
     individual: [
       {
         key: 'information',
-        title: 'Register an individual investor account',
-        description: 'Fill in the basic information',
+        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.DESCRIPTION',
         component: InformationComponent,
         apiHandler: (data: IndividualInitialSignUpDto) => this.initialIndividualInvestorSignUp(data),
         controls: [
@@ -84,12 +84,13 @@ export class RegistrationService {
             key: 'terms',
             validators: [Validators.requiredTrue],
           },
-        ]
+        ],
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.CTA'
       },
       {
         key: 'otp',
-        title: 'Register an individual investor account',
-        description: 'Verify mobile number',
+        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.DESCRIPTION',
         component: OtpComponent,
         apiHandler: (data: IndividualOtpSignUpDto, token?: string, otpId?: string) => this.verifyIndividualInvestorOTP(data, token, otpId),
         controls: [
@@ -98,12 +99,14 @@ export class RegistrationService {
             validators: [Validators.required, Validators.minLength(4)]
           },
         ],
-        resolvedData: {}
+        resolvedData: {},
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.CTA'
+
       },
       {
         key: 'address',
-        title: 'National Address',
-        description: 'National Address Information',
+        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.DESCRIPTION',
         component: AddressComponent,
         controls: [
           {
@@ -131,13 +134,14 @@ export class RegistrationService {
             key: 'additionalCode',
             validators: [Validators.required]
           },
-        ]
+        ],
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.CTA'
+
       },
       {
         key: 'financial',
-        title: 'Financial and social information',
-        description:
-          'Financial and social information',
+        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.DESCRIPTION',
         component: FinancialComponent,
         controls: [
           {
@@ -172,12 +176,13 @@ export class RegistrationService {
             key: 'netWealth',
             validators: [Validators.required]
           },
-        ]
+        ],
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.CTA'
       },
       {
         key: 'investment',
-        title: 'Investment information',
-        description: 'Tell us about your investment knowledge',
+        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.DESCRIPTION',
         component: InvestmentComponent,
         controls: [
           {
@@ -204,12 +209,13 @@ export class RegistrationService {
             key: 'beneficiaryIdNumber',
             value: 0
           },
-        ]
+        ],
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.CTA'
       },
       {
         key: 'disclosure',
-        title: 'Disclosures',
-        description: 'Please answer the following questions.',
+        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.DESCRIPTION',
         component: DisclosureComponent,
         controls: [
           {
@@ -244,11 +250,12 @@ export class RegistrationService {
           },
         ],
         apiHandler: (data: IndividualCompletionDto, token?: string, otpId?: string) => this.completeIndividualInvestorRegestration(data, token),
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.CTA'
       },
       {
         key: 'absher',
-        title: 'Data verification',
-        description: 'We have sent a code to your Absher registered number.',
+        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.DESCRIPTION',
         component: AbsherComponent,
         controls: [
           {
@@ -257,7 +264,7 @@ export class RegistrationService {
           }
         ],
         apiHandler: (data: IndividualFinalizationDto, token?: string, otpId?: string) => this.finalizeIndividualInvestorRegestration(data, token, otpId),
-        nextButtonText: 'Finish Registration'
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.CTA'
       },
     ],
     company: [

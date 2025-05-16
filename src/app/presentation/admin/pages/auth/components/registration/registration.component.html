@@ -22,16 +22,16 @@
       <button [disabled]="currentIndex() == 1"
               class="border-0 bg-transparent fs-6 text-darkgray fw-bold d-flex align-items-center gap-2"
               (click)="onPrev()">
-        <i class="fas fa-arrow-left"></i> Previous
+        <i class="fas fa-arrow-left"></i> {{'AUTHENTICATION.REGISTRATION.GENERAL.PREV_BTN' | translate}}
       </button>
 
       <div>
         <span class="fw-light text-darkgray">
-          Step {{ currentIndex() }}/{{ steps.length }}
+          {{'AUTHENTICATION.REGISTRATION.GENERAL.STEP' | translate}} {{ currentIndex() }}/{{ steps.length }}
         </span>
         <div class="mt-2 text-center">
           <h6 class="text-darkgray fw-bold">
-            {{ steps[currentIndex() - 1].title }}
+            {{ steps[currentIndex() - 1].title | translate }}
           </h6>
         </div>
       </div>
@@ -46,8 +46,8 @@
              [attr.aria-labelledby]="'step-' + item.key + '-trigger'">
           <div class="d-flex flex-column gap-4">
             <div class="d-flex flex-column gap-2 justify-content-center text-center w-100">
-              <h3 class="fw-bold text-center">{{ item.title }}</h3>
-              <h5 class="text-darkgray">{{ item.description }}</h5>
+              <h3 class="fw-bold text-center">{{ item.title | translate }}</h3>
+              <h5 class="text-darkgray">{{ item.description | translate }}</h5>
               <hr />
             </div>
 
@@ -60,7 +60,7 @@
                         [disabled]=" loading()"
                         (click)="onNext()"
                         class="btn btn-primary p-3 w-100">
-                  {{item.nextButtonText || 'Next'}}
+                  {{ (item?.nextButtonText ?? 'Next') | translate }}
                 </button>
               </div>
             </div>

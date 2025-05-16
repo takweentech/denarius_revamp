@@ -3,8 +3,9 @@
      <img class="absher justify-content-center mb-4"
           src="assets/images/absher.svg"
           alt="" />
-     <h6 class="otp-instruction">Enter the code sent to your mobile phone registered in Absher</h6>
+     <h6 class="otp-instruction">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.FORM.OTP.LABEL' | translate}}</h6>
      <ng-otp-input formControlName="otp"
+                   dir="ltr"
                    [config]="{ length: 4 }"></ng-otp-input>
 
 </form>

@@ -1,14 +1,15 @@
 <div class="container d-flex flex-column justify-content-center h-100 align-items-center">
     <h6 class="d-flex gap-2">
-        Don't have an account?<a class="text-primary"
-           [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_UP ">Sign up</a>
+        {{'AUTHENTICATION.SIGN_IN.NO_ACCOUNT' | translate }}<a class="text-primary"
+           [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_UP ">
+            {{'AUTHENTICATION.SIGN_IN.SIGN_UP'
+            | translate }}</a>
     </h6>
 
     <div class="d-flex cards flex-column align-items-center gap-5 w-100">
         <div class="d-flex flex-column gap-3">
-            <h1 class="fw-semibold">Log in</h1>
-            <p>Your investment journey begins here. With simple steps, you can create an investment account and achieve
-                your goals.</p>
+            <h1 class="fw-semibold"> {{'AUTHENTICATION.SIGN_IN.TITLE' | translate }}</h1>
+            <p> {{'AUTHENTICATION.SIGN_IN.DESCRIPTION' | translate }}</p>
         </div>
         <form [formGroup]="form"
               class="w-100 d-flex flex-column gap-4"
@@ -16,9 +17,9 @@
             <!-- Email -->
             <div class="form-group">
                 <label class="form-label"
-                       for="">Email</label>
+                       for=""> {{'AUTHENTICATION.SIGN_IN.EMAIL.LABEL' | translate }}</label>
                 <input type="text"
-                       placeholder="Enter email address..."
+                       placeholder=" {{'AUTHENTICATION.SIGN_IN.EMAIL.PLACEHOLDER' | translate }}"
                        formControlName="userName"
                        class="form-control">
                 @if (form.get('userName')?.errors?.['required'] && form.get('userName')?.touched ) {
@@ -32,11 +33,11 @@
             <div class="d-flex flex-column gap-3">
                 <div class="form-group">
                     <label class="form-label"
-                           for="">Password</label>
+                           for=""> {{'AUTHENTICATION.SIGN_IN.PASSWORD.LABEL' | translate }}</label>
                     <div class="input-group">
                         <input type="password"
                                #password
-                               placeholder="Password"
+                               placeholder="{{'AUTHENTICATION.SIGN_IN.PASSWORD.PLACEHOLDER' | translate }}"
                                formControlName="password"
                                class="form-control">
                         <span class="input-group-text">
@@ -65,15 +66,16 @@
                                class="m-0" />
                         <label for="terms"
                                class="form-label mb-0">
-                            Remember me
+                            {{'AUTHENTICATION.SIGN_IN.REMEMBER_ME' | translate }}
                         </label>
                     </div>
                     <a href=""
-                       class="text-primary"> Forgot password?</a>
+                       class="text-primary"> {{'AUTHENTICATION.SIGN_IN.FORGOT_PASSWORD' | translate }}
+                    </a>
                 </div>
             </div>
             <button [disabled]="loading()"
-                    class="btn btn-primary p-3"> Log in</button>
+                    class="btn btn-primary p-3"> {{'AUTHENTICATION.SIGN_IN.CTA' | translate }}</button>
         </form>
     </div>
 </div>

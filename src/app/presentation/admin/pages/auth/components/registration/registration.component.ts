@@ -11,10 +11,11 @@ import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { ProfileService } from '../../../../../../data/profile.service';
 import { InvestorType } from '../../../../../../core/enums/investor.enums';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-registration',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
 })
