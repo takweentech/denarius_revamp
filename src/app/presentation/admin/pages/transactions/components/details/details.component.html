@@ -11,13 +11,9 @@
         </div>
         <div>
           <span class="fw-light">Amount</span>
-          <h6 class="">
-            <app-currency-amount
-              [amount]="transaction.amount"
-              [size]="6"
-              [extraClass]="' fw-bold mt-2'"
-            >
-            </app-currency-amount>
+          <h6 class="fw-bold mt-2">
+            {{ transaction.amount }}
+            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
           </h6>
         </div>
         <div>

@@ -1,40 +1,38 @@
-import { Component, OnInit, inject } from "@angular/core";
+import { Component, OnInit, Pipe, inject } from "@angular/core";
 import { TokenService } from "../../../../core/services/token.service";
 import { UserProfileData } from "../../../../core/models/user";
 import { InvestorTransactionsService } from "../../../../core/services/investor-transactions.service";
-import { InvestorTransactionsPagedRequest } from "../../../../core/models/investor-transaction";
-import { CommonModule } from "@angular/common";
-import { CurrencyAmountComponent } from "../../../../shared/components/currency-amount/currency-amount.component";
+import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
+import {
+  InvestorTransactionsPagedRequest,
+  PaginationConfig,
+} from "../../../../core/models/investor-transaction";
+import { DecimalPipe, DatePipe, NgClass, NgIf } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
 @Component({
   selector: "app-transactions",
-  imports: [CommonModule, RouterModule, CurrencyAmountComponent],
+  imports: [
+    NgClass,
+    RouterModule,
+    DecimalPipe,
+    DatePipe,
+    NgIf,
+    NgbPaginationModule,
+  ],
   templateUrl: "./transactions.component.html",
   styleUrl: "./transactions.component.scss",
 })
 export class TransactionsComponent implements OnInit {
-  currentPage = 1;
-  totalPages = 1;
-  pageSize = 10;
-  totalCount = 0;
-  pages: number[] = [];
+  pagination: PaginationConfig = {
+    currentPage: 1,
+    totalPages: 1,
+    pageSize: 10,
+    totalCount: 0,
+    pages: [],
+  };
   WEB_ROUTES = WEB_ROUTES;
 
-  private generatePages(): void {
-    const pages: number[] = [];
-
-    for (let i = 1; i <= Math.min(5, this.totalPages); i++) {
-      pages.push(i);
-    }
-
-    if (this.totalPages > 5) {
-      pages.push(-1);
-      pages.push(this.totalPages);
-    }
-
-    this.pages = pages;
-  }
   private readonly tokenService = inject(TokenService);
   private readonly investorService = inject(InvestorTransactionsService);
   transactions: any[] = [];
@@ -42,19 +40,21 @@ export class TransactionsComponent implements OnInit {
   user: UserProfileData = this.tokenService.getUser();
 
   loadTransactions(): void {
+    const filter = {
+      statusId: 0,
+      investorId: 0,
+      paymentMethod: 0,
+      startDate: "2025-01-01T00:00:00Z",
+      endDate: "2025-12-31T23:59:59Z",
+      nameEn: "",
+      nameAr: "",
+      isDeleted: false,
+    };
+
     const payload: InvestorTransactionsPagedRequest = {
-      pageNumber: this.currentPage,
-      pageSize: this.pageSize,
-      filter: {
-        statusId: 0,
-        investorId: 0,
-        paymentMethod: 0,
-        startDate: "2025-01-01T00:00:00Z",
-        endDate: "2025-12-31T23:59:59Z",
-        nameEn: "",
-        nameAr: "",
-        isDeleted: false,
-      },
+      pageNumber: this.pagination.currentPage,
+      pageSize: this.pagination.pageSize,
+      filter,
       orderByValue: [
         {
           colId: "amount",
@@ -66,11 +66,24 @@ export class TransactionsComponent implements OnInit {
     this.loading = true;
 
     this.investorService.getInvestorTransactionsPaged(payload).subscribe({
-      next: (res) => {
-        this.transactions = res.data?.data || [];
-        this.totalCount = res.data?.totalCount || 0;
-        this.totalPages = Math.ceil(this.totalCount / this.pageSize);
-        this.generatePages();
+      next: (res: any) => {
+        const data = res.data?.data || [];
+
+        this.transactions = data.map((tx: any) => ({
+          ...tx,
+          typeLabel: this.getTypeLabel(tx.transactionType),
+          accountLabel: this.getAccountLabel(
+            tx.transactionMethod,
+            tx.accountNumber
+          ),
+        }));
+
+        const totalCount = res.data?.totalCount || 0;
+        const totalPages = Math.ceil(totalCount / this.pagination.pageSize);
+
+        this.pagination.totalCount = totalCount;
+        this.pagination.totalPages = totalPages;
+
         this.loading = false;
       },
       error: () => {
@@ -79,6 +92,14 @@ export class TransactionsComponent implements OnInit {
     });
   }
   ngOnInit(): void {
+    this.transactions = this.transactions.map((tx) => ({
+      ...tx,
+      typeLabel: this.getTypeLabel(tx.transactionType),
+      accountLabel: this.getAccountLabel(
+        tx.transactionMethod,
+        tx.accountNumber
+      ),
+    }));
     this.loadTransactions();
   }
 
@@ -102,8 +123,7 @@ export class TransactionsComponent implements OnInit {
     return acc || "-";
   }
   goToPage(page: number): void {
-    if (page < 1 || page > this.totalPages) return;
-    this.currentPage = page;
+    this.pagination.currentPage = page;
     this.loadTransactions();
   }
 }

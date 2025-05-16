@@ -1,13 +1,13 @@
 import { Component, OnInit, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { InvestorTransactionsService } from "../../../../../../core/services/investor-transactions.service";
-import { CommonModule } from "@angular/common";
+import { DatePipe, DecimalPipe } from "@angular/common";
 import { Location } from "@angular/common";
-import { CurrencyAmountComponent } from "../../../../../../shared/components/currency-amount/currency-amount.component";
+import { InvestorTransaction } from "../../../../../../core/models/investor-transaction";
 
 @Component({
   selector: "app-details",
-  imports: [CommonModule, CurrencyAmountComponent],
+  imports: [DecimalPipe, DatePipe],
   templateUrl: "./details.component.html",
   styleUrl: "./details.component.scss",
 })
@@ -17,7 +17,7 @@ export class DetailsComponent implements OnInit {
   private location = inject(Location);
 
   transactionId!: number;
-  transaction: any;
+  transaction!: InvestorTransaction;
   goBack(): void {
     (this.location as any).back();
   }

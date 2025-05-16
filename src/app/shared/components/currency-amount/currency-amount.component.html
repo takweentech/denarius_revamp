@@ -1,5 +1,4 @@
 <strong
-  class="align-middle"
   style="direction: ltr; unicode-bidi: isolate"
   [ngClass]="
     'fs-' + size + ' d-inline-flex align-items-center gap-1 ' + extraClass
@@ -10,7 +9,7 @@
     alt="currency"
     [ngClass]="iconSizeClass"
   />
-  <span>
+  <span [ngClass]="textMarginClass">
     {{ formattedAmount }}
   </span>
 </strong>
