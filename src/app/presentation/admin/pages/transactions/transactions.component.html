@@ -1,0 +1,195 @@
+<!-- Stats -->
+<section>
+  <div class="row g-2">
+    <div class="col-md-12 col-lg-6 col-xl-3">
+      <div
+        class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100"
+      >
+        <div class="icon success">
+          <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
+        </div>
+
+        <div class="d-flex flex-column gap-1">
+          <span>Total Deposit</span>
+          <app-currency-amount
+            [amount]="user.financialSummary.totalDeposits"
+            [size]="6"
+            [extraClass]="'fw-semibold'"
+            [countUp]="true"
+          ></app-currency-amount>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-6 col-xl-3">
+      <div
+        class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
+      >
+        <div class="icon danger">
+          <img src="assets/icons/invoice-dollar.svg" alt="" />
+        </div>
+
+        <div class="d-flex flex-column gap-1">
+          <span>Total Investments</span>
+          <app-currency-amount
+            [amount]="user.financialSummary.totalInvestments"
+            [size]="6"
+            [extraClass]="'fw-semibold'"
+            [countUp]="true"
+          ></app-currency-amount>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-6 col-xl-3">
+      <div
+        class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
+      >
+        <div class="icon primary">
+          <img src="assets/icons/earnings.svg" alt="" />
+        </div>
+
+        <div class="d-flex flex-column gap-1">
+          <span>Total Earnings</span>
+          <app-currency-amount
+            [amount]="user.financialSummary.totalProfits"
+            [size]="6"
+            [extraClass]="'fw-semibold'"
+            [countUp]="true"
+          ></app-currency-amount>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 col-lg-6 col-xl-3">
+      <div
+        class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
+      >
+        <div class="icon warning">
+          <img src="assets/icons/money-tag.svg" alt="" />
+        </div>
+
+        <div class="d-flex flex-column gap-1">
+          <span>Total Expected Earnings</span>
+          <app-currency-amount
+            [amount]="user.financialSummary.expectedProfits"
+            [size]="6"
+            [extraClass]="'fw-semibold'"
+            [countUp]="true"
+          ></app-currency-amount>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="mt-5">
+  <h5 class="card-title text-primary">Transactions Distrubution</h5>
+  <div class="p-4 mt-2 bg-white rounded-4">
+    <div class="table-responsive">
+      <table class="fw-light transactions-table table">
+        <thead>
+          <tr>
+            <th class="text-primary fw-light">Description</th>
+            <th class="text-center text-primary fw-light">Ref ID</th>
+            <th class="text-center text-primary fw-light">Transaction Type</th>
+            <th class="text-center text-primary fw-light">Date</th>
+            <th class="text-center text-primary fw-light">Amount</th>
+            <th class="text-center text-primary fw-light">Account</th>
+            <th class="text-center text-primary fw-light">Details</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (tx of transactions; track tx.id) {
+          <tr>
+            <td class="align-middle">
+              <div
+                class="d-flex align-items-center justify-content-start gap-2"
+              >
+                <div class="arrow-circle">
+                  <i
+                    class="fas"
+                    [ngClass]="{
+                      'fa-arrow-down': tx.transactionType === 'Withdrawal',
+                      'fa-arrow-up': tx.transactionType !== 'Withdrawal'
+                    }"
+                  ></i>
+                </div>
+                <span class="ps-2">{{ tx.description || "-" }}</span>
+              </div>
+            </td>
+            <td class="text-center align-middle">#{{ tx.refId }}</td>
+            <td class="text-center align-middle">
+              {{ getTypeLabel(tx.transactionType) }}
+            </td>
+            <td class="text-center align-middle">
+              {{ tx.createDate | date : "dd MMM, h:mm a" }}
+            </td>
+            <td class="text-center align-middle">
+              <span
+                [ngClass]="{
+                  'text-danger': tx.amount < 0,
+                  'text-success': tx.amount > 0
+                }"
+              >
+                <app-currency-amount
+                  [amount]="tx.amount"
+                  [size]="6"
+                  [extraClass]="'fw-light'"
+                >
+                </app-currency-amount>
+                <!-- {{ tx.amount | number : "1.0-0" }} -->
+                <!-- <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" /> -->
+              </span>
+            </td>
+            <td class="text-center align-middle">
+              <span>
+                {{ getAccountLabel(tx.transactionMethod, tx.accountNumber) }}
+              </span>
+            </td>
+            <td class="justify-content-center">
+              <a
+                [routerLink]="
+                  '/' +
+                  WEB_ROUTES.TRANSACTIONS.ROOT +
+                  '/' +
+                  WEB_ROUTES.TRANSACTIONS.DETAILS +
+                  '/' +
+                  tx.id
+                "
+                class="btn btn-outline-primary rounded-5 px-4 py-0"
+              >
+                view
+              </a>
+            </td>
+          </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <nav class="d-flex justify-content-center my-4" *ngIf="totalPages > 1">
+      <ul class="gap-4 pagination">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="" (click)="goToPage(currentPage - 1)">< Prev</button>
+        </li>
+
+        @for (page of pages; track page) { @if (page === -1) {
+        <li class="page-item disabled">
+          <span class="page-link">...</span>
+        </li>
+        } @else {
+        <li class="page-item" [class.active]="currentPage === page">
+          <button
+            class=""
+            [ngClass]="{ 'text-secondary ': currentPage === page }"
+            (click)="goToPage(page)"
+          >
+            {{ page }}
+          </button>
+        </li>
+        } }
+
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="" (click)="goToPage(currentPage + 1)">Next ></button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</section>

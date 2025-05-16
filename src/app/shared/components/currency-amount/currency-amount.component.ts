@@ -39,9 +39,10 @@ export class CurrencyAmountComponent implements OnInit {
     }, 30);
   }
 
+  // get formattedAmount(): string {
+  //   if (!this.shorten) return Math.round(this.displayedAmount).toLocaleString();
   get formattedAmount(): string {
-    if (!this.shorten) return Math.round(this.displayedAmount).toLocaleString();
-
+    if (!this.shorten) return this.displayedAmount.toLocaleString();
     const abs = Math.abs(this.displayedAmount);
 
     const format = (num: number, suffix: string): string => {
@@ -63,7 +64,7 @@ export class CurrencyAmountComponent implements OnInit {
     return "currency-icon-size-" + this.size;
   }
 
-  get textMarginClass(): string {
-    return this.size === 5 || this.size === 6 ? "mt-1" : "mt-2";
-  }
+  // get textMarginClass(): string {
+  //   return this.size === 5 || this.size === 6 ? "mt-1" : "mt-2";
+  // }
 }
