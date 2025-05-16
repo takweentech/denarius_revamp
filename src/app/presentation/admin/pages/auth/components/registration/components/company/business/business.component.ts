@@ -3,10 +3,12 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { LookupService } from '../../../../../../../../../core/services/lookup.service';
 import { CompanyData, Step } from '../../../models/registration.model';
 import { DatePipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LangPipe } from '../../../../../../../../../shared/pipes/lang.pipe';
 
 @Component({
   selector: 'app-business',
-  imports: [DatePipe, ReactiveFormsModule],
+  imports: [DatePipe, ReactiveFormsModule, TranslatePipe, LangPipe],
   templateUrl: './business.component.html',
   styleUrl: './business.component.scss',
 })

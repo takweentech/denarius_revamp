@@ -12,7 +12,7 @@
     @if (formGroup.get('idNumber')?.errors?.['required'] && formGroup.get('idNumber')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
-      This field is required
+      {{'VALIDATORS.REQUIRED' | translate}}
     </small>
     }
   </div>
@@ -27,13 +27,13 @@
     @if (formGroup.get('birhtdate')?.errors?.['required'] && formGroup.get('birhtdate')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
-      This field is required
+      {{'VALIDATORS.REQUIRED' | translate}}
     </small>
     }
     @if (formGroup.get('birhtdate')?.errors?.['minimumAge'] ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
-      You must be at least 18 years old.
+      {{'VALIDATORS.MIN_AGE_18' | translate}}
     </small>
     }
   </div>
@@ -63,7 +63,7 @@
     @if (formGroup.get('phoneNumber')?.errors?.['required'] && formGroup.get('phoneNumber')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
-      This field is required
+      {{'VALIDATORS.REQUIRED' | translate}}
     </small>
     }
   </div>
@@ -78,13 +78,14 @@
     @if (formGroup.get('email')?.errors?.['required'] && formGroup.get('email')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
-      This field is required
+      {{'VALIDATORS.REQUIRED' | translate}}
     </small>
     }
     @if (formGroup.get('email')?.errors?.['email'] ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
-      Invalid email address
+      {{'VALIDATORS.EMAIL' | translate}}
+
     </small>
     }
   </div>
@@ -113,7 +114,7 @@
     @if (formGroup.get('password')?.errors?.['required'] && formGroup.get('password')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
-      This field is required
+      {{'VALIDATORS.REQUIRED' | translate}}
     </small>
     }
 
@@ -142,7 +143,7 @@
     @if (formGroup.get('confirmPassword')?.errors?.['required'] && formGroup.get('confirmPassword')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
-      This field is required
+      {{'VALIDATORS.REQUIRED' | translate}}
     </small>
     }
   </div>

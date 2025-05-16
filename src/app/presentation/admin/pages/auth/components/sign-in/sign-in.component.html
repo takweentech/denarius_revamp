@@ -25,7 +25,7 @@
                 @if (form.get('userName')?.errors?.['required'] && form.get('userName')?.touched ) {
                 <small class="text-danger mt-1 d-flex align-items-center gap-1">
                     <i class="fa-solid fa-circle-exclamation"></i>
-                    This field is required
+                    {{'VALIDATORS.REQUIRED' | translate}}
                 </small>
                 }
             </div>
@@ -54,7 +54,7 @@
                     @if (form.get('password')?.errors?.['required'] && form.get('password')?.touched ) {
                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
                         <i class="fa-solid fa-circle-exclamation"></i>
-                        This field is required
+                        {{'VALIDATORS.REQUIRED' | translate}}
                     </small>
                     }
                 </div>
