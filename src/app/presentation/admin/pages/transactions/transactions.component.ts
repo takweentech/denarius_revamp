@@ -12,9 +12,11 @@ import { RouterModule } from "@angular/router";
 import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
 import { BaseComponent } from "../../../../core/base/base.component";
 import { finalize, takeUntil } from "rxjs";
+import { TranslatePipe } from "@ngx-translate/core";
 @Component({
   selector: "app-transactions",
   imports: [
+    TranslatePipe,
     NgClass,
     RouterModule,
     DecimalPipe,
@@ -30,14 +32,13 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
   pagination: TransactionFilter = {
     pageNumber: 1,
     pageSize: 10,
-    filter: {
-    },
+    filter: {},
     orderByValue: [
       {
         colId: "id",
-        sort: "desc"
-      }
-    ]
+        sort: "desc",
+      },
+    ],
   };
   WEB_ROUTES = WEB_ROUTES;
   transactions = signal<Transaction[]>([]);
@@ -47,19 +48,20 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
 
   loadTransactions(): void {
     this.loading.set(true);
-    this.investorService.getInvestorTransactionsPaged(this.pagination).pipe(
-      takeUntil(this.destroy$),
-      finalize(() => this.loading.set(false))
-    ).subscribe({
-      next: (response) => {
-        this.transactions.set(response.data);
-        this.total.set(response.totalCount);
-      },
-      error: () => {
-      },
-    });
+    this.investorService
+      .getInvestorTransactionsPaged(this.pagination)
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loading.set(false))
+      )
+      .subscribe({
+        next: (response) => {
+          this.transactions.set(response.data);
+          this.total.set(response.totalCount);
+        },
+        error: () => {},
+      });
   }
-
 
   ngOnInit(): void {
     this.loadTransactions();
