@@ -4,10 +4,11 @@ import { TransactionService } from "../../../../../../data/transaction.service";
 import { DatePipe } from "@angular/common";
 import { Location } from "@angular/common";
 import { Transaction } from "../../../../../../core/models/transaction";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-details",
-  imports: [DatePipe],
+  imports: [DatePipe, TranslatePipe],
   templateUrl: "./details.component.html",
   styleUrl: "./details.component.scss",
 })

@@ -13,32 +13,32 @@ interface SidebarItem {
 export class SidebarService {
   private items: SidebarItem[] = [
     {
-      label: "Dashboard",
+      label: "LAYOUT.SIDEBAR.DASHBOARD",
       icon: "fa-solid fa-home",
       route: "/" + WEB_ROUTES.DASHBOARD.ROOT,
     },
     {
-      label: "Financial transactions",
+      label: "LAYOUT.SIDEBAR.TRANSACTIONS",
       icon: "fa-solid fa-list",
       route: "/" + WEB_ROUTES.TRANSACTIONS.ROOT,
     },
     {
-      label: "Investments",
+      label: "LAYOUT.SIDEBAR.INVESTMENTS",
       icon: "fa-solid fa-line-chart",
       route: "/profile-management/investments",
     },
     {
-      label: "Earnings",
+      label: "LAYOUT.SIDEBAR.EARNINGS",
       icon: "fa-solid fa-dollar",
       route: "/profile-management/profit",
     },
     {
-      label: "Wallet",
+      label: "LAYOUT.SIDEBAR.WALLET",
       icon: "fa-solid fa-wallet",
       route: "/profile-management/wallet",
     },
     {
-      label: "Settings",
+      label: "LAYOUT.SIDEBAR.SETTINGS",
       icon: "fa-solid fa-cog",
       route: "/" + WEB_ROUTES.SETTINGS.ROOT,
     },
