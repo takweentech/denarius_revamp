@@ -14,12 +14,6 @@ export interface OrderBy {
   sort: "asc" | "desc";
 }
 
-export interface InvestorTransactionsPagedRequest {
-  pageNumber: number;
-  pageSize: number;
-  filter: InvestorTransactionFilter;
-  orderByValue: OrderBy[];
-}
 export interface PaginationConfig {
   currentPage: number;
   totalPages: number;
@@ -28,7 +22,7 @@ export interface PaginationConfig {
   pages: number[];
 }
 
-export interface InvestorTransaction {
+export interface Transaction {
   id: number;
   description: string | null;
   refId: string;
@@ -40,16 +34,26 @@ export interface InvestorTransaction {
   transactionStatus: string;
 }
 
-export interface InvestorTransactionsPagedResponse {
-  pageNumber: number;
-  pageSize: number;
-  totalCount: number;
-  data: InvestorTransaction[];
-}
 
-export interface ApiResponse<T> {
-  data: T;
-  status: number;
-  message: string;
-  exception?: any;
-}
+
+
+export interface TransactionFilter {
+  pageNumber: number,
+  pageSize: number,
+  filter?: {
+    statusId?: number,
+    investorId?: number,
+    paymentMethod?: number,
+    startDate?: string,
+    endDate?: string,
+    nameEn?: string,
+    nameAr?: string,
+    isDeleted?: boolean
+  },
+  orderByValue?: [
+    {
+      colId?: string,
+      sort?: string
+    }
+  ]
+};

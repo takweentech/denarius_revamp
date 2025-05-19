@@ -1,23 +1,23 @@
 import { Component, OnInit, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-import { InvestorTransactionsService } from "../../../../../../core/services/investor-transactions.service";
-import { DatePipe, DecimalPipe } from "@angular/common";
+import { TransactionService } from "../../../../../../data/transaction.service";
+import { DatePipe } from "@angular/common";
 import { Location } from "@angular/common";
-import { InvestorTransaction } from "../../../../../../core/models/investor-transaction";
+import { Transaction } from "../../../../../../core/models/transaction";
 
 @Component({
   selector: "app-details",
-  imports: [DecimalPipe, DatePipe],
+  imports: [DatePipe],
   templateUrl: "./details.component.html",
   styleUrl: "./details.component.scss",
 })
 export class DetailsComponent implements OnInit {
   private route = inject(ActivatedRoute);
-  private investorService = inject(InvestorTransactionsService);
+  private investorService = inject(TransactionService);
   private location = inject(Location);
 
   transactionId!: number;
-  transaction!: InvestorTransaction;
+  transaction!: Transaction;
   goBack(): void {
     (this.location as any).back();
   }
