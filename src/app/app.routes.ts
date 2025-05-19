@@ -12,7 +12,7 @@ import { AUTH_ROUTES } from "./presentation/admin/pages/auth/auth.routes";
 import { authGuard } from "./core/guards/auth.guard";
 
 export const routes: Routes = [
-  //Public 
+  //Public
   {
     path: "",
     component: LandingLayoutComponent,
@@ -71,7 +71,7 @@ export const routes: Routes = [
           },
         ],
       },
-    ]
+    ],
   },
   {
     path: WEB_ROUTES.AUTH.ROOT,
@@ -79,9 +79,9 @@ export const routes: Routes = [
       {
         path: "",
         loadComponent: () =>
-          import(
-            "./presentation/admin/pages/auth/auth.component"
-          ).then((m) => m.AuthComponent),
+          import("./presentation/admin/pages/auth/auth.component").then(
+            (m) => m.AuthComponent
+          ),
         children: AUTH_ROUTES,
       },
     ],
@@ -99,7 +99,26 @@ export const routes: Routes = [
             "./presentation/admin/pages/dashboard/dashboard.component"
           ).then((m) => m.DashboardComponent),
       },
-    ]
+      {
+        path: WEB_ROUTES.TRANSACTIONS.ROOT,
+        children: [
+          {
+            path: "",
+            loadComponent: () =>
+              import(
+                "./presentation/admin/pages/transactions/transactions.component"
+              ).then((m) => m.TransactionsComponent),
+          },
+          {
+            path: WEB_ROUTES.TRANSACTIONS.DETAILS + "/" + ":id",
+            loadComponent: () =>
+              import(
+                "./presentation/admin/pages/transactions/components/details/details.component"
+              ).then((m) => m.DetailsComponent),
+          },
+        ],
+      },
+    ],
   },
 
   {

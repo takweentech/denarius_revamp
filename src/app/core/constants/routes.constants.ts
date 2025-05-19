@@ -5,6 +5,10 @@ export const WEB_ROUTES = {
   DASHBOARD: {
     ROOT: "dashboard",
   },
+  TRANSACTIONS: {
+    ROOT: "transactions",
+    DETAILS: "details",
+  },
   AUTH: {
     ROOT: "auth",
     SIGN_UP: "sign-up",
@@ -23,5 +27,5 @@ export const WEB_ROUTES = {
   },
   ABOUT_US: {
     ROOT: "about-us",
-  }
+  },
 };

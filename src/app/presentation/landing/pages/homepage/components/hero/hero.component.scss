@@ -1,61 +1,58 @@
 section {
-    // background-image: url("/assets/images/homepage-hero.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
-    position: relative;
+  // background-image: url("/assets/images/homepage-hero.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-position: center;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--primary-color);
+    opacity: 0.7;
+    content: "";
+    height: 100%;
+    width: 100%;
+  }
+
+  & > * {
+    z-index: 2;
+  }
+
+  .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    background-position: center;
+    text-align: center;
+    gap: 2rem;
 
-    &::after {
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: var(--primary-color);
-        opacity: .7;
-        content: "";
-        height: 100%;
-        width: 100%;
+    h1 {
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 72px;
+      color: #e9eceb;
+      max-width: 700px;
     }
 
-
-    &>* {
-        z-index: 2;
+    p {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 21px;
+      color: #e9eceb;
     }
 
-    .container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        gap: 2rem;
-
-        h1 {
-            font-weight: 700;
-            font-size: 60px;
-            line-height: 72px;
-            color: #E9ECEB;
-            max-width: 700px;
-        }
-
-        p {
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 21px;
-            color: #E9ECEB;
-        }
-
-        .btn {
-            width: fit-content;
-            border: 1px solid #FFFFFF;
-            border-radius: 45px;
-            min-width: 150px;
-        }
+    .btn {
+      width: fit-content;
+      border: 1px solid #ffffff;
+      border-radius: 45px;
+      min-width: 150px;
     }
-
-
+  }
 }

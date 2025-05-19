@@ -1,28 +1,55 @@
 .card {
-    background: #FFFFFF;
-    border: 1px solid #EAECF0;
-    box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+  background: #ffffff;
+  border: 1px solid #eaecf0;
+  box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1),
+    0px 1px 2px rgba(16, 24, 40, 0.06);
+  border-radius: 12px;
+
+  &.card-grey {
+    background: #f9f9f9;
+    border: 1px solid #eaecf0;
+    box-shadow: 2px 2px 3px rgba(16, 24, 40, 0.1);
     border-radius: 12px;
+  }
 
-
-    &.card-grey {
-        background: #F9F9F9;
-        border: 1px solid #EAECF0;
-        box-shadow: 2px 2px 3px rgba(16, 24, 40, 0.1);
-        border-radius: 12px;
-    }
-
-    &.card-light-blue {
-        background-color: #EDF2F5;
-    }
-
+  &.card-light-blue {
+    background-color: #edf2f5;
+  }
 }
 
-
 .shadow-card {
+  background: #ffffff;
+  box-shadow: 0px 2px 14px 1px rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+}
+.stats-card {
+  .icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
 
-    background: #FFFFFF;
-    box-shadow: 0px 2px 14px 1px rgba(0, 0, 0, 0.06);
-    border-radius: 6px;
+    &.success {
+      background: #dcfaf8;
+    }
 
+    &.danger {
+      background: #ffe0eb;
+    }
+
+    &.primary {
+      background: #e7edff;
+    }
+
+    &.warning {
+      background: #fff5d9;
+    }
+
+    img {
+      width: 30px;
+    }
+  }
 }

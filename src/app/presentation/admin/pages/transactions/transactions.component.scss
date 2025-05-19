@@ -1,0 +1,44 @@
+.arrow-circle {
+  border: 2px solid;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+::ng-deep .minimal-pagination .page-link {
+  border: none;
+  background: none;
+  box-shadow: none;
+  color: var(--primary-color);
+
+  font-weight: 500;
+}
+
+::ng-deep .minimal-pagination .page-item.active .page-link {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+::ng-deep .minimal-pagination .page-item.disabled .page-link {
+  color: #aaa;
+}
+::ng-deep .minimal-pagination .page-item:first-child .page-link::before {
+  content: "‹ Previous";
+  font-size: 14px;
+  padding: 0 6px;
+}
+
+::ng-deep .minimal-pagination .page-item:last-child .page-link::before {
+  content: "Next ›";
+  font-size: 14px;
+  padding: 0 6px;
+}
+
+::ng-deep .minimal-pagination .page-item:first-child .page-link,
+::ng-deep .minimal-pagination .page-item:last-child .page-link {
+  font-size: 0;
+}
