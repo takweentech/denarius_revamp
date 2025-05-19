@@ -2,23 +2,24 @@
   <!-- Company Information -->
   <div class="shadow-sm px-2 py-2 bg-light row g-1 rounded-3">
     <div class="col-4 d-flex flex-column gap-1">
-      <small>Company Trade Name</small>
+      <small> {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.COMPANY_TRADE_NAME' | translate}}
+      </small>
       <span class="fw-bold">{{step.resolvedData?.crName}}</span>
     </div>
     <div class="col-4 d-flex flex-column gap-1">
-      <small>Company number </small>
+      <small>{{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.COMPANY_TRADE_NUMBER' | translate}} </small>
       <span class="fw-bold">{{step.resolvedData?.crNumber }}</span>
     </div>
     <div class="col-4 d-flex flex-column gap-1">
-      <small>Company Entity Number </small>
+      <small>{{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.COMPANY_ENTITY_NUMBER' | translate}} </small>
       <span class="fw-bold">{{step.resolvedData?.crEntityNumber }}</span>
     </div>
     <div class="col-4 d-flex flex-column gap-1">
-      <small>Issue Date </small>
+      <small>{{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.ISSUE_DATE' | translate}} </small>
       <span class="fw-bold">{{step.resolvedData?.issueDate | date }}</span>
     </div>
     <div class="col-4 d-flex flex-column gap-1">
-      <small>Business Type </small>
+      <small>{{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.BUSINESS_TYPE' | translate}} </small>
       <span class="fw-bold">{{step.resolvedData?.businessType?.name }}</span>
     </div>
   </div>
@@ -28,7 +29,7 @@
     <div class="row">
       <div class="form-group col-12 col-md-6">
         <label class="form-label">
-          Annual business volume
+          {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.ANNUAL_BUSINESS_VOLUME.LABEL' | translate}}
         </label>
         <input type="number"
                class="form-control"
@@ -37,7 +38,7 @@
       </div>
       <div class="form-group col-12 col-md-6">
         <label class="form-label">
-          Number of working employees
+          {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.NUMBER_OF_EMPLOYESS.LABEL' | translate}}
         </label>
         <input type="number"
                formControlName="employeeCount"
@@ -50,7 +51,7 @@
       <!-- Risk Tolerance -->
       <div class="col-12 form-group col-md-6">
         <label class="form-label">
-          Risk Tolerance
+          {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.RISK_TOLERANCE.LABEL' | translate}}
         </label>
         <div class="d-flex flex-column flex-md-row">
           @for (item of riskToleranceList; track $index) {
@@ -76,7 +77,10 @@
       </div>
       <!--Investment Experience-->
       <div class="col-12 form-group col-md-6">
-        <label class="form-label">Investment Experience</label>
+        <label class="form-label">
+          {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.INVESTMENT_EXPERIENCE.LABEL' | translate}}
+
+        </label>
         <div class="d-flex flex-column flex-md-row">
           @for (item of investmentExperienceList; track $index) {
           <div class="col">
@@ -103,8 +107,12 @@
     <div class="col-12">
       <div class="col-12 mt-3 p-3 justify-content-center d-flex rounded-2 border border-gray">
         <div class="col-md-9 col-12">
-          <h5 class="fw-bold mt-3">Article of Association</h5>
-          <strong class="fw-light"> PDF up to 5MB </strong>
+          <h5 class="fw-bold mt-3"> {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.ARTICLE_OF_ASSOCIATION.LABEL' |
+            translate}}
+          </h5>
+          <strong class="fw-light">
+            {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.ARTICLE_OF_ASSOCIATION.PLACEHOLDER' |
+            translate}} </strong>
         </div>
         <div class="col-12 col-md-3 position-relative">
           <br />

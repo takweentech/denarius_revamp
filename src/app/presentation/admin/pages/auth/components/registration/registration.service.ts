@@ -270,8 +270,8 @@ export class RegistrationService {
     company: [
       {
         key: 'information',
-        title: 'Register a company investor account',
-        description: 'Fill in the basic information',
+        title: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.DESCRIPTION',
         component: CompanyInformation,
         controls: [
           {
@@ -308,12 +308,13 @@ export class RegistrationService {
             validators: [Validators.required],
           },
         ],
-        apiHandler: (data: CompanyInitialSignUpDto, token?: string, otpId?: string) => this.initialCompanyInvestorSignUp(data)
+        apiHandler: (data: CompanyInitialSignUpDto, token?: string, otpId?: string) => this.initialCompanyInvestorSignUp(data),
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA'
       },
       {
         key: 'otp',
-        title: 'Register an individual investor account',
-        description: 'Verify mobile number',
+        title: 'AUTHENTICATION.REGISTRATION.COMPANY.OTP.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.COMPANY.OTP.DESCRIPTION',
         component: OtpComponent,
         apiHandler: (data: CompanyOtpSignUpDto, token?: string, otpId?: string) => this.verifyCompanyInvestorOTP(data, token, otpId),
         controls: [
@@ -322,12 +323,13 @@ export class RegistrationService {
             validators: [Validators.required, Validators.minLength(4)]
           },
         ],
-        resolvedData: {}
+        resolvedData: {},
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA'
       },
       {
         key: 'business',
-        title: 'Business Infromation',
-        description: 'Tell us more about your business',
+        title: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.DESCRIPTION',
         component: BusinessComponent,
         controls: [
           {
@@ -351,13 +353,15 @@ export class RegistrationService {
             validators: [Validators.required],
           },
         ],
-        resolvedData: {}
+        resolvedData: {},
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.CTA'
+
 
       },
       {
         key: 'absher',
-        title: 'Data verification',
-        description: 'We have sent a code to your Absher registered number.',
+        title: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.TITLE',
+        description: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.DESCRIPTION',
         apiHandler: (data: CompanyFinalizationDto, token?: string, otpId?: string) => this.finalizeCompanyInvestorRegestration(data, token, otpId),
         component: AbsherComponent,
         controls: [
@@ -366,7 +370,7 @@ export class RegistrationService {
             validators: [Validators.required]
           }
         ],
-        nextButtonText: 'Finish Registration'
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.CTA'
 
       },
     ],

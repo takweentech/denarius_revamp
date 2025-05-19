@@ -2,7 +2,9 @@
       [formGroup]="formGroup">
   <div class="row">
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">Commercial registration number <span class="text-danger"></span></label>
+      <label
+             class="form-label">{{'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.COMMERCIAL_REGISTRATION_NUMBER.LABEL'
+        | translate}} <span class="text-danger"></span></label>
       <input class="form-control"
              formControlName="commercialRegistrationNumber"
              type="text" />
@@ -15,7 +17,8 @@
       }
     </div>
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">Commissioner's ID number</label>
+      <label class="form-label">{{'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.COMMISSIONER_ID_NUMBER.LABEL'
+        | translate}}</label>
       <input class="form-control"
              formControlName="authorizedPersonId"
              type="text" />
@@ -30,7 +33,8 @@
   </div>
   <div class="row">
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">Date of Birth</label>
+      <label class="form-label">{{'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.BIRTH_DATE.LABEL'
+        | translate}}</label>
       <input class="form-control"
              formControlName="authorizedPersonBirthDate"
              type="date"
@@ -44,7 +48,8 @@
       }
     </div>
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">Phone number</label>
+      <label class="form-label">{{'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.PHONE_NUMBER.LABEL'
+        | translate}}</label>
       <div class="input-group">
 
 
@@ -73,11 +78,11 @@
     </div>
   </div>
   <div class="form-group col-12">
-    <label class="form-label">Email</label>
+    <label class="form-label">{{'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.EMAIL.LABEL'
+      | translate}}</label>
     <input class="form-control"
            formControlName="email"
-           type="email"
-           placeholder="mail@domain.com" />
+           type="email" />
     @if (formGroup.get('email')?.errors?.['required'] &&
     formGroup.get('email')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
@@ -88,7 +93,8 @@
   </div>
   <div class="row">
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">Password</label>
+      <label class="form-label">{{'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.PASSWORD.LABEL'
+        | translate}}</label>
       <div class="input-group">
         <input type="password"
                formControlName="password"
@@ -115,7 +121,8 @@
       }
     </div>
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">Password Confirmation</label>
+      <label class="form-label">{{'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.PASSWORD_CONFIRMATION.LABEL'
+        | translate}}</label>
       <div class="input-group">
         <input class="form-control"
                #confirmPassword
@@ -150,9 +157,10 @@
            class="m-0" />
     <label for="terms"
            class="form-label mb-0">
-      I agree to the
+      {{'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.TERMS.LABEL' | translate}}
+
       <a class="text-primary text-decoration-underline"
-         href=""> Terms and Conditions </a>
+         href=""> {{'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.TERMS.LINK' | translate}} </a>
     </label>
   </div>
 </form>
