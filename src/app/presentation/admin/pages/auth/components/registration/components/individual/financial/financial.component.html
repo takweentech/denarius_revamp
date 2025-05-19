@@ -48,9 +48,9 @@
               <label class="form-label">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.EDUCATION_LEVEL'
                      |
                      translate}}</label>
-              <div class="d-flex flex-column">
+              <div class="row g-0">
                      @for (item of educationLevelList(); track $index) {
-                     <div class="col d-flex p-0">
+                     <div class="col-12 col-md-6">
                             <input type="radio"
                                    [id]="'educationLevel-' + item.id"
                                    formControlName="educationLevel"
@@ -75,9 +75,9 @@
               <label class="form-label">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.EMPLOYMENT_STATUS'
                      |
                      translate}}</label>
-              <div class="d-flex flex-column">
+              <div class="row g-0">
                      @for (item of employmentStatusList(); track $index) {
-                     <div class="col d-flex p-0">
+                     <div class="col-12 col-md-6">
                             <input type="radio"
                                    [id]="'employmentStatus-' + item.id"
                                    [value]="item.id"
@@ -100,7 +100,7 @@
 
        <!-- Job Info -->
        <div class="col-12 form-group">
-              <div class="bg-white p-2 py-3 rounded row mx-auto gx-2">
+              <div class="bg-white bg-body-secondary p-2 py-3 rounded row mx-auto gx-2">
                      <div class=" col-sm-6 ">
                             <label class="small">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.JOB_TITLE'
                                    |
@@ -139,9 +139,9 @@
               <label class="form-label">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.ANNUAL_INCOME'
                      |
                      translate}}</label>
-              <div class="d-flex flex-column">
+              <div class="row g-0">
                      @for (item of annualIncomeList(); track $index) {
-                     <div class="col p-0">
+                     <div class="col-12 col-md-6">
                             <input type="radio"
                                    [id]="'annualIncome-' + item.id"
                                    [value]="item.id"
@@ -168,9 +168,9 @@
                      |
                      translate}}
               </label>
-              <div class="d-flex flex-column">
+              <div class="row g-0">
                      @for (item of netWorthList(); track $index) {
-                     <div class="col-12 p-0">
+                     <div class="col-12 col-md-6">
                             <input type="radio"
                                    [id]="'netWealth-' + item.id"
                                    formControlName="netWealth"

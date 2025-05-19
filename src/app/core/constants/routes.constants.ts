@@ -2,6 +2,9 @@ export const WEB_ROUTES = {
   HOME: {
     ROOT: "",
   },
+  SETTINGS: {
+    ROOT: "settings",
+  },
   DASHBOARD: {
     ROOT: "dashboard",
   },

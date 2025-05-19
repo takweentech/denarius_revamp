@@ -40,7 +40,7 @@ export class SidebarService {
     {
       label: "Settings",
       icon: "fa-solid fa-cog",
-      route: "/profile-management/settings",
+      route: "/" + WEB_ROUTES.SETTINGS.ROOT,
     },
   ];
   get sidebarItems(): SidebarItem[] {

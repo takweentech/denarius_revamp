@@ -100,6 +100,13 @@ export const routes: Routes = [
           ).then((m) => m.DashboardComponent),
       },
       {
+        path: WEB_ROUTES.SETTINGS.ROOT,
+        loadComponent: () =>
+          import(
+            "./presentation/admin/pages/settings/settings.component"
+          ).then((m) => m.SettingsComponent),
+      },
+      {
         path: WEB_ROUTES.TRANSACTIONS.ROOT,
         children: [
           {
