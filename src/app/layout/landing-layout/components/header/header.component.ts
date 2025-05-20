@@ -6,17 +6,23 @@ import { RouterLink } from "@angular/router";
 import { TranslatePipe } from "@ngx-translate/core";
 import { ConfigService } from "../../../../core/services/config.service";
 import { environment } from "../../../../../environments/environment";
-
+import { TokenService } from "../../../../core/services/token.service";
+import { UserProfileData } from "../../../../core/models/user";
+import { InitialsPipe } from "../../../../shared/pipes/initials.pipe";
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: "app-header",
   standalone: true,
-  imports: [CommonModule, NgbCollapseModule, RouterLink, TranslatePipe],
+  imports: [CommonModule, NgbCollapseModule, RouterLink, TranslatePipe, InitialsPipe, NgbDropdownModule],
   templateUrl: "./header.component.html",
   styleUrl: "./header.component.scss",
 })
 export class HeaderComponent {
   private offcanvasService = inject(NgbOffcanvas);
   private configService = inject(ConfigService);
+  private readonly tokenService = inject(TokenService);
+  isAuthenticated: boolean = this.tokenService.isAuthenticated();
+  user: UserProfileData = this.tokenService.getUser();
 
   navbarToggler: boolean = false;
   sticky: boolean = false;
@@ -31,6 +37,11 @@ export class HeaderComponent {
 
   openSidebar(content: TemplateRef<any>) {
     this.offcanvasService.open(content, { position: 'bottom', panelClass: 'vh-30 rounded-top-1' });
+  }
+
+  onLogout(): void {
+    this.tokenService.clearSession();
+    location.reload();
   }
 
 }

@@ -77,3 +77,10 @@ header {
 
 
 }
+
+
+.dropdown-toggle {
+    &::after {
+        display: none;
+    }
+}

@@ -33,6 +33,7 @@
     </nav>
     <!-- NAV 2 -->
     <nav class="nav-2 d-none d-lg-flex">
+      @if (!isAuthenticated) {
       <ul>
         <li>
           <a [routerLink]="'/' +  WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_IN">{{
@@ -45,6 +46,30 @@
             }}</a>
         </li>
       </ul>
+      }@else {
+
+
+      <div ngbDropdown
+           class="d-inline-block">
+        <button class="card bg-white p-0  rounded-4 gap-2"
+                id="dropdownBasic1"
+                ngbDropdownToggle>
+          <div class="bg-primary text-white p-3 fs-6 rounded-4">{{user.userProfile.fullName | initials}}</div>
+        </button>
+        <div ngbDropdownMenu
+             aria-labelledby="dropdownBasic1">
+          <button ngbDropdownItem>
+            <a [routerLink]="'/'  +  WEB_ROUTES.SETTINGS.ROOT">
+              My Profile
+            </a>
+          </button>
+          <button ngbDropdownItem>My investments</button>
+          <button (click)="onLogout()"
+                  ngbDropdownItem>Logout</button>
+        </div>
+      </div>
+      }
+
     </nav>
 
     <!-- Nav Toggle Button -->

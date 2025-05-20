@@ -12,9 +12,9 @@ import { TranslationService } from '../../../../core/services/translation.servic
 })
 export class HeaderComponent {
   translationService = inject(TranslationService);
-
   private readonly tokenService = inject(TokenService);
   private readonly router = inject(Router);
+
   onLogout() {
     this.tokenService.clearSession();
     this.router.navigate(['/' + WEB_ROUTES.AUTH.ROOT])

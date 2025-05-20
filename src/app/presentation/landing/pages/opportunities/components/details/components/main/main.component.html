@@ -99,6 +99,7 @@
       </ul>
 
       <div class="d-flex gap-2">
+        @if (!isAuthenticated) {
         <a target="_blank"
            [routerLink]="
         '/' +
@@ -119,6 +120,17 @@
            class="btn btn-primary w-100 rounded-2">
           {{ "Join to Invest" | translate }}
         </a>
+        }@else {
+        <a [routerLink]="
+        '/' +
+        WEB_ROUTES.OPPORTUNITIES.ROOT +
+        '/' +
+        WEB_ROUTES.OPPORTUNITIES.DETAILS + '/' + opportunity.id + '/' +   WEB_ROUTES.OPPORTUNITIES.PAYMENT
+      "
+           class="btn btn-primary w-100 rounded-2">
+          {{ "Invest Now" | translate }}
+        </a>
+        }
       </div>
     </div>
 

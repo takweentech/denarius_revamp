@@ -5,6 +5,7 @@ import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
 import { Opportunity } from "../../../../../../../../core/models/opportunity";
+import { TokenService } from "../../../../../../../../core/services/token.service";
 
 @Component({
   selector: "app-main",
@@ -19,8 +20,8 @@ import { Opportunity } from "../../../../../../../../core/models/opportunity";
 })
 export class MainComponent {
   private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly tokenService = inject(TokenService);
   opportunity: Opportunity = this.activatedRoute.snapshot.data['opportunity']?.data;
-
   WEB_ROUTES = WEB_ROUTES;
   selectedOpportunity = {
     image: "assets/images/tower.svg",
@@ -46,5 +47,7 @@ export class MainComponent {
     dividends: [],
     id: 1,
   };
+  isAuthenticated: boolean = this.tokenService.isAuthenticated();
+
 
 }
