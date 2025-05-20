@@ -2,8 +2,8 @@
   <!-- Details -->
   <div class="col-lg-7 col-12 d-flex flex-column gap-4">
     <!-- Investment calculation -->
-    <div class="d-flex flex-column flex-xl-row gap-3">
-      <div class="col d-flex flex-column gap-3">
+    <div class="d-flex flex-column  gap-4">
+      <div class="col-12 d-flex flex-column gap-3">
         <h4 class="fw-bold">{{ "OPPOTUNITIES_PAYMENT.INVESTMENT_STEP" | translate }}</h4>
         <div class="d-flex flex-column">
           <label class="form-label small">
@@ -24,7 +24,7 @@
           </a>
         </div>
       </div>
-      <div class="card col card-grey d-flex flex-column gap-3 p-3 py-2 h-fit">
+      <div class="card col-12 card-grey d-flex flex-column gap-3 p-3 py-2 h-fit">
         <ul class="list-unstyled d-flex flex-column  gap-3">
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
@@ -62,68 +62,7 @@
         </ul>
       </div>
     </div>
-    <!-- Dividends Table -->
-    <div class="col-12">
-      <h5 class="mb-2">
-        Dividends
-      </h5>
-      <div class="table-container">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">
-                Initial Balance
-              </th>
-              <th scope="col">
-                Payment Date
-              </th>
-              <th scope="col">
-                Nominal Value
-              </th>
-              <th scope="col">
-                Earned Value
-              </th>
-              <th scope="col">
-                Agency Fee
-              </th>
-              <th scope="col">
-                Vat
-              </th>
-              <th scope="col">
-                Net
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            @for (payment of opportunity.dividends; track $index) {
-            <tr>
-              <td>{{ payment.initialBalance | currency: 'SAR ' }}</td>
 
-              <td>
-                {{payment.paymentDate | date}}
-              </td>
-
-              <td>
-                {{payment.nominalValue | currency: 'SAR '}}
-              </td>
-
-              <td>
-                {{payment.earn | currency: 'SAR '}}
-              </td>
-
-              <td>
-                {{payment.agencyFee | currency: 'SAR '}}
-              </td>
-
-              <td> {{payment.vat | currency: 'SAR '}}</td>
-              <td> {{payment.net | currency: 'SAR '}}</td>
-            </tr>
-            }
-
-          </tbody>
-        </table>
-      </div>
-    </div>
   </div>
   <!-- Payment -->
   <div class="col-lg-5 col-12">
@@ -196,6 +135,69 @@
           {{ "OPPOTUNITIES_PAYMENT.PAYMENT_CONFIRMATION_MESSAGE" | translate }}
         </p>
       </div>
+    </div>
+  </div>
+
+  <!-- Dividends Table -->
+  <div class="col-12">
+    <h5 class="mb-2">
+      Dividends
+    </h5>
+    <div class="table-container">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">
+              Initial Balance
+            </th>
+            <th scope="col">
+              Payment Date
+            </th>
+            <th scope="col">
+              Nominal Value
+            </th>
+            <th scope="col">
+              Earned Value
+            </th>
+            <th scope="col">
+              Agency Fee
+            </th>
+            <th scope="col">
+              Vat
+            </th>
+            <th scope="col">
+              Net
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (payment of opportunity.dividends; track $index) {
+          <tr>
+            <td>{{ payment.initialBalance | currency: 'SAR ' }}</td>
+
+            <td>
+              {{payment.paymentDate | date}}
+            </td>
+
+            <td>
+              {{payment.nominalValue | currency: 'SAR '}}
+            </td>
+
+            <td>
+              {{payment.earn | currency: 'SAR '}}
+            </td>
+
+            <td>
+              {{payment.agencyFee | currency: 'SAR '}}
+            </td>
+
+            <td> {{payment.vat | currency: 'SAR '}}</td>
+            <td> {{payment.net | currency: 'SAR '}}</td>
+          </tr>
+          }
+
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
