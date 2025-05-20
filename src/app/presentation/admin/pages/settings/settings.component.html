@@ -2,26 +2,28 @@
   <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
     <!-- profile -->
     <li [ngbNavItem]="1">
-      <button ngbNavLink>Profile</button>
+      <button ngbNavLink>{{ "SETTINGS.PROFILE.PROFILE" | translate }}</button>
       <ng-template ngbNavContent>
         <app-profile></app-profile>
       </ng-template>
     </li>
     <!-- security -->
     <li [ngbNavItem]="2">
-      <button ngbNavLink>Security</button>
+      <button ngbNavLink>{{ "SETTINGS.SECURITY.SECURITY" | translate }}</button>
       <ng-template ngbNavContent>
         <app-security></app-security>
       </ng-template>
     </li>
     <li [ngbNavItem]="3">
-      <button ngbNavLink>Bank</button>
+      <button ngbNavLink>{{ "SETTINGS.BANK.BANK" | translate }}</button>
       <ng-template ngbNavContent>
         <app-bank></app-bank>
       </ng-template>
     </li>
     <li [ngbNavItem]="4">
-      <button ngbNavLink>Investment</button>
+      <button ngbNavLink>
+        {{ "SETTINGS.INVESTMENT.INVESTMENT" | translate }}
+      </button>
       <ng-template ngbNavContent>
         <app-investment></app-investment>
       </ng-template>

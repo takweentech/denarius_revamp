@@ -17,79 +17,89 @@
     <div class="col-md-10 col-12">
       <div class="g-4 d-flex mt-2 row">
         <div class="col-md-6 col-12">
-          <span class="fw-light">الإسم</span>
+          <span class="fw-light">{{
+            "SETTINGS.PROFILE.NAME" | translate
+          }}</span>
           <h6 class="fw-bold text-primary">محمد عبدالغني السيد عويس</h6>
         </div>
         <div class="col-md-6 col-12">
-          <span class="fw-light">رقم الجوال</span>
+          <span class="fw-light">{{
+            "SETTINGS.PROFILE.PHONE" | translate
+          }}</span>
           <h6 class="fw-bold text-primary">0500000000</h6>
         </div>
         <div class="col-md-6 col-12">
-          <span class="fw-light">رقم الهوية</span>
+          <span class="fw-light">{{
+            "SETTINGS.PROFILE.ID_NUMBER" | translate
+          }}</span>
           <h6 class="fw-bold text-primary">1122334455</h6>
         </div>
         <div class="col-md-6 col-12">
-          <span class="fw-light">تاريخ انتهاء الهوية</span>
+          <span class="fw-light">{{
+            "SETTINGS.PROFILE.ID_EXPIRY_DATE" | translate
+          }}</span>
           <h6 class="fw-bold text-primary">15/05/2030</h6>
         </div>
         <div class="col-md-6 col-12">
-          <span class="fw-light">الجنسية</span>
-
+          <span class="fw-light">{{
+            "SETTINGS.PROFILE.NATIONALITY" | translate
+          }}</span>
           <h6 class="fw-bold text-primary">سعودي</h6>
         </div>
         <div class="col-md-6 col-12">
-          <span class="fw-light">التاريخ فتح الحساب</span>
+          <span class="fw-light">{{
+            "SETTINGS.PROFILE.ACCOUNT_CREATION_DATE" | translate
+          }}</span>
           <h6 class="fw-bold text-primary">15/05/2024</h6>
         </div>
       </div>
       <div>
-        <form
-          class="g-4 d-flex mt-2 row"
-          action="
-        "
-        >
+        <form class="g-4 d-flex mt-2 row">
           <div class="col-md-6 col-12">
-            <h6 class="">إسم الشارع</h6>
+            <h6 class="">{{ "SETTINGS.PROFILE.STREET_NAME" | translate }}</h6>
             <input
               type="text"
               class="form-control mt-2"
-              placeholder="إسم الشارع"
+              placeholder="{{ 'SETTINGS.PROFILE.STREET_NAME' | translate }}"
             />
           </div>
           <div class="col-md-6 col-12">
-            <h6 class="">المنطقة</h6>
+            <h6 class="">{{ "SETTINGS.PROFILE.AREA" | translate }}</h6>
             <select class="form-control mt-2">
-              <option disabled selected>اختر المنطقة</option>
+              <option disabled selected>
+                {{ "SETTINGS.PROFILE.SELECT_AREA" | translate }}
+              </option>
               <option value="الرياض">الرياض</option>
               <option value="جدة">جدة</option>
               <option value="الدمام">الدمام</option>
               <option value="مكة">مكة</option>
               <option value="المدينة المنورة">المدينة المنورة</option>
-              <!-- Add more options if needed -->
             </select>
           </div>
           <div class="col-md-6 col-12">
-            <h6 class="">المدينة</h6>
+            <h6 class="">{{ "SETTINGS.PROFILE.CITY" | translate }}</h6>
             <input
               type="text"
               class="form-control mt-2"
-              placeholder="المدينة"
+              placeholder="{{ 'SETTINGS.PROFILE.CITY' | translate }}"
             />
           </div>
           <div class="col-md-6 col-12">
-            <h6 class="">رمز البريد</h6>
-            <input type="text" class="form-control mt-2" placeholder=" 12345" />
+            <h6 class="">{{ "SETTINGS.PROFILE.POSTAL_CODE" | translate }}</h6>
+            <input type="text" class="form-control mt-2" placeholder="12345" />
           </div>
           <div class="col-md-6 col-12">
-            <h6 class="">الرمز الإضافي</h6>
-            <input type="text" class="form-control mt-2" placeholder=" 12345" />
+            <h6 class="">
+              {{ "SETTINGS.PROFILE.ADDITIONAL_CODE" | translate }}
+            </h6>
+            <input type="text" class="form-control mt-2" placeholder="12345" />
           </div>
           <div class="col-md-6 col-12">
-            <h6 class="">العنوان المختصر</h6>
+            <h6 class="">{{ "SETTINGS.PROFILE.SHORT_ADDRESS" | translate }}</h6>
             <input
               type="text"
               class="form-control mt-2"
-              placeholder=" ABCD1234"
+              placeholder="ABCD1234"
             />
           </div>
         </form>
@@ -100,7 +110,7 @@
         class="btn rounded-3 btn-primary mt-4 col-12 col-md-2"
         type="submit"
       >
-        حفظ
+        {{ "SETTINGS.PROFILE.SAVE" | translate }}
       </button>
     </div>
   </div>

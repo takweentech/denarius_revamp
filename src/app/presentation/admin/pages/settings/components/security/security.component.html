@@ -1,15 +1,16 @@
 <section class="">
   <div class="d-flex mt-2 row">
     <div class="mt-5">
-      <h4>تغيير كلمة المرور</h4>
+      <h4>{{ "SETTINGS.SECURITY.CHANGE_PASSWORD_TITLE" | translate }}</h4>
       <form
         class="d-flex justify-content-between rounded-4 p-4 row password-bg mt-3"
       >
-        <!-- ✅ Hidden username field -->
         <input type="text" name="username" autocomplete="username" hidden />
 
         <div class="col-md-3 col-12">
-          <h6 class="">كلمة المرور الحالية</h6>
+          <h6 class="">
+            {{ "SETTINGS.SECURITY.CURRENT_PASSWORD" | translate }}
+          </h6>
           <input
             autocomplete="current-password"
             name="currentPassword"
@@ -20,7 +21,7 @@
         </div>
 
         <div class="col-md-3 col-12">
-          <h6 class="">كلمة المرور الجديدة</h6>
+          <h6 class="">{{ "SETTINGS.SECURITY.NEW_PASSWORD" | translate }}</h6>
           <input
             autocomplete="new-password"
             name="newPassword"
@@ -31,7 +32,9 @@
         </div>
 
         <div class="col-md-3 col-12">
-          <h6 class="">تأكيد كلمة المرور</h6>
+          <h6 class="">
+            {{ "SETTINGS.SECURITY.CONFIRM_PASSWORD" | translate }}
+          </h6>
           <input
             autocomplete="new-password"
             name="confirmPassword"
@@ -44,19 +47,20 @@
         <div class="col-md-3 col-12">
           <br />
           <button class="btn col-md-12 col-12 btn-primary">
-            تغيير كلمة المرور
+            {{ "SETTINGS.SECURITY.CHANGE_PASSWORD_BUTTON" | translate }}
           </button>
         </div>
       </form>
     </div>
+
     <div class="mt-5">
-      <h4>تغيير رقم الجوال</h4>
+      <h4>{{ "SETTINGS.SECURITY.CHANGE_PHONE_TITLE" | translate }}</h4>
       <form
         class="d-flex justify-content-between rounded-4 p-4 row password-bg mt-3"
       >
         <div class="col-md-7 col-12 row d-flex justify-content-between">
           <div class="col-md-6 col-12">
-            <h6 class="">رقم الجوال الجديد</h6>
+            <h6 class="">{{ "SETTINGS.SECURITY.NEW_PHONE" | translate }}</h6>
             <input
               type="text"
               class="form-control mt-2"
@@ -65,13 +69,14 @@
           </div>
           <div class="col-md-3 col-12">
             <br />
-
             <button class="btn mt-1 border-dark rounded-5 py-0">
-              إرسال الرمز
+              {{ "SETTINGS.SECURITY.SEND_CODE" | translate }}
             </button>
           </div>
           <div class="col-md-3 col-12">
-            <h6 class="">رمز التأكيد</h6>
+            <h6 class="">
+              {{ "SETTINGS.SECURITY.VERIFICATION_CODE" | translate }}
+            </h6>
             <input
               type="password"
               class="form-control mt-2"
@@ -82,25 +87,24 @@
 
         <div class="col-md-3 col-12">
           <br />
-
           <button class="btn col-md-12 col-12 btn-primary">
-            تحديث رقم الجوال
+            {{ "SETTINGS.SECURITY.UPDATE_PHONE" | translate }}
           </button>
         </div>
         <p class="mt-3 fs-12">
-          قم بإدخال الرقم الجديد، ثم الضغط على إرسال الرمز. ستصلك رسالة على رقم
-          الجوال الجديد، يرجى إدخال الرمز ثم الضغط على زر تحديث رقم الجوال
+          {{ "SETTINGS.SECURITY.PHONE_NOTE" | translate }}
         </p>
       </form>
     </div>
+
     <div class="mt-5">
-      <h4>تغيير البريد الإلكتروني</h4>
+      <h4>{{ "SETTINGS.SECURITY.CHANGE_EMAIL_TITLE" | translate }}</h4>
       <form
         class="d-flex justify-content-between rounded-4 p-4 row password-bg mt-3"
       >
         <div class="col-md-7 col-12 row d-flex justify-content-between">
           <div class="col-md-6 col-12">
-            <h6 class="">البريد الإلكتروني الجديد</h6>
+            <h6 class="">{{ "SETTINGS.SECURITY.NEW_EMAIL" | translate }}</h6>
             <input
               type="email"
               class="form-control mt-2"
@@ -109,13 +113,14 @@
           </div>
           <div class="col-md-3 col-12">
             <br />
-
             <button class="btn mt-1 border-dark rounded-5 py-0">
-              إرسال الرمز
+              {{ "SETTINGS.SECURITY.SEND_CODE" | translate }}
             </button>
           </div>
           <div class="col-md-3 col-12">
-            <h6 class="">رمز التأكيد</h6>
+            <h6 class="">
+              {{ "SETTINGS.SECURITY.VERIFICATION_CODE" | translate }}
+            </h6>
             <input
               type="password"
               class="form-control mt-2"
@@ -126,15 +131,12 @@
 
         <div class="col-md-3 col-12">
           <br />
-
           <button class="btn col-md-12 col-12 btn-primary">
-            تحديث البريد الإلكتروني
+            {{ "SETTINGS.SECURITY.UPDATE_EMAIL" | translate }}
           </button>
         </div>
         <p class="fs-12 mt-3">
-          قم بإدخال البريد الإلكتروني الجديد، ثم الضغط على إرسال الرمز. ستصلك
-          رسالة على البريد الإلكتروني الجديد، يرجى إدخال الرمز ثم الضغط على زر
-          تحديث البريد الإلكتروني
+          {{ "SETTINGS.SECURITY.EMAIL_NOTE" | translate }}
         </p>
       </form>
     </div>
