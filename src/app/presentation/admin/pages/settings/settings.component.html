@@ -1,5 +1,10 @@
 <section class="bg-white rounded-4 p-4">
-  <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+  <ul
+    ngbNav
+    #nav="ngbNav"
+    [(activeId)]="active"
+    class="nav-tabs justify-content-between"
+  >
     <!-- profile -->
     <li [ngbNavItem]="1">
       <button ngbNavLink>{{ "SETTINGS.PROFILE.PROFILE" | translate }}</button>
@@ -7,20 +12,27 @@
         <app-profile></app-profile>
       </ng-template>
     </li>
-    <!-- security -->
+    <!--  -->
     <li [ngbNavItem]="2">
+      <button ngbNavLink>{{ "SETTINGS.INFO" | translate }}</button>
+      <ng-template ngbNavContent>
+        <app-profile></app-profile>
+      </ng-template>
+    </li>
+    <!-- security -->
+    <li [ngbNavItem]="3">
       <button ngbNavLink>{{ "SETTINGS.SECURITY.SECURITY" | translate }}</button>
       <ng-template ngbNavContent>
         <app-security></app-security>
       </ng-template>
     </li>
-    <li [ngbNavItem]="3">
+    <li [ngbNavItem]="4">
       <button ngbNavLink>{{ "SETTINGS.BANK.BANK" | translate }}</button>
       <ng-template ngbNavContent>
         <app-bank></app-bank>
       </ng-template>
     </li>
-    <li [ngbNavItem]="4">
+    <li [ngbNavItem]="5">
       <button ngbNavLink>
         {{ "SETTINGS.INVESTMENT.INVESTMENT" | translate }}
       </button>
@@ -28,7 +40,18 @@
         <app-investment></app-investment>
       </ng-template>
     </li>
-  </ul>
 
+    <li>
+      <button
+        class="btn mt-2 p-3 text-white rounded-3 btn-custom d-flex align-items-center gap-2"
+      >
+        <span>{{ "SETTINGS.UPGRADE_REQUEST" | translate }}</span>
+        <div class="icon-circle p-2">
+          <i class="fas fa-bolt"></i>
+        </div>
+      </button>
+    </li>
+  </ul>
+  <hr class="m-0" />
   <div [ngbNavOutlet]="nav" class="mt-2"></div>
 </section>
