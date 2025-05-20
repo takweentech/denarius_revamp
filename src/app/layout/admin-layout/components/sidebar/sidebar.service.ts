@@ -25,7 +25,7 @@ export class SidebarService {
     {
       label: "LAYOUT.SIDEBAR.INVESTMENTS",
       icon: "fa-solid fa-line-chart",
-      route: "/profile-management/investments",
+      route: "/" + WEB_ROUTES.INVESTMENTS.ROOT,
     },
     {
       label: "LAYOUT.SIDEBAR.EARNINGS",

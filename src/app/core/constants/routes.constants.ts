@@ -12,6 +12,10 @@ export const WEB_ROUTES = {
     ROOT: "transactions",
     DETAILS: "details",
   },
+  INVESTMENTS: {
+    ROOT: "investments",
+    DETAILS: "details",
+  },
   AUTH: {
     ROOT: "auth",
     SIGN_UP: "sign-up",

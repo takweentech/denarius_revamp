@@ -1,4 +1,4 @@
-import { NgClass } from "@angular/common";
+import { CurrencyPipe, NgClass } from "@angular/common";
 import { Component, inject } from "@angular/core";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
@@ -14,6 +14,7 @@ import { TokenService } from "../../../../../../../../core/services/token.servic
     NgbAccordionModule,
     RouterLink,
     NgClass,
+    CurrencyPipe
   ],
   templateUrl: "./main.component.html",
   styleUrl: "./main.component.scss",

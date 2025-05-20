@@ -125,6 +125,29 @@ export const routes: Routes = [
           },
         ],
       },
+      {
+        path: WEB_ROUTES.INVESTMENTS.ROOT,
+        loadComponent: () =>
+          import(
+            "./presentation/admin/pages/investments/investments.component"
+          ).then((m) => m.InvestmentsComponent),
+        children: [
+          {
+            path: "",
+            loadComponent: () =>
+              import(
+                "./presentation/admin/pages/investments/components/listing/listing.component"
+              ).then((m) => m.ListingComponent),
+          },
+          {
+            path: WEB_ROUTES.INVESTMENTS.DETAILS + "/" + ":id",
+            loadComponent: () =>
+              import(
+                "./presentation/admin/pages/investments/components/details/details.component"
+              ).then((m) => m.DetailsComponent),
+          },
+        ],
+      },
     ],
   },
 
