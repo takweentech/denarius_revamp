@@ -1,0 +1,107 @@
+<section class="">
+  <div class="row d-flex">
+    <div class="col-md-2 col-12 d-flex justify-content-center">
+      <div class="position-relative d-inline-block">
+        <img
+          src="assets/images/mewees.svg"
+          class="rounded-circle mt-5 profile-img cursor-pointer"
+          alt="Profile"
+          onclick="document.getElementById('profile-input').click()"
+        />
+        <div class="edit-icon">
+          <i class="fas fa-pen"></i>
+        </div>
+        <input type="file" id="profile-input" class="d-none" accept="image/*" />
+      </div>
+    </div>
+    <div class="col-md-10 col-12">
+      <div class="g-4 d-flex mt-2 row">
+        <div class="col-md-6 col-12">
+          <span class="fw-light">الإسم</span>
+          <h6 class="fw-bold text-primary">محمد عبدالغني السيد عويس</h6>
+        </div>
+        <div class="col-md-6 col-12">
+          <span class="fw-light">رقم الجوال</span>
+          <h6 class="fw-bold text-primary">0500000000</h6>
+        </div>
+        <div class="col-md-6 col-12">
+          <span class="fw-light">رقم الهوية</span>
+          <h6 class="fw-bold text-primary">1122334455</h6>
+        </div>
+        <div class="col-md-6 col-12">
+          <span class="fw-light">تاريخ انتهاء الهوية</span>
+          <h6 class="fw-bold text-primary">15/05/2030</h6>
+        </div>
+        <div class="col-md-6 col-12">
+          <span class="fw-light">الجنسية</span>
+
+          <h6 class="fw-bold text-primary">سعودي</h6>
+        </div>
+        <div class="col-md-6 col-12">
+          <span class="fw-light">التاريخ فتح الحساب</span>
+          <h6 class="fw-bold text-primary">15/05/2024</h6>
+        </div>
+      </div>
+      <div>
+        <form
+          class="g-4 d-flex mt-2 row"
+          action="
+        "
+        >
+          <div class="col-md-6 col-12">
+            <h6 class="">إسم الشارع</h6>
+            <input
+              type="text"
+              class="form-control mt-2"
+              placeholder="إسم الشارع"
+            />
+          </div>
+          <div class="col-md-6 col-12">
+            <h6 class="">المنطقة</h6>
+            <select class="form-control mt-2">
+              <option disabled selected>اختر المنطقة</option>
+              <option value="الرياض">الرياض</option>
+              <option value="جدة">جدة</option>
+              <option value="الدمام">الدمام</option>
+              <option value="مكة">مكة</option>
+              <option value="المدينة المنورة">المدينة المنورة</option>
+              <!-- Add more options if needed -->
+            </select>
+          </div>
+          <div class="col-md-6 col-12">
+            <h6 class="">المدينة</h6>
+            <input
+              type="text"
+              class="form-control mt-2"
+              placeholder="المدينة"
+            />
+          </div>
+          <div class="col-md-6 col-12">
+            <h6 class="">رمز البريد</h6>
+            <input type="text" class="form-control mt-2" placeholder=" 12345" />
+          </div>
+          <div class="col-md-6 col-12">
+            <h6 class="">الرمز الإضافي</h6>
+            <input type="text" class="form-control mt-2" placeholder=" 12345" />
+          </div>
+          <div class="col-md-6 col-12">
+            <h6 class="">العنوان المختصر</h6>
+            <input
+              type="text"
+              class="form-control mt-2"
+              placeholder=" ABCD1234"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-12 mt-3 d-flex justify-content-end">
+      <button
+        class="btn rounded-3 btn-primary mt-4 col-12 col-md-2"
+        type="submit"
+      >
+        حفظ
+      </button>
+    </div>
+  </div>
+</section>
