@@ -1,18 +1,22 @@
 <section class="">
   <div class="mt-5 g-4">
-    <h4 class="mt-2">معلومات الحساب البنكي</h4>
+    <h4 class="mt-2">{{ "SETTINGS.BANK.TITLE" | translate }}</h4>
+
     <div class="col-md-6 mt-4 col-12">
-      <h6 class="">رقم IBAN</h6>
+      <h6 class="">{{ "SETTINGS.BANK.IBAN" | translate }}</h6>
       <input
         type="text"
         class="form-control rounded-3 mt-2"
         placeholder="SA12312312312312312312312"
       />
     </div>
+
     <div class="col-md-6 mt-4 col-12">
-      <h6 class="">إسم البنك</h6>
+      <h6 class="">{{ "SETTINGS.BANK.BANK_NAME" | translate }}</h6>
       <select class="form-control mt-2">
-        <option disabled selected>اختر البنك</option>
+        <option disabled selected>
+          {{ "SETTINGS.BANK.SELECT_BANK" | translate }}
+        </option>
         <option value="الراجحي">مصرف الراجحي</option>
         <option value="الاهلي">البنك الأهلي السعودي</option>
         <option value="الانماء">مصرف الإنماء</option>
@@ -25,21 +29,23 @@
         <option value="الخليج">بنك الخليج الدولي</option>
       </select>
     </div>
+
     <div class="col-md-6 mt-4 col-12">
-      <h6 class="">اسم المستفيد</h6>
+      <h6 class="">{{ "SETTINGS.BANK.BENEFICIARY_NAME" | translate }}</h6>
       <input
         type="text"
         class="form-control rounded-3 bg-light mt-2"
         placeholder="Mohammed Ahmed"
       />
     </div>
+
     <p class="fs-12 mt-3">
-      يتم تعبئة اسم المستفيد من بيانات حسابك الاستثماري، ولا يمكن تغييره. في حال
-      واجهتك مشكلة؛ يرجى التواصل معنا.
+      {{ "SETTINGS.BANK.BENEFICIARY_NOTE" | translate }}
     </p>
+
     <div class="col-12 d-flex justify-content-end">
       <button class="btn col-md-3 col-12 btn-primary mt-4">
-        تحديث الحساب البنكي
+        {{ "SETTINGS.BANK.UPDATE_BUTTON" | translate }}
       </button>
     </div>
   </div>

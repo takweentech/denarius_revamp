@@ -5,14 +5,18 @@ import { SecurityComponent } from "./components/security/security.component";
 import { BankComponent } from "./components/bank/bank.component";
 
 import { InvestmentComponent } from "./components/investment/investment.component";
+import { TranslatePipe } from "@ngx-translate/core";
+import { InformationComponent } from "../auth/components/registration/components/individual/information/information.component";
 @Component({
   selector: "app-settings",
   imports: [
+    TranslatePipe,
     NgbNavModule,
     ProfileComponent,
     SecurityComponent,
     BankComponent,
     InvestmentComponent,
+    InformationComponent,
   ],
   templateUrl: "./settings.component.html",
   styleUrl: "./settings.component.scss",

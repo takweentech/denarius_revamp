@@ -1,11 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
-  selector: 'app-profile',
-  imports: [],
-  templateUrl: './profile.component.html',
-  styleUrl: './profile.component.scss'
+  selector: "app-profile",
+  imports: [TranslatePipe],
+  templateUrl: "./profile.component.html",
+  styleUrl: "./profile.component.scss",
 })
-export class ProfileComponent {
-
-}
+export class ProfileComponent {}
