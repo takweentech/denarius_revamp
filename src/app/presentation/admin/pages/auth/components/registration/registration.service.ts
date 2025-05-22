@@ -162,11 +162,13 @@ export class RegistrationService {
           },
           {
             key: 'jobTitle',
-            value: ""
+            validators: [Validators.required]
+
           },
           {
             key: 'yearsOfExperience',
-            value: ""
+            validators: [Validators.required]
+
           },
           {
             key: 'annualIncome',

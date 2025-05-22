@@ -4,9 +4,10 @@ import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
 import { TokenService } from '../../../../core/services/token.service';
 import { TranslationService } from '../../../../core/services/translation.service';
+import { TranslatePipe } from '@ngx-translate/core';
 @Component({
   selector: 'app-header',
-  imports: [NgbDropdownModule],
+  imports: [NgbDropdownModule, TranslatePipe],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

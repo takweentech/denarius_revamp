@@ -26,10 +26,11 @@
         </button>
         <div ngbDropdownMenu
              aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>My Profile</button>
-          <button ngbDropdownItem>Settings</button>
+          <button ngbDropdownItem>{{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.MY_PROFILE" | translate }}</button>
+          <button ngbDropdownItem>{{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.SETTINGS" | translate }}</button>
           <button (click)="onLogout()"
-                  ngbDropdownItem>Logout</button>
+                  class="text-danger"
+                  ngbDropdownItem>{{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.LOGOUT" | translate }}</button>
         </div>
       </div>
     </div>

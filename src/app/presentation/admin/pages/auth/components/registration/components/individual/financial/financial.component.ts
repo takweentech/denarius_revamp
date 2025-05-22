@@ -32,12 +32,12 @@ export class FinancialComponent extends BaseComponent implements OnInit {
     this.getMartialStatus();
 
     // Listen for employment status change
-    this.formGroup.controls['employmentStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => {
-      if (val !== 1 || val !== 2) {
-        this.formGroup.controls['jobTitle'].reset("");
-        this.formGroup.controls['yearsOfExperience'].reset("");
-      }
-    })
+    // this.formGroup.controls['employmentStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => {
+    //   if (val !== 1 || val !== 2) {
+    //     this.formGroup.controls['jobTitle'].reset("");
+    //     this.formGroup.controls['yearsOfExperience'].reset("");
+    //   }
+    // })
   }
 
   getMartialStatus(): void {
