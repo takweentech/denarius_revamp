@@ -2,114 +2,93 @@
   <div class="row d-flex">
     <div class="col-md-2 col-12 d-flex justify-content-center">
       <div class="position-relative d-inline-block">
-        <img
-          src="assets/images/mewees.svg"
-          class="rounded-circle mt-5 profile-img cursor-pointer"
-          alt="Profile"
-          onclick="document.getElementById('profile-input').click()"
-        />
+        <img src="assets/images/mewees.svg"
+             class="rounded-circle mt-5 profile-img cursor-pointer"
+             alt="Profile"
+             onclick="document.getElementById('profile-input').click()" />
         <div class="edit-icon">
           <i class="fas fa-pen"></i>
         </div>
-        <input type="file" id="profile-input" class="d-none" accept="image/*" />
+        <input type="file"
+               id="profile-input"
+               class="d-none"
+               accept="image/*" />
       </div>
     </div>
     <div class="col-md-10 col-12">
       <div class="g-4 d-flex mt-2 row">
         <div class="col-md-6 col-12">
-          <span class="fw-light">{{
+          <small>{{
             "SETTINGS.PROFILE.NAME" | translate
-          }}</span>
-          <h6 class="fw-bold text-primary">محمد عبدالغني السيد عويس</h6>
+            }}</small>
+          <h6 class="fw-bold text-primary">{{user.userProfile.fullName}}</h6>
         </div>
         <div class="col-md-6 col-12">
-          <span class="fw-light">{{
+          <small>{{
             "SETTINGS.PROFILE.PHONE" | translate
-          }}</span>
-          <h6 class="fw-bold text-primary">0500000000</h6>
+            }}</small>
+          <h6 class="fw-bold text-primary">{{user.userProfile.nationality || 'N/A'}}</h6>
         </div>
         <div class="col-md-6 col-12">
-          <span class="fw-light">{{
+          <small>{{
             "SETTINGS.PROFILE.ID_NUMBER" | translate
-          }}</span>
-          <h6 class="fw-bold text-primary">1122334455</h6>
+            }}</small>
+          <h6 class="fw-bold text-primary">{{user.userProfile.nationalId}}</h6>
         </div>
         <div class="col-md-6 col-12">
-          <span class="fw-light">{{
+          <small>{{
             "SETTINGS.PROFILE.ID_EXPIRY_DATE" | translate
-          }}</span>
-          <h6 class="fw-bold text-primary">15/05/2030</h6>
+            }}</small>
+          <h6 class="fw-bold text-primary">{{user.userProfile.expiryDate | date}}</h6>
         </div>
-        <div class="col-md-6 col-12">
-          <span class="fw-light">{{
-            "SETTINGS.PROFILE.NATIONALITY" | translate
-          }}</span>
-          <h6 class="fw-bold text-primary">سعودي</h6>
-        </div>
-        <div class="col-md-6 col-12">
-          <span class="fw-light">{{
-            "SETTINGS.PROFILE.ACCOUNT_CREATION_DATE" | translate
-          }}</span>
-          <h6 class="fw-bold text-primary">15/05/2024</h6>
-        </div>
+
       </div>
       <div>
-        <form class="g-4 d-flex mt-2 row">
+        <form [formGroup]="form"
+              class="g-4 d-flex mt-2 row">
           <div class="col-md-6 col-12">
             <h6 class="">{{ "SETTINGS.PROFILE.STREET_NAME" | translate }}</h6>
-            <input
-              type="text"
-              class="form-control mt-2"
-              placeholder="{{ 'SETTINGS.PROFILE.STREET_NAME' | translate }}"
-            />
+            <input type="text"
+                   formControlName="streetName"
+                   class="form-control mt-2"
+                   placeholder="{{ 'SETTINGS.PROFILE.STREET_NAME' | translate }}" />
           </div>
           <div class="col-md-6 col-12">
-            <h6 class="">{{ "SETTINGS.PROFILE.AREA" | translate }}</h6>
-            <select class="form-control mt-2">
-              <option disabled selected>
-                {{ "SETTINGS.PROFILE.SELECT_AREA" | translate }}
-              </option>
-              <option value="الرياض">الرياض</option>
-              <option value="جدة">جدة</option>
-              <option value="الدمام">الدمام</option>
-              <option value="مكة">مكة</option>
-              <option value="المدينة المنورة">المدينة المنورة</option>
-            </select>
+            <h6 class="">{{ "District" | translate }}</h6>
+            <input type="text"
+                   formControlName="district"
+                   class="form-control mt-2"
+                   placeholder="{{ 'SETTINGS.PROFILE.CITY' | translate }}" />
           </div>
           <div class="col-md-6 col-12">
             <h6 class="">{{ "SETTINGS.PROFILE.CITY" | translate }}</h6>
-            <input
-              type="text"
-              class="form-control mt-2"
-              placeholder="{{ 'SETTINGS.PROFILE.CITY' | translate }}"
-            />
+            <input type="text"
+                   formControlName="city"
+                   class="form-control mt-2"
+                   placeholder="{{ 'SETTINGS.PROFILE.CITY' | translate }}" />
           </div>
           <div class="col-md-6 col-12">
             <h6 class="">{{ "SETTINGS.PROFILE.POSTAL_CODE" | translate }}</h6>
-            <input type="text" class="form-control mt-2" placeholder="12345" />
+            <input type="text"
+                   formControlName="postalCode"
+                   class="form-control mt-2"
+                   placeholder="12345" />
           </div>
           <div class="col-md-6 col-12">
             <h6 class="">
               {{ "SETTINGS.PROFILE.ADDITIONAL_CODE" | translate }}
             </h6>
-            <input type="text" class="form-control mt-2" placeholder="12345" />
-          </div>
-          <div class="col-md-6 col-12">
-            <h6 class="">{{ "SETTINGS.PROFILE.SHORT_ADDRESS" | translate }}</h6>
-            <input
-              type="text"
-              class="form-control mt-2"
-              placeholder="ABCD1234"
-            />
+            <input type="text"
+                   formControlName="additionalCode"
+                   class="form-control mt-2"
+                   placeholder="12345" />
           </div>
         </form>
       </div>
     </div>
     <div class="col-12 mt-3 d-flex justify-content-end">
-      <button
-        class="btn rounded-3 btn-primary mt-4 col-12 col-md-2"
-        type="submit"
-      >
+      <button class="btn rounded-3 btn-primary mt-4 col-12 col-md-2"
+              type="submit">
         {{ "SETTINGS.PROFILE.SAVE" | translate }}
       </button>
     </div>

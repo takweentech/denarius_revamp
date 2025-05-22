@@ -82,6 +82,36 @@ export interface UserProfileData {
     investmentPerformance: InvestmentPerformance;
 }
 
+export interface UserBasicProfileData {
+    fullName: string;
+    idNumber: string;
+    nationality: string | null;
+    mobileNumber: string;
+    idExpiryDate: string; // Consider using Date if it's properly formatted
+    startingDate: string; // Consider using Date if it's properly formatted
+    district: number;
+    streetName: string;
+    city: string;
+    postalCode: string;
+    additionalCode: string;
+    shortAddress: string;
+}
+
+export interface UserBankData {
+    bankId: number;
+    accountBeneficiaryName: string;
+    iban: string;
+}
+
+export interface UserInvestmentData {
+    riskTolerance: number;
+    investmentExperience: number;
+    investmentHorizon: number;
+    investmentGoal: number;
+    isBeneficiary: number;
+}
+
+
 export interface UserProfile {
     fullName: string;
     profileImageUrl: string;

@@ -1,42 +1,36 @@
-<section class="">
+<form [formGroup]="form">
   <div class="mt-5 g-4">
     <h4 class="mt-2">{{ "SETTINGS.BANK.TITLE" | translate }}</h4>
 
     <div class="col-md-6 mt-4 col-12">
       <h6 class="">{{ "SETTINGS.BANK.IBAN" | translate }}</h6>
-      <input
-        type="text"
-        class="form-control rounded-3 mt-2"
-        placeholder="SA12312312312312312312312"
-      />
+      <input type="text"
+             formControlName="iban"
+             class="form-control rounded-3 mt-2"
+             placeholder="SA12312312312312312312312" />
     </div>
 
     <div class="col-md-6 mt-4 col-12">
       <h6 class="">{{ "SETTINGS.BANK.BANK_NAME" | translate }}</h6>
-      <select class="form-control mt-2">
-        <option disabled selected>
+
+      <select formControlName="bankId"
+              class="form-control mt-2">
+        <option disabled
+                selected>
           {{ "SETTINGS.BANK.SELECT_BANK" | translate }}
         </option>
-        <option value="الراجحي">مصرف الراجحي</option>
-        <option value="الاهلي">البنك الأهلي السعودي</option>
-        <option value="الانماء">مصرف الإنماء</option>
-        <option value="الرياض">بنك الرياض</option>
-        <option value="البلاد">بنك البلاد</option>
-        <option value="الجزيرة">بنك الجزيرة</option>
-        <option value="ساب">بنك ساب (البنك السعودي البريطاني)</option>
-        <option value="العربي">البنك العربي الوطني</option>
-        <option value="الفرنسي">البنك السعودي الفرنسي</option>
-        <option value="الخليج">بنك الخليج الدولي</option>
+        @for (item of bankList(); track $index) {
+        <option [value]="item.id">{{item.id}}</option>
+        }
       </select>
     </div>
 
     <div class="col-md-6 mt-4 col-12">
       <h6 class="">{{ "SETTINGS.BANK.BENEFICIARY_NAME" | translate }}</h6>
-      <input
-        type="text"
-        class="form-control rounded-3 bg-light mt-2"
-        placeholder="Mohammed Ahmed"
-      />
+      <input type="text"
+             formControlName="accountBeneficiaryName"
+             class="form-control rounded-3 bg-light mt-2"
+             placeholder="Mohammed Ahmed" />
     </div>
 
     <p class="fs-12 mt-3">
@@ -49,4 +43,4 @@
       </button>
     </div>
   </div>
-</section>
+</form>

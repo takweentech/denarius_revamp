@@ -30,6 +30,12 @@ export class LookupService {
     getMartialStatus(): Observable<Lookup[]> {
         return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/MaritalStatus`)
     }
+
+    getBanks(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/GetAllBanks`)
+    }
+
+
     getMartialStatusList() {
         return [
             { englishName: 'Divorced', arabicName: 'مطلق', value: 1 },

@@ -1,5 +1,6 @@
-<section class="">
-  <div class="mt-5 g-4">
+<section>
+  <form [formGroup]="form"
+        class="mt-5 g-4">
     <h4 class="mt-2 text-primary">
       {{ "SETTINGS.INVESTMENT.TITLE" | translate }}
     </h4>
@@ -9,21 +10,18 @@
         <h6 class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.RISK_TOLERANCE" | translate }}
         </h6>
-        <div class="d-flex">
-          <input type="radio" name="risk" id="risk-low" class="d-none" />
-          <label for="risk-low" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.LOW" | translate
-          }}</label>
-
-          <input type="radio" name="risk" id="risk-medium" class="d-none" />
-          <label for="risk-medium" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.MEDIUM" | translate
-          }}</label>
-
-          <input type="radio" name="risk" id="risk-high" class="d-none" />
-          <label for="risk-high" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.HIGH" | translate
-          }}</label>
+        <div class="d-flex flex-column flex-md-row">
+          @for (item of riskToleranceList; track $index) {
+          <div class="col">
+            <input type="radio"
+                   [id]="'riskTolerance-' + item.value"
+                   [value]="item.value"
+                   formControlName="riskTolerance"
+                   class="d-none" />
+            <label [for]="'riskTolerance-' + item.value"
+                   class="btn btn-option-select">{{item | lang}}</label>
+          </div>
+          }
         </div>
       </div>
 
@@ -32,37 +30,20 @@
         <h6 class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.EXPERIENCE" | translate }}
         </h6>
-        <div class="d-flex">
-          <input
-            type="radio"
-            name="experience"
-            id="experience-low"
-            class="d-none"
-          />
-          <label for="experience-low" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.LOW" | translate
-          }}</label>
-
-          <input
-            type="radio"
-            name="experience"
-            id="experience-medium"
-            class="d-none"
-          />
-          <label for="experience-medium" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.MEDIUM" | translate
-          }}</label>
-
-          <input
-            type="radio"
-            name="experience"
-            id="experience-high"
-            class="d-none"
-          />
-          <label for="experience-high" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.HIGH" | translate
-          }}</label>
+        <div class="d-flex flex-column flex-md-row">
+          @for (item of investmentExperienceList; track $index) {
+          <div class="col">
+            <input type="radio"
+                   [id]="'investmentExperience-' + item.value"
+                   [value]="item.value"
+                   formControlName="investmentExperience"
+                   class="d-none" />
+            <label [for]="'investmentExperience-' + item.value"
+                   class="btn btn-option-select">{{item | lang}}</label>
+          </div>
+          }
         </div>
+
       </div>
 
       <!-- Investment Period -->
@@ -70,21 +51,18 @@
         <h6 class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.PERIOD_QUESTION" | translate }}
         </h6>
-        <div class="d-flex">
-          <input type="radio" name="period" id="period-short" class="d-none" />
-          <label for="period-short" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.SHORT_PERIOD" | translate
-          }}</label>
-
-          <input type="radio" name="period" id="period-medium" class="d-none" />
-          <label for="period-medium" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.MEDIUM_PERIOD" | translate
-          }}</label>
-
-          <input type="radio" name="period" id="period-long" class="d-none" />
-          <label for="period-long" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.LONG_PERIOD" | translate
-          }}</label>
+        <div class="d-flex flex-column flex-md-row">
+          @for (item of investmentPeriodList; track $index) {
+          <div class="col">
+            <input type="radio"
+                   [id]="'investmentHorizon-' + item.value"
+                   [value]="item.value"
+                   formControlName="investmentHorizon"
+                   class="d-none" />
+            <label [for]="'investmentHorizon-' + item.value"
+                   class="btn btn-option-select">{{item | lang}}</label>
+          </div>
+          }
         </div>
       </div>
 
@@ -93,31 +71,18 @@
         <h6 class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.GOALS" | translate }}
         </h6>
-        <div class="d-flex">
-          <input type="radio" name="goal" id="goal-protect" class="d-none" />
-          <label for="goal-protect" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.GOAL_PROTECT" | translate
-          }}</label>
-
-          <input type="radio" name="goal" id="goal-income" class="d-none" />
-          <label for="goal-income" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.GOAL_INCOME" | translate
-          }}</label>
-
-          <input type="radio" name="goal" id="goal-growth" class="d-none" />
-          <label for="goal-growth" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.GOAL_GROWTH" | translate
-          }}</label>
-
-          <input type="radio" name="goal" id="goal-asset" class="d-none" />
-          <label for="goal-asset" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.GOAL_ASSET" | translate
-          }}</label>
-
-          <input type="radio" name="goal" id="goal-retirement" class="d-none" />
-          <label for="goal-retirement" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.GOAL_RETIREMENT" | translate
-          }}</label>
+        <div class="d-flex flex-column">
+          @for (item of investmentObjectivesList; track $index) {
+          <div class="col">
+            <input type="radio"
+                   [id]="'investmentGoal-' + item.value"
+                   [value]="item.value"
+                   formControlName="investmentGoal"
+                   class="d-none" />
+            <label [for]="'investmentGoal-' + item.value"
+                   class="btn btn-option-select">{{item | lang}}</label>
+          </div>
+          }
         </div>
       </div>
 
@@ -126,26 +91,19 @@
         <h6 class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.BENEFICIARY_QUESTION" | translate }}
         </h6>
-        <div class="d-flex">
-          <input
-            type="radio"
-            name="beneficiary"
-            id="beneficiary-yes"
-            class="d-none"
-          />
-          <label for="beneficiary-yes" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.YES" | translate
-          }}</label>
+        <div class="d-flex flex-column flex-md-row">
+          @for (item of yesNoLists; track $index) {
+          <div class="col">
+            <input type="radio"
+                   formControlName="isBeneficiary"
+                   [id]="'isBeneficiary-' + item.value"
+                   [value]="item.value"
+                   class="d-none" />
+            <label [for]="'isBeneficiary-' + item.value"
+                   class="btn btn-option-select">{{item | lang}}</label>
 
-          <input
-            type="radio"
-            name="beneficiary"
-            id="beneficiary-no"
-            class="d-none"
-          />
-          <label for="beneficiary-no" class="btn btn-option-select">{{
-            "SETTINGS.INVESTMENT.NO" | translate
-          }}</label>
+          </div>
+          }
         </div>
       </div>
     </div>
@@ -154,5 +112,5 @@
         {{ "SETTINGS.INVESTMENT.UPDATE_BUTTON" | translate }}
       </button>
     </div>
-  </div>
+  </form>
 </section>
