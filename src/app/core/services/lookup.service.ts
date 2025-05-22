@@ -35,6 +35,19 @@ export class LookupService {
         return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/GetAllBanks`)
     }
 
+    getRiskTolerance(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/RiskTolerance`)
+    }
+    getInvestmentExperience(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/InvestmentExperienceLookup`)
+    }
+    getInvestmentDuration(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/InvestmentDuration`)
+    }
+    getInvestmentGoal(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/InvestmentGoal`)
+    }
+
 
     getMartialStatusList() {
         return [

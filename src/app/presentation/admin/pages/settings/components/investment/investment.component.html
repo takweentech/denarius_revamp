@@ -11,14 +11,14 @@
           {{ "SETTINGS.INVESTMENT.RISK_TOLERANCE" | translate }}
         </h6>
         <div class="d-flex flex-column flex-md-row">
-          @for (item of riskToleranceList; track $index) {
+          @for (item of riskToleranceList(); track $index) {
           <div class="col">
             <input type="radio"
-                   [id]="'riskTolerance-' + item.value"
-                   [value]="item.value"
+                   [id]="'riskTolerance-' + item.id"
+                   [value]="item.id"
                    formControlName="riskTolerance"
                    class="d-none" />
-            <label [for]="'riskTolerance-' + item.value"
+            <label [for]="'riskTolerance-' + item.id"
                    class="btn btn-option-select">{{item | lang}}</label>
           </div>
           }
@@ -31,14 +31,14 @@
           {{ "SETTINGS.INVESTMENT.EXPERIENCE" | translate }}
         </h6>
         <div class="d-flex flex-column flex-md-row">
-          @for (item of investmentExperienceList; track $index) {
+          @for (item of investmentExperienceList(); track $index) {
           <div class="col">
             <input type="radio"
-                   [id]="'investmentExperience-' + item.value"
-                   [value]="item.value"
+                   [id]="'investmentExperience-' + item.id"
+                   [value]="item.id"
                    formControlName="investmentExperience"
                    class="d-none" />
-            <label [for]="'investmentExperience-' + item.value"
+            <label [for]="'investmentExperience-' + item.id"
                    class="btn btn-option-select">{{item | lang}}</label>
           </div>
           }
@@ -52,14 +52,14 @@
           {{ "SETTINGS.INVESTMENT.PERIOD_QUESTION" | translate }}
         </h6>
         <div class="d-flex flex-column flex-md-row">
-          @for (item of investmentPeriodList; track $index) {
+          @for (item of investmentPeriodList(); track $index) {
           <div class="col">
             <input type="radio"
-                   [id]="'investmentHorizon-' + item.value"
-                   [value]="item.value"
+                   [id]="'investmentHorizon-' + item.id"
+                   [value]="item.id"
                    formControlName="investmentHorizon"
                    class="d-none" />
-            <label [for]="'investmentHorizon-' + item.value"
+            <label [for]="'investmentHorizon-' + item.id"
                    class="btn btn-option-select">{{item | lang}}</label>
           </div>
           }
@@ -72,14 +72,14 @@
           {{ "SETTINGS.INVESTMENT.GOALS" | translate }}
         </h6>
         <div class="d-flex flex-column">
-          @for (item of investmentObjectivesList; track $index) {
+          @for (item of investmentObjectivesList(); track $index) {
           <div class="col">
             <input type="radio"
-                   [id]="'investmentGoal-' + item.value"
-                   [value]="item.value"
+                   [id]="'investmentGoal-' + item.id"
+                   [value]="item.id"
                    formControlName="investmentGoal"
                    class="d-none" />
-            <label [for]="'investmentGoal-' + item.value"
+            <label [for]="'investmentGoal-' + item.id"
                    class="btn btn-option-select">{{item | lang}}</label>
           </div>
           }
