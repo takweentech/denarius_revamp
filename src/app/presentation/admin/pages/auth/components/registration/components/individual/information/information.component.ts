@@ -14,4 +14,8 @@ export class InformationComponent {
   readonly translationService = inject(TranslationService);
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
+
+
+
+
 }

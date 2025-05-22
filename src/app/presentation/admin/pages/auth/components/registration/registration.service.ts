@@ -52,7 +52,7 @@ export class RegistrationService {
         controls: [
           {
             key: 'idNumber',
-            validators: [Validators.required],
+            validators: [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]*$')],
             // value: '1234567891'
           },
           {
@@ -62,7 +62,7 @@ export class RegistrationService {
           },
           {
             key: 'phoneNumber',
-            validators: [Validators.required],
+            validators: [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern('^[0-9]*$')],
             // value: '512345678'
           },
           {
@@ -162,11 +162,11 @@ export class RegistrationService {
           },
           {
             key: 'jobTitle',
-            validators: [Validators.required]
+            value: ""
           },
           {
             key: 'yearsOfExperience',
-            validators: [Validators.required]
+            value: ""
           },
           {
             key: 'annualIncome',
@@ -281,7 +281,6 @@ export class RegistrationService {
           {
             key: 'authorizedPersonId',
             validators: [Validators.required],
-            value: '1011254777'
           },
           {
             key: 'authorizedPersonBirthDate',
