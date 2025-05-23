@@ -12,7 +12,8 @@
     </li>
     <!-- Personal Information -->
     <li [ngbNavItem]="2">
-      <button ngbNavLink>{{ "Personal information" | translate }}</button>
+      <button ngbNavLink>{{'SETTINGS.INFO.TITLE' |
+        translate}}</button>
       <ng-template ngbNavContent>
         <app-personal></app-personal>
       </ng-template>
