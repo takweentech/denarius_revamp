@@ -1,15 +1,15 @@
-<section>
+<section class="py-4">
   <form [formGroup]="form"
-        class="mt-5 g-4">
-    <h4 class="mt-2 text-primary">
+        class=" g-4">
+    <h4 class=" text-primary">
       {{ "SETTINGS.INVESTMENT.TITLE" | translate }}
     </h4>
-    <div class="d-flex mt-4 col-9 row justify-content-start">
+    <div class="mt-4 col-12 col-xl-9 row ">
       <!-- Risk Tolerance -->
-      <div class="mb-5 col-md-6 col-12 d-flex row">
-        <h6 class="mb-3 d-block">
+      <div class="mb-5 col-xl-6 col-12 d-flex row">
+        <label class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.RISK_TOLERANCE" | translate }}
-        </h6>
+        </label>
         <div class="d-flex flex-column flex-md-row">
           @for (item of riskToleranceList(); track $index) {
           <div class="col">
@@ -26,10 +26,10 @@
       </div>
 
       <!-- Investment Experience -->
-      <div class="mb-5 col-md-6 col-12 d-flex row">
-        <h6 class="mb-3 d-block">
+      <div class="mb-5 col-xl-6 col-12 d-flex row">
+        <label class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.EXPERIENCE" | translate }}
-        </h6>
+        </label>
         <div class="d-flex flex-column flex-md-row">
           @for (item of investmentExperienceList(); track $index) {
           <div class="col">
@@ -47,10 +47,10 @@
       </div>
 
       <!-- Investment Period -->
-      <div class="mb-5 col-md-9 col-12 d-flex row">
-        <h6 class="mb-3 d-block">
+      <div class="mb-5 col-xl-9 col-12 d-flex row">
+        <label class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.PERIOD_QUESTION" | translate }}
-        </h6>
+        </label>
         <div class="d-flex flex-column flex-md-row">
           @for (item of investmentPeriodList(); track $index) {
           <div class="col">
@@ -67,11 +67,11 @@
       </div>
 
       <!-- Investment Goals -->
-      <div class="mb-5 col-md-12 col-12 d-flex row">
-        <h6 class="mb-3 d-block">
+      <div class="mb-5 col-md-12 col-12 row">
+        <label class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.GOALS" | translate }}
-        </h6>
-        <div class="d-flex flex-column">
+        </label>
+        <div class="d-flex flex-column flex-xl-row">
           @for (item of investmentObjectivesList(); track $index) {
           <div class="col">
             <input type="radio"
@@ -87,10 +87,10 @@
       </div>
 
       <!-- Beneficiary -->
-      <div class="mb-5 col-md-6 col-12 d-flex row">
-        <h6 class="mb-3 d-block">
+      <div class="mb-5 col-xl-6 col-12">
+        <label class="mb-3 d-block">
           {{ "SETTINGS.INVESTMENT.BENEFICIARY_QUESTION" | translate }}
-        </h6>
+        </label>
         <div class="d-flex flex-column flex-md-row">
           @for (item of yesNoLists; track $index) {
           <div class="col">
@@ -108,7 +108,8 @@
       </div>
     </div>
     <div class="col-12 d-flex justify-content-end">
-      <button class="btn col-md-3 col-12 btn-primary mt-4">
+      <button (click)="onSave()"
+              class="btn btn-primary mt-4">
         {{ "SETTINGS.INVESTMENT.UPDATE_BUTTON" | translate }}
       </button>
     </div>

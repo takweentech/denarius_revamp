@@ -6,7 +6,7 @@ import { BankComponent } from "./components/bank/bank.component";
 
 import { InvestmentComponent } from "./components/investment/investment.component";
 import { TranslatePipe } from "@ngx-translate/core";
-import { InformationComponent } from "../auth/components/registration/components/individual/information/information.component";
+import { PersonalComponent } from "./components/personal/personal.component";
 @Component({
   selector: "app-settings",
   imports: [
@@ -16,7 +16,7 @@ import { InformationComponent } from "../auth/components/registration/components
     SecurityComponent,
     BankComponent,
     InvestmentComponent,
-    InformationComponent,
+    PersonalComponent
   ],
   templateUrl: "./settings.component.html",
   styleUrl: "./settings.component.scss",

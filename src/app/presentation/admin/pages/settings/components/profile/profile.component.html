@@ -1,6 +1,6 @@
-<section class="">
-  <div class="row d-flex">
-    <div class="col-md-2 col-12 d-flex justify-content-center">
+<section class="py-4">
+  <div class="row">
+    <div class="col-xl-2 col-12 d-flex justify-content-center">
       <div class="position-relative d-inline-block">
         <img src="assets/images/mewees.svg"
              class="rounded-circle mt-5 profile-img cursor-pointer"
@@ -15,8 +15,8 @@
                accept="image/*" />
       </div>
     </div>
-    <div class="col-md-10 col-12">
-      <div class="g-4 d-flex mt-2 row">
+    <div class="col-xl-10 col-12">
+      <div class="g-4 row">
         <div class="col-md-6 col-12">
           <small>{{
             "SETTINGS.PROFILE.NAME" | translate
@@ -45,49 +45,86 @@
       </div>
       <div>
         <form [formGroup]="form"
-              class="g-4 d-flex mt-2 row">
-          <div class="col-md-6 col-12">
-            <h6 class="">{{ "SETTINGS.PROFILE.STREET_NAME" | translate }}</h6>
+              class="g-3 mt-2 row">
+          <div class="col-lg-6 col-12">
+            <label for="streetName">{{ "SETTINGS.PROFILE.STREET_NAME" | translate }}</label>
             <input type="text"
+                   id="streetName"
                    formControlName="streetName"
                    class="form-control mt-2"
                    placeholder="{{ 'SETTINGS.PROFILE.STREET_NAME' | translate }}" />
+            @if (form.get('streetName')?.errors?.['required'] && form.get('streetName')?.touched ) {
+            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{'VALIDATORS.REQUIRED' | translate}}
+            </small>
+            }
           </div>
-          <div class="col-md-6 col-12">
-            <h6 class="">{{ "District" | translate }}</h6>
+          <div class="col-lg-6 col-12">
+            <label for="district">{{ "District" | translate }}</label>
             <input type="text"
+                   id="district"
                    formControlName="district"
                    class="form-control mt-2"
                    placeholder="{{ 'SETTINGS.PROFILE.CITY' | translate }}" />
+            @if (form.get('district')?.errors?.['required'] && form.get('district')?.touched ) {
+            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{'VALIDATORS.REQUIRED' | translate}}
+            </small>
+            }
           </div>
-          <div class="col-md-6 col-12">
-            <h6 class="">{{ "SETTINGS.PROFILE.CITY" | translate }}</h6>
+          <div class="col-lg-6 col-12">
+            <label for="city">{{ "SETTINGS.PROFILE.CITY" | translate }}</label>
             <input type="text"
+                   id="city"
                    formControlName="city"
                    class="form-control mt-2"
                    placeholder="{{ 'SETTINGS.PROFILE.CITY' | translate }}" />
+            @if (form.get('city')?.errors?.['required'] && form.get('city')?.touched ) {
+            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{'VALIDATORS.REQUIRED' | translate}}
+            </small>
+            }
           </div>
-          <div class="col-md-6 col-12">
-            <h6 class="">{{ "SETTINGS.PROFILE.POSTAL_CODE" | translate }}</h6>
+          <div class="col-lg-6 col-12">
+            <label for="postalCode">{{ "SETTINGS.PROFILE.POSTAL_CODE" | translate }}</label>
             <input type="text"
+                   id="postalCode"
                    formControlName="postalCode"
                    class="form-control mt-2"
                    placeholder="12345" />
+            @if (form.get('postalCode')?.errors?.['required'] && form.get('postalCode')?.touched ) {
+            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{'VALIDATORS.REQUIRED' | translate}}
+            </small>
+            }
           </div>
-          <div class="col-md-6 col-12">
-            <h6 class="">
+          <div class="col-lg-6 col-12">
+            <label for="additionalCode">
               {{ "SETTINGS.PROFILE.ADDITIONAL_CODE" | translate }}
-            </h6>
+            </label>
             <input type="text"
+                   id="additionalCode"
                    formControlName="additionalCode"
                    class="form-control mt-2"
                    placeholder="12345" />
+            @if (form.get('additionalCode')?.errors?.['required'] && form.get('additionalCode')?.touched ) {
+            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{'VALIDATORS.REQUIRED' | translate}}
+            </small>
+            }
           </div>
         </form>
       </div>
     </div>
     <div class="col-12 mt-3 d-flex justify-content-end">
-      <button class="btn rounded-3 btn-primary mt-4 col-12 col-md-2"
+      <button (click)="onSave()"
+              [disabled]="loading()"
+              class="btn rounded-3 btn-primary mt-4"
               type="submit">
         {{ "SETTINGS.PROFILE.SAVE" | translate }}
       </button>

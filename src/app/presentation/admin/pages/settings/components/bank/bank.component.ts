@@ -7,7 +7,8 @@ import { UserBankData, UserProfileData } from "../../../../../../core/models/use
 import { LookupService } from "../../../../../../core/services/lookup.service";
 import { Lookup } from "../../../../../../core/models/lookup";
 import { BaseComponent } from "../../../../../../core/base/base.component";
-import { takeUntil } from "rxjs";
+import { finalize, takeUntil } from "rxjs";
+import { ToastService } from "../../../../../../shared/components/toast/toast.service";
 
 @Component({
   selector: "app-bank",
@@ -19,8 +20,9 @@ export class BankComponent extends BaseComponent {
   private readonly profileService = inject(ProfileService);
   private readonly lookupService = inject(LookupService);
   private readonly fb = inject(FormBuilder);
+  private toastService = inject(ToastService);
   bankList = signal<Lookup[]>([]);
-
+  loading = signal<boolean>(false);
   form!: FormGroup;
 
   getBanks(): void {
@@ -47,5 +49,29 @@ export class BankComponent extends BaseComponent {
       accountBeneficiaryName: [data?.accountBeneficiaryName, Validators.required],
       iban: [data?.iban, Validators.required],
     })
+  }
+
+
+  onSave() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return
+    };
+    this.loading.set(true);
+
+    this.profileService.saveBankInformation(this.form.value).pipe(
+      finalize(() => this.loading.set(false)),
+      takeUntil(this.destroy$)).subscribe({
+        next: (response) => {
+          if (response.status == 200) {
+            this.toastService.show({ text: "Bank information was successfully saved", classname: 'bg-success text-light', icon: 'fa-circle-check' });
+          } else {
+            this.toastService.show({ text: response.message, classname: 'bg-danger text-light', icon: 'fa-circle-exclamation' });
+          }
+        },
+        error: (error) => {
+
+        }
+      })
   }
 }

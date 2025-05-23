@@ -2,8 +2,11 @@
 <ngb-toast [autohide]="true"
            [ngClass]="toast.classname"
            [delay]="5000">
-    <div class="text-white">
-        {{ toast.text }}
+    <div class="d-flex gap-2 align-items-center">
+        <i [class]="'text-white fa-solid ' + toast.icon "></i>
+        <div class="text-white">
+            {{ toast.text }}
+        </div>
     </div>
 </ngb-toast>
 }

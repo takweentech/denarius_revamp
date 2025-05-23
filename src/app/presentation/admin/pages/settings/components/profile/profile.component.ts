@@ -1,10 +1,13 @@
-import { Component, inject, OnInit } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { TranslatePipe } from "@ngx-translate/core";
 import { UserBasicProfileData, UserProfileData } from "../../../../../../core/models/user";
 import { TokenService } from "../../../../../../core/services/token.service";
 import { DatePipe } from "@angular/common";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { ProfileService } from "../../../../../../data/profile.service";
+import { finalize, takeUntil } from "rxjs";
+import { BaseComponent } from "../../../../../../core/base/base.component";
+import { ToastService } from "../../../../../../shared/components/toast/toast.service";
 
 @Component({
   selector: "app-profile",
@@ -12,19 +15,20 @@ import { ProfileService } from "../../../../../../data/profile.service";
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.scss",
 })
-export class ProfileComponent implements OnInit {
-
+export class ProfileComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
   private readonly fb = inject(FormBuilder);
+  private toastService = inject(ToastService);
 
+  loading = signal<boolean>(false);
   user: UserProfileData = this.tokenService.getUser();
 
   form!: FormGroup;
 
   ngOnInit(): void {
     this.initForm();
-    this.profileService.getBasicPersonalInformation().subscribe({
+    this.profileService.getBasicPersonalInformation().pipe(takeUntil(this.destroy$)).subscribe({
       next: (response) => {
         this.initForm(response.data);
       }
@@ -38,6 +42,30 @@ export class ProfileComponent implements OnInit {
       city: [data?.city, Validators.required],
       postalCode: [data?.postalCode, Validators.required],
       additionalCode: [data?.additionalCode, Validators.required],
+      shortAddress: "TEMP"
     })
+  }
+
+  onSave() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return
+    };
+    this.loading.set(true);
+
+    this.profileService.saveBasicPersonalInformation(this.form.value).pipe(
+      finalize(() => this.loading.set(false)),
+      takeUntil(this.destroy$)).subscribe({
+        next: (response) => {
+          if (response.status == 200) {
+            this.toastService.show({ text: "Address was successfully saved", classname: 'bg-success text-light', icon: 'fa-circle-check' });
+          } else {
+            this.toastService.show({ text: response.message, classname: 'bg-danger text-light', icon: 'fa-circle-exclamation' });
+          }
+        },
+        error: (error) => {
+
+        }
+      })
   }
 }

@@ -82,6 +82,17 @@ export interface UserProfileData {
     investmentPerformance: InvestmentPerformance;
 }
 
+export interface UserPersonalData {
+    maritalStatus: number,
+    familyMembersCount: number,
+    educationLevel: number,
+    employmentStatus: number,
+    jobTitle: number,
+    yearsOfExperience: number,
+    annualIncome: number,
+    netWealth: number
+}
+
 export interface UserBasicProfileData {
     fullName: string;
     idNumber: string;

@@ -1,17 +1,18 @@
-<form [formGroup]="form">
-  <div class="mt-5 g-4">
-    <h4 class="mt-2">{{ "SETTINGS.BANK.TITLE" | translate }}</h4>
+<form [formGroup]="form"
+      class="py-4">
+  <div class="g-4">
+    <h4>{{ "SETTINGS.BANK.TITLE" | translate }}</h4>
 
-    <div class="col-md-6 mt-4 col-12">
-      <h6 class="">{{ "SETTINGS.BANK.IBAN" | translate }}</h6>
+    <div class="col-xl-6 mt-4 col-12">
+      <label class="">{{ "SETTINGS.BANK.IBAN" | translate }}</label>
       <input type="text"
              formControlName="iban"
              class="form-control rounded-3 mt-2"
              placeholder="SA12312312312312312312312" />
     </div>
 
-    <div class="col-md-6 mt-4 col-12">
-      <h6 class="">{{ "SETTINGS.BANK.BANK_NAME" | translate }}</h6>
+    <div class="col-xl-6 mt-4 col-12">
+      <label class="">{{ "SETTINGS.BANK.BANK_NAME" | translate }}</label>
 
       <select formControlName="bankId"
               class="form-control mt-2">
@@ -25,8 +26,8 @@
       </select>
     </div>
 
-    <div class="col-md-6 mt-4 col-12">
-      <h6 class="">{{ "SETTINGS.BANK.BENEFICIARY_NAME" | translate }}</h6>
+    <div class="col-xl-6 mt-4 col-12">
+      <label class="">{{ "SETTINGS.BANK.BENEFICIARY_NAME" | translate }}</label>
       <input type="text"
              formControlName="accountBeneficiaryName"
              class="form-control rounded-3 bg-light mt-2"
@@ -38,7 +39,8 @@
     </p>
 
     <div class="col-12 d-flex justify-content-end">
-      <button class="btn col-md-3 col-12 btn-primary mt-4">
+      <button (click)="onSave()"
+              class="btn  btn-primary mt-4">
         {{ "SETTINGS.BANK.UPDATE_BUTTON" | translate }}
       </button>
     </div>
