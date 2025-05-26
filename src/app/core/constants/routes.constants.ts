@@ -5,6 +5,9 @@ export const WEB_ROUTES = {
   SETTINGS: {
     ROOT: "settings",
   },
+  PROFIT_TABLE: {
+    ROOT: "profit-table",
+  },
   DASHBOARD: {
     ROOT: "dashboard",
   },

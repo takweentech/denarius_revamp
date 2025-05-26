@@ -102,9 +102,16 @@ export const routes: Routes = [
       {
         path: WEB_ROUTES.SETTINGS.ROOT,
         loadComponent: () =>
+          import("./presentation/admin/pages/settings/settings.component").then(
+            (m) => m.SettingsComponent
+          ),
+      },
+      {
+        path: WEB_ROUTES.PROFIT_TABLE.ROOT,
+        loadComponent: () =>
           import(
-            "./presentation/admin/pages/settings/settings.component"
-          ).then((m) => m.SettingsComponent),
+            "./presentation/admin/pages/profit-table/profit-table.component"
+          ).then((m) => m.ProfitTableComponent),
       },
       {
         path: WEB_ROUTES.TRANSACTIONS.ROOT,
