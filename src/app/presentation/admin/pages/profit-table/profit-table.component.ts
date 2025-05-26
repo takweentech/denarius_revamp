@@ -1,10 +1,11 @@
 import { NgFor, NgIf } from "@angular/common";
 import { Component } from "@angular/core";
 import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
+import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-profit-table",
-  imports: [NgFor, NgIf, NgbPaginationModule],
+  imports: [NgFor, NgIf, NgbPaginationModule, TranslatePipe],
   templateUrl: "./profit-table.component.html",
   styleUrl: "./profit-table.component.scss",
 })
