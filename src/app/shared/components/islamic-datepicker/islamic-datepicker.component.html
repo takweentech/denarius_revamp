@@ -1,0 +1,11 @@
+<div class="input-group">
+    <input class="form-control"
+           placeholder="yyyy-mm-dd"
+           name="dp"
+           formControlName="birhtdate"
+           ngbDatepicker
+           #d="ngbDatepicker" />
+    <button class="btn btn-outline-secondary"
+            (click)="d.toggle()"
+            type="button"> <i class="fas fa-calendar"></i></button>
+</div>
