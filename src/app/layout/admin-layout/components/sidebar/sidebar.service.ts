@@ -30,7 +30,7 @@ export class SidebarService {
     {
       label: "LAYOUT.SIDEBAR.EARNINGS",
       icon: "fa-solid fa-dollar",
-      route: "/profile-management/profit",
+      route: "/" + WEB_ROUTES.PROFIT_TABLE.ROOT,
     },
     {
       label: "LAYOUT.SIDEBAR.WALLET",
