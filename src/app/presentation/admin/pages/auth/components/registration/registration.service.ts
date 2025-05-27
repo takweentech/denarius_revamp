@@ -52,7 +52,7 @@ export class RegistrationService {
         controls: [
           {
             key: 'idNumber',
-            validators: [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]*$')],
+            validators: [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^(1|2)[0-9]{9}$')],
             // value: '1234567891'
           },
           {
