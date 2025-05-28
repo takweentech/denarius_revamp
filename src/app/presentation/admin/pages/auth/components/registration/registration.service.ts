@@ -14,26 +14,11 @@ import { CompanyFinalizationDto, CompanyInitialSignUpDto, CompanyOtpSignUpDto, I
 import { Observable, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
+import { minimumAgeValidator } from '../../../../../../core/validators/form.validators';
 
 type StepType = 'individual' | 'company';
 
-function minimumAgeValidator(minAge: number) {
-  return (control: AbstractControl): ValidationErrors | null => {
-    const birthDate = new Date(control.value);
-    const today = new Date();
 
-    let age = today.getFullYear() - birthDate.getFullYear();
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    const dayDiff = today.getDate() - birthDate.getDate();
-
-    // Adjust age if the birthday hasn’t occurred yet this year
-    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-      age--;
-    }
-
-    return age >= minAge ? null : { minimumAge: { requiredAge: minAge, actualAge: age } };
-  };
-}
 
 
 @Injectable({

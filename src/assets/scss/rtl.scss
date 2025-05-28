@@ -23,5 +23,9 @@ body {
             right: unset;
             left: 1rem;
         }
+
+        .datepicker-btn {
+            border-radius: 4px 0 0 4px !important;
+        }
     }
 }

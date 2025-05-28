@@ -59,6 +59,17 @@ export class IslamicI18n extends NgbDatepickerI18n {
 })
 export class IslamicDatepickerComponent implements ControlValueAccessor {
   value: string = '';
+  minDate: NgbDateStruct = {
+    day: 1,
+    month: 1,
+    year: 1940
+  }
+  maxDate: NgbDateStruct = {
+    day: new Date().getDate(),
+    month: new Date().getMonth() + 1,
+    year: new Date().getFullYear()
+  }
+
 
   private onChange!: (value: string) => void;
   private onTouched!: () => void;
@@ -74,5 +85,13 @@ export class IslamicDatepickerComponent implements ControlValueAccessor {
 
   public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
+  }
+
+
+  onDateSelect(date: NgbDateStruct): void {
+    const formatted = `${date.year}-${date.month}-${date.day}`;
+    this.value = formatted;
+    this.onChange?.(formatted);
+    this.onTouched?.();
   }
 }
