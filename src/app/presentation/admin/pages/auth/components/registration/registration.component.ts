@@ -12,7 +12,7 @@ import { TokenService } from '../../../../../../core/services/token.service';
 import { ProfileService } from '../../../../../../data/profile.service';
 import { InvestorType } from '../../../../../../core/enums/investor.enums';
 import { TranslatePipe } from '@ngx-translate/core';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-registration',
   imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
@@ -24,6 +24,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
+  private readonly location = inject(Location);
   private readonly router = inject(Router);
   private toastService = inject(ToastService);
   private readonly fb = inject(FormBuilder);
@@ -50,10 +51,12 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
     this.signUpForm = this.fb.group({});
     this.steps.forEach((step) => {
       const group = this.fb.group({});
+      console.log(group)
       this.signUpForm.addControl(step.key, group);
       step.controls?.forEach((control) => {
         group.addControl(control.key, this.fb.control(control.value ?? null, control.validators ?? []));
       });
+      group.setValidators(step.validators || [])
     });
   }
 
@@ -175,5 +178,10 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         });
       }
     });
+  }
+
+
+  goBack(): void {
+    this.location.back();
   }
 }

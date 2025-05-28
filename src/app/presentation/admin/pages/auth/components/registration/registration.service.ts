@@ -14,7 +14,7 @@ import { CompanyFinalizationDto, CompanyInitialSignUpDto, CompanyOtpSignUpDto, I
 import { Observable, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
-import { minimumAgeValidator } from '../../../../../../core/validators/form.validators';
+import { matchValidator, minimumAgeValidator } from '../../../../../../core/validators/form.validators';
 import { REGEX_PATTERNS } from '../../../../../../core/constants/patterns.constants';
 
 type StepType = 'individual' | 'company';
@@ -71,6 +71,7 @@ export class RegistrationService {
             validators: [Validators.requiredTrue],
           },
         ],
+        validators: [matchValidator('password', 'confirmPassword')],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.CTA'
       },
       {
@@ -295,6 +296,7 @@ export class RegistrationService {
             validators: [Validators.required],
           },
         ],
+        validators: [matchValidator('password', 'confirmPassword')],
         apiHandler: (data: CompanyInitialSignUpDto, token?: string, otpId?: string) => this.initialCompanyInvestorSignUp(data),
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA'
       },
