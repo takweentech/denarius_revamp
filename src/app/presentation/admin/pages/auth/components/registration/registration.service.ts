@@ -15,6 +15,7 @@ import { Observable, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
 import { minimumAgeValidator } from '../../../../../../core/validators/form.validators';
+import { REGEX_PATTERNS } from '../../../../../../core/constants/patterns.constants';
 
 type StepType = 'individual' | 'company';
 
@@ -47,7 +48,7 @@ export class RegistrationService {
           },
           {
             key: 'phoneNumber',
-            validators: [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern('^[0-9]*$')],
+            validators: [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern(/^5\d{8}$/)],
             // value: '512345678'
           },
           {
@@ -57,12 +58,12 @@ export class RegistrationService {
           },
           {
             key: 'password',
-            validators: [Validators.required],
+            validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
             // value: 'QWE47ab3c2@@'
           },
           {
             key: 'confirmPassword',
-            validators: [Validators.required],
+            validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
             // value: 'QWE47ab3c2@@'
           },
           {
@@ -283,11 +284,11 @@ export class RegistrationService {
           },
           {
             key: 'password',
-            validators: [Validators.required],
+            validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
           },
           {
             key: 'confirmPassword',
-            validators: [Validators.required],
+            validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
           },
           {
             key: 'acceptTerms',

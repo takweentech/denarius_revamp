@@ -5,6 +5,7 @@
     <label class="form-label"> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.FORM.ID_NUMBER.LABEL' | translate}}
       <span class="text-danger">*</span></label>
     <input class="form-control"
+           dir="ltr"
            formControlName="idNumber" />
     @if (formGroup.get('idNumber')?.errors?.['required'] && formGroup.get('idNumber')?.touched ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
@@ -77,7 +78,7 @@
     ||formGroup.get('phoneNumber')?.errors?.['pattern'] ) {
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
-      {{'VALIDATORS.INVALID' | translate}}
+      {{'VALIDATORS.INVALID_PHONE_NUMBER' | translate}}
     </small>
     }
   </div>
@@ -131,6 +132,12 @@
       {{'VALIDATORS.REQUIRED' | translate}}
     </small>
     }
+    @if (formGroup.get('password')?.errors?.['pattern'] ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      {{'VALIDATORS.INVALID_PASSWORD' | translate}}
+    </small>
+    }
 
   </div>
   <!-- Password confirmation -->
@@ -158,6 +165,12 @@
     <small class="text-danger mt-1 d-flex align-items-center gap-1">
       <i class="fa-solid fa-circle-exclamation"></i>
       {{'VALIDATORS.REQUIRED' | translate}}
+    </small>
+    }
+    @if (formGroup.get('confirmPassword')?.errors?.['pattern'] ) {
+    <small class="text-danger mt-1 d-flex align-items-center gap-1">
+      <i class="fa-solid fa-circle-exclamation"></i>
+      {{'VALIDATORS.INVALID_PASSWORD' | translate}}
     </small>
     }
   </div>

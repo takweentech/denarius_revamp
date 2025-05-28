@@ -5,8 +5,6 @@ import { TranslationService } from '../../../../../../../../../core/services/tra
 import { TranslatePipe } from '@ngx-translate/core';
 import { IslamicDatepickerComponent } from "../../../../../../../../../shared/components/islamic-datepicker/islamic-datepicker.component";
 import { GregorianDatepickerComponent } from "../../../../../../../../../shared/components/gregorian-datepicker/gregorian-datepicker.component";
-import { JsonPipe } from '@angular/common';
-
 
 
 
