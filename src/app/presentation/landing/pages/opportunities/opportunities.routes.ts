@@ -35,13 +35,6 @@ export const OPPORTUNITIES_ROUTES: Route[] = [
             "./components/details/components/payment/payment.component"
           ).then((m) => m.PaymentComponent),
       },
-      {
-        path: WEB_ROUTES.OPPORTUNITIES.SUCCESS,
-        loadComponent: () =>
-          import(
-            "./components/details/components/success/success.component"
-          ).then((m) => m.SuccessComponent),
-      },
     ],
     providers: [],
   },

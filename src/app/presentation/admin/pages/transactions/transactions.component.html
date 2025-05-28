@@ -2,70 +2,62 @@
 <section>
   <div class="row g-2">
     <div class="col-md-12 col-lg-6 col-xl-3">
-      <div
-        class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100"
-      >
+      <div class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
         <div class="icon success">
-          <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
+          <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+               alt="" />
         </div>
 
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_DEPOSIT" | translate }}</span>
-          <span class="fw-semibold"
-            >{{ user.financialSummary.totalDeposits }}
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt=""
-          /></span>
+          <span class="fw-semibold">{{ user.financialSummary.totalDeposits }}
+            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="" /></span>
         </div>
       </div>
     </div>
     <div class="col-md-12 col-lg-6 col-xl-3">
-      <div
-        class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-      >
+      <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
         <div class="icon danger">
-          <img src="assets/icons/invoice-dollar.svg" alt="" />
+          <img src="assets/icons/invoice-dollar.svg"
+               alt="" />
         </div>
 
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_INVESTMENTS" | translate }}</span>
-          <span class="fw-semibold"
-            >{{ user.financialSummary.totalInvestments }}
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt=""
-          /></span>
+          <span class="fw-semibold">{{ user.financialSummary.totalInvestments }}
+            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="" /></span>
         </div>
       </div>
     </div>
     <div class="col-md-12 col-lg-6 col-xl-3">
-      <div
-        class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-      >
+      <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
         <div class="icon primary">
-          <img src="assets/icons/earnings.svg" alt="" />
+          <img src="assets/icons/earnings.svg"
+               alt="" />
         </div>
 
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_EARNINGS" | translate }}</span>
-          <span class="fw-semibold"
-            >{{ user.financialSummary.totalProfits }}
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt=""
-          /></span>
+          <span class="fw-semibold">{{ user.financialSummary.totalProfits }}
+            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="" /></span>
         </div>
       </div>
     </div>
     <div class="col-md-12 col-lg-6 col-xl-3">
-      <div
-        class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-      >
+      <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
         <div class="icon warning">
-          <img src="assets/icons/money-tag.svg" alt="" />
+          <img src="assets/icons/money-tag.svg"
+               alt="" />
         </div>
 
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_EXPECTED_EARNINGS" | translate }}</span>
-          <span class="fw-semibold"
-            >{{ user.financialSummary.expectedProfits }}
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt=""
-          /></span>
+          <span class="fw-semibold">{{ user.financialSummary.expectedProfits }}
+            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="" /></span>
         </div>
       </div>
     </div>
@@ -106,17 +98,13 @@
           track tx.id) {
           <tr>
             <td>
-              <div
-                class="d-flex align-items-center justify-content-start gap-2"
-              >
+              <div class="d-flex align-items-center justify-content-start gap-2">
                 <div class="arrow-circle">
-                  <i
-                    class="fas"
-                    [ngClass]="{
+                  <i class="fas"
+                     [ngClass]="{
                       'fa-arrow-down': tx.transactionType === 'Withdrawal',
                       'fa-arrow-up': tx.transactionType !== 'Withdrawal'
-                    }"
-                  ></i>
+                    }"></i>
                 </div>
                 <span class="ps-2">{{ tx.description || "-" }}</span>
               </div>
@@ -129,14 +117,13 @@
               {{ tx.createDate | date : "medium" }}
             </td>
             <td>
-              <span
-                [ngClass]="{
+              <span [ngClass]="{
                   'text-danger': tx.amount < 0,
                   'text-success': tx.amount > 0
-                }"
-              >
+                }">
                 {{ tx.amount | number : "1.0-2" }}
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
+                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                     alt="" />
               </span>
             </td>
             <td>
@@ -145,8 +132,7 @@
               </span>
             </td>
             <td>
-              <a
-                [routerLink]="
+              <a [routerLink]="
                   '/' +
                   WEB_ROUTES.TRANSACTIONS.ROOT +
                   '/' +
@@ -154,8 +140,7 @@
                   '/' +
                   tx.id
                 "
-                class="btn btn-sm btn-outline-primary rounded-4"
-              >
+                 class="btn btn-sm btn-outline-primary rounded-4">
                 {{ "TRANSACTIONS.VIEW" | translate }}
               </a>
             </td>
@@ -176,15 +161,13 @@
     </div>
     @if (!loading() && transactions().length) {
     <nav class="d-flex justify-content-center my-4">
-      <ngb-pagination
-        [(page)]="pagination.pageNumber"
-        [pageSize]="pagination.pageSize"
-        [collectionSize]="total()"
-        [maxSize]="5"
-        [ellipses]="true"
-        (pageChange)="goToPage($event)"
-        size="md"
-      >
+      <ngb-pagination [(page)]="pagination.pageNumber"
+                      [pageSize]="pagination.pageSize"
+                      [collectionSize]="total()"
+                      [maxSize]="5"
+                      [ellipses]="true"
+                      (pageChange)="goToPage($event)"
+                      size="md">
       </ngb-pagination>
     </nav>
     }

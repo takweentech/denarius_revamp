@@ -1,35 +1,16 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { TranslateModule } from "@ngx-translate/core";
+import { InvestmentPaymentResponse } from "../../../../../../../../core/models/investment";
+import { RouterLink } from "@angular/router";
+import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
 
 @Component({
   selector: "app-success",
-  imports: [TranslateModule],
+  imports: [TranslateModule, RouterLink],
   templateUrl: "./success.component.html",
   styleUrl: "./success.component.scss",
 })
 export class SuccessComponent {
-  selectedOpportunity = {
-    image: "assets/images/tower.svg",
-    issuanceNumber: 2,
-    durationInMonths: 18,
-    displayName: "مرابحة عقاري 2025-001",
-    annualReturn: 100,
-    rri: 13.5,
-    roi: 13.5,
-    expectedReturn: 13.5,
-    dueDate: "0",
-    startDate: new Date("2025-03-10").toISOString(),
-    endDate: "",
-    dividendDate: "",
-    displaySummary: "",
-    status: "",
-    miniSuccess: 0,
-    businessSector: 0,
-    investorMinLimit: 0,
-    stockCount: 0,
-    stockValue: 0,
-    programName: null,
-    dividends: [],
-    id: 1,
-  };
+  WEB_ROUTES = WEB_ROUTES;
+  @Input() investmentPaymentResponse!: InvestmentPaymentResponse;
 }

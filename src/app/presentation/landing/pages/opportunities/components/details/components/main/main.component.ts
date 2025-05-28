@@ -1,11 +1,13 @@
 import { CurrencyPipe, NgClass } from "@angular/common";
 import { Component, inject } from "@angular/core";
-import { ActivatedRoute, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router, RouterLink } from "@angular/router";
 import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
 import { Opportunity } from "../../../../../../../../core/models/opportunity";
 import { TokenService } from "../../../../../../../../core/services/token.service";
+import { InvestmentService } from "../../../../../../../../data/investment.service";
+import { BaseComponent } from "../../../../../../../../core/base/base.component";
 
 @Component({
   selector: "app-main",
@@ -19,9 +21,11 @@ import { TokenService } from "../../../../../../../../core/services/token.servic
   templateUrl: "./main.component.html",
   styleUrl: "./main.component.scss",
 })
-export class MainComponent {
+export class MainComponent extends BaseComponent {
+  private readonly investmentService = inject(InvestmentService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
+  private readonly router = inject(Router);
   opportunity: Opportunity = this.activatedRoute.snapshot.data['opportunity']?.data;
   WEB_ROUTES = WEB_ROUTES;
   selectedOpportunity = {
@@ -51,4 +55,8 @@ export class MainComponent {
   isAuthenticated: boolean = this.tokenService.isAuthenticated();
 
 
+
+  onInvest() {
+    this.router.navigateByUrl('/' + WEB_ROUTES.OPPORTUNITIES.ROOT + '/' + WEB_ROUTES.OPPORTUNITIES.DETAILS + '/' + this.opportunity.id + '/' + WEB_ROUTES.OPPORTUNITIES.PAYMENT)
+  }
 }

@@ -1,3 +1,5 @@
+<!-- Payment -->
+@if (mode === 'payment') {
 <section class="row g-4">
   <!-- Details -->
   <div class="col-lg-7 col-12 d-flex flex-column gap-4">
@@ -11,7 +13,7 @@
           </label>
           <input class="col-md-10 col-sm-12 form-control"
                  type="number"
-                 [formControl]="search" />
+                 [formControl]="numStock" />
         </div>
         <div class="col-12 p-md-0 ">
           <span> Minimum investment = 1 bond with a value of currency</span>
@@ -110,25 +112,11 @@
       </div>
 
       <div class="mt-3">
-        <div class="row g-2">
-          <div class="col-md-8 col-12">
-            <button [routerLink]="
-                '/' +
-                WEB_ROUTES.OPPORTUNITIES.ROOT +
-                '/' +
-                WEB_ROUTES.OPPORTUNITIES.DETAILS +
-                '/' +
-                WEB_ROUTES.OPPORTUNITIES.SUCCESS
-              "
-                    class="btn btn-primary py-2 w-100">
-              {{ "OPPOTUNITIES_PAYMENT.CONFIRM_PAYMENT" | translate }}
-            </button>
-          </div>
-          <div class="col-md-4 col-12">
-            <button class="btn btn-light py-2 w-100">
-              {{ "OPPOTUNITIES_PAYMENT.CANCEL" | translate }}
-            </button>
-          </div>
+        <div class="col-12">
+          <button (click)="onConfirm()"
+                  class="btn btn-primary py-2 w-100">
+            {{ "OPPOTUNITIES_PAYMENT.CONFIRM_PAYMENT" | translate }}
+          </button>
         </div>
 
         <p class="text-muted small mt-4">
@@ -201,3 +189,10 @@
     </div>
   </div>
 </section>
+
+}
+
+<!-- Success -->
+@if (mode === 'success') {
+<app-success [investmentPaymentResponse]="paymentResponse"></app-success>
+}

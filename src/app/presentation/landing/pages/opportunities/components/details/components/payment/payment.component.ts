@@ -7,6 +7,11 @@ import { Opportunity } from "../../../../../../../../core/models/opportunity";
 import { FormControl, ReactiveFormsModule } from "@angular/forms";
 import { TokenService } from "../../../../../../../../core/services/token.service";
 import { UserProfileData } from "../../../../../../../../core/models/user";
+import { BaseComponent } from "../../../../../../../../core/base/base.component";
+import { InvestmentService } from "../../../../../../../../data/investment.service";
+import { takeUntil } from "rxjs";
+import { SuccessComponent } from "../success/success.component";
+import { InvestmentPaymentResponse } from "../../../../../../../../core/models/investment";
 
 @Component({
   selector: "app-payment",
@@ -15,19 +20,31 @@ import { UserProfileData } from "../../../../../../../../core/models/user";
     RouterModule,
     DatePipe,
     CurrencyPipe,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SuccessComponent
   ],
   templateUrl: "./payment.component.html",
   styleUrl: "./payment.component.scss",
 })
-export class PaymentComponent {
+export class PaymentComponent extends BaseComponent {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
+  private readonly investmentService = inject(InvestmentService);
+
   opportunity: Opportunity = this.activatedRoute.parent?.snapshot.data['opportunity']?.data;
   WEB_ROUTES = WEB_ROUTES;
-  search: FormControl<number | null> = new FormControl(10);
+  numStock: FormControl<number | null> = new FormControl(10);
   user: UserProfileData = this.tokenService.getUser();
-  constructor() {
+  mode: 'payment' | 'success' = 'payment';
+  paymentResponse!: InvestmentPaymentResponse;
+
+  onConfirm() {
+    this.investmentService.payByWallet(this.opportunity.id, Number(this.numStock.value)).pipe(takeUntil(this.destroy$)).subscribe({
+      next: (response) => {
+        this.paymentResponse = response.data;
+        this.mode = 'success';
+      }
+    })
   }
 
 
