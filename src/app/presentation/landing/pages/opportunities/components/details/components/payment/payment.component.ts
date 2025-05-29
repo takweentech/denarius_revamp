@@ -4,7 +4,7 @@ import { TranslateModule } from "@ngx-translate/core";
 import { CurrencyPipe, DatePipe } from "@angular/common";
 import { ActivatedRoute, RouterModule } from "@angular/router";
 import { Opportunity } from "../../../../../../../../core/models/opportunity";
-import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { TokenService } from "../../../../../../../../core/services/token.service";
 import { UserProfileData } from "../../../../../../../../core/models/user";
 import { BaseComponent } from "../../../../../../../../core/base/base.component";
@@ -37,7 +37,8 @@ export class PaymentComponent extends BaseComponent implements OnInit {
   opportunity: Opportunity = this.activatedRoute.parent?.snapshot.data['opportunity']?.data;
   investment: InvestmentResponse = this.activatedRoute.snapshot.data['investment']?.data;
   WEB_ROUTES = WEB_ROUTES;
-  numStock: FormControl<number | null> = new FormControl(0);
+  numStock: FormControl<number | null> = new FormControl(0, Validators.required);
+  terms: FormControl<boolean | null> = new FormControl(false, Validators.requiredTrue);
   user: UserProfileData = this.tokenService.getUser();
   mode: 'payment' | 'success' = 'payment';
   paymentResponse!: InvestmentPaymentResponse;
