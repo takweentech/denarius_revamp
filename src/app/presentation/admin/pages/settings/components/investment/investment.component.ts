@@ -2,7 +2,6 @@ import { Component, inject, signal } from "@angular/core";
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
 import { TranslatePipe } from "@ngx-translate/core";
 import { UserInvestmentData } from "../../../../../../core/models/user";
-import { TokenService } from "../../../../../../core/services/token.service";
 import { ProfileService } from "../../../../../../data/profile.service";
 import { LookupService } from "../../../../../../core/services/lookup.service";
 import { LangPipe } from "../../../../../../shared/pipes/lang.pipe";

@@ -5,8 +5,8 @@ import { User, UserProfileData } from '../models/user';
   providedIn: 'root'
 })
 export class TokenService {
-  private TOKEN_KEY = 'accessToken';
-  private USER_KEY = 'user';
+  private TOKEN_KEY = '$SHARIKEK_ACCESS_TOKEN$';
+  private USER_KEY = '$SHARIKEK_USER$';
 
   public setUser(user: UserProfileData | undefined): void {
     localStorage.setItem(this.USER_KEY, JSON.stringify(user))

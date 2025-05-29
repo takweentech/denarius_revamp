@@ -12,6 +12,36 @@ export interface InvestmentPaymentResponse {
     transactionAmount: number;
 }
 
+export interface InvestmentResponse {
+    opportunityId: number;
+    opportunityStatus: number;
+    opportunityStockCount: number;
+    opportunityStockValue: number;
+    remainingStockCount: number;
+    emailConfirmed: boolean;
+    investorLevel: number;
+    investorLevelName: string;
+    investorMinLimitStockCount: number;
+    investorMaxLimitStockCount: number;
+    investmentLessThanTwoDays: boolean;
+    investorWalletAmount: number;
+    investorWalletAmountFund: number;
+    investorMinLimit: number;
+    skey: string | null;
+    ckey: string | null;
+    ptprofile: string | null;
+    applepay: boolean;
+    isCardPay: boolean;
+    processFees: number;
+    targetProfit: number;
+    vat: number;
+    agencyFee: number;
+    netProfit: number;
+    documents: any; // Adjust type if you have document structure
+    dividends: Dividend[];
+    overviewBody: string | null;
+}
+
 
 export interface Investment {
     id: number;
@@ -41,4 +71,35 @@ export interface InvestmentFilter {
             sort: string
         }
     ]
+}
+
+
+export interface Dividend {
+    isLast: boolean;
+    sequence: number;
+    paymentDate: string; // ISO format
+    initialBalance: number;
+    nominalValue: number;
+    earn: number;
+    agencyFee: number;
+    vat: number;
+    net: number;
+    status: string;
+    maturityDate: string; // ISO format
+    stockValue: number;
+    stockPrincipal: number;
+    stockDividence: number;
+    stockAgencyFee: number;
+    stockTaxVat: number;
+    stockNet: number;
+    opportunityId: number;
+    opportunity: any; // or a specific type if you know it
+    id: number;
+    createdById: string;
+    createdDate: string; // ISO format
+    modifiedDate: string; // ISO format
+    modifiedById: string | null;
+    isDeleted: boolean;
+    isActive: boolean;
+    ipAddress: string | null;
 }

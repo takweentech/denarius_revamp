@@ -1,6 +1,7 @@
 import { Route } from "@angular/router";
 import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
-import { opportunityResolver } from "./opportunities.resolver";
+import { opportunityInvestResolver, opportunityResolver } from "./opportunities.resolver";
+import { authGuard } from "../../../../core/guards/auth.guard";
 
 export const OPPORTUNITIES_ROUTES: Route[] = [
   // LISTING
@@ -34,6 +35,9 @@ export const OPPORTUNITIES_ROUTES: Route[] = [
           import(
             "./components/details/components/payment/payment.component"
           ).then((m) => m.PaymentComponent),
+        canActivate: [authGuard],
+        resolve: { investment: opportunityInvestResolver },
+
       },
     ],
     providers: [],
