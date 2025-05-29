@@ -10,6 +10,7 @@ import { aboutResolver } from "./presentation/landing/pages/about-us/about-us.re
 import { AdminLayoutComponent } from "./layout/admin-layout/admin.component";
 import { AUTH_ROUTES } from "./presentation/admin/pages/auth/auth.routes";
 import { authGuard } from "./core/guards/auth.guard";
+import { INVESTMENTS_ROUTES } from "./presentation/admin/pages/investments/investments.routes";
 
 export const routes: Routes = [
   //Public
@@ -138,22 +139,7 @@ export const routes: Routes = [
           import(
             "./presentation/admin/pages/investments/investments.component"
           ).then((m) => m.InvestmentsComponent),
-        children: [
-          {
-            path: "",
-            loadComponent: () =>
-              import(
-                "./presentation/admin/pages/investments/components/listing/listing.component"
-              ).then((m) => m.ListingComponent),
-          },
-          {
-            path: WEB_ROUTES.INVESTMENTS.DETAILS + "/" + ":id",
-            loadComponent: () =>
-              import(
-                "./presentation/admin/pages/investments/components/details/details.component"
-              ).then((m) => m.DetailsComponent),
-          },
-        ],
+        children: INVESTMENTS_ROUTES,
       },
     ],
   },

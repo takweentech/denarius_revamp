@@ -11,9 +11,11 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>Total Investments </span>
-                        <span class="fw-semibold">{{user.financialSummary.totalDeposits}} <img
-                                 src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                                 alt=""></span>
+                        <div class="fw-semibold d-flex  gap-2">
+                            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                                 alt="">
+                            {{user.financialSummary.totalDeposits}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -26,9 +28,11 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>Number of Investments</span>
-                        <span class="fw-semibold">{{user.financialSummary.totalInvestments}} <img
-                                 src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                                 alt=""></span>
+                        <div class="fw-semibold d-flex  gap-2">
+                            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                                 alt="">
+                            {{user.financialSummary.totalInvestments}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -41,9 +45,10 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>Total Earnings</span>
-                        <span class="fw-semibold">{{user.financialSummary.totalProfits}} <img
-                                 src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                                 alt=""></span>
+                        <span class="fw-semibold d-flex  gap-2">
+                            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                                 alt="">
+                            {{user.financialSummary.totalProfits}} </span>
                     </div>
                 </div>
             </div>
@@ -77,10 +82,15 @@
         <div class="col-md-12 d-flex flex-column gap-3">
             <h5 class="card-title text-primary">My Investments</h5>
             <div class="row mx-0 g-3">
+                @if (loading()) {
+                <h6 class="text-center">
+                    {{ "Loading..." }}
+                </h6>
+                }@else {
+                @if (investments().length) {
                 @for (item of investments(); track $index) {
                 <div class="card bg-white  p-4 w-100">
                     <div class="row align-items-center">
-
 
                         <div class="col d-flex gap-4 align-items-center">
                             <span class="badge bg-success">{{item.status}}</span>
@@ -109,13 +119,21 @@
                         </div>
 
                         <div class="col-1 d-flex justify-content-end">
-                            <button class="btn btn-sm btn-primary">
+                            <a [routerLink]="'/' + WEB_ROUTES.INVESTMENTS.ROOT + '/' + WEB_ROUTES.INVESTMENTS.DETAILS + '/' + item.id "
+                               class="btn btn-sm btn-primary">
                                 <i class="fas fa-eye"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
                 }
+                }@else {
+                <h6 class="text-center">
+                    {{ "No investments available" }}
+                </h6>
+                }
+                }
+
             </div>
 
 

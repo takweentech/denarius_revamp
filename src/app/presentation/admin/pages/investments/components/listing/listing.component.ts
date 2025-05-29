@@ -10,10 +10,11 @@ import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { DatePipe } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-listing',
-  imports: [EarningsDistributionChartComponent, InvestmentsChartComponent, DatePipe, NgbPaginationModule,
+  imports: [EarningsDistributionChartComponent, InvestmentsChartComponent, DatePipe, NgbPaginationModule, RouterLink
   ],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss'

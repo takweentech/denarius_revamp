@@ -63,7 +63,7 @@
               My Profile
             </a>
           </button>
-          <button ngbDropdownItem>My investments</button>
+          <button ngbDropdownItem><a [routerLink]="'/'  +  WEB_ROUTES.INVESTMENTS.ROOT">My investments</a></button>
           <button (click)="onLogout()"
                   ngbDropdownItem>Logout</button>
         </div>
