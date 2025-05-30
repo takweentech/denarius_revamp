@@ -6,8 +6,9 @@ import { TranslateModule } from "@ngx-translate/core";
 import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
 import { Opportunity } from "../../../../../../../../core/models/opportunity";
 import { TokenService } from "../../../../../../../../core/services/token.service";
-import { InvestmentService } from "../../../../../../../../data/investment.service";
 import { BaseComponent } from "../../../../../../../../core/base/base.component";
+import { FormControl, ReactiveFormsModule } from "@angular/forms";
+import { InvestmentResponse } from "../../../../../../../../core/models/investment";
 
 @Component({
   selector: "app-main",
@@ -16,17 +17,19 @@ import { BaseComponent } from "../../../../../../../../core/base/base.component"
     NgbAccordionModule,
     RouterLink,
     NgClass,
-    CurrencyPipe
+    ReactiveFormsModule
   ],
   templateUrl: "./main.component.html",
   styleUrl: "./main.component.scss",
 })
 export class MainComponent extends BaseComponent {
-  private readonly investmentService = inject(InvestmentService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
   private readonly router = inject(Router);
+  numStock: FormControl<number | null> = new FormControl(0);
   opportunity: Opportunity = this.activatedRoute.snapshot.data['opportunity']?.data;
+  investment: InvestmentResponse = this.activatedRoute.snapshot.data['investment']?.data;
+
   WEB_ROUTES = WEB_ROUTES;
   selectedOpportunity = {
     image: "assets/images/tower.svg",

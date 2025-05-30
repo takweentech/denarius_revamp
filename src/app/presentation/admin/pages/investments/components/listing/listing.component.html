@@ -10,7 +10,7 @@
                     </div>
 
                     <div class="d-flex flex-column gap-1">
-                        <span>Total Investments </span>
+                        <span>{{'INVESTMENTS.STATS.TOTAL_INVESTMENTS' | translate}} </span>
                         <div class="fw-semibold d-flex  gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="d-flex flex-column gap-1">
-                        <span>Number of Investments</span>
+                        <span>{{'INVESTMENTS.STATS.TOTAL_INVESTMENTS_NUMBER' | translate}}</span>
                         <div class="fw-semibold d-flex  gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
@@ -44,7 +44,7 @@
                     </div>
 
                     <div class="d-flex flex-column gap-1">
-                        <span>Total Earnings</span>
+                        <span>{{'INVESTMENTS.STATS.TOTAL_EARNINGS' | translate}}</span>
                         <span class="fw-semibold d-flex  gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
@@ -56,7 +56,7 @@
     </section>
     <section class="row">
         <div class="col-md-12 col-lg-12 col-xl-6 d-flex flex-column gap-3">
-            <h5 class="card-title text-primary">Transactions Distrubution</h5>
+            <h5 class="card-title text-primary">{{'INVESTMENTS.TRANSACTION_DISTRIBUTION.TITLE' | translate}}</h5>
 
             <div class="card bg-white d-flex justify-content-center">
                 <div id="chart">
@@ -66,7 +66,7 @@
 
         </div>
         <div class="col-md-12 col-lg-12 col-xl-6 d-flex flex-column gap-3">
-            <h5 class="card-title text-primary">Investments</h5>
+            <h5 class="card-title text-primary">{{'INVESTMENTS.INVESTMENTS.TITLE' | translate}}</h5>
 
             <div class="card bg-white d-flex justify-content-center">
                 <div id="chart">
@@ -80,11 +80,11 @@
     <!-- Listing -->
     <section>
         <div class="col-md-12 d-flex flex-column gap-3">
-            <h5 class="card-title text-primary">My Investments</h5>
+            <h5 class="card-title text-primary">{{'INVESTMENTS.MY_INVESTMENTS.TITLE' | translate}}</h5>
             <div class="row mx-0 g-3">
                 @if (loading()) {
                 <h6 class="text-center">
-                    {{ "Loading..." }}
+                    {{'INVESTMENTS.MY_INVESTMENTS.LOADING' | translate}}...
                 </h6>
                 }@else {
                 @if (investments().length) {
@@ -95,26 +95,26 @@
                         <div class="col d-flex gap-4 align-items-center">
                             <span class="badge bg-success">{{item.status}}</span>
                             <div class="d-flex flex-column gap-2">
-                                <small>Product name</small>
+                                <small> {{'INVESTMENTS.MY_INVESTMENTS.PRODUCT_NAME' | translate}}</small>
                                 <h6>{{item.name}}</h6>
                             </div>
                         </div>
 
 
                         <div class="col d-flex flex-column gap-2">
-                            <small>Invested Amount</small>
+                            <small> {{'INVESTMENTS.MY_INVESTMENTS.INVESTED_AMOUNT' | translate}}</small>
                             <div class="d-flex gap-2"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                      alt="">{{item.stockValue}}</div>
                         </div>
 
                         <div class="col d-flex flex-column gap-2">
-                            <small>Return on investment</small>
+                            <small>{{'INVESTMENTS.MY_INVESTMENTS.ROI' | translate}}</small>
                             <div class="d-flex gap-2"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                      alt="">{{item.stockCount}}</div>
                         </div>
 
                         <div class="col d-flex flex-column gap-2">
-                            <small>Investment Date</small>
+                            <small>{{'INVESTMENTS.MY_INVESTMENTS.INVESTMENT_DATE' | translate}}</small>
                             <span>{{item.writingDate | date:'short'}}</span>
                         </div>
 
@@ -129,7 +129,7 @@
                 }
                 }@else {
                 <h6 class="text-center">
-                    {{ "No investments available" }}
+                    {{ "INVESTMENTS.EMPTY" | translate }}
                 </h6>
                 }
                 }

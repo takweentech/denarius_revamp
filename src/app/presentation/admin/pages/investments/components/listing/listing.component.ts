@@ -11,10 +11,11 @@ import { BaseComponent } from '../../../../../../core/base/base.component';
 import { DatePipe } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-listing',
-  imports: [EarningsDistributionChartComponent, InvestmentsChartComponent, DatePipe, NgbPaginationModule, RouterLink
+  imports: [EarningsDistributionChartComponent, InvestmentsChartComponent, DatePipe, NgbPaginationModule, RouterLink, TranslatePipe
   ],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss'

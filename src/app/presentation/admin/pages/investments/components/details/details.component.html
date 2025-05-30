@@ -12,45 +12,48 @@
             class="nav-tabs">
             <!-- Profile -->
             <li [ngbNavItem]="1">
-                <button ngbNavLink>{{ "Investment Information" | translate }}</button>
+                <button ngbNavLink> {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.TITLE' | translate}}</button>
                 <ng-template ngbNavContent>
                     <div class="row g-4 py-3">
                         <div class="col-6 d-flex flex-column gap-2">
                             <h6>
-                                Product name
+                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.PRODUCT_NAME' | translate}}
                             </h6>
                             <span>{{investment.name}}</span>
                         </div>
                         <div class="col-6 d-flex flex-column gap-2">
                             <h6>
-                                Type
+                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.TYPE' | translate}}
+
                             </h6>
                             <span>{{investment.type}}</span>
                         </div>
                         <div class="col-6 d-flex flex-column gap-2">
                             <h6>
-                                Invested Amount
+                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.INVESTED_AMOUNT' | translate}}
                             </h6>
                             <div class="d-flex gap-2"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                      alt="">{{investment.amount}}</div>
                         </div>
                         <div class="col-6 d-flex flex-column gap-2">
                             <h6>
-                                Stock Count
+                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.STOCK_COUNT' | translate}}
+
                             </h6>
                             <div class="d-flex gap-2"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                      alt="">{{investment.stockCount}}</div>
                         </div>
                         <div class="col-6 d-flex flex-column gap-2">
                             <h6>
-                                Stock Value
+                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.STOCK_VALUE' | translate}}
                             </h6>
                             <div class="d-flex gap-2"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                      alt="">{{investment.stockValue}}</div>
                         </div>
                         <div class="col-6 d-flex flex-column gap-2">
                             <h6>
-                                Investment Date
+                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.INVESTMENT_DATE' | translate}}
+
                             </h6>
                             <span>{{investment.writingDate | date}}</span>
                         </div>
@@ -59,8 +62,7 @@
             </li>
             <!-- Personal Information -->
             <li [ngbNavItem]="2">
-                <button ngbNavLink>{{'Distributions' |
-                    translate}}</button>
+                <button ngbNavLink>{{'INVESTMENTS.DETAILS.DISTRIBUTIONS.TITLE' | translate}}</button>
                 <ng-template ngbNavContent>
 
                 </ng-template>

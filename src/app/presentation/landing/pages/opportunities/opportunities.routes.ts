@@ -20,7 +20,7 @@ export const OPPORTUNITIES_ROUTES: Route[] = [
       import("./components/details/details.component").then(
         (m) => m.DetailsComponent
       ),
-    resolve: { opportunity: opportunityResolver },
+    resolve: { opportunity: opportunityResolver, investment: opportunityInvestResolver },
     children: [
       {
         path: "",
@@ -36,8 +36,6 @@ export const OPPORTUNITIES_ROUTES: Route[] = [
             "./components/details/components/payment/payment.component"
           ).then((m) => m.PaymentComponent),
         canActivate: [authGuard],
-        resolve: { investment: opportunityInvestResolver },
-
       },
     ],
     providers: [],

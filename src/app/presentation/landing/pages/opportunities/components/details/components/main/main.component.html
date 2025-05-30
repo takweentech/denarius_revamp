@@ -143,27 +143,27 @@
         <label class="small">{{
           "OPPORTUNITIES_DETAILS.SELECT_SUKUK_NUMBER" | translate
           }}</label>
-        <input class="form-control col-12 shadow-sm border-0 rounded-1"
+        <input [formControl]="numStock"
+               class="form-control col-12 shadow-sm border-0 rounded-1"
                type="number" />
-        <button class="col-12 gap-2 btn bg-white border-dark text-dark">
-          {{ "OPPORTUNITIES_DETAILS.CALCULATE_RETURN" | translate }}
-          <img src="assets/icons/details/calculator.svg"
-               alt="" />
-        </button>
       </div>
       <ul class="list-unstyled">
         <li class="d-flex justify-content-between py-2 border-bottom">
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.TOTAL_INVESTMENT_AMOUNT" | translate }}
           </div>
-          <span>{{1500 | currency: 'SAR '}}</span>
+          <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="">{{numStock.value && investment.opportunityStockValue ? numStock.value &&
+            investment.opportunityStockValue : 0 }}</div>
         </li>
 
         <li class="d-flex justify-content-between py-2 border-bottom">
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.TOTAL_EXPECTED_RETURN" | translate }}
           </div>
-          <span>{{1500 | currency: 'SAR '}}</span>
+          <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="">{{numStock.value && investment.opportunityStockValue ? numStock.value &&
+            investment.opportunityStockValue : 0 }}</div>
 
         </li>
 
@@ -171,7 +171,8 @@
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.AGENCY_FEE" | translate }}
           </div>
-          <span>{{1500 | currency: 'SAR '}}</span>
+          <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="">{{investment.agencyFee}}</div>
 
         </li>
 
@@ -179,7 +180,8 @@
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.VAT" | translate }}
           </div>
-          <span>{{1500 | currency: 'SAR '}}</span>
+          <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="">{{investment.vat}}</div>
 
         </li>
 
@@ -187,7 +189,8 @@
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.NET_RETURN" | translate }}
           </div>
-          <span>{{1500 | currency: 'SAR '}}</span>
+          <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="">{{investment.netProfit}}</div>
 
         </li>
       </ul>

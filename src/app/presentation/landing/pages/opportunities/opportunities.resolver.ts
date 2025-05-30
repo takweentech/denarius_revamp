@@ -13,6 +13,6 @@ export const opportunityResolver: ResolveFn<HttpCustomResponse<Opportunity>> = (
 
 export const opportunityInvestResolver: ResolveFn<HttpCustomResponse<InvestmentResponse>> = (route, state) => {
     const investmentService = inject(InvestmentService);
-    return investmentService.invest(route.parent?.params['id'])
+    return investmentService.invest(route.params['id'])
 };
 

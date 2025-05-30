@@ -35,7 +35,7 @@ export class PaymentComponent extends BaseComponent implements OnInit {
   private toastService = inject(ToastService);
 
   opportunity: Opportunity = this.activatedRoute.parent?.snapshot.data['opportunity']?.data;
-  investment: InvestmentResponse = this.activatedRoute.snapshot.data['investment']?.data;
+  investment: InvestmentResponse = this.activatedRoute.parent?.snapshot.data['investment']?.data;
   WEB_ROUTES = WEB_ROUTES;
   numStock: FormControl<number | null> = new FormControl(0, Validators.required);
   terms: FormControl<boolean | null> = new FormControl(false, Validators.requiredTrue);
