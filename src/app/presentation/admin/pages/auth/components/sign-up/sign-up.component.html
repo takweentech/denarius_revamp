@@ -12,7 +12,8 @@
         </div>
         <div class="w-100 d-flex flex-column gap-4">
             <a class="shadow-card d-flex justify-content-between align-items-center w-100"
-               [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.REGISTRATION + '/' + InvestorType.INDIVIDUAL">
+               href="javascript:void(0)"
+               (click)="onRedirect(InvestorType.INDIVIDUAL)">
 
                 <div class="d-flex align-items-center gap-5">
                     <i class="fs-3 fa-regular fa-user"></i>
@@ -29,7 +30,8 @@
                 <i class="fa-solid fa-arrow-left"></i>
             </a>
             <a class="shadow-card d-flex justify-content-between align-items-center w-100"
-               [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.REGISTRATION + '/' + InvestorType.COMPANY">
+               href="javascript:void(0)"
+               (click)="onRedirect(InvestorType.COMPANY)">
                 <div class="d-flex align-items-center gap-5">
                     <i class="fs-3 fa-regular fa-building"></i>
 

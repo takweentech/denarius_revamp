@@ -1,6 +1,6 @@
-import { CurrencyPipe, NgClass } from "@angular/common";
+import { NgClass } from "@angular/common";
 import { Component, inject } from "@angular/core";
-import { ActivatedRoute, Router, RouterLink } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NgbAccordionModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslateModule } from "@ngx-translate/core";
 import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
@@ -15,7 +15,6 @@ import { InvestmentResponse } from "../../../../../../../../core/models/investme
   imports: [
     TranslateModule,
     NgbAccordionModule,
-    RouterLink,
     NgClass,
     ReactiveFormsModule
   ],
@@ -29,7 +28,6 @@ export class MainComponent extends BaseComponent {
   numStock: FormControl<number | null> = new FormControl(0);
   opportunity: Opportunity = this.activatedRoute.snapshot.data['opportunity']?.data;
   investment: InvestmentResponse = this.activatedRoute.snapshot.data['investment']?.data;
-
   WEB_ROUTES = WEB_ROUTES;
   selectedOpportunity = {
     image: "assets/images/tower.svg",
@@ -57,9 +55,15 @@ export class MainComponent extends BaseComponent {
   };
   isAuthenticated: boolean = this.tokenService.isAuthenticated();
 
+  onSignIn(): void {
+    this.router.navigate(['/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_IN], { state: { redirectionUrl: this.router.url } })
+  }
 
+  onSignUp(): void {
+    this.router.navigate(['/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_UP], { state: { redirectionUrl: this.router.url } })
+  }
 
-  onInvest() {
+  onInvest(): void {
     this.router.navigateByUrl('/' + WEB_ROUTES.OPPORTUNITIES.ROOT + '/' + WEB_ROUTES.OPPORTUNITIES.DETAILS + '/' + this.opportunity.id + '/' + WEB_ROUTES.OPPORTUNITIES.PAYMENT)
   }
 }

@@ -62,7 +62,11 @@ export class SignInComponent extends BaseComponent {
     ).subscribe({
       next: (response) => {
         this.tokenService.setUser(response.data);
-        this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
+        if (history.state['redirectionUrl']) {
+          this.router.navigateByUrl(history.state['redirectionUrl'])
+        } else {
+          this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
+        }
       },
       error: (err) => {
 

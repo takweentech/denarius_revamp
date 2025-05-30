@@ -9,7 +9,7 @@ import { servicesResolver } from "./presentation/landing/pages/services/services
 import { aboutResolver } from "./presentation/landing/pages/about-us/about-us.resolver";
 import { AdminLayoutComponent } from "./layout/admin-layout/admin.component";
 import { AUTH_ROUTES } from "./presentation/admin/pages/auth/auth.routes";
-import { authGuard } from "./core/guards/auth.guard";
+import { authGuard, noAuthGuard } from "./core/guards/auth.guard";
 import { INVESTMENTS_ROUTES } from "./presentation/admin/pages/investments/investments.routes";
 
 export const routes: Routes = [
@@ -76,6 +76,7 @@ export const routes: Routes = [
   },
   {
     path: WEB_ROUTES.AUTH.ROOT,
+    canActivate: [noAuthGuard],
     children: [
       {
         path: "",

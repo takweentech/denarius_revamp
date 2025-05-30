@@ -100,30 +100,21 @@
 
       <div class="d-flex gap-2">
         @if (!isAuthenticated) {
-        <a target="_blank"
-           [routerLink]="
-        '/' +
-        WEB_ROUTES.AUTH.ROOT +
-        '/' +
-        WEB_ROUTES.AUTH.SIGN_IN 
-      "
-           class="btn btn-outline-primary w-100 rounded-2">
-          {{ "Login" | translate }}
-        </a>
-        <a target="_blank"
-           [routerLink]="
-          '/' +
-          WEB_ROUTES.AUTH.ROOT +
-          '/' +
-          WEB_ROUTES.AUTH.SIGN_UP 
-        "
-           class="btn btn-primary w-100 rounded-2">
-          {{ "Join to Invest" | translate }}
-        </a>
+
+        <button (click)="onSignUp()"
+                class="btn btn-primary w-100 rounded-2">
+          {{ "OPPORTUNITIES_DETAILS.SIGN_UP" | translate }}
+        </button>
+
+        <button (click)="onSignIn()"
+                class="btn btn-outline-primary w-100 rounded-2">
+          {{ "OPPORTUNITIES_DETAILS.SIGN_IN" | translate }}
+        </button>
         }@else {
         <button (click)="onInvest()"
                 class="btn btn-primary w-100 rounded-2">
-          {{ "Invest Now" | translate }}
+          {{ "OPPORTUNITIES_DETAILS.INVEST_NOW" | translate }}
+
         </button>
         }
       </div>

@@ -59,13 +59,22 @@
         <div ngbDropdownMenu
              aria-labelledby="dropdownBasic1">
           <button ngbDropdownItem>
-            <a [routerLink]="'/'  +  WEB_ROUTES.SETTINGS.ROOT">
-              My Profile
+            <a [routerLink]="'/'  +  WEB_ROUTES.SETTINGS.ROOT"
+               class="text-primary">
+              {{
+              "LAYOUT.HEADER.PROFILE_DROPDOWN.MY_PROFILE" | translate
+              }}
             </a>
           </button>
-          <button ngbDropdownItem><a [routerLink]="'/'  +  WEB_ROUTES.INVESTMENTS.ROOT">My investments</a></button>
+          <button ngbDropdownItem><a class="text-primary"
+               [routerLink]="'/'  +  WEB_ROUTES.INVESTMENTS.ROOT"> {{
+              "LAYOUT.HEADER.PROFILE_DROPDOWN.MY_INVESTMENTS" | translate
+              }}</a></button>
           <button (click)="onLogout()"
-                  ngbDropdownItem>Logout</button>
+                  class="text-danger"
+                  ngbDropdownItem> {{
+            "LAYOUT.HEADER.PROFILE_DROPDOWN.LOGOUT" | translate
+            }}</button>
         </div>
       </div>
       }
