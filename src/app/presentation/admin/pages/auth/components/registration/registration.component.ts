@@ -51,7 +51,6 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
     this.signUpForm = this.fb.group({});
     this.steps.forEach((step) => {
       const group = this.fb.group({});
-      console.log(group)
       this.signUpForm.addControl(step.key, group);
       step.controls?.forEach((control) => {
         group.addControl(control.key, this.fb.control(control.value ?? null, control.validators ?? []));
@@ -127,17 +126,17 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
             this.otpId = response.data['otpId'];
           }
 
+          // Authenticate user 
+          if (currentStep.key === 'absher') {
+            this.tokenService.setToken(response.data);
+            this.getUserProfile();
+            return
+          }
+
+
           //Next
           this.stepperInstance.next();
           this.currentIndex.set(this.currentIndex() + 1);
-
-
-          // Authenticate user 
-          if (currentStep.key === 'absher') {
-            this.tokenService.setToken(response.data?.token);
-            this.getUserProfile();
-          }
-
 
         }
       }

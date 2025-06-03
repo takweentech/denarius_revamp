@@ -1,0 +1,120 @@
+<div class="modal-header d-flex justify-content-between">
+       <h4 class="modal-title"> {{ "SETTINGS.UPGRADE.FORM.TITLE" | translate }}
+       </h4>
+       <button type="button"
+               class="btn-close m-0"
+               aria-label="Close"
+               (click)="activeModal.dismiss('Cross click')"></button>
+</div>
+<div class="modal-body">
+       <form [formGroup]="form"
+             ngbAutofocus>
+              <div class="mb-3">
+                     <label for="TradingActivityProofFilePath"
+                            class="form-label">{{ "SETTINGS.UPGRADE.FORM.TRADING_ACTIVITY.LABEL" | translate }}</label>
+                     <input class="form-control"
+                            type="file"
+                            (change)="onUploadFile($event, 'TradingActivityProofFilePath')"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            id="TradingActivityProofFilePath">
+                     @if (form.get('TradingActivityProofFilePath')?.errors?.['required'] &&
+                     form.get('TradingActivityProofFilePath')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            {{'VALIDATORS.REQUIRED' | translate}}
+                     </small>
+                     }
+              </div>
+              <div class="mb-3">
+                     <label for="NetAssetsProofFilePath"
+                            class="form-label">{{ "SETTINGS.UPGRADE.FORM.NET_ASSETS.LABEL" | translate }}</label>
+                     <input class="form-control"
+                            type="file"
+                            (change)="onUploadFile($event, 'NetAssetsProofFilePath')"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            id="NetAssetsProofFilePath">
+                     @if (form.get('NetAssetsProofFilePath')?.errors?.['required'] &&
+                     form.get('NetAssetsProofFilePath')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            {{'VALIDATORS.REQUIRED' | translate}}
+                     </small>
+                     }
+              </div>
+              <div class="mb-3">
+                     <label for="ProfessionalCertificationFilePath"
+                            class="form-label">{{ "SETTINGS.UPGRADE.FORM.PROFESSIONAL_CERTIFICATION.LABEL" | translate
+                            }}</label>
+                     <input class="form-control"
+                            type="file"
+                            (change)="onUploadFile($event, 'ProfessionalCertificationFilePath')"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            id="ProfessionalCertificationFilePath">
+                     @if (form.get('ProfessionalCertificationFilePath')?.errors?.['required'] &&
+                     form.get('ProfessionalCertificationFilePath')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            {{'VALIDATORS.REQUIRED' | translate}}
+                     </small>
+                     }
+              </div>
+              <div class="mb-3">
+                     <label for="FinancialExperienceProofFilePath"
+                            class="form-label">{{ "SETTINGS.UPGRADE.FORM.FINANCIAL_EXPERIENCE.LABEL" | translate
+                            }}</label>
+                     <input class="form-control"
+                            type="file"
+                            (change)="onUploadFile($event, 'FinancialExperienceProofFilePath')"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            id="FinancialExperienceProofFilePath">
+                     @if (form.get('FinancialExperienceProofFilePath')?.errors?.['required'] &&
+                     form.get('FinancialExperienceProofFilePath')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            {{'VALIDATORS.REQUIRED' | translate}}
+                     </small>
+                     }
+              </div>
+              <div class="mb-3">
+                     <label for="IncomeAndCME1ProofFilePath"
+                            class="form-label">{{ "SETTINGS.UPGRADE.FORM.INCOME_CME1.LABEL" | translate }}</label>
+                     <input class="form-control"
+                            type="file"
+                            (change)="onUploadFile($event, 'IncomeAndCME1ProofFilePath')"
+                            accept=".jpg,.jpeg,.png,.pdf"
+                            id="IncomeAndCME1ProofFilePath">
+                     @if (form.get('IncomeAndCME1ProofFilePath')?.errors?.['required'] &&
+                     form.get('IncomeAndCME1ProofFilePath')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            {{'VALIDATORS.REQUIRED' | translate}}
+                     </small>
+                     }
+              </div>
+              <div class="mb-3">
+                     <label for="Note"
+                            class="form-label">{{ "SETTINGS.UPGRADE.FORM.NOTE.LABEL" | translate }}</label>
+                     <textarea class="form-control"
+                               id="Note"
+                               formControlName="Note"
+                               rows="3"></textarea>
+
+                     @if (form.get('Note')?.errors?.['required'] &&
+                     form.get('Note')?.touched ) {
+                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                            <i class="fa-solid fa-circle-exclamation"></i>
+                            {{'VALIDATORS.REQUIRED' | translate}}
+                     </small>
+                     }
+              </div>
+       </form>
+</div>
+<div class="modal-footer">
+       <button type="button"
+               class="btn btn-outline-secondary"
+               (click)="activeModal.close('Close click')">{{ "SETTINGS.UPGRADE.FORM.CLOSE" | translate }}</button>
+       <button type="button"
+               class="btn btn-primary"
+               [disabled]="loading()"
+               (click)="onSave()">{{ "SETTINGS.UPGRADE.FORM.CTA" | translate }}</button>
+</div>

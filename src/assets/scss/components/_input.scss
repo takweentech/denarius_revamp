@@ -60,6 +60,10 @@ select {
     }
 }
 
+textarea {
+    height: initial !important;
+}
+
 
 .btn-option-select {
     display: flex;

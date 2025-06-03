@@ -39,6 +39,14 @@
         <app-investment></app-investment>
       </ng-template>
     </li>
+    <li [ngbNavItem]="6">
+      <button ngbNavLink>
+        {{ "SETTINGS.UPGRADE.TITLE" | translate }}
+      </button>
+      <ng-template ngbNavContent>
+        <app-upgrade></app-upgrade>
+      </ng-template>
+    </li>
   </ul>
   <hr class="m-0" />
   <div [ngbNavOutlet]="nav"

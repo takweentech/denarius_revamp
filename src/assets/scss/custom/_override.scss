@@ -10,6 +10,11 @@ $secondary: #33EDFF; // set the $primary variable
 $theme-colors: map-merge($theme-colors, ("primary": $primary, "secondary": $secondary));
 
 
+ul {
+    list-style-position: inside;
+}
+
+
 .bg-primary {
     background-color: var(--primary-color) !important;
 }

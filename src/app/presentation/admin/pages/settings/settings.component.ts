@@ -7,6 +7,7 @@ import { BankComponent } from "./components/bank/bank.component";
 import { InvestmentComponent } from "./components/investment/investment.component";
 import { TranslatePipe } from "@ngx-translate/core";
 import { PersonalComponent } from "./components/personal/personal.component";
+import { UpgradeComponent } from "./components/upgrade/upgrade.component";
 @Component({
   selector: "app-settings",
   imports: [
@@ -16,7 +17,8 @@ import { PersonalComponent } from "./components/personal/personal.component";
     SecurityComponent,
     BankComponent,
     InvestmentComponent,
-    PersonalComponent
+    PersonalComponent,
+    UpgradeComponent
   ],
   templateUrl: "./settings.component.html",
   styleUrl: "./settings.component.scss",

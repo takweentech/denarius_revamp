@@ -7,7 +7,7 @@ import { TranslationService } from '../services/translation.service';
 const EXCLUDED_URLS = [
     environment.cmsUrl,
     '/Accounts/',
-    '/public/' // wildcard-style match example
+    '/public/'
 ];
 
 export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn) => {

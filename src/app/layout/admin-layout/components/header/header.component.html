@@ -9,12 +9,7 @@
       </a>
     </div>
     <div class="d-flex gap-3 align-items-center">
-      <a href="javascript:void(0)"
-         (click)="onLangChange()"
-         class="text-decoration-none cursor-pointer text-primary">
-        <i class="fa-solid fa-globe"></i>
-        {{translationService.language === 'en' ? 'Arabic' : 'English'}}
-      </a>
+
       <div ngbDropdown
            class="d-inline-block profile">
         <button type="button"
@@ -26,11 +21,31 @@
         </button>
         <div ngbDropdownMenu
              aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>{{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.MY_PROFILE" | translate }}</button>
-          <button ngbDropdownItem>{{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.SETTINGS" | translate }}</button>
+          <button ngbDropdownItem
+                  class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-user"></i>
+
+            {{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.MY_PROFILE" | translate }}</button>
+          <button ngbDropdownItem
+                  class="d-flex gap-2 align-items-center">
+            <i class="fa-solid fa-cog"></i>
+
+            {{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.SETTINGS" | translate }}</button>
+          <button ngbDropdownItem>
+            <a href="javascript:void(0)"
+               (click)="onLangChange()"
+               class="text-decoration-none cursor-pointer text-primary d-flex gap-2 align-items-center">
+              <i class="fa-solid fa-globe"></i>
+              {{translationService.language === 'en' ? 'Arabic' : 'English'}}
+            </a>
+          </button>
           <button (click)="onLogout()"
-                  class="text-danger"
-                  ngbDropdownItem>{{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.LOGOUT" | translate }}</button>
+                  class="text-danger d-flex gap-2 align-items-center"
+                  ngbDropdownItem>
+            <i class="fa-solid fa-sign-out-alt"></i>
+
+            {{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.LOGOUT" | translate }}</button>
+
         </div>
       </div>
     </div>
