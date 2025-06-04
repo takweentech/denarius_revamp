@@ -103,12 +103,19 @@
        <div class="col-12 form-group">
               <div class="bg-white bg-body-secondary p-2 py-3 rounded row mx-auto gx-2">
                      <div class=" col-sm-6 ">
-                            <label class="small">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.JOB_TITLE'
+                            <label class="small"
+                                   for="jobTitle">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.JOB_TITLE'
                                    |
                                    translate}}</label>
-                            <input type="number"
-                                   formControlName="jobTitle"
-                                   class="form-control" />
+
+                            <select id="jobTitle"
+                                    formControlName="jobTitle"
+                                    class="form-select form-control"
+                                    aria-label="Default select example">
+                                   @for (item of jobTitleList(); track $index) {
+                                   <option [value]="item.id">{{item | lang}}</option>
+                                   }
+                            </select>
                             @if (formGroup.get('jobTitle')?.errors?.['required'] &&
                             formGroup.get('jobTitle')?.touched ) {
                             <small class="text-danger mt-1 d-flex align-items-center gap-1">

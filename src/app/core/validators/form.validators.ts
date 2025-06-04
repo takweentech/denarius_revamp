@@ -40,3 +40,12 @@ export function matchValidator(controlName: string, matchingControlName: string)
         }
     }
 }
+
+
+export function atLeastOneFileValidator(control: AbstractControl): ValidationErrors | null {
+    if (!control || typeof control !== 'object') return null;
+
+    const hasAtLeastOne = Object.values(control.value || {}).some(value => !!value);
+
+    return hasAtLeastOne ? null : { atLeastOneRequired: true };
+}

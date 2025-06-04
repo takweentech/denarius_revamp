@@ -11,6 +11,10 @@ export class LookupService {
     private readonly http = inject(HttpClient);
     private readonly baseUrl = 'Lookup';
 
+    getJobTitle(): Observable<Lookup[]> {
+        return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/JopTitles`)
+    }
+
     getNetWorth(): Observable<Lookup[]> {
         return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/GetNetWorth`)
     }

@@ -23,6 +23,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
   educationLevelList = signal<Lookup[]>([]);
   annualIncomeList = signal<Lookup[]>([]);
   netWorthList = signal<Lookup[]>([]);
+  jobTitleList = signal<Lookup[]>([]);
 
   ngOnInit(): void {
     this.getNetWorth();
@@ -30,6 +31,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
     this.getEducationLevel();
     this.getEmploymentStatus();
     this.getMartialStatus();
+    this.getJobTitle();
 
     // Listen for employment status change
     // this.formGroup.controls['employmentStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => {
@@ -38,6 +40,19 @@ export class FinancialComponent extends BaseComponent implements OnInit {
     //     this.formGroup.controls['yearsOfExperience'].reset("");
     //   }
     // })
+  }
+
+  getJobTitle(): void {
+    this.lookupService.getJobTitle().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe({
+      next: (response) => {
+        this.jobTitleList.set(response);
+      },
+      error: (error) => {
+
+      }
+    })
   }
 
   getMartialStatus(): void {

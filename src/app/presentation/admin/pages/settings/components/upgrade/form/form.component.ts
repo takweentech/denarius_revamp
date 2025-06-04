@@ -6,6 +6,7 @@ import { UpgradeService } from '../../../../../../../data/upgrade.service';
 import { takeUntil, } from 'rxjs';
 import { ToastService } from '../../../../../../../shared/components/toast/toast.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { atLeastOneFileValidator } from '../../../../../../../core/validators/form.validators';
 
 @Component({
   selector: 'app-form',
@@ -30,11 +31,13 @@ export class FormComponent extends BaseComponent implements OnInit {
 
   initForm(): void {
     this.form = this.fb.group({
-      TradingActivityProofFilePath: [null, Validators.required],
-      NetAssetsProofFilePath: [null, Validators.required],
-      ProfessionalCertificationFilePath: [null, Validators.required],
-      FinancialExperienceProofFilePath: [null, Validators.required],
-      IncomeAndCME1ProofFilePath: [null, Validators.required],
+      files: this.fb.group({
+        TradingActivityProofFilePath: [null],
+        NetAssetsProofFilePath: [null],
+        ProfessionalCertificationFilePath: [null],
+        FinancialExperienceProofFilePath: [null],
+        IncomeAndCME1ProofFilePath: [null],
+      }, { validators: atLeastOneFileValidator }),
       Note: [null, Validators.required],
     })
   }
@@ -43,7 +46,7 @@ export class FormComponent extends BaseComponent implements OnInit {
     const input = event.target as HTMLInputElement;
     if (!input.files?.length) return;
     const file = input.files[0];
-    this.form.controls[formControName].setValue(file);
+    (this.form.controls['files'] as FormGroup)?.get(formControName)?.setValue(file);
   }
 
   onSave(): void {
@@ -57,9 +60,22 @@ export class FormComponent extends BaseComponent implements OnInit {
 
 
   create(): void {
+    const formattedValue: any = {
+      Note: this.form.value.Note,
+      TradingActivityProofFilePath: this.form.value.files?.TradingActivityProofFilePath,
+      NetAssetsProofFilePath: this.form.value.files?.NetAssetsProofFilePath,
+      ProfessionalCertificationFilePath: this.form.value.files?.ProfessionalCertificationFilePath,
+      FinancialExperienceProofFilePath: this.form.value.files?.FinancialExperienceProofFilePath,
+      IncomeAndCME1ProofFilePath: this.form.value.files?.IncomeAndCME1ProofFilePath,
+    };
+
+    Object.keys(formattedValue).forEach(key => {
+      !formattedValue[key] && delete formattedValue[key]
+    });
+
     const formData = new FormData();
-    Object.keys(this.form.value).forEach(key => {
-      formData.append(key, this.form.value[key])
+    Object.keys(formattedValue).forEach(key => {
+      formData.append(key, formattedValue[key])
     })
     this.upgradeService.create(formData).pipe(takeUntil(this.destroy$)).subscribe({
       next: (response) => {

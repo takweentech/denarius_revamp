@@ -28,6 +28,7 @@ export class PersonalComponent extends BaseComponent implements OnInit {
   educationLevelList = signal<Lookup[]>([]);
   annualIncomeList = signal<Lookup[]>([]);
   netWorthList = signal<Lookup[]>([]);
+  jobTitleList = signal<Lookup[]>([]);
   loading = signal<boolean>(false);
   user: UserProfileData = this.tokenService.getUser();
   form!: FormGroup;
@@ -40,6 +41,7 @@ export class PersonalComponent extends BaseComponent implements OnInit {
 
   getLookups(): void {
     forkJoin({
+      jobTitleList: this.lookupService.getJobTitle(),
       martialStatusList: this.lookupService.getMartialStatus(),
       employmentStatusList: this.lookupService.getEmploymentStatus(),
       educationLevelList: this.lookupService.getEducationLevel(),
@@ -52,6 +54,7 @@ export class PersonalComponent extends BaseComponent implements OnInit {
         this.annualIncomeList.set(response.annualIncomeList);
         this.educationLevelList.set(response.educationLevelList);
         this.netWorthList.set(response.netWorthList);
+        this.jobTitleList.set(response.jobTitleList);
         this.profileService.getPersonalInformation().pipe(takeUntil(this.destroy$)).subscribe({
           next: (response) => {
             this.initForm(response.data);
