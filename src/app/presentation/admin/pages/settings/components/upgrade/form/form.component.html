@@ -28,13 +28,6 @@
                                    (change)="onUploadFile($event, 'NetAssetsProofFilePath')"
                                    accept=".jpg,.jpeg,.png,.pdf"
                                    id="NetAssetsProofFilePath">
-                            @if (form.get('NetAssetsProofFilePath')?.errors?.['required'] &&
-                            form.get('NetAssetsProofFilePath')?.touched ) {
-                            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                                   <i class="fa-solid fa-circle-exclamation"></i>
-                                   {{'VALIDATORS.REQUIRED' | translate}}
-                            </small>
-                            }
                      </div>
                      <div class="mb-3">
                             <label for="ProfessionalCertificationFilePath"
@@ -46,13 +39,6 @@
                                    (change)="onUploadFile($event, 'ProfessionalCertificationFilePath')"
                                    accept=".jpg,.jpeg,.png,.pdf"
                                    id="ProfessionalCertificationFilePath">
-                            @if (form.get('ProfessionalCertificationFilePath')?.errors?.['required'] &&
-                            form.get('ProfessionalCertificationFilePath')?.touched ) {
-                            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                                   <i class="fa-solid fa-circle-exclamation"></i>
-                                   {{'VALIDATORS.REQUIRED' | translate}}
-                            </small>
-                            }
                      </div>
                      <div class="mb-3">
                             <label for="FinancialExperienceProofFilePath"
@@ -63,13 +49,6 @@
                                    (change)="onUploadFile($event, 'FinancialExperienceProofFilePath')"
                                    accept=".jpg,.jpeg,.png,.pdf"
                                    id="FinancialExperienceProofFilePath">
-                            @if (form.get('FinancialExperienceProofFilePath')?.errors?.['required'] &&
-                            form.get('FinancialExperienceProofFilePath')?.touched ) {
-                            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                                   <i class="fa-solid fa-circle-exclamation"></i>
-                                   {{'VALIDATORS.REQUIRED' | translate}}
-                            </small>
-                            }
                      </div>
                      <div>
                             <label for="IncomeAndCME1ProofFilePath"
@@ -80,19 +59,12 @@
                                    (change)="onUploadFile($event, 'IncomeAndCME1ProofFilePath')"
                                    accept=".jpg,.jpeg,.png,.pdf"
                                    id="IncomeAndCME1ProofFilePath">
-                            @if (form.get('IncomeAndCME1ProofFilePath')?.errors?.['required'] &&
-                            form.get('IncomeAndCME1ProofFilePath')?.touched ) {
-                            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                                   <i class="fa-solid fa-circle-exclamation"></i>
-                                   {{'VALIDATORS.REQUIRED' | translate}}
-                            </small>
-                            }
                      </div>
                      @if (form.get('files')?.errors?.['atLeastOneRequired'] &&
                      form.get('files')?.touched ) {
                      <small class="text-danger d-flex align-items-center gap-1 mt-3">
                             <i class="fa-solid fa-circle-exclamation"></i>
-                            {{'At least one file is required' | translate}}
+                            {{'SETTINGS.UPGRADE.FORM.FILE_VALIDATION' | translate}}
                      </small>
                      }
               </ng-container>
