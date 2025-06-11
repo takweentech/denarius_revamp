@@ -47,12 +47,25 @@
           type="number"
           formControlName="familyMembersCount"
           class="form-control"
+          min="0"
+          max="10"
         />
+
         @if (form.get('familyMembersCount')?.errors?.['required'] &&
         form.get('familyMembersCount')?.touched ) {
         <small class="text-danger mt-1 d-flex align-items-center gap-1">
           <i class="fa-solid fa-circle-exclamation"></i>
           {{ "VALIDATORS.REQUIRED" | translate }}
+        </small>
+        } @if (form.get('familyMembersCount')?.errors?.['min']) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.MIN_VALUE" | translate : { min: 0 } }}
+        </small>
+        } @if (form.get('familyMembersCount')?.errors?.['max']) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.MAX_VALUE" | translate : { max: 10 } }}
         </small>
         }
       </div>
