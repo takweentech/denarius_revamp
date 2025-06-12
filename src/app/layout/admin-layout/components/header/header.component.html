@@ -1,5 +1,5 @@
 <nav class="navbar-expand-lg navbar-light ">
-  <div class="container-fluid d-flex align-items-center py-0 px-3 pe-5  justify-content-between">
+  <div class="container-fluid d-flex align-items-center p-3 p-md-4  justify-content-between">
     <div class="d-flex">
       <a class="navbar-brand text-white fw-bold"
          href="#">
@@ -45,9 +45,13 @@
             <i class="fa-solid fa-sign-out-alt"></i>
 
             {{ "DASHBOARD_LAYOUT.HEADER.PROFILE_DROPDOWN.LOGOUT" | translate }}</button>
-
         </div>
       </div>
+
+      <button (click)="onToggleSidebar()"
+              class="d-flex d-md-none">
+        <i class="fa-solid fa-bars fs-4"></i>
+      </button>
     </div>
   </div>
 </nav>

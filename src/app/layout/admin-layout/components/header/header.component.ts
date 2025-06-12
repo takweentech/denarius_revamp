@@ -5,6 +5,7 @@ import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
 import { TokenService } from '../../../../core/services/token.service';
 import { TranslationService } from '../../../../core/services/translation.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { SidebarService } from '../sidebar/sidebar.service';
 @Component({
   selector: 'app-header',
   imports: [NgbDropdownModule, TranslatePipe],
@@ -14,12 +15,19 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class HeaderComponent {
   translationService = inject(TranslationService);
   private readonly tokenService = inject(TokenService);
+  private readonly sidebarService = inject(SidebarService);
   private readonly router = inject(Router);
+
+
+  onToggleSidebar() {
+    this.sidebarService.toggleSidebar();
+  }
 
   onLogout() {
     this.tokenService.clearSession();
     this.router.navigate(['/' + WEB_ROUTES.AUTH.ROOT])
   }
+
   onLangChange(): void {
     this.translationService.onLangChange();
   }

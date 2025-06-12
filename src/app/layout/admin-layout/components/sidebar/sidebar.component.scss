@@ -9,6 +9,7 @@
   top: 0;
 
   ul {
+
     li a {
       display: flex;
       align-items: center;
@@ -50,6 +51,15 @@
         }
       }
 
+    }
+  }
+
+
+  @media (max-width: 768px) {
+    background-color: #f5f7fa;
+
+    ul {
+      background-color: white;
     }
   }
 }

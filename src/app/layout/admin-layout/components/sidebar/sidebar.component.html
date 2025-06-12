@@ -1,5 +1,5 @@
-<nav class=" d-flex flex-column sidebar">
-  <ul class="list-unstyled gap-2 sidebar-menu  d-sm-flex flex-column w-100">
+<nav class=" d-flex flex-column sidebar p-3 px-md-0">
+  <ul class="list-unstyled gap-2 sidebar-menu rounded-4 py-2 py-d-0  d-sm-flex flex-column w-100">
     @for (item of sidebarItems; track $index) {
     <li class="justify-content-between text-center position-relative">
       <a [routerLink]="item.route"

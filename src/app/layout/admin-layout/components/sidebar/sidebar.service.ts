@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, signal } from "@angular/core";
 import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
 
 interface SidebarItem {
@@ -11,6 +11,7 @@ interface SidebarItem {
   providedIn: "root",
 })
 export class SidebarService {
+  private sidebarState = signal<boolean>(true);
   private items: SidebarItem[] = [
     {
       label: "LAYOUT.SIDEBAR.DASHBOARD",
@@ -45,5 +46,18 @@ export class SidebarService {
   ];
   get sidebarItems(): SidebarItem[] {
     return this.items;
+  }
+
+
+  get getSidebarState(): boolean {
+    return this.sidebarState()
+  }
+
+  toggleSidebar(): void {
+    this.sidebarState.set(!this.sidebarState())
+  }
+
+  set setSidebar(state: boolean) {
+    this.sidebarState.set(state)
   }
 }
