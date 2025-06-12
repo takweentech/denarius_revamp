@@ -1,37 +1,42 @@
-<form [formGroup]="form"
-      class="py-4">
+<form [formGroup]="form" class="py-4">
   <div class="g-4">
     <h4>{{ "SETTINGS.BANK.TITLE" | translate }}</h4>
 
     <div class="col-xl-6 mt-4 col-12">
-      <label class="">{{ "SETTINGS.BANK.IBAN" | translate }}</label>
-      <input type="text"
-             formControlName="iban"
-             class="form-control rounded-3 mt-2"
-             placeholder="SA12312312312312312312312" />
+      <label class="form-label">{{ "SETTINGS.BANK.IBAN" | translate }}</label>
+      <input
+        type="text"
+        formControlName="iban"
+        class="form-control rounded-3"
+        placeholder="SA12312312312312312312312"
+      />
     </div>
 
     <div class="col-xl-6 mt-4 col-12">
-      <label class="">{{ "SETTINGS.BANK.BANK_NAME" | translate }}</label>
+      <label class="form-label">{{
+        "SETTINGS.BANK.BANK_NAME" | translate
+      }}</label>
 
-      <select formControlName="bankId"
-              class="form-control mt-2">
-        <option disabled
-                selected>
+      <select formControlName="bankId" class="form-control">
+        <option disabled selected>
           {{ "SETTINGS.BANK.SELECT_BANK" | translate }}
         </option>
         @for (item of bankList(); track $index) {
-        <option [value]="item.id">{{item.id}}</option>
+        <option [value]="item.id">{{ item.id }}</option>
         }
       </select>
     </div>
 
     <div class="col-xl-6 mt-4 col-12">
-      <label class="">{{ "SETTINGS.BANK.BENEFICIARY_NAME" | translate }}</label>
-      <input type="text"
-             formControlName="accountBeneficiaryName"
-             class="form-control rounded-3 bg-light mt-2"
-             placeholder="Mohammed Ahmed" />
+      <label class="form-label">{{
+        "SETTINGS.BANK.BENEFICIARY_NAME" | translate
+      }}</label>
+      <input
+        type="text"
+        formControlName="accountBeneficiaryName"
+        class="form-control rounded-3 bg-light"
+        placeholder="Mohammed Ahmed"
+      />
     </div>
 
     <p class="fs-12 mt-3">
@@ -39,8 +44,7 @@
     </p>
 
     <div class="col-12 d-flex justify-content-end">
-      <button (click)="onSave()"
-              class="btn  btn-primary mt-4">
+      <button (click)="onSave()" class="btn btn-primary mt-4">
         {{ "SETTINGS.BANK.UPDATE_BUTTON" | translate }}
       </button>
     </div>
