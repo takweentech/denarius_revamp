@@ -111,13 +111,6 @@ export const routes: Routes = [
           ),
       },
       {
-        path: WEB_ROUTES.PROFIT_TABLE.ROOT,
-        loadComponent: () =>
-          import(
-            "./presentation/admin/pages/profit-table/profit-table.component"
-          ).then((m) => m.ProfitTableComponent),
-      },
-      {
         path: WEB_ROUTES.TRANSACTIONS.ROOT,
         children: [
           {
