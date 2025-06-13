@@ -11,6 +11,8 @@ import { AdminLayoutComponent } from "./layout/admin-layout/admin.component";
 import { AUTH_ROUTES } from "./presentation/admin/pages/auth/auth.routes";
 import { authGuard, noAuthGuard } from "./core/guards/auth.guard";
 import { INVESTMENTS_ROUTES } from "./presentation/admin/pages/investments/investments.routes";
+import { WALLET_ROUTES } from "./presentation/admin/pages/wallet/wallet.routes";
+import { EARNINGS_ROUTES } from "./presentation/admin/pages/earnings/earnings.routes";
 
 export const routes: Routes = [
   //Public
@@ -141,6 +143,22 @@ export const routes: Routes = [
             "./presentation/admin/pages/investments/investments.component"
           ).then((m) => m.InvestmentsComponent),
         children: INVESTMENTS_ROUTES,
+      },
+      {
+        path: WEB_ROUTES.WALLET.ROOT,
+        loadComponent: () =>
+          import(
+            "./presentation/admin/pages/wallet/wallet.component"
+          ).then((m) => m.WalletComponent),
+        children: WALLET_ROUTES,
+      },
+      {
+        path: WEB_ROUTES.EARNINGS.ROOT,
+        loadComponent: () =>
+          import(
+            "./presentation/admin/pages/earnings/earnings.component"
+          ).then((m) => m.EarningsComponent),
+        children: EARNINGS_ROUTES,
       },
     ],
   },

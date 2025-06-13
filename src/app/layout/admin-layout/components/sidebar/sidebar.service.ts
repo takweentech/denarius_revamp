@@ -31,12 +31,12 @@ export class SidebarService {
     {
       label: "LAYOUT.SIDEBAR.EARNINGS",
       icon: "fa-solid fa-dollar",
-      route: "/" + WEB_ROUTES.PROFIT_TABLE.ROOT,
+      route: "/" + WEB_ROUTES.EARNINGS.ROOT,
     },
     {
       label: "LAYOUT.SIDEBAR.WALLET",
       icon: "fa-solid fa-wallet",
-      route: "/profile-management/wallet",
+      route: "/" + WEB_ROUTES.WALLET.ROOT,
     },
     {
       label: "LAYOUT.SIDEBAR.SETTINGS",

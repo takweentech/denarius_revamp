@@ -5,6 +5,12 @@ export const WEB_ROUTES = {
   SETTINGS: {
     ROOT: "settings",
   },
+  WALLET: {
+    ROOT: "wallet",
+  },
+  EARNINGS: {
+    ROOT: "earnings",
+  },
   PROFIT_TABLE: {
     ROOT: "profit-table",
   },

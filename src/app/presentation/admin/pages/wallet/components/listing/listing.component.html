@@ -1,0 +1,202 @@
+<main class="d-flex flex-column gap-5">
+    <!-- Stats -->
+    <section>
+        <div class="row g-2">
+            <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="card stats-card  bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
+                    <div class="icon success">
+                        <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                             alt="">
+                    </div>
+
+                    <div class="d-flex flex-column gap-1">
+                        <span>{{'Total Deposits' | translate}} </span>
+                        <div class="fw-semibold d-flex  gap-2">
+                            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                                 alt="">
+                            {{user.financialSummary.totalDeposits}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="card stats-card  bg-white py-3 px-3 d-flex flex-row  align-items-center gap-3 h-100">
+                    <div class="icon danger">
+                        <img src="assets/icons/invoice-dollar.svg"
+                             alt="">
+                    </div>
+
+                    <div class="d-flex flex-column gap-1">
+                        <span>{{'Total withdrawal' | translate}}</span>
+                        <div class="fw-semibold d-flex  gap-2">
+                            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                                 alt="">
+                            {{user.financialSummary.totalInvestments}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6 col-xl-4">
+                <div class="card stats-card  bg-white py-3 px-3 d-flex flex-row  align-items-center gap-3 h-100">
+                    <div class="icon primary">
+                        <img src="assets/icons/earnings.svg"
+                             alt="">
+                    </div>
+
+                    <div class="d-flex flex-column gap-1">
+                        <span>{{'Earnings' | translate}}</span>
+                        <span class="fw-semibold d-flex  gap-2">
+                            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                                 alt="">
+                            {{user.financialSummary.totalProfits}} </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Information -->
+    <section>
+        <div class="row g-4">
+            <div class="col-lg-12 col-xl-6 d-flex flex-column gap-3 ">
+                <h5 class="card-title text-primary">{{ "DASHBOARD.WALLET.TITLE" | translate }}</h5>
+                <div class="card bg-primary text-white h-100 py-3 px-3 d-flex gap-2">
+                    <div class="col-6 d-flex flex-column">
+                        <small>{{ "DASHBOARD.WALLET.BALANCE" | translate }}</small>
+                        <div class="text-lg fw-bold d-flex align-items-center gap-1">
+                            <img src="assets/icons/Saudi_Riyal_White.svg"
+                                 alt="">
+                            {{user.investmentAccount.balance}}
+
+                        </div>
+                    </div>
+
+
+                    <div class="row g-2">
+                        <div class="col-6 d-flex flex-column">
+                            <small>{{ "DASHBOARD.WALLET.BENEFICIARY_NAME" | translate }}</small>
+                            <span class="text-lg fw-bold">{{user.investmentAccount.accountHolderName}}</span>
+                        </div>
+                        <div class="col-6 d-flex flex-column">
+                            <small>{{ "DASHBOARD.WALLET.BANK_NAME" | translate }}</small>
+                            <span class="text-lg fw-bold">{{user.investmentAccount.bankName || 'N/A'}}</span>
+                        </div>
+                        <div class="col-6 d-flex flex-column">
+                            <small>{{ "DASHBOARD.WALLET.ACCOUNT_NUMBER" | translate }}</small>
+                            <span class="text-lg fw-bold">{{user.investmentAccount.accountNumber || 'N/A'}}</span>
+                        </div>
+                        <div class="col-6 d-flex flex-column">
+                            <small>{{ "DASHBOARD.WALLET.IBAN" | translate }}</small>
+                            <span class="text-lg fw-bold">{{user.investmentAccount.iban || 'N/A'}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-xl-6 d-flex flex-column gap-3">
+                <h5 class="card-title text-primary">{{ "Withdrawl" | translate }}</h5>
+                <div class="card bg-white py-2 px-3 h-100  mx-auto w-100 align-items-center g-4">
+                    <div class="row g-2 align-items-center w-100 col">
+                        <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
+                            <small>{{ "Bank Name" | translate }}</small>
+                            <span class="text-lg fw-bold">{{user.userProfile.fullName}}</span>
+                        </div>
+
+                        <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
+                            <small>{{ "Benificiary Name" | translate }}</small>
+                            <span class="text-lg fw-bold">{{user.userProfile.nationality || 'N/A'}}</span>
+                        </div>
+                        <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
+                            <small>{{ "IBAN" | translate }}</small>
+                            <span class="text-lg fw-bold">{{user.userProfile.nationalId}}</span>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-end align-self-end gap-2 col">
+                        <input type="number"
+                               name=""
+                               class="form-control"
+                               id="">
+                        <button class="btn btn-primary">Withdraw</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Listing -->
+    <section>
+        <div class="col-md-12 d-flex flex-column gap-3">
+            <h5 class="card-title text-primary">{{'Wallet Operations' | translate}}</h5>
+            <div class="row mx-0 g-3">
+                @if (loading()) {
+                <h6 class="text-center">
+                    {{'INVESTMENTS.MY_INVESTMENTS.LOADING' | translate}}...
+                </h6>
+                }@else {
+                @if (investments().length) {
+                @for (item of investments(); track $index) {
+                <div class="card bg-white  p-4 w-100">
+                    <div class="row align-items-center">
+
+                        <div class="col d-flex gap-4 align-items-center">
+                            <span class="badge bg-success">{{item.status}}</span>
+                            <div class="d-flex flex-column gap-2">
+                                <small> {{'INVESTMENTS.MY_INVESTMENTS.PRODUCT_NAME' | translate}}</small>
+                                <h6>{{item.name}}</h6>
+                            </div>
+                        </div>
+
+
+                        <div class="col d-flex flex-column gap-2">
+                            <small> {{'INVESTMENTS.MY_INVESTMENTS.INVESTED_AMOUNT' | translate}}</small>
+                            <div class="d-flex gap-2"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                                     alt="">{{item.stockValue}}</div>
+                        </div>
+
+                        <div class="col d-flex flex-column gap-2">
+                            <small>{{'INVESTMENTS.MY_INVESTMENTS.ROI' | translate}}</small>
+                            <div class="d-flex gap-2"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                                     alt="">{{item.stockCount}}</div>
+                        </div>
+
+                        <div class="col d-flex flex-column gap-2">
+                            <small>{{'INVESTMENTS.MY_INVESTMENTS.INVESTMENT_DATE' | translate}}</small>
+                            <span>{{item.writingDate | date:'short'}}</span>
+                        </div>
+
+                        <div class="col-1 d-flex justify-content-end">
+                            <a [routerLink]="'/' + WEB_ROUTES.INVESTMENTS.ROOT + '/' + WEB_ROUTES.INVESTMENTS.DETAILS + '/' + item.id "
+                               class="btn btn-sm btn-primary">
+                                <i class="fas fa-eye"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                }
+                }@else {
+                <h6 class="text-center">
+                    {{ "INVESTMENTS.EMPTY" | translate }}
+                </h6>
+                }
+                }
+
+            </div>
+
+
+        </div>
+
+        @if (!loading() && investments().length) {
+        <nav class="d-flex justify-content-center my-4">
+            <ngb-pagination [(page)]="pagination.pageNumber"
+                            [pageSize]="pagination.pageSize"
+                            [collectionSize]="total()"
+                            [maxSize]="5"
+                            [ellipses]="true"
+                            (pageChange)="goToPage($event)"
+                            size="md">
+            </ngb-pagination>
+        </nav>
+        }
+    </section>
+
+</main>
