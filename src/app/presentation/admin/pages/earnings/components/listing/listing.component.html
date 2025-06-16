@@ -3,19 +3,19 @@
     <section>
         <div class="col-md-12 d-flex flex-column gap-3">
             <div class="d-flex justify-content-between">
-                <h5 class="card-title text-primary">{{'Dividend Distributions' | translate}}</h5>
+                <h5 class="card-title text-primary">{{'DIVIDENDS.TITLE' | translate}}</h5>
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
-                        <button class="badge text-white bg-primary">All</button>
+                        <button class="badge text-white bg-primary"> {{'DIVIDENDS.FILTER.ALL' | translate}}</button>
                     </li>
                     <li>
-                        <button class="badge text-dark">Delivered</button>
+                        <button class="badge text-dark"> {{'DIVIDENDS.FILTER.DELIVERED' | translate}}</button>
                     </li>
                     <li>
-                        <button class="badge text-dark">Pending</button>
+                        <button class="badge text-dark"> {{'DIVIDENDS.FILTER.PENDING' | translate}}</button>
                     </li>
                     <li>
-                        <button class="badge text-dark">Delayed</button>
+                        <button class="badge text-dark"> {{'DIVIDENDS.FILTER.DELAYED' | translate}}</button>
                     </li>
                 </ul>
             </div>
@@ -80,9 +80,11 @@
                 </div>
                 }
                 }@else {
-                <h6 class="text-center">
-                    {{ "INVESTMENTS.EMPTY" | translate }}
-                </h6>
+                <div class="py-4">
+                    <h6 class="text-center">
+                        {{ "DIVIDENDS.EMPTY" | translate }}
+                    </h6>
+                </div>
                 }
                 }
 

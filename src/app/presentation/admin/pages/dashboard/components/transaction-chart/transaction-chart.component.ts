@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { ChartComponent, NgApexchartsModule } from "ng-apexcharts";
 import {
   ApexNonAxisChartSeries,
@@ -6,6 +6,7 @@ import {
   ApexChart,
   ApexLegend
 } from "ng-apexcharts";
+import { Transaction } from '../../../../../../core/models/transaction';
 
 export type ChartOptions = {
   series: ApexNonAxisChartSeries;
@@ -23,7 +24,8 @@ export type ChartOptions = {
   templateUrl: './transaction-chart.component.html',
   styleUrl: './transaction-chart.component.scss'
 })
-export class TransactionChartComponent {
+export class TransactionChartComponent implements OnChanges {
+  @Input() transactions!: Transaction[];
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: ChartOptions;
 
@@ -55,5 +57,11 @@ export class TransactionChartComponent {
         }
       ]
     };
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.transactions?.length) {
+      this.chartOptions.labels = [...this.transactions].map(transaction => transaction.transactionType);
+      this.chartOptions.series = [...this.transactions].map(transaction => transaction.amount);
+    }
   }
 }
