@@ -9,6 +9,7 @@ import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { finalize, takeUntil } from 'rxjs';
 import { InvestorService } from '../../../../../../data/investor.service';
+import { ProfileService } from '../../../../../../data/profile.service';
 
 @Component({
   selector: 'app-listing',
@@ -18,7 +19,7 @@ import { InvestorService } from '../../../../../../data/investor.service';
 })
 export class ListingComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
-  private readonly investorService = inject(InvestorService);
+  private readonly profileService = inject(ProfileService);
 
   user: UserProfileData = this.tokenService.getUser();
   pagination: any = {
@@ -40,16 +41,15 @@ export class ListingComponent extends BaseComponent implements OnInit {
 
   loadOperations(): void {
     this.loading.set(true);
-    this.investorService
-      .getPaged(this.pagination)
+    this.profileService
+      .getWalletInformation()
       .pipe(
         takeUntil(this.destroy$),
         finalize(() => this.loading.set(false))
       )
       .subscribe({
         next: (response) => {
-          this.investments.set(response.data.data);
-          this.total.set(response.data.totalCount);
+          console.log(response)
         },
         error: () => { },
       });

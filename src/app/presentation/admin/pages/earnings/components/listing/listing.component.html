@@ -39,8 +39,8 @@
                     {{'INVESTMENTS.MY_INVESTMENTS.LOADING' | translate}}...
                 </h6>
                 }@else {
-                @if (investments().length) {
-                @for (item of investments(); track $index) {
+                @if (earnings().length) {
+                @for (item of earnings(); track $index) {
                 <div class="card bg-white  p-4 w-100">
                     <div class="row align-items-center">
 
@@ -91,7 +91,7 @@
 
         </div>
 
-        @if (!loading() && investments().length) {
+        @if (!loading() && earnings().length) {
         <nav class="d-flex justify-content-center my-4">
             <ngb-pagination [(page)]="pagination.pageNumber"
                             [pageSize]="pagination.pageSize"

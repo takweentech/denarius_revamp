@@ -8,8 +8,8 @@ import { RouterLink } from '@angular/router';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { finalize, takeUntil } from 'rxjs';
-import { InvestorService } from '../../../../../../data/investor.service';
 import { GregorianDatepickerComponent } from "../../../../../../shared/components/gregorian-datepicker/gregorian-datepicker.component";
+import { DividendService } from '../../../../../../data/dividend.service';
 
 @Component({
   selector: 'app-listing',
@@ -19,7 +19,7 @@ import { GregorianDatepickerComponent } from "../../../../../../shared/component
 })
 export class ListingComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
-  private readonly investorService = inject(InvestorService);
+  private readonly investorService = inject(DividendService);
 
   user: UserProfileData = this.tokenService.getUser();
   pagination: any = {
@@ -35,7 +35,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
     ],
   };
   WEB_ROUTES = WEB_ROUTES;
-  investments = signal<any[]>([]);
+  earnings = signal<any[]>([]);
   loading = signal<boolean>(false);
   total = signal<number>(0);
 
@@ -49,7 +49,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          this.investments.set(response.data.data);
+          this.earnings.set(response.data.data);
           this.total.set(response.data.totalCount);
         },
         error: () => { },

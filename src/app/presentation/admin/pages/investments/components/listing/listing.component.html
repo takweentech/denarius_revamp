@@ -14,7 +14,7 @@
                         <div class="fw-semibold d-flex  gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
-                            {{user.financialSummary.totalDeposits}}
+                            {{statistics()?.totalInvestments}}
                         </div>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                         <div class="fw-semibold d-flex  gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
-                            {{user.financialSummary.totalInvestments}}
+                            {{statistics()?.totalInvestmentCount}}
                         </div>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                         <span class="fw-semibold d-flex  gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
-                            {{user.financialSummary.totalProfits}} </span>
+                            {{statistics()?.totalProfits}} </span>
                     </div>
                 </div>
             </div>

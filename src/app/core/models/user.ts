@@ -93,6 +93,20 @@ export interface UserPersonalData {
     netWealth: number
 }
 
+export interface UserWalletData {
+}
+
+export interface UserInvestmentStatisticsData {
+    totalInvestments: number;
+    totalProfits: number;
+    totalExpectedProfits: number;
+    totalDeposits: number;
+    totalWithdraws: number;
+    totalInvestmentCount: number;
+}
+
+
+
 export interface UserBasicProfileData {
     fullName: string;
     idNumber: string;

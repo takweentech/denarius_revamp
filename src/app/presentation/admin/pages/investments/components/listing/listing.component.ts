@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { UserProfileData } from '../../../../../../core/models/user';
+import { UserInvestmentStatisticsData, UserProfileData } from '../../../../../../core/models/user';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { EarningsDistributionChartComponent } from "./components/earnings-distribution-chart/earnings-distribution-chart.component";
 import { InvestmentsChartComponent } from "./components/investments-chart/investments-chart.component";
@@ -12,6 +12,7 @@ import { DatePipe } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ProfileService } from '../../../../../../data/profile.service';
 
 @Component({
   selector: 'app-listing',
@@ -23,6 +24,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class ListingComponent extends BaseComponent {
   private readonly tokenService = inject(TokenService);
   private readonly investorService = inject(InvestorService);
+  private readonly profileService = inject(ProfileService);
   pagination: InvestmentFilter = {
     pageNumber: 1,
     pageSize: 5,
@@ -37,9 +39,25 @@ export class ListingComponent extends BaseComponent {
   };
   WEB_ROUTES = WEB_ROUTES;
   investments = signal<Investment[]>([]);
+  statistics = signal<UserInvestmentStatisticsData | null>(null);
   loading = signal<boolean>(false);
   total = signal<number>(0);
   user: UserProfileData = this.tokenService.getUser();
+
+
+  loadStatistics(): void {
+    this.profileService
+      .getInvestmentStatistics()
+      .pipe(
+        takeUntil(this.destroy$),
+      )
+      .subscribe({
+        next: (response) => {
+          this.statistics.set(response.data)
+        },
+        error: () => { },
+      });
+  }
 
   loadInvestments(): void {
     this.loading.set(true);
@@ -59,6 +77,7 @@ export class ListingComponent extends BaseComponent {
   }
 
   ngOnInit(): void {
+    this.loadStatistics();
     this.loadInvestments();
   }
 

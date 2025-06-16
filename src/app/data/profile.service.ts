@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpCustomResponse } from '../core/models/http';
-import { UserBankData, UserBasicProfileData, UserInvestmentData, UserPassword, UserPersonalData, UserProfileData } from '../core/models/user';
+import { UserBankData, UserBasicProfileData, UserInvestmentData, UserInvestmentStatisticsData, UserPassword, UserPersonalData, UserProfileData, UserWalletData } from '../core/models/user';
 
 @Injectable({
     providedIn: 'root'
@@ -14,6 +14,14 @@ export class ProfileService {
 
     getUserProfile(): Observable<HttpCustomResponse<UserProfileData>> {
         return this.http.get<HttpCustomResponse<UserProfileData>>(`${environment.apiUrl}/${this.baseUrl}/GetMainProfile`)
+    }
+
+    getWalletInformation(): Observable<HttpCustomResponse<UserWalletData>> {
+        return this.http.get<HttpCustomResponse<UserWalletData>>(`${environment.apiUrl}/${this.baseUrl}/GetWalletInformation`)
+    }
+
+    getInvestmentStatistics(): Observable<HttpCustomResponse<UserInvestmentStatisticsData>> {
+        return this.http.get<HttpCustomResponse<UserInvestmentStatisticsData>>(`${environment.apiUrl}/${this.baseUrl}/GetInvestmentStatistics`)
     }
 
     getPersonalInformation(): Observable<HttpCustomResponse<UserPersonalData>> {
