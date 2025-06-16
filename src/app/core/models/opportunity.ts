@@ -22,6 +22,12 @@ export interface Opportunity {
     programName: string;
     dividends: Dividend[];
     opportunitySections: Section[];
+    vat: number;
+    agencyFee: number;
+    netProfit: number;
+    opportunityStockValue: number;
+    investorMinLimitStockCount: number;
+    investorMaxLimitStockCount: number;
 };
 
 interface Dividend {

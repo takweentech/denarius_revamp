@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpCustomResponse } from '../core/models/http';
-import { UserBankData, UserBasicProfileData, UserInvestmentData, UserPersonalData, UserProfileData } from '../core/models/user';
+import { UserBankData, UserBasicProfileData, UserInvestmentData, UserPassword, UserPersonalData, UserProfileData } from '../core/models/user';
 
 @Injectable({
     providedIn: 'root'
@@ -47,6 +47,8 @@ export class ProfileService {
     saveInvestmentInformation(payload: UserInvestmentData): Observable<HttpCustomResponse<{}>> {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/SetInvestmentKnowledge`, payload)
     }
+
+
 
 
 

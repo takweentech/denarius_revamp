@@ -6,7 +6,7 @@ import { TranslationService } from '../services/translation.service';
 
 const EXCLUDED_URLS = [
     environment.cmsUrl,
-    '/Accounts/',
+    // '/Accounts/',
     '/public/'
 ];
 

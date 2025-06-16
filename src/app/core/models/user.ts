@@ -150,6 +150,13 @@ export interface FinancialSummary {
     expectedProfits: number;
 }
 
+
+export interface UserPassword {
+    currentPassword: string,
+    newPassword: string,
+    confirmedPassword: string
+}
+
 export interface InvestmentPerformance {
     performanceData: any[];
 }

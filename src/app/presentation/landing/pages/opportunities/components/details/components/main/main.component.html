@@ -144,8 +144,8 @@
             {{ "OPPORTUNITIES_DETAILS.TOTAL_INVESTMENT_AMOUNT" | translate }}
           </div>
           <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{numStock.value && investment.opportunityStockValue ? numStock.value &&
-            investment.opportunityStockValue : 0 }}</div>
+                 alt="">{{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
+            opportunity.opportunityStockValue : 0 }}</div>
         </li>
 
         <li class="d-flex justify-content-between py-2 border-bottom">
@@ -153,8 +153,8 @@
             {{ "OPPORTUNITIES_DETAILS.TOTAL_EXPECTED_RETURN" | translate }}
           </div>
           <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{numStock.value && investment.opportunityStockValue ? numStock.value &&
-            investment.opportunityStockValue : 0 }}</div>
+                 alt="">{{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
+            opportunity.opportunityStockValue : 0 }}</div>
 
         </li>
 
@@ -163,7 +163,7 @@
             {{ "OPPORTUNITIES_DETAILS.AGENCY_FEE" | translate }}
           </div>
           <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{investment.agencyFee}}</div>
+                 alt="">{{opportunity.agencyFee}}</div>
 
         </li>
 
@@ -172,7 +172,7 @@
             {{ "OPPORTUNITIES_DETAILS.VAT" | translate }}
           </div>
           <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{investment.vat}}</div>
+                 alt="">{{opportunity.vat}}</div>
 
         </li>
 
@@ -181,7 +181,7 @@
             {{ "OPPORTUNITIES_DETAILS.NET_RETURN" | translate }}
           </div>
           <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{investment.netProfit}}</div>
+                 alt="">{{opportunity.netProfit}}</div>
 
         </li>
       </ul>

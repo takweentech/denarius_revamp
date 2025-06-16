@@ -20,7 +20,7 @@ export const OPPORTUNITIES_ROUTES: Route[] = [
       import("./components/details/details.component").then(
         (m) => m.DetailsComponent
       ),
-    resolve: { opportunity: opportunityResolver, investment: opportunityInvestResolver },
+    resolve: { opportunity: opportunityResolver },
     children: [
       {
         path: "",

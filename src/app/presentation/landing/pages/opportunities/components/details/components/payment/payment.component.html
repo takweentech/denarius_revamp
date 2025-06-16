@@ -13,14 +13,14 @@
           </label>
           <input class="col-md-10 col-sm-12 form-control"
                  type="number"
-                 [min]="investment.investorMinLimitStockCount"
-                 [max]="investment.investorMaxLimitStockCount"
+                 [min]="opportunity.investorMinLimitStockCount"
+                 [max]="opportunity.investorMaxLimitStockCount"
                  [formControl]="numStock" />
         </div>
         <div class="col-12 p-md-0 d-flex flex-column">
-          <span> Minimum investment = {{investment.investorMinLimitStockCount}} bonds with a value of
+          <span> Minimum investment = {{opportunity.investorMinLimitStockCount}} bonds with a value of
             currency</span>
-          <span> Maximum investment = {{investment.investorMaxLimitStockCount}} bonds with a value of currency</span>
+          <span> Maximum investment = {{opportunity.investorMaxLimitStockCount}} bonds with a value of currency</span>
         </div>
         <div>
           <p>For unlimited investment, you can request an <a href="">
@@ -36,8 +36,8 @@
               {{ "OPPOTUNITIES_PAYMENT.TOTAL_INVESTMENT_AMOUNT" | translate }}
             </span>
             <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="">{{numStock.value && investment.opportunityStockValue ? numStock.value &&
-              investment.opportunityStockValue : 0 }}</div>
+                   alt="">{{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
+              opportunity.opportunityStockValue : 0 }}</div>
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
@@ -52,7 +52,7 @@
               {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
             </span>
             <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="">{{investment.agencyFee}}</div>
+                   alt="">{{opportunity.agencyFee}}</div>
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
@@ -60,14 +60,14 @@
               {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
             </span>
             <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="">{{investment.vat}}</div>
+                   alt="">{{opportunity.vat}}</div>
           </li>
           <li class="d-flex justify-content-between py-2">
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.NET_RETURN" | translate }}
             </span>
             <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="">{{investment.netProfit}}</div>
+                   alt="">{{opportunity.netProfit}}</div>
           </li>
         </ul>
       </div>
@@ -98,8 +98,8 @@
           <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                alt="">
           <span class="fw-semibold fs-5 d-inline-flex col justify-content-end align-items-center gap-1">
-            {{numStock.value && investment.opportunityStockValue ? numStock.value &&
-            investment.opportunityStockValue : 0 }}
+            {{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
+            opportunity.opportunityStockValue : 0 }}
           </span>
         </div>
       </div>
