@@ -105,9 +105,9 @@ export const routes: Routes = [
       },
       {
         path: WEB_ROUTES.SETTINGS.ROOT,
-        loadComponent: () =>
-          import("./presentation/admin/pages/settings/settings.component").then(
-            (m) => m.SettingsComponent
+        loadChildren: () =>
+          import("./presentation/admin/pages/settings/settings.routes").then(
+            (m) => m.SETTINGS_ROUTES
           ),
       },
       {
@@ -140,17 +140,17 @@ export const routes: Routes = [
       {
         path: WEB_ROUTES.WALLET.ROOT,
         loadComponent: () =>
-          import(
-            "./presentation/admin/pages/wallet/wallet.component"
-          ).then((m) => m.WalletComponent),
+          import("./presentation/admin/pages/wallet/wallet.component").then(
+            (m) => m.WalletComponent
+          ),
         children: WALLET_ROUTES,
       },
       {
         path: WEB_ROUTES.EARNINGS.ROOT,
         loadComponent: () =>
-          import(
-            "./presentation/admin/pages/earnings/earnings.component"
-          ).then((m) => m.EarningsComponent),
+          import("./presentation/admin/pages/earnings/earnings.component").then(
+            (m) => m.EarningsComponent
+          ),
         children: EARNINGS_ROUTES,
       },
     ],

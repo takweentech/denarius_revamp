@@ -8,21 +8,15 @@ import { InvestmentComponent } from "./components/investment/investment.componen
 import { TranslatePipe } from "@ngx-translate/core";
 import { PersonalComponent } from "./components/personal/personal.component";
 import { UpgradeComponent } from "./components/upgrade/upgrade.component";
+import { RouterModule } from "@angular/router";
+import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
 @Component({
   selector: "app-settings",
-  imports: [
-    TranslatePipe,
-    NgbNavModule,
-    ProfileComponent,
-    SecurityComponent,
-    BankComponent,
-    InvestmentComponent,
-    PersonalComponent,
-    UpgradeComponent
-  ],
+  imports: [TranslatePipe, NgbNavModule, RouterModule],
   templateUrl: "./settings.component.html",
   styleUrl: "./settings.component.scss",
 })
 export class SettingsComponent {
+  WEB_ROUTES = WEB_ROUTES;
   active: number = 1;
 }

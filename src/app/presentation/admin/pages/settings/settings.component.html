@@ -1,54 +1,63 @@
 <section class="bg-white rounded-4 p-4">
-  <ul ngbNav
-      #nav="ngbNav"
-      [(activeId)]="active"
-      class="nav-tabs">
-    <!-- Profile -->
-    <li [ngbNavItem]="1">
-      <button ngbNavLink>{{ "SETTINGS.PROFILE.PROFILE" | translate }}</button>
-      <ng-template ngbNavContent>
-        <app-profile></app-profile>
-      </ng-template>
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a
+        [routerLink]="[WEB_ROUTES.SETTINGS.PROFILE]"
+        routerLinkActive="active"
+        class="nav-link"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        {{ "SETTINGS.PROFILE.PROFILE" | translate }}
+      </a>
     </li>
-    <!-- Personal Information -->
-    <li [ngbNavItem]="2">
-      <button ngbNavLink>{{'SETTINGS.INFO.TITLE' |
-        translate}}</button>
-      <ng-template ngbNavContent>
-        <app-personal></app-personal>
-      </ng-template>
+    <li class="nav-item">
+      <a
+        [routerLink]="[WEB_ROUTES.SETTINGS.PERSONAL]"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        {{ "SETTINGS.INFO.TITLE" | translate }}
+      </a>
     </li>
-    <!-- security -->
-    <li [ngbNavItem]="3">
-      <button ngbNavLink>{{ "SETTINGS.SECURITY.SECURITY" | translate }}</button>
-      <ng-template ngbNavContent>
-        <app-security></app-security>
-      </ng-template>
+    <li class="nav-item">
+      <a
+        [routerLink]="[WEB_ROUTES.SETTINGS.SECURITY]"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        {{ "SETTINGS.SECURITY.SECURITY" | translate }}
+      </a>
     </li>
-    <li [ngbNavItem]="4">
-      <button ngbNavLink>{{ "SETTINGS.BANK.BANK" | translate }}</button>
-      <ng-template ngbNavContent>
-        <app-bank></app-bank>
-      </ng-template>
+    <li class="nav-item">
+      <a
+        [routerLink]="[WEB_ROUTES.SETTINGS.BANK]"
+        routerLinkActive="active"
+        class="nav-link"
+      >
+        {{ "SETTINGS.BANK.BANK" | translate }}
+      </a>
     </li>
-    <li [ngbNavItem]="5">
-      <button ngbNavLink>
+    <li class="nav-item">
+      <a
+        [routerLink]="[WEB_ROUTES.SETTINGS.INVESTMENT]"
+        routerLinkActive="active"
+        class="nav-link"
+      >
         {{ "SETTINGS.INVESTMENT.INVESTMENT" | translate }}
-      </button>
-      <ng-template ngbNavContent>
-        <app-investment></app-investment>
-      </ng-template>
+      </a>
     </li>
-    <li [ngbNavItem]="6">
-      <button ngbNavLink>
+    <li class="nav-item">
+      <a
+        [routerLink]="[WEB_ROUTES.SETTINGS.UPGRADE]"
+        routerLinkActive="active"
+        class="nav-link"
+      >
         {{ "SETTINGS.UPGRADE.TITLE" | translate }}
-      </button>
-      <ng-template ngbNavContent>
-        <app-upgrade></app-upgrade>
-      </ng-template>
+      </a>
     </li>
   </ul>
+
   <hr class="m-0" />
-  <div [ngbNavOutlet]="nav"
-       class="mt-2"></div>
+
+  <router-outlet></router-outlet>
 </section>

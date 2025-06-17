@@ -4,6 +4,12 @@ export const WEB_ROUTES = {
   },
   SETTINGS: {
     ROOT: "settings",
+    PROFILE: "profile",
+    PERSONAL: "personal",
+    SECURITY: "security",
+    BANK: "bank",
+    INVESTMENT: "investment",
+    UPGRADE: "upgrade",
   },
   WALLET: {
     ROOT: "wallet",

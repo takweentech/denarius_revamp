@@ -36,7 +36,14 @@
         <div>
           <p>
             {{ "OPPOTUNITIES_PAYMENT.UNLIMITED_INVESTMENT" | translate }}
-            <a [routerLink]="'/' + WEB_ROUTES.SETTINGS.ROOT">
+            <a
+              [routerLink]="
+                '/' +
+                WEB_ROUTES.SETTINGS.ROOT +
+                '/' +
+                WEB_ROUTES.SETTINGS.UPGRADE
+              "
+            >
               {{ "OPPOTUNITIES_PAYMENT.ACCOUNT_UPGRADE" | translate }}
             </a>
           </p>
