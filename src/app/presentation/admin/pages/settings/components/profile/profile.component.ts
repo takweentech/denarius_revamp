@@ -20,9 +20,8 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   private readonly profileService = inject(ProfileService);
   private readonly fb = inject(FormBuilder);
   private toastService = inject(ToastService);
-
   loading = signal<boolean>(false);
-  user: UserProfileData = this.tokenService.getUser();
+  user = signal<UserBasicProfileData | null>(null);
 
   form!: FormGroup;
 
@@ -30,6 +29,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     this.initForm();
     this.profileService.getBasicPersonalInformation().pipe(takeUntil(this.destroy$)).subscribe({
       next: (response) => {
+        this.user.set(response.data);
         this.initForm(response.data);
       }
     })
