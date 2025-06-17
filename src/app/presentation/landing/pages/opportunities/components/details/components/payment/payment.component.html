@@ -4,12 +4,14 @@
   <!-- Details -->
   <div class="col-lg-7 col-12 d-flex flex-column gap-4">
     <!-- Investment calculation -->
-    <div class="d-flex flex-column  gap-4">
+    <div class="d-flex flex-column gap-4">
       <div class="col-12 d-flex flex-column gap-3">
-        <h4 class="fw-bold">{{ "OPPOTUNITIES_PAYMENT.INVESTMENT_STEP" | translate }}</h4>
+        <h4 class="fw-bold">
+          {{ "OPPOTUNITIES_PAYMENT.INVESTMENT_STEP" | translate }}
+        </h4>
         <div class="d-flex flex-column">
           <label class="form-label small">
-            Select the number of bonds to invest in
+            {{ "OPPOTUNITIES_PAYMENT.SELECT_BONDS" | translate }}
           </label>
           <input class="col-md-10 col-sm-12 form-control"
                  type="number"
@@ -18,23 +20,36 @@
                  [formControl]="numStock" />
         </div>
         <div class="col-12 p-md-0 d-flex flex-column">
-          <span> Minimum investment = {{opportunity.investorMinLimitStockCount}} bonds with a value of
-            currency</span>
-          <span> Maximum investment = {{opportunity.investorMaxLimitStockCount}} bonds with a value of currency</span>
+          <span>{{ "OPPOTUNITIES_PAYMENT.MIN_INVESTMENT" | translate }} =
+            {{ opportunity.investorMinLimitStockCount }}
+            {{ "OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE" | translate }}</span>
+          <span>{{ "OPPOTUNITIES_PAYMENT.MAX_INVESTMENT" | translate }} =
+            {{ opportunity.investorMaxLimitStockCount }}
+            {{ "OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE" | translate }}</span>
         </div>
         <div>
-          <p>For unlimited investment, you can request an <a href="">
-              Account upgrade
-            </a></p>
-
+          <p>
+            {{ "OPPOTUNITIES_PAYMENT.UNLIMITED_INVESTMENT" | translate }}
+            <a [routerLink]="'/' + WEB_ROUTES.SETTINGS.ROOT">
+              {{ "OPPOTUNITIES_PAYMENT.ACCOUNT_UPGRADE" | translate }}
+            </a>
+          </p>
         </div>
       </div>
       <div class="card col-12 card-grey d-flex flex-column gap-3 p-3 py-2 h-fit">
-        <ul class="list-unstyled d-flex flex-column  gap-3">
+        <ul class="list-unstyled d-flex flex-column gap-3">
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.TOTAL_INVESTMENT_AMOUNT" | translate }}
             </span>
+            <div class="d-flex gap-1">
+              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="" />{{
+              numStock.value && opportunity.opportunityStockValue
+              ? numStock.value && opportunity.opportunityStockValue
+              : 0
+              }}
+            </div>
             <div class="d-flex align-items-center gap-1 w-fit"
                  dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                    alt="">{{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
@@ -50,18 +65,28 @@
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
-
               {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
             </span>
+            <div class="d-flex gap-1">
+              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="" />{{
+              opportunity.agencyFee
+              }}
+            </div>
             <div class="d-flex align-items-center gap-1 w-fit"
                  dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                    alt="">{{opportunity.agencyFee}}</div>
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
-
               {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
             </span>
+            <div class="d-flex gap-1">
+              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="" />{{
+              opportunity.vat
+              }}
+            </div>
             <div class="d-flex align-items-center gap-1 w-fit"
                  dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                    alt="">{{opportunity.vat}}</div>
@@ -70,6 +95,12 @@
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.NET_RETURN" | translate }}
             </span>
+            <div class="d-flex gap-1">
+              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="" />{{
+              opportunity.netProfit
+              }}
+            </div>
             <div class="d-flex align-items-center gap-1 w-fit"
                  dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                    alt="">{{opportunity.netProfit}}</div>
@@ -77,35 +108,38 @@
         </ul>
       </div>
     </div>
-
   </div>
   <!-- Payment -->
   <div class="col-lg-5 col-12">
     <div class="card card-light-blue py-4 px-3 px-md-4 shadow-sm rounded-4 border-0 d-flex flex-column gap-2">
       <h5 class="fw-semibold mb-2">
-        Payment Method
+        {{ "OPPOTUNITIES_PAYMENT.PAYMENT_METHOD" | translate }}
       </h5>
-      <div class="p-3 border  border-1 shadow-sm bg-white rounded-3 d-flex justify-content-between align-items-center">
+      <div class="p-3 border border-1 shadow-sm bg-white rounded-3 d-flex justify-content-between align-items-center">
         <span class="text-dark small">{{
           "OPPOTUNITIES_PAYMENT.INVESTMENT_WALLET" | translate
           }}</span>
-        <span class="small">{{user.investmentAccount.balance | currency: 'SAR '}}</span>
+        <span class="small">{{
+          user.investmentAccount.balance | currency : "SAR "
+          }}</span>
       </div>
-
 
       <hr />
 
-      <div class=" d-flex  justify-content-between align-items-center">
+      <div class="d-flex justify-content-between align-items-center">
         <h4 class="fw-semibold col">
           {{ "OPPOTUNITIES_PAYMENT.TOTAL_AMOUNT" | translate }}
         </h4>
         <div class="d-flex align-items-center gap-1 w-fit"
              dir="ltr">
           <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-               alt="">
+               alt="" />
           <span class="fw-semibold fs-5 d-inline-flex col justify-content-end align-items-center gap-1">
-            {{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
-            opportunity.opportunityStockValue : 0 }}
+            {{
+            numStock.value && opportunity.opportunityStockValue
+            ? numStock.value && opportunity.opportunityStockValue
+            : 0
+            }}
           </span>
         </div>
       </div>
@@ -118,16 +152,15 @@
                checked />
         <label for="terms">
           <span class="fw-light">
-            I acknowledge that I have read <a href="#"
+            {{ "OPPOTUNITIES_PAYMENT.ACKNOWLEDGEMENT_TEXT" | translate }}
+            <a href="#"
                class="text-primary fw-bold">{{
               "OPPOTUNITIES_PAYMENT.TERMS_CONDITIONS" | translate
-              }}</a> of the platform and all documents and information related to
-            the investment opportunity. I fully acknowledge and understand that the platform does not provide any
-            recommendations, and I fully acknowledge and understand that the platform does not provide any
-            recommendations, and I fully acknowledge and understand that the platform does not provide any
-            recommendations
+              }}</a>
+            {{
+            "OPPOTUNITIES_PAYMENT.ACKNOWLEDGEMENT_TEXT_CONTINUED" | translate
+            }}
           </span>
-
         </label>
       </div>
 
@@ -150,32 +183,32 @@
   <!-- Dividends Table -->
   <div class="col-12">
     <h5 class="mb-2">
-      Dividends
+      {{ "OPPOTUNITIES_PAYMENT.DIVIDENDS" | translate }}
     </h5>
     <div class="table-container">
       <table class="table table-striped">
         <thead>
           <tr>
             <th scope="col">
-              Initial Balance
+              {{ "OPPOTUNITIES_PAYMENT.INITIAL_BALANCE" | translate }}
             </th>
             <th scope="col">
-              Payment Date
+              {{ "OPPOTUNITIES_PAYMENT.PAYMENT_DATE" | translate }}
             </th>
             <th scope="col">
-              Nominal Value
+              {{ "OPPOTUNITIES_PAYMENT.NOMINAL_VALUE" | translate }}
             </th>
             <th scope="col">
-              Earned Value
+              {{ "OPPOTUNITIES_PAYMENT.EARNED_VALUE" | translate }}
             </th>
             <th scope="col">
-              Agency Fee
+              {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
             </th>
             <th scope="col">
-              Vat
+              {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
             </th>
             <th scope="col">
-              Net
+              {{ "OPPOTUNITIES_PAYMENT.NET" | translate }}
             </th>
           </tr>
         </thead>
@@ -190,11 +223,9 @@
                 {{ payment.initialBalance }}
               </div>
             </td>
-
             <td>
-              {{payment.paymentDate | date}}
+              {{ payment.paymentDate | date : "dd/MM/yyyy" }}
             </td>
-
             <td>
               <div class="d-flex align-items-center gap-1 w-fit"
                    dir="ltr">
@@ -203,17 +234,15 @@
                 {{ payment.nominalValue }}
               </div>
             </td>
-
             <td>
-
-              <div class="d-flex align-items-center gap-1 w-fit"
+              {{
+              payment.earn}}<div class="d-flex align-items-center gap-1 w-fit"
                    dir="ltr">
                 <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                      alt="">
                 {{ payment.earn }}
               </div>
             </td>
-
             <td>
               <div class="d-flex align-items-center gap-1 w-fit"
                    dir="ltr">
@@ -222,7 +251,6 @@
                 {{ payment.agencyFee }}
               </div>
             </td>
-
             <td> {{payment.vat}}%</td>
             <td>
               <div class="d-flex align-items-center gap-1 w-fit"
@@ -234,7 +262,6 @@
             </td>
           </tr>
           }
-
         </tbody>
       </table>
     </div>

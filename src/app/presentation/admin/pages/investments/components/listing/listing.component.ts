@@ -1,8 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { UserInvestmentStatisticsData, UserProfileData } from '../../../../../../core/models/user';
 import { TokenService } from '../../../../../../core/services/token.service';
-import { EarningsDistributionChartComponent } from "./components/earnings-distribution-chart/earnings-distribution-chart.component";
-import { InvestmentsChartComponent } from "./components/investments-chart/investments-chart.component";
 import { Investment, InvestmentFilter } from '../../../../../../core/models/investment';
 import { InvestorService } from '../../../../../../data/investor.service';
 import { finalize, takeUntil } from 'rxjs';
@@ -16,7 +14,7 @@ import { ProfileService } from '../../../../../../data/profile.service';
 
 @Component({
   selector: 'app-listing',
-  imports: [EarningsDistributionChartComponent, InvestmentsChartComponent, DatePipe, NgbPaginationModule, RouterLink, TranslatePipe
+  imports: [DatePipe, NgbPaginationModule, RouterLink, TranslatePipe
   ],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss'
