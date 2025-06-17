@@ -11,7 +11,8 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>{{'INVESTMENTS.STATS.TOTAL_INVESTMENTS' | translate}} </span>
-                        <div class="fw-semibold d-flex  gap-2">
+                        <div dir="ltr"
+                             class="fw-semibold d-flex w-fit  gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
                             {{statistics()?.totalInvestments}}
@@ -28,7 +29,8 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>{{'INVESTMENTS.STATS.TOTAL_INVESTMENTS_NUMBER' | translate}}</span>
-                        <div class="fw-semibold d-flex  gap-2">
+                        <div dir="ltr"
+                             class="fw-semibold d-flex w-fit gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
                             {{statistics()?.totalInvestmentCount}}
@@ -45,10 +47,12 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>{{'INVESTMENTS.STATS.TOTAL_EARNINGS' | translate}}</span>
-                        <span class="fw-semibold d-flex  gap-2">
+                        <div dir="ltr"
+                             class="fw-semibold d-flex w-fit gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
-                            {{statistics()?.totalProfits}} </span>
+                            {{statistics()?.totalProfits}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,13 +107,15 @@
 
                         <div class="col d-flex flex-column gap-2">
                             <small> {{'INVESTMENTS.MY_INVESTMENTS.INVESTED_AMOUNT' | translate}}</small>
-                            <div class="d-flex gap-2"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                            <div class="d-flex gap-2 w-fit"
+                                 dir="ltr"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                      alt="">{{item.stockValue}}</div>
                         </div>
 
                         <div class="col d-flex flex-column gap-2">
                             <small>{{'INVESTMENTS.MY_INVESTMENTS.ROI' | translate}}</small>
-                            <div class="d-flex gap-2"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                            <div class="d-flex gap-2 w-fit"
+                                 dir="ltr"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                      alt="">{{item.stockCount}}</div>
                         </div>
 

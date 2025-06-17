@@ -41,7 +41,8 @@
                 <div class="card bg-primary text-white h-100 py-3 px-3 d-flex gap-2">
                     <div class="col-6 d-flex flex-column">
                         <small>{{ "DASHBOARD.WALLET.BALANCE" | translate }}</small>
-                        <div class="text-lg fw-bold d-flex align-items-center gap-1">
+                        <div dir="ltr"
+                             class="w-fit text-lg fw-bold d-flex align-items-center gap-1">
                             <img src="assets/icons/Saudi_Riyal_White.svg"
                                  alt="">
                             {{user.investmentAccount.balance}}
@@ -85,7 +86,8 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>{{ "DASHBOARD.STATS.TOTAL_DEPOSIT" | translate }}</span>
-                        <div class="d-flex gap-2">
+                        <div dir="ltr"
+                             class="d-flex w-fit  gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
                             <span class="fw-semibold">{{user.financialSummary.totalDeposits}} </span>
@@ -102,7 +104,8 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>{{ "DASHBOARD.STATS.TOTAL_INVESTEMENTS" | translate }}</span>
-                        <div class="d-flex gap-2">
+                        <div dir="ltr"
+                             class="d-flex w-fit gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
                             <span class="fw-semibold">{{user.financialSummary.totalInvestments}} </span>
@@ -119,7 +122,8 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>{{ "DASHBOARD.STATS.TOTAL_EARNINGS" | translate }}</span>
-                        <div class="d-flex gap-2">
+                        <div dir="ltr"
+                             class="d-flex w-fit gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
                             <span class="fw-semibold">{{user.financialSummary.totalProfits}} </span>
@@ -136,7 +140,8 @@
 
                     <div class="d-flex flex-column gap-1">
                         <span>{{ "DASHBOARD.STATS.TOTAL_EXPECTED_EARNINGS" | translate }}</span>
-                        <div class="d-flex gap-2">
+                        <div dir="ltr"
+                             class="d-flex w-fit  gap-2">
                             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                                  alt="">
                             <span class="fw-semibold">{{user.financialSummary.expectedProfits}} </span>

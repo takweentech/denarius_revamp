@@ -35,7 +35,8 @@
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.TOTAL_INVESTMENT_AMOUNT" | translate }}
             </span>
-            <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+            <div class="d-flex align-items-center gap-1 w-fit"
+                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                    alt="">{{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
               opportunity.opportunityStockValue : 0 }}</div>
           </li>
@@ -43,7 +44,8 @@
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.TOTAL_EXPECTED_RETURN" | translate }}
             </span>
-            <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+            <div class="d-flex align-items-center gap-1 w-fit"
+                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                    alt="">0</div>
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
@@ -51,7 +53,8 @@
 
               {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
             </span>
-            <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+            <div class="d-flex align-items-center gap-1 w-fit"
+                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                    alt="">{{opportunity.agencyFee}}</div>
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
@@ -59,14 +62,16 @@
 
               {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
             </span>
-            <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+            <div class="d-flex align-items-center gap-1 w-fit"
+                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                    alt="">{{opportunity.vat}}</div>
           </li>
           <li class="d-flex justify-content-between py-2">
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.NET_RETURN" | translate }}
             </span>
-            <div class="d-flex gap-1"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+            <div class="d-flex align-items-center gap-1 w-fit"
+                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                    alt="">{{opportunity.netProfit}}</div>
           </li>
         </ul>
@@ -94,7 +99,8 @@
         <h4 class="fw-semibold col">
           {{ "OPPOTUNITIES_PAYMENT.TOTAL_AMOUNT" | translate }}
         </h4>
-        <div class="d-flex align-items-center gap-1">
+        <div class="d-flex align-items-center gap-1 w-fit"
+             dir="ltr">
           <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                alt="">
           <span class="fw-semibold fs-5 d-inline-flex col justify-content-end align-items-center gap-1">
@@ -176,26 +182,56 @@
         <tbody>
           @for (payment of opportunity.dividends; track $index) {
           <tr>
-            <td>{{ payment.initialBalance | currency: 'SAR ' }}</td>
+            <td>
+              <div class="d-flex align-items-center gap-1 w-fit"
+                   dir="ltr">
+                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                     alt="">
+                {{ payment.initialBalance }}
+              </div>
+            </td>
 
             <td>
               {{payment.paymentDate | date}}
             </td>
 
             <td>
-              {{payment.nominalValue | currency: 'SAR '}}
+              <div class="d-flex align-items-center gap-1 w-fit"
+                   dir="ltr">
+                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                     alt="">
+                {{ payment.nominalValue }}
+              </div>
             </td>
 
             <td>
-              {{payment.earn | currency: 'SAR '}}
+
+              <div class="d-flex align-items-center gap-1 w-fit"
+                   dir="ltr">
+                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                     alt="">
+                {{ payment.earn }}
+              </div>
             </td>
 
             <td>
-              {{payment.agencyFee | currency: 'SAR '}}
+              <div class="d-flex align-items-center gap-1 w-fit"
+                   dir="ltr">
+                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                     alt="">
+                {{ payment.agencyFee }}
+              </div>
             </td>
 
-            <td> {{payment.vat | currency: 'SAR '}}</td>
-            <td> {{payment.net | currency: 'SAR '}}</td>
+            <td> {{payment.vat}}%</td>
+            <td>
+              <div class="d-flex align-items-center gap-1 w-fit"
+                   dir="ltr">
+                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                     alt="">
+                {{ payment.net }}
+              </div>
+            </td>
           </tr>
           }
 

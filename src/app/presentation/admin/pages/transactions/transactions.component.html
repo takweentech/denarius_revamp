@@ -10,9 +10,11 @@
 
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_DEPOSIT" | translate }}</span>
-          <span class="fw-semibold">{{ user.financialSummary.totalDeposits }}
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="" /></span>
+          <div class="fw-semibold d-flex gap-2 w-fit"
+               dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="" />{{ user.financialSummary.totalDeposits }}
+
+          </div>
         </div>
       </div>
     </div>
@@ -25,9 +27,11 @@
 
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_INVESTMENTS" | translate }}</span>
-          <span class="fw-semibold">{{ user.financialSummary.totalInvestments }}
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="" /></span>
+          <div class="fw-semibold d-flex gap-2 w-fit"
+               dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="" />{{ user.financialSummary.totalInvestments }}
+
+          </div>
         </div>
       </div>
     </div>
@@ -40,9 +44,11 @@
 
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_EARNINGS" | translate }}</span>
-          <span class="fw-semibold">{{ user.financialSummary.totalProfits }}
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="" /></span>
+          <div class="fw-semibold d-flex gap-2 w-fit"
+               dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="" />{{ user.financialSummary.totalProfits }}
+
+          </div>
         </div>
       </div>
     </div>
@@ -55,9 +61,11 @@
 
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_EXPECTED_EARNINGS" | translate }}</span>
-          <span class="fw-semibold">{{ user.financialSummary.expectedProfits }}
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="" /></span>
+          <div class="fw-semibold d-flex gap-2 w-fit"
+               dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="" />{{ user.financialSummary.expectedProfits }}
+
+          </div>
         </div>
       </div>
     </div>
@@ -117,14 +125,16 @@
               {{ tx.createDate | date : "medium" }}
             </td>
             <td>
-              <span [ngClass]="{
+              <div class="d-flex gap-2 w-fit"
+                   dir="ltr"
+                   [ngClass]="{
                   'text-danger': tx.amount < 0,
                   'text-success': tx.amount > 0
                 }">
                 {{ tx.amount | number : "1.0-2" }}
                 <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                      alt="" />
-              </span>
+              </div>
             </td>
             <td>
               <span>
