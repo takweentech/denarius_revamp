@@ -8,7 +8,7 @@ export const aboutResolver: ResolveFn<boolean> = (route, state) => {
   const translate = inject(TranslateService);
   const currentLang = translate.currentLang || translate.defaultLang || "en";
 
-  const url = `/about?locale=${currentLang}&populate=header&populate=overview&populate=overview.box&populate=values.item&populate=members.member&populate=members&populate=management&populate=management.member&populate=management.structure&populate=risk_notice&populate=compliance&populate=compliance.box`;
+  const url = `/about?locale=${currentLang}&populate=header&populate=overview&populate=overview.box&populate=values.item&populate=members.members&populate=members&populate=management&populate=management.members&populate=management.structure&populate=risk_notice&populate=compliance&populate=compliance.box`;
 
   return strapiService.getContentByPage(url);
 };

@@ -2,10 +2,11 @@ import { Component, OnInit, inject } from "@angular/core";
 import { TranslateModule } from "@ngx-translate/core";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { ActivatedRoute } from "@angular/router";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: "app-management",
-  imports: [TranslateModule],
+  imports: [TranslateModule, NgIf],
   templateUrl: "./management.component.html",
   styleUrl: "./management.component.scss",
 })

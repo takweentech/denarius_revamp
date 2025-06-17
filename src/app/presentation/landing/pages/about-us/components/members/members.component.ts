@@ -1,10 +1,11 @@
 import { Component, OnInit, inject } from "@angular/core";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { ActivatedRoute } from "@angular/router";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: "app-members",
-  imports: [],
+  imports: [NgIf],
   templateUrl: "./members.component.html",
   styleUrl: "./members.component.scss",
 })
