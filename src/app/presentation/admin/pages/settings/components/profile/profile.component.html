@@ -22,22 +22,43 @@
             {{ user.userProfile.fullName }}
           </h6>
         </div>
+
         <div class="col-md-6 col-12">
           <small>{{ "SETTINGS.PROFILE.PHONE" | translate }}</small>
           <h6 class="fw-bold mt-1 text-primary">
-            {{ user.userProfile.nationality || "N/A" }}
+            {{ user.userProfile.mobileNumber || "N/A" }}
           </h6>
         </div>
+
         <div class="col-md-6 col-12">
           <small>{{ "SETTINGS.PROFILE.ID_NUMBER" | translate }}</small>
           <h6 class="fw-bold mt-1 text-primary">
             {{ user.userProfile.nationalId }}
           </h6>
         </div>
+
         <div class="col-md-6 col-12">
           <small>{{ "SETTINGS.PROFILE.ID_EXPIRY_DATE" | translate }}</small>
           <h6 class="fw-bold mt-1 text-primary">
-            {{ user.userProfile.expiryDate | date }}
+            {{ user.userProfile.expiryDate | date : "dd/MM/yyyy" }}
+          </h6>
+        </div>
+
+        <!-- ✅ New: Nationality -->
+        <div class="col-md-6 col-12">
+          <small>{{ "SETTINGS.PROFILE.NATIONALITY" | translate }}</small>
+          <h6 class="fw-bold mt-1 text-primary">
+            {{ user.userProfile.nationality || "N/A" }}
+          </h6>
+        </div>
+
+        <!-- ✅ New: Account Start Date -->
+        <div class="col-md-6 col-12">
+          <small>{{
+            "SETTINGS.PROFILE.ACCOUNT_CREATION_DATE" | translate
+          }}</small>
+          <h6 class="fw-bold mt-1 text-primary">
+            {{ user.userProfile.startDate | date : "dd/MM/yyyy" }}
           </h6>
         </div>
       </div>
