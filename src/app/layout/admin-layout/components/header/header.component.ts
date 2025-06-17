@@ -8,6 +8,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { SidebarService } from '../sidebar/sidebar.service';
 import { ConfigService } from '../../../../core/services/config.service';
 import { environment } from '../../../../../environments/environment';
+import { UserProfileData } from '../../../../core/models/user';
 @Component({
   selector: 'app-header',
   imports: [NgbDropdownModule, TranslatePipe],
@@ -23,6 +24,7 @@ export class HeaderComponent {
 
   APP_CONFIG = this.configService.getConfig();
   cmsAssetsUrl = environment.cmsAssetsUrl;
+  user: UserProfileData = this.tokenService.getUser();
 
   onToggleSidebar() {
     this.sidebarService.toggleSidebar();

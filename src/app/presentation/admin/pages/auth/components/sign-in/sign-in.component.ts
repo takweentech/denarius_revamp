@@ -8,7 +8,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { ProfileService } from '../../../../../../data/profile.service';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,6 +19,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SignInComponent extends BaseComponent {
   WEB_ROUTES = WEB_ROUTES;
   private readonly registrationService = inject(RegistrationApiService);
+  private readonly translateService = inject(TranslateService);
   private readonly profileService = inject(ProfileService);
   private readonly router = inject(Router);
   private readonly fb = inject(FormBuilder);
@@ -40,7 +41,12 @@ export class SignInComponent extends BaseComponent {
       ).subscribe({
         next: (response: any) => {
           if (response.status !== 200) {
-            this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
+            if (response.message === 'Incorrect data') {
+              this.toastService.show({ text: this.translateService.instant('AUTHENTICATION.SIGN_IN.INCORRECT_DATA'), classname: 'bg-danger text-light' });
+
+            } else {
+              this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
+            }
             return
           }
           this.tokenService.setToken(response.data);
