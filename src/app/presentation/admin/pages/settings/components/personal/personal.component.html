@@ -1,73 +1,75 @@
 <section class="py-4">
   <form [formGroup]="form" class="d-flex flex-column gap-4">
     <h4>{{ "SETTINGS.INFO.TITLE" | translate }}</h4>
-    <div class="row gy-4 col-12 col-md-12 col-xl-9">
-      <!-- Social Status -->
-      <div class="col-12 col-md-6 form-group">
-        <label class="form-label"
-          >{{
-            "AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.MARTIAL_STATUS"
-              | translate
-          }}
-        </label>
-        <div class="d-flex flex-column flex-md-row">
-          @for (item of martialStatusList(); track $index) {
-          <div class="col">
-            <input
-              type="radio"
-              [id]="'maritalStatus-' + item.id"
-              formControlName="maritalStatus"
-              [value]="item.id"
-              class="d-none"
-            />
-            <label
-              [for]="'maritalStatus-' + item.id"
-              class="btn btn-option-select"
-              >{{ item | lang }}
-            </label>
+    <div class="row gy-4 col-12 col-md-11">
+      <div class="col-12 col-md-12 col-xl-10 justify-content-between row gy-4">
+        <!-- Social Status -->
+        <div class="col-12 col-md-6 form-group">
+          <label class="form-label"
+            >{{
+              "AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.MARTIAL_STATUS"
+                | translate
+            }}
+          </label>
+          <div class="d-flex flex-column flex-md-row">
+            @for (item of martialStatusList(); track $index) {
+            <div class="col">
+              <input
+                type="radio"
+                [id]="'maritalStatus-' + item.id"
+                formControlName="maritalStatus"
+                [value]="item.id"
+                class="d-none"
+              />
+              <label
+                [for]="'maritalStatus-' + item.id"
+                class="btn btn-option-select"
+                >{{ item | lang }}
+              </label>
+            </div>
+            }
           </div>
+          @if (form.get('maritalStatus')?.errors?.['required'] &&
+          form.get('maritalStatus')?.touched ) {
+          <small class="text-danger mt-1 d-flex align-items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ "VALIDATORS.REQUIRED" | translate }}
+          </small>
           }
         </div>
-        @if (form.get('maritalStatus')?.errors?.['required'] &&
-        form.get('maritalStatus')?.touched ) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ "VALIDATORS.REQUIRED" | translate }}
-        </small>
-        }
-      </div>
 
-      <!-- Family Members -->
-      <div class="col-12 col-md-6 form-group">
-        <label class="form-label">{{
-          "AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.NUMBER_OF_FAMILY_MEMBERS"
-            | translate
-        }}</label>
-        <input
-          type="number"
-          formControlName="familyMembersCount"
-          class="form-control"
-          min="0"
-          max="10"
-        />
+        <!-- Family Members -->
+        <div class="col-12 col-md-6 form-group">
+          <label class="form-label">{{
+            "AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.NUMBER_OF_FAMILY_MEMBERS"
+              | translate
+          }}</label>
+          <input
+            type="number"
+            formControlName="familyMembersCount"
+            class="form-control"
+            min="0"
+            max="10"
+          />
 
-        @if (form.get('familyMembersCount')?.errors?.['required'] &&
-        form.get('familyMembersCount')?.touched ) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ "VALIDATORS.REQUIRED" | translate }}
-        </small>
-        } @if (form.get('familyMembersCount')?.errors?.['min']) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ "VALIDATORS.MIN_VALUE" | translate : { min: 0 } }}
-        </small>
-        } @if (form.get('familyMembersCount')?.errors?.['max']) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ "VALIDATORS.MAX_VALUE" | translate : { max: 10 } }}
-        </small>
-        }
+          @if (form.get('familyMembersCount')?.errors?.['required'] &&
+          form.get('familyMembersCount')?.touched ) {
+          <small class="text-danger mt-1 d-flex align-items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ "VALIDATORS.REQUIRED" | translate }}
+          </small>
+          } @if (form.get('familyMembersCount')?.errors?.['min']) {
+          <small class="text-danger mt-1 d-flex align-items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ "VALIDATORS.MIN_VALUE" | translate : { min: 0 } }}
+          </small>
+          } @if (form.get('familyMembersCount')?.errors?.['max']) {
+          <small class="text-danger mt-1 d-flex align-items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ "VALIDATORS.MAX_VALUE" | translate : { max: 10 } }}
+          </small>
+          }
+        </div>
       </div>
 
       <!-- Education Level -->
@@ -78,7 +80,7 @@
         }}</label>
         <div class="row g-0">
           @for (item of educationLevelList(); track $index) {
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md">
             <input
               type="radio"
               [id]="'educationLevel-' + item.id"
@@ -111,7 +113,7 @@
         }}</label>
         <div class="row g-0">
           @for (item of employmentStatusList(); track $index) {
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md">
             <input
               type="radio"
               [id]="'employmentStatus-' + item.id"
@@ -175,6 +177,7 @@
               type="number"
               formControlName="yearsOfExperience"
               class="form-control"
+              min="0"
             />
             @if (form.get('yearsOfExperience')?.errors?.['required'] &&
             form.get('yearsOfExperience')?.touched ) {
@@ -196,7 +199,7 @@
         }}</label>
         <div class="row g-0">
           @for (item of annualIncomeList(); track $index) {
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md">
             <input
               type="radio"
               [id]="'annualIncome-' + item.id"
@@ -231,7 +234,7 @@
         </label>
         <div class="row g-0">
           @for (item of netWorthList(); track $index) {
-          <div class="col-12 col-md-6">
+          <div class="col-12 col-md">
             <input
               type="radio"
               [id]="'netWealth-' + item.id"

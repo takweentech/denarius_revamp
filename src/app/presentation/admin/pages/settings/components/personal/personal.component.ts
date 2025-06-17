@@ -6,7 +6,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { TranslatePipe } from "@ngx-translate/core";
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { TokenService } from "../../../../../../core/services/token.service";
 import { ProfileService } from "../../../../../../data/profile.service";
@@ -27,6 +27,7 @@ import { LookupService } from "../../../../../../core/services/lookup.service";
   styleUrl: "./personal.component.scss",
 })
 export class PersonalComponent extends BaseComponent implements OnInit {
+  private readonly translate = inject(TranslateService);
   private readonly tokenService = inject(TokenService);
   private readonly lookupService = inject(LookupService);
   private readonly profileService = inject(ProfileService);
@@ -106,11 +107,15 @@ export class PersonalComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: (response) => {
           if (response.status == 200) {
-            this.toastService.show({
-              text: "Personal information was successfully saved",
-              classname: "bg-success text-light",
-              icon: "fa-circle-check",
-            });
+            this.translate
+              .get("VALIDATORS.PERSONAL_INFO_SAVED")
+              .subscribe((msg) => {
+                this.toastService.show({
+                  text: msg,
+                  classname: "bg-success text-light",
+                  icon: "fa-circle-check",
+                });
+              });
           } else {
             this.toastService.show({
               text: response.message,
@@ -122,7 +127,6 @@ export class PersonalComponent extends BaseComponent implements OnInit {
         error: (error) => {},
       });
   }
-
   // onNumberInput(event: Event) {
   //   console.log("onNumberInput");
   //   const input = event.target as HTMLInputElement;
