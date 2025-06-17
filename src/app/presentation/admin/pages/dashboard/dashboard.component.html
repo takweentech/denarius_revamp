@@ -6,16 +6,10 @@
         <h5 class="card-title text-primary">
           {{ "DASHBOARD.PERSONAL_INFORMATION.TITLE" | translate }}
         </h5>
-        <div
-          class="card bg-white py-2 px-3 h-100 mx-auto w-100 flex-row align-items-center g-4"
-        >
+        <div class="card bg-white py-2 px-3 h-100 mx-auto w-100 flex-row align-items-center g-4">
           <div class="row g-4 w-100">
-            <div
-              class="d-flex col-12 col-md-2 flex-column gap-2 align-items-center justify-content-center"
-            >
-              <div
-                class="initials bg-primary d-flex justify-content-center align-items-center"
-              >
+            <div class="d-flex col-12 col-md-2 flex-column gap-2 align-items-center justify-content-center">
+              <div class="initials bg-primary d-flex justify-content-center align-items-center">
                 <h3>{{ user.userProfile.fullName | initials }}</h3>
               </div>
             </div>
@@ -25,35 +19,35 @@
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{
                     "DASHBOARD.PERSONAL_INFORMATION.FULLNAME" | translate
-                  }}</small>
+                    }}</small>
                   <span class="text-lg fw-bold">{{
                     user.userProfile.fullName
-                  }}</span>
+                    }}</span>
                 </div>
 
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{
                     "DASHBOARD.PERSONAL_INFORMATION.NATIONALITY" | translate
-                  }}</small>
+                    }}</small>
                   <span class="text-lg fw-bold">{{
                     user.userProfile.nationality || "N/A"
-                  }}</span>
+                    }}</span>
                 </div>
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{
                     "DASHBOARD.PERSONAL_INFORMATION.ID_NUMBER" | translate
-                  }}</small>
+                    }}</small>
                   <span class="text-lg fw-bold">{{
                     user.userProfile.nationalId
-                  }}</span>
+                    }}</span>
                 </div>
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{
                     "DASHBOARD.PERSONAL_INFORMATION.EXPIRY_DATE" | translate
-                  }}</small>
+                    }}</small>
                   <span class="text-lg fw-bold">{{
                     user.userProfile.expiryDate | date : "dd/MM/yyyy"
-                  }}</span>
+                    }}</span>
                 </div>
               </div>
             </div>
@@ -67,8 +61,10 @@
         <div class="card bg-primary text-white h-100 py-3 px-3 d-flex gap-2">
           <div class="col-6 d-flex flex-column">
             <small>{{ "DASHBOARD.WALLET.BALANCE" | translate }}</small>
-            <div class="text-lg fw-bold d-flex align-items-center gap-1">
-              <img src="assets/icons/Saudi_Riyal_White.svg" alt="" />
+            <div dir="ltr"
+                 class="w-fit text-lg fw-bold d-flex align-items-center gap-1">
+              <img src="assets/icons/Saudi_Riyal_White.svg"
+                   alt="" />
               {{ user.investmentAccount.balance }}
             </div>
           </div>
@@ -77,28 +73,28 @@
             <div class="col-6 d-flex flex-column">
               <small>{{
                 "DASHBOARD.WALLET.BENEFICIARY_NAME" | translate
-              }}</small>
+                }}</small>
               <span class="text-lg fw-bold">{{
                 user.investmentAccount.accountHolderName
-              }}</span>
+                }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WALLET.BANK_NAME" | translate }}</small>
               <span class="text-lg fw-bold">{{
                 user.investmentAccount.bankName || "N/A"
-              }}</span>
+                }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WALLET.ACCOUNT_NUMBER" | translate }}</small>
               <span class="text-lg fw-bold">{{
                 user.investmentAccount.accountNumber || "N/A"
-              }}</span>
+                }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WALLET.IBAN" | translate }}</small>
               <span class="text-lg fw-bold">{{
                 user.investmentAccount.iban || "N/A"
-              }}</span>
+                }}</span>
             </div>
           </div>
         </div>
@@ -110,78 +106,78 @@
   <section>
     <div class="row g-2">
       <div class="col-md-12 col-lg-6 col-xl-3">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
           <div class="icon success">
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
+            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                 alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
             <span>{{ "DASHBOARD.STATS.TOTAL_DEPOSIT" | translate }}</span>
-            <div class="d-flex gap-2">
-              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
-              <span class="fw-semibold"
-                >{{ user.financialSummary.totalDeposits }}
+            <div dir="ltr"
+                 class="d-flex w-fit  gap-2">
+              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="" />
+              <span class="fw-semibold">{{ user.financialSummary.totalDeposits }}
               </span>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-12 col-lg-6 col-xl-3">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon danger">
-            <img src="assets/icons/invoice-dollar.svg" alt="" />
+            <img src="assets/icons/invoice-dollar.svg"
+                 alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
             <span>{{ "DASHBOARD.STATS.TOTAL_INVESTEMENTS" | translate }}</span>
-            <div class="d-flex gap-2">
-              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
-              <span class="fw-semibold"
-                >{{ user.financialSummary.totalInvestments }}
+            <div dir="ltr"
+                 class="d-flex w-fit gap-2">
+              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="" />
+              <span class="fw-semibold">{{ user.financialSummary.totalInvestments }}
               </span>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-12 col-lg-6 col-xl-3">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon primary">
-            <img src="assets/icons/earnings.svg" alt="" />
+            <img src="assets/icons/earnings.svg"
+                 alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
             <span>{{ "DASHBOARD.STATS.TOTAL_EARNINGS" | translate }}</span>
-            <div class="d-flex gap-2">
-              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
-              <span class="fw-semibold"
-                >{{ user.financialSummary.totalProfits }}
+            <div dir="ltr"
+                 class="d-flex w-fit gap-2">
+              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="" />
+              <span class="fw-semibold">{{ user.financialSummary.totalProfits }}
               </span>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-12 col-lg-6 col-xl-3">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon warning">
-            <img src="assets/icons/money-tag.svg" alt="" />
+            <img src="assets/icons/money-tag.svg"
+                 alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
             <span>{{
               "DASHBOARD.STATS.TOTAL_EXPECTED_EARNINGS" | translate
-            }}</span>
-            <div class="d-flex gap-2">
-              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
-              <span class="fw-semibold"
-                >{{ user.financialSummary.expectedProfits }}
+              }}</span>
+            <div dir="ltr"
+                 class="d-flex w-fit  gap-2">
+              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                   alt="" />
+              <span class="fw-semibold">{{ user.financialSummary.expectedProfits }}
               </span>
             </div>
           </div>
@@ -199,10 +195,9 @@
         </h5>
 
         <div class="card bg-white d-flex justify-content-center">
-          <div id="chart" class="w-fit mx-auto">
-            <app-transaction-chart
-              [transactions]="transactions()"
-            ></app-transaction-chart>
+          <div id="chart"
+               class="w-fit mx-auto">
+            <app-transaction-chart [transactions]="transactions()"></app-transaction-chart>
           </div>
         </div>
       </div>
@@ -240,18 +235,14 @@
                 transactions(); track tx.id) {
                 <tr>
                   <td>
-                    <div
-                      class="d-flex align-items-center justify-content-start gap-2"
-                    >
+                    <div class="d-flex align-items-center justify-content-start gap-2">
                       <div class="arrow-circle">
-                        <i
-                          class="fas"
-                          [ngClass]="{
+                        <i class="fas"
+                           [ngClass]="{
                             'fa-arrow-down':
                               tx.transactionType === 'Withdrawal',
                             'fa-arrow-up': tx.transactionType !== 'Withdrawal'
-                          }"
-                        ></i>
+                          }"></i>
                       </div>
                       <span class="ps-2">{{ tx.description || "-" }}</span>
                     </div>
@@ -264,14 +255,13 @@
                     {{ tx.createDate | date : "medium" }}
                   </td>
                   <td>
-                    <span
-                      [ngClass]="{
+                    <span [ngClass]="{
                         'text-danger': tx.amount < 0,
                         'text-success': tx.amount > 0
-                      }"
-                    >
+                      }">
                       {{ tx.amount | number : "1.0-2" }}
-                      <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
+                      <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                           alt="" />
                     </span>
                   </td>
                   <td>
@@ -280,8 +270,7 @@
                     </span>
                   </td>
                   <td>
-                    <a
-                      [routerLink]="
+                    <a [routerLink]="
                         '/' +
                         WEB_ROUTES.TRANSACTIONS.ROOT +
                         '/' +
@@ -289,8 +278,7 @@
                         '/' +
                         tx.id
                       "
-                      class="btn btn-sm btn-outline-primary rounded-4"
-                    >
+                       class="btn btn-sm btn-outline-primary rounded-4">
                       {{ "TRANSACTIONS.VIEW" | translate }}
                     </a>
                   </td>

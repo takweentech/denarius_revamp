@@ -6,6 +6,9 @@ import { TokenService } from "../../../../core/services/token.service";
 import { TranslationService } from "../../../../core/services/translation.service";
 import { TranslatePipe } from "@ngx-translate/core";
 import { SidebarService } from "../sidebar/sidebar.service";
+import { ConfigService } from '../../../../core/services/config.service';
+import { environment } from '../../../../../environments/environment';
+import { UserProfileData } from '../../../../core/models/user';
 @Component({
   selector: "app-header",
   imports: [NgbDropdownModule, TranslatePipe, RouterLink],
@@ -18,6 +21,10 @@ export class HeaderComponent {
   private readonly tokenService = inject(TokenService);
   private readonly sidebarService = inject(SidebarService);
   private readonly router = inject(Router);
+  private configService = inject(ConfigService);
+  APP_CONFIG = this.configService.getConfig();
+  cmsAssetsUrl = environment.cmsAssetsUrl;
+  user: UserProfileData = this.tokenService.getUser();
 
   onToggleSidebar() {
     this.sidebarService.toggleSidebar();

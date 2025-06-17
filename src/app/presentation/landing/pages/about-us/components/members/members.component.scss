@@ -1,19 +1,15 @@
 .members {
   background-color: #f9f9f9;
-  width: 1371px;
-  height: 723px;
-  top: 1414px;
-  left: 65px;
+  max-width: 1371px;
   border-bottom-right-radius: 40px;
   border-bottom-left-radius: 40px;
-  @media screen and (max-width: 768px) {
-    padding-top: 0px;
-    max-width: 90%;
-    width: 100%;
-    height: auto;
-    border-radius: 0px;
+
+
+  img {
+    max-width: 180px;
   }
 }
+
 .cards {
   @media screen and (max-width: 768px) {
     gap: 20px;

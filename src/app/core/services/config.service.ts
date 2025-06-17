@@ -17,6 +17,8 @@ export class ConfigService {
         this.config = {
           name: data.data.name,
           logoPath: data.data.logo.url,
+          logoLight: data.data.logoLight.url,
+          logoDark: data.data.logoDark.url,
           theme: {
             primaryColor: data.data.primaryColor,
             secondaryColor: data.data.secondaryColor,

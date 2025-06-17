@@ -3,7 +3,7 @@
   <div class="overlay"></div>
   <div class="content d-flex flex-column h-100 justify-content-center gap-3 position-relative px-5">
     <a [routerLink]="'/'">
-      <img src="https://takweentech.sa/images/takween-logo.png"
+      <img [src]="cmsAssetsUrl + APP_CONFIG.logoLight"
            alt="" />
     </a>
     <p class="text-white">{{'AUTHENTICATION.BRANDING.DESCRIPTION' | translate}}</p>

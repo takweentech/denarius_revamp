@@ -9,15 +9,13 @@
         <ul class="d-flex gap-2 list-unstyled">
           @for (item of statusList; track $index) {
           <li>
-            <button
-              (click)="onFilterByStatus(item.value, $index)"
-              class="badge"
-              [ngClass]="{
+            <button (click)="onFilterByStatus(item.value, $index)"
+                    class="badge"
+                    [ngClass]="{
                 'bg-primary': item.active,
                 'text-white': item.active,
                 'text-primary': !item.active
-              }"
-            >
+              }">
               {{ item | lang | translate }}
             </button>
           </li>
@@ -25,42 +23,39 @@
         </ul>
       </div>
       <div class="card p-4 gap-4">
-        <form class="row" [formGroup]="filterForm">
+        <form class="row"
+              [formGroup]="filterForm">
           <div class="form-group col-6">
-            <label for="" class="form-label">{{
+            <label for=""
+                   class="form-label">{{
               "DIVIDENDS.FILTER.FROM" | translate
-            }}</label>
+              }}</label>
             @if (lang === 'en') {
-            <app-gregorian-datepicker
-              formControlName="startDate"
-            ></app-gregorian-datepicker>
+            <app-gregorian-datepicker formControlName="startDate"></app-gregorian-datepicker>
             }@else{
-            <app-islamic-datepicker
-              formControlName="startDate"
-            ></app-islamic-datepicker>
+            <app-islamic-datepicker formControlName="startDate"></app-islamic-datepicker>
             }
           </div>
           <div class="form-group col-6">
-            <label for="" class="form-label">{{
+            <label for=""
+                   class="form-label">{{
               "DIVIDENDS.FILTER.TO" | translate
-            }}</label>
+              }}</label>
             @if (lang === 'en') {
-            <app-gregorian-datepicker
-              formControlName="endDate"
-            ></app-gregorian-datepicker>
+            <app-gregorian-datepicker formControlName="endDate"></app-gregorian-datepicker>
             }@else{
-            <app-islamic-datepicker
-              formControlName="endDate"
-            ></app-islamic-datepicker>
+            <app-islamic-datepicker formControlName="endDate"></app-islamic-datepicker>
             }
           </div>
         </form>
 
         <div class="d-flex justify-content-end gap-2">
-          <button (click)="onReset()" class="btn btn-sm btn-outline-primary">
+          <button (click)="onReset()"
+                  class="btn btn-sm btn-outline-primary">
             {{ "DIVIDENDS.FILTER.RESET" | translate }}
           </button>
-          <button (click)="onFilterByDate()" class="btn btn-sm btn-primary">
+          <button (click)="onFilterByDate()"
+                  class="btn btn-sm btn-primary">
             {{ "DIVIDENDS.FILTER.SAVE" | translate }}
           </button>
         </div>
@@ -68,81 +63,73 @@
       <div class="row mx-0 g-3">
         @if (loading()) {
         <div class="py-4">
+
           <h6 class="text-center">
-            {{ "DIVIDENDS.LOADING" | translate }}
+            {{'DIVIDENDS.LOADING' | translate}}
           </h6>
         </div>
-        }@else { @if (earnings().length) { @for (item of earnings(); track
-        $index) {
-        <div class="card bg-white p-4 w-100">
+        }@else {
+        @if (earnings().length) {
+        @for (item of earnings(); track $index) {
+        <div class="card bg-white  p-4 w-100">
           <div class="row g-2 align-items-center">
+
             <div class="col d-flex gap-4 align-items-center">
-              <span class="badge bg-success">{{ item.status }}</span>
+              <span class="badge bg-success">{{item.status}}</span>
               <div class="d-flex flex-column gap-2">
-                <small>
-                  {{ "DIVIDENDS.LISTING.PRODUCT_NAME" | translate }}</small
-                >
-                <h6>{{ item.opportunityName }}</h6>
+                <small> {{'DIVIDENDS.LISTING.PRODUCT_NAME' | translate}}</small>
+                <h6>{{item.opportunityName }}</h6>
               </div>
             </div>
             <div class="col-6 col-md-2 d-flex flex-column gap-2">
-              <small>
-                {{ "DIVIDENDS.LISTING.TOTAL_DIVIDENCE" | translate }}</small
-              >
-              <div class="d-flex gap-2">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />{{
-                  item.totalDividence
-                }}
-              </div>
+              <small> {{'DIVIDENDS.LISTING.TOTAL_DIVIDENCE' | translate}}</small>
+              <div class="d-flex gap-2 w-fit"
+                   dir="ltr"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                     alt="">{{item.totalDividence}}</div>
             </div>
 
             <div class="col-6 col-md-1 d-flex flex-column gap-2">
-              <small>{{
-                "DIVIDENDS.LISTING.TOTAL_PRINCIPAL" | translate
-              }}</small>
-              <div class="d-flex gap-2">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />{{
-                  item.totalPrincipal
-                }}
-              </div>
+              <small>{{'DIVIDENDS.LISTING.TOTAL_PRINCIPAL' | translate}}</small>
+              <div class="d-flex gap-2 w-fit"
+                   dir="ltr"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                     alt="">{{item.totalPrincipal}}</div>
             </div>
 
             <div class="col-6 col-md-1 d-flex flex-column gap-2">
-              <small>{{ "DIVIDENDS.LISTING.NET" | translate }}</small>
-              <div class="d-flex gap-2">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />{{
-                  item.net
-                }}
-              </div>
+              <small>{{'DIVIDENDS.LISTING.NET' | translate}}</small>
+              <div class="d-flex gap-2 w-fit"
+                   dir="ltr"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                     alt="">{{item.net}}</div>
             </div>
 
             <div class="col d-flex flex-column gap-2">
-              <small>{{ "DIVIDENDS.LISTING.MATURITY_DATE" | translate }}</small>
-              <span>{{ item.maturityDate | date : "dd/MM/yyyy hh:mm a" }}</span>
+              <small>{{'DIVIDENDS.LISTING.MATURITY_DATE' | translate}}</small>
+              <span>{{item.maturityDate | date:'short'}}</span>
             </div>
+
           </div>
         </div>
-        } }@else {
+        }
+        }@else {
         <div class="py-4">
           <h6 class="text-center">
             {{ "DIVIDENDS.EMPTY" | translate }}
           </h6>
         </div>
-        } }
+        }
+        }
       </div>
     </div>
 
     @if (!loading() && earnings().length) {
     <nav class="d-flex justify-content-center my-4">
-      <ngb-pagination
-        [(page)]="pagination.pageNumber"
-        [pageSize]="pagination.pageSize"
-        [collectionSize]="total()"
-        [maxSize]="5"
-        [ellipses]="true"
-        (pageChange)="goToPage($event)"
-        size="md"
-      >
+      <ngb-pagination [(page)]="pagination.pageNumber"
+                      [pageSize]="pagination.pageSize"
+                      [collectionSize]="total()"
+                      [maxSize]="5"
+                      [ellipses]="true"
+                      (pageChange)="goToPage($event)"
+                      size="md">
       </ngb-pagination>
     </nav>
     }

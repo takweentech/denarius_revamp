@@ -145,6 +145,7 @@ export interface UserProfile {
     nationality: string | null;
     startDate: string;
     expiryDate: string;
+    mobileNumber: string;
 }
 
 export interface InvestmentAccount {
