@@ -7,8 +7,8 @@ import { TranslationService } from '../../core/services/translation.service';
 export class LangPipe implements PipeTransform {
   private readonly translationService = inject(TranslationService);
 
-  transform(value: any, ...args: unknown[]): unknown {
-    if (!value) return;
+  transform(value: any, ...args: unknown[]): string {
+    if (!value) return '';
     return this.translationService.language === 'en' ? value.englishName : value.arabicName;
   }
 

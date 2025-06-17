@@ -5,77 +5,96 @@
             <div class="d-flex justify-content-between">
                 <h5 class="card-title text-primary">{{'DIVIDENDS.TITLE' | translate}}</h5>
                 <ul class="d-flex gap-2 list-unstyled">
+                    @for (item of statusList; track $index) {
                     <li>
-                        <button class="badge text-white bg-primary"> {{'DIVIDENDS.FILTER.ALL' | translate}}</button>
+                        <button (click)="onFilterByStatus(item.value, $index)"
+                                class="badge "
+                                [ngClass]="{'bg-primary': item.active, 'text-white': item.active, 'text-primary': !item.active}">
+                            {{ (item| lang) |
+                            translate}}</button>
                     </li>
-                    <li>
-                        <button class="badge text-dark"> {{'DIVIDENDS.FILTER.DELIVERED' | translate}}</button>
-                    </li>
-                    <li>
-                        <button class="badge text-dark"> {{'DIVIDENDS.FILTER.PENDING' | translate}}</button>
-                    </li>
-                    <li>
-                        <button class="badge text-dark"> {{'DIVIDENDS.FILTER.DELAYED' | translate}}</button>
-                    </li>
+                    }
                 </ul>
             </div>
-            <div class="card p-4">
-                <div class="row">
+            <div class="card p-4 gap-4">
+                <form class="row"
+                      [formGroup]="filterForm">
                     <div class="form-group col-6">
                         <label for=""
-                               class="form-label">From</label>
-                        <app-gregorian-datepicker></app-gregorian-datepicker>
+                               class="form-label">{{'DIVIDENDS.FILTER.FROM' | translate}}</label>
+                        @if (lang === 'en') {
+                        <app-gregorian-datepicker formControlName="startDate"></app-gregorian-datepicker>
+                        }@else{
+                        <app-islamic-datepicker formControlName="startDate"></app-islamic-datepicker>
+                        }
                     </div>
                     <div class="form-group col-6">
                         <label for=""
-                               class="form-label">To</label>
-                        <app-gregorian-datepicker></app-gregorian-datepicker>
+                               class="form-label">{{'DIVIDENDS.FILTER.TO' | translate}}</label>
+                        @if (lang === 'en') {
+                        <app-gregorian-datepicker formControlName="endDate"></app-gregorian-datepicker>
+                        }@else{
+                        <app-islamic-datepicker formControlName="endDate"></app-islamic-datepicker>
+                        }
                     </div>
+                </form>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <button (click)="onReset()"
+                            class="btn btn-sm btn-outline-primary">
+                        {{'DIVIDENDS.FILTER.RESET' | translate}}
+                    </button>
+                    <button (click)="onFilterByDate()"
+                            class="btn btn-sm btn-primary">
+                        {{'DIVIDENDS.FILTER.SAVE' | translate}}
+
+                    </button>
                 </div>
             </div>
             <div class="row mx-0 g-3">
                 @if (loading()) {
-                <h6 class="text-center">
-                    {{'INVESTMENTS.MY_INVESTMENTS.LOADING' | translate}}...
-                </h6>
+                <div class="py-4">
+
+                    <h6 class="text-center">
+                        {{'DIVIDENDS.LOADING' | translate}}
+                    </h6>
+                </div>
                 }@else {
                 @if (earnings().length) {
                 @for (item of earnings(); track $index) {
                 <div class="card bg-white  p-4 w-100">
-                    <div class="row align-items-center">
+                    <div class="row g-2 align-items-center">
 
                         <div class="col d-flex gap-4 align-items-center">
                             <span class="badge bg-success">{{item.status}}</span>
                             <div class="d-flex flex-column gap-2">
-                                <small> {{'INVESTMENTS.MY_INVESTMENTS.PRODUCT_NAME' | translate}}</small>
-                                <h6>{{item.name}}</h6>
+                                <small> {{'DIVIDENDS.LISTING.PRODUCT_NAME' | translate}}</small>
+                                <h6>{{item.opportunityName }}</h6>
                             </div>
                         </div>
-
-
-                        <div class="col d-flex flex-column gap-2">
-                            <small> {{'INVESTMENTS.MY_INVESTMENTS.INVESTED_AMOUNT' | translate}}</small>
+                        <div class="col-6 col-md-2 d-flex flex-column gap-2">
+                            <small> {{'DIVIDENDS.LISTING.TOTAL_DIVIDENCE' | translate}}</small>
                             <div class="d-flex gap-2"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                                     alt="">{{item.stockValue}}</div>
+                                     alt="">{{item.totalDividence}}</div>
                         </div>
 
-                        <div class="col d-flex flex-column gap-2">
-                            <small>{{'INVESTMENTS.MY_INVESTMENTS.ROI' | translate}}</small>
+                        <div class="col-6 col-md-1 d-flex flex-column gap-2">
+                            <small>{{'DIVIDENDS.LISTING.TOTAL_PRINCIPAL' | translate}}</small>
                             <div class="d-flex gap-2"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                                     alt="">{{item.stockCount}}</div>
+                                     alt="">{{item.totalPrincipal}}</div>
+                        </div>
+
+                        <div class="col-6 col-md-1 d-flex flex-column gap-2">
+                            <small>{{'DIVIDENDS.LISTING.NET' | translate}}</small>
+                            <div class="d-flex gap-2"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                                     alt="">{{item.net}}</div>
                         </div>
 
                         <div class="col d-flex flex-column gap-2">
-                            <small>{{'INVESTMENTS.MY_INVESTMENTS.INVESTMENT_DATE' | translate}}</small>
-                            <span>{{item.writingDate | date:'short'}}</span>
+                            <small>{{'DIVIDENDS.LISTING.MATURITY_DATE' | translate}}</small>
+                            <span>{{item.maturityDate | date:'short'}}</span>
                         </div>
 
-                        <div class="col-1 d-flex justify-content-end">
-                            <a [routerLink]="'/' + WEB_ROUTES.INVESTMENTS.ROOT + '/' + WEB_ROUTES.INVESTMENTS.DETAILS + '/' + item.id "
-                               class="btn btn-sm btn-primary">
-                                <i class="fas fa-eye"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
                 }

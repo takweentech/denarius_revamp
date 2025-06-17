@@ -1,31 +1,36 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { UserProfileData } from '../../../../../../core/models/user';
-import { TokenService } from '../../../../../../core/services/token.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
-import { DatePipe } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { DatePipe, NgClass } from '@angular/common';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { finalize, takeUntil } from 'rxjs';
 import { GregorianDatepickerComponent } from "../../../../../../shared/components/gregorian-datepicker/gregorian-datepicker.component";
 import { DividendService } from '../../../../../../data/dividend.service';
+import { Dividend, DividendFilter } from '../../../../../../core/models/dividend';
+import { LookupService } from '../../../../../../core/services/lookup.service';
+import { LangPipe } from '../../../../../../shared/pipes/lang.pipe';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { TranslationService } from '../../../../../../core/services/translation.service';
+import { IslamicDatepickerComponent } from '../../../../../../shared/components/islamic-datepicker/islamic-datepicker.component';
 
 @Component({
   selector: 'app-listing',
-  imports: [TranslatePipe, DatePipe, RouterLink, NgbPagination, GregorianDatepickerComponent],
+  imports: [TranslatePipe, DatePipe, NgbPagination, GregorianDatepickerComponent, IslamicDatepickerComponent, NgClass, LangPipe, ReactiveFormsModule],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss'
 })
 export class ListingComponent extends BaseComponent implements OnInit {
-  private readonly tokenService = inject(TokenService);
   private readonly investorService = inject(DividendService);
-
-  user: UserProfileData = this.tokenService.getUser();
-  pagination: any = {
+  private readonly lookupService = inject(LookupService);
+  private readonly fb = inject(FormBuilder);
+  readonly translationService = inject(TranslationService);
+  lang: string = this.translationService.language;
+  pagination: DividendFilter = {
     pageNumber: 1,
     pageSize: 5,
     filter: {
+
     },
     orderByValue: [
       {
@@ -35,11 +40,17 @@ export class ListingComponent extends BaseComponent implements OnInit {
     ],
   };
   WEB_ROUTES = WEB_ROUTES;
-  earnings = signal<any[]>([]);
+  earnings = signal<Dividend[]>([]);
   loading = signal<boolean>(false);
   total = signal<number>(0);
+  statusList = this.lookupService.getDividendStatus();
+  filterForm: FormGroup = this.fb.group({
+    startDate: [null],
+    endDate: [null],
+  })
 
-  loadOperations(): void {
+
+  loadDividends(): void {
     this.loading.set(true);
     this.investorService
       .getPaged(this.pagination)
@@ -57,11 +68,32 @@ export class ListingComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadOperations();
+    this.loadDividends();
   }
 
   goToPage(page: number): void {
     this.pagination.pageNumber = page;
-    this.loadOperations();
+    this.loadDividends();
+  }
+
+
+  onFilterByStatus(status?: number, index?: number): void {
+    this.statusList = this.statusList.map(item => ({ ...item, active: false }));
+    this.statusList[index as number].active = true;
+    this.pagination.filter.statusId = status;
+    this.loadDividends();
+  }
+
+  onFilterByDate(): void {
+    this.pagination.filter.startDate = this.filterForm.value.startDate;
+    this.pagination.filter.endDate = this.filterForm.value.endDate;
+    this.loadDividends();
+  }
+
+  onReset(): void {
+    this.filterForm.reset();
+    this.pagination.filter.startDate = undefined;
+    this.pagination.filter.endDate = undefined;
+    this.loadDividends();
   }
 }
