@@ -16,22 +16,22 @@
           <input class="col-md-10 col-sm-12 form-control"
                  type="number"
                  dir="ltr"
-                 [min]="opportunity.investorMinLimitStockCount"
-                 [max]="opportunity.investorMaxLimitStockCount"
+                 [min]="investment()?.investorMinLimitStockCount ?? null"
+                 [max]="investment()?.investorMaxLimitStockCount ?? null"
                  [formControl]="numStock" />
         </div>
         <div class="col-12 p-md-0 d-flex flex-column">
           <span>{{ "OPPOTUNITIES_PAYMENT.MIN_INVESTMENT" | translate }} =
-            {{ opportunity.investorMinLimitStockCount }}
+            {{ investment()?.investorMinLimitStockCount }}
             {{ "OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE" | translate }}</span>
           <span>{{ "OPPOTUNITIES_PAYMENT.MAX_INVESTMENT" | translate }} =
-            {{ opportunity.investorMaxLimitStockCount }}
+            {{ investment()?.investorMaxLimitStockCount }}
             {{ "OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE" | translate }}</span>
         </div>
         <div>
           <p>
             {{ "OPPOTUNITIES_PAYMENT.UNLIMITED_INVESTMENT" | translate }}
-            <a [routerLink]="'/' + WEB_ROUTES.SETTINGS.ROOT">
+            <a [routerLink]="'/' + WEB_ROUTES.SETTINGS.ROOT + '/' + WEB_ROUTES.SETTINGS.UPGRADE">
               {{ "OPPOTUNITIES_PAYMENT.ACCOUNT_UPGRADE" | translate }}
             </a>
           </p>
