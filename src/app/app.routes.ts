@@ -13,6 +13,7 @@ import { authGuard, noAuthGuard } from "./core/guards/auth.guard";
 import { INVESTMENTS_ROUTES } from "./presentation/admin/pages/investments/investments.routes";
 import { WALLET_ROUTES } from "./presentation/admin/pages/wallet/wallet.routes";
 import { EARNINGS_ROUTES } from "./presentation/admin/pages/earnings/earnings.routes";
+import { SETTINGS_ROUTES } from "./presentation/admin/pages/settings/settings.routes";
 
 export const routes: Routes = [
   //Public
@@ -105,10 +106,7 @@ export const routes: Routes = [
       },
       {
         path: WEB_ROUTES.SETTINGS.ROOT,
-        loadComponent: () =>
-          import("./presentation/admin/pages/settings/settings.component").then(
-            (m) => m.SettingsComponent
-          ),
+        children: SETTINGS_ROUTES
       },
       {
         path: WEB_ROUTES.TRANSACTIONS.ROOT,
