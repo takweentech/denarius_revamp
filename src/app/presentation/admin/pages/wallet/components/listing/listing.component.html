@@ -143,8 +143,21 @@
               id=""
               min="0"
             />
-            <button class="btn btn-primary" (click)="submitWithdrawal()">
-              {{ "DASHBOARD.WITHDRAW.BUTTON" | translate }}
+            <button
+              class="btn btn-primary"
+              (click)="submitWithdrawal()"
+              [disabled]="isSubmitting"
+            >
+              <ng-container *ngIf="!isSubmitting">
+                {{ "DASHBOARD.WITHDRAW.BUTTON" | translate }}
+              </ng-container>
+              <ng-container *ngIf="isSubmitting">
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+              </ng-container>
             </button>
           </div>
         </div>
