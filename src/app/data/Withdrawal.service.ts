@@ -7,7 +7,7 @@ import { HttpCustomResponse } from "../core/models/http";
 @Injectable({
   providedIn: "root",
 })
-export class WithdrawService {
+export class WithdrawalService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = "InvestorWithdrawal";
 

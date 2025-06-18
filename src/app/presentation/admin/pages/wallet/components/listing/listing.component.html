@@ -140,12 +140,12 @@
               name=""
               [(ngModel)]="withdrawAmount"
               class="form-control"
-              id=""
               min="0"
             />
+            <!-- Withdrawal Button -->
             <button
               class="btn btn-primary"
-              (click)="submitWithdrawal()"
+              (click)="showConfirmModal = true"
               [disabled]="isSubmitting"
             >
               <ng-container *ngIf="!isSubmitting">
@@ -159,6 +159,75 @@
                 ></span>
               </ng-container>
             </button>
+
+            <!-- Confirm Modal -->
+            <div
+              class="modal-overlay"
+              [class.show-modal]="showConfirmModal"
+              tabindex="-1"
+              role="dialog"
+              (click)="onBackdropClick($event)"
+            >
+              <div
+                class="modal-dialog-custom"
+                (click)="$event.stopPropagation()"
+              >
+                <div class="modal-content-custom">
+                  <div class="modal-header">
+                    <h5 class="modal-title">
+                      {{ "DASHBOARD.WALLET.WITHDRAW.MODAL.TITLE" | translate }}
+                    </h5>
+                  </div>
+                  <div class="modal-body">
+                    <p>
+                      {{
+                        "DASHBOARD.WALLET.WITHDRAW.MODAL.MESSAGE_PART1"
+                          | translate
+                      }}
+                      <strong>
+                        {{ withdrawAmount }}
+                        <img
+                          src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                          alt=""
+                        />
+                      </strong>
+                      {{
+                        "DASHBOARD.WALLET.WITHDRAW.MODAL.MESSAGE_PART2"
+                          | translate
+                      }}
+                    </p>
+                  </div>
+                  <div class="modal-footer d-flex justify-content-center gap-4">
+                    <button
+                      type="button"
+                      class="btn btn-light"
+                      (click)="showConfirmModal = false"
+                    >
+                      {{ "DASHBOARD.WALLET.WITHDRAW.MODAL.CANCEL" | translate }}
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      [disabled]="isSubmitting"
+                      (click)="confirmWithdrawal()"
+                    >
+                      <ng-container *ngIf="!isSubmitting">
+                        {{
+                          "DASHBOARD.WALLET.WITHDRAW.MODAL.CONFIRM" | translate
+                        }}
+                      </ng-container>
+                      <ng-container *ngIf="isSubmitting">
+                        <span
+                          class="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                      </ng-container>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

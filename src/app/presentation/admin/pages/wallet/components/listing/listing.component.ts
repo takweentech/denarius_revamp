@@ -11,8 +11,8 @@ import { finalize, takeUntil } from "rxjs";
 import { InvestorService } from "../../../../../../data/investor.service";
 import { ProfileService } from "../../../../../../data/profile.service";
 import { FormsModule, NgModel } from "@angular/forms";
-import { WithdrawService } from "../../../../../../data/Withdrawal.service";
 import { ToastService } from "../../../../../../shared/components/toast/toast.service";
+import { WithdrawalService } from "../../../../../../data/withdrawal.service";
 
 @Component({
   selector: "app-listing",
@@ -31,11 +31,12 @@ import { ToastService } from "../../../../../../shared/components/toast/toast.se
 export class ListingComponent extends BaseComponent implements OnInit {
   private readonly translate = inject(TranslateService);
 
-  private readonly withdrawService = inject(WithdrawService);
+  private readonly WithdrawalService = inject(WithdrawalService);
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
   private toastService = inject(ToastService);
   isSubmitting = false;
+  showConfirmModal = false;
   user: UserProfileData = this.tokenService.getUser();
   withdrawAmount: number = 0;
   pagination: any = {
@@ -73,10 +74,10 @@ export class ListingComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.loadOperations();
   }
-  submitWithdrawal(): void {
+  confirmWithdrawal(): void {
     this.isSubmitting = true;
-
-    this.withdrawService.withdraw(this.withdrawAmount).subscribe({
+    this.showConfirmModal = false;
+    this.WithdrawalService.withdraw(this.withdrawAmount).subscribe({
       next: (response) => {
         const message = response.message?.trim();
 
@@ -86,13 +87,16 @@ export class ListingComponent extends BaseComponent implements OnInit {
             classname: "bg-success text-light",
             icon: "fa-circle-check",
           });
+
+          this.showConfirmModal = false;
         } else {
           this.toastService.show({
-            text:
-              message || this.translate.instant("VALIDATORS.WITHDRAW.FAILED"),
+            text: message || this.translate.instant("WALLET.WITHDRAW.FAILED"),
             classname: "bg-danger text-light",
             icon: "fa-circle-exclamation",
           });
+
+          this.showConfirmModal = false;
         }
 
         this.isSubmitting = false;
@@ -100,16 +104,21 @@ export class ListingComponent extends BaseComponent implements OnInit {
       error: (err) => {
         console.error("Withdrawal Failed:", err);
         this.toastService.show({
-          text: this.translate.instant("VALIDATORS.WITHDRAW.ERROR"),
+          text: this.translate.instant("WALLET.WITHDRAW.ERROR"),
           classname: "bg-danger text-light",
           icon: "fa-circle-exclamation",
         });
+
         this.isSubmitting = false;
+        this.showConfirmModal = false;
       },
     });
   }
   goToPage(page: number): void {
     this.pagination.pageNumber = page;
     this.loadOperations();
+  }
+  onBackdropClick(event: MouseEvent): void {
+    this.showConfirmModal = false;
   }
 }
