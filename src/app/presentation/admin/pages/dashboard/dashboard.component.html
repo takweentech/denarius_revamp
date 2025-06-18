@@ -200,7 +200,7 @@
           {{ "DASHBOARD.TRANSACTION_DISTRIBUTION.TITLE" | translate }}
         </h5>
 
-        <div class="card bg-white d-flex justify-content-center">
+        <div class="card bg-white d-flex justify-content-center h-100">
           <div id="chart"
                class="w-fit mx-auto">
             <app-transaction-chart [transactions]="transactions()"></app-transaction-chart>
@@ -208,11 +208,55 @@
         </div>
       </div>
       <div class="col-md-12 col-lg-12 col-xl-8 d-flex flex-column gap-3">
-        <h5 class="card-title text-primary">
-          {{ "DASHBOARD.RECENT_TRANSACTIONS.TITLE" | translate }}
-        </h5>
+        <div class="d-flex justify-content-between">
+          <h5 class="card-title text-primary">
+            {{ "DASHBOARD.RECENT_TRANSACTIONS.TITLE" | translate }}
+          </h5>
 
-        <div class="card bg-white h-100 p-2">
+          <a [routerLink]="'/' + WEB_ROUTES.TRANSACTIONS.ROOT"
+             class="text-primary d-flex align-items-center gap-2 small">
+            View all
+
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+
+        <div class="row mx-0 g-2">
+          @for (tx of user.recentTransactions ; track tx.id) {
+          <div class="card bg-white  p-4 py-3 col-12">
+            <div class="row g-3 align-items-center">
+              <div class="col col-md-6 d-flex flex-column gap-2">
+                <small> {{ "TRANSACTIONS.DESCRIPTION" | translate }}</small>
+                <p>{{tx.description }}</p>
+              </div>
+
+              <div class="col d-flex flex-column gap-2">
+                <small> {{ "TRANSACTIONS.REF_ID" | translate }}</small>
+                {{tx.refId}}
+              </div>
+
+              <div class="col  d-flex flex-column gap-2">
+                <small>{{ "TRANSACTIONS.TYPE" | translate }}</small>
+                {{tx.transactionType}}
+              </div>
+
+              <div class="col  d-flex flex-column gap-2">
+                <small>{{ "TRANSACTIONS.AMOUNT" | translate }}</small>
+                <div class="d-flex gap-2 w-fit"
+                     dir="ltr"><img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
+                       alt="">{{tx.amount}}</div>
+              </div>
+
+            </div>
+          </div>
+          }
+        </div>
+
+
+
+        <!-- <div class="card bg-white h-100 p-2">
+
           <div class="table-responsive">
             <table class="fw-light backoffice-table table">
               <thead>
@@ -223,22 +267,10 @@
                   <th>{{ "TRANSACTIONS.DATE" | translate }}</th>
                   <th>{{ "TRANSACTIONS.AMOUNT" | translate }}</th>
                   <th>{{ "TRANSACTIONS.ACCOUNT" | translate }}</th>
-                  <th></th>
                 </tr>
               </thead>
               <tbody>
-                @if (loading()) {
-                <tr>
-                  <td colspan="7">
-                    <div class="p-4">
-                      <h6 class="text-center">
-                        {{ "TRANSACTIONS.LOADING" | translate }}
-                      </h6>
-                    </div>
-                  </td>
-                </tr>
-                }@else { @if (transactions().length) { @for (tx of
-                transactions(); track tx.id) {
+                @for (tx of user.recentTransactions ; track tx.id) {
                 <tr>
                   <td>
                     <div class="d-flex align-items-center justify-content-start gap-2">
@@ -261,49 +293,25 @@
                     {{ tx.createDate | date : "medium" }}
                   </td>
                   <td>
-                    <span [ngClass]="{
-                        'text-danger': tx.amount < 0,
-                        'text-success': tx.amount > 0
-                      }">
-                      {{ tx.amount | number : "1.0-2" }}
+                    <div class="d-flex align-items-center gap-1"
+                         dir="ltr">
                       <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
                            alt="" />
-                    </span>
+                      {{ tx.amount | number : "1.0-2" }}
+
+                    </div>
                   </td>
                   <td>
                     <span>
                       {{ tx.accountNumber }}
                     </span>
                   </td>
-                  <td>
-                    <a [routerLink]="
-                        '/' +
-                        WEB_ROUTES.TRANSACTIONS.ROOT +
-                        '/' +
-                        WEB_ROUTES.TRANSACTIONS.DETAILS +
-                        '/' +
-                        tx.id
-                      "
-                       class="btn btn-sm btn-outline-primary rounded-4">
-                      {{ "TRANSACTIONS.VIEW" | translate }}
-                    </a>
-                  </td>
                 </tr>
-                } }@else {
-                <tr>
-                  <td colspan="7">
-                    <div class="p-4">
-                      <h6 class="text-center">
-                        {{ "TRANSACTIONS.EMPTY" | translate }}
-                      </h6>
-                    </div>
-                  </td>
-                </tr>
-                } }
+                }
               </tbody>
             </table>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>

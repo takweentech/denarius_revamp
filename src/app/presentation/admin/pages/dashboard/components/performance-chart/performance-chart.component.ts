@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, ViewChild } from '@angular/core';
 
 import {
   ChartComponent,
@@ -12,6 +12,8 @@ import {
   ApexLegend,
   NgApexchartsModule
 } from "ng-apexcharts";
+import { UserProfileData } from '../../../../../../core/models/user';
+import { TokenService } from '../../../../../../core/services/token.service';
 
 const series = {
   monthDataSeries1: {
@@ -360,6 +362,10 @@ const series = {
   }
 };
 
+
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+
 export type ChartOptions = {
   series: ApexAxisChartSeries;
   chart: ApexChart;
@@ -378,8 +384,10 @@ export type ChartOptions = {
   styleUrl: './performance-chart.component.scss'
 })
 export class PerformanceChartComponent {
+  private readonly tokenService = inject(TokenService);
   @ViewChild("chart") chart!: ChartComponent;
   public chartOptions: ChartOptions;
+  user: UserProfileData = this.tokenService.getUser();
 
   constructor() {
     this.chartOptions = {
@@ -405,16 +413,43 @@ export class PerformanceChartComponent {
       stroke: {
         curve: "straight"
       },
-      labels: series.monthDataSeries1.dates,
+      labels: months,
       xaxis: {
-        type: "datetime"
+        type: "category"
       },
       yaxis: {
         opposite: true
       },
       legend: {
-        horizontalAlign: "left"
+        show: false
+        // horizontalAlign: "left"
       }
     };
+
+
+
+    this.chartOptions.series = months.map((item, index: number) => {
+      return {
+        name: item,
+        data: this.user.investmentPerformance.performanceData
+          .filter(item => item.month == (index + 1))
+          .map(item => item.value)
+      }
+    });
+
+
+    console.log(months.map((item, index: number) => {
+      return {
+        name: item,
+        data: this.user.investmentPerformance.performanceData
+          .filter(item => item.month == (index + 1))
+          .map(item => item.value)
+      }
+    }));
+
+
+
   }
+
+
 }

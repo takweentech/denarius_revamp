@@ -1,3 +1,5 @@
+import { Transaction } from "./transaction";
+
 export interface User {
     investorId: number;
     name: string;
@@ -77,9 +79,10 @@ export interface UserProfileData {
     userProfile: UserProfile;
     investmentAccount: InvestmentAccount;
     financialSummary: FinancialSummary;
-    recentTransactions: any[];
+    recentTransactions: Transaction[];
     financialDistribution: any;
     investmentPerformance: InvestmentPerformance;
+
 }
 
 export interface UserPersonalData {
