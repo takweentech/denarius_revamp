@@ -12,6 +12,8 @@ import { ProfileService } from "../../../../../../data/profile.service";
 import { FormsModule, NgModel } from "@angular/forms";
 import { ToastService } from "../../../../../../shared/components/toast/toast.service";
 import { WithdrawalService } from "../../../../../../data/Withdrawal.service";
+import { TransactionFilter } from "../../../../../../core/models/transaction";
+import { TransactionService } from "../../../../../../data/transaction.service";
 
 @Component({
   selector: "app-listing",
@@ -29,6 +31,7 @@ import { WithdrawalService } from "../../../../../../data/Withdrawal.service";
 })
 export class ListingComponent extends BaseComponent implements OnInit {
   private readonly translate = inject(TranslateService);
+  private readonly transactionService = inject(TransactionService);
 
   private readonly WithdrawalService = inject(WithdrawalService);
   private readonly tokenService = inject(TokenService);
@@ -36,6 +39,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
   private toastService = inject(ToastService);
   isSubmitting: boolean = false;
   showConfirmModal: boolean = false;
+
   user: UserProfileData = this.tokenService.getUser();
   withdrawAmount: number = 0;
   pagination: any = {
@@ -66,14 +70,43 @@ export class ListingComponent extends BaseComponent implements OnInit {
         next: (response) => {
           console.log(response);
         },
-        error: () => { },
+        error: () => {},
       });
   }
+  loadTransactions(): void {
+    this.loading.set(true);
 
+    const requestPayload: TransactionFilter = {
+      ...this.pagination,
+      filter: {
+        ...this.pagination.filter,
+      },
+    };
+
+    this.transactionService
+      .getInvestorTransactionsPaged(requestPayload)
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loading.set(false))
+      )
+      .subscribe({
+        next: (response) => {
+          // ✅ Access the nested response shape
+          const result = response.data;
+          this.investments.set(result?.data || []);
+          this.total.set(result?.totalCount || 0);
+        },
+        error: (err) => {
+          console.error("Failed to load transactions:", err);
+          this.investments.set([]);
+          this.total.set(0);
+        },
+      });
+  }
   ngOnInit(): void {
+    this.loadTransactions();
     this.loadOperations();
   }
-
 
   confirmWithdrawal(): void {
     this.isSubmitting = true;
@@ -116,12 +149,10 @@ export class ListingComponent extends BaseComponent implements OnInit {
     });
   }
 
-
   goToPage(page: number): void {
     this.pagination.pageNumber = page;
     this.loadOperations();
   }
-
 
   onBackdropClick(event: MouseEvent): void {
     this.showConfirmModal = false;

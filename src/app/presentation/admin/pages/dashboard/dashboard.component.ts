@@ -1,24 +1,35 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { UserProfileData } from '../../../../core/models/user';
-import { TokenService } from '../../../../core/services/token.service';
-import { InitialsPipe } from '../../../../shared/pipes/initials.pipe';
+import { Component, inject, OnInit, signal } from "@angular/core";
+import { UserProfileData } from "../../../../core/models/user";
+import { TokenService } from "../../../../core/services/token.service";
+import { InitialsPipe } from "../../../../shared/pipes/initials.pipe";
 import { TransactionChartComponent } from "./components/transaction-chart/transaction-chart.component";
 import { PerformanceChartComponent } from "./components/performance-chart/performance-chart.component";
-import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
-import { TranslatePipe } from '@ngx-translate/core';
-import { BaseComponent } from '../../../../core/base/base.component';
-import { finalize, takeUntil } from 'rxjs';
-import { Transaction, TransactionFilter } from '../../../../core/models/transaction';
-import { TransactionService } from '../../../../data/transaction.service';
-import { RouterLink } from '@angular/router';
-import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
-
+import { DatePipe, DecimalPipe, NgClass } from "@angular/common";
+import { TranslatePipe } from "@ngx-translate/core";
+import { BaseComponent } from "../../../../core/base/base.component";
+import { finalize, takeUntil } from "rxjs";
+import {
+  Transaction,
+  TransactionFilter,
+} from "../../../../core/models/transaction";
+import { TransactionService } from "../../../../data/transaction.service";
+import { RouterLink } from "@angular/router";
+import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
 
 @Component({
-  selector: 'app-dashboard',
-  imports: [InitialsPipe, TransactionChartComponent, PerformanceChartComponent, DatePipe, TranslatePipe, NgClass, RouterLink, DecimalPipe],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  selector: "app-dashboard",
+  imports: [
+    InitialsPipe,
+    TransactionChartComponent,
+    PerformanceChartComponent,
+    DatePipe,
+    TranslatePipe,
+    NgClass,
+    RouterLink,
+    DecimalPipe,
+  ],
+  templateUrl: "./dashboard.component.html",
+  styleUrl: "./dashboard.component.scss",
 })
 export class DashboardComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
@@ -39,7 +50,6 @@ export class DashboardComponent extends BaseComponent implements OnInit {
   loading = signal<boolean>(false);
   transactions = signal<Transaction[]>([]);
 
-
   ngOnInit(): void {
     this.loadTransactions();
   }
@@ -54,11 +64,9 @@ export class DashboardComponent extends BaseComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          this.transactions.set(response.data);
+          this.transactions.set(response.data.data);
         },
-        error: () => { },
+        error: () => {},
       });
   }
-
-
 }

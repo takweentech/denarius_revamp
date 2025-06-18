@@ -56,8 +56,8 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          this.transactions.set(response.data);
-          this.total.set(response.totalCount);
+          this.transactions.set(response.data.data);
+          this.total.set(response.data.totalCount);
         },
         error: () => {},
       });

@@ -34,26 +34,31 @@ export interface Transaction {
   transactionStatus: string;
 }
 
-
-
-
 export interface TransactionFilter {
-  pageNumber: number,
-  pageSize: number,
+  pageNumber: number;
+  pageSize: number;
   filter?: {
-    statusId?: number,
-    investorId?: number,
-    paymentMethod?: number,
-    startDate?: string,
-    endDate?: string,
-    nameEn?: string,
-    nameAr?: string,
-    isDeleted?: boolean
-  },
+    statusId?: number;
+    investorId?: number;
+    paymentMethod?: number;
+    startDate?: string;
+    endDate?: string;
+    nameEn?: string;
+    nameAr?: string;
+    isDeleted?: boolean;
+  };
   orderByValue?: [
     {
-      colId?: string,
-      sort?: string
+      colId?: string;
+      sort?: string;
     }
-  ]
-};
+  ];
+}
+export interface PagedApiResponse<T> {
+  data: {
+    data: T[];
+    totalCount: number;
+    pageNumber: number;
+    pageSize: number;
+  };
+}
