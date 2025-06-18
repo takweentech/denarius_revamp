@@ -1,4 +1,4 @@
-import { Component, inject, NgModule, OnInit, signal } from "@angular/core";
+import { Component, inject, OnInit, signal } from "@angular/core";
 import { UserProfileData } from "../../../../../../core/models/user";
 import { TokenService } from "../../../../../../core/services/token.service";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
@@ -8,11 +8,10 @@ import { RouterLink } from "@angular/router";
 import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { finalize, takeUntil } from "rxjs";
-import { InvestorService } from "../../../../../../data/investor.service";
 import { ProfileService } from "../../../../../../data/profile.service";
 import { FormsModule, NgModel } from "@angular/forms";
 import { ToastService } from "../../../../../../shared/components/toast/toast.service";
-import { WithdrawalService } from "../../../../../../data/withdrawal.service";
+import { WithdrawalService } from "../../../../../../data/Withdrawal.service";
 
 @Component({
   selector: "app-listing",
@@ -35,8 +34,8 @@ export class ListingComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
   private toastService = inject(ToastService);
-  isSubmitting = false;
-  showConfirmModal = false;
+  isSubmitting: boolean = false;
+  showConfirmModal: boolean = false;
   user: UserProfileData = this.tokenService.getUser();
   withdrawAmount: number = 0;
   pagination: any = {
@@ -67,13 +66,15 @@ export class ListingComponent extends BaseComponent implements OnInit {
         next: (response) => {
           console.log(response);
         },
-        error: () => {},
+        error: () => { },
       });
   }
 
   ngOnInit(): void {
     this.loadOperations();
   }
+
+
   confirmWithdrawal(): void {
     this.isSubmitting = true;
     this.showConfirmModal = false;
@@ -114,10 +115,14 @@ export class ListingComponent extends BaseComponent implements OnInit {
       },
     });
   }
+
+
   goToPage(page: number): void {
     this.pagination.pageNumber = page;
     this.loadOperations();
   }
+
+
   onBackdropClick(event: MouseEvent): void {
     this.showConfirmModal = false;
   }
