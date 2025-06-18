@@ -1,9 +1,9 @@
 import { Component, inject, NgModule, OnInit, signal } from "@angular/core";
 import { UserProfileData } from "../../../../../../core/models/user";
 import { TokenService } from "../../../../../../core/services/token.service";
-import { TranslatePipe } from "@ngx-translate/core";
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
-import { DatePipe } from "@angular/common";
+import { DatePipe, NgIf } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
 import { BaseComponent } from "../../../../../../core/base/base.component";
@@ -17,16 +17,25 @@ import { ToastService } from "../../../../../../shared/components/toast/toast.se
 @Component({
   selector: "app-listing",
   standalone: true,
-  imports: [TranslatePipe, DatePipe, FormsModule, RouterLink, NgbPagination],
+  imports: [
+    TranslatePipe,
+    NgIf,
+    DatePipe,
+    FormsModule,
+    RouterLink,
+    NgbPagination,
+  ],
   templateUrl: "./listing.component.html",
   styleUrl: "./listing.component.scss",
 })
 export class ListingComponent extends BaseComponent implements OnInit {
+  private readonly translate = inject(TranslateService);
+
   private readonly withdrawService = inject(WithdrawService);
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
   private toastService = inject(ToastService);
-
+  isSubmitting = false;
   user: UserProfileData = this.tokenService.getUser();
   withdrawAmount: number = 0;
   pagination: any = {
@@ -65,29 +74,37 @@ export class ListingComponent extends BaseComponent implements OnInit {
     this.loadOperations();
   }
   submitWithdrawal(): void {
+    this.isSubmitting = true;
+
     this.withdrawService.withdraw(this.withdrawAmount).subscribe({
       next: (response) => {
+        const message = response.message?.trim();
+
         if (response.status === 200) {
           this.toastService.show({
-            text: response.message,
+            text: message || "",
             classname: "bg-success text-light",
             icon: "fa-circle-check",
           });
         } else {
           this.toastService.show({
-            text: response.message || "Withdrawal failed.",
+            text:
+              message || this.translate.instant("VALIDATORS.WITHDRAW.FAILED"),
             classname: "bg-danger text-light",
             icon: "fa-circle-exclamation",
           });
         }
+
+        this.isSubmitting = false;
       },
       error: (err) => {
         console.error("Withdrawal Failed:", err);
         this.toastService.show({
-          text: "An error occurred. Please try again later.",
+          text: this.translate.instant("VALIDATORS.WITHDRAW.ERROR"),
           classname: "bg-danger text-light",
           icon: "fa-circle-exclamation",
         });
+        this.isSubmitting = false;
       },
     });
   }

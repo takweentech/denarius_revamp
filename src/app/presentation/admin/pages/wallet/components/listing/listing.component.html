@@ -9,9 +9,8 @@
           <div class="icon success">
             <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
           </div>
-
           <div class="d-flex flex-column gap-1">
-            <span>{{ "Total Deposits" | translate }} </span>
+            <span>{{ "DASHBOARD.STATS.TOTAL_DEPOSIT" | translate }}</span>
             <div class="fw-semibold d-flex gap-2">
               <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
               {{ user.financialSummary.totalDeposits }}
@@ -19,6 +18,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-12 col-lg-6 col-xl-4">
         <div
           class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
@@ -26,9 +26,8 @@
           <div class="icon danger">
             <img src="assets/icons/invoice-dollar.svg" alt="" />
           </div>
-
           <div class="d-flex flex-column gap-1">
-            <span>{{ "Total withdrawal" | translate }}</span>
+            <span>{{ "DASHBOARD.STATS.TOTAL_INVESTEMENTS" | translate }}</span>
             <div class="fw-semibold d-flex gap-2">
               <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
               {{ user.financialSummary.totalInvestments }}
@@ -36,6 +35,7 @@
           </div>
         </div>
       </div>
+
       <div class="col-md-12 col-lg-6 col-xl-4">
         <div
           class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
@@ -43,9 +43,8 @@
           <div class="icon primary">
             <img src="assets/icons/earnings.svg" alt="" />
           </div>
-
           <div class="d-flex flex-column gap-1">
-            <span>{{ "Earnings" | translate }}</span>
+            <span>{{ "DASHBOARD.STATS.TOTAL_EARNINGS" | translate }}</span>
             <span class="fw-semibold d-flex gap-2">
               <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
               {{ user.financialSummary.totalProfits }}
@@ -103,26 +102,30 @@
         </div>
       </div>
       <div class="col-lg-12 col-xl-6 d-flex flex-column gap-3">
-        <h5 class="card-title text-primary">{{ "Withdrawl" | translate }}</h5>
+        <h5 class="card-title text-primary">
+          {{ "DASHBOARD.WITHDRAW.TITLE" | translate }}
+        </h5>
         <div
           class="card bg-white py-2 px-3 h-100 mx-auto w-100 align-items-center g-4"
         >
           <div class="row g-2 align-items-center w-100 col">
             <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
-              <small>{{ "Bank Name" | translate }}</small>
+              <small>{{ "DASHBOARD.WITHDRAW.BANK_NAME" | translate }}</small>
               <span class="text-lg fw-bold">{{
                 user.userProfile.fullName
               }}</span>
             </div>
 
             <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
-              <small>{{ "Benificiary Name" | translate }}</small>
+              <small>{{
+                "DASHBOARD.WITHDRAW.BENEFICIARY_NAME" | translate
+              }}</small>
               <span class="text-lg fw-bold">{{
                 user.userProfile.nationality || "N/A"
               }}</span>
             </div>
             <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
-              <small>{{ "IBAN" | translate }}</small>
+              <small>{{ "DASHBOARD.WITHDRAW.IBAN" | translate }}</small>
               <span class="text-lg fw-bold">{{
                 user.userProfile.nationalId
               }}</span>
@@ -140,8 +143,21 @@
               id=""
               min="0"
             />
-            <button class="btn btn-primary" (click)="submitWithdrawal()">
-              {{ "DASHBOARD.WITHDRAW.BUTTON" | translate }}
+            <button
+              class="btn btn-primary"
+              (click)="submitWithdrawal()"
+              [disabled]="isSubmitting"
+            >
+              <ng-container *ngIf="!isSubmitting">
+                {{ "DASHBOARD.WITHDRAW.BUTTON" | translate }}
+              </ng-container>
+              <ng-container *ngIf="isSubmitting">
+                <span
+                  class="spinner-border spinner-border-sm"
+                  role="status"
+                  aria-hidden="true"
+                ></span>
+              </ng-container>
             </button>
           </div>
         </div>
@@ -153,7 +169,7 @@
   <section>
     <div class="col-md-12 d-flex flex-column gap-3">
       <h5 class="card-title text-primary">
-        {{ "Wallet Operations" | translate }}
+        {{ "DASHBOARD.WALLET_OPERATIONS" | translate }}
       </h5>
       <div class="row mx-0 g-3">
         @if (loading()) {
@@ -224,7 +240,7 @@
         </div>
         } }@else {
         <h6 class="text-center">
-          {{ "INVESTMENTS.EMPTY" | translate }}
+          {{ "DASHBOARD.RECENT_TRANSACTIONS.EMPTY" | translate }}
         </h6>
         } }
       </div>
