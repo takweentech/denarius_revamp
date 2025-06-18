@@ -135,8 +135,15 @@
           <div
             class="d-flex align-items-center justify-content-end align-self-end gap-2 col"
           >
-            <input type="number" name="" class="form-control" id="" />
-            <button class="btn btn-primary">
+            <input
+              type="number"
+              name=""
+              [(ngModel)]="withdrawAmount"
+              class="form-control"
+              id=""
+              min="0"
+            />
+            <button class="btn btn-primary" (click)="submitWithdrawal()">
               {{ "DASHBOARD.WITHDRAW.BUTTON" | translate }}
             </button>
           </div>
