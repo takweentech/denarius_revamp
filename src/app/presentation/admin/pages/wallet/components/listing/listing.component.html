@@ -112,7 +112,7 @@
             <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WITHDRAW.BANK_NAME" | translate }}</small>
               <span class="text-lg fw-bold">{{
-                user.userProfile.fullName
+                user.investmentAccount.bankName
               }}</span>
             </div>
 
@@ -121,13 +121,13 @@
                 "DASHBOARD.WITHDRAW.BENEFICIARY_NAME" | translate
               }}</small>
               <span class="text-lg fw-bold">{{
-                user.userProfile.nationality || "N/A"
+                user.investmentAccount.accountHolderName
               }}</span>
             </div>
             <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WITHDRAW.IBAN" | translate }}</small>
               <span class="text-lg fw-bold">{{
-                user.userProfile.nationalId
+                user.investmentAccount.iban || "N/A"
               }}</span>
             </div>
           </div>
