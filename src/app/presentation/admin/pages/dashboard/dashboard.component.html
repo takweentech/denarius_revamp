@@ -9,9 +9,15 @@
         <div class="card bg-white py-2 px-3 h-100 mx-auto w-100 flex-row align-items-center g-4">
           <div class="row g-4 w-100">
             <div class="d-flex col-12 col-md-2 flex-column gap-2 align-items-center justify-content-center">
+              @if (user.userProfile.profileImageUrl) {
+              <img [src]="user.userProfile.profileImageUrl"
+                   alt="Profile"
+                   class="rounded-circle profile-image">
+              }@else {
               <div class="initials bg-primary d-flex justify-content-center align-items-center">
                 <h3>{{ user.userProfile.fullName | initials }}</h3>
               </div>
+              }
             </div>
 
             <div class="col-12 col-md-10">
