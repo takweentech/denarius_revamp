@@ -71,10 +71,12 @@
       }
     </div>
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">{{
-        "AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.PHONE_NUMBER.LABEL"
-          | translate
-      }}</label>
+      <label class="form-label">
+        {{
+          "AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.PHONE_NUMBER.LABEL"
+            | translate
+        }}
+      </label>
       <div class="input-group">
         @if (translationService.language === 'en') {
         <span class="input-group-text" dir="ltr">+966</span>
@@ -91,19 +93,24 @@
         <span class="input-group-text" dir="ltr">+966</span>
         }
       </div>
+
+      <!-- Required Error -->
       @if (formGroup.get('mobileNumber')?.errors?.['required'] &&
-      formGroup.get('mobileNumber')?.touched ) {
+      formGroup.get('mobileNumber')?.touched) {
       <small class="text-danger mt-1 d-flex align-items-center gap-1">
         <i class="fa-solid fa-circle-exclamation"></i>
         {{ "VALIDATORS.REQUIRED" | translate }}
-        @if (formGroup.get('mobileNumber')?.errors?.['minlength'] ||
-        formGroup.get('mobileNumber')?.errors?.['maxlength']
-        ||formGroup.get('mobileNumber')?.errors?.['pattern'] ) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ "VALIDATORS.INVALID_PHONE_NUMBER" | translate }}
-        </small>
-        }
+      </small>
+      }
+
+      <!-- Other Errors (pattern, minlength, maxlength) -->
+      @if ( (formGroup.get('mobileNumber')?.errors?.['minlength'] ||
+      formGroup.get('mobileNumber')?.errors?.['maxlength'] ||
+      formGroup.get('mobileNumber')?.errors?.['pattern']) &&
+      formGroup.get('mobileNumber')?.touched ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ "VALIDATORS.INVALID_PHONE_NUMBER" | translate }}
       </small>
       }
     </div>
