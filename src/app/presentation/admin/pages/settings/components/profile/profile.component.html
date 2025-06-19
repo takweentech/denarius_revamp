@@ -8,7 +8,7 @@
           alt="Profile"
           (click)="triggerFileInput()"
         />
-        <div class="edit-icon">
+        <div (click)="triggerFileInput()" class="cursor-pointer edit-icon">
           <i class="fas fa-pen"></i>
         </div>
         <input
@@ -155,7 +155,18 @@
         class="btn rounded-3 btn-primary mt-4"
         type="submit"
       >
-        {{ "SETTINGS.PROFILE.SAVE" | translate }}
+        <ng-container *ngIf="loading(); else saveText">
+          <span
+            class="spinner-border spinner-border-sm align-middle"
+            role="status"
+            aria-hidden="true"
+          ></span>
+        </ng-container>
+        <ng-template #saveText>
+          <span class="align-middle">
+            {{ "SETTINGS.PROFILE.SAVE" | translate }}
+          </span>
+        </ng-template>
       </button>
     </div>
   </div>

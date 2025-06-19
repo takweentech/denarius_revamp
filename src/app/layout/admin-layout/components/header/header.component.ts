@@ -51,7 +51,7 @@ export class HeaderComponent extends BaseComponent implements OnInit {
           }
         },
         error: () => {
-          this.imageUrl.set("assets/images/mewees.svg"); // fallback
+          this.imageUrl.set("https://i.ibb.co/MBtjqXQ/user.png"); // fallback
         },
       });
   }
@@ -63,5 +63,25 @@ export class HeaderComponent extends BaseComponent implements OnInit {
 
   onLangChange(): void {
     this.translationService.onLangChange();
+  }
+  ngAfterViewInit(): void {
+    const el = document.getElementById("headerImage");
+    if (el) {
+      el.addEventListener("refresh", () => {
+        this.profileService
+          .getImageProfile()
+          .pipe(takeUntil(this.destroy$))
+          .subscribe({
+            next: (response) => {
+              if (response.data) {
+                this.imageUrl.set(response.data); // assuming the API returns a full URL
+              }
+            },
+            error: () => {
+              this.imageUrl.set("https://i.ibb.co/MBtjqXQ/user.png"); // fallback
+            },
+          });
+      });
+    }
   }
 }

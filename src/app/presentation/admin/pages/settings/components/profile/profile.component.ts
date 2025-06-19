@@ -12,7 +12,7 @@ import {
   UserProfileData,
 } from "../../../../../../core/models/user";
 import { TokenService } from "../../../../../../core/services/token.service";
-import { DatePipe } from "@angular/common";
+import { DatePipe, NgIf } from "@angular/common";
 import {
   FormBuilder,
   FormGroup,
@@ -27,13 +27,14 @@ import { UploaderService } from "../../../../../../data/uploader.service";
 
 @Component({
   selector: "app-profile",
-  imports: [TranslatePipe, DatePipe, ReactiveFormsModule],
+  imports: [TranslatePipe, NgIf, DatePipe, ReactiveFormsModule],
   templateUrl: "./profile.component.html",
   styleUrl: "./profile.component.scss",
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
   @ViewChild("fileInput") fileInput!: ElementRef<HTMLInputElement>;
   selectedFile: File | null = null;
+  uploadedImageFileName: string | null = null;
   imageUrl = signal<string>("https://i.ibb.co/MBtjqXQ/user.png"); // fallback avatar
   private readonly translate = inject(TranslateService);
   private readonly uploaderService = inject(UploaderService);
@@ -43,7 +44,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   private toastService = inject(ToastService);
   loading = signal<boolean>(false);
   user = signal<UserBasicProfileData | null>(null);
-
+  currentImageFileName: string | null = null;
   form!: FormGroup;
 
   triggerFileInput(): void {
@@ -64,17 +65,19 @@ export class ProfileComponent extends BaseComponent implements OnInit {
       });
 
     // Get image
+
     this.profileService
       .getImageProfile()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (response) => {
           if (response.data) {
-            this.imageUrl.set(response.data); // assuming the API returns a full URL
+            this.imageUrl.set(response.data);
+            this.currentImageFileName = response.data.split("/").pop() || null;
           }
         },
         error: () => {
-          this.imageUrl.set("https://i.ibb.co/MBtjqXQ/user.png"); // fallback
+          this.imageUrl.set("https://i.ibb.co/MBtjqXQ/user.png");
         },
       });
   }
@@ -94,11 +97,11 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     if (!fileInput.files?.length) return;
 
     const file = fileInput.files[0];
-    this.selectedFile = file; // Store for saving later
+    this.selectedFile = file;
 
     // Preview the selected image
     const objectUrl = URL.createObjectURL(file);
-    this.imageUrl.set(objectUrl); // Update local preview only
+    this.imageUrl.set(objectUrl);
   }
   onSave(): void {
     if (this.form.invalid) {
@@ -108,7 +111,61 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
     this.loading.set(true);
 
+    let imageUpdated = false;
+    let formUpdated = false;
+
+    const resetAfterSave = () => {
+      this.selectedFile = null;
+      this.uploadedImageFileName = null;
+      this.form.markAsPristine();
+      this.form.markAsUntouched();
+
+      // Refresh image
+      this.profileService
+        .getImageProfile()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (response) => {
+            if (response.data) {
+              this.imageUrl.set(response.data);
+              this.currentImageFileName =
+                response.data.split("/").pop() || null;
+
+              document
+                .getElementById("headerImage")
+                ?.dispatchEvent(new Event("refresh"));
+            }
+          },
+        });
+
+      // Refresh form
+      this.profileService
+        .getBasicPersonalInformation()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: (response) => {
+            this.user.set(response.data);
+            this.initForm(response.data);
+          },
+        });
+    };
+
+    const checkAndReset = () => {
+      if ((this.selectedFile && imageUpdated) || !this.selectedFile) {
+        if (formUpdated || !this.form.dirty) {
+          resetAfterSave();
+        }
+      }
+    };
+
     const saveForm = () => {
+      if (!this.form.dirty) {
+        formUpdated = true;
+        checkAndReset();
+        this.loading.set(false);
+        return;
+      }
+
       this.profileService
         .saveBasicPersonalInformation(this.form.value)
         .pipe(
@@ -132,6 +189,11 @@ export class ProfileComponent extends BaseComponent implements OnInit {
                   ? "fa-circle-check"
                   : "fa-circle-exclamation",
             });
+
+            if (response.status === 200) {
+              formUpdated = true;
+              checkAndReset();
+            }
           },
           error: () => {
             this.toastService.show({
@@ -156,24 +218,35 @@ export class ProfileComponent extends BaseComponent implements OnInit {
               .pipe(takeUntil(this.destroy$))
               .subscribe({
                 next: (res) => {
-                  // ✅ Show status whether image was saved successfully
-                  this.toastService.show({
-                    text: this.translate.instant(
-                      res.status === 200
-                        ? "SETTINGS.PROFILE.IMAGE_SUCCESS"
-                        : "SETTINGS.PROFILE.IMAGE_FAILED"
-                    ),
-                    classname:
-                      res.status === 200
-                        ? "bg-success text-light"
-                        : "bg-danger text-light",
-                    icon:
-                      res.status === 200
-                        ? "fa-circle-check"
-                        : "fa-circle-exclamation",
-                  });
+                  if (
+                    res.status === 200 &&
+                    fileName !== this.currentImageFileName
+                  ) {
+                    this.toastService.show({
+                      text: this.translate.instant(
+                        "SETTINGS.PROFILE.IMAGE_SUCCESS"
+                      ),
+                      classname: "bg-success text-light",
+                      icon: "fa-circle-check",
+                    });
 
-                  saveForm(); // Proceed regardless
+                    this.currentImageFileName = fileName;
+                  } else {
+                    this.toastService.show({
+                      text: this.translate.instant(
+                        "SETTINGS.PROFILE.IMAGE_FAILED"
+                      ),
+                      classname: "bg-danger text-light",
+                      icon: "fa-circle-exclamation",
+                    });
+                  }
+
+                  if (res.status === 200) {
+                    imageUpdated = true;
+                    checkAndReset();
+                  }
+
+                  saveForm(); // always continue
                 },
                 error: (err) => {
                   this.toastService.show({
@@ -184,12 +257,11 @@ export class ProfileComponent extends BaseComponent implements OnInit {
                     icon: "fa-circle-exclamation",
                   });
 
-                  saveForm(); // ✅ Still continue even if image update fails
+                  saveForm();
                 },
               });
           },
           error: (err) => {
-            console.error("Image upload error:", err);
             this.toastService.show({
               text:
                 err?.error?.message?.trim() ||
@@ -198,11 +270,46 @@ export class ProfileComponent extends BaseComponent implements OnInit {
               icon: "fa-circle-exclamation",
             });
 
-            saveForm(); // ✅ Continue with saving form anyway
+            saveForm();
           },
         });
     } else {
       saveForm();
     }
+  }
+  private resetAfterSave() {
+    this.selectedFile = null;
+    this.uploadedImageFileName = null;
+
+    this.form.markAsPristine();
+    this.form.markAsUntouched();
+
+    // Re-fetch image and profile data from server to ensure accuracy
+    this.profileService
+      .getImageProfile()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          if (response.data) {
+            this.imageUrl.set(response.data);
+            this.currentImageFileName = response.data.split("/").pop() || null;
+
+            // 👇 Trigger header refresh if needed
+            document
+              .getElementById("headerImage")
+              ?.dispatchEvent(new Event("refresh"));
+          }
+        },
+      });
+
+    this.profileService
+      .getBasicPersonalInformation()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.user.set(response.data);
+          this.initForm(response.data);
+        },
+      });
   }
 }
