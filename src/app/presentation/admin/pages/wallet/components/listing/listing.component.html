@@ -235,7 +235,7 @@
   </section>
 
   <!-- Listing -->
-  <section>
+  <!-- <section>
     <div class="col-md-12 d-flex flex-column gap-3">
       <h5 class="card-title text-primary">
         {{ "DASHBOARD.WALLET_OPERATIONS" | translate }}
@@ -315,5 +315,108 @@
       </ngb-pagination>
     </nav>
     }
+  </section> -->
+
+  <!-- Table -->
+  <section class="mt-5">
+    <h5 class="card-title text-primary mb-3">
+      {{ "DASHBOARD.WALLET_OPERATIONS" | translate }}
+    </h5>
+    <div class="p-4 mt-2 bg-white rounded-4">
+      <div class="table-responsive">
+        <table class="fw-light backoffice-table table">
+          <thead>
+            <tr>
+              <th>{{ "TRANSACTIONS.DESCRIPTION" | translate }}</th>
+              <th>{{ "TRANSACTIONS.REF_ID" | translate }}</th>
+              <th>{{ "TRANSACTIONS.TYPE" | translate }}</th>
+              <th>{{ "TRANSACTIONS.DATE" | translate }}</th>
+              <th>{{ "TRANSACTIONS.AMOUNT" | translate }}</th>
+              <th>{{ "TRANSACTIONS.ACCOUNT" | translate }}</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (loading()) {
+            <tr>
+              <td colspan="7" class="text-center py-4">
+                <h6>{{ "TRANSACTIONS.LOADING" | translate }}</h6>
+              </td>
+            </tr>
+            } @else if (investments().length) { @for (tx of investments(); track
+            tx.id) {
+            <tr>
+              <td>
+                <div class="d-flex align-items-center gap-2">
+                  <div class="arrow-circle">
+                    <i
+                      class="fas"
+                      [ngClass]="{
+                        'fa-arrow-down': tx.transactionType === 'Withdrawal',
+                        'fa-arrow-up': tx.transactionType !== 'Withdrawal'
+                      }"
+                    ></i>
+                  </div>
+                  <span class="ps-2">{{ tx.description || "-" }}</span>
+                </div>
+              </td>
+              <td>#{{ tx.refId }}</td>
+              <td>{{ tx.transactionType }}</td>
+              <td>{{ tx.createDate | date : "medium" }}</td>
+              <td>
+                <div
+                  class="d-flex gap-2 w-fit"
+                  dir="ltr"
+                  [ngClass]="{
+                    'text-danger': tx.amount < 0,
+                    'text-success': tx.amount > 0
+                  }"
+                >
+                  {{ tx.amount | number : "1.0-2" }}
+                  <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
+                </div>
+              </td>
+              <td>{{ tx.accountNumber || "-" }}</td>
+              <td>
+                <a
+                  [routerLink]="
+                    '/' +
+                    WEB_ROUTES.INVESTMENTS.ROOT +
+                    '/' +
+                    WEB_ROUTES.INVESTMENTS.DETAILS +
+                    '/' +
+                    tx.id
+                  "
+                  class="btn btn-sm btn-outline-primary rounded-4"
+                >
+                  {{ "TRANSACTIONS.VIEW" | translate }}
+                </a>
+              </td>
+            </tr>
+            } } @else {
+            <tr>
+              <td colspan="7" class="text-center py-4">
+                <h6>{{ "TRANSACTIONS.EMPTY" | translate }}</h6>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+
+      @if (!loading() && investments().length) {
+      <nav class="d-flex justify-content-center my-4">
+        <ngb-pagination
+          [(page)]="pagination.pageNumber"
+          [pageSize]="pagination.pageSize"
+          [collectionSize]="total()"
+          [maxSize]="5"
+          [ellipses]="true"
+          (pageChange)="goToPage($event)"
+          size="md"
+        ></ngb-pagination>
+      </nav>
+      }
+    </div>
   </section>
 </main>
