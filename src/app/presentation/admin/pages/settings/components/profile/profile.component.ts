@@ -6,7 +6,7 @@ import {
   signal,
   ViewChild,
 } from "@angular/core";
-import { TranslatePipe } from "@ngx-translate/core";
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import {
   UserBasicProfileData,
   UserProfileData,
@@ -23,6 +23,7 @@ import { ProfileService } from "../../../../../../data/profile.service";
 import { finalize, takeUntil } from "rxjs";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { ToastService } from "../../../../../../shared/components/toast/toast.service";
+import { UploaderService } from "../../../../../../data/uploader.service";
 
 @Component({
   selector: "app-profile",
@@ -34,6 +35,8 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   @ViewChild("fileInput") fileInput!: ElementRef<HTMLInputElement>;
   selectedFile: File | null = null;
   imageUrl = signal<string>("https://i.ibb.co/MBtjqXQ/user.png"); // fallback avatar
+  private readonly translate = inject(TranslateService);
+  private readonly uploaderService = inject(UploaderService);
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
   private readonly fb = inject(FormBuilder);
@@ -71,7 +74,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
           }
         },
         error: () => {
-          this.imageUrl.set("assets/images/mewees.svg"); // fallback
+          this.imageUrl.set("https://i.ibb.co/MBtjqXQ/user.png"); // fallback
         },
       });
   }
@@ -115,10 +118,11 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         .subscribe({
           next: (response) => {
             this.toastService.show({
-              text:
+              text: this.translate.instant(
                 response.status === 200
-                  ? "Address was successfully saved"
-                  : response.message,
+                  ? "SETTINGS.PROFILE.ADDRESS_SUCCESS"
+                  : "SETTINGS.PROFILE.ADDRESS_FAILED"
+              ),
               classname:
                 response.status === 200
                   ? "bg-success text-light"
@@ -131,7 +135,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
           },
           error: () => {
             this.toastService.show({
-              text: "Failed to save address",
+              text: this.translate.instant("SETTINGS.PROFILE.ADDRESS_ERROR"),
               classname: "bg-danger text-light",
               icon: "fa-circle-exclamation",
             });
@@ -139,31 +143,62 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         });
     };
 
-    // ✅ Upload the image using ONLY the file name
     if (this.selectedFile) {
-      const fileName = this.selectedFile.name;
-
-      this.profileService
-        .setImageProfile(fileName)
+      this.uploaderService
+        .uploadInvestorImage(this.selectedFile)
         .pipe(takeUntil(this.destroy$))
         .subscribe({
-          next: (res) => {
-            if (res.status === 200) {
-              this.toastService.show({
-                text: "Profile image updated",
-                classname: "bg-success text-light",
-                icon: "fa-circle-check",
+          next: (uploadRes) => {
+            const fileName = uploadRes?.fileName;
+
+            this.profileService
+              .setImageProfile(fileName)
+              .pipe(takeUntil(this.destroy$))
+              .subscribe({
+                next: (res) => {
+                  // ✅ Show status whether image was saved successfully
+                  this.toastService.show({
+                    text: this.translate.instant(
+                      res.status === 200
+                        ? "SETTINGS.PROFILE.IMAGE_SUCCESS"
+                        : "SETTINGS.PROFILE.IMAGE_FAILED"
+                    ),
+                    classname:
+                      res.status === 200
+                        ? "bg-success text-light"
+                        : "bg-danger text-light",
+                    icon:
+                      res.status === 200
+                        ? "fa-circle-check"
+                        : "fa-circle-exclamation",
+                  });
+
+                  saveForm(); // Proceed regardless
+                },
+                error: (err) => {
+                  this.toastService.show({
+                    text:
+                      err?.error?.message?.trim() ||
+                      this.translate.instant("SETTINGS.PROFILE.IMAGE_FAILED"),
+                    classname: "bg-danger text-light",
+                    icon: "fa-circle-exclamation",
+                  });
+
+                  saveForm(); // ✅ Still continue even if image update fails
+                },
               });
-            }
-            saveForm(); // Continue saving after image update
           },
-          error: () => {
+          error: (err) => {
+            console.error("Image upload error:", err);
             this.toastService.show({
-              text: "Image upload failed",
+              text:
+                err?.error?.message?.trim() ||
+                this.translate.instant("SETTINGS.PROFILE.IMAGE_UPLOAD_FAILED"),
               classname: "bg-danger text-light",
               icon: "fa-circle-exclamation",
             });
-            this.loading.set(false);
+
+            saveForm(); // ✅ Continue with saving form anyway
           },
         });
     } else {
