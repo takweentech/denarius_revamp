@@ -1,26 +1,41 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { UserProfileData } from '../../../../core/models/user';
-import { TokenService } from '../../../../core/services/token.service';
-import { InitialsPipe } from '../../../../shared/pipes/initials.pipe';
+import { Component, inject, OnInit, signal } from "@angular/core";
+import { UserProfileData } from "../../../../core/models/user";
+import { TokenService } from "../../../../core/services/token.service";
+import { InitialsPipe } from "../../../../shared/pipes/initials.pipe";
 import { TransactionChartComponent } from "./components/transaction-chart/transaction-chart.component";
 import { PerformanceChartComponent } from "./components/performance-chart/performance-chart.component";
-import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
-import { TranslatePipe } from '@ngx-translate/core';
-import { BaseComponent } from '../../../../core/base/base.component';
-import { finalize, takeUntil } from 'rxjs';
-import { Transaction, TransactionFilter } from '../../../../core/models/transaction';
-import { TransactionService } from '../../../../data/transaction.service';
-import { RouterLink } from '@angular/router';
-import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
-
+import { DatePipe, DecimalPipe, NgClass } from "@angular/common";
+import { TranslatePipe } from "@ngx-translate/core";
+import { BaseComponent } from "../../../../core/base/base.component";
+import { finalize, takeUntil } from "rxjs";
+import {
+  Transaction,
+  TransactionFilter,
+} from "../../../../core/models/transaction";
+import { TransactionService } from "../../../../data/transaction.service";
+import { RouterLink } from "@angular/router";
+import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
+import { ProfileService } from "../../../../data/profile.service";
 
 @Component({
-  selector: 'app-dashboard',
-  imports: [InitialsPipe, TransactionChartComponent, PerformanceChartComponent, DatePipe, TranslatePipe, NgClass, RouterLink, DecimalPipe],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  selector: "app-dashboard",
+  imports: [
+    InitialsPipe,
+    TransactionChartComponent,
+    PerformanceChartComponent,
+    DatePipe,
+    TranslatePipe,
+    NgClass,
+    RouterLink,
+    DecimalPipe,
+  ],
+  templateUrl: "./dashboard.component.html",
+  styleUrl: "./dashboard.component.scss",
 })
 export class DashboardComponent extends BaseComponent implements OnInit {
+  imageUrl = signal<string>("https://i.ibb.co/MBtjqXQ/user.png"); // fallback avatar
+  private readonly profileService = inject(ProfileService);
+
   private readonly tokenService = inject(TokenService);
   private readonly investorService = inject(TransactionService);
   WEB_ROUTES = WEB_ROUTES;
@@ -39,9 +54,22 @@ export class DashboardComponent extends BaseComponent implements OnInit {
   loading = signal<boolean>(false);
   transactions = signal<Transaction[]>([]);
 
-
   ngOnInit(): void {
     this.loadTransactions();
+    // Get image
+    this.profileService
+      .getImageProfile()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          if (response.data) {
+            this.imageUrl.set(response.data); // assuming the API returns a full URL
+          }
+        },
+        error: () => {
+          this.imageUrl.set("https://i.ibb.co/MBtjqXQ/user.png"); // fallback
+        },
+      });
   }
 
   loadTransactions(): void {
@@ -56,9 +84,7 @@ export class DashboardComponent extends BaseComponent implements OnInit {
         next: (response) => {
           this.transactions.set(response.data);
         },
-        error: () => { },
+        error: () => {},
       });
   }
-
-
 }

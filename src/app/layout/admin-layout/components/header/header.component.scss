@@ -9,7 +9,6 @@ nav {
   }
 
   .profile {
-
     button {
       &::after {
         display: none;
@@ -18,10 +17,9 @@ nav {
 
     img {
       width: 50px;
-      height: auto;
+      height: 50px;
     }
   }
-
 
   @media (max-width: 768px) {
     .logo {
