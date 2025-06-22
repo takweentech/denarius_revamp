@@ -17,6 +17,7 @@ import {
   TransactionFilter,
 } from "../../../../../../core/models/transaction";
 import { TransactionService } from "../../../../../../data/transaction.service";
+import { HttpPagedResponse } from "../../../../../../core/models/http";
 
 @Component({
   selector: "app-listing",
@@ -37,6 +38,7 @@ import { TransactionService } from "../../../../../../data/transaction.service";
 export class ListingComponent extends BaseComponent implements OnInit {
   private readonly translate = inject(TranslateService);
   private readonly transactionService = inject(TransactionService);
+  private readonly investorService = inject(TransactionService);
 
   private readonly WithdrawalService = inject(WithdrawalService);
   private readonly tokenService = inject(TokenService);
@@ -81,32 +83,18 @@ export class ListingComponent extends BaseComponent implements OnInit {
   }
   loadTransactions(): void {
     this.loading.set(true);
-
-    const requestPayload: TransactionFilter = {
-      ...this.pagination,
-      filter: {
-        ...this.pagination.filter,
-      },
-    };
-
-    this.transactionService
-      .getInvestorTransactionsPaged(requestPayload)
+    this.investorService
+      .getInvestorTransactionsPaged(this.pagination)
       .pipe(
         takeUntil(this.destroy$),
         finalize(() => this.loading.set(false))
       )
       .subscribe({
         next: (response) => {
-          // ✅ Access the nested response shape
-          const result = response.data;
-          this.investments.set(result?.data || []);
-          this.total.set(result?.totalCount || 0);
+          this.transactions.set(response.data);
+          this.total.set(response.totalCount);
         },
-        error: (err) => {
-          console.error("Failed to load transactions:", err);
-          this.investments.set([]);
-          this.total.set(0);
-        },
+        error: () => {},
       });
   }
   ngOnInit(): void {

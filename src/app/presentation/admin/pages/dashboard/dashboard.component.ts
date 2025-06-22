@@ -64,7 +64,7 @@ export class DashboardComponent extends BaseComponent implements OnInit {
       )
       .subscribe({
         next: (response) => {
-          this.transactions.set(response.data.data);
+          this.transactions.set(response.data);
         },
         error: () => {},
       });

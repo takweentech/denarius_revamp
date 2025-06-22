@@ -54,11 +54,3 @@ export interface TransactionFilter {
     }
   ];
 }
-export interface PagedApiResponse<T> {
-  data: {
-    data: T[];
-    totalCount: number;
-    pageNumber: number;
-    pageSize: number;
-  };
-}
