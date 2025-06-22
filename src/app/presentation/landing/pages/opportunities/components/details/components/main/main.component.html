@@ -2,39 +2,41 @@
 
 <div class="row gy-4">
   <div class="col-12 col-lg-8 d-flex flex-column gap-4">
-    <img class="rounded"
-         (error)="opportunity.image = '/assets/images/Takween-Logo.svg'"
-         [src]="opportunity.image "
-         alt="" />
+    <img
+      class="rounded"
+      (error)="opportunity.image = '/assets/images/Takween-Logo.svg'"
+      [src]="opportunity.image"
+      alt=""
+    />
     <p>
-      {{opportunity.displaySummary }}
+      {{ opportunity.displaySummary }}
     </p>
     <div class="flex-column d-flex">
-      <div class="accordion d-flex flex-column gap-3"
-           id="faqAccordion">
-
-
+      <div class="accordion d-flex flex-column gap-3" id="faqAccordion">
         @for (item of opportunity.opportunitySections; track $index) {
         <div class="accordion-item border-0 bg-transparent">
-          <h2 class="accordion-header"
-              id="heading{{$index}}">
-            <button class="accordion-button rounded gap-2 collapsed d-flex justify-content-between bg-white text-dark border shadow-none"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    [attr.data-bs-target]="'#collapse' + $index"
-                    [attr.aria-controls]="'collapse' + $index"
-                    aria-expanded="false">
+          <h2 class="accordion-header" id="heading{{ $index }}">
+            <button
+              class="accordion-button rounded gap-2 collapsed d-flex justify-content-between bg-white text-dark border shadow-none"
+              type="button"
+              data-bs-toggle="collapse"
+              [attr.data-bs-target]="'#collapse' + $index"
+              [attr.aria-controls]="'collapse' + $index"
+              aria-expanded="false"
+            >
               <div class="d-flex align-items-center gap-2 fw-semibold">
                 <!-- <img src="assets/icons/details/eye.svg"
                      alt="" /> -->
-                {{item.title}}
+                {{ item.title }}
               </div>
             </button>
           </h2>
-          <div class="accordion-collapse collapse"
-               [attr.id]="'collapse' + $index"
-               [attr.aria-labelledby]="'heading' + $index"
-               data-bs-parent="#faqAccordion">
+          <div
+            class="accordion-collapse collapse"
+            [attr.id]="'collapse' + $index"
+            [attr.aria-labelledby]="'heading' + $index"
+            data-bs-parent="#faqAccordion"
+          >
             <div class="accordion-body bg-transparent border-0">
               {{ item.description }}
             </div>
@@ -51,19 +53,23 @@
         <h5 class="fw-bold">
           {{ "OPPORTUNITIES_DETAILS.ISSUE_VALUE" | translate }}
         </h5>
-        <div class="d-flex align-items-center gap-2"><span class="h3">{{opportunity.stockValue}}</span> <img
-               src="/assets/icons/Saudi_Riyal_Symbol-d.svg"
-               alt=""></div>
+
+        <div class="d-flex price-alignment align-items-center">
+          <span class="h3">{{ opportunity.stockValue }}</span>
+          <span class="icon-saudi_riyal"></span>
+        </div>
       </div>
 
       <div class="progress">
-        <div class="progress-bar"
-             [ngClass]="{
-          'bg-success': opportunity.annualReturn === 100,
-          'bg-primary': opportunity.annualReturn < 100
-        }"
-             role="progressbar"
-             [style.width.%]="opportunity.annualReturn"></div>
+        <div
+          class="progress-bar"
+          [ngClass]="{
+            'bg-success': opportunity.annualReturn === 100,
+            'bg-primary': opportunity.annualReturn < 100
+          }"
+          role="progressbar"
+          [style.width.%]="opportunity.annualReturn"
+        ></div>
       </div>
 
       <ul class="list-unstyled">
@@ -71,61 +77,56 @@
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.RETURN_ON_INVESTMENT" | translate }}
           </div>
-          <span class="text-dark"> {{opportunity.roi}}% </span>
+          <span class="text-dark"> {{ opportunity.roi }}% </span>
         </li>
         <li class="d-flex justify-content-between py-2 border-bottom">
           <div class="d-flex align-items-center fw-regular small">
-
             {{ "OPPORTUNITIES_DETAILS.ANNUAL_RETURN" | translate }}
           </div>
-          <span class="text-dark"> {{opportunity.annualReturn}}% </span>
+          <span class="text-dark"> {{ opportunity.annualReturn }}% </span>
         </li>
         <li class="d-flex justify-content-between py-2 border-bottom">
           <div class="d-flex align-items-center fw-regular small">
-
             {{ "OPPORTUNITIES_DETAILS.ISSUE_DURATION" | translate }}
           </div>
           <span class="text-dark">
-            {{opportunity.durationInMonths}} {{ "OPPORTUNITIES_DETAILS.MONTHS" | translate }}
+            {{ opportunity.durationInMonths }}
+            {{ "OPPORTUNITIES_DETAILS.MONTHS" | translate }}
           </span>
         </li>
         <li class="d-flex justify-content-between py-2">
           <div class="d-flex align-items-center fw-regular small">
-
             {{ "OPPORTUNITIES_DETAILS.ISSUE_NUMBER" | translate }}
           </div>
-          <span class="text-dark"> {{opportunity.issuanceNumber}} </span>
+          <span class="text-dark"> {{ opportunity.issuanceNumber }} </span>
         </li>
       </ul>
 
       <div class="d-flex gap-2">
         @if (!isAuthenticated) {
 
-        <button (click)="onSignUp()"
-                class="btn btn-primary w-100 rounded-2">
+        <button (click)="onSignUp()" class="btn btn-primary w-100 rounded-2">
           {{ "OPPORTUNITIES_DETAILS.SIGN_UP" | translate }}
         </button>
 
-        <button (click)="onSignIn()"
-                class="btn btn-outline-primary w-100 rounded-2">
+        <button
+          (click)="onSignIn()"
+          class="btn btn-outline-primary w-100 rounded-2"
+        >
           {{ "OPPORTUNITIES_DETAILS.SIGN_IN" | translate }}
         </button>
         }@else {
-        <button (click)="onInvest()"
-                class="btn btn-primary w-100 rounded-2">
+        <button (click)="onInvest()" class="btn btn-primary w-100 rounded-2">
           {{ "OPPORTUNITIES_DETAILS.INVEST_NOW" | translate }}
-
         </button>
         }
       </div>
     </div>
 
-
     <!-- Calculator -->
     <div class="card card-grey p-3">
       <div class="d-flex align-items-center gap-2 mb-4">
-        <img src="assets/icons/details/calculator1.svg"
-             alt="" />
+        <img src="assets/icons/details/calculator1.svg" alt="" />
         <h5>
           {{ "OPPORTUNITIES_DETAILS.CALCULATE_EXPECTED_RETURN" | translate }}
         </h5>
@@ -133,61 +134,81 @@
       <div class="d-flex flex-column gap-2 mb-4">
         <label class="small">{{
           "OPPORTUNITIES_DETAILS.SELECT_SUKUK_NUMBER" | translate
-          }}</label>
-        <input [formControl]="numStock"
-               class="form-control col-12 shadow-sm border-0 rounded-1"
-               type="number" />
+        }}</label>
+        <input
+          [formControl]="numStock"
+          class="form-control col-12 shadow-sm border-0 rounded-1"
+          type="number"
+        />
       </div>
       <ul class="list-unstyled">
         <li class="d-flex justify-content-between py-2 border-bottom">
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.TOTAL_INVESTMENT_AMOUNT" | translate }}
           </div>
-          <div class="d-flex align-items-center gap-1 w-fit"
-               dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
-            opportunity.opportunityStockValue : 0 }}</div>
+          <div
+            class="d-flex align-items-center price-alignment gap-1 w-fit"
+            dir="ltr"
+          >
+            {{
+              numStock.value && opportunity.opportunityStockValue
+                ? numStock.value && opportunity.opportunityStockValue
+                : 0
+            }}<span class="icon-saudi_riyal"></span>
+          </div>
         </li>
 
         <li class="d-flex justify-content-between py-2 border-bottom">
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.TOTAL_EXPECTED_RETURN" | translate }}
           </div>
-          <div class="d-flex align-items-center gap-1 w-fit"
-               dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
-            opportunity.opportunityStockValue : 0 }}</div>
-
+          <div
+            class="d-flex align-items-center price-alignment gap-1 w-fit"
+            dir="ltr"
+          >
+            {{
+              numStock.value && opportunity.opportunityStockValue
+                ? numStock.value && opportunity.opportunityStockValue
+                : 0
+            }}
+            <span class="icon-saudi_riyal"></span>
+          </div>
         </li>
 
         <li class="d-flex justify-content-between py-2 border-bottom">
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.AGENCY_FEE" | translate }}
           </div>
-          <div class="d-flex align-items-center gap-1 w-fit"
-               dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{opportunity.agencyFee}}</div>
-
+          <div
+            class="d-flex align-items-center price-alignment gap-1 w-fit"
+            dir="ltr"
+          >
+            {{ opportunity.agencyFee }} <span class="icon-saudi_riyal"></span>
+          </div>
         </li>
 
         <li class="d-flex justify-content-between py-2 border-bottom">
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.VAT" | translate }}
           </div>
-          <div class="d-flex align-items-center gap-1 w-fit"
-               dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{opportunity.vat}}</div>
-
+          <div
+            class="d-flex align-items-center price-alignment gap-1 w-fit"
+            dir="ltr"
+          >
+            {{ opportunity.vat }} <span class="icon-saudi_riyal"></span>
+          </div>
         </li>
 
         <li class="d-flex justify-content-between py-2">
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.NET_RETURN" | translate }}
           </div>
-          <div class="d-flex align-items-center gap-1 w-fit"
-               dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="">{{opportunity.netProfit}}</div>
-
+          <div
+            class="d-flex align-items-center price-alignment gap-1 w-fit"
+            dir="ltr"
+          >
+            {{ opportunity.netProfit }} <span class="icon-saudi_riyal"></span>
+          </div>
         </li>
       </ul>
     </div>

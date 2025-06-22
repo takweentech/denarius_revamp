@@ -1,0 +1,32 @@
+@font-face {
+  font-family: "saudi_riyal";
+  src: url("../../fonts/riyal_fonts/saudi_riyal.woff2") format("woff2"),
+    url("../../fonts/riyal_fonts/saudi_riyal.woff") format("woff"),
+    url("../../fonts/riyal_fonts/saudi_riyal.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Ensure the icon class correctly loads the Riyal symbol */
+.icon-saudi_riyal::before {
+  content: "\e900";
+  font-family: "saudi_riyal" !important;
+  font-size: inherit;
+  color: inherit;
+}
+.price-alignment {
+  display: flex;
+  align-items: center;
+  direction: rtl;
+  font-family: "Tajawal", sans-serif;
+
+  .icon-saudi_riyal {
+    font-size: 1em;
+    line-height: 1;
+  }
+
+  .price-value {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+}

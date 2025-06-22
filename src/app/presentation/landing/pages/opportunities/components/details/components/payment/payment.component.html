@@ -13,72 +13,98 @@
           <label class="form-label small">
             {{ "OPPOTUNITIES_PAYMENT.SELECT_BONDS" | translate }}
           </label>
-          <input class="col-md-10 col-sm-12 form-control"
-                 type="number"
-                 dir="ltr"
-                 [min]="investment()?.investorMinLimitStockCount ?? null"
-                 [max]="investment()?.investorMaxLimitStockCount ?? null"
-                 [formControl]="numStock" />
+          <input
+            class="col-md-10 col-sm-12 form-control"
+            type="number"
+            [min]="investment()?.investorMinLimitStockCount ?? null"
+            [max]="investment()?.investorMaxLimitStockCount ?? null"
+            [formControl]="numStock"
+          />
         </div>
         <div class="col-12 p-md-0 d-flex flex-column">
-          <span>{{ "OPPOTUNITIES_PAYMENT.MIN_INVESTMENT" | translate }} =
+          <span
+            >{{ "OPPOTUNITIES_PAYMENT.MIN_INVESTMENT" | translate }} =
             {{ investment()?.investorMinLimitStockCount }}
-            {{ "OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE" | translate }}</span>
-          <span>{{ "OPPOTUNITIES_PAYMENT.MAX_INVESTMENT" | translate }} =
+            {{ "OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE" | translate }}</span
+          >
+          <span
+            >{{ "OPPOTUNITIES_PAYMENT.MAX_INVESTMENT" | translate }} =
             {{ investment()?.investorMaxLimitStockCount }}
-            {{ "OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE" | translate }}</span>
+            {{ "OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE" | translate }}</span
+          >
         </div>
         <div>
           <p>
             {{ "OPPOTUNITIES_PAYMENT.UNLIMITED_INVESTMENT" | translate }}
-            <a [routerLink]="'/' + WEB_ROUTES.SETTINGS.ROOT + '/' + WEB_ROUTES.SETTINGS.UPGRADE">
+            <a
+              [routerLink]="
+                '/' +
+                WEB_ROUTES.SETTINGS.ROOT +
+                '/' +
+                WEB_ROUTES.SETTINGS.UPGRADE
+              "
+            >
               {{ "OPPOTUNITIES_PAYMENT.ACCOUNT_UPGRADE" | translate }}
             </a>
           </p>
         </div>
       </div>
-      <div class="card col-12 card-grey d-flex flex-column gap-3 p-3 py-2 h-fit">
+      <div
+        class="card col-12 card-grey d-flex flex-column gap-3 p-3 py-2 h-fit"
+      >
         <ul class="list-unstyled d-flex flex-column gap-3">
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.TOTAL_INVESTMENT_AMOUNT" | translate }}
             </span>
-            <div class="d-flex align-items-center gap-1 w-fit"
-                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="">{{numStock.value && opportunity.opportunityStockValue ? numStock.value &&
-              opportunity.opportunityStockValue : 0 }}</div>
+            <div>
+              <div
+                class="d-flex price-alignment gap-1 w-fit align-items-center"
+              >
+                {{
+                  numStock.value && opportunity.opportunityStockValue
+                    ? numStock.value && opportunity.opportunityStockValue
+                    : 0
+                }}
+                <span class="icon-saudi_riyal"></span>
+              </div>
+            </div>
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.TOTAL_EXPECTED_RETURN" | translate }}
             </span>
-            <div class="d-flex align-items-center gap-1 w-fit"
-                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="">0</div>
+            <div class="d-flex price-alignment align-items-center gap-1 w-fit">
+              0
+              <span class="icon-saudi_riyal"></span>
+            </div>
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
             </span>
-            <div class="d-flex align-items-center gap-1 w-fit"
-                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="">{{opportunity.agencyFee}}</div>
+            <div class="d-flex price-alignment align-items-center gap-1 w-fit">
+              {{ opportunity.agencyFee }}
+              <span class="icon-saudi_riyal"></span>
+            </div>
           </li>
           <li class="d-flex justify-content-between py-2 border-bottom">
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
             </span>
-            <div class="d-flex align-items-center gap-1 w-fit"
-                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="">{{opportunity.vat}}</div>
+            <div class="d-flex price-alignment align-items-center gap-1 w-fit">
+              {{ opportunity.vat }}
+              <span class="icon-saudi_riyal"></span>
+            </div>
           </li>
           <li class="d-flex justify-content-between py-2">
             <span class="fw-regular small">
               {{ "OPPOTUNITIES_PAYMENT.NET_RETURN" | translate }}
             </span>
-            <div class="d-flex align-items-center gap-1 w-fit"
-                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="">{{opportunity.netProfit}}</div>
+            <div class="d-flex price-alignment align-items-center gap-1 w-fit">
+              {{ opportunity.netProfit }}
+              <span class="icon-saudi_riyal"></span>
+            </div>
           </li>
         </ul>
       </div>
@@ -86,17 +112,21 @@
   </div>
   <!-- Payment -->
   <div class="col-lg-5 col-12">
-    <div class="card card-light-blue py-4 px-3 px-md-4 shadow-sm rounded-4 border-0 d-flex flex-column gap-2">
+    <div
+      class="card card-light-blue py-4 px-3 px-md-4 shadow-sm rounded-4 border-0 d-flex flex-column gap-2"
+    >
       <h5 class="fw-semibold mb-2">
         {{ "OPPOTUNITIES_PAYMENT.PAYMENT_METHOD" | translate }}
       </h5>
-      <div class="p-3 border border-1 shadow-sm bg-white rounded-3 d-flex justify-content-between align-items-center">
+      <div
+        class="p-3 border border-1 shadow-sm bg-white rounded-3 d-flex justify-content-between align-items-center"
+      >
         <span class="text-dark small">{{
           "OPPOTUNITIES_PAYMENT.INVESTMENT_WALLET" | translate
-          }}</span>
+        }}</span>
         <span class="small">{{
           user.investmentAccount.balance | currency : "SAR "
-          }}</span>
+        }}</span>
       </div>
 
       <hr />
@@ -105,35 +135,36 @@
         <h4 class="fw-semibold col">
           {{ "OPPOTUNITIES_PAYMENT.TOTAL_AMOUNT" | translate }}
         </h4>
-        <div class="d-flex align-items-center gap-1 w-fit"
-             dir="ltr">
-          <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-               alt="" />
-          <span class="fw-semibold fs-5 d-inline-flex col justify-content-end align-items-center gap-1">
+        <div class="d-flex align-items-center gap-1 w-fit">
+          <span
+            class="fw-semibold fs-5 price-alignment d-inline-flex col justify-content-end align-items-center gap-1"
+          >
             {{
-            numStock.value && opportunity.opportunityStockValue
-            ? numStock.value && opportunity.opportunityStockValue
-            : 0
+              numStock.value && opportunity.opportunityStockValue
+                ? numStock.value && opportunity.opportunityStockValue
+                : 0
             }}
+            <span class="icon-saudi_riyal"></span>
           </span>
         </div>
       </div>
 
       <div class="mt-3 d-flex align-items-start gap-2">
-        <input type="checkbox"
-               id="terms"
-               class="mt-1"
-               [formControl]="terms"
-               checked />
+        <input
+          type="checkbox"
+          id="terms"
+          class="mt-1"
+          [formControl]="terms"
+          checked
+        />
         <label for="terms">
           <span class="fw-light">
             {{ "OPPOTUNITIES_PAYMENT.ACKNOWLEDGEMENT_TEXT" | translate }}
-            <a href="#"
-               class="text-primary fw-bold">{{
+            <a href="#" class="text-primary fw-bold">{{
               "OPPOTUNITIES_PAYMENT.TERMS_CONDITIONS" | translate
-              }}</a>
+            }}</a>
             {{
-            "OPPOTUNITIES_PAYMENT.ACKNOWLEDGEMENT_TEXT_CONTINUED" | translate
+              "OPPOTUNITIES_PAYMENT.ACKNOWLEDGEMENT_TEXT_CONTINUED" | translate
             }}
           </span>
         </label>
@@ -141,9 +172,11 @@
 
       <div class="mt-3">
         <div class="col-12">
-          <button [disabled]="terms.invalid || numStock.invalid"
-                  (click)="onConfirm()"
-                  class="btn btn-primary py-2 w-100">
+          <button
+            [disabled]="terms.invalid || numStock.invalid"
+            (click)="onConfirm()"
+            class="btn btn-primary py-2 w-100"
+          >
             {{ "OPPOTUNITIES_PAYMENT.CONFIRM_PAYMENT" | translate }}
           </button>
         </div>
@@ -191,47 +224,47 @@
           @for (payment of opportunity.dividends; track $index) {
           <tr>
             <td>
-              <div class="d-flex align-items-center gap-1 w-fit"
-                   dir="ltr">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                     alt="">
+              <div
+                class="d-flex price-alignment align-items-center gap-1 w-fit"
+              >
                 {{ payment.initialBalance }}
+                <span class="icon-saudi_riyal"></span>
               </div>
             </td>
             <td>
               {{ payment.paymentDate | date : "dd/MM/yyyy" }}
             </td>
             <td>
-              <div class="d-flex align-items-center gap-1 w-fit"
-                   dir="ltr">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                     alt="">
+              <div
+                class="d-flex price-alignment align-items-center gap-1 w-fit"
+              >
                 {{ payment.nominalValue }}
+                <span class="icon-saudi_riyal"></span>
               </div>
             </td>
             <td>
-              <div class="d-flex align-items-center gap-1 w-fit"
-                   dir="ltr">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                     alt="">
+              <div
+                class="d-flex price-alignment align-items-center gap-1 w-fit"
+              >
                 {{ payment.earn }}
+                <span class="icon-saudi_riyal"></span>
               </div>
             </td>
             <td>
-              <div class="d-flex align-items-center gap-1 w-fit"
-                   dir="ltr">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                     alt="">
+              <div
+                class="d-flex price-alignment align-items-center gap-1 w-fit"
+              >
                 {{ payment.agencyFee }}
+                <span class="icon-saudi_riyal"></span>
               </div>
             </td>
-            <td> {{payment.vat}}%</td>
+            <td>{{ payment.vat }}%</td>
             <td>
-              <div class="d-flex align-items-center gap-1 w-fit"
-                   dir="ltr">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                     alt="">
+              <div
+                class="d-flex price-alignment align-items-center gap-1 w-fit"
+              >
                 {{ payment.net }}
+                <span class="icon-saudi_riyal"></span>
               </div>
             </td>
           </tr>
