@@ -155,7 +155,9 @@
             <button
               class="btn btn-primary"
               (click)="showConfirmModal = true"
-              [disabled]="isSubmitting"
+              [disabled]="
+                isSubmitting || withdrawAmount <= 0 || withdrawAmount === null
+              "
             >
               <ng-container *ngIf="!isSubmitting">
                 {{ "DASHBOARD.WITHDRAW.BUTTON" | translate }}
