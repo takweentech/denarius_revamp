@@ -44,7 +44,7 @@
                     "DASHBOARD.PERSONAL_INFORMATION.NATIONALITY" | translate
                   }}</small>
                   <span class="text-lg fw-bold">{{
-                    user.userProfile.nationality || "N/A"
+                    user.userProfile.nationality || "-"
                   }}</span>
                 </div>
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
@@ -95,19 +95,19 @@
             <div class="col-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WALLET.BANK_NAME" | translate }}</small>
               <span class="text-lg fw-bold">{{
-                user.investmentAccount.bankName || "N/A"
+                user.investmentAccount.bankName || "-"
               }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WALLET.ACCOUNT_NUMBER" | translate }}</small>
               <span class="text-lg fw-bold">{{
-                user.investmentAccount.accountNumber || "N/A"
+                user.investmentAccount.accountNumber || "-"
               }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WALLET.IBAN" | translate }}</small>
               <span class="text-lg fw-bold">{{
-                user.investmentAccount.iban || "N/A"
+                user.investmentAccount.iban || "-"
               }}</span>
             </div>
           </div>
