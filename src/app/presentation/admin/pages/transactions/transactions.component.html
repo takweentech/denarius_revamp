@@ -125,8 +125,8 @@
             <td>
               {{ tx.transactionType }}
             </td>
-            <td>
-              {{ tx.createDate | date : "medium" }}
+            <td class="w-fit" dir="ltr">
+              {{ tx.createDate | date : "dd/MM/yyyy  hh:mm a" }}
             </td>
             <td>
               <div

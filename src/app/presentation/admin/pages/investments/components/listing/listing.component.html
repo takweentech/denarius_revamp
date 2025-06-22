@@ -111,7 +111,9 @@
               <small>{{
                 "INVESTMENTS.MY_INVESTMENTS.INVESTMENT_DATE" | translate
               }}</small>
-              <span>{{ item.writingDate | date : "dd/MM/yyyy hh:mm a" }}</span>
+              <span class="w-fit" dir="ltr">{{
+                item.writingDate | date : "dd/MM/yyyy hh:mm a"
+              }}</span>
             </div>
 
             <div class="col-1 d-flex justify-content-end">
