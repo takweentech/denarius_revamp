@@ -1,77 +1,102 @@
 <main class="d-flex flex-column gap-4">
-    <section class="d-flex justify-content-between align-items-center">
-        <h3>{{investment.name}}</h3>
-        <span class="badge bg-success">{{investment.status}}</span>
+  <section class="d-flex justify-content-between align-items-center">
+    <h3>{{ investment.name }}</h3>
+    <span class="badge bg-success">{{ investment.status }}</span>
+  </section>
 
-    </section>
-
-    <section class="bg-white rounded-4 p-4 py-2">
-        <ul ngbNav
-            #nav="ngbNav"
-            [(activeId)]="active"
-            class="nav-tabs">
-            <!-- Profile -->
-            <li [ngbNavItem]="1">
-                <button ngbNavLink> {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.TITLE' | translate}}</button>
-                <ng-template ngbNavContent>
-                    <div class="row g-4 py-3">
-                        <div class="col-6 d-flex flex-column gap-2">
-                            <h6>
-                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.PRODUCT_NAME' | translate}}
-                            </h6>
-                            <span>{{investment.name}}</span>
-                        </div>
-                        <div class="col-6 d-flex flex-column gap-2">
-                            <h6>
-                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.TYPE' | translate}}
-
-                            </h6>
-                            <span>{{investment.type}}</span>
-                        </div>
-                        <div class="col-6 d-flex flex-column gap-2">
-                            <h6>
-                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.INVESTED_AMOUNT' | translate}}
-                            </h6>
-                            <div class="d-flex gap-2 w-fit"
-                                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                                     alt="">{{investment.amount}}</div>
-                        </div>
-                        <div class="col-6 d-flex flex-column gap-2">
-                            <h6>
-                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.STOCK_COUNT' | translate}}
-
-                            </h6>
-                            <div class="d-flex gap-2 w-fit"
-                                 dir="ltr"> {{investment.stockCount}}</div>
-                        </div>
-                        <div class="col-6 d-flex flex-column gap-2">
-                            <h6>
-                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.STOCK_VALUE' | translate}}
-                            </h6>
-                            <div class="d-flex gap-2 w-fit"
-                                 dir="ltr"> <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                                     alt="">{{investment.stockValue}}</div>
-                        </div>
-                        <div class="col-6 d-flex flex-column gap-2">
-                            <h6>
-                                {{'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.INVESTMENT_DATE' | translate}}
-
-                            </h6>
-                            <span>{{investment.writingDate | date}}</span>
-                        </div>
-                    </div>
-                </ng-template>
-            </li>
-            <!-- Personal Information -->
-            <li [ngbNavItem]="2">
-                <button ngbNavLink>{{'INVESTMENTS.DETAILS.DISTRIBUTIONS.TITLE' | translate}}</button>
-                <ng-template ngbNavContent>
-
-                </ng-template>
-            </li>
-        </ul>
-        <hr class="m-0" />
-        <div [ngbNavOutlet]="nav"
-             class="mt-2"></div>
-    </section>
+  <section class="bg-white rounded-4 p-4 py-2">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+      <!-- Profile -->
+      <li [ngbNavItem]="1">
+        <button ngbNavLink>
+          {{ "INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.TITLE" | translate }}
+        </button>
+        <ng-template ngbNavContent>
+          <div class="row g-4 py-3">
+            <div class="col-6 d-flex flex-column gap-2">
+              <h6>
+                {{
+                  "INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.PRODUCT_NAME"
+                    | translate
+                }}
+              </h6>
+              <span>{{ investment.name }}</span>
+            </div>
+            <div class="col-6 d-flex flex-column gap-2">
+              <h6>
+                {{
+                  "INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.TYPE" | translate
+                }}
+              </h6>
+              <span>{{ investment.type }}</span>
+            </div>
+            <div class="col-6 d-flex flex-column gap-2">
+              <h6>
+                {{
+                  "INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.INVESTED_AMOUNT"
+                    | translate
+                }}
+              </h6>
+              <div class="d-flex gap-1 price-alignment w-fit">
+                {{ investment.amount }}<span class="icon-saudi_riyal"></span>
+              </div>
+            </div>
+            <div class="col-6 d-flex flex-column gap-2">
+              <h6>
+                {{
+                  "INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.STOCK_COUNT"
+                    | translate
+                }}
+              </h6>
+              <div class="d-flex gap-2 w-fit" dir="ltr">
+                {{ investment.stockCount }}
+              </div>
+            </div>
+            <div class="col-6 d-flex flex-column gap-2">
+              <h6>
+                {{
+                  "INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.STOCK_VALUE"
+                    | translate
+                }}
+              </h6>
+              <div class="d-flex price-alignment gap-1 w-fit">
+                {{ investment.stockValue
+                }}<span class="icon-saudi_riyal"></span>
+              </div>
+            </div>
+            <div class="col-6 d-flex flex-column gap-2">
+              <h6>
+                {{
+                  "INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.INVESTMENT_DATE"
+                    | translate
+                }}
+              </h6>
+              <span class="w-fit" dir="ltr">{{
+                investment.writingDate | date : "dd/MM/yyyy hh:mm a"
+              }}</span>
+            </div>
+            <div class="col-12 mt-5 justify-content-end row d-flex">
+              <button
+                (click)="goBack()"
+                class="col-12 rounded-4 col-lg-2 btn btn-primary"
+              >
+                <span class="fw-light">{{
+                  "TRANSACTIONS.DETAILS.BACK" | translate
+                }}</span>
+              </button>
+            </div>
+          </div>
+        </ng-template>
+      </li>
+      <!-- Personal Information -->
+      <li [ngbNavItem]="2">
+        <button ngbNavLink>
+          {{ "INVESTMENTS.DETAILS.DISTRIBUTIONS.TITLE" | translate }}
+        </button>
+        <ng-template ngbNavContent> </ng-template>
+      </li>
+    </ul>
+    <hr class="m-0" />
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
+  </section>
 </main>
