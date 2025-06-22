@@ -1,6 +1,3 @@
-
-
-
 export const WEB_ROUTES = {
   HOME: {
     ROOT: "",
@@ -39,6 +36,8 @@ export const WEB_ROUTES = {
     SIGN_UP: "sign-up",
     SIGN_IN: "sign-in",
     REGISTRATION: "registration",
+    INDIVIDUAL: "individual",
+    COMANY: "company",
   },
   OPPORTUNITIES: {
     ROOT: "opportunities",
@@ -54,5 +53,3 @@ export const WEB_ROUTES = {
     ROOT: "about-us",
   },
 };
-
-
