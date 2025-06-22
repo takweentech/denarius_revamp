@@ -79,7 +79,7 @@
   </h5>
   <div class="p-4 mt-2 bg-white rounded-4">
     <div class="table-responsive">
-      <table class="fw-light backoffice-table table">
+      <table class="fw-light justify-content-start backoffice-table table">
         <thead>
           <tr>
             <th>{{ "TRANSACTIONS.DESCRIPTION" | translate }}</th>
@@ -88,7 +88,7 @@
             <th>{{ "TRANSACTIONS.DATE" | translate }}</th>
             <th>{{ "TRANSACTIONS.AMOUNT" | translate }}</th>
             <th>{{ "TRANSACTIONS.ACCOUNT" | translate }}</th>
-            <th></th>
+            <th>{{ "TRANSACTIONS.DETAILS.DETAILS" | translate }}</th>
           </tr>
         </thead>
         <tbody>
@@ -104,7 +104,7 @@
           </tr>
           }@else { @if (transactions().length) { @for (tx of transactions();
           track tx.id) {
-          <tr>
+          <tr class="">
             <td>
               <div
                 class="d-flex align-items-center justify-content-start gap-2"
@@ -130,7 +130,7 @@
             </td>
             <td>
               <div
-                class="d-flex price-alignment gap-2 w-fit"
+                class="d-flex price-alignment gap-1 w-fit"
                 [ngClass]="{
                   'text-danger': tx.amount < 0,
                   'text-success': tx.amount > 0
@@ -142,7 +142,7 @@
             </td>
             <td>
               <span>
-                {{ tx.accountNumber }}
+                {{ tx.accountNumber || "-" }}
               </span>
             </td>
             <td>
