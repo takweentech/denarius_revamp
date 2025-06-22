@@ -203,20 +203,22 @@
   <!-- Transactions -->
   <section>
     <div class="row g-4">
-      <div class="col-md-12 col-lg-12 col-xl-4 d-flex flex-column gap-3">
+      <div class="col-md-12 col-lg-12 custom-col-xl-4 d-flex flex-column gap-3">
         <h5 class="card-title text-primary">
           {{ "DASHBOARD.TRANSACTION_DISTRIBUTION.TITLE" | translate }}
         </h5>
 
-        <div class="card bg-white d-flex justify-content-center h-100">
-          <div id="chart" class="w-fit mx-auto">
+        <div
+          class="card bg-white d-flex align-items-center justify-content-center h-100"
+        >
+          <div id="chart" class="w-fit">
             <app-transaction-chart
               [transactions]="transactions()"
             ></app-transaction-chart>
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-lg-12 col-xl-8 d-flex flex-column gap-3">
+      <div class="col-md-12 col-lg-12 custom-col-xl-8 d-flex flex-column gap-3">
         <div class="d-flex justify-content-between">
           <h5 class="card-title text-primary">
             {{ "DASHBOARD.RECENT_TRANSACTIONS.TITLE" | translate }}
