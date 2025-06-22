@@ -74,18 +74,18 @@
         </div>
         }@else { @if (earnings().length) { @for (item of earnings(); track
         $index) {
-        <div class="card bg-white p-4 w-100">
-          <div class="row g-2 align-items-center">
-            <div class="col d-flex gap-4 align-items-center">
-              <span class="badge bg-success">{{ item.status }}</span>
-              <div class="d-flex flex-column gap-2">
+        <div class="card row d-flex bg-white p-4 w-100">
+          <div class="col-md d-flex gap-4 align-items-center">
+            <span class="badge bg-success">{{ item.status }}</span>
+            <div class="row g-2 align-items-center">
+              <div class="d-flex col-md col-6 flex-column gap-2">
                 <small>
                   {{ "DIVIDENDS.LISTING.PRODUCT_NAME" | translate }}</small
                 >
                 <h6>{{ item.opportunityName }}</h6>
               </div>
             </div>
-            <div class="col-6 col-md-2 d-flex flex-column gap-2">
+            <div class="col-6 col-md d-flex flex-column gap-2">
               <small>
                 {{ "DIVIDENDS.LISTING.TOTAL_DIVIDENCE" | translate }}</small
               >
@@ -94,7 +94,7 @@
               </div>
             </div>
 
-            <div class="col-6 col-md-1 d-flex flex-column gap-2">
+            <div class="col-6 col-md d-flex flex-column gap-2">
               <small>{{
                 "DIVIDENDS.LISTING.TOTAL_PRINCIPAL" | translate
               }}</small>
@@ -103,7 +103,7 @@
               </div>
             </div>
 
-            <div class="col-6 col-md-1 d-flex flex-column gap-2">
+            <div class="col-6 col-md d-flex flex-column gap-2">
               <small>{{ "DIVIDENDS.LISTING.NET" | translate }}</small>
               <div class="d-flex gap-1 price-alignment w-fit">
                 {{ item.net }}
@@ -113,7 +113,7 @@
 
             <div class="col d-flex flex-column gap-2">
               <small>{{ "DIVIDENDS.LISTING.MATURITY_DATE" | translate }}</small>
-              <span>{{ item.maturityDate | date : "short" }}</span>
+              <span>{{ item.maturityDate | date : "dd/MM/yyyy hh:mm a" }}</span>
             </div>
           </div>
         </div>
