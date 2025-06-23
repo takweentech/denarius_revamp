@@ -1,33 +1,52 @@
 <div class="modal-header d-flex justify-content-between">
-    <h4 class="modal-title"
-        id="modal-basic-title">{{'SETTINGS.SECURITY.OTP_TITLE' | translate}}</h4>
-    <button type="button"
-            class="btn-close m-0"
-            (click)="activeModal.close()"
-            aria-label="Close"></button>
+  <h4 class="modal-title" id="modal-basic-title">
+    {{ "SETTINGS.SECURITY.OTP_TITLE" | translate }}
+  </h4>
+  <button
+    type="button"
+    class="btn-close m-0"
+    (click)="activeModal.close()"
+    aria-label="Close"
+  ></button>
 </div>
 <div class="modal-body">
-    <form class="d-flex flex-column text-center gap-4 align-items-center">
-        @if (mode === 'phone') {
-        <h6 class="otp-instruction"> {{'SETTINGS.SECURITY.OTP_SENT_PHONE' | translate}}</h6>
-        <ng-otp-input [formControl]="otp"
-                      dir="ltr"
-                      [config]="{ length: 6 }"></ng-otp-input>
-        }@else {
-        <h6 class="otp-instruction"> {{'SETTINGS.SECURITY.OTP_SENT_EMAIL' | translate}}</h6>
-        <ng-otp-input [formControl]="otp"
-                      dir="ltr"
-                      [config]="{ length: 4 }"></ng-otp-input>
-        }
-
-
-
-    </form>
+  <form class="d-flex flex-column text-center gap-4 align-items-center">
+    @if (mode === 'phone') {
+    <h6 class="otp-instruction">
+      {{ "SETTINGS.SECURITY.OTP_SENT_PHONE" | translate }}
+    </h6>
+    <ng-otp-input
+      [formControl]="otp"
+      dir="ltr"
+      [config]="{
+        length: otpLength,
+        allowNumbersOnly: true
+      }"
+      (onInputChange)="onOtpChange($event)"
+    ></ng-otp-input>
+    }@else {
+    <h6 class="otp-instruction">
+      {{ "SETTINGS.SECURITY.OTP_SENT_EMAIL" | translate }}
+    </h6>
+    <ng-otp-input
+      [formControl]="otp"
+      dir="ltr"
+      [config]="{
+        length: 4,
+        allowNumbersOnly: true
+      }"
+    ></ng-otp-input>
+    }
+  </form>
 </div>
 
 <div class="modal-footer">
-    <button type="button"
-            class="btn btn-primary"
-            [disabled]="loading()"
-            (click)="onConfirm()">{{'SETTINGS.SECURITY.SAVE_OTP' | translate}}</button>
+  <button
+    type="button"
+    class="btn btn-primary"
+    [disabled]="loading()"
+    (click)="onConfirm()"
+  >
+    {{ "SETTINGS.SECURITY.SAVE_OTP" | translate }}
+  </button>
 </div>
