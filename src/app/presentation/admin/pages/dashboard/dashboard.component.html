@@ -12,7 +12,7 @@
               @if (user.userProfile.profileImageUrl) {
               <img [src]="user.userProfile.profileImageUrl"
                    alt="Profile"
-                   class="rounded-circle profile-image">
+                   class="rounded-circle profile-image object-fit-cover">
               }@else {
               <div class="initials bg-primary d-flex justify-content-center align-items-center">
                 <h3>{{ user.userProfile.fullName | initials }}</h3>

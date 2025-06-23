@@ -16,7 +16,7 @@ import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [InitialsPipe, TransactionChartComponent, PerformanceChartComponent, DatePipe, TranslatePipe, NgClass, RouterLink, DecimalPipe],
+  imports: [InitialsPipe, TransactionChartComponent, PerformanceChartComponent, DatePipe, TranslatePipe, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
