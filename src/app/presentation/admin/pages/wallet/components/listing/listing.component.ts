@@ -3,7 +3,7 @@ import { UserProfileData } from "../../../../../../core/models/user";
 import { TokenService } from "../../../../../../core/services/token.service";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
-import { DatePipe, NgIf } from "@angular/common";
+import { DatePipe, DecimalPipe, NgClass, NgIf } from "@angular/common";
 import { RouterLink } from "@angular/router";
 import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
 import { BaseComponent } from "../../../../../../core/base/base.component";
@@ -12,11 +12,19 @@ import { ProfileService } from "../../../../../../data/profile.service";
 import { FormsModule, NgModel } from "@angular/forms";
 import { ToastService } from "../../../../../../shared/components/toast/toast.service";
 import { WithdrawalService } from "../../../../../../data/Withdrawal.service";
+import {
+  Transaction,
+  TransactionFilter,
+} from "../../../../../../core/models/transaction";
+import { TransactionService } from "../../../../../../data/transaction.service";
+import { HttpPagedResponse } from "../../../../../../core/models/http";
 
 @Component({
   selector: "app-listing",
   standalone: true,
   imports: [
+    DecimalPipe,
+    NgClass,
     TranslatePipe,
     NgIf,
     DatePipe,
@@ -29,6 +37,8 @@ import { WithdrawalService } from "../../../../../../data/Withdrawal.service";
 })
 export class ListingComponent extends BaseComponent implements OnInit {
   private readonly translate = inject(TranslateService);
+  private readonly transactionService = inject(TransactionService);
+  private readonly investorService = inject(TransactionService);
 
   private readonly WithdrawalService = inject(WithdrawalService);
   private readonly tokenService = inject(TokenService);
@@ -36,6 +46,8 @@ export class ListingComponent extends BaseComponent implements OnInit {
   private toastService = inject(ToastService);
   isSubmitting: boolean = false;
   showConfirmModal: boolean = false;
+  transactions = signal<Transaction[]>([]);
+
   user: UserProfileData = this.tokenService.getUser();
   withdrawAmount: number = 0;
   pagination: any = {
@@ -66,14 +78,29 @@ export class ListingComponent extends BaseComponent implements OnInit {
         next: (response) => {
           console.log(response);
         },
-        error: () => { },
+        error: () => {},
       });
   }
-
+  loadTransactions(): void {
+    this.loading.set(true);
+    this.investorService
+      .getInvestorTransactionsPaged(this.pagination)
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loading.set(false))
+      )
+      .subscribe({
+        next: (response) => {
+          this.transactions.set(response.data);
+          this.total.set(response.totalCount);
+        },
+        error: () => {},
+      });
+  }
   ngOnInit(): void {
+    this.loadTransactions();
     this.loadOperations();
   }
-
 
   confirmWithdrawal(): void {
     this.isSubmitting = true;
@@ -116,12 +143,10 @@ export class ListingComponent extends BaseComponent implements OnInit {
     });
   }
 
-
   goToPage(page: number): void {
     this.pagination.pageNumber = page;
     this.loadOperations();
   }
-
 
   onBackdropClick(event: MouseEvent): void {
     this.showConfirmModal = false;
