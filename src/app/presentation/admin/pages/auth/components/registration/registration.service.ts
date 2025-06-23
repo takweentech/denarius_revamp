@@ -340,7 +340,7 @@ export class RegistrationService {
           },
           {
             key: "acceptTerms",
-            validators: [Validators.required],
+            validators: [Validators.requiredTrue],
           },
         ],
         validators: [matchValidator("password", "confirmPassword")],
