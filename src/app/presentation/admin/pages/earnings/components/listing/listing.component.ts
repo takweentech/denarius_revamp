@@ -15,17 +15,18 @@ import { LookupService } from "../../../../../../core/services/lookup.service";
 import { LangPipe } from "../../../../../../shared/pipes/lang.pipe";
 import { FormBuilder, FormGroup, ReactiveFormsModule } from "@angular/forms";
 import { TranslationService } from "../../../../../../core/services/translation.service";
-import { IslamicDatepickerComponent } from "../../../../../../shared/components/islamic-datepicker/islamic-datepicker.component";
+import { GregorianArabicDatepickerComponent } from "../../../../../../shared/components/gregorian-arabic-datepicker/gregorian-arabic-datepicker.component";
 
 @Component({
   selector: "app-listing",
   imports: [
+    GregorianArabicDatepickerComponent,
+
     DecimalPipe,
     TranslatePipe,
     DatePipe,
     NgbPagination,
     GregorianDatepickerComponent,
-    IslamicDatepickerComponent,
     NgClass,
     LangPipe,
     ReactiveFormsModule,

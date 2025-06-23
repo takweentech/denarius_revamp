@@ -1,34 +1,28 @@
-import { Component, forwardRef, Injectable } from "@angular/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
-import {
-  NgbCalendar,
-  NgbCalendarGregorian,
-  NgbDatepickerI18n,
-  NgbDatepickerModule,
-  NgbDateStruct,
-} from "@ng-bootstrap/ng-bootstrap";
+import { Component, forwardRef, Injectable } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
-// أيام الأسبوع بالعربي
-const WEEKDAYS = ["ن", "ث", "ر", "خ", "ج", "س", "ح"];
+import { NgbCalendar, NgbCalendarIslamicCivil, NgbDatepickerI18n, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-// الشهور الميلادية بالعربي
+
+const WEEKDAYS = ['ن', 'ث', 'ر', 'خ', 'ج', 'س', 'ح'];
 const MONTHS = [
-  "يناير",
-  "فبراير",
-  "مارس",
-  "أبريل",
-  "مايو",
-  "يونيو",
-  "يوليو",
-  "أغسطس",
-  "سبتمبر",
-  "أكتوبر",
-  "نوفمبر",
-  "ديسمبر",
+  'محرم',
+  'صفر',
+  'ربيع الأول',
+  'ربيع الآخر',
+  'جمادى الأولى',
+  'جمادى الآخرة',
+  'رجب',
+  'شعبان',
+  'رمضان',
+  'شوال',
+  'ذو القعدة',
+  'ذو الحجة',
 ];
 
+
 @Injectable()
-export class ArabicGregorianI18n extends NgbDatepickerI18n {
+export class IslamicI18n extends NgbDatepickerI18n {
   getMonthShortName(month: number) {
     return MONTHS[month - 1];
   }
@@ -46,36 +40,40 @@ export class ArabicGregorianI18n extends NgbDatepickerI18n {
   }
 }
 
+
 @Component({
-  selector: "app-islamic-datepicker", // ممكن تغير الاسم لو مش مناسب
+  selector: 'app-islamic-datepicker',
   imports: [NgbDatepickerModule],
-  templateUrl: "./islamic-datepicker.component.html",
-  styleUrl: "./islamic-datepicker.component.scss",
+  templateUrl: './islamic-datepicker.component.html',
+  styleUrl: './islamic-datepicker.component.scss',
   providers: [
-    { provide: NgbCalendar, useClass: NgbCalendarGregorian },
-    { provide: NgbDatepickerI18n, useClass: ArabicGregorianI18n },
+
+    { provide: NgbCalendar, useClass: NgbCalendarIslamicCivil },
+    { provide: NgbDatepickerI18n, useClass: IslamicI18n },
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => IslamicDatepickerComponent),
-      multi: true,
-    },
+      multi: true
+    }
   ],
 })
 export class IslamicDatepickerComponent implements ControlValueAccessor {
-  value: string = "";
+  value: string = '';
   minDate: NgbDateStruct = {
     day: 1,
     month: 1,
-    year: 1940,
-  };
+    year: 1940
+  }
   maxDate: NgbDateStruct = {
     day: new Date().getDate(),
     month: new Date().getMonth() + 1,
-    year: new Date().getFullYear(),
-  };
+    year: new Date().getFullYear()
+  }
+
 
   private onChange!: (value: string) => void;
   private onTouched!: () => void;
+
 
   public writeValue(value: string): void {
     this.value = value;
@@ -88,6 +86,7 @@ export class IslamicDatepickerComponent implements ControlValueAccessor {
   public registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
+
 
   onDateSelect(date: NgbDateStruct): void {
     const formatted = `${date.year}-${date.month}-${date.day}`;
