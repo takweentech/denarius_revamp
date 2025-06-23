@@ -4,87 +4,106 @@
     <div class="d-flex flex-column gap-3">
       <h5>{{ "SETTINGS.SECURITY.CHANGE_PASSWORD_TITLE" | translate }}</h5>
       <div class="card-bg p-3 rounded-4">
-        <form [formGroup]="passwordForm"
-              (submit)="savePassword()"
-              class="row g-4 align-items-end">
+        <form
+          [formGroup]="passwordForm"
+          (submit)="savePassword()"
+          class="row g-4 align-items-end"
+        >
           <div class="col-lg-6 col-xl-3 col-12">
-            <label for="currentPassword"
-                   class="form-label">
+            <label for="currentPassword" class="form-label">
               {{ "SETTINGS.SECURITY.CURRENT_PASSWORD" | translate }}
             </label>
             <div class="input-group">
-              <input id="currentPassword"
-                     type="password"
-                     formControlName="currentPassword"
-                     class="form-control"
-                     placeholder="***********"
-                     #currentPassword />
+              <input
+                id="currentPassword"
+                type="password"
+                formControlName="currentPassword"
+                class="form-control"
+                placeholder="***********"
+                #currentPassword
+              />
 
               <span class="input-group-text">
                 @if (currentPassword.type === 'password') {
-                <i (click)="currentPassword.type = 'text'"
-                   class="fa-solid fa-eye text-primary cursor-pointer"></i>
+                <i
+                  (click)="currentPassword.type = 'text'"
+                  class="fa-solid fa-eye text-primary cursor-pointer"
+                ></i>
                 }@else {
-                <i (click)="currentPassword.type = 'password'"
-                   class="fa-solid fa-eye-slash text-primary cursor-pointer"></i>
+                <i
+                  (click)="currentPassword.type = 'password'"
+                  class="fa-solid fa-eye-slash text-primary cursor-pointer"
+                ></i>
                 }
               </span>
             </div>
           </div>
 
           <div class="col-lg-6 col-xl-3 col-12">
-            <label for="newPassword"
-                   class="form-label">{{
+            <label for="newPassword" class="form-label">{{
               "SETTINGS.SECURITY.NEW_PASSWORD" | translate
-              }}</label>
+            }}</label>
 
             <div class="input-group">
-              <input id="newPassword"
-                     type="password"
-                     formControlName="newPassword"
-                     class="form-control"
-                     placeholder="***********"
-                     #newPassword />
+              <input
+                id="newPassword"
+                type="password"
+                formControlName="newPassword"
+                class="form-control"
+                placeholder="***********"
+                #newPassword
+              />
               <span class="input-group-text">
                 @if (newPassword.type === 'password') {
-                <i (click)="newPassword.type = 'text'"
-                   class="fa-solid fa-eye text-primary cursor-pointer"></i>
+                <i
+                  (click)="newPassword.type = 'text'"
+                  class="fa-solid fa-eye text-primary cursor-pointer"
+                ></i>
                 }@else {
-                <i (click)="newPassword.type = 'password'"
-                   class="fa-solid fa-eye-slash text-primary cursor-pointer"></i>
+                <i
+                  (click)="newPassword.type = 'password'"
+                  class="fa-solid fa-eye-slash text-primary cursor-pointer"
+                ></i>
                 }
               </span>
             </div>
           </div>
 
           <div class="col-lg-12 col-xl-3 col-12">
-            <label for="confirmedPassword"
-                   class="form-label">
+            <label for="confirmedPassword" class="form-label">
               {{ "SETTINGS.SECURITY.CONFIRM_PASSWORD" | translate }}
             </label>
             <div class="input-group">
-              <input id="confirmedPassword"
-                     type="password"
-                     formControlName="confirmedPassword"
-                     class="form-control"
-                     placeholder="***********"
-                     #confirmedPassword />
+              <input
+                id="confirmedPassword"
+                type="password"
+                formControlName="confirmedPassword"
+                class="form-control"
+                placeholder="***********"
+                #confirmedPassword
+              />
               <span class="input-group-text">
                 @if (confirmedPassword.type === 'password') {
-                <i (click)="confirmedPassword.type = 'text'"
-                   class="fa-solid fa-eye text-primary cursor-pointer"></i>
+                <i
+                  (click)="confirmedPassword.type = 'text'"
+                  class="fa-solid fa-eye text-primary cursor-pointer"
+                ></i>
                 }@else {
-                <i (click)="confirmedPassword.type = 'password'"
-                   class="fa-solid fa-eye-slash text-primary cursor-pointer"></i>
+                <i
+                  (click)="confirmedPassword.type = 'password'"
+                  class="fa-solid fa-eye-slash text-primary cursor-pointer"
+                ></i>
                 }
               </span>
             </div>
           </div>
 
           <div class="col-lg-12 col-xl-3 col-12">
-            <button type="submit"
-                    [disabled]="loading() || passwordForm.invalid"
-                    class="btn col-md-12 col-12 btn-primary">
+            <button
+              type="submit"
+              [disabled]="loading() || passwordForm.invalid"
+              class="btn col-md-12 col-12 btn-primary"
+            >
               {{ "SETTINGS.SECURITY.CHANGE_PASSWORD_BUTTON" | translate }}
             </button>
           </div>
@@ -95,37 +114,40 @@
     <div class="d-flex flex-column gap-3">
       <h5>{{ "SETTINGS.SECURITY.CHANGE_PHONE_TITLE" | translate }}</h5>
       <div class="card-bg p-3 rounded-4">
-        <form [formGroup]="phoneForm"
-              (submit)="savePhoneNumber()"
-              class="row g-4 align-items-end">
+        <form
+          [formGroup]="phoneForm"
+          (submit)="savePhoneNumber()"
+          class="row g-4 align-items-end"
+        >
           <div class="col-xl-4 col-12">
-            <label for="newPhoneNumber"
-                   class="form-label">{{
+            <label for="newPhoneNumber" class="form-label">{{
               "SETTINGS.SECURITY.NEW_PHONE" | translate
-              }}</label>
+            }}</label>
 
             <div class="input-group">
               @if (translationService.language === 'en') {
-              <span class="input-group-text"
-                    dir="ltr">+966</span>
+              <span class="input-group-text" dir="ltr">+966</span>
               }
 
-              <input type="tel"
-                     class="form-control"
-                     formControlName="newPhoneNumber"
-                     placeholder="5xxxxxxxx" />
+              <input
+                type="tel"
+                class="form-control"
+                formControlName="newPhoneNumber"
+                placeholder="5xxxxxxxx"
+              />
 
               @if (translationService.language === 'ar') {
-              <span class="input-group-text"
-                    dir="ltr">+966</span>
+              <span class="input-group-text" dir="ltr">+966</span>
               }
             </div>
           </div>
 
           <div class="col-xl-3 col-12">
-            <button type="submit"
-                    [disabled]="loading() || phoneForm.invalid"
-                    class="btn col-md-12 col-12 btn-primary">
+            <button
+              type="submit"
+              [disabled]="loading() || phoneForm.invalid"
+              class="btn col-md-12 col-12 btn-primary"
+            >
               {{ "SETTINGS.SECURITY.UPDATE_PHONE" | translate }}
             </button>
           </div>
@@ -139,23 +161,28 @@
     <div class="d-flex flex-column gap-3">
       <h5>{{ "SETTINGS.SECURITY.CHANGE_EMAIL_TITLE" | translate }}</h5>
       <div class="card-bg p-3 rounded-4">
-        <form [formGroup]="emailForm"
-              (submit)="saveEmail()"
-              class="row g-4  align-items-end">
+        <form
+          [formGroup]="emailForm"
+          (submit)="saveEmail()"
+          class="row g-4 align-items-end"
+        >
           <div class="col-xl-4 col-12">
-            <label for="email"
-                   class="form-label">{{
+            <label for="email" class="form-label">{{
               "SETTINGS.SECURITY.NEW_EMAIL" | translate
-              }}</label>
-            <input type="email"
-                   formControlName="email"
-                   id="email"
-                   dir="ltr"
-                   class="form-control" />
+            }}</label>
+            <input
+              type="email"
+              formControlName="email"
+              id="email"
+              dir="ltr"
+              class="form-control"
+            />
           </div>
           <div class="col-xl-3 col-12">
-            <button class="btn col-md-12 col-12 btn-primary"
-                    [disabled]="loading() || emailForm.invalid">
+            <button
+              class="btn col-md-12 col-12 btn-primary"
+              [disabled]="loading() || emailForm.invalid"
+            >
               {{ "SETTINGS.SECURITY.UPDATE_EMAIL" | translate }}
             </button>
           </div>

@@ -1,5 +1,10 @@
 import { Component, inject, signal } from "@angular/core";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
 import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { finalize, takeUntil } from "rxjs";
 import { BaseComponent } from "../../../../../../core/base/base.component";
@@ -25,13 +30,19 @@ export class SecurityComponent extends BaseComponent {
   readonly translationService = inject(TranslationService);
   readonly translateService = inject(TranslateService);
   loading = signal<boolean>(false);
-  passwordForm: FormGroup = this.fb.group({
-    currentPassword: [null, Validators.required],
-    newPassword: [null, Validators.required],
-    confirmedPassword: [null, Validators.required]
-  }, { validators: matchValidator('newPassword', 'confirmedPassword') });
+  passwordForm: FormGroup = this.fb.group(
+    {
+      currentPassword: [null, Validators.required],
+      newPassword: [null, Validators.required],
+      confirmedPassword: [null, Validators.required],
+    },
+    { validators: matchValidator("newPassword", "confirmedPassword") }
+  );
   phoneForm: FormGroup = this.fb.group({
-    newPhoneNumber: [null, [Validators.required, Validators.pattern(REGEX_PATTERNS.PHONE_NUMBER)]],
+    newPhoneNumber: [
+      null,
+      [Validators.required, Validators.pattern(REGEX_PATTERNS.PHONE_NUMBER)],
+    ],
   });
   emailForm: FormGroup = this.fb.group({
     email: [null, [Validators.required, Validators.email]],
@@ -46,11 +57,14 @@ export class SecurityComponent extends BaseComponent {
         .pipe(
           finalize(() => this.loading.set(false)),
           takeUntil(this.destroy$)
-        ).subscribe({
+        )
+        .subscribe({
           next: (response) => {
             if (response.status == 200) {
               this.toastService.show({
-                text: this.translateService.instant('SETTINGS.SECURITY.PASSWORD_CHANGED_SUCCESS'),
+                text: this.translateService.instant(
+                  "SETTINGS.SECURITY.PASSWORD_CHANGED_SUCCESS"
+                ),
                 classname: "bg-success text-light",
                 icon: "fa-circle-check",
               });
@@ -63,9 +77,8 @@ export class SecurityComponent extends BaseComponent {
               });
             }
           },
-          error: (error) => { },
+          error: (error) => {},
         });
-
     } else {
       this.passwordForm.markAllAsTouched();
     }
@@ -79,22 +92,28 @@ export class SecurityComponent extends BaseComponent {
         .pipe(
           finalize(() => this.loading.set(false)),
           takeUntil(this.destroy$)
-        ).subscribe({
+        )
+        .subscribe({
           next: (response) => {
             if (response.status == 200) {
-              const modalRef = this.modalService.open(OtpComponent, { centered: true });
-              modalRef.componentInstance.newPhoneNumber = this.phoneForm.value.newPhoneNumber;
-              modalRef.componentInstance.mode = 'phone';
-              modalRef.result.then(result => {
+              const modalRef = this.modalService.open(OtpComponent, {
+                centered: true,
+              });
+              modalRef.componentInstance.newPhoneNumber =
+                this.phoneForm.value.newPhoneNumber;
+              modalRef.componentInstance.mode = "phone";
+              modalRef.result.then((result) => {
                 if (result) {
                   this.toastService.show({
-                    text: this.translateService.instant('SETTINGS.SECURITY.PHONE_CHANGE_SUCCESS'),
+                    text: this.translateService.instant(
+                      "SETTINGS.SECURITY.PHONE_CHANGE_SUCCESS"
+                    ),
                     classname: "bg-success text-light",
                     icon: "fa-circle-check",
                   });
                   this.phoneForm.reset();
                 }
-              })
+              });
             } else {
               this.toastService.show({
                 text: response.message,
@@ -103,9 +122,8 @@ export class SecurityComponent extends BaseComponent {
               });
             }
           },
-          error: (error) => { },
+          error: (error) => {},
         });
-
     } else {
       this.phoneForm.markAllAsTouched();
     }
@@ -120,22 +138,27 @@ export class SecurityComponent extends BaseComponent {
         .pipe(
           finalize(() => this.loading.set(false)),
           takeUntil(this.destroy$)
-        ).subscribe({
+        )
+        .subscribe({
           next: (response) => {
             if (response.status == 200) {
-              const modalRef = this.modalService.open(OtpComponent, { centered: true });
+              const modalRef = this.modalService.open(OtpComponent, {
+                centered: true,
+              });
               modalRef.componentInstance.requestId = response.data.requestId;
-              modalRef.componentInstance.mode = 'email';
-              modalRef.result.then(result => {
+              modalRef.componentInstance.mode = "email";
+              modalRef.result.then((result) => {
                 if (result) {
                   this.toastService.show({
-                    text: this.translateService.instant('SETTINGS.SECURITY.EMAIL_CHANGE_SUCCESS'),
+                    text: this.translateService.instant(
+                      "SETTINGS.SECURITY.EMAIL_CHANGE_SUCCESS"
+                    ),
                     classname: "bg-success text-light",
                     icon: "fa-circle-check",
                   });
                   this.emailForm.reset();
                 }
-              })
+              });
             } else {
               this.toastService.show({
                 text: response.message,
@@ -144,9 +167,8 @@ export class SecurityComponent extends BaseComponent {
               });
             }
           },
-          error: (error) => { },
+          error: (error) => {},
         });
-
     } else {
       this.phoneForm.markAllAsTouched();
     }
