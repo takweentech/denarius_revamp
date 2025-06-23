@@ -15,6 +15,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { OtpComponent } from "./components/otp/otp.component";
 import { matchValidator } from "../../../../../../core/validators/form.validators";
 import { REGEX_PATTERNS } from "../../../../../../core/constants/patterns.constants";
+import { NgIf } from "@angular/common";
 
 @Component({
   selector: "app-security",
@@ -32,8 +33,14 @@ export class SecurityComponent extends BaseComponent {
   loading = signal<boolean>(false);
   passwordForm: FormGroup = this.fb.group(
     {
-      currentPassword: [null, Validators.required],
-      newPassword: [null, Validators.required],
+      currentPassword: [null, [Validators.required]],
+      newPassword: [
+        null,
+        [
+          Validators.required,
+          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/),
+        ],
+      ],
       confirmedPassword: [null, Validators.required],
     },
     { validators: matchValidator("newPassword", "confirmedPassword") }
