@@ -18,7 +18,7 @@ import { UserProfileData } from '../../../../core/models/user';
 export class HeaderComponent {
   public WEB_ROUTES = WEB_ROUTES;
   translationService = inject(TranslationService);
-  private readonly tokenService = inject(TokenService);
+  tokenService = inject(TokenService);
   private readonly sidebarService = inject(SidebarService);
   private readonly router = inject(Router);
   private configService = inject(ConfigService);

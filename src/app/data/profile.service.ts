@@ -56,6 +56,15 @@ export class ProfileService {
         return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/SetInvestmentKnowledge`, payload)
     }
 
+    saveProfileImage(path: string): Observable<HttpCustomResponse<{}>> {
+        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/SetImageProfile?path=${encodeURIComponent(path)}`, {})
+    }
+
+    getProfileImage(): Observable<HttpCustomResponse<{}>> {
+        return this.http.get<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/GetImageProfile`)
+    }
+
+
 
 
 
