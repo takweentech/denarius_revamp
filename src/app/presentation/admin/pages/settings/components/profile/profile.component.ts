@@ -8,6 +8,7 @@ import { ProfileService } from "../../../../../../data/profile.service";
 import { finalize, takeUntil } from "rxjs";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { ToastService } from "../../../../../../shared/components/toast/toast.service";
+import { FileService } from "../../../../../../data/file.service";
 
 @Component({
   selector: "app-profile",
@@ -18,13 +19,14 @@ import { ToastService } from "../../../../../../shared/components/toast/toast.se
 export class ProfileComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
+  private readonly fileService = inject(FileService);
   private readonly fb = inject(FormBuilder);
   private toastService = inject(ToastService);
   loading = signal<boolean>(false);
+  sessionUserData = signal<UserProfileData | null>(this.tokenService.getUser());
   user = signal<UserBasicProfileData | null>(null);
-
   form!: FormGroup;
-
+  uploadedImage = signal<string>('');
   ngOnInit(): void {
     this.initForm();
     this.profileService.getBasicPersonalInformation().pipe(takeUntil(this.destroy$)).subscribe({
@@ -32,7 +34,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         this.user.set(response.data);
         this.initForm(response.data);
       }
-    })
+    });
   }
 
   initForm(data?: UserBasicProfileData) {
@@ -46,7 +48,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     })
   }
 
-  onSave() {
+  onSave(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return
@@ -67,5 +69,57 @@ export class ProfileComponent extends BaseComponent implements OnInit {
 
         }
       })
+  }
+
+  onProfileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const files = input.files;
+
+    if (!files || files.length === 0)
+      return;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      this.uploadedImage.set(reader.result as string);
+      this.uploadProfileImage(files[0])
+    };
+  }
+
+  uploadProfileImage(file: File): void {
+    this.fileService.uploadInvestor(file).pipe(takeUntil(this.destroy$)).subscribe({
+      next: (response) => {
+        this.setProfileImage(response.fileName);
+      },
+      error: (error) => {
+
+      }
+    })
+  }
+
+  setProfileImage(path: string): void {
+    this.profileService.saveProfileImage(path).pipe(takeUntil(this.destroy$)).subscribe({
+      next: (response) => {
+        this.getProfileImage();
+      },
+      error: (error) => {
+
+      }
+    })
+  }
+
+  getProfileImage(): void {
+    this.profileService.getProfileImage().pipe(takeUntil(this.destroy$)).subscribe({
+      next: (response) => {
+        this.tokenService.setUser({ ...this.tokenService.getUser(), userProfile: { ...this.tokenService.getUser().userProfile, profileImageUrl: response.data as string } })
+      },
+      error: (error) => {
+        this.toastService.show({
+          text: error.message,
+          classname: "bg-danger text-light",
+          icon: "fa-circle-exclamation",
+        });
+      }
+    })
   }
 }

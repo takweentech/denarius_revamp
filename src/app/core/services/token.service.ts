@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User, UserProfileData } from '../models/user';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,10 @@ export class TokenService {
     localStorage.setItem(this.USER_KEY, JSON.stringify(user))
   }
 
+  // Get session user data
   public getUser(): UserProfileData {
     return JSON.parse(localStorage.getItem(this.USER_KEY) as string)
   }
-
   // Store token securely
   public setToken(token: string | undefined): void {
     localStorage.setItem(this.TOKEN_KEY, token as string);
@@ -29,6 +30,7 @@ export class TokenService {
     localStorage.removeItem(this.USER_KEY);
     localStorage.removeItem(this.TOKEN_KEY);
   }
+
 
   isAuthenticated(): boolean {
     return localStorage.getItem(this.TOKEN_KEY) ? true : false

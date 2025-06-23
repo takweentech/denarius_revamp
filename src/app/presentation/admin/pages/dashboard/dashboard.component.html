@@ -6,23 +6,15 @@
         <h5 class="card-title text-primary">
           {{ "DASHBOARD.PERSONAL_INFORMATION.TITLE" | translate }}
         </h5>
-        <div
-          class="card bg-white py-2 px-3 h-100 mx-auto w-100 flex-row align-items-center g-4"
-        >
+        <div class="card bg-white py-2 px-3 h-100 mx-auto w-100 flex-row align-items-center g-4">
           <div class="row g-4 w-100">
-            <div
-              class="d-flex col-12 col-md-2 flex-column gap-1 align-items-center justify-content-center"
-            >
-              @if (user.userProfile.profileImageUrl) {
-              <img
-                [src]="user.userProfile.profileImageUrl"
-                alt="Profile"
-                class="rounded-circle profile-image"
-              />
+            <div class="d-flex col-12 col-md-2 flex-column gap-1 align-items-center justify-content-center">
+              @if (tokenService.getUser().userProfile.profileImageUrl) {
+              <img [src]="tokenService.getUser().userProfile.profileImageUrl"
+                   alt="Profile"
+                   class="rounded-circle profile-image" />
               }@else {
-              <div
-                class="initials bg-primary d-flex justify-content-center align-items-center"
-              >
+              <div class="initials bg-primary d-flex justify-content-center align-items-center">
                 <h3>{{ user.userProfile.fullName | initials }}</h3>
               </div>
               }
@@ -33,35 +25,35 @@
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{
                     "DASHBOARD.PERSONAL_INFORMATION.FULLNAME" | translate
-                  }}</small>
+                    }}</small>
                   <span class="text-lg fw-bold">{{
                     user.userProfile.fullName
-                  }}</span>
+                    }}</span>
                 </div>
 
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{
                     "DASHBOARD.PERSONAL_INFORMATION.NATIONALITY" | translate
-                  }}</small>
+                    }}</small>
                   <span class="text-lg fw-bold">{{
                     user.userProfile.nationality || "-"
-                  }}</span>
+                    }}</span>
                 </div>
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{
                     "DASHBOARD.PERSONAL_INFORMATION.ID_NUMBER" | translate
-                  }}</small>
+                    }}</small>
                   <span class="text-lg fw-bold">{{
                     user.userProfile.nationalId
-                  }}</span>
+                    }}</span>
                 </div>
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{
                     "DASHBOARD.PERSONAL_INFORMATION.EXPIRY_DATE" | translate
-                  }}</small>
+                    }}</small>
                   <span class="text-lg fw-bold">{{
                     user.userProfile.expiryDate | date : "dd/MM/yyyy"
-                  }}</span>
+                    }}</span>
                 </div>
               </div>
             </div>
@@ -75,9 +67,7 @@
         <div class="card bg-primary text-white h-100 py-3 px-3 d-flex gap-1">
           <div class="col-6 d-flex flex-column">
             <small>{{ "DASHBOARD.WALLET.BALANCE" | translate }}</small>
-            <div
-              class="w-fit price-alignment text-lg fw-bold d-flex align-items-center gap-1"
-            >
+            <div class="w-fit price-alignment text-lg fw-bold d-flex align-items-center gap-1">
               {{ user.investmentAccount.balance | number : "1.0-2" }}
               <span class="icon-saudi_riyal text-white"></span>
             </div>
@@ -87,28 +77,28 @@
             <div class="col-6 d-flex flex-column">
               <small>{{
                 "DASHBOARD.WALLET.BENEFICIARY_NAME" | translate
-              }}</small>
+                }}</small>
               <span class="text-lg fw-bold">{{
                 user.investmentAccount.accountHolderName
-              }}</span>
+                }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WALLET.BANK_NAME" | translate }}</small>
               <span class="text-lg fw-bold">{{
                 user.investmentAccount.bankName || "-"
-              }}</span>
+                }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WALLET.ACCOUNT_NUMBER" | translate }}</small>
               <span class="text-lg fw-bold">{{
                 user.investmentAccount.accountNumber || "-"
-              }}</span>
+                }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ "DASHBOARD.WALLET.IBAN" | translate }}</small>
               <span class="text-lg fw-bold">{{
                 user.investmentAccount.iban || "-"
-              }}</span>
+                }}</span>
             </div>
           </div>
         </div>
@@ -120,9 +110,7 @@
   <section>
     <div class="row g-2">
       <div class="col-md-12 col-lg-6 col-xl-3">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
           <div class="icon success fs-1">
             <span class="icon-saudi_riyal"></span>
           </div>
@@ -130,8 +118,7 @@
           <div class="d-flex flex-column gap-1">
             <span>{{ "DASHBOARD.STATS.TOTAL_DEPOSIT" | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
-              <span class="fw-semibold"
-                >{{ user.financialSummary.totalDeposits | number : "1.0-2" }}
+              <span class="fw-semibold">{{ user.financialSummary.totalDeposits | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -139,18 +126,16 @@
         </div>
       </div>
       <div class="col-md-12 col-lg-6 col-xl-3">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon danger">
-            <img src="assets/icons/invoice-dollar.svg" alt="" />
+            <img src="assets/icons/invoice-dollar.svg"
+                 alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
             <span>{{ "DASHBOARD.STATS.TOTAL_INVESTEMENTS" | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
-              <span class="fw-semibold"
-                >{{ user.financialSummary.totalInvestments | number : "1.0-2" }}
+              <span class="fw-semibold">{{ user.financialSummary.totalInvestments | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -158,18 +143,16 @@
         </div>
       </div>
       <div class="col-md-12 col-lg-6 col-xl-3">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon primary">
-            <img src="assets/icons/earnings.svg" alt="" />
+            <img src="assets/icons/earnings.svg"
+                 alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
             <span>{{ "DASHBOARD.STATS.TOTAL_EARNINGS" | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
-              <span class="fw-semibold"
-                >{{ user.financialSummary.totalProfits | number : "1.0-2" }}
+              <span class="fw-semibold">{{ user.financialSummary.totalProfits | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -177,20 +160,18 @@
         </div>
       </div>
       <div class="col-md-12 col-lg-6 col-xl-3">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon warning">
-            <img src="assets/icons/money-tag.svg" alt="" />
+            <img src="assets/icons/money-tag.svg"
+                 alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
             <span>{{
               "DASHBOARD.STATS.TOTAL_EXPECTED_EARNINGS" | translate
-            }}</span>
+              }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
-              <span class="fw-semibold"
-                >{{ user.financialSummary.expectedProfits | number : "1.0-2" }}
+              <span class="fw-semibold">{{ user.financialSummary.expectedProfits | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -208,13 +189,10 @@
           {{ "DASHBOARD.TRANSACTION_DISTRIBUTION.TITLE" | translate }}
         </h5>
 
-        <div
-          class="card bg-white d-flex align-items-center justify-content-center h-100"
-        >
-          <div id="chart" class="w-fit">
-            <app-transaction-chart
-              [transactions]="transactions()"
-            ></app-transaction-chart>
+        <div class="card bg-white d-flex align-items-center justify-content-center h-100">
+          <div id="chart"
+               class="w-fit">
+            <app-transaction-chart [transactions]="transactions()"></app-transaction-chart>
           </div>
         </div>
       </div>
@@ -224,10 +202,8 @@
             {{ "DASHBOARD.RECENT_TRANSACTIONS.TITLE" | translate }}
           </h5>
 
-          <a
-            [routerLink]="'/' + WEB_ROUTES.TRANSACTIONS.ROOT"
-            class="text-primary d-flex align-items-center gap-1 small"
-          >
+          <a [routerLink]="'/' + WEB_ROUTES.TRANSACTIONS.ROOT"
+             class="text-primary d-flex align-items-center gap-1 small">
             {{ "DASHBOARD.RECENT_TRANSACTIONS.VIEW_ALL" | translate }}
             <i class="fas fa-arrow-right"></i>
           </a>
@@ -263,64 +239,6 @@
           </div>
           }
         </div>
-
-        <!-- <div class="card bg-white h-100 p-2">
-
-          <div class="table-responsive">
-            <table class="fw-light backoffice-table table">
-              <thead>
-                <tr>
-                  <th>{{ "TRANSACTIONS.DESCRIPTION" | translate }}</th>
-                  <th>{{ "TRANSACTIONS.REF_ID" | translate }}</th>
-                  <th>{{ "TRANSACTIONS.TYPE" | translate }}</th>
-                  <th>{{ "TRANSACTIONS.DATE" | translate }}</th>
-                  <th>{{ "TRANSACTIONS.AMOUNT" | translate }}</th>
-                  <th>{{ "TRANSACTIONS.ACCOUNT" | translate }}</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (tx of user.recentTransactions ; track tx.id) {
-                <tr>
-                  <td>
-                    <div class="d-flex align-items-center justify-content-start gap-1">
-                      <div class="arrow-circle">
-                        <i class="fas"
-                           [ngClass]="{
-                            'fa-arrow-down':
-                              tx.transactionType === 'Withdrawal',
-                            'fa-arrow-up': tx.transactionType !== 'Withdrawal'
-                          }"></i>
-                      </div>
-                      <span class="ps-2">{{ tx.description || "-" }}</span>
-                    </div>
-                  </td>
-                  <td>#{{ tx.refId }}</td>
-                  <td>
-                    {{ tx.transactionType }}
-                  </td>
-                  <td>
-                    {{ tx.createDate | date : "medium" }}
-                  </td>
-                  <td>
-                    <div class="d-flex align-items-center gap-1"
-                        >
-                      <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                           alt="" />
-                      {{ tx.amount | number : "1.0-2" }}
-
-                    </div>
-                  </td>
-                  <td>
-                    <span>
-                      {{ tx.accountNumber }}
-                    </span>
-                  </td>
-                </tr>
-                }
-              </tbody>
-            </table>
-          </div>
-        </div> -->
       </div>
     </div>
   </section>

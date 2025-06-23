@@ -18,6 +18,7 @@ export class AppComponent {
 
   constructor() {
     this.translationService.init(environment.defaultLang);
+
   }
 
   onLangChange(): void {

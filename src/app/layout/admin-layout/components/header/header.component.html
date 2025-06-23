@@ -13,7 +13,7 @@
         <button type="button"
                 id="dropdownBasic1"
                 ngbDropdownToggle>
-          <img [src]="user.userProfile.profileImageUrl"
+          <img [src]="tokenService.getUser().userProfile.profileImageUrl"
                alt="Profile"
                class="rounded-circle profile-img" />
         </button>
