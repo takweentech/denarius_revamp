@@ -54,6 +54,12 @@
             ></app-islamic-datepicker>
             }
           </div>
+          @if (dateError()) {
+          <small class="text-danger mt-1 d-flex align-items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ "VALIDATORS.DATE_ERROR" | translate }}
+          </small>
+          }
         </form>
 
         <div class="d-flex justify-content-end gap-2">

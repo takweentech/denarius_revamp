@@ -93,7 +93,13 @@
         <button ngbNavLink>
           {{ "INVESTMENTS.DETAILS.DISTRIBUTIONS.TITLE" | translate }}
         </button>
-        <ng-template ngbNavContent> </ng-template>
+        <ng-template ngbNavContent>
+          <div class="py-3">
+            <h6 class="text-center">
+              {{ "INVESTMENTS.DETAILS.DISTRIBUTIONS.EMPTY" | translate }}
+            </h6>
+          </div>
+        </ng-template>
       </li>
     </ul>
     <hr class="m-0" />
