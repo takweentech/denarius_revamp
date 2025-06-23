@@ -1,18 +1,19 @@
 <!-- Success message  -->
 <div class="gap-3 justify-content-center row d-flex align-items-center text-center">
   <div class="mb-2">
-    <img src="assets/images/Illustration.svg"
-         alt="" />
+    <img src="assets/images/Illustration.svg" alt="" />
   </div>
   <div class="d-flex flex-column gap-2">
-    <h2 class="fw-bold">{{investmentPaymentResponse.statusName}}</h2>
-    <h5 class="text-muted">{{investmentPaymentResponse.acknowledge }}</h5>
+    <h2 class="fw-bold">{{ investmentPaymentResponse.statusName }}</h2>
+    <h5 class="text-muted">{{ investmentPaymentResponse.acknowledge }}</h5>
   </div>
 
   <div class="justify-content-center align-items-center text-center d-flex">
-    <a [routerLink]="'/' + WEB_ROUTES.INVESTMENTS.ROOT"
-       class="btn-primary showbtn col-md-3 col-sm-12 text-white m-3 btn shadow-sm">
-      {{ "SUCCESS_PAGE.VIEW_INVESTMENTS" | translate }}
+    <a
+      [routerLink]="'/' + WEB_ROUTES.INVESTMENTS.ROOT"
+      class="btn-primary showbtn col-md-3 col-sm-12 text-white m-3 btn shadow-sm"
+    >
+      {{ 'SUCCESS_PAGE.VIEW_INVESTMENTS' | translate }}
     </a>
   </div>
 </div>

@@ -3,55 +3,45 @@
   <section>
     <div class="row g-2">
       <div class="col-md-12 col-lg-6 col-xl-4">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
           <div class="icon fs-1 success">
             <span class="mt-2 icon-saudi_riyal"></span>
           </div>
 
           <div class="d-flex flex-column gap-1">
-            <span
-              >{{ "INVESTMENTS.STATS.TOTAL_INVESTMENTS" | translate }}
-            </span>
+            <span>{{ 'INVESTMENTS.STATS.TOTAL_INVESTMENTS' | translate }} </span>
             <div class="fw-semibold d-flex price-alignment w-fit gap-1">
-              {{ statistics()?.totalInvestments | number : "1.0-2" }}
+              {{ statistics()?.totalInvestments | number: '1.0-2' }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-12 col-lg-6 col-xl-4">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon danger">
             <img src="assets/icons/invoice-dollar.svg" alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
-            <span>{{
-              "INVESTMENTS.STATS.TOTAL_INVESTMENTS_NUMBER" | translate
-            }}</span>
+            <span>{{ 'INVESTMENTS.STATS.TOTAL_INVESTMENTS_NUMBER' | translate }}</span>
             <div class="fw-semibold d-flex price-alignment w-fit gap-1">
-              {{ statistics()?.totalInvestmentCount | number : "1.0-2" }}
+              {{ statistics()?.totalInvestmentCount | number: '1.0-2' }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-12 col-lg-6 col-xl-4">
-        <div
-          class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
-        >
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon primary">
             <img src="assets/icons/earnings.svg" alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
-            <span>{{ "INVESTMENTS.STATS.TOTAL_EARNINGS" | translate }}</span>
+            <span>{{ 'INVESTMENTS.STATS.TOTAL_EARNINGS' | translate }}</span>
             <div class="fw-semibold d-flex price-alignment w-fit gap-1">
-              {{ statistics()?.totalProfits | number : "1.0-2" }}
+              {{ statistics()?.totalProfits | number: '1.0-2' }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </div>
@@ -64,100 +54,84 @@
   <section>
     <div class="col-md-12 d-flex flex-column gap-3">
       <h5 class="card-title text-primary">
-        {{ "INVESTMENTS.MY_INVESTMENTS.TITLE" | translate }}
+        {{ 'INVESTMENTS.MY_INVESTMENTS.TITLE' | translate }}
       </h5>
       <div class="row mx-0 g-3">
         @if (loading()) {
-        <div class="py-3">
-          <h6 class="text-center">
-            {{ "INVESTMENTS.MY_INVESTMENTS.LOADING" | translate }}...
-          </h6>
-        </div>
-        }@else { @if (investments().length) { @for (item of investments(); track
-        $index) {
-        <div class="card bg-white p-4 w-100">
-          <div class="row align-items-center">
-            <div class="col d-flex gap-4 align-items-center">
-              <span class="badge bg-success">{{ item.status }}</span>
-              <div class="d-flex flex-column gap-2">
-                <small>
-                  {{
-                    "INVESTMENTS.MY_INVESTMENTS.PRODUCT_NAME" | translate
-                  }}</small
-                >
-                <h6>{{ item.name }}</h6>
-              </div>
-            </div>
-
-            <div class="col d-flex flex-column gap-2">
-              <small>
-                {{
-                  "INVESTMENTS.MY_INVESTMENTS.INVESTED_AMOUNT" | translate
-                }}</small
-              >
-              <div class="d-flex gap-1 price-alignment w-fit">
-                {{ item.stockValue | number : "1.0-2" }}
-                <span class="icon-saudi_riyal"></span>
-              </div>
-            </div>
-
-            <div class="col d-flex flex-column gap-2">
-              <small>{{ "INVESTMENTS.MY_INVESTMENTS.ROI" | translate }}</small>
-              <div class="d-flex gap-1 price-alignment w-fit">
-                {{ item.stockCount | number : "1.0-2" }}
-                <span class="icon-saudi_riyal"></span>
-              </div>
-            </div>
-
-            <div class="col d-flex flex-column gap-2">
-              <small>{{
-                "INVESTMENTS.MY_INVESTMENTS.INVESTMENT_DATE" | translate
-              }}</small>
-              <span class="w-fit" dir="ltr">{{
-                item.writingDate | date : "dd/MM/yyyy hh:mm a"
-              }}</span>
-            </div>
-
-            <div class="col-1 d-flex justify-content-end">
-              <a
-                [routerLink]="
-                  '/' +
-                  WEB_ROUTES.INVESTMENTS.ROOT +
-                  '/' +
-                  WEB_ROUTES.INVESTMENTS.DETAILS +
-                  '/' +
-                  item.id
-                "
-                class="btn btn-sm btn-primary"
-              >
-                <i class="fas fa-eye"></i>
-              </a>
-            </div>
+          <div class="py-3">
+            <h6 class="text-center">{{ 'INVESTMENTS.MY_INVESTMENTS.LOADING' | translate }}...</h6>
           </div>
-        </div>
-        } }@else{
-        <div class="py-3">
-          <h6 class="text-center">
-            {{ "INVESTMENTS.MY_INVESTMENTS.EMPTY" | translate }}
-          </h6>
-        </div>
-        } }
+        } @else {
+          @if (investments().length) {
+            @for (item of investments(); track $index) {
+              <div class="card bg-white p-4 w-100">
+                <div class="row align-items-center">
+                  <div class="col d-flex gap-4 align-items-center">
+                    <span class="badge bg-success">{{ item.status }}</span>
+                    <div class="d-flex flex-column gap-2">
+                      <small> {{ 'INVESTMENTS.MY_INVESTMENTS.PRODUCT_NAME' | translate }}</small>
+                      <h6>{{ item.name }}</h6>
+                    </div>
+                  </div>
+
+                  <div class="col d-flex flex-column gap-2">
+                    <small> {{ 'INVESTMENTS.MY_INVESTMENTS.INVESTED_AMOUNT' | translate }}</small>
+                    <div class="d-flex gap-1 price-alignment w-fit">
+                      {{ item.stockValue | number: '1.0-2' }}
+                      <span class="icon-saudi_riyal"></span>
+                    </div>
+                  </div>
+
+                  <div class="col d-flex flex-column gap-2">
+                    <small>{{ 'INVESTMENTS.MY_INVESTMENTS.ROI' | translate }}</small>
+                    <div class="d-flex gap-1 price-alignment w-fit">
+                      {{ item.stockCount | number: '1.0-2' }}
+                      <span class="icon-saudi_riyal"></span>
+                    </div>
+                  </div>
+
+                  <div class="col d-flex flex-column gap-2">
+                    <small>{{ 'INVESTMENTS.MY_INVESTMENTS.INVESTMENT_DATE' | translate }}</small>
+                    <span class="w-fit" dir="ltr">{{ item.writingDate | date: 'dd/MM/yyyy hh:mm a' }}</span>
+                  </div>
+
+                  <div class="col-1 d-flex justify-content-end">
+                    <a
+                      [routerLink]="
+                        '/' + WEB_ROUTES.INVESTMENTS.ROOT + '/' + WEB_ROUTES.INVESTMENTS.DETAILS + '/' + item.id
+                      "
+                      class="btn btn-sm btn-primary"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            }
+          } @else {
+            <div class="py-3">
+              <h6 class="text-center">
+                {{ 'INVESTMENTS.MY_INVESTMENTS.EMPTY' | translate }}
+              </h6>
+            </div>
+          }
+        }
       </div>
     </div>
 
     @if (!loading() && investments().length) {
-    <nav class="d-flex justify-content-center my-4">
-      <ngb-pagination
-        [(page)]="pagination.pageNumber"
-        [pageSize]="pagination.pageSize"
-        [collectionSize]="total()"
-        [maxSize]="5"
-        [ellipses]="false"
-        (pageChange)="goToPage($event)"
-        size="md"
-      >
-      </ngb-pagination>
-    </nav>
+      <nav class="d-flex justify-content-center my-4">
+        <ngb-pagination
+          [(page)]="pagination.pageNumber"
+          [pageSize]="pagination.pageSize"
+          [collectionSize]="total()"
+          [maxSize]="5"
+          [ellipses]="false"
+          (pageChange)="goToPage($event)"
+          size="md"
+        >
+        </ngb-pagination>
+      </nav>
     }
   </section>
 </main>

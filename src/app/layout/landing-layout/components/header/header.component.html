@@ -8,31 +8,20 @@
       </a>
       <ul class="d-none d-lg-flex">
         <li>
-          <a [routerLink]="'/'">{{
-            "LAYOUT.HEADER.NAV_1.ITEM_1" | translate
-          }}</a>
+          <a [routerLink]="'/'">{{ 'LAYOUT.HEADER.NAV_1.ITEM_1' | translate }}</a>
         </li>
         <li>
-          <a [routerLink]="'/' + WEB_ROUTES.ABOUT_US.ROOT">{{
-            "LAYOUT.HEADER.NAV_1.ITEM_2" | translate
-          }}</a>
+          <a [routerLink]="'/' + WEB_ROUTES.ABOUT_US.ROOT">{{ 'LAYOUT.HEADER.NAV_1.ITEM_2' | translate }}</a>
         </li>
         <li>
-          <a [routerLink]="'/' + WEB_ROUTES.SERVICES.ROOT">{{
-            "LAYOUT.HEADER.NAV_1.ITEM_3" | translate
-          }}</a>
+          <a [routerLink]="'/' + WEB_ROUTES.SERVICES.ROOT">{{ 'LAYOUT.HEADER.NAV_1.ITEM_3' | translate }}</a>
         </li>
         <li>
           <a
             [routerLink]="
-              '/' +
-              WEB_ROUTES.AUTH.ROOT +
-              '/' +
-              WEB_ROUTES.AUTH.REGISTRATION +
-              '/' +
-              WEB_ROUTES.AUTH.COMANY
+              '/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.REGISTRATION + '/' + WEB_ROUTES.AUTH.COMANY
             "
-            >{{ "LAYOUT.HEADER.NAV_1.ITEM_4" | translate }}</a
+            >{{ 'LAYOUT.HEADER.NAV_1.ITEM_4' | translate }}</a
           >
         </li>
       </ul>
@@ -40,57 +29,39 @@
     <!-- NAV 2 -->
     <nav class="nav-2 d-none d-lg-flex">
       @if (!isAuthenticated) {
-      <ul>
-        <li>
-          <a
-            [routerLink]="
-              '/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_IN
-            "
-            >{{ "LAYOUT.HEADER.NAV_2.ITEM_1" | translate }}</a
-          >
-        </li>
-        <li>
-          <a [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT">{{
-            "LAYOUT.HEADER.NAV_2.ITEM_2" | translate
-          }}</a>
-        </li>
-      </ul>
-      }@else {
-
-      <div ngbDropdown class="d-inline-block">
-        <button
-          class="card bg-white p-0 rounded-4 gap-2"
-          id="dropdownBasic1"
-          ngbDropdownToggle
-        >
-          <div class="bg-primary text-white p-3 fs-6 rounded-4">
-            {{ user.userProfile.fullName | initials }}
+        <ul>
+          <li>
+            <a [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_IN">{{
+              'LAYOUT.HEADER.NAV_2.ITEM_1' | translate
+            }}</a>
+          </li>
+          <li>
+            <a [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT">{{ 'LAYOUT.HEADER.NAV_2.ITEM_2' | translate }}</a>
+          </li>
+        </ul>
+      } @else {
+        <div ngbDropdown class="d-inline-block">
+          <button class="card bg-white p-0 rounded-4 gap-2" id="dropdownBasic1" ngbDropdownToggle>
+            <div class="bg-primary text-white p-3 fs-6 rounded-4">
+              {{ user.userProfile.fullName | initials }}
+            </div>
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem>
+              <a [routerLink]="'/' + WEB_ROUTES.SETTINGS.ROOT" class="text-primary">
+                {{ 'LAYOUT.HEADER.PROFILE_DROPDOWN.MY_PROFILE' | translate }}
+              </a>
+            </button>
+            <button ngbDropdownItem>
+              <a class="text-primary" [routerLink]="'/' + WEB_ROUTES.INVESTMENTS.ROOT">
+                {{ 'LAYOUT.HEADER.PROFILE_DROPDOWN.MY_INVESTMENTS' | translate }}</a
+              >
+            </button>
+            <button (click)="onLogout()" class="text-danger" ngbDropdownItem>
+              {{ 'LAYOUT.HEADER.PROFILE_DROPDOWN.LOGOUT' | translate }}
+            </button>
           </div>
-        </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-          <button ngbDropdownItem>
-            <a
-              [routerLink]="'/' + WEB_ROUTES.SETTINGS.ROOT"
-              class="text-primary"
-            >
-              {{ "LAYOUT.HEADER.PROFILE_DROPDOWN.MY_PROFILE" | translate }}
-            </a>
-          </button>
-          <button ngbDropdownItem>
-            <a
-              class="text-primary"
-              [routerLink]="'/' + WEB_ROUTES.INVESTMENTS.ROOT"
-            >
-              {{
-                "LAYOUT.HEADER.PROFILE_DROPDOWN.MY_INVESTMENTS" | translate
-              }}</a
-            >
-          </button>
-          <button (click)="onLogout()" class="text-danger" ngbDropdownItem>
-            {{ "LAYOUT.HEADER.PROFILE_DROPDOWN.LOGOUT" | translate }}
-          </button>
         </div>
-      </div>
       }
     </nav>
 
@@ -107,18 +78,11 @@
 </header>
 
 <ng-template #content let-offcanvas>
-  <div
-    class="offcanvas-header d-flex align-items-center justify-content-between"
-  >
+  <div class="offcanvas-header d-flex align-items-center justify-content-between">
     <h4 class="offcanvas-title">
-      {{ "LAYOUT.HEADER.NAV_2.TITLE" | translate }}
+      {{ 'LAYOUT.HEADER.NAV_2.TITLE' | translate }}
     </h4>
-    <button
-      type="button"
-      class="navbar-toggler"
-      aria-label="Close"
-      (click)="offcanvas.dismiss('Cross click')"
-    >
+    <button type="button" class="navbar-toggler" aria-label="Close" (click)="offcanvas.dismiss('Cross click')">
       <i class="fas fa-close"></i>
     </button>
   </div>
@@ -126,43 +90,27 @@
     <nav class="mb-auto">
       <ul class="nav navbar-nav navbar p-0 gap-2">
         <li class="w-100">
-          <a class="text-primary text-start" href="">{{
-            "LAYOUT.HEADER.NAV_1.ITEM_1" | translate
+          <a class="text-primary text-start" href="">{{ 'LAYOUT.HEADER.NAV_1.ITEM_1' | translate }}</a>
+        </li>
+        <li class="w-100">
+          <a class="text-primary text-start" [routerLink]="'/' + WEB_ROUTES.ABOUT_US.ROOT">{{
+            'LAYOUT.HEADER.NAV_1.ITEM_2' | translate
           }}</a>
         </li>
         <li class="w-100">
-          <a
-            class="text-primary text-start"
-            [routerLink]="'/' + WEB_ROUTES.ABOUT_US.ROOT"
-            >{{ "LAYOUT.HEADER.NAV_1.ITEM_2" | translate }}</a
-          >
+          <a class="text-primary text-start" href="">{{ 'LAYOUT.HEADER.NAV_1.ITEM_3' | translate }}</a>
         </li>
         <li class="w-100">
-          <a class="text-primary text-start" href="">{{
-            "LAYOUT.HEADER.NAV_1.ITEM_3" | translate
-          }}</a>
-        </li>
-        <li class="w-100">
-          <a class="text-primary text-start" href="">{{
-            "LAYOUT.HEADER.NAV_1.ITEM_4" | translate
-          }}</a>
+          <a class="text-primary text-start" href="">{{ 'LAYOUT.HEADER.NAV_1.ITEM_4' | translate }}</a>
         </li>
       </ul>
     </nav>
     <div class="extra-nav d-flex justify-content-stretch gap-2">
-      <a
-        href="javascript:void(0);"
-        (click)="offcanvas.dismiss()"
-        class="btn btn-outline-primary flex-grow-1"
-      >
-        {{ "LAYOUT.HEADER.NAV_2.ITEM_1" | translate }}
+      <a href="javascript:void(0);" (click)="offcanvas.dismiss()" class="btn btn-outline-primary flex-grow-1">
+        {{ 'LAYOUT.HEADER.NAV_2.ITEM_1' | translate }}
       </a>
-      <a
-        href="javascript:void(0);"
-        (click)="offcanvas.dismiss()"
-        class="btn btn-primary flex-grow-1"
-      >
-        <span>{{ "LAYOUT.HEADER.NAV_2.ITEM_2" | translate }}</span>
+      <a href="javascript:void(0);" (click)="offcanvas.dismiss()" class="btn btn-primary flex-grow-1">
+        <span>{{ 'LAYOUT.HEADER.NAV_2.ITEM_2' | translate }}</span>
       </a>
     </div>
   </div>

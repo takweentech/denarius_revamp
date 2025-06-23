@@ -1,28 +1,21 @@
-import { Component, inject, signal } from "@angular/core";
-import { Investment } from "../../../../../../core/models/investment";
-import { ActivatedRoute } from "@angular/router";
-import { NgbNavModule, NgbPagination } from "@ng-bootstrap/ng-bootstrap";
-import { TranslatePipe } from "@ngx-translate/core";
-import { DatePipe, DecimalPipe, NgClass } from "@angular/common";
-import { Location } from "@angular/common";
-import { DividendService } from "../../../../../../data/dividend.service";
-import { TranslationService } from "../../../../../../core/services/translation.service";
-import { Subject } from "rxjs"; // Added for destroy$
-import { finalize, takeUntil } from "rxjs/operators"; // Added for RxJS operators
-import { DividendFilter } from "../../../../../../core/models/dividend";
+import { Component, inject, signal } from '@angular/core';
+import { Investment } from '../../../../../../core/models/investment';
+import { ActivatedRoute } from '@angular/router';
+import { NgbNavModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { TranslatePipe } from '@ngx-translate/core';
+import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
+import { Location } from '@angular/common';
+import { DividendService } from '../../../../../../data/dividend.service';
+import { TranslationService } from '../../../../../../core/services/translation.service';
+import { Subject } from 'rxjs'; // Added for destroy$
+import { finalize, takeUntil } from 'rxjs/operators'; // Added for RxJS operators
+import { DividendFilter } from '../../../../../../core/models/dividend';
 
 @Component({
-  selector: "app-details",
-  imports: [
-    NgbNavModule,
-    NgClass,
-    DecimalPipe,
-    NgbPagination,
-    TranslatePipe,
-    DatePipe,
-  ],
-  templateUrl: "./details.component.html",
-  styleUrl: "./details.component.scss",
+  selector: 'app-details',
+  imports: [NgbNavModule, NgClass, DecimalPipe, NgbPagination, TranslatePipe, DatePipe],
+  templateUrl: './details.component.html',
+  styleUrl: './details.component.scss',
 })
 export class DetailsComponent {
   private location = inject(Location);
@@ -32,7 +25,7 @@ export class DetailsComponent {
   lang: string = this.translationService.language;
   private readonly activatedRoute = inject(ActivatedRoute);
   active: number = 1;
-  investment: Investment = this.activatedRoute.snapshot.data["investment"].data;
+  investment: Investment = this.activatedRoute.snapshot.data['investment'].data;
 
   private destroy$ = new Subject<void>();
   loading = signal<boolean>(false);
@@ -44,8 +37,8 @@ export class DetailsComponent {
     filter: {},
     orderByValue: [
       {
-        colId: "id",
-        sort: "desc",
+        colId: 'id',
+        sort: 'desc',
       },
     ],
   };
@@ -66,7 +59,7 @@ export class DetailsComponent {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           this.earnings.set(response.data.data);
           this.total.set(response.data.totalCount);
         },

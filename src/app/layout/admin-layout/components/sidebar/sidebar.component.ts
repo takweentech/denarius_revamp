@@ -12,5 +12,4 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class SidebarComponent {
   private readonly sidebarService = inject(SidebarService);
   sidebarItems = this.sidebarService.sidebarItems;
-
 }

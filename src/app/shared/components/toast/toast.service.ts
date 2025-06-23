@@ -1,19 +1,16 @@
 import { Injectable, TemplateRef } from '@angular/core';
 
-
 export interface Toast {
   text: string;
   classname?: string;
   delay?: number;
-  icon?: string
+  icon?: string;
 }
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ToastService {
-
   toasts: Toast[] = [];
 
   show(toast: Toast) {
@@ -21,11 +18,10 @@ export class ToastService {
   }
 
   remove(toast: Toast) {
-    this.toasts = this.toasts.filter((t) => t !== toast);
+    this.toasts = this.toasts.filter(t => t !== toast);
   }
 
   clear() {
     this.toasts.splice(0, this.toasts.length);
   }
-
 }

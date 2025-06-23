@@ -1,76 +1,55 @@
 @if (transaction) {
-<section class="container">
-  <h2 class="mx-4">
-    {{ "TRANSACTIONS.DETAILS.DETAILS_TITLE" | translate }} #{{
-      transaction.refId
-    }}
-  </h2>
-  <div class="bg-white mt-4 rounded-4 p-4">
-    <div class="d-flex row">
-      <!-- Left side -->
-      <div class="col-12 row d-flex g-5 mt-0 col-lg-5">
-        <div class="mt-0">
-          <span class="fw-light">{{
-            "TRANSACTIONS.DETAILS.TYPE" | translate
-          }}</span>
-          <h6 class="fw-bold mt-2">{{ transaction.transactionType }}</h6>
+  <section class="container">
+    <h2 class="mx-4">{{ 'TRANSACTIONS.DETAILS.DETAILS_TITLE' | translate }} #{{ transaction.refId }}</h2>
+    <div class="bg-white mt-4 rounded-4 p-4">
+      <div class="d-flex row">
+        <!-- Left side -->
+        <div class="col-12 row d-flex g-5 mt-0 col-lg-5">
+          <div class="mt-0">
+            <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.TYPE' | translate }}</span>
+            <h6 class="fw-bold mt-2">{{ transaction.transactionType }}</h6>
+          </div>
+          <div>
+            <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.AMOUNT' | translate }}</span>
+            <h6 class="fw-bold price-alignment mt-2">
+              {{ transaction.amount | number: '1.0-2' }}
+              <span class="icon-saudi_riyal"></span>
+            </h6>
+          </div>
+          <div>
+            <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.FROM_ACCOUNT' | translate }}</span>
+            <h6 class="fw-bold mt-2">
+              {{ transaction.transactionMethod }}
+              {{ transaction.accountNumber || '' }}
+            </h6>
+          </div>
         </div>
-        <div>
-          <span class="fw-light">{{
-            "TRANSACTIONS.DETAILS.AMOUNT" | translate
-          }}</span>
-          <h6 class="fw-bold price-alignment mt-2">
-            {{ transaction.amount | number : "1.0-2" }}
-            <span class="icon-saudi_riyal"></span>
-          </h6>
-        </div>
-        <div>
-          <span class="fw-light">{{
-            "TRANSACTIONS.DETAILS.FROM_ACCOUNT" | translate
-          }}</span>
-          <h6 class="fw-bold mt-2">
-            {{ transaction.transactionMethod }}
-            {{ transaction.accountNumber || "" }}
-          </h6>
-        </div>
-      </div>
 
-      <!-- Right side -->
-      <div class="col-12 row d-flex g-5 mt-0 col-lg-7">
-        <div class="mt-0">
-          <span class="fw-light">{{
-            "TRANSACTIONS.DETAILS.DESCRIPTION" | translate
-          }}</span>
-          <h6 class="fw-bold mt-2">{{ transaction.description || "-" }}</h6>
+        <!-- Right side -->
+        <div class="col-12 row d-flex g-5 mt-0 col-lg-7">
+          <div class="mt-0">
+            <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.DESCRIPTION' | translate }}</span>
+            <h6 class="fw-bold mt-2">{{ transaction.description || '-' }}</h6>
+          </div>
+          <div>
+            <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.DATE' | translate }}</span>
+            <h6 class="fw-bold mt-2">
+              {{ transaction.createDate | date: 'dd MMM, y - h:mm a' }}
+            </h6>
+          </div>
+          <div>
+            <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.STATE' | translate }}</span>
+            <h6 class="fw-bold mt-2">{{ transaction.transactionStatus }}</h6>
+          </div>
         </div>
-        <div>
-          <span class="fw-light">{{
-            "TRANSACTIONS.DETAILS.DATE" | translate
-          }}</span>
-          <h6 class="fw-bold mt-2">
-            {{ transaction.createDate | date : "dd MMM, y - h:mm a" }}
-          </h6>
-        </div>
-        <div>
-          <span class="fw-light">{{
-            "TRANSACTIONS.DETAILS.STATE" | translate
-          }}</span>
-          <h6 class="fw-bold mt-2">{{ transaction.transactionStatus }}</h6>
-        </div>
-      </div>
 
-      <!-- Back button -->
-      <div class="col-12 mt-5 justify-content-end row d-flex">
-        <button
-          (click)="goBack()"
-          class="col-12 rounded-4 col-lg-2 btn btn-primary"
-        >
-          <span class="fw-light">{{
-            "TRANSACTIONS.DETAILS.BACK" | translate
-          }}</span>
-        </button>
+        <!-- Back button -->
+        <div class="col-12 mt-5 justify-content-end row d-flex">
+          <button (click)="goBack()" class="col-12 rounded-4 col-lg-2 btn btn-primary">
+            <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.BACK' | translate }}</span>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 }

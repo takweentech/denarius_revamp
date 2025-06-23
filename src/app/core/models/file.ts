@@ -1,4 +1,4 @@
 export interface FileUploaderResponse {
-    fileName: string,
-    path: string
+  fileName: string;
+  path: string;
 }

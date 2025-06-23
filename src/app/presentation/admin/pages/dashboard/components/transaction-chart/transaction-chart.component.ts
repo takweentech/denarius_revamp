@@ -1,11 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
-import { ChartComponent, NgApexchartsModule } from "ng-apexcharts";
-import {
-  ApexNonAxisChartSeries,
-  ApexResponsive,
-  ApexChart,
-  ApexLegend
-} from "ng-apexcharts";
+import { ChartComponent, NgApexchartsModule } from 'ng-apexcharts';
+import { ApexNonAxisChartSeries, ApexResponsive, ApexChart, ApexLegend } from 'ng-apexcharts';
 import { Transaction } from '../../../../../../core/models/transaction';
 
 export type ChartOptions = {
@@ -14,7 +9,7 @@ export type ChartOptions = {
   labels: any;
   responsive: ApexResponsive[];
   legend: ApexLegend;
-  dataLabels: ApexDataLabels
+  dataLabels: ApexDataLabels;
 };
 
 @Component({
@@ -22,11 +17,11 @@ export type ChartOptions = {
   standalone: true,
   imports: [NgApexchartsModule],
   templateUrl: './transaction-chart.component.html',
-  styleUrl: './transaction-chart.component.scss'
+  styleUrl: './transaction-chart.component.scss',
 })
 export class TransactionChartComponent implements OnChanges {
   @Input() transactions!: Transaction[];
-  @ViewChild("chart") chart!: ChartComponent;
+  @ViewChild('chart') chart!: ChartComponent;
   public chartOptions: ChartOptions;
 
   constructor() {
@@ -34,28 +29,28 @@ export class TransactionChartComponent implements OnChanges {
       series: [44, 55, 13, 43, 22],
       chart: {
         width: 380,
-        type: "pie"
+        type: 'pie',
       },
-      labels: ["Transaction A", "Transaction B", "Transaction C", "Transaction D", "Transaction E"],
+      labels: ['Transaction A', 'Transaction B', 'Transaction C', 'Transaction D', 'Transaction E'],
       legend: {
-        show: false
+        show: false,
       },
       dataLabels: {
-        enabled: false
+        enabled: false,
       },
       responsive: [
         {
           breakpoint: 2000,
           options: {
             chart: {
-              width: 400
+              width: 400,
             },
             legend: {
-              show: false // ⬅ Make sure it's also false in responsive settings
-            }
-          }
-        }
-      ]
+              show: false, // ⬅ Make sure it's also false in responsive settings
+            },
+          },
+        },
+      ],
     };
   }
   ngOnChanges(changes: SimpleChanges): void {

@@ -2,11 +2,11 @@
   <app-header></app-header>
   <div class="d-flex flex-column flex-md-row gap-0">
     @if (sidebarService.getSidebarState) {
-    <div class="col sidebar-wrapper">
-      <app-sidebar></app-sidebar>
-    </div>
+      <div class="col sidebar-wrapper">
+        <app-sidebar></app-sidebar>
+      </div>
     }
-    <div class="col p-3 p-md-4  content-wrapper">
+    <div class="col p-3 p-md-4 content-wrapper">
       <router-outlet></router-outlet>
     </div>
   </div>

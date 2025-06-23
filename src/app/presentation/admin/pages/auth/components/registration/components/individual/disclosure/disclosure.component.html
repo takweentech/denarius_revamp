@@ -1,196 +1,185 @@
-<form [formGroup]="formGroup"
-      class="d-flex flex-column  gap-4">
-       <!-- Question 1 -->
+<form [formGroup]="formGroup" class="d-flex flex-column gap-4">
+  <!-- Question 1 -->
 
-       <div class="col-12 form-group px-0">
-              <label class="form-label">
-                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.FINANCIAL_SECTOR'
-                     |
-                     translate}}
-              </label>
-              <div class="d-flex">
-                     @for (item of yesNoLists; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="workedInFinancialSector"
-                                   [id]="'workedInFinancialSector-' + item.value"
-                                   [value]="item.value"
-                                   class="d-none" />
-                            <label [for]="'workedInFinancialSector-' + item.value"
-                                   class="btn btn-option-select">{{item | lang}}</label>
+  <div class="col-12 form-group px-0">
+    <label class="form-label">
+      {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.FINANCIAL_SECTOR' | translate }}
+    </label>
+    <div class="d-flex">
+      @for (item of yesNoLists; track $index) {
+        <div class="col">
+          <input
+            type="radio"
+            formControlName="workedInFinancialSector"
+            [id]="'workedInFinancialSector-' + item.value"
+            [value]="item.value"
+            class="d-none"
+          />
+          <label [for]="'workedInFinancialSector-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+        </div>
+      }
+    </div>
+    @if (
+      formGroup.get('workedInFinancialSector')?.errors?.['required'] &&
+      formGroup.get('workedInFinancialSector')?.touched
+    ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+  </div>
 
-                     </div>
-                     }
-              </div>
-              @if (formGroup.get('workedInFinancialSector')?.errors?.['required'] &&
-              formGroup.get('workedInFinancialSector')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
+  <!-- Question 2 -->
+  <div class="col-12 form-group px-0">
+    <label class="form-label">
+      {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_MEMBER' | translate }}
+    </label>
 
-       <!-- Question 2 -->
-       <div class="col-12 form-group px-0">
-              <label class="form-label">
-                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_MEMBER'
-                     |
-                     translate}}
+    <div class="d-flex">
+      @for (item of yesNoLists; track $index) {
+        <div class="col">
+          <input
+            type="radio"
+            formControlName="isBoardMember"
+            [id]="'isBoardMember-' + item.value"
+            [value]="item.value"
+            class="d-none"
+          />
+          <label [for]="'isBoardMember-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+        </div>
+      }
+    </div>
+    @if (formGroup.get('isBoardMember')?.errors?.['required'] && formGroup.get('isBoardMember')?.touched) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+  </div>
 
-              </label>
+  <!-- Question 3 -->
+  <div class="col-12 form-group px-0">
+    <label class="form-label">
+      {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_BOARD_MEMBER' | translate }}
+    </label>
 
-              <div class="d-flex">
-                     @for (item of yesNoLists; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="isBoardMember"
-                                   [id]="'isBoardMember-' + item.value"
-                                   [value]="item.value"
-                                   class="d-none" />
-                            <label [for]="'isBoardMember-' + item.value"
-                                   class="btn btn-option-select">{{item | lang}}</label>
+    <div class="d-flex">
+      @for (item of yesNoLists; track $index) {
+        <div class="col">
+          <input
+            type="radio"
+            formControlName="hasRelationWithBoardMember"
+            [id]="'hasRelationWithBoardMember-' + item.value"
+            [value]="item.value"
+            class="d-none"
+          />
+          <label [for]="'hasRelationWithBoardMember-' + item.value" class="btn btn-option-select">{{
+            item | lang
+          }}</label>
+        </div>
+      }
+    </div>
 
-                     </div>
-                     }
-              </div>
-              @if (formGroup.get('isBoardMember')?.errors?.['required'] &&
-              formGroup.get('isBoardMember')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
+    @if (
+      formGroup.get('hasRelationWithBoardMember')?.errors?.['required'] &&
+      formGroup.get('hasRelationWithBoardMember')?.touched
+    ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+  </div>
 
-       <!-- Question 3 -->
-       <div class="col-12 form-group px-0">
-              <label class="form-label">
-                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_BOARD_MEMBER'
-                     |
-                     translate}}
+  <!-- Question 4 -->
+  <div class="col-12 form-group px-0">
+    <label class="form-label">
+      {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_SENIOR' | translate }}
+    </label>
+    <div class="d-flex">
+      @for (item of yesNoLists; track $index) {
+        <div class="col">
+          <input
+            type="radio"
+            formControlName="hasRelativeInHighPosition"
+            [id]="'hasRelativeInHighPosition-' + item.value"
+            [value]="item.value"
+            class="d-none"
+          />
+          <label [for]="'hasRelativeInHighPosition-' + item.value" class="btn btn-option-select">{{
+            item | lang
+          }}</label>
+        </div>
+      }
+    </div>
 
-              </label>
+    @if (
+      formGroup.get('hasRelativeInHighPosition')?.errors?.['required'] &&
+      formGroup.get('hasRelativeInHighPosition')?.touched
+    ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+  </div>
 
-              <div class="d-flex">
+  <!-- Question 5 -->
+  <div class="col-12 form-group px-0">
+    <label class="form-label">
+      {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_RELATED' | translate }}
+    </label>
 
-                     @for (item of yesNoLists; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="hasRelationWithBoardMember"
-                                   [id]="'hasRelationWithBoardMember-' + item.value"
-                                   [value]="item.value"
-                                   class="d-none" />
-                            <label [for]="'hasRelationWithBoardMember-' + item.value"
-                                   class="btn btn-option-select">{{item | lang}}</label>
+    <div class="d-flex">
+      @for (item of yesNoLists; track $index) {
+        <div class="col">
+          <input
+            type="radio"
+            formControlName="holdsHighPosition"
+            [id]="'holdsHighPosition-' + item.value"
+            [value]="item.value"
+            class="d-none"
+          />
+          <label [for]="'holdsHighPosition-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+        </div>
+      }
+    </div>
 
-                     </div>
-                     }
-              </div>
+    @if (formGroup.get('holdsHighPosition')?.errors?.['required'] && formGroup.get('holdsHighPosition')?.touched) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+  </div>
 
-              @if (formGroup.get('hasRelationWithBoardMember')?.errors?.['required'] &&
-              formGroup.get('hasRelationWithBoardMember')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
+  <!-- Question 6 -->
+  <div class="col-12 form-group px-0">
+    <label class="form-label">
+      {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_US_CITIZEN' | translate }}
+    </label>
 
-       <!-- Question 4 -->
-       <div class="col-12 form-group px-0">
-              <label class="form-label">
-                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_SENIOR'
-                     |
-                     translate}}
-              </label>
-              <div class="d-flex">
+    <div class="d-flex">
+      @for (item of yesNoLists; track $index) {
+        <div class="col">
+          <input
+            type="radio"
+            formControlName="hasUSCitizenship"
+            [id]="'hasUSCitizenship-' + item.value"
+            [value]="item.value"
+            class="d-none"
+          />
+          <label [for]="'hasUSCitizenship-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+        </div>
+      }
+    </div>
 
-                     @for (item of yesNoLists; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="hasRelativeInHighPosition"
-                                   [id]="'hasRelativeInHighPosition-' + item.value"
-                                   [value]="item.value"
-                                   class="d-none" />
-                            <label [for]="'hasRelativeInHighPosition-' + item.value"
-                                   class="btn btn-option-select">{{item | lang}}</label>
-
-                     </div>
-                     }
-              </div>
-
-              @if (formGroup.get('hasRelativeInHighPosition')?.errors?.['required'] &&
-              formGroup.get('hasRelativeInHighPosition')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
-
-       <!-- Question 5 -->
-       <div class="col-12 form-group px-0">
-              <label class="form-label">
-                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_RELATED'
-                     |
-                     translate}}
-              </label>
-
-              <div class="d-flex">
-
-                     @for (item of yesNoLists; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="holdsHighPosition"
-                                   [id]="'holdsHighPosition-' + item.value"
-                                   [value]="item.value"
-                                   class="d-none" />
-                            <label [for]="'holdsHighPosition-' + item.value"
-                                   class="btn btn-option-select">{{item | lang}}</label>
-
-                     </div>
-                     }
-              </div>
-
-              @if (formGroup.get('holdsHighPosition')?.errors?.['required'] &&
-              formGroup.get('holdsHighPosition')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
-
-       <!-- Question 6 -->
-       <div class="col-12 form-group px-0">
-              <label class="form-label"> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.FORM.IS_US_CITIZEN'
-                     |
-                     translate}}
-              </label>
-
-              <div class="d-flex">
-
-                     @for (item of yesNoLists; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="hasUSCitizenship"
-                                   [id]="'hasUSCitizenship-' + item.value"
-                                   [value]="item.value"
-                                   class="d-none" />
-                            <label [for]="'hasUSCitizenship-' + item.value"
-                                   class="btn btn-option-select">{{item | lang}}</label>
-
-                     </div>
-                     }
-              </div>
-
-              @if (formGroup.get('hasUSCitizenship')?.errors?.['required'] &&
-              formGroup.get('hasUSCitizenship')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
+    @if (formGroup.get('hasUSCitizenship')?.errors?.['required'] && formGroup.get('hasUSCitizenship')?.touched) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+  </div>
 </form>

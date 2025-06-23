@@ -10,7 +10,15 @@ import { FinancialComponent } from './components/individual/financial/financial.
 import { AbsherComponent } from './components/shared/absher/absher.component';
 import { BusinessComponent } from './components/company/business/business.component';
 import { RegistrationApiService } from '../../../../../../data/registration.service';
-import { CompanyFinalizationDto, CompanyInitialSignUpDto, CompanyOtpSignUpDto, IndividualCompletionDto, IndividualFinalizationDto, IndividualInitialSignUpDto, IndividualOtpSignUpDto } from '../../../../../../core/models/registration';
+import {
+  CompanyFinalizationDto,
+  CompanyInitialSignUpDto,
+  CompanyOtpSignUpDto,
+  IndividualCompletionDto,
+  IndividualFinalizationDto,
+  IndividualInitialSignUpDto,
+  IndividualOtpSignUpDto,
+} from '../../../../../../core/models/registration';
 import { Observable, tap } from 'rxjs';
 import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
@@ -18,9 +26,6 @@ import { matchValidator, minimumAgeValidator } from '../../../../../../core/vali
 import { REGEX_PATTERNS } from '../../../../../../core/constants/patterns.constants';
 
 type StepType = 'individual' | 'company';
-
-
-
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +43,12 @@ export class RegistrationService {
         controls: [
           {
             key: 'idNumber',
-            validators: [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^(1|2)[0-9]{9}$')],
+            validators: [
+              Validators.required,
+              Validators.minLength(10),
+              Validators.maxLength(10),
+              Validators.pattern('^(1|2)[0-9]{9}$'),
+            ],
             // value: '1234567891'
           },
           {
@@ -48,7 +58,12 @@ export class RegistrationService {
           },
           {
             key: 'phoneNumber',
-            validators: [Validators.required, Validators.minLength(9), Validators.maxLength(9), Validators.pattern(/^5\d{8}$/)],
+            validators: [
+              Validators.required,
+              Validators.minLength(9),
+              Validators.maxLength(9),
+              Validators.pattern(/^5\d{8}$/),
+            ],
             // value: '512345678'
           },
           {
@@ -72,23 +87,23 @@ export class RegistrationService {
           },
         ],
         validators: [matchValidator('password', 'confirmPassword')],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.CTA'
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.CTA',
       },
       {
         key: 'otp',
         title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.TITLE',
         description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.DESCRIPTION',
         component: OtpComponent,
-        apiHandler: (data: IndividualOtpSignUpDto, token?: string, otpId?: string) => this.verifyIndividualInvestorOTP(data, token, otpId),
+        apiHandler: (data: IndividualOtpSignUpDto, token?: string, otpId?: string) =>
+          this.verifyIndividualInvestorOTP(data, token, otpId),
         controls: [
           {
             key: 'otp',
-            validators: [Validators.required, Validators.minLength(4)]
+            validators: [Validators.required, Validators.minLength(4)],
           },
         ],
         resolvedData: {},
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.CTA'
-
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.CTA',
       },
       {
         key: 'address',
@@ -98,16 +113,16 @@ export class RegistrationService {
         controls: [
           {
             key: 'street',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'district',
             validators: [Validators.required],
-            value: 1
+            value: 1,
           },
           {
             key: 'city',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           // {
           //   key: 'region',
@@ -115,15 +130,14 @@ export class RegistrationService {
           // },
           {
             key: 'postalCode',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'additionalCode',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
         ],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.CTA'
-
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.CTA',
       },
       {
         key: 'financial',
@@ -133,40 +147,38 @@ export class RegistrationService {
         controls: [
           {
             key: 'maritalStatus',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'familyMembersCount',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'educationLevel',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'employmentStatus',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'jobTitle',
-            validators: [Validators.required]
-
+            validators: [Validators.required],
           },
           {
             key: 'yearsOfExperience',
-            validators: [Validators.required]
-
+            validators: [Validators.required],
           },
           {
             key: 'annualIncome',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'netWealth',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
         ],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.CTA'
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.CTA',
       },
       {
         key: 'investment',
@@ -176,30 +188,30 @@ export class RegistrationService {
         controls: [
           {
             key: 'riskTolerance',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'investmentExperience',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'investmentHorizon',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'investmentGoal',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'isBeneficiary',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'beneficiaryIdNumber',
-            value: 0
+            value: 0,
           },
         ],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.CTA'
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.CTA',
       },
       {
         key: 'disclosure',
@@ -209,37 +221,32 @@ export class RegistrationService {
         controls: [
           {
             key: 'workedInFinancialSector',
-            validators: [Validators.required]
-
+            validators: [Validators.required],
           },
           {
             key: 'isBoardMember',
-            validators: [Validators.required]
-
+            validators: [Validators.required],
           },
           {
             key: 'hasRelationWithBoardMember',
-            validators: [Validators.required]
-
+            validators: [Validators.required],
           },
           {
             key: 'holdsHighPosition',
-            validators: [Validators.required]
-
+            validators: [Validators.required],
           },
           {
             key: 'hasRelativeInHighPosition',
-            validators: [Validators.required]
-
+            validators: [Validators.required],
           },
           {
             key: 'hasUSCitizenship',
-            validators: [Validators.required]
-
+            validators: [Validators.required],
           },
         ],
-        apiHandler: (data: IndividualCompletionDto, token?: string, otpId?: string) => this.completeIndividualInvestorRegestration(data, token),
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.CTA'
+        apiHandler: (data: IndividualCompletionDto, token?: string, otpId?: string) =>
+          this.completeIndividualInvestorRegestration(data, token),
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.CTA',
       },
       {
         key: 'absher',
@@ -249,11 +256,12 @@ export class RegistrationService {
         controls: [
           {
             key: 'otp',
-            validators: [Validators.required]
-          }
+            validators: [Validators.required],
+          },
         ],
-        apiHandler: (data: IndividualFinalizationDto, token?: string, otpId?: string) => this.finalizeIndividualInvestorRegestration(data, token, otpId),
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.CTA'
+        apiHandler: (data: IndividualFinalizationDto, token?: string, otpId?: string) =>
+          this.finalizeIndividualInvestorRegestration(data, token, otpId),
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.CTA',
       },
     ],
     company: [
@@ -273,7 +281,7 @@ export class RegistrationService {
           },
           {
             key: 'authorizedPersonBirthDate',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'mobileNumber',
@@ -297,23 +305,25 @@ export class RegistrationService {
           },
         ],
         validators: [matchValidator('password', 'confirmPassword')],
-        apiHandler: (data: CompanyInitialSignUpDto, token?: string, otpId?: string) => this.initialCompanyInvestorSignUp(data),
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA'
+        apiHandler: (data: CompanyInitialSignUpDto, token?: string, otpId?: string) =>
+          this.initialCompanyInvestorSignUp(data),
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA',
       },
       {
         key: 'otp',
         title: 'AUTHENTICATION.REGISTRATION.COMPANY.OTP.TITLE',
         description: 'AUTHENTICATION.REGISTRATION.COMPANY.OTP.DESCRIPTION',
         component: OtpComponent,
-        apiHandler: (data: CompanyOtpSignUpDto, token?: string, otpId?: string) => this.verifyCompanyInvestorOTP(data, token, otpId),
+        apiHandler: (data: CompanyOtpSignUpDto, token?: string, otpId?: string) =>
+          this.verifyCompanyInvestorOTP(data, token, otpId),
         controls: [
           {
             key: 'otp',
-            validators: [Validators.required, Validators.minLength(4)]
+            validators: [Validators.required, Validators.minLength(4)],
           },
         ],
         resolvedData: {},
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA'
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA',
       },
       {
         key: 'business',
@@ -323,19 +333,19 @@ export class RegistrationService {
         controls: [
           {
             key: 'annualRevenue',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'employeeCount',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'investmentExperience',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'riskTolerance',
-            validators: [Validators.required]
+            validators: [Validators.required],
           },
           {
             key: 'establishmentContract',
@@ -343,28 +353,26 @@ export class RegistrationService {
           },
         ],
         resolvedData: {},
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.CTA'
-
-
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.CTA',
       },
       {
         key: 'absher',
         title: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.TITLE',
         description: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.DESCRIPTION',
-        apiHandler: (data: CompanyFinalizationDto, token?: string, otpId?: string) => this.finalizeCompanyInvestorRegestration(data, token, otpId),
+        apiHandler: (data: CompanyFinalizationDto, token?: string, otpId?: string) =>
+          this.finalizeCompanyInvestorRegestration(data, token, otpId),
         component: AbsherComponent,
         controls: [
           {
             key: 'otp',
-            validators: [Validators.required]
-          }
+            validators: [Validators.required],
+          },
         ],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.CTA'
-
+        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.CTA',
       },
     ],
   };
-  constructor() { }
+  constructor() {}
 
   getStepByType(type: StepType): Step<{}>[] {
     return this.steps[type];
@@ -372,12 +380,19 @@ export class RegistrationService {
 
   // Individual handlers
   initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
-    return this.registrationApiService.initialIndividualInvestorSignUp({ ...data, phoneNumber: '966' + data.phoneNumber })
+    return this.registrationApiService.initialIndividualInvestorSignUp({
+      ...data,
+      phoneNumber: '966' + data.phoneNumber,
+    });
   }
 
-  verifyIndividualInvestorOTP(data: IndividualOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {
+  verifyIndividualInvestorOTP(
+    data: IndividualOtpSignUpDto,
+    token?: string,
+    otpId?: string
+  ): Observable<HttpCustomResponse<{}>> {
     return this.registrationApiService.verifyIndividualInvestorOTP(data, token, otpId).pipe(
-      tap((response) => {
+      tap(response => {
         const step = this.steps['individual'].find(item => item.key === 'address');
         if (step) {
           step.resolvedData = response.data;
@@ -387,23 +402,28 @@ export class RegistrationService {
   }
 
   completeIndividualInvestorRegestration(data: IndividualCompletionDto, token?: string) {
-    return this.registrationApiService.completeIndividualInvestorRegestration(data, token)
+    return this.registrationApiService.completeIndividualInvestorRegestration(data, token);
   }
-
 
   finalizeIndividualInvestorRegestration(data: IndividualFinalizationDto, token?: string, otpId?: string) {
-    return this.registrationApiService.finalizeIndividualInvestorRegestration(data, token, otpId, data.otp)
+    return this.registrationApiService.finalizeIndividualInvestorRegestration(data, token, otpId, data.otp);
   }
-
 
   // Company handlers
   initialCompanyInvestorSignUp(data: CompanyInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
-    return this.registrationApiService.initialCompanyInvestorSignUp({ ...data, mobileNumber: '966' + data.mobileNumber })
+    return this.registrationApiService.initialCompanyInvestorSignUp({
+      ...data,
+      mobileNumber: '966' + data.mobileNumber,
+    });
   }
 
-  verifyCompanyInvestorOTP(data: CompanyOtpSignUpDto, token?: string, otpId?: string): Observable<HttpCustomResponse<{}>> {
+  verifyCompanyInvestorOTP(
+    data: CompanyOtpSignUpDto,
+    token?: string,
+    otpId?: string
+  ): Observable<HttpCustomResponse<{}>> {
     return this.registrationApiService.verifyCompanyInvestorOTP(data, token, otpId).pipe(
-      tap((response) => {
+      tap(response => {
         const step = this.steps['company'].find(item => item.key === 'business');
         if (step) {
           step.resolvedData = response.data;
@@ -412,15 +432,7 @@ export class RegistrationService {
     );
   }
 
-
   finalizeCompanyInvestorRegestration(data: CompanyFinalizationDto, token?: string, otpId?: string) {
-    return this.registrationApiService.finalizeCompanyInvestorRegestration(data, token, otpId, data.otp)
+    return this.registrationApiService.finalizeCompanyInvestorRegestration(data, token, otpId, data.otp);
   }
-
-
-
-
-
-
-
 }

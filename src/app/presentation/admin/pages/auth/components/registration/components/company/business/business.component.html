@@ -1,49 +1,43 @@
-<div class="d-flex  flex-column gap-4">
+<div class="d-flex flex-column gap-4">
   <!-- Company Information -->
   <div class="shadow-sm px-2 py-2 bg-light row g-1 rounded-3">
     <div class="col-4 d-flex flex-column gap-1">
-      <small> {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.COMPANY_TRADE_NAME' | translate}}
+      <small> {{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.COMPANY_TRADE_NAME' | translate }} </small>
+      <span class="fw-bold">{{ step.resolvedData?.crName }}</span>
+    </div>
+    <div class="col-4 d-flex flex-column gap-1">
+      <small>{{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.COMPANY_TRADE_NUMBER' | translate }} </small>
+      <span class="fw-bold">{{ step.resolvedData?.crNumber }}</span>
+    </div>
+    <div class="col-4 d-flex flex-column gap-1">
+      <small
+        >{{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.COMPANY_ENTITY_NUMBER' | translate }}
       </small>
-      <span class="fw-bold">{{step.resolvedData?.crName}}</span>
+      <span class="fw-bold">{{ step.resolvedData?.crEntityNumber }}</span>
     </div>
     <div class="col-4 d-flex flex-column gap-1">
-      <small>{{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.COMPANY_TRADE_NUMBER' | translate}} </small>
-      <span class="fw-bold">{{step.resolvedData?.crNumber }}</span>
+      <small>{{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.ISSUE_DATE' | translate }} </small>
+      <span class="fw-bold">{{ step.resolvedData?.issueDate | date }}</span>
     </div>
     <div class="col-4 d-flex flex-column gap-1">
-      <small>{{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.COMPANY_ENTITY_NUMBER' | translate}} </small>
-      <span class="fw-bold">{{step.resolvedData?.crEntityNumber }}</span>
-    </div>
-    <div class="col-4 d-flex flex-column gap-1">
-      <small>{{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.ISSUE_DATE' | translate}} </small>
-      <span class="fw-bold">{{step.resolvedData?.issueDate | date }}</span>
-    </div>
-    <div class="col-4 d-flex flex-column gap-1">
-      <small>{{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.BUSINESS_TYPE' | translate}} </small>
-      <span class="fw-bold">{{step.resolvedData?.businessType?.name }}</span>
+      <small>{{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.COMPANY_INFO.BUSINESS_TYPE' | translate }} </small>
+      <span class="fw-bold">{{ step.resolvedData?.businessType?.name }}</span>
     </div>
   </div>
 
-  <form class="d-flex flex-column col-12 "
-        [formGroup]="formGroup">
+  <form class="d-flex flex-column col-12" [formGroup]="formGroup">
     <div class="row">
       <div class="form-group col-12 col-md-6">
         <label class="form-label">
-          {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.ANNUAL_BUSINESS_VOLUME.LABEL' | translate}}
+          {{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.ANNUAL_BUSINESS_VOLUME.LABEL' | translate }}
         </label>
-        <input type="number"
-               class="form-control"
-               formControlName="annualRevenue"
-               placeholder="1,000,000" />
+        <input type="number" class="form-control" formControlName="annualRevenue" placeholder="1,000,000" />
       </div>
       <div class="form-group col-12 col-md-6">
         <label class="form-label">
-          {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.NUMBER_OF_EMPLOYESS.LABEL' | translate}}
+          {{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.NUMBER_OF_EMPLOYESS.LABEL' | translate }}
         </label>
-        <input type="number"
-               formControlName="employeeCount"
-               class="form-control"
-               placeholder=" 10" />
+        <input type="number" formControlName="employeeCount" class="form-control" placeholder=" 10" />
       </div>
     </div>
 
@@ -51,55 +45,58 @@
       <!-- Risk Tolerance -->
       <div class="col-12 form-group col-md-6">
         <label class="form-label">
-          {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.RISK_TOLERANCE.LABEL' | translate}}
+          {{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.RISK_TOLERANCE.LABEL' | translate }}
         </label>
         <div class="d-flex flex-column flex-md-row">
           @for (item of riskToleranceList; track $index) {
-          <div class="col">
-            <input type="radio"
-                   formControlName="riskTolerance"
-                   [id]="'riskTolerance-' + item.value"
-                   [value]="item.value"
-                   formControlName="riskTolerance"
-                   class="d-none" />
-            <label [for]="'riskTolerance-' + item.value"
-                   class="btn btn-option-select">{{item | lang}}</label>
-          </div>
+            <div class="col">
+              <input
+                type="radio"
+                formControlName="riskTolerance"
+                [id]="'riskTolerance-' + item.value"
+                [value]="item.value"
+                formControlName="riskTolerance"
+                class="d-none"
+              />
+              <label [for]="'riskTolerance-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+            </div>
           }
         </div>
-        @if (formGroup.get('riskTolerance')?.errors?.['required'] &&
-        formGroup.get('riskTolerance')?.touched ) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{'VALIDATORS.REQUIRED' | translate}}
-        </small>
+        @if (formGroup.get('riskTolerance')?.errors?.['required'] && formGroup.get('riskTolerance')?.touched) {
+          <small class="text-danger mt-1 d-flex align-items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ 'VALIDATORS.REQUIRED' | translate }}
+          </small>
         }
       </div>
       <!--Investment Experience-->
       <div class="col-12 form-group col-md-6">
         <label class="form-label">
-          {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.INVESTMENT_EXPERIENCE.LABEL' | translate}}
-
+          {{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.INVESTMENT_EXPERIENCE.LABEL' | translate }}
         </label>
         <div class="d-flex flex-column flex-md-row">
           @for (item of investmentExperienceList; track $index) {
-          <div class="col">
-            <input type="radio"
-                   [id]="'investmentExperience-' + item.value"
-                   [value]="item.value"
-                   formControlName="investmentExperience"
-                   class="d-none" />
-            <label [for]="'investmentExperience-' + item.value"
-                   class="btn btn-option-select">{{item | lang}}</label>
-          </div>
+            <div class="col">
+              <input
+                type="radio"
+                [id]="'investmentExperience-' + item.value"
+                [value]="item.value"
+                formControlName="investmentExperience"
+                class="d-none"
+              />
+              <label [for]="'investmentExperience-' + item.value" class="btn btn-option-select">{{
+                item | lang
+              }}</label>
+            </div>
           }
         </div>
-        @if (formGroup.get('investmentExperience')?.errors?.['required'] &&
-        formGroup.get('investmentExperience')?.touched ) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{'VALIDATORS.REQUIRED' | translate}}
-        </small>
+        @if (
+          formGroup.get('investmentExperience')?.errors?.['required'] && formGroup.get('investmentExperience')?.touched
+        ) {
+          <small class="text-danger mt-1 d-flex align-items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ 'VALIDATORS.REQUIRED' | translate }}
+          </small>
         }
       </div>
     </div>
@@ -107,19 +104,21 @@
     <div class="col-12">
       <div class="col-12 mt-3 p-3 justify-content-center d-flex rounded-2 border border-gray">
         <div class="col-md-9 col-12">
-          <h5 class="fw-bold mt-3"> {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.ARTICLE_OF_ASSOCIATION.LABEL' |
-            translate}}
+          <h5 class="fw-bold mt-3">
+            {{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.ARTICLE_OF_ASSOCIATION.LABEL' | translate }}
           </h5>
           <strong class="fw-light">
-            {{'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.ARTICLE_OF_ASSOCIATION.PLACEHOLDER' |
-            translate}} </strong>
+            {{ 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.FORM.ARTICLE_OF_ASSOCIATION.PLACEHOLDER' | translate }}
+          </strong>
         </div>
         <div class="col-12 col-md-3 position-relative">
           <br />
-          <input type="file"
-                 formControlName="establishmentContract"
-                 id="fileInput"
-                 class="position-absolute opacity-0 w-100 h-100" />
+          <input
+            type="file"
+            formControlName="establishmentContract"
+            id="fileInput"
+            class="position-absolute opacity-0 w-100 h-100"
+          />
         </div>
       </div>
     </div>

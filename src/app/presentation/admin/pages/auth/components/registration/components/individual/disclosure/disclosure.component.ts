@@ -9,7 +9,7 @@ import { LangPipe } from '../../../../../../../../../shared/pipes/lang.pipe';
   selector: 'app-disclosure',
   imports: [ReactiveFormsModule, TranslatePipe, LangPipe],
   templateUrl: './disclosure.component.html',
-  styleUrl: './disclosure.component.scss'
+  styleUrl: './disclosure.component.scss',
 })
 export class DisclosureComponent {
   private readonly lookupService = inject(LookupService);
@@ -17,5 +17,4 @@ export class DisclosureComponent {
   @Input() step!: Step<{}>;
 
   yesNoLists = this.lookupService.getYesNoOptions();
-
 }

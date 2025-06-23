@@ -6,13 +6,12 @@ import { HttpCustomResponse } from '../../../../../core/models/http';
 import { InvestorService } from '../../../../../data/investor.service';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class InvestmentResolver implements Resolve<HttpCustomResponse<Investment>> {
-    private readonly investorService = inject(InvestorService);
+  private readonly investorService = inject(InvestorService);
 
-
-    resolve(route: ActivatedRouteSnapshot): Observable<HttpCustomResponse<Investment>> {
-        return this.investorService.getById(Number(route.paramMap.get('id')));
-    }
+  resolve(route: ActivatedRouteSnapshot): Observable<HttpCustomResponse<Investment>> {
+    return this.investorService.getById(Number(route.paramMap.get('id')));
+  }
 }

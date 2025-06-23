@@ -1,170 +1,157 @@
-<form class="d-flex flex-column gap-4"
-      [formGroup]="formGroup">
-       <div class="row">
-              <!-- Investment experience-->
-              <div class="col-12 form-group col-md-6">
-                     <label class="form-label">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.INVESTMENT_EXPERIENCE'
-                            |
-                            translate}}</label>
-                     <div class="d-flex flex-column flex-md-row">
-                            @for (item of investmentExperienceList; track $index) {
-                            <div class="col">
-                                   <input type="radio"
-                                          [id]="'investmentExperience-' + item.value"
-                                          [value]="item.value"
-                                          formControlName="investmentExperience"
-                                          class="d-none" />
-                                   <label [for]="'investmentExperience-' + item.value"
-                                          class="btn btn-option-select">{{item | lang}}</label>
-                            </div>
-                            }
-                     </div>
-                     @if (formGroup.get('investmentExperience')?.errors?.['required'] &&
-                     formGroup.get('investmentExperience')?.touched ) {
-                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                            {{'VALIDATORS.REQUIRED' | translate}}
-                     </small>
-                     }
-              </div>
+<form class="d-flex flex-column gap-4" [formGroup]="formGroup">
+  <div class="row">
+    <!-- Investment experience-->
+    <div class="col-12 form-group col-md-6">
+      <label class="form-label">{{
+        'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.INVESTMENT_EXPERIENCE' | translate
+      }}</label>
+      <div class="d-flex flex-column flex-md-row">
+        @for (item of investmentExperienceList; track $index) {
+          <div class="col">
+            <input
+              type="radio"
+              [id]="'investmentExperience-' + item.value"
+              [value]="item.value"
+              formControlName="investmentExperience"
+              class="d-none"
+            />
+            <label [for]="'investmentExperience-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+          </div>
+        }
+      </div>
+      @if (
+        formGroup.get('investmentExperience')?.errors?.['required'] && formGroup.get('investmentExperience')?.touched
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ 'VALIDATORS.REQUIRED' | translate }}
+        </small>
+      }
+    </div>
 
-              <!--Risk Tolerance -->
-              <div class="col-12 form-group col-md-6">
-                     <label class="form-label">
-                            {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.RISK_TOLERANCE'
-                            |
-                            translate}} </label>
-                     <div class="d-flex flex-column flex-md-row">
-                            @for (item of riskToleranceList; track $index) {
-                            <div class="col">
-                                   <input type="radio"
-                                          [id]="'riskTolerance-' + item.value"
-                                          [value]="item.value"
-                                          formControlName="riskTolerance"
-                                          class="d-none" />
-                                   <label [for]="'riskTolerance-' + item.value"
-                                          class="btn btn-option-select">{{item | lang}}</label>
-                            </div>
-                            }
-                     </div>
-                     @if (formGroup.get('riskTolerance')?.errors?.['required'] &&
-                     formGroup.get('riskTolerance')?.touched ) {
-                     <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                            <i class="fa-solid fa-circle-exclamation"></i>
-                            {{'VALIDATORS.REQUIRED' | translate}}
-                     </small>
-                     }
-              </div>
-       </div>
+    <!--Risk Tolerance -->
+    <div class="col-12 form-group col-md-6">
+      <label class="form-label">
+        {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.RISK_TOLERANCE' | translate }}
+      </label>
+      <div class="d-flex flex-column flex-md-row">
+        @for (item of riskToleranceList; track $index) {
+          <div class="col">
+            <input
+              type="radio"
+              [id]="'riskTolerance-' + item.value"
+              [value]="item.value"
+              formControlName="riskTolerance"
+              class="d-none"
+            />
+            <label [for]="'riskTolerance-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+          </div>
+        }
+      </div>
+      @if (formGroup.get('riskTolerance')?.errors?.['required'] && formGroup.get('riskTolerance')?.touched) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ 'VALIDATORS.REQUIRED' | translate }}
+        </small>
+      }
+    </div>
+  </div>
 
-       <!-- What is the investment period during which you expect to recover your money? -->
-       <div class="col-12 form-group">
-              <label class="form-label">
-                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.INVESTMENT_PERIOD'
-                     |
-                     translate}}
+  <!-- What is the investment period during which you expect to recover your money? -->
+  <div class="col-12 form-group">
+    <label class="form-label">
+      {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.INVESTMENT_PERIOD' | translate }}
+    </label>
+    <div class="d-flex flex-column flex-md-row">
+      @for (item of investmentPeriodList; track $index) {
+        <div class="col">
+          <input
+            type="radio"
+            [id]="'investmentHorizon-' + item.value"
+            [value]="item.value"
+            formControlName="investmentHorizon"
+            class="d-none"
+          />
+          <label [for]="'investmentHorizon-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+        </div>
+      }
+    </div>
+    @if (formGroup.get('investmentHorizon')?.errors?.['required'] && formGroup.get('investmentHorizon')?.touched) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+  </div>
 
-              </label>
-              <div class="d-flex flex-column flex-md-row">
-                     @for (item of investmentPeriodList; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   [id]="'investmentHorizon-' + item.value"
-                                   [value]="item.value"
-                                   formControlName="investmentHorizon"
-                                   class="d-none" />
-                            <label [for]="'investmentHorizon-' + item.value"
-                                   class="btn btn-option-select">{{item | lang}}</label>
-                     </div>
-                     }
-              </div>
-              @if (formGroup.get('investmentHorizon')?.errors?.['required'] &&
-              formGroup.get('investmentHorizon')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
+  <!--What are your investment objectives?-->
+  <div class="col-12 form-group">
+    <label class="form-label">
+      {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.INVESTMENT_OBJECTIVES' | translate }}
+    </label>
+    <div class="d-flex flex-column">
+      @for (item of investmentObjectivesList; track $index) {
+        <div class="col">
+          <input
+            type="radio"
+            [id]="'investmentGoal-' + item.value"
+            [value]="item.value"
+            formControlName="investmentGoal"
+            class="d-none"
+          />
+          <label [for]="'investmentGoal-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+        </div>
+      }
+    </div>
+    @if (formGroup.get('investmentGoal')?.errors?.['required'] && formGroup.get('investmentGoal')?.touched) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+  </div>
+  <!--Are you the real beneficiary of the account?-->
+  <div class="col-12 form-group">
+    <label class="form-label">
+      {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.IS_BENEFICIARY' | translate }}
+    </label>
+    <div class="d-flex flex-column flex-md-row">
+      @for (item of yesNoLists; track $index) {
+        <div class="col">
+          <input
+            type="radio"
+            formControlName="isBeneficiary"
+            [id]="'isBeneficiary-' + item.value"
+            [value]="item.value"
+            class="d-none"
+          />
+          <label [for]="'isBeneficiary-' + item.value" class="btn btn-option-select">{{ item | lang }}</label>
+        </div>
+      }
+    </div>
+    @if (formGroup.get('isBeneficiary')?.errors?.['required'] && formGroup.get('isBeneficiary')?.touched) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+  </div>
 
-       <!--What are your investment objectives?-->
-       <div class="col-12 form-group">
-              <label class="form-label">
-                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.INVESTMENT_OBJECTIVES'
-                     |
-                     translate}}
-              </label>
-              <div class="d-flex flex-column">
-                     @for (item of investmentObjectivesList; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   [id]="'investmentGoal-' + item.value"
-                                   [value]="item.value"
-                                   formControlName="investmentGoal"
-                                   class="d-none" />
-                            <label [for]="'investmentGoal-' + item.value"
-                                   class="btn btn-option-select">{{item | lang}}</label>
-                     </div>
-                     }
-              </div>
-              @if (formGroup.get('investmentGoal')?.errors?.['required'] &&
-              formGroup.get('investmentGoal')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
-       <!--Are you the real beneficiary of the account?-->
-       <div class="col-12 form-group">
-              <label class="form-label">
-
-                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.IS_BENEFICIARY'
-                     |
-                     translate}}
-              </label>
-              <div class="d-flex flex-column flex-md-row">
-                     @for (item of yesNoLists; track $index) {
-                     <div class="col">
-                            <input type="radio"
-                                   formControlName="isBeneficiary"
-                                   [id]="'isBeneficiary-' + item.value"
-                                   [value]="item.value"
-                                   class="d-none" />
-                            <label [for]="'isBeneficiary-' + item.value"
-                                   class="btn btn-option-select">{{item | lang}}</label>
-
-                     </div>
-                     }
-              </div>
-              @if (formGroup.get('isBeneficiary')?.errors?.['required'] &&
-              formGroup.get('isBeneficiary')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
-
-       <!--Beneficiary ID number-->
-       @if (formGroup.get('isBeneficiary')?.value === 0) {
-       <div class="form-group col-12 form-group">
-              <label class="form-label">
-                     {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.BENEFICIARY_ID'
-                     |
-                     translate}}
-              </label>
-              <input type="number"
-                     class="form-control"
-                     formControlName="beneficiaryIdNumber"
-                     placeholder="0123456789" />
-              @if (formGroup.get('beneficiaryIdNumber')?.errors?.['required'] &&
-              formGroup.get('beneficiaryIdNumber')?.touched ) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                     <i class="fa-solid fa-circle-exclamation"></i>
-                     {{'VALIDATORS.REQUIRED' | translate}}
-              </small>
-              }
-       </div>
-       }
+  <!--Beneficiary ID number-->
+  @if (formGroup.get('isBeneficiary')?.value === 0) {
+    <div class="form-group col-12 form-group">
+      <label class="form-label">
+        {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.BENEFICIARY_ID' | translate }}
+      </label>
+      <input type="number" class="form-control" formControlName="beneficiaryIdNumber" placeholder="0123456789" />
+      @if (
+        formGroup.get('beneficiaryIdNumber')?.errors?.['required'] && formGroup.get('beneficiaryIdNumber')?.touched
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ 'VALIDATORS.REQUIRED' | translate }}
+        </small>
+      }
+    </div>
+  }
 </form>

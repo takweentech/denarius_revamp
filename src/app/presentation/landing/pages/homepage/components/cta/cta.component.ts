@@ -1,29 +1,29 @@
-import { CommonModule } from "@angular/common";
-import { Component, inject, HostListener, OnInit } from "@angular/core";
-import { TranslateModule, TranslateService } from "@ngx-translate/core";
-import { environment } from "../../../../../../../environments/environment";
-import { ActivatedRoute } from "@angular/router";
-import { BaseComponent } from "../../../../../../core/base/base.component";
-import AOS from "aos";
+import { CommonModule } from '@angular/common';
+import { Component, inject, HostListener, OnInit } from '@angular/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { environment } from '../../../../../../../environments/environment';
+import { ActivatedRoute } from '@angular/router';
+import { BaseComponent } from '../../../../../../core/base/base.component';
+import AOS from 'aos';
 
 @Component({
-  selector: "app-cta",
+  selector: 'app-cta',
   imports: [TranslateModule, CommonModule],
-  templateUrl: "./cta.component.html",
-  styleUrl: "./cta.component.scss",
+  templateUrl: './cta.component.html',
+  styleUrl: './cta.component.scss',
 })
 export class CtaComponent extends BaseComponent implements OnInit {
   imagePath!: string;
   CMS_ASSETS_URL = environment.cmsAssetsUrl;
 
   private readonly activatedRoute = inject(ActivatedRoute);
-  content = this.activatedRoute.snapshot.data["content"]["cta"];
+  content = this.activatedRoute.snapshot.data['content']['cta'];
 
   constructor(private translate: TranslateService) {
     super();
     AOS.init();
-    this.currentLang = this.translate.currentLang || "ar";
-    this.translate.onLangChange.subscribe((event) => {
+    this.currentLang = this.translate.currentLang || 'ar';
+    this.translate.onLangChange.subscribe(event => {
       this.currentLang = event.lang;
     });
   }
@@ -39,9 +39,9 @@ export class CtaComponent extends BaseComponent implements OnInit {
 
   currentLang: string;
   isSmallScreen: boolean = window.innerWidth < 768;
-  screenSize: string = "";
+  screenSize: string = '';
 
-  @HostListener("window:resize", ["$event"])
+  @HostListener('window:resize', ['$event'])
   onResize(event?: Event) {
     this.updateScreenSize();
   }
@@ -49,15 +49,15 @@ export class CtaComponent extends BaseComponent implements OnInit {
   updateScreenSize() {
     const width = window.innerWidth;
     if (width < 576) {
-      this.screenSize = "xs";
+      this.screenSize = 'xs';
     } else if (width >= 576 && width < 768) {
-      this.screenSize = "sm";
+      this.screenSize = 'sm';
     } else if (width >= 768 && width < 992) {
-      this.screenSize = "md";
+      this.screenSize = 'md';
     } else if (width >= 992 && width < 1200) {
-      this.screenSize = "lg";
+      this.screenSize = 'lg';
     } else {
-      this.screenSize = "xl";
+      this.screenSize = 'xl';
     }
   }
 }

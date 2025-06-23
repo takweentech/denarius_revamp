@@ -15,10 +15,8 @@ export class AppComponent {
   private translationService = inject(TranslationService);
   private readonly splashScreen = inject(SplashScreenService);
 
-
   constructor() {
     this.translationService.init(environment.defaultLang);
-
   }
 
   onLangChange(): void {

@@ -1,30 +1,30 @@
-import { Component, forwardRef, Injectable } from "@angular/core";
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from "@angular/forms";
+import { Component, forwardRef, Injectable } from '@angular/core';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import {
   NgbCalendar,
   NgbCalendarGregorian,
   NgbDatepickerI18n,
   NgbDatepickerModule,
   NgbDateStruct,
-} from "@ng-bootstrap/ng-bootstrap";
+} from '@ng-bootstrap/ng-bootstrap';
 
 // أيام الأسبوع بالعربي
-const WEEKDAYS = ["ن", "ث", "ر", "خ", "ج", "س", "ح"];
+const WEEKDAYS = ['ن', 'ث', 'ر', 'خ', 'ج', 'س', 'ح'];
 
 // الشهور الميلادية بالعربي
 const MONTHS = [
-  "يناير",
-  "فبراير",
-  "مارس",
-  "أبريل",
-  "مايو",
-  "يونيو",
-  "يوليو",
-  "أغسطس",
-  "سبتمبر",
-  "أكتوبر",
-  "نوفمبر",
-  "ديسمبر",
+  'يناير',
+  'فبراير',
+  'مارس',
+  'أبريل',
+  'مايو',
+  'يونيو',
+  'يوليو',
+  'أغسطس',
+  'سبتمبر',
+  'أكتوبر',
+  'نوفمبر',
+  'ديسمبر',
 ];
 
 @Injectable()
@@ -47,10 +47,10 @@ export class ArabicGregorianI18n extends NgbDatepickerI18n {
 }
 
 @Component({
-  selector: "app-gregorian-arabic-datepicker",
+  selector: 'app-gregorian-arabic-datepicker',
   imports: [NgbDatepickerModule],
-  templateUrl: "./gregorian-arabic-datepicker.component.html",
-  styleUrl: "./gregorian-arabic-datepicker.component.scss",
+  templateUrl: './gregorian-arabic-datepicker.component.html',
+  styleUrl: './gregorian-arabic-datepicker.component.scss',
   providers: [
     { provide: NgbCalendar, useClass: NgbCalendarGregorian },
     { provide: NgbDatepickerI18n, useClass: ArabicGregorianI18n },
@@ -61,10 +61,8 @@ export class ArabicGregorianI18n extends NgbDatepickerI18n {
     },
   ],
 })
-export class GregorianArabicDatepickerComponent
-  implements ControlValueAccessor
-{
-  value: string = "";
+export class GregorianArabicDatepickerComponent implements ControlValueAccessor {
+  value: string = '';
   minDate: NgbDateStruct = {
     day: 1,
     month: 1,

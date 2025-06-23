@@ -1,25 +1,20 @@
-import { Component, inject, signal } from "@angular/core";
-import { Router, RouterLink } from "@angular/router";
-import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
-import {
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { TokenService } from "../../../../../../core/services/token.service";
-import { RegistrationApiService } from "../../../../../../data/registration.service";
-import { finalize, takeUntil } from "rxjs";
-import { BaseComponent } from "../../../../../../core/base/base.component";
-import { ToastService } from "../../../../../../shared/components/toast/toast.service";
-import { ProfileService } from "../../../../../../data/profile.service";
-import { TranslatePipe, TranslateService } from "@ngx-translate/core";
+import { Component, inject, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
+import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TokenService } from '../../../../../../core/services/token.service';
+import { RegistrationApiService } from '../../../../../../data/registration.service';
+import { finalize, takeUntil } from 'rxjs';
+import { BaseComponent } from '../../../../../../core/base/base.component';
+import { ToastService } from '../../../../../../shared/components/toast/toast.service';
+import { ProfileService } from '../../../../../../data/profile.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: "app-sign-in",
+  selector: 'app-sign-in',
   imports: [RouterLink, ReactiveFormsModule, TranslatePipe],
-  templateUrl: "./sign-in.component.html",
-  styleUrl: "./sign-in.component.scss",
+  templateUrl: './sign-in.component.html',
+  styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent extends BaseComponent {
   WEB_ROUTES = WEB_ROUTES;
@@ -49,17 +44,15 @@ export class SignInComponent extends BaseComponent {
         .subscribe({
           next: (response: any) => {
             if (response.status !== 200) {
-              if (response.message === "Incorrect login information") {
+              if (response.message === 'Incorrect login information') {
                 this.toastService.show({
-                  text: this.translateService.instant(
-                    "AUTHENTICATION.SIGN_IN.INCORRECT_DATA"
-                  ),
-                  classname: "bg-danger text-light",
+                  text: this.translateService.instant('AUTHENTICATION.SIGN_IN.INCORRECT_DATA'),
+                  classname: 'bg-danger text-light',
                 });
               } else {
                 this.toastService.show({
                   text: response.message,
-                  classname: "bg-danger text-light",
+                  classname: 'bg-danger text-light',
                 });
               }
               return;
@@ -67,7 +60,7 @@ export class SignInComponent extends BaseComponent {
             this.tokenService.setToken(response.data);
             this.getUserProfile();
           },
-          error: (err) => {},
+          error: err => {},
         });
     } else {
       this.form.markAllAsTouched();
@@ -82,15 +75,15 @@ export class SignInComponent extends BaseComponent {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           this.tokenService.setUser(response.data);
-          if (history.state["redirectionUrl"]) {
-            this.router.navigateByUrl(history.state["redirectionUrl"]);
+          if (history.state['redirectionUrl']) {
+            this.router.navigateByUrl(history.state['redirectionUrl']);
           } else {
-            this.router.navigate(["/" + WEB_ROUTES.DASHBOARD.ROOT]);
+            this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
           }
         },
-        error: (err) => {},
+        error: err => {},
       });
   }
 }

@@ -1,17 +1,17 @@
 :host ::ng-deep ngb-datepicker {
-    direction: rtl !important;
+  direction: rtl !important;
 
-    ngb-datepicker-navigation-select select.form-select {
-        background-position: left .25rem center
-    }
+  ngb-datepicker-navigation-select select.form-select {
+    background-position: left 0.25rem center;
+  }
 
-    .ngb-dp-arrow-next .ngb-dp-navigation-chevron {
-        transform: rotate(-135deg);
-        margin: 0 0 0 .25rem
-    }
+  .ngb-dp-arrow-next .ngb-dp-navigation-chevron {
+    transform: rotate(-135deg);
+    margin: 0 0 0 0.25rem;
+  }
 
-    .ngb-dp-arrow-prev .ngb-dp-navigation-chevron {
-        transform: rotate(45deg);
-        margin: 0 .25rem 0 0
-    }
+  .ngb-dp-arrow-prev .ngb-dp-navigation-chevron {
+    transform: rotate(45deg);
+    margin: 0 0.25rem 0 0;
+  }
 }

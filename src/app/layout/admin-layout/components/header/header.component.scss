@@ -9,7 +9,6 @@ nav {
   }
 
   .profile {
-
     button {
       &::after {
         display: none;
@@ -22,7 +21,6 @@ nav {
       object-fit: cover;
     }
   }
-
 
   @media (max-width: 768px) {
     .logo {

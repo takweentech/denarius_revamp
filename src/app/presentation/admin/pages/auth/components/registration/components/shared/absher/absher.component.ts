@@ -13,5 +13,4 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class AbsherComponent {
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
-
 }

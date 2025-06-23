@@ -2,14 +2,12 @@
   text-decoration: none;
 }
 
-
 .sidebar {
   padding: 2rem 0;
   position: sticky;
   top: 0;
 
   ul {
-
     li a {
       display: flex;
       align-items: center;
@@ -17,15 +15,15 @@
       font-weight: 500;
       font-size: 18px;
       line-height: 22px;
-      color: #B1B1B1;
-      padding: .5rem 1rem;
+      color: #b1b1b1;
+      padding: 0.5rem 1rem;
       position: relative;
 
       &:hover {
         color: var(--primary-color);
 
         &::after {
-          content: "";
+          content: '';
           width: 6px;
           height: 100%;
           background: var(--primary-color);
@@ -40,7 +38,7 @@
         color: var(--primary-color);
 
         &::after {
-          content: "";
+          content: '';
           width: 6px;
           height: 100%;
           background: var(--primary-color);
@@ -50,10 +48,8 @@
           border-radius: 8px 0px 0px 8px;
         }
       }
-
     }
   }
-
 
   @media (max-width: 768px) {
     background-color: #f5f7fa;

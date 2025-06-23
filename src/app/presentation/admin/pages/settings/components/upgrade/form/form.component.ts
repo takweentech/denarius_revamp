@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { BaseComponent } from '../../../../../../../core/base/base.component';
 import { UpgradeService } from '../../../../../../../data/upgrade.service';
-import { takeUntil, } from 'rxjs';
+import { takeUntil } from 'rxjs';
 import { ToastService } from '../../../../../../../shared/components/toast/toast.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { atLeastOneFileValidator } from '../../../../../../../core/validators/form.validators';
@@ -12,7 +12,7 @@ import { atLeastOneFileValidator } from '../../../../../../../core/validators/fo
   selector: 'app-form',
   imports: [ReactiveFormsModule, TranslatePipe],
   templateUrl: './form.component.html',
-  styleUrl: './form.component.scss'
+  styleUrl: './form.component.scss',
 })
 export class FormComponent extends BaseComponent implements OnInit {
   private readonly fb = inject(FormBuilder);
@@ -28,18 +28,20 @@ export class FormComponent extends BaseComponent implements OnInit {
     this.initForm();
   }
 
-
   initForm(): void {
     this.form = this.fb.group({
-      files: this.fb.group({
-        TradingActivityProofFilePath: [null],
-        NetAssetsProofFilePath: [null],
-        ProfessionalCertificationFilePath: [null],
-        FinancialExperienceProofFilePath: [null],
-        IncomeAndCME1ProofFilePath: [null],
-      }, { validators: atLeastOneFileValidator }),
+      files: this.fb.group(
+        {
+          TradingActivityProofFilePath: [null],
+          NetAssetsProofFilePath: [null],
+          ProfessionalCertificationFilePath: [null],
+          FinancialExperienceProofFilePath: [null],
+          IncomeAndCME1ProofFilePath: [null],
+        },
+        { validators: atLeastOneFileValidator }
+      ),
       Note: [null, Validators.required],
-    })
+    });
   }
 
   onUploadFile(event: Event, formControName: string): void {
@@ -58,7 +60,6 @@ export class FormComponent extends BaseComponent implements OnInit {
     }
   }
 
-
   create(): void {
     const formattedValue: any = {
       Note: this.form.value.Note,
@@ -70,28 +71,41 @@ export class FormComponent extends BaseComponent implements OnInit {
     };
 
     Object.keys(formattedValue).forEach(key => {
-      !formattedValue[key] && delete formattedValue[key]
+      !formattedValue[key] && delete formattedValue[key];
     });
 
     const formData = new FormData();
     Object.keys(formattedValue).forEach(key => {
-      formData.append(key, formattedValue[key])
-    })
-    this.upgradeService.create(formData).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        if (response.status == 200 || response.status == 201) {
-          this.toastService.show({ text: this.translateService.instant('SETTINGS.UPGRADE.FORM.SUCCESS_MSG'), classname: 'bg-success text-light', icon: 'fa-circle-check' });
-          this.activeModal.close('success');
-          this.form.reset()
-        } else {
-          this.toastService.show({ text: response.message, classname: 'bg-danger text-light', icon: 'fa-circle-exclamation' });
-        }
-      },
-      error: (error) => {
-        this.toastService.show({ text: error.message, classname: 'bg-danger text-light', icon: 'fa-circle-exclamation' });
-      }
-    })
+      formData.append(key, formattedValue[key]);
+    });
+    this.upgradeService
+      .create(formData)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          if (response.status == 200 || response.status == 201) {
+            this.toastService.show({
+              text: this.translateService.instant('SETTINGS.UPGRADE.FORM.SUCCESS_MSG'),
+              classname: 'bg-success text-light',
+              icon: 'fa-circle-check',
+            });
+            this.activeModal.close('success');
+            this.form.reset();
+          } else {
+            this.toastService.show({
+              text: response.message,
+              classname: 'bg-danger text-light',
+              icon: 'fa-circle-exclamation',
+            });
+          }
+        },
+        error: error => {
+          this.toastService.show({
+            text: error.message,
+            classname: 'bg-danger text-light',
+            icon: 'fa-circle-exclamation',
+          });
+        },
+      });
   }
-
-
 }

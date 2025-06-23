@@ -1,18 +1,18 @@
-import { Pipe, PipeTransform } from "@angular/core";
+import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: "timeDiff",
+  name: 'timeDiff',
   standalone: true,
 })
 export class TimeDiffPipe implements PipeTransform {
   transform(value: any): any {
-    if (!value) return "";
+    if (!value) return '';
 
     const expiryDate = +new Date(value);
     const now = +new Date();
     let seconds = (expiryDate - now) / 1000;
     const sign = Math.sign(seconds);
-    let suffix = sign === -1 ? "AGO" : "LEFT";
+    let suffix = sign === -1 ? 'AGO' : 'LEFT';
 
     if (sign === -1) seconds = Math.floor(seconds * sign);
 
@@ -26,15 +26,7 @@ export class TimeDiffPipe implements PipeTransform {
       second: 1,
     };
 
-    const allInterval = [
-      "year",
-      "month",
-      "week",
-      "day",
-      "hour",
-      "minute",
-      "second",
-    ];
+    const allInterval = ['year', 'month', 'week', 'day', 'hour', 'minute', 'second'];
 
     for (let i of allInterval) {
       const main = Math.floor(seconds / intervals[i]);
@@ -45,7 +37,7 @@ export class TimeDiffPipe implements PipeTransform {
         // Only one unit
         if (nextUnitIndex > allInterval.length - 1) {
           return {
-            key: "TIME_DIFF.SINGLE",
+            key: 'TIME_DIFF.SINGLE',
             params: {
               count1: main,
               unit1: this.getUnitKey(i, main),
@@ -58,31 +50,31 @@ export class TimeDiffPipe implements PipeTransform {
         const sub = Math.floor(remaining / intervals[nextUnit]);
 
         return {
-          key: "TIME_DIFF.DOUBLE",
+          key: 'TIME_DIFF.DOUBLE',
           params: {
             count1: main,
-            unit1: "TIME_DIFF." + this.getUnitKey(i, main), // TIME_DIFF.DAYS
+            unit1: 'TIME_DIFF.' + this.getUnitKey(i, main), // TIME_DIFF.DAYS
             count2: sub,
-            unit2: "TIME_DIFF." + this.getUnitKey(nextUnit, sub), // TIME_DIFF.WEEK
-            suffix: "TIME_DIFF." + suffix, // TIME_DIFF.LEFT
+            unit2: 'TIME_DIFF.' + this.getUnitKey(nextUnit, sub), // TIME_DIFF.WEEK
+            suffix: 'TIME_DIFF.' + suffix, // TIME_DIFF.LEFT
           },
         };
       }
     }
 
-    return { key: "TIME_DIFF.NOW", params: {} };
+    return { key: 'TIME_DIFF.NOW', params: {} };
   }
 
   getUnitKey(unit: string, count: number): string {
     const keys: any = {
-      year: "YEAR",
-      month: "MONTH",
-      week: "WEEK",
-      day: "DAY",
-      hour: "HOUR",
-      minute: "MINUTE",
-      second: "SECOND",
+      year: 'YEAR',
+      month: 'MONTH',
+      week: 'WEEK',
+      day: 'DAY',
+      hour: 'HOUR',
+      minute: 'MINUTE',
+      second: 'SECOND',
     };
-    return count === 1 ? keys[unit] : keys[unit] + "S";
+    return count === 1 ? keys[unit] : keys[unit] + 'S';
   }
 }

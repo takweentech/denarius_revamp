@@ -1,34 +1,22 @@
-import { Component, inject, signal } from "@angular/core";
-import {
-  UserInvestmentStatisticsData,
-  UserProfileData,
-} from "../../../../../../core/models/user";
-import { TokenService } from "../../../../../../core/services/token.service";
-import {
-  Investment,
-  InvestmentFilter,
-} from "../../../../../../core/models/investment";
-import { InvestorService } from "../../../../../../data/investor.service";
-import { finalize, takeUntil } from "rxjs";
-import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
-import { BaseComponent } from "../../../../../../core/base/base.component";
-import { DatePipe, DecimalPipe } from "@angular/common";
-import { NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
-import { RouterLink } from "@angular/router";
-import { TranslatePipe } from "@ngx-translate/core";
-import { ProfileService } from "../../../../../../data/profile.service";
+import { Component, inject, signal } from '@angular/core';
+import { UserInvestmentStatisticsData, UserProfileData } from '../../../../../../core/models/user';
+import { TokenService } from '../../../../../../core/services/token.service';
+import { Investment, InvestmentFilter } from '../../../../../../core/models/investment';
+import { InvestorService } from '../../../../../../data/investor.service';
+import { finalize, takeUntil } from 'rxjs';
+import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
+import { BaseComponent } from '../../../../../../core/base/base.component';
+import { DatePipe, DecimalPipe } from '@angular/common';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { ProfileService } from '../../../../../../data/profile.service';
 
 @Component({
-  selector: "app-listing",
-  imports: [
-    DatePipe,
-    DecimalPipe,
-    NgbPaginationModule,
-    RouterLink,
-    TranslatePipe,
-  ],
-  templateUrl: "./listing.component.html",
-  styleUrl: "./listing.component.scss",
+  selector: 'app-listing',
+  imports: [DatePipe, DecimalPipe, NgbPaginationModule, RouterLink, TranslatePipe],
+  templateUrl: './listing.component.html',
+  styleUrl: './listing.component.scss',
 })
 export class ListingComponent extends BaseComponent {
   private readonly tokenService = inject(TokenService);
@@ -41,8 +29,8 @@ export class ListingComponent extends BaseComponent {
     filter: {},
     orderByValue: [
       {
-        colId: "id",
-        sort: "desc",
+        colId: 'id',
+        sort: 'desc',
       },
     ],
   };
@@ -58,7 +46,7 @@ export class ListingComponent extends BaseComponent {
       .getInvestmentStatistics()
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (response) => {
+        next: response => {
           this.statistics.set(response.data);
         },
         error: () => {},
@@ -74,7 +62,7 @@ export class ListingComponent extends BaseComponent {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           this.investments.set(response.data.data);
           this.total.set(response.data.totalCount);
         },

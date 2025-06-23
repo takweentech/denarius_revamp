@@ -5,7 +5,7 @@ import { environment } from '../../../environments/environment';
 import { tap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ConfigService {
   private readonly http = inject(HttpClient);
@@ -25,27 +25,25 @@ export class ConfigService {
             dangerColor: data.data.dangerColor,
             successColor: data.data.successColor,
           },
-        }
+        };
         this.setAppTheme();
-        this.setAppName()
+        this.setAppName();
       })
-    )
+    );
   }
 
   getConfig(): AppConfig {
     return this.config;
   }
 
-
   private setAppName(): void {
-    document.title = this.config.name
+    document.title = this.config.name;
   }
 
   private setAppTheme(): void {
-    document.documentElement.style.setProperty('--primary-color', this.config.theme.primaryColor)
-    document.documentElement.style.setProperty('--secondary-color', this.config.theme.secondaryColor)
-    document.documentElement.style.setProperty('--danger-color', this.config.theme.dangerColor)
-    document.documentElement.style.setProperty('--success-color', this.config.theme.successColor)
+    document.documentElement.style.setProperty('--primary-color', this.config.theme.primaryColor);
+    document.documentElement.style.setProperty('--secondary-color', this.config.theme.secondaryColor);
+    document.documentElement.style.setProperty('--danger-color', this.config.theme.dangerColor);
+    document.documentElement.style.setProperty('--success-color', this.config.theme.successColor);
   }
-
 }

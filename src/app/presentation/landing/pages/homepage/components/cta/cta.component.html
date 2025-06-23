@@ -13,20 +13,12 @@
       <div
         class="position-relative d-flex funding justify-content-center align-items-center"
         [ngStyle]="{
-          transform: currentLang === 'ar' ? 'scaleX(1)' : 'scaleX(-1)'
+          transform: currentLang === 'ar' ? 'scaleX(1)' : 'scaleX(-1)',
         }"
       >
-        <img
-          class="w-100 h-100"
-          src="assets/images/funding.svg"
-          alt="Outer Circle"
-        />
+        <img class="w-100 h-100" src="assets/images/funding.svg" alt="Outer Circle" />
 
-        <img
-          class="position-absolute rounded-circle"
-          [src]="imagePath"
-          alt="Inner Image"
-        />
+        <img class="position-absolute rounded-circle" [src]="imagePath" alt="Inner Image" />
       </div>
     </div>
     <div class="col-12 col-md-7 d-flex flex-column gap-4">

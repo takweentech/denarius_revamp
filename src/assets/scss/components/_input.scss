@@ -5,11 +5,14 @@
   border-color: #e5e7eb;
   border: 1px solid var(--gray-color);
   color: var(--black-color);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
   line-height: normal;
   background: #ffffff;
   border-radius: 8px;
-  box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.04),
+  box-shadow:
+    0px 1px 2px rgba(16, 24, 40, 0.04),
     0px 1px 2px rgba(16, 24, 40, 0.04);
   border: 1px solid var(--primary-color);
   height: 46px;
@@ -46,7 +49,9 @@ select {
   background-color: #ffffff;
   color: var(--black-color);
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 
   &:focus {
     border-color: var(--primary-color);
@@ -78,7 +83,9 @@ textarea {
   border-radius: 0;
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
   padding-left: 0;
   padding-right: 0;
 
@@ -89,13 +96,13 @@ textarea {
   }
 
   &.active,
-  input[type="radio"]:checked + & {
+  input[type='radio']:checked + & {
     border-color: #eaecf0 !important;
     background-color: #eaecf0 !important;
   }
 }
 
-input[type="radio"]:checked + label.btn-option-select {
+input[type='radio']:checked + label.btn-option-select {
   border-color: #eaecf0 !important;
   background-color: #eaecf0 !important;
 }
@@ -105,10 +112,10 @@ input[type="radio"]:checked + label.btn-option-select {
   border: 1px solid var(--primary-color);
 }
 
-input[type="file"]::file-selector-button {
+input[type='file']::file-selector-button {
   background-color: transparent;
 }
 
-input[type="file"]::file-selector-button:hover {
+input[type='file']::file-selector-button:hover {
   background-color: transparent !important;
 }

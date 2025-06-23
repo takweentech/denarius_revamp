@@ -1,36 +1,26 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
-import { UserProfileData } from "../../../../../../core/models/user";
-import { TokenService } from "../../../../../../core/services/token.service";
-import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
-import { DatePipe, DecimalPipe, NgClass, NgIf } from "@angular/common";
-import { RouterLink } from "@angular/router";
-import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
-import { BaseComponent } from "../../../../../../core/base/base.component";
-import { finalize, takeUntil } from "rxjs";
-import { ProfileService } from "../../../../../../data/profile.service";
-import { FormsModule, NgModel } from "@angular/forms";
-import { ToastService } from "../../../../../../shared/components/toast/toast.service";
-import { WithdrawalService } from "../../../../../../data/Withdrawal.service";
-import { TransactionService } from "../../../../../../data/transaction.service";
-import { Transaction } from "../../../../../../core/models/transaction";
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { UserProfileData } from '../../../../../../core/models/user';
+import { TokenService } from '../../../../../../core/services/token.service';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
+import { DatePipe, DecimalPipe, NgClass, NgIf } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
+import { BaseComponent } from '../../../../../../core/base/base.component';
+import { finalize, takeUntil } from 'rxjs';
+import { ProfileService } from '../../../../../../data/profile.service';
+import { FormsModule, NgModel } from '@angular/forms';
+import { ToastService } from '../../../../../../shared/components/toast/toast.service';
+import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
+import { TransactionService } from '../../../../../../data/transaction.service';
+import { Transaction } from '../../../../../../core/models/transaction';
 
 @Component({
-  selector: "app-listing",
+  selector: 'app-listing',
   standalone: true,
-  imports: [
-    DecimalPipe,
-
-    NgClass,
-    TranslatePipe,
-    NgIf,
-    DatePipe,
-    FormsModule,
-    RouterLink,
-    NgbPagination,
-  ],
-  templateUrl: "./listing.component.html",
-  styleUrl: "./listing.component.scss",
+  imports: [DecimalPipe, NgClass, TranslatePipe, NgIf, DatePipe, FormsModule, RouterLink, NgbPagination],
+  templateUrl: './listing.component.html',
+  styleUrl: './listing.component.scss',
 })
 export class ListingComponent extends BaseComponent implements OnInit {
   private readonly translate = inject(TranslateService);
@@ -50,8 +40,8 @@ export class ListingComponent extends BaseComponent implements OnInit {
     filter: {},
     orderByValue: [
       {
-        colId: "id",
-        sort: "desc",
+        colId: 'id',
+        sort: 'desc',
       },
     ],
   };
@@ -74,7 +64,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           console.log(response);
         },
         error: () => {},
@@ -102,22 +92,22 @@ export class ListingComponent extends BaseComponent implements OnInit {
     this.isSubmitting = true;
     this.showConfirmModal = false;
     this.WithdrawalService.withdraw(this.withdrawAmount).subscribe({
-      next: (response) => {
+      next: response => {
         const message = response.message?.trim();
 
         if (response.status === 200) {
           this.toastService.show({
-            text: message || "",
-            classname: "bg-success text-light",
-            icon: "fa-circle-check",
+            text: message || '',
+            classname: 'bg-success text-light',
+            icon: 'fa-circle-check',
           });
 
           this.showConfirmModal = false;
         } else {
           this.toastService.show({
-            text: message || this.translate.instant("WALLET.WITHDRAW.FAILED"),
-            classname: "bg-danger text-light",
-            icon: "fa-circle-exclamation",
+            text: message || this.translate.instant('WALLET.WITHDRAW.FAILED'),
+            classname: 'bg-danger text-light',
+            icon: 'fa-circle-exclamation',
           });
 
           this.showConfirmModal = false;
@@ -125,12 +115,12 @@ export class ListingComponent extends BaseComponent implements OnInit {
 
         this.isSubmitting = false;
       },
-      error: (err) => {
-        console.error("Withdrawal Failed:", err);
+      error: err => {
+        console.error('Withdrawal Failed:', err);
         this.toastService.show({
-          text: this.translate.instant("WALLET.WITHDRAW.ERROR"),
-          classname: "bg-danger text-light",
-          icon: "fa-circle-exclamation",
+          text: this.translate.instant('WALLET.WITHDRAW.ERROR'),
+          classname: 'bg-danger text-light',
+          icon: 'fa-circle-exclamation',
         });
 
         this.isSubmitting = false;
