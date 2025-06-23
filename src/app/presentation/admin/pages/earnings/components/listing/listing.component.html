@@ -96,7 +96,8 @@
                 {{ "DIVIDENDS.LISTING.TOTAL_DIVIDENCE" | translate }}</small
               >
               <div class="d-flex gap-1 price-alignment w-fit">
-                {{ item.totalDividence }}<span class="icon-saudi_riyal"></span>
+                {{ item.totalDividence | number : "1.0-2"
+                }}<span class="icon-saudi_riyal"></span>
               </div>
             </div>
 
@@ -105,14 +106,15 @@
                 "DIVIDENDS.LISTING.TOTAL_PRINCIPAL" | translate
               }}</small>
               <div class="d-flex gap-1 price-alignment w-fit">
-                {{ item.totalPrincipal }}<span class="icon-saudi_riyal"></span>
+                {{ item.totalPrincipal | number : "1.0-2"
+                }}<span class="icon-saudi_riyal"></span>
               </div>
             </div>
 
             <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
               <small>{{ "DIVIDENDS.LISTING.NET" | translate }}</small>
               <div class="d-flex gap-1 price-alignment w-fit">
-                {{ item.net }}
+                {{ item.net | number : "1.0-2" }}
                 <span class="icon-saudi_riyal"></span>
               </div>
             </div>

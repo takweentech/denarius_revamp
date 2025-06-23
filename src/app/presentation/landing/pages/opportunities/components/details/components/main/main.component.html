@@ -55,7 +55,9 @@
         </h5>
 
         <div class="d-flex price-alignment align-items-center">
-          <span class="h3">{{ opportunity.stockValue }}</span>
+          <span class="h3">{{
+            opportunity.stockValue | number : "1.0-2"
+          }}</span>
           <span class="icon-saudi_riyal"></span>
         </div>
       </div>
@@ -146,14 +148,11 @@
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.TOTAL_INVESTMENT_AMOUNT" | translate }}
           </div>
-          <div
-            class="d-flex align-items-center price-alignment gap-1 w-fit"
-            dir="ltr"
-          >
+          <div class="d-flex align-items-center price-alignment gap-1 w-fit">
             {{
               numStock.value && opportunity.opportunityStockValue
                 ? numStock.value && opportunity.opportunityStockValue
-                : 0
+                : (0 | number : "1.0-2")
             }}<span class="icon-saudi_riyal"></span>
           </div>
         </li>
@@ -162,14 +161,11 @@
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.TOTAL_EXPECTED_RETURN" | translate }}
           </div>
-          <div
-            class="d-flex align-items-center price-alignment gap-1 w-fit"
-            dir="ltr"
-          >
+          <div class="d-flex align-items-center price-alignment gap-1 w-fit">
             {{
               numStock.value && opportunity.opportunityStockValue
                 ? numStock.value && opportunity.opportunityStockValue
-                : 0
+                : (0 | number : "1.0-2")
             }}
             <span class="icon-saudi_riyal"></span>
           </div>
@@ -179,11 +175,9 @@
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.AGENCY_FEE" | translate }}
           </div>
-          <div
-            class="d-flex align-items-center price-alignment gap-1 w-fit"
-            dir="ltr"
-          >
-            {{ opportunity.agencyFee }} <span class="icon-saudi_riyal"></span>
+          <div class="d-flex align-items-center price-alignment gap-1 w-fit">
+            {{ opportunity.agencyFee | number : "1.0-2" }}
+            <span class="icon-saudi_riyal"></span>
           </div>
         </li>
 
@@ -191,11 +185,9 @@
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.VAT" | translate }}
           </div>
-          <div
-            class="d-flex align-items-center price-alignment gap-1 w-fit"
-            dir="ltr"
-          >
-            {{ opportunity.vat }} <span class="icon-saudi_riyal"></span>
+          <div class="d-flex align-items-center price-alignment gap-1 w-fit">
+            {{ opportunity.vat | number : "1.0-2" }}
+            <span class="icon-saudi_riyal"></span>
           </div>
         </li>
 
@@ -203,11 +195,9 @@
           <div class="d-flex align-items-center fw-regular small">
             {{ "OPPORTUNITIES_DETAILS.NET_RETURN" | translate }}
           </div>
-          <div
-            class="d-flex align-items-center price-alignment gap-1 w-fit"
-            dir="ltr"
-          >
-            {{ opportunity.netProfit }} <span class="icon-saudi_riyal"></span>
+          <div class="d-flex align-items-center price-alignment gap-1 w-fit">
+            {{ opportunity.netProfit | number : "1.0-2" }}
+            <span class="icon-saudi_riyal"></span>
           </div>
         </li>
       </ul>

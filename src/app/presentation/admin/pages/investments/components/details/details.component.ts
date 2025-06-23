@@ -3,12 +3,12 @@ import { Investment } from "../../../../../../core/models/investment";
 import { ActivatedRoute } from "@angular/router";
 import { NgbNavModule } from "@ng-bootstrap/ng-bootstrap";
 import { TranslatePipe } from "@ngx-translate/core";
-import { DatePipe } from "@angular/common";
+import { DatePipe, DecimalPipe } from "@angular/common";
 import { Location } from "@angular/common";
 
 @Component({
   selector: "app-details",
-  imports: [NgbNavModule, TranslatePipe, DatePipe],
+  imports: [NgbNavModule, DecimalPipe, TranslatePipe, DatePipe],
   templateUrl: "./details.component.html",
   styleUrl: "./details.component.scss",
 })

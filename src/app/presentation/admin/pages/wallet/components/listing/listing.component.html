@@ -14,7 +14,7 @@
             <span>{{ "DASHBOARD.STATS.TOTAL_DEPOSIT" | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
               <span class="fw-semibold"
-                >{{ user.financialSummary.totalDeposits }}
+                >{{ user.financialSummary.totalDeposits | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -34,7 +34,7 @@
             <span>{{ "DASHBOARD.STATS.TOTAL_INVESTEMENTS" | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
               <span class="fw-semibold"
-                >{{ user.financialSummary.totalInvestments }}
+                >{{ user.financialSummary.totalInvestments | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -54,7 +54,7 @@
             <span>{{ "DASHBOARD.STATS.TOTAL_EARNINGS" | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
               <span class="fw-semibold"
-                >{{ user.financialSummary.totalProfits }}
+                >{{ user.financialSummary.totalProfits | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -75,7 +75,7 @@
           <div class="col-6 d-flex flex-column">
             <small>{{ "DASHBOARD.WALLET.BALANCE" | translate }}</small>
             <div class="text-lg price-alignment w-fit fw-bold gap-1">
-              {{ user.investmentAccount.balance }}
+              {{ user.investmentAccount.balance | number : "1.0-2" }}
               <span class="icon-saudi_riyal text-white"></span>
             </div>
           </div>
@@ -196,7 +196,7 @@
                           | translate
                       }}
                       <span class="d-inline-flex price-alignment">
-                        {{ withdrawAmount }}
+                        {{ withdrawAmount | number : "1.0-2" }}
                         <span class="icon-saudi_riyal"></span>
                       </span>
                       {{

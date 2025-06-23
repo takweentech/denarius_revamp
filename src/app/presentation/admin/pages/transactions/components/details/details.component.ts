@@ -1,14 +1,14 @@
 import { Component, OnInit, inject } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { TransactionService } from "../../../../../../data/transaction.service";
-import { DatePipe } from "@angular/common";
+import { DatePipe, DecimalPipe } from "@angular/common";
 import { Location } from "@angular/common";
 import { Transaction } from "../../../../../../core/models/transaction";
 import { TranslatePipe } from "@ngx-translate/core";
 
 @Component({
   selector: "app-details",
-  imports: [DatePipe, TranslatePipe],
+  imports: [DatePipe, DecimalPipe, TranslatePipe],
   templateUrl: "./details.component.html",
   styleUrl: "./details.component.scss",
 })

@@ -12,7 +12,7 @@
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_DEPOSIT" | translate }}</span>
           <div class="fw-semibold d-flex price-alignment gap-1 w-fit" dir="ltr">
-            {{ user.financialSummary.totalDeposits }}
+            {{ user.financialSummary.totalDeposits | number : "1.0-2" }}
             <span class="icon-saudi_riyal"></span>
           </div>
         </div>
@@ -29,7 +29,7 @@
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_INVESTMENTS" | translate }}</span>
           <div class="fw-semibold d-flex price-alignment gap-1 w-fit" dir="ltr">
-            {{ user.financialSummary.totalInvestments }}
+            {{ user.financialSummary.totalInvestments | number : "1.0-2" }}
             <span class="icon-saudi_riyal"></span>
           </div>
         </div>
@@ -46,7 +46,7 @@
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_EARNINGS" | translate }}</span>
           <div class="fw-semibold d-flex price-alignment gap-1 w-fit" dir="ltr">
-            {{ user.financialSummary.totalProfits }}
+            {{ user.financialSummary.totalProfits | number : "1.0-2" }}
             <span class="icon-saudi_riyal"></span>
           </div>
         </div>
@@ -63,7 +63,7 @@
         <div class="d-flex flex-column gap-1">
           <span>{{ "TRANSACTIONS.TOTAL_EXPECTED_EARNINGS" | translate }}</span>
           <div class="fw-semibold d-flex price-alignment gap-1 w-fit" dir="ltr">
-            {{ user.financialSummary.expectedProfits }}
+            {{ user.financialSummary.expectedProfits | number : "1.0-2" }}
             <span class="icon-saudi_riyal"></span>
           </div>
         </div>

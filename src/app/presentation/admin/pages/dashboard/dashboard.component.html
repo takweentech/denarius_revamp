@@ -78,7 +78,7 @@
             <div
               class="w-fit price-alignment text-lg fw-bold d-flex align-items-center gap-1"
             >
-              {{ user.investmentAccount.balance }}
+              {{ user.investmentAccount.balance | number : "1.0-2" }}
               <span class="icon-saudi_riyal text-white"></span>
             </div>
           </div>
@@ -131,7 +131,7 @@
             <span>{{ "DASHBOARD.STATS.TOTAL_DEPOSIT" | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
               <span class="fw-semibold"
-                >{{ user.financialSummary.totalDeposits }}
+                >{{ user.financialSummary.totalDeposits | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -150,7 +150,7 @@
             <span>{{ "DASHBOARD.STATS.TOTAL_INVESTEMENTS" | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
               <span class="fw-semibold"
-                >{{ user.financialSummary.totalInvestments }}
+                >{{ user.financialSummary.totalInvestments | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -169,7 +169,7 @@
             <span>{{ "DASHBOARD.STATS.TOTAL_EARNINGS" | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
               <span class="fw-semibold"
-                >{{ user.financialSummary.totalProfits }}
+                >{{ user.financialSummary.totalProfits | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -190,7 +190,7 @@
             }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
               <span class="fw-semibold"
-                >{{ user.financialSummary.expectedProfits }}
+                >{{ user.financialSummary.expectedProfits | number : "1.0-2" }}
               </span>
               <span class="icon-saudi_riyal"></span>
             </div>
@@ -255,7 +255,8 @@
               <div class="col d-flex flex-column gap-1">
                 <small>{{ "TRANSACTIONS.AMOUNT" | translate }}</small>
                 <div class="d-flex price-alignment gap-1 w-fit">
-                  {{ tx.amount }} <span class="icon-saudi_riyal"></span>
+                  {{ tx.amount | number : "1.0-2" }}
+                  <span class="icon-saudi_riyal"></span>
                 </div>
               </div>
             </div>

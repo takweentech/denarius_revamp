@@ -15,7 +15,7 @@
               >{{ "INVESTMENTS.STATS.TOTAL_INVESTMENTS" | translate }}
             </span>
             <div class="fw-semibold d-flex price-alignment w-fit gap-1">
-              {{ statistics()?.totalInvestments }}
+              {{ statistics()?.totalInvestments | number : "1.0-2" }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </div>
@@ -34,7 +34,7 @@
               "INVESTMENTS.STATS.TOTAL_INVESTMENTS_NUMBER" | translate
             }}</span>
             <div class="fw-semibold d-flex price-alignment w-fit gap-1">
-              {{ statistics()?.totalInvestmentCount }}
+              {{ statistics()?.totalInvestmentCount | number : "1.0-2" }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </div>
@@ -51,7 +51,7 @@
           <div class="d-flex flex-column gap-1">
             <span>{{ "INVESTMENTS.STATS.TOTAL_EARNINGS" | translate }}</span>
             <div class="fw-semibold d-flex price-alignment w-fit gap-1">
-              {{ statistics()?.totalProfits }}
+              {{ statistics()?.totalProfits | number : "1.0-2" }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </div>
@@ -96,14 +96,16 @@
                 }}</small
               >
               <div class="d-flex gap-1 price-alignment w-fit">
-                {{ item.stockValue }} <span class="icon-saudi_riyal"></span>
+                {{ item.stockValue | number : "1.0-2" }}
+                <span class="icon-saudi_riyal"></span>
               </div>
             </div>
 
             <div class="col d-flex flex-column gap-2">
               <small>{{ "INVESTMENTS.MY_INVESTMENTS.ROI" | translate }}</small>
               <div class="d-flex gap-1 price-alignment w-fit">
-                {{ item.stockCount }} <span class="icon-saudi_riyal"></span>
+                {{ item.stockCount | number : "1.0-2" }}
+                <span class="icon-saudi_riyal"></span>
               </div>
             </div>
 

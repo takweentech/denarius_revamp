@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from "@angular/core";
 import { TranslatePipe } from "@ngx-translate/core";
 import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
-import { DatePipe, NgClass } from "@angular/common";
+import { DatePipe, DecimalPipe, NgClass } from "@angular/common";
 import { NgbPagination } from "@ng-bootstrap/ng-bootstrap";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { finalize, takeUntil } from "rxjs";
@@ -20,6 +20,7 @@ import { IslamicDatepickerComponent } from "../../../../../../shared/components/
 @Component({
   selector: "app-listing",
   imports: [
+    DecimalPipe,
     TranslatePipe,
     DatePipe,
     NgbPagination,

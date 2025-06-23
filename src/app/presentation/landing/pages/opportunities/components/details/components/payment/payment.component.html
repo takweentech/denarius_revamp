@@ -64,7 +64,7 @@
                 {{
                   numStock.value && opportunity.opportunityStockValue
                     ? numStock.value && opportunity.opportunityStockValue
-                    : 0
+                    : (0 | number : "1.0-2")
                 }}
                 <span class="icon-saudi_riyal"></span>
               </div>
@@ -75,7 +75,7 @@
               {{ "OPPOTUNITIES_PAYMENT.TOTAL_EXPECTED_RETURN" | translate }}
             </span>
             <div class="d-flex price-alignment align-items-center gap-1 w-fit">
-              0
+              {{ 0 | number : "1.0-2" }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </li>
@@ -84,7 +84,7 @@
               {{ "OPPOTUNITIES_PAYMENT.AGENCY_FEE" | translate }}
             </span>
             <div class="d-flex price-alignment align-items-center gap-1 w-fit">
-              {{ opportunity.agencyFee }}
+              {{ opportunity.agencyFee | number : "1.0-2" }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </li>
@@ -93,7 +93,7 @@
               {{ "OPPOTUNITIES_PAYMENT.VAT" | translate }}
             </span>
             <div class="d-flex price-alignment align-items-center gap-1 w-fit">
-              {{ opportunity.vat }}
+              {{ opportunity.vat | number : "1.0-2" }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </li>
@@ -102,7 +102,7 @@
               {{ "OPPOTUNITIES_PAYMENT.NET_RETURN" | translate }}
             </span>
             <div class="d-flex price-alignment align-items-center gap-1 w-fit">
-              {{ opportunity.netProfit }}
+              {{ opportunity.netProfit | number : "1.0-2" }}
               <span class="icon-saudi_riyal"></span>
             </div>
           </li>
@@ -142,7 +142,7 @@
             {{
               numStock.value && opportunity.opportunityStockValue
                 ? numStock.value && opportunity.opportunityStockValue
-                : 0
+                : (0 | number : "1.0-2")
             }}
             <span class="icon-saudi_riyal"></span>
           </span>
@@ -227,7 +227,7 @@
               <div
                 class="d-flex price-alignment align-items-center gap-1 w-fit"
               >
-                {{ payment.initialBalance }}
+                {{ payment.initialBalance | number : "1.0-2" }}
                 <span class="icon-saudi_riyal"></span>
               </div>
             </td>
@@ -238,7 +238,7 @@
               <div
                 class="d-flex price-alignment align-items-center gap-1 w-fit"
               >
-                {{ payment.nominalValue }}
+                {{ payment.nominalValue | number : "1.0-2" }}
                 <span class="icon-saudi_riyal"></span>
               </div>
             </td>
@@ -246,7 +246,7 @@
               <div
                 class="d-flex price-alignment align-items-center gap-1 w-fit"
               >
-                {{ payment.earn }}
+                {{ payment.earn | number : "1.0-2" }}
                 <span class="icon-saudi_riyal"></span>
               </div>
             </td>
@@ -254,7 +254,7 @@
               <div
                 class="d-flex price-alignment align-items-center gap-1 w-fit"
               >
-                {{ payment.agencyFee }}
+                {{ payment.agencyFee | number : "1.0-2" }}
                 <span class="icon-saudi_riyal"></span>
               </div>
             </td>
@@ -263,7 +263,7 @@
               <div
                 class="d-flex price-alignment align-items-center gap-1 w-fit"
               >
-                {{ payment.net }}
+                {{ payment.net | number : "1.0-2" }}
                 <span class="icon-saudi_riyal"></span>
               </div>
             </td>

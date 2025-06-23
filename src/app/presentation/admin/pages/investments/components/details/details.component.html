@@ -38,7 +38,8 @@
                 }}
               </h6>
               <div class="d-flex gap-1 price-alignment w-fit">
-                {{ investment.amount }}<span class="icon-saudi_riyal"></span>
+                {{ investment.amount | number : "1.0-2"
+                }}<span class="icon-saudi_riyal"></span>
               </div>
             </div>
             <div class="col-6 d-flex flex-column gap-2">
@@ -60,7 +61,7 @@
                 }}
               </h6>
               <div class="d-flex price-alignment gap-1 w-fit">
-                {{ investment.stockValue
+                {{ investment.stockValue | number : "1.0-2"
                 }}<span class="icon-saudi_riyal"></span>
               </div>
             </div>
