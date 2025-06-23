@@ -1,24 +1,24 @@
-@import './rtl';
-@import './custom/_utilities';
-@import './custom/_classes';
-@import 'bootstrap/scss/bootstrap.scss';
-@import './custom/_override';
-@import './abstract/variables';
-@import './components/_button';
-@import './components/_card';
-@import './components/_table';
-@import './components/_input';
-@import './components/_tab';
+@import "./rtl";
+@import "./custom/_utilities";
+@import "./custom/_classes";
+@import "bootstrap/scss/bootstrap.scss";
+@import "./custom/_override";
+@import "./abstract/variables";
+@import "./components/_button";
+@import "./components/_card";
+@import "./components/_table";
+@import "./components/_input";
+@import "./components/_tab";
+@import "./components/riyals";
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
 }
 
-
-body {}
-
+body {
+}
 
 a,
 p,
@@ -32,6 +32,6 @@ h3,
 h4,
 h5,
 h6 {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }

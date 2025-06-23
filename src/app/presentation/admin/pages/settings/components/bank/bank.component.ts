@@ -1,9 +1,17 @@
 import { Component, inject, signal } from "@angular/core";
-import { TranslatePipe } from "@ngx-translate/core";
+import { TranslatePipe, TranslateService } from "@ngx-translate/core";
 import { TokenService } from "../../../../../../core/services/token.service";
 import { ProfileService } from "../../../../../../data/profile.service";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { UserBankData, UserProfileData } from "../../../../../../core/models/user";
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from "@angular/forms";
+import {
+  UserBankData,
+  UserProfileData,
+} from "../../../../../../core/models/user";
 import { LookupService } from "../../../../../../core/services/lookup.service";
 import { Lookup } from "../../../../../../core/models/lookup";
 import { BaseComponent } from "../../../../../../core/base/base.component";
@@ -23,14 +31,19 @@ export class BankComponent extends BaseComponent {
   private toastService = inject(ToastService);
   bankList = signal<Lookup[]>([]);
   loading = signal<boolean>(false);
+  private readonly translate = inject(TranslateService);
+
   form!: FormGroup;
 
   getBanks(): void {
-    this.lookupService.getBanks().pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.bankList.set(response)
-      }
-    })
+    this.lookupService
+      .getBanks()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.bankList.set(response);
+        },
+      });
   }
 
   ngOnInit(): void {
@@ -39,39 +52,51 @@ export class BankComponent extends BaseComponent {
     this.profileService.getBankInformation().subscribe({
       next: (response) => {
         this.initForm(response.data);
-      }
-    })
+      },
+    });
   }
 
   initForm(data?: UserBankData) {
     this.form = this.fb.group({
       bankId: [data?.bankId, Validators.required],
-      accountBeneficiaryName: [data?.accountBeneficiaryName, Validators.required],
+      accountBeneficiaryName: [
+        data?.accountBeneficiaryName,
+        Validators.required,
+      ],
       iban: [data?.iban, Validators.required],
-    })
+    });
   }
-
 
   onSave() {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      return
-    };
+      return;
+    }
     this.loading.set(true);
 
-    this.profileService.saveBankInformation(this.form.value).pipe(
-      finalize(() => this.loading.set(false)),
-      takeUntil(this.destroy$)).subscribe({
+    this.profileService
+      .saveBankInformation(this.form.value)
+      .pipe(
+        finalize(() => this.loading.set(false)),
+        takeUntil(this.destroy$)
+      )
+      .subscribe({
         next: (response) => {
           if (response.status == 200) {
-            this.toastService.show({ text: "Bank information was successfully saved", classname: 'bg-success text-light', icon: 'fa-circle-check' });
+            this.toastService.show({
+              text: this.translate.instant("SETTINGS.BANK.SAVE_SUCCESS"),
+              classname: "bg-success text-light",
+              icon: "fa-circle-check",
+            });
           } else {
-            this.toastService.show({ text: response.message, classname: 'bg-danger text-light', icon: 'fa-circle-exclamation' });
+            this.toastService.show({
+              text: response.message,
+              classname: "bg-danger text-light",
+              icon: "fa-circle-exclamation",
+            });
           }
         },
-        error: (error) => {
-
-        }
-      })
+        error: (error) => {},
+      });
   }
 }

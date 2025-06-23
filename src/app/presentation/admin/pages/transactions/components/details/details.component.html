@@ -19,9 +19,9 @@
           <span class="fw-light">{{
             "TRANSACTIONS.DETAILS.AMOUNT" | translate
           }}</span>
-          <h6 class="fw-bold mt-2">
-            {{ transaction.amount }}
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg" alt="" />
+          <h6 class="fw-bold price-alignment mt-2">
+            {{ transaction.amount | number : "1.0-2" }}
+            <span class="icon-saudi_riyal"></span>
           </h6>
         </div>
         <div>

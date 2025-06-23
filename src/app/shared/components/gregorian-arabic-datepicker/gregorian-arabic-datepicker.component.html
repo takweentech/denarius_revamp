@@ -1,0 +1,22 @@
+<div class="input-group">
+  <input
+    class="form-control"
+    placeholder="1990-01-01"
+    name="dp"
+    formControlName="birhtdate"
+    readonly
+    (click)="d.toggle()"
+    (dateSelect)="onDateSelect($event)"
+    ngbDatepicker
+    [minDate]="minDate"
+    [maxDate]="maxDate"
+    #d="ngbDatepicker"
+  />
+  <button
+    class="btn btn-outline-secondary datepicker-btn"
+    (click)="d.toggle()"
+    type="button"
+  >
+    <i class="fas fa-calendar"></i>
+  </button>
+</div>

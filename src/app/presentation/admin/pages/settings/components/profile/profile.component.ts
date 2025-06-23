@@ -114,7 +114,11 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         this.tokenService.setUser({ ...this.tokenService.getUser(), userProfile: { ...this.tokenService.getUser().userProfile, profileImageUrl: response.data as string } })
       },
       error: (error) => {
-
+        this.toastService.show({
+          text: error.message,
+          classname: "bg-danger text-light",
+          icon: "fa-circle-exclamation",
+        });
       }
     })
   }

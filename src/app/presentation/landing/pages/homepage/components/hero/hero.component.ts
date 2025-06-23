@@ -6,14 +6,17 @@ import { NgStyle } from "@angular/common";
 import { environment } from "../../../../../../../environments/environment";
 import { BaseComponent } from "../../../../../../core/base/base.component";
 import { takeUntil } from "rxjs";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, RouterLink } from "@angular/router";
+import { WEB_ROUTES } from "../../../../../../core/constants/routes.constants";
 @Component({
   selector: "app-hero",
-  imports: [TranslateModule, NgStyle],
+  imports: [TranslateModule, NgStyle, RouterLink],
   templateUrl: "./hero.component.html",
   styleUrl: "./hero.component.scss",
 })
 export class HeroComponent extends BaseComponent implements OnInit {
+  WEB_ROUTES = WEB_ROUTES;
+
   imagePath!: string;
   CMS_ASSETS_URL = environment.cmsAssetsUrl;
   private readonly strapiService = inject(StrapiService);
