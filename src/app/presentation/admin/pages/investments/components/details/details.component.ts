@@ -3,7 +3,7 @@ import { Investment } from "../../../../../../core/models/investment";
 import { ActivatedRoute } from "@angular/router";
 import { NgbNavModule, NgbPagination } from "@ng-bootstrap/ng-bootstrap";
 import { TranslatePipe } from "@ngx-translate/core";
-import { DatePipe, DecimalPipe } from "@angular/common";
+import { DatePipe, DecimalPipe, NgClass } from "@angular/common";
 import { Location } from "@angular/common";
 import { DividendService } from "../../../../../../data/dividend.service";
 import { TranslationService } from "../../../../../../core/services/translation.service";
@@ -13,7 +13,14 @@ import { DividendFilter } from "../../../../../../core/models/dividend";
 
 @Component({
   selector: "app-details",
-  imports: [NgbNavModule, DecimalPipe, NgbPagination, TranslatePipe, DatePipe],
+  imports: [
+    NgbNavModule,
+    NgClass,
+    DecimalPipe,
+    NgbPagination,
+    TranslatePipe,
+    DatePipe,
+  ],
   templateUrl: "./details.component.html",
   styleUrl: "./details.component.scss",
 })

@@ -95,91 +95,102 @@
           {{ "INVESTMENTS.DETAILS.DISTRIBUTIONS.TITLE" | translate }}
         </button>
         <ng-template ngbNavContent>
-          <div class="row mx-0 d-flex justify-content-center gap-3">
-            @if (loading()) {
-            <div class="py-4">
-              <h6 class="text-center">
-                {{ "DIVIDENDS.LOADING" | translate }}
-              </h6>
-            </div>
-            }@else { @if (earnings().length) { @for (item of earnings(); track
-            $index) {
-            <div
-              class="card row justify-content-center d-flex bg-white p-4 w-100"
+          <div class="table-responsive mt-3">
+            <table
+              class="table border-start-0 table-striped border-end-0 text-center align-middle"
             >
-              <div
-                class="col-md-12 row col-sm-12 d-flex gap-4 align-items-center"
-              >
-                <div class="col-md-1 col-sm-12">
-                  <span class="badge bg-success">{{ item.status }}</span>
-                </div>
-
-                <div class="d-flex col-md col-sm-12 col-6 flex-column gap-2">
-                  <small>
-                    {{ "DIVIDENDS.LISTING.PRODUCT_NAME" | translate }}</small
-                  >
-                  <h6>{{ item.opportunityName }}</h6>
-                </div>
-
-                <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
-                  <small>
-                    {{ "DIVIDENDS.LISTING.TOTAL_DIVIDENCE" | translate }}</small
-                  >
-                  <div class="d-flex gap-1 price-alignment w-fit">
-                    {{ item.totalDividence | number : "1.0-2"
-                    }}<span class="icon-saudi_riyal"></span>
-                  </div>
-                </div>
-
-                <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
-                  <small>{{
-                    "DIVIDENDS.LISTING.TOTAL_PRINCIPAL" | translate
-                  }}</small>
-                  <div class="d-flex gap-1 price-alignment w-fit">
-                    {{ item.totalPrincipal | number : "1.0-2"
-                    }}<span class="icon-saudi_riyal"></span>
-                  </div>
-                </div>
-
-                <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
-                  <small>{{ "DIVIDENDS.LISTING.NET" | translate }}</small>
-                  <div class="d-flex gap-1 price-alignment w-fit">
+              <thead class="table-primary">
+                <tr>
+                  <th>
+                    {{
+                      "INVESTMENTS.DETAILS.DISTRIBUTIONS.TABLE.INDEX"
+                        | translate
+                    }}
+                  </th>
+                  <th>
+                    {{
+                      "INVESTMENTS.DETAILS.DISTRIBUTIONS.TABLE.STATUS"
+                        | translate
+                    }}
+                  </th>
+                  <th>
+                    {{
+                      "INVESTMENTS.DETAILS.DISTRIBUTIONS.TABLE.AMOUNT"
+                        | translate
+                    }}
+                  </th>
+                  <th>
+                    {{
+                      "INVESTMENTS.DETAILS.DISTRIBUTIONS.TABLE.AGENCY_FEE"
+                        | translate
+                    }}
+                  </th>
+                  <th>
+                    {{
+                      "INVESTMENTS.DETAILS.DISTRIBUTIONS.TABLE.VAT" | translate
+                    }}
+                  </th>
+                  <th>
+                    {{
+                      "INVESTMENTS.DETAILS.DISTRIBUTIONS.TABLE.NET_PROFIT"
+                        | translate
+                    }}
+                  </th>
+                  <th>
+                    {{
+                      "INVESTMENTS.DETAILS.DISTRIBUTIONS.TABLE.DISTRIBUTION_DATE"
+                        | translate
+                    }}
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (item of earnings(); let i = $index; track i) {
+                <tr>
+                  <td>{{ i + 1 }}</td>
+                  <td>
+                    <span class="badge bg-success">{{ item.status }}</span>
+                  </td>
+                  <td class="justify-content-center">
+                    <div class="price-alignment justify-content-center">
+                      {{ item.totalPrincipal | number : "1.0-2" }}
+                      <span class="icon-saudi_riyal"></span>
+                    </div>
+                  </td>
+                  <td class="justify-content-center">
+                    <div class="price-alignment justify-content-center">
+                      {{ item.totalAgencyFee | number : "1.0-2" }}
+                      <span class="icon-saudi_riyal"></span>
+                    </div>
+                  </td>
+                  <td>
+                    {{ item.totalVat | number : "1.0-2" }}
+                  </td>
+                  <td>
                     {{ item.net | number : "1.0-2" }}
-                    <span class="icon-saudi_riyal"></span>
-                  </div>
-                </div>
-
-                <div class="col d-flex flex-column gap-2">
-                  <small>{{
-                    "DIVIDENDS.LISTING.MATURITY_DATE" | translate
-                  }}</small>
-                  <span dir="ltr" class="w-fit">{{
-                    item.maturityDate | date : "dd/MM/yyyy hh:mm a"
-                  }}</span>
-                </div>
-              </div>
-            </div>
-            } }@else {
-            <div class="py-4">
-              <h6 class="text-center">
-                {{ "INVESTMENTS.DETAILS.DISTRIBUTIONS.EMPTY" | translate }}
-              </h6>
-            </div>
-            } } @if (!loading() && earnings().length) {
-            <nav class="d-flex justify-content-center my-4">
-              <ngb-pagination
-                [(page)]="pagination.pageNumber"
-                [pageSize]="pagination.pageSize"
-                [collectionSize]="total()"
-                [maxSize]="5"
-                [ellipses]="true"
-                (pageChange)="goToPage($event)"
-                size="md"
-              >
-              </ngb-pagination>
-            </nav>
-            }
+                  </td>
+                  <td>
+                    {{ item.maturityDate | date : "dd/MM/yyyy" }}
+                  </td>
+                </tr>
+                }
+              </tbody>
+            </table>
           </div>
+          @if (!loading() && earnings().length) {
+          <nav class="d-flex justify-content-center my-4">
+            <ngb-pagination
+              [(page)]="pagination.pageNumber"
+              [pageSize]="pagination.pageSize"
+              [collectionSize]="total()"
+              [maxSize]="5"
+              [ellipses]="true"
+              (pageChange)="goToPage($event)"
+              size="md"
+            >
+            </ngb-pagination>
+          </nav>
+          }
         </ng-template>
       </li>
     </ul>
