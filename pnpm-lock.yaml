@@ -53,12 +53,18 @@ importers:
       bs-stepper:
         specifier: ^1.7.0
         version: 1.7.0
+      chart.js:
+        specifier: ^4.5.0
+        version: 4.5.0
       ng-apexcharts:
         specifier: ^1.15.0
         version: 1.15.0(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(apexcharts@4.7.0)(rxjs@7.8.2)
       ng-otp-input:
         specifier: ^2.0.7
         version: 2.0.7(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))
+      ng2-charts:
+        specifier: ^8.0.0
+        version: 8.0.0(@angular/cdk@20.0.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0)))(chart.js@4.5.0)(rxjs@7.8.2)
       rxjs:
         specifier: ~7.8.0
         version: 7.8.2
@@ -105,6 +111,9 @@ importers:
       karma-jasmine-html-reporter:
         specifier: ~2.1.0
         version: 2.1.0(jasmine-core@5.6.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
+      prettier:
+        specifier: ^3.6.0
+        version: 3.6.0
       typescript:
         specifier: ~5.7.2
         version: 5.7.3
@@ -218,6 +227,13 @@ packages:
         optional: true
       tailwindcss:
         optional: true
+
+  '@angular/cdk@20.0.3':
+    resolution: {integrity: sha512-70KG8GpK4aV9j5hUkpDZJQ6oMgCuaCRY6JX1axPxkNtQaiK6PAmTfQLiGqF2cYhbQneeq3uGvTorAjRfvp8NPQ==}
+    peerDependencies:
+      '@angular/common': ^20.0.0 || ^21.0.0
+      '@angular/core': ^20.0.0 || ^21.0.0
+      rxjs: ^6.5.3 || ^7.4.0
 
   '@angular/cli@19.2.4':
     resolution: {integrity: sha512-YmZYrxdGBwSZsrnpS6vr9gQ8+PrZHzwyYW/3jU2NRAMtl0ZlipDyfpLIDgrfqYPeumzr7+SKtJYVvlsMnjkN4g==}
@@ -1142,6 +1158,9 @@ packages:
     peerDependencies:
       tslib: '2'
 
+  '@kurkle/color@0.3.4':
+    resolution: {integrity: sha512-M5UknZPHRu3DEDWoipU6sE8PdkZ6Z/S+v4dD+Ke8IaNlpdSQah50lz1KtcFBa2vsdOnwbbnxJwVM4wty6udA5w==}
+
   '@leichtgewicht/ip-codec@2.0.5':
     resolution: {integrity: sha512-Vo+PSpZG2/fmgmiNzYK9qWRh8h/CHrwD0mo1h1DzL4yzHNSfWYujGTYsWGreD000gcgmZ7K4Ys6Tx9TxtsKdDw==}
 
@@ -2021,6 +2040,10 @@ packages:
 
   chardet@0.7.0:
     resolution: {integrity: sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==}
+
+  chart.js@4.5.0:
+    resolution: {integrity: sha512-aYeC/jDgSEx8SHWZvANYMioYMZ2KX02W6f6uVfyteuCGcadDLcYVHdfdygsTQkQ4TKn5lghoojAsPj5pu0SnvQ==}
+    engines: {pnpm: '>=8'}
 
   chokidar@3.6.0:
     resolution: {integrity: sha512-7VT13fmjotKpGipCW9JEQAusEPE+Ei8nl6/g4FBAmIm0GOOLMua9NDDo/DWp0ZAxCr3cPq5ZpBqmPAQgDda2Pw==}
@@ -3008,6 +3031,9 @@ packages:
     resolution: {integrity: sha512-gvVijfZvn7R+2qyPX8mAuKcFGDf6Nc61GdvGafQsHL0sBIxfKzA+usWn4GFC/bk+QdwPUD4kWFJLhElipq+0VA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
+  lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+
   lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
 
@@ -3250,6 +3276,16 @@ packages:
     peerDependencies:
       '@angular/common': '>=16.0.0'
       '@angular/core': '>=16.0.0'
+
+  ng2-charts@8.0.0:
+    resolution: {integrity: sha512-nofsNHI2Zt+EAwT+BJBVg0kgOhNo9ukO4CxULlaIi7VwZSr7I1km38kWSoU41Oq6os6qqIh5srnL+CcV+RFPFA==}
+    peerDependencies:
+      '@angular/cdk': '>=19.0.0'
+      '@angular/common': '>=19.0.0'
+      '@angular/core': '>=19.0.0'
+      '@angular/platform-browser': '>=19.0.0'
+      chart.js: ^3.4.0 || ^4.0.0
+      rxjs: ^6.5.3 || ^7.4.0
 
   node-addon-api@6.1.0:
     resolution: {integrity: sha512-+eawOlIgy680F0kBzPUNFhMZGtJ1YmqM6l4+Crf4IkImjYrO/mqPwRMh352g23uIaQKFItcQ64I7KMaJxHgAVA==}
@@ -3517,6 +3553,11 @@ packages:
   postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
+
+  prettier@3.6.0:
+    resolution: {integrity: sha512-ujSB9uXHJKzM/2GBuE0hBOUgC77CN3Bnpqa+g80bkv3T3A93wL/xlzDATHhnhkzifz/UE2SNOvmbTz5hSkDlHw==}
+    engines: {node: '>=14'}
+    hasBin: true
 
   proc-log@5.0.0:
     resolution: {integrity: sha512-Azwzvl90HaF0aCz1JrDdXQykFakSSNPaPoiZ9fm5qJIMHioDZEi7OAdRwSm6rSoPtY3Qutnm3L7ogmg3dc+wbQ==}
@@ -4506,6 +4547,14 @@ snapshots:
       - terser
       - tsx
       - yaml
+
+  '@angular/cdk@20.0.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)':
+    dependencies:
+      '@angular/common': 19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/core': 19.2.3(rxjs@7.8.2)(zone.js@0.15.0)
+      parse5: 7.2.1
+      rxjs: 7.8.2
+      tslib: 2.8.1
 
   '@angular/cli@19.2.4(@types/node@22.13.10)(chokidar@4.0.3)':
     dependencies:
@@ -5548,6 +5597,8 @@ snapshots:
     dependencies:
       tslib: 2.8.1
 
+  '@kurkle/color@0.3.4': {}
+
   '@leichtgewicht/ip-codec@2.0.5': {}
 
   '@listr2/prompt-adapter-inquirer@2.0.18(@inquirer/prompts@7.3.2(@types/node@22.13.10))':
@@ -6416,6 +6467,10 @@ snapshots:
       supports-color: 7.2.0
 
   chardet@0.7.0: {}
+
+  chart.js@4.5.0:
+    dependencies:
+      '@kurkle/color': 0.3.4
 
   chokidar@3.6.0:
     dependencies:
@@ -7474,6 +7529,8 @@ snapshots:
     dependencies:
       p-locate: 6.0.0
 
+  lodash-es@4.17.21: {}
+
   lodash.debounce@4.0.8: {}
 
   lodash.throttle@4.1.1: {}
@@ -7707,6 +7764,17 @@ snapshots:
     dependencies:
       '@angular/common': 19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
       '@angular/core': 19.2.3(rxjs@7.8.2)(zone.js@0.15.0)
+      tslib: 2.8.1
+
+  ng2-charts@8.0.0(@angular/cdk@20.0.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(@angular/platform-browser@19.2.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0)))(chart.js@4.5.0)(rxjs@7.8.2):
+    dependencies:
+      '@angular/cdk': 20.0.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/common': 19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2)
+      '@angular/core': 19.2.3(rxjs@7.8.2)(zone.js@0.15.0)
+      '@angular/platform-browser': 19.2.3(@angular/common@19.2.3(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))(rxjs@7.8.2))(@angular/core@19.2.3(rxjs@7.8.2)(zone.js@0.15.0))
+      chart.js: 4.5.0
+      lodash-es: 4.17.21
+      rxjs: 7.8.2
       tslib: 2.8.1
 
   node-addon-api@6.1.0:
@@ -7999,6 +8067,8 @@ snapshots:
       nanoid: 3.3.11
       picocolors: 1.1.1
       source-map-js: 1.2.1
+
+  prettier@3.6.0: {}
 
   proc-log@5.0.0: {}
 
