@@ -31,15 +31,13 @@ export class SecurityComponent extends BaseComponent {
   readonly translationService = inject(TranslationService);
   readonly translateService = inject(TranslateService);
   loading = signal<boolean>(false);
+
   passwordForm: FormGroup = this.fb.group(
     {
       currentPassword: [null, [Validators.required]],
       newPassword: [
         null,
-        [
-          Validators.required,
-          Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/),
-        ],
+        [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
       ],
       confirmedPassword: [null, Validators.required],
     },
