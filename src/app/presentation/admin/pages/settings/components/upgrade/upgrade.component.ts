@@ -15,8 +15,8 @@ import { NgbModal, NgbPaginationModule } from "@ng-bootstrap/ng-bootstrap";
 @Component({
   selector: "app-upgrade",
   imports: [TranslatePipe, DatePipe, NgbPaginationModule],
-  templateUrl: "./upgrade.component.html",
-  styleUrl: "./upgrade.component.scss",
+  templateUrl: './upgrade.component.html',
+  styleUrl: './upgrade.component.scss',
 })
 export class UpgradeComponent extends BaseComponent implements OnInit {
   private readonly upgradeService = inject(UpgradeService);
@@ -56,7 +56,7 @@ export class UpgradeComponent extends BaseComponent implements OnInit {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           this.requests.set(response.data.data);
           this.total.set(response.data.totalCount);
         },

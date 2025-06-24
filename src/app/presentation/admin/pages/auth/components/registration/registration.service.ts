@@ -1,20 +1,15 @@
-import { inject, Injectable } from "@angular/core";
-import {
-  AbstractControl,
-  ValidationErrors,
-  ValidatorFn,
-  Validators,
-} from "@angular/forms";
-import { InformationComponent } from "./components/individual/information/information.component";
-import { InformationComponent as CompanyInformation } from "./components/company/information/information.component";
-import { OtpComponent } from "./components/shared/otp/otp.component";
-import { AddressComponent } from "./components/individual/address/address.component";
-import { InvestmentComponent } from "./components/individual/investment/investment.component";
-import { DisclosureComponent } from "./components/individual/disclosure/disclosure.component";
-import { FinancialComponent } from "./components/individual/financial/financial.component";
-import { AbsherComponent } from "./components/shared/absher/absher.component";
-import { BusinessComponent } from "./components/company/business/business.component";
-import { RegistrationApiService } from "../../../../../../data/registration.service";
+import { inject, Injectable } from '@angular/core';
+import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { InformationComponent } from './components/individual/information/information.component';
+import { InformationComponent as CompanyInformation } from './components/company/information/information.component';
+import { OtpComponent } from './components/shared/otp/otp.component';
+import { AddressComponent } from './components/individual/address/address.component';
+import { InvestmentComponent } from './components/individual/investment/investment.component';
+import { DisclosureComponent } from './components/individual/disclosure/disclosure.component';
+import { FinancialComponent } from './components/individual/financial/financial.component';
+import { AbsherComponent } from './components/shared/absher/absher.component';
+import { BusinessComponent } from './components/company/business/business.component';
+import { RegistrationApiService } from '../../../../../../data/registration.service';
 import {
   CompanyFinalizationDto,
   CompanyInitialSignUpDto,
@@ -23,20 +18,17 @@ import {
   IndividualFinalizationDto,
   IndividualInitialSignUpDto,
   IndividualOtpSignUpDto,
-} from "../../../../../../core/models/registration";
-import { Observable, tap } from "rxjs";
-import { HttpCustomResponse } from "../../../../../../core/models/http";
-import { Step } from "./models/registration.model";
-import {
-  matchValidator,
-  minimumAgeValidator,
-} from "../../../../../../core/validators/form.validators";
-import { REGEX_PATTERNS } from "../../../../../../core/constants/patterns.constants";
+} from '../../../../../../core/models/registration';
+import { Observable, tap } from 'rxjs';
+import { HttpCustomResponse } from '../../../../../../core/models/http';
+import { Step } from './models/registration.model';
+import { matchValidator, minimumAgeValidator } from '../../../../../../core/validators/form.validators';
+import { REGEX_PATTERNS } from '../../../../../../core/constants/patterns.constants';
 
-type StepType = "individual" | "company";
+type StepType = 'individual' | 'company';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class RegistrationService {
   private readonly registrationApiService = inject(RegistrationApiService);
@@ -412,8 +404,7 @@ export class RegistrationService {
         component: AbsherComponent,
         controls: [
           {
-            key: "otp",
-            validators: [Validators.required],
+            key: 'otp',
           },
         ],
         nextButtonText: "AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.CTA",

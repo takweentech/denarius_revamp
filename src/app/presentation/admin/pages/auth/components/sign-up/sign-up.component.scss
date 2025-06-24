@@ -1,36 +1,29 @@
 .container {
-    h6 {
-        margin-bottom: 80px;
-        color: var(--dark-gray-color);
+  h6 {
+    margin-bottom: 80px;
+    color: var(--dark-gray-color);
 
-        a {}
+    a {
     }
+  }
 
-    p {
-        color: var(--dark-gray-color);
+  p {
+    color: var(--dark-gray-color);
+  }
+
+  .cards {
+    width: 100%;
+    // max-width: 626px;
+
+    .shadow-card {
+      padding: 28px;
+      border: 1px solid transparent;
+      color: var(--primary-color);
+
+      &:hover {
+        background: #f5f9ff;
+        border: 1px solid var(--primary-color);
+      }
     }
-
-    .cards {
-        width: 100%;
-        // max-width: 626px;
-
-        .shadow-card {
-            padding: 28px;
-            border: 1px solid transparent;
-            color: var(--primary-color);
-
-            &:hover {
-
-                background: #F5F9FF;
-                border: 1px solid var(--primary-color);
-
-            }
-        }
-    }
-
-
-
-
-
-
+  }
 }

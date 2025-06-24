@@ -1,31 +1,31 @@
 body {
-    font-family: "Inter", sans-serif !important;
+  font-family: 'Inter', sans-serif !important;
 
-    html[dir=rtl] & {
-        font-family: "Tajawal", sans-serif !important;
+  html[dir='rtl'] & {
+    font-family: 'Tajawal', sans-serif !important;
 
-        .input-group .form-control {
-            border-top-left-radius: 0 !important;
-            border-bottom-left-radius: 0 !important;
-            border-top-right-radius: var(--bs-border-radius) !important;
-            border-bottom-right-radius: var(--bs-border-radius) !important;
-        }
-
-        .input-group-text {
-            border-top-right-radius: 0 !important;
-            border-bottom-right-radius: 0 !important;
-            border-top-left-radius: var(--bs-border-radius) !important;
-            border-bottom-left-radius: var(--bs-border-radius) !important;
-        }
-
-        .lang-link {
-            top: 1rem;
-            right: unset;
-            left: 1rem;
-        }
-
-        .datepicker-btn {
-            border-radius: 4px 0 0 4px !important;
-        }
+    .input-group .form-control {
+      border-top-left-radius: 0 !important;
+      border-bottom-left-radius: 0 !important;
+      border-top-right-radius: var(--bs-border-radius) !important;
+      border-bottom-right-radius: var(--bs-border-radius) !important;
     }
+
+    .input-group-text {
+      border-top-right-radius: 0 !important;
+      border-bottom-right-radius: 0 !important;
+      border-top-left-radius: var(--bs-border-radius) !important;
+      border-bottom-left-radius: var(--bs-border-radius) !important;
+    }
+
+    .lang-link {
+      top: 1rem;
+      right: unset;
+      left: 1rem;
+    }
+
+    .datepicker-btn {
+      border-radius: 4px 0 0 4px !important;
+    }
+  }
 }

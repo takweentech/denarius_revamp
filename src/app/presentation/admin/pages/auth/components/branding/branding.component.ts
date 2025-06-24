@@ -8,7 +8,7 @@ import { ConfigService } from '../../../../../../core/services/config.service';
   selector: 'app-branding',
   imports: [TranslatePipe, RouterLink],
   templateUrl: './branding.component.html',
-  styleUrl: './branding.component.scss'
+  styleUrl: './branding.component.scss',
 })
 export class BrandingComponent {
   version = environment.version;

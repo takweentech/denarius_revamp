@@ -1,30 +1,21 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  Validators,
-} from "@angular/forms";
-import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { BaseComponent } from "../../../../../../core/base/base.component";
-import { TokenService } from "../../../../../../core/services/token.service";
-import { ProfileService } from "../../../../../../data/profile.service";
-import { ToastService } from "../../../../../../shared/components/toast/toast.service";
-import {
-  UserPersonalData,
-  UserProfileData,
-} from "../../../../../../core/models/user";
-import { finalize, forkJoin, takeUntil } from "rxjs";
-import { LangPipe } from "../../../../../../shared/pipes/lang.pipe";
-import { Lookup } from "../../../../../../core/models/lookup";
-import { LookupService } from "../../../../../../core/services/lookup.service";
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { BaseComponent } from '../../../../../../core/base/base.component';
+import { TokenService } from '../../../../../../core/services/token.service';
+import { ProfileService } from '../../../../../../data/profile.service';
+import { ToastService } from '../../../../../../shared/components/toast/toast.service';
+import { UserPersonalData, UserProfileData } from '../../../../../../core/models/user';
+import { finalize, forkJoin, takeUntil } from 'rxjs';
+import { LangPipe } from '../../../../../../shared/pipes/lang.pipe';
+import { Lookup } from '../../../../../../core/models/lookup';
+import { LookupService } from '../../../../../../core/services/lookup.service';
 
 @Component({
-  selector: "app-personal",
+  selector: 'app-personal',
   imports: [TranslatePipe, ReactiveFormsModule, LangPipe],
-  templateUrl: "./personal.component.html",
-  styleUrl: "./personal.component.scss",
+  templateUrl: './personal.component.html',
+  styleUrl: './personal.component.scss',
 })
 export class PersonalComponent extends BaseComponent implements OnInit {
   private readonly translate = inject(TranslateService);
@@ -59,7 +50,7 @@ export class PersonalComponent extends BaseComponent implements OnInit {
     })
       .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (response) => {
+        next: response => {
           this.martialStatusList.set(response.martialStatusList);
           this.employmentStatusList.set(response.employmentStatusList);
           this.annualIncomeList.set(response.annualIncomeList);
@@ -70,7 +61,7 @@ export class PersonalComponent extends BaseComponent implements OnInit {
             .getPersonalInformation()
             .pipe(takeUntil(this.destroy$))
             .subscribe({
-              next: (response) => {
+              next: response => {
                 this.initForm(response.data);
               },
             });
@@ -105,26 +96,24 @@ export class PersonalComponent extends BaseComponent implements OnInit {
         takeUntil(this.destroy$)
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           if (response.status == 200) {
-            this.translate
-              .get("VALIDATORS.PERSONAL_INFO_SAVED")
-              .subscribe((msg) => {
-                this.toastService.show({
-                  text: msg,
-                  classname: "bg-success text-light",
-                  icon: "fa-circle-check",
-                });
+            this.translate.get('VALIDATORS.PERSONAL_INFO_SAVED').subscribe(msg => {
+              this.toastService.show({
+                text: msg,
+                classname: 'bg-success text-light',
+                icon: 'fa-circle-check',
               });
+            });
           } else {
             this.toastService.show({
               text: response.message,
-              classname: "bg-danger text-light",
-              icon: "fa-circle-exclamation",
+              classname: 'bg-danger text-light',
+              icon: 'fa-circle-exclamation',
             });
           }
         },
-        error: (error) => {},
+        error: error => {},
       });
   }
   // onNumberInput(event: Event) {

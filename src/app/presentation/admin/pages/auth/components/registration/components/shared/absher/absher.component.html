@@ -1,11 +1,5 @@
-<form [formGroup]="formGroup"
-      class="d-flex flex-column text-center gap-4 align-items-center">
-     <img class="absher justify-content-center mb-4"
-          src="assets/images/absher.svg"
-          alt="" />
-     <h6 class="otp-instruction">{{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.FORM.OTP.LABEL' | translate}}</h6>
-     <ng-otp-input formControlName="otp"
-                   dir="ltr"
-                   [config]="{ length: 4 }"></ng-otp-input>
-
+<form [formGroup]="formGroup" class="d-flex flex-column text-center gap-4 align-items-center">
+  <img class="absher justify-content-center mb-4" src="assets/images/absher.svg" alt="" />
+  <h6 class="otp-instruction">{{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.FORM.OTP.LABEL' | translate }}</h6>
+  <ng-otp-input formControlName="otp" dir="ltr" [config]="{ length: 4 }"></ng-otp-input>
 </form>

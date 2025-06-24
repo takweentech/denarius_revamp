@@ -10,7 +10,7 @@ import { IslamicDatepickerComponent } from '../../../../../../../../../shared/co
   selector: 'app-information',
   imports: [ReactiveFormsModule, TranslatePipe, IslamicDatepickerComponent, GregorianDatepickerComponent],
   templateUrl: './information.component.html',
-  styleUrl: './information.component.scss'
+  styleUrl: './information.component.scss',
 })
 export class InformationComponent {
   readonly translationService = inject(TranslationService);

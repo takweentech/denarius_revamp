@@ -7,23 +7,21 @@
       </div>
       <div class="row justify-content-center cards d-flex">
         @for (item of content.members; track $index) {
-        <div class="col-12 d-flex flex-column justify-content-center align-items-center text-center row gap-3 col-md-3">
-          <img class="rounded-circle"
-               [src]="CMS_ASSETS_URL +  item.image.url"
-               alt="" />
-          <div class="gap-2 flex-column d-flex">
-            <h4 class="fw-bold">{{ item.name }}</h4>
-            <h6 class="col-12">{{ item.role }}</h6>
-            <p class="col-12 fw-light">
-              {{ item.summary }}
-            </p>
-            <a class="mx-auto"
-               target="_blank"
-               [href]="item.linkedin">
-              <i class="fa-brands fa-linkedin fs-2"></i>
-            </a>
+          <div
+            class="col-12 d-flex flex-column justify-content-center align-items-center text-center row gap-3 col-md-3"
+          >
+            <img class="rounded-circle" [src]="CMS_ASSETS_URL + item.image.url" alt="" />
+            <div class="gap-2 flex-column d-flex">
+              <h4 class="fw-bold">{{ item.name }}</h4>
+              <h6 class="col-12">{{ item.role }}</h6>
+              <p class="col-12 fw-light">
+                {{ item.summary }}
+              </p>
+              <a class="mx-auto" target="_blank" [href]="item.linkedin">
+                <i class="fa-brands fa-linkedin fs-2"></i>
+              </a>
+            </div>
           </div>
-        </div>
         }
       </div>
     </div>

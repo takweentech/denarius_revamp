@@ -18,10 +18,10 @@ import { REGEX_PATTERNS } from "../../../../../../core/constants/patterns.consta
 import { NgIf } from "@angular/common";
 
 @Component({
-  selector: "app-security",
+  selector: 'app-security',
   imports: [TranslatePipe, ReactiveFormsModule],
-  templateUrl: "./security.component.html",
-  styleUrl: "./security.component.scss",
+  templateUrl: './security.component.html',
+  styleUrl: './security.component.scss',
 })
 export class SecurityComponent extends BaseComponent {
   private readonly accountService = inject(AccountService);
@@ -77,8 +77,8 @@ export class SecurityComponent extends BaseComponent {
             } else {
               this.toastService.show({
                 text: response.message,
-                classname: "bg-danger text-light",
-                icon: "fa-circle-exclamation",
+                classname: 'bg-danger text-light',
+                icon: 'fa-circle-exclamation',
               });
             }
           },
@@ -122,8 +122,8 @@ export class SecurityComponent extends BaseComponent {
             } else {
               this.toastService.show({
                 text: response.message,
-                classname: "bg-danger text-light",
-                icon: "fa-circle-exclamation",
+                classname: 'bg-danger text-light',
+                icon: 'fa-circle-exclamation',
               });
             }
           },
@@ -167,8 +167,8 @@ export class SecurityComponent extends BaseComponent {
             } else {
               this.toastService.show({
                 text: response.message,
-                classname: "bg-danger text-light",
-                icon: "fa-circle-exclamation",
+                classname: 'bg-danger text-light',
+                icon: 'fa-circle-exclamation',
               });
             }
           },

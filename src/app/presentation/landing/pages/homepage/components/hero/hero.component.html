@@ -1,22 +1,29 @@
-<section [ngStyle]="{
-  backgroundImage: 'url(' + CMS_ASSETS_URL + content.media.url+ ')'
-}">
-  <div class="container"
-       data-aos="fade-up"
-       data-aos-easing="linear"
-       data-aos-duration="400">
+<section
+  [ngStyle]="{
+    backgroundImage: 'url(' + CMS_ASSETS_URL + content.media.url + ')',
+  }"
+>
+  <div class="container" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="400">
     <div class="d-flex flex-column gap-1">
       <h1>
-        {{content.title}}
+        {{ content.title }}
       </h1>
       <p>{{ content.subTitle }}</p>
     </div>
     <div class="d-flex gap-2">
-      <button class="btn btn-primary">
-        {{ "HOMEPAGE.HERO.BUTTON_INVESTOR" | translate }}
+      <button
+        [routerLink]="
+          '/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.REGISTRATION + '/' + WEB_ROUTES.AUTH.INDIVIDUAL
+        "
+        class="btn btn-primary"
+      >
+        {{ 'HOMEPAGE.HERO.BUTTON_INVESTOR' | translate }}
       </button>
-      <button class="btn btn-transparent">
-        {{ "HOMEPAGE.HERO.BUTTON_APPLICANT" | translate }}
+      <button
+        [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.REGISTRATION + '/' + WEB_ROUTES.AUTH.COMANY"
+        class="btn btn-transparent"
+      >
+        {{ 'HOMEPAGE.HERO.BUTTON_APPLICANT' | translate }}
       </button>
     </div>
   </div>

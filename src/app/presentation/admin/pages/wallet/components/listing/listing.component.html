@@ -4,16 +4,15 @@
     <div class="row g-2">
       <div class="col-md-12 col-lg-6 col-xl-4">
         <div class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
-          <div class="icon success">
-            <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                 alt="" />
+          <div class="icon success fs-1">
+            <span class="icon-saudi_riyal"></span>
           </div>
+
           <div class="d-flex flex-column gap-1">
-            <span>{{ "DASHBOARD.STATS.TOTAL_DEPOSIT" | translate }}</span>
-            <div class="fw-semibold d-flex gap-2">
-              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="" />
-              {{ user.financialSummary.totalDeposits }}
+            <span>{{ 'DASHBOARD.STATS.TOTAL_DEPOSIT' | translate }}</span>
+            <div class="d-flex price-alignment w-fit gap-1">
+              <span class="fw-semibold">{{ user.financialSummary.totalDeposits | number: '1.0-2' }} </span>
+              <span class="icon-saudi_riyal"></span>
             </div>
           </div>
         </div>
@@ -22,15 +21,14 @@
       <div class="col-md-12 col-lg-6 col-xl-4">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon danger">
-            <img src="assets/icons/invoice-dollar.svg"
-                 alt="" />
+            <img src="assets/icons/invoice-dollar.svg" alt="" />
           </div>
+
           <div class="d-flex flex-column gap-1">
-            <span>{{ "DASHBOARD.STATS.TOTAL_INVESTEMENTS" | translate }}</span>
-            <div class="fw-semibold d-flex gap-2">
-              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="" />
-              {{ user.financialSummary.totalInvestments }}
+            <span>{{ 'DASHBOARD.STATS.TOTAL_INVESTEMENTS' | translate }}</span>
+            <div class="d-flex price-alignment w-fit gap-1">
+              <span class="fw-semibold">{{ user.financialSummary.totalInvestments | number: '1.0-2' }} </span>
+              <span class="icon-saudi_riyal"></span>
             </div>
           </div>
         </div>
@@ -39,16 +37,15 @@
       <div class="col-md-12 col-lg-6 col-xl-4">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon primary">
-            <img src="assets/icons/earnings.svg"
-                 alt="" />
+            <img src="assets/icons/earnings.svg" alt="" />
           </div>
+
           <div class="d-flex flex-column gap-1">
-            <span>{{ "DASHBOARD.STATS.TOTAL_EARNINGS" | translate }}</span>
-            <span class="fw-semibold d-flex gap-2">
-              <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                   alt="" />
-              {{ user.financialSummary.totalProfits }}
-            </span>
+            <span>{{ 'DASHBOARD.STATS.TOTAL_EARNINGS' | translate }}</span>
+            <div class="d-flex price-alignment w-fit gap-1">
+              <span class="fw-semibold">{{ user.financialSummary.totalProfits | number: '1.0-2' }} </span>
+              <span class="icon-saudi_riyal"></span>
+            </div>
           </div>
         </div>
       </div>
@@ -60,148 +57,114 @@
     <div class="row g-4">
       <div class="col-lg-12 col-xl-6 d-flex flex-column gap-3">
         <h5 class="card-title text-primary">
-          {{ "DASHBOARD.WALLET.TITLE" | translate }}
+          {{ 'DASHBOARD.WALLET.TITLE' | translate }}
         </h5>
         <div class="card bg-primary text-white h-100 py-3 px-3 d-flex gap-2">
           <div class="col-6 d-flex flex-column">
-            <small>{{ "DASHBOARD.WALLET.BALANCE" | translate }}</small>
-            <div class="text-lg fw-bold d-flex align-items-center gap-1">
-              <img src="assets/icons/Saudi_Riyal_White.svg"
-                   alt="" />
-              {{ user.investmentAccount.balance }}
+            <small>{{ 'DASHBOARD.WALLET.BALANCE' | translate }}</small>
+            <div class="text-lg price-alignment w-fit fw-bold gap-1">
+              {{ user.investmentAccount.balance | number: '1.0-2' }}
+              <span class="icon-saudi_riyal text-white"></span>
             </div>
           </div>
 
           <div class="row g-2">
             <div class="col-6 d-flex flex-column">
-              <small>{{
-                "DASHBOARD.WALLET.BENEFICIARY_NAME" | translate
-                }}</small>
-              <span class="text-lg fw-bold">{{
-                user.investmentAccount.accountHolderName
-                }}</span>
+              <small>{{ 'DASHBOARD.WALLET.BENEFICIARY_NAME' | translate }}</small>
+              <span class="text-lg fw-bold">{{ user.investmentAccount.accountHolderName }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
-              <small>{{ "DASHBOARD.WALLET.BANK_NAME" | translate }}</small>
-              <span class="text-lg fw-bold">{{
-                user.investmentAccount.bankName || "N/A"
-                }}</span>
+              <small>{{ 'DASHBOARD.WALLET.BANK_NAME' | translate }}</small>
+              <span class="text-lg fw-bold">{{ user.investmentAccount.bankName || '-' }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
-              <small>{{ "DASHBOARD.WALLET.ACCOUNT_NUMBER" | translate }}</small>
-              <span class="text-lg fw-bold">{{
-                user.investmentAccount.accountNumber || "N/A"
-                }}</span>
+              <small>{{ 'DASHBOARD.WALLET.ACCOUNT_NUMBER' | translate }}</small>
+              <span class="text-lg fw-bold">{{ user.investmentAccount.accountNumber || '-' }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
-              <small>{{ "DASHBOARD.WALLET.IBAN" | translate }}</small>
-              <span class="text-lg fw-bold">{{
-                user.investmentAccount.iban || "N/A"
-                }}</span>
+              <small>{{ 'DASHBOARD.WALLET.IBAN' | translate }}</small>
+              <span class="text-lg fw-bold">{{ user.investmentAccount.iban || '-' }}</span>
             </div>
           </div>
         </div>
       </div>
       <div class="col-lg-12 col-xl-6 d-flex flex-column gap-3">
         <h5 class="card-title text-primary">
-          {{ "DASHBOARD.WITHDRAW.TITLE" | translate }}
+          {{ 'DASHBOARD.WITHDRAW.TITLE' | translate }}
         </h5>
         <div class="card bg-white py-2 px-3 h-100 mx-auto w-100 align-items-center g-4">
           <div class="row g-2 align-items-center w-100 col">
             <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
-              <small>{{ "DASHBOARD.WITHDRAW.BANK_NAME" | translate }}</small>
-              <span class="text-lg fw-bold">{{
-                user.investmentAccount.bankName
-                }}</span>
+              <small>{{ 'DASHBOARD.WITHDRAW.BANK_NAME' | translate }}</small>
+              <span class="text-lg fw-bold">{{ user.investmentAccount.bankName }}</span>
             </div>
 
             <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
-              <small>{{
-                "DASHBOARD.WITHDRAW.BENEFICIARY_NAME" | translate
-                }}</small>
-              <span class="text-lg fw-bold">{{
-                user.investmentAccount.accountHolderName
-                }}</span>
+              <small>{{ 'DASHBOARD.WITHDRAW.BENEFICIARY_NAME' | translate }}</small>
+              <span class="text-lg fw-bold">{{ user.investmentAccount.accountHolderName }}</span>
             </div>
             <div class="col-6 col-md-6 col-lg-6 d-flex flex-column">
-              <small>{{ "DASHBOARD.WITHDRAW.IBAN" | translate }}</small>
-              <span class="text-lg fw-bold">{{
-                user.investmentAccount.iban || "N/A"
-                }}</span>
+              <small>{{ 'DASHBOARD.WITHDRAW.IBAN' | translate }}</small>
+              <span class="text-lg fw-bold">{{ user.investmentAccount.iban || '-' }}</span>
             </div>
           </div>
 
           <div class="d-flex align-items-center justify-content-end align-self-end gap-2 col">
-            <input type="number"
-                   name=""
-                   [(ngModel)]="withdrawAmount"
-                   class="form-control"
-                   min="0" />
+            <input type="number" name="" [(ngModel)]="withdrawAmount" class="form-control" min="0" />
             <!-- Withdrawal Button -->
-            <button class="btn btn-primary"
-                    (click)="showConfirmModal = true"
-                    [disabled]="isSubmitting">
+            <button
+              class="btn btn-primary"
+              (click)="showConfirmModal = true"
+              [disabled]="isSubmitting || withdrawAmount <= 0 || withdrawAmount === null"
+            >
               <ng-container *ngIf="!isSubmitting">
-                {{ "DASHBOARD.WITHDRAW.BUTTON" | translate }}
+                {{ 'DASHBOARD.WITHDRAW.BUTTON' | translate }}
               </ng-container>
               <ng-container *ngIf="isSubmitting">
-                <span class="spinner-border spinner-border-sm"
-                      role="status"
-                      aria-hidden="true"></span>
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
               </ng-container>
             </button>
 
             <!-- Confirm Modal -->
-            <div class="modal-overlay"
-                 [class.show-modal]="showConfirmModal"
-                 tabindex="-1"
-                 role="dialog"
-                 (click)="onBackdropClick($event)">
-              <div class="modal-dialog-custom"
-                   (click)="$event.stopPropagation()">
+            <div
+              class="modal-overlay"
+              [class.show-modal]="showConfirmModal"
+              tabindex="-1"
+              role="dialog"
+              (click)="onBackdropClick($event)"
+            >
+              <div class="modal-dialog-custom" (click)="$event.stopPropagation()">
                 <div class="modal-content-custom">
                   <div class="modal-header">
                     <h5 class="modal-title">
-                      {{ "DASHBOARD.WALLET.WITHDRAW.MODAL.TITLE" | translate }}
+                      {{ 'DASHBOARD.WALLET.WITHDRAW.MODAL.TITLE' | translate }}
                     </h5>
                   </div>
-                  <div class="modal-body">
-                    <p>
-                      {{
-                      "DASHBOARD.WALLET.WITHDRAW.MODAL.MESSAGE_PART1"
-                      | translate
-                      }}
-                      <strong>
-                        <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                             alt="" />
-                        {{ withdrawAmount }}
-
-                      </strong>
-                      {{
-                      "DASHBOARD.WALLET.WITHDRAW.MODAL.MESSAGE_PART2"
-                      | translate
-                      }}
-                    </p>
+                  <div class="d-flex modal-body">
+                    <span>
+                      {{ 'DASHBOARD.WALLET.WITHDRAW.MODAL.MESSAGE_PART1' | translate }}
+                      <span class="d-inline-flex price-alignment">
+                        {{ withdrawAmount | number: '1.0-2' }}
+                        <span class="icon-saudi_riyal"></span>
+                      </span>
+                      {{ 'DASHBOARD.WALLET.WITHDRAW.MODAL.MESSAGE_PART2' | translate }}
+                    </span>
                   </div>
                   <div class="modal-footer d-flex justify-content-end gap-2">
-                    <button type="button"
-                            class="btn btn-outline-primary"
-                            (click)="showConfirmModal = false">
-                      {{ "DASHBOARD.WALLET.WITHDRAW.MODAL.CANCEL" | translate }}
+                    <button type="button" class="btn btn-outline-primary" (click)="showConfirmModal = false">
+                      {{ 'DASHBOARD.WALLET.WITHDRAW.MODAL.CANCEL' | translate }}
                     </button>
-                    <button type="button"
-                            class="btn btn-primary"
-                            [disabled]="isSubmitting"
-                            (click)="confirmWithdrawal()">
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      [disabled]="isSubmitting"
+                      (click)="confirmWithdrawal()"
+                    >
                       <ng-container *ngIf="!isSubmitting">
-                        {{
-                        "DASHBOARD.WALLET.WITHDRAW.MODAL.CONFIRM" | translate
-                        }}
+                        {{ 'DASHBOARD.WALLET.WITHDRAW.MODAL.CONFIRM' | translate }}
                       </ng-container>
                       <ng-container *ngIf="isSubmitting">
-                        <span class="spinner-border spinner-border-sm"
-                              role="status"
-                              aria-hidden="true"></span>
+                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                       </ng-container>
                     </button>
                   </div>
@@ -215,95 +178,118 @@
   </section>
 
   <!-- Listing -->
-  <section>
-    <div class="col-md-12 d-flex flex-column gap-3">
-      <h5 class="card-title text-primary">
-        {{ "DASHBOARD.WALLET_OPERATIONS" | translate }}
-      </h5>
-      <div class="row mx-0 g-3">
-        @if (loading()) {
-        <h6 class="text-center">
-          {{ "INVESTMENTS.MY_INVESTMENTS.LOADING" | translate }}...
-        </h6>
-        }@else { @if (investments().length) { @for (item of investments(); track
-        $index) {
-        <div class="card bg-white p-4 w-100">
-          <div class="row align-items-center">
-            <div class="col d-flex gap-4 align-items-center">
-              <span class="badge bg-success">{{ item.status }}</span>
-              <div class="d-flex flex-column gap-2">
-                <small>
-                  {{
-                  "INVESTMENTS.MY_INVESTMENTS.PRODUCT_NAME" | translate
-                  }}</small>
-                <h6>{{ item.name }}</h6>
-              </div>
-            </div>
-
-            <div class="col d-flex flex-column gap-2">
-              <small>
-                {{
-                "INVESTMENTS.MY_INVESTMENTS.INVESTED_AMOUNT" | translate
-                }}</small>
-              <div class="d-flex gap-2">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                     alt="" />{{
-                item.stockValue
-                }}
-              </div>
-            </div>
-
-            <div class="col d-flex flex-column gap-2">
-              <small>{{ "INVESTMENTS.MY_INVESTMENTS.ROI" | translate }}</small>
-              <div class="d-flex gap-2">
-                <img src="assets/icons/Saudi_Riyal_Symbol-d.svg"
-                     alt="" />{{
-                item.stockCount
-                }}
-              </div>
-            </div>
-
-            <div class="col d-flex flex-column gap-2">
-              <small>{{
-                "INVESTMENTS.MY_INVESTMENTS.INVESTMENT_DATE" | translate
-                }}</small>
-              <span>{{ item.writingDate | date : "short" }}</span>
-            </div>
-
-            <div class="col-1 d-flex justify-content-end">
-              <a [routerLink]="
-                  '/' +
-                  WEB_ROUTES.INVESTMENTS.ROOT +
-                  '/' +
-                  WEB_ROUTES.INVESTMENTS.DETAILS +
-                  '/' +
-                  item.id
-                "
-                 class="btn btn-sm btn-primary">
-                <i class="fas fa-eye"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        } }@else {
-        <h6 class="text-center">
-          {{ "DASHBOARD.RECENT_TRANSACTIONS.EMPTY" | translate }}
-        </h6>
-        } }
+  <section class="mt-5">
+    <h5 class="card-title text-primary mb-3">
+      {{ 'TRANSACTIONS.DISTRIBUTION_TITLE' | translate }}
+    </h5>
+    <div class="p-4 mt-2 bg-white rounded-4">
+      <div class="table-responsive">
+        <table class="fw-light justify-content-start backoffice-table table">
+          <thead>
+            <tr>
+              <th>{{ 'TRANSACTIONS.DESCRIPTION' | translate }}</th>
+              <th>{{ 'TRANSACTIONS.REF_ID' | translate }}</th>
+              <th>{{ 'TRANSACTIONS.TYPE' | translate }}</th>
+              <th>{{ 'TRANSACTIONS.DATE' | translate }}</th>
+              <th>{{ 'TRANSACTIONS.AMOUNT' | translate }}</th>
+              <th>{{ 'TRANSACTIONS.ACCOUNT' | translate }}</th>
+              <th>{{ 'TRANSACTIONS.DETAILS.DETAILS' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (loading()) {
+              <tr>
+                <td colspan="7">
+                  <div class="p-4">
+                    <h6 class="text-center">
+                      {{ 'TRANSACTIONS.LOADING' | translate }}
+                    </h6>
+                  </div>
+                </td>
+              </tr>
+            } @else {
+              @if (transactions().length) {
+                @for (tx of transactions(); track tx.id) {
+                  <tr class="">
+                    <td>
+                      <div class="d-flex align-items-center justify-content-start gap-2">
+                        <div class="arrow-circle">
+                          <i
+                            class="fas"
+                            [ngClass]="{
+                              'fa-arrow-down': tx.transactionType === 'Withdrawal',
+                              'fa-arrow-up': tx.transactionType !== 'Withdrawal',
+                            }"
+                          ></i>
+                        </div>
+                        <span class="ps-2">{{ tx.description || '-' }}</span>
+                      </div>
+                    </td>
+                    <td>#{{ tx.refId }}</td>
+                    <td>
+                      {{ tx.transactionType }}
+                    </td>
+                    <td class="w-fit" dir="ltr">
+                      {{ tx.createDate | date: 'dd/MM/yyyy  hh:mm a' }}
+                    </td>
+                    <td>
+                      <div
+                        class="d-flex price-alignment gap-1 w-fit"
+                        [ngClass]="{
+                          'text-danger': tx.amount < 0,
+                          'text-success': tx.amount > 0,
+                        }"
+                      >
+                        {{ tx.amount | number: '1.0-2' }}
+                        <span class="icon-saudi_riyal"></span>
+                      </div>
+                    </td>
+                    <td>
+                      <span>
+                        {{ tx.accountNumber || '-' }}
+                      </span>
+                    </td>
+                    <td>
+                      <a
+                        [routerLink]="
+                          '/' + WEB_ROUTES.TRANSACTIONS.ROOT + '/' + WEB_ROUTES.TRANSACTIONS.DETAILS + '/' + tx.id
+                        "
+                        class="btn btn-sm btn-outline-primary rounded-4"
+                      >
+                        {{ 'TRANSACTIONS.VIEW' | translate }}
+                      </a>
+                    </td>
+                  </tr>
+                }
+              } @else {
+                <tr>
+                  <td colspan="7">
+                    <div class="p-4">
+                      <h6 class="text-center">
+                        {{ 'TRANSACTIONS.EMPTY' | translate }}
+                      </h6>
+                    </div>
+                  </td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
       </div>
+      @if (!loading() && transactions().length) {
+        <nav class="d-flex justify-content-center my-4">
+          <ngb-pagination
+            [(page)]="pagination.pageNumber"
+            [pageSize]="pagination.pageSize"
+            [collectionSize]="total()"
+            [maxSize]="5"
+            [ellipses]="true"
+            (pageChange)="goToPage($event)"
+            size="md"
+          >
+          </ngb-pagination>
+        </nav>
+      }
     </div>
-
-    @if (!loading() && investments().length) {
-    <nav class="d-flex justify-content-center my-4">
-      <ngb-pagination [(page)]="pagination.pageNumber"
-                      [pageSize]="pagination.pageSize"
-                      [collectionSize]="total()"
-                      [maxSize]="5"
-                      [ellipses]="true"
-                      (pageChange)="goToPage($event)"
-                      size="md">
-      </ngb-pagination>
-    </nav>
-    }
   </section>
 </main>

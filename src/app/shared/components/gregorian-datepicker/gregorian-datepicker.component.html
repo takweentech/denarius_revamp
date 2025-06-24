@@ -1,15 +1,17 @@
 <div class="input-group">
-       <input class="form-control"
-              placeholder="yyyy-mm-dd"
-              name="dp"
-              [value]="value"
-              (click)="d.toggle()"
-              (dateSelect)="onDateSelect($event)"
-              ngbDatepicker
-              [minDate]="minDate"
-              [maxDate]="maxDate"
-              #d="ngbDatepicker" />
-       <button class="btn btn-outline-secondary datepicker-btn"
-               (click)="d.toggle()"
-               type="button"> <i class="fas fa-calendar"></i></button>
+  <input
+    class="form-control"
+    placeholder="yyyy-mm-dd"
+    name="dp"
+    [value]="value"
+    (click)="d.toggle()"
+    (dateSelect)="onDateSelect($event)"
+    ngbDatepicker
+    [minDate]="minDate"
+    [maxDate]="maxDate"
+    #d="ngbDatepicker"
+  />
+  <button class="btn btn-outline-secondary datepicker-btn" (click)="d.toggle()" type="button">
+    <i class="fas fa-calendar"></i>
+  </button>
 </div>

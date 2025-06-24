@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { User, UserProfileData } from '../models/user';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TokenService {
   private TOKEN_KEY = '$SHARIKEK_ACCESS_TOKEN$';
   private USER_KEY = '$SHARIKEK_USER$';
 
   public setUser(user: UserProfileData | undefined): void {
-    localStorage.setItem(this.USER_KEY, JSON.stringify(user))
+    localStorage.setItem(this.USER_KEY, JSON.stringify(user));
   }
 
+  // Get session user data
   public getUser(): UserProfileData {
-    return JSON.parse(localStorage.getItem(this.USER_KEY) as string)
+    return JSON.parse(localStorage.getItem(this.USER_KEY) as string);
   }
-
   // Store token securely
   public setToken(token: string | undefined): void {
     localStorage.setItem(this.TOKEN_KEY, token as string);
@@ -31,6 +32,6 @@ export class TokenService {
   }
 
   isAuthenticated(): boolean {
-    return localStorage.getItem(this.TOKEN_KEY) ? true : false
+    return localStorage.getItem(this.TOKEN_KEY) ? true : false;
   }
 }

@@ -1,38 +1,43 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
-import { TranslatePipe } from "@ngx-translate/core";
-import { UserBasicProfileData, UserProfileData } from "../../../../../../core/models/user";
-import { TokenService } from "../../../../../../core/services/token.service";
-import { DatePipe } from "@angular/common";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ProfileService } from "../../../../../../data/profile.service";
-import { finalize, takeUntil } from "rxjs";
-import { BaseComponent } from "../../../../../../core/base/base.component";
-import { ToastService } from "../../../../../../shared/components/toast/toast.service";
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { TranslatePipe } from '@ngx-translate/core';
+import { UserBasicProfileData, UserProfileData } from '../../../../../../core/models/user';
+import { TokenService } from '../../../../../../core/services/token.service';
+import { DatePipe } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ProfileService } from '../../../../../../data/profile.service';
+import { finalize, takeUntil } from 'rxjs';
+import { BaseComponent } from '../../../../../../core/base/base.component';
+import { ToastService } from '../../../../../../shared/components/toast/toast.service';
+import { FileService } from '../../../../../../data/file.service';
 
 @Component({
-  selector: "app-profile",
+  selector: 'app-profile',
   imports: [TranslatePipe, DatePipe, ReactiveFormsModule],
-  templateUrl: "./profile.component.html",
-  styleUrl: "./profile.component.scss",
+  templateUrl: './profile.component.html',
+  styleUrl: './profile.component.scss',
 })
 export class ProfileComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
+  private readonly fileService = inject(FileService);
   private readonly fb = inject(FormBuilder);
   private toastService = inject(ToastService);
   loading = signal<boolean>(false);
+  sessionUserData = signal<UserProfileData | null>(this.tokenService.getUser());
   user = signal<UserBasicProfileData | null>(null);
-
   form!: FormGroup;
-
+  uploadedImage = signal<string>('');
   ngOnInit(): void {
     this.initForm();
-    this.profileService.getBasicPersonalInformation().pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.user.set(response.data);
-        this.initForm(response.data);
-      }
-    })
+    this.profileService
+      .getBasicPersonalInformation()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.user.set(response.data);
+          this.initForm(response.data);
+        },
+      });
   }
 
   initForm(data?: UserBasicProfileData) {
@@ -42,30 +47,99 @@ export class ProfileComponent extends BaseComponent implements OnInit {
       city: [data?.city, Validators.required],
       postalCode: [data?.postalCode, Validators.required],
       additionalCode: [data?.additionalCode, Validators.required],
-      shortAddress: "TEMP"
-    })
+      shortAddress: 'TEMP',
+    });
   }
 
-  onSave() {
+  onSave(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
-      return
-    };
+      return;
+    }
     this.loading.set(true);
 
-    this.profileService.saveBasicPersonalInformation(this.form.value).pipe(
-      finalize(() => this.loading.set(false)),
-      takeUntil(this.destroy$)).subscribe({
-        next: (response) => {
+    this.profileService
+      .saveBasicPersonalInformation(this.form.value)
+      .pipe(
+        finalize(() => this.loading.set(false)),
+        takeUntil(this.destroy$)
+      )
+      .subscribe({
+        next: response => {
           if (response.status == 200) {
-            this.toastService.show({ text: "Address was successfully saved", classname: 'bg-success text-light', icon: 'fa-circle-check' });
+            this.toastService.show({
+              text: 'Address was successfully saved',
+              classname: 'bg-success text-light',
+              icon: 'fa-circle-check',
+            });
           } else {
-            this.toastService.show({ text: response.message, classname: 'bg-danger text-light', icon: 'fa-circle-exclamation' });
+            this.toastService.show({
+              text: response.message,
+              classname: 'bg-danger text-light',
+              icon: 'fa-circle-exclamation',
+            });
           }
         },
-        error: (error) => {
+        error: error => {},
+      });
+  }
 
-        }
-      })
+  onProfileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const files = input.files;
+
+    if (!files || files.length === 0) return;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(files[0]);
+    reader.onload = () => {
+      this.uploadedImage.set(reader.result as string);
+      this.uploadProfileImage(files[0]);
+    };
+  }
+
+  uploadProfileImage(file: File): void {
+    this.fileService
+      .uploadInvestor(file)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.setProfileImage(response.fileName);
+        },
+        error: error => {},
+      });
+  }
+
+  setProfileImage(path: string): void {
+    this.profileService
+      .saveProfileImage(path)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.getProfileImage();
+        },
+        error: error => {},
+      });
+  }
+
+  getProfileImage(): void {
+    this.profileService
+      .getProfileImage()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.tokenService.setUser({
+            ...this.tokenService.getUser(),
+            userProfile: { ...this.tokenService.getUser().userProfile, profileImageUrl: response.data as string },
+          });
+        },
+        error: error => {
+          this.toastService.show({
+            text: error.message,
+            classname: 'bg-danger text-light',
+            icon: 'fa-circle-exclamation',
+          });
+        },
+      });
   }
 }
