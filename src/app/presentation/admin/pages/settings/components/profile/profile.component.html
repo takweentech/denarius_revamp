@@ -40,6 +40,12 @@
             {{ user()?.idExpiryDate | date }}
           </h6>
         </div>
+        <div class="col-12">
+          <small>{{ 'SETTINGS.PROFILE.EMAIL' | translate }}</small>
+          <h6 class="fw-bold mt-1 text-primary">
+            {{ user()?.email }}
+          </h6>
+        </div>
       </div>
       <div>
         <form [formGroup]="form" class="g-3 mt-2 row">
