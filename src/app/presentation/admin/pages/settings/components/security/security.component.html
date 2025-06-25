@@ -32,7 +32,6 @@
               </span>
             </div>
 
-            <!-- Fixed height wrapper for consistent spacing -->
             <div>
               @if (
                 passwordForm.get('currentPassword')?.touched &&
@@ -42,6 +41,13 @@
                   <i class="fa-solid fa-circle-exclamation"></i>
 
                   {{ 'VALIDATORS.REQUIRED' | translate }}
+                </small>
+              } @else if (
+                passwordForm.get('currentPassword')?.touched && passwordForm.get('currentPassword')?.hasError('pattern')
+              ) {
+                <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ 'VALIDATORS.INVALID_PASSWORD' | translate }}
                 </small>
               }
             </div>
