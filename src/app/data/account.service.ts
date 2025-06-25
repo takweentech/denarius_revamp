@@ -6,31 +6,36 @@ import { HttpCustomResponse } from '../core/models/http';
 import { UserEmail, UserEmailConfirm, UserPassword, UserPhone, UserPhoneConfirm } from '../core/models/account';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class AccountService {
-    private readonly http = inject(HttpClient);
-    private readonly baseUrl = 'Accounts';
+  private readonly http = inject(HttpClient);
+  private readonly baseUrl = 'Accounts';
 
-    changePassword(payload: UserPassword): Observable<HttpCustomResponse<{}>> {
-        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/ChangePassword`, payload)
-    }
+  changePassword(payload: UserPassword): Observable<HttpCustomResponse<{}>> {
+    return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/ChangePassword`, payload);
+  }
 
-    changePhone(payload: UserPhone): Observable<HttpCustomResponse<{}>> {
-        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/ChangePhone`, payload)
-    }
+  changePhone(payload: UserPhone): Observable<HttpCustomResponse<{}>> {
+    return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/ChangePhone`, payload);
+  }
 
-    changeEmail(payload: UserEmail): Observable<HttpCustomResponse<{ requestId: string }>> {
-        return this.http.post<HttpCustomResponse<{ requestId: string }>>(`${environment.apiUrl}/${this.baseUrl}/ChangeEmail`, payload)
-    }
+  changeEmail(payload: UserEmail): Observable<HttpCustomResponse<{ requestId: string }>> {
+    return this.http.post<HttpCustomResponse<{ requestId: string }>>(
+      `${environment.apiUrl}/${this.baseUrl}/ChangeEmail`,
+      payload
+    );
+  }
 
-    confirmEmail(payload: UserEmailConfirm): Observable<HttpCustomResponse<{}>> {
-        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/VerifyEmailChangeOtp`, {}, { params: { requestId: payload.requestId, otp: payload.otp } })
-    }
+  confirmEmail(payload: UserEmailConfirm): Observable<HttpCustomResponse<{}>> {
+    return this.http.post<HttpCustomResponse<{}>>(
+      `${environment.apiUrl}/${this.baseUrl}/VerifyEmailChangeOtp`,
+      {},
+      { params: { requestId: payload.requestId, otp: payload.otp } }
+    );
+  }
 
-    confirmPhone(payload: UserPhoneConfirm): Observable<HttpCustomResponse<{}>> {
-        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/ConfirmChangePhone`, payload)
-    }
-
-
+  confirmPhone(payload: UserPhoneConfirm): Observable<HttpCustomResponse<{}>> {
+    return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/ConfirmChangePhone`, payload);
+  }
 }

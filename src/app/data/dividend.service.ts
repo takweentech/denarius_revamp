@@ -6,19 +6,23 @@ import { HttpCustomResponse, HttpPagedResponse } from '../core/models/http';
 import { Dividend } from '../core/models/dividend';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class DividendService {
-    private readonly http = inject(HttpClient);
-    private readonly baseUrl = 'InvestorDividend';
+  private readonly http = inject(HttpClient);
+  private readonly baseUrl = 'InvestorDividend';
 
-    getPaged(filter?: any): Observable<HttpCustomResponse<HttpPagedResponse<Dividend[]>>> {
-        return this.http.post<HttpCustomResponse<HttpPagedResponse<Dividend[]>>>(`${environment.apiUrl}/${this.baseUrl}/DividendsOfInvestor`, filter);
-    }
+  getPaged(filter?: any): Observable<HttpCustomResponse<HttpPagedResponse<Dividend[]>>> {
+    return this.http.post<HttpCustomResponse<HttpPagedResponse<Dividend[]>>>(
+      `${environment.apiUrl}/${this.baseUrl}/DividendsOfInvestor`,
+      filter
+    );
+  }
 
-    getById(id: number): Observable<HttpCustomResponse<Dividend>> {
-        return this.http.get<HttpCustomResponse<Dividend>>(`${environment.apiUrl}/${this.baseUrl}/InvestorDividendDetails`, { params: { id } })
-    }
-
-
+  getById(id: number): Observable<HttpCustomResponse<Dividend>> {
+    return this.http.get<HttpCustomResponse<Dividend>>(
+      `${environment.apiUrl}/${this.baseUrl}/InvestorDividendDetails`,
+      { params: { id } }
+    );
+  }
 }

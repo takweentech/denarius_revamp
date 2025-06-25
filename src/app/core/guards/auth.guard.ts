@@ -17,7 +17,6 @@ export const authGuard: CanActivateFn = (route, state) => {
   }
 };
 
-
 export const noAuthGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const tokenService = inject(TokenService);

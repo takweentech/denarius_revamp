@@ -6,7 +6,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { ConfigService } from './core/services/config.service';
 import { StrapiTranslateLoader } from './core/strapi/strapi-loader';
 import { authInterceptor } from './core/interceptors/token.interceptor';
-
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 export function httpLoaderFactory() {
   return new StrapiTranslateLoader();
@@ -26,16 +26,24 @@ export const appConfig: ApplicationConfig = {
     },
 
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes, withInMemoryScrolling({
-      scrollPositionRestoration: "enabled",
-    })),
+    provideRouter(
+      routes,
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'enabled',
+      })
+    ),
     provideHttpClient(withInterceptors([authInterceptor])),
 
-    importProvidersFrom([TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: httpLoaderFactory,
-        deps: [HttpClient],
-      },
-    })])]
+    importProvidersFrom([
+      TranslateModule.forRoot({
+        loader: {
+          provide: TranslateLoader,
+          useFactory: httpLoaderFactory,
+          deps: [HttpClient],
+        },
+      }),
+    ]),
+
+    provideCharts(withDefaultRegisterables()),
+  ],
 };

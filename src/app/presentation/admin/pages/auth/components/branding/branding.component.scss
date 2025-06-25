@@ -3,7 +3,6 @@
   width: 100%;
   position: relative;
 
-
   .version {
     position: absolute;
     bottom: 1rem;
@@ -13,16 +12,14 @@
     width: fit-content;
     height: fit-content;
     font-size: 12px;
-
   }
 
   .background-container {
-    background-image: url("/assets/images/branding.jpg");
+    background-image: url('/assets/images/branding.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
   }
-
 
   img {
     width: 200px;
@@ -37,7 +34,7 @@
     left: 0;
     background-color: var(--primary-color);
     z-index: 1;
-    opacity: .8;
+    opacity: 0.8;
   }
 
   .content {
@@ -50,8 +47,6 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 30px;
-    color: #FFFFFF;
-
-
+    color: #ffffff;
   }
 }

@@ -1,5 +1,5 @@
 .hero {
-  background-image: url("/assets/images/homepage-hero.png");
+  background-image: url('/assets/images/homepage-hero.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -14,7 +14,7 @@
     left: 0;
     background: var(--primary-color);
     opacity: 0.8;
-    content: "";
+    content: '';
     height: 100%;
     width: 100%;
   }

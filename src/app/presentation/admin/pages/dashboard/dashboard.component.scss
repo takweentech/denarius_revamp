@@ -1,42 +1,53 @@
-.card-title {}
-
 .initials,
 .profile-image {
-    width: 90px;
-    height: 90px;
-    border-radius: 50px;
-    color: white;
+  width: 90px;
+  height: 90px;
+  border-radius: 50px;
+  color: white;
 }
 
-
 .stats-card {
-    .icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 1.2rem;
+  .icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
 
-        &.success {
-            background: #DCFAF8;
-        }
-
-        &.danger {
-            background: #FFE0EB;
-        }
-
-        &.primary {
-            background: #E7EDFF;
-        }
-
-        &.warning {
-            background: #FFF5D9;
-        }
-
-        img {
-            width: 30px;
-        }
+    &.success {
+      background: #dcfaf8;
     }
+
+    &.danger {
+      background: #ffe0eb;
+    }
+
+    &.primary {
+      background: #e7edff;
+    }
+
+    &.warning {
+      background: #fff5d9;
+    }
+
+    img {
+      width: 30px;
+    }
+  }
+}
+.custom-col-xl-4,
+.custom-col-xl-8 {
+  width: 100%; // يعني col-12 تحت 1346px
+}
+
+@media (min-width: 1346px) {
+  .custom-col-xl-4 {
+    width: 33.3333%; // col-xl-4
+  }
+
+  .custom-col-xl-8 {
+    width: 66.6667%; // col-xl-8
+  }
 }

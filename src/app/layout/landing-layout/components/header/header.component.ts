@@ -1,21 +1,21 @@
-import { CommonModule } from "@angular/common";
-import { Component, HostListener, inject, TemplateRef, } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { Component, HostListener, inject, TemplateRef } from '@angular/core';
 import { NgbCollapseModule, NgbOffcanvas } from '@ng-bootstrap/ng-bootstrap';
-import { WEB_ROUTES } from "../../../../core/constants/routes.constants";
-import { RouterLink } from "@angular/router";
-import { TranslatePipe } from "@ngx-translate/core";
-import { ConfigService } from "../../../../core/services/config.service";
-import { environment } from "../../../../../environments/environment";
-import { TokenService } from "../../../../core/services/token.service";
-import { UserProfileData } from "../../../../core/models/user";
-import { InitialsPipe } from "../../../../shared/pipes/initials.pipe";
+import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
+import { RouterLink } from '@angular/router';
+import { TranslatePipe } from '@ngx-translate/core';
+import { ConfigService } from '../../../../core/services/config.service';
+import { environment } from '../../../../../environments/environment';
+import { TokenService } from '../../../../core/services/token.service';
+import { UserProfileData } from '../../../../core/models/user';
+import { InitialsPipe } from '../../../../shared/pipes/initials.pipe';
 import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 @Component({
-  selector: "app-header",
+  selector: 'app-header',
   standalone: true,
   imports: [CommonModule, NgbCollapseModule, RouterLink, TranslatePipe, InitialsPipe, NgbDropdownModule],
-  templateUrl: "./header.component.html",
-  styleUrl: "./header.component.scss",
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
   private offcanvasService = inject(NgbOffcanvas);
@@ -43,5 +43,4 @@ export class HeaderComponent {
     this.tokenService.clearSession();
     location.reload();
   }
-
 }

@@ -13,7 +13,7 @@ import { NgbModal, NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
   selector: 'app-upgrade',
   imports: [TranslatePipe, DatePipe, NgbPaginationModule],
   templateUrl: './upgrade.component.html',
-  styleUrl: './upgrade.component.scss'
+  styleUrl: './upgrade.component.scss',
 })
 export class UpgradeComponent extends BaseComponent implements OnInit {
   private readonly upgradeService = inject(UpgradeService);
@@ -25,29 +25,21 @@ export class UpgradeComponent extends BaseComponent implements OnInit {
   pagination: UpgradeRequestFilter = {
     pageNumber: 1,
     pageSize: 5,
-    filter: {
-
-    },
-    orderByValue: [
-      {
-      },
-    ],
-  }
-
+    filter: {},
+    orderByValue: [{}],
+  };
 
   onCreateRequest() {
     const modalRef = this.modalService.open(FormComponent, { centered: true, size: 'lg' });
 
     modalRef.result.then(result => {
       if (result) this.loadRequests();
-    })
+    });
   }
-
 
   ngOnInit(): void {
     this.loadRequests();
   }
-
 
   loadRequests(): void {
     this.loading.set(true);
@@ -58,11 +50,11 @@ export class UpgradeComponent extends BaseComponent implements OnInit {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           this.requests.set(response.data.data);
           this.total.set(response.data.totalCount);
         },
-        error: () => { },
+        error: () => {},
       });
   }
 
@@ -70,5 +62,4 @@ export class UpgradeComponent extends BaseComponent implements OnInit {
     this.pagination.pageNumber = page;
     this.loadRequests();
   }
-
 }

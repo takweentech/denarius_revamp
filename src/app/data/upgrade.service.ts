@@ -6,26 +6,30 @@ import { HttpCustomResponse, HttpPagedResponse } from '../core/models/http';
 import { UpgradeRequest, UpgradeRequestFilter, UpgradeRequestPayload } from '../core/models/upgrade';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root',
 })
 export class UpgradeService {
-    private readonly http = inject(HttpClient);
-    private readonly baseUrl = 'InvestorUpgradeRequest';
+  private readonly http = inject(HttpClient);
+  private readonly baseUrl = 'InvestorUpgradeRequest';
 
+  create(payload: FormData): Observable<HttpCustomResponse<{}>> {
+    return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/AddUpgradeRequest`, payload);
+  }
 
-    create(payload: FormData): Observable<HttpCustomResponse<{}>> {
-        return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/AddUpgradeRequest`, payload)
-    }
+  getAll(): Observable<HttpCustomResponse<UpgradeRequest[]>> {
+    return this.http.get<HttpCustomResponse<UpgradeRequest[]>>(`${environment.apiUrl}/${this.baseUrl}/GetAll`);
+  }
 
-    getAll(): Observable<HttpCustomResponse<UpgradeRequest[]>> {
-        return this.http.get<HttpCustomResponse<UpgradeRequest[]>>(`${environment.apiUrl}/${this.baseUrl}/GetAll`)
-    }
+  getPaged(filter?: UpgradeRequestFilter): Observable<HttpCustomResponse<HttpPagedResponse<UpgradeRequest[]>>> {
+    return this.http.post<HttpCustomResponse<HttpPagedResponse<UpgradeRequest[]>>>(
+      `${environment.apiUrl}/${this.baseUrl}/GetPaged`,
+      filter
+    );
+  }
 
-    getPaged(filter?: UpgradeRequestFilter): Observable<HttpCustomResponse<HttpPagedResponse<UpgradeRequest[]>>> {
-        return this.http.post<HttpCustomResponse<HttpPagedResponse<UpgradeRequest[]>>>(`${environment.apiUrl}/${this.baseUrl}/GetPaged`, filter);
-    }
-
-    getById(id: number): Observable<HttpCustomResponse<UpgradeRequest>> {
-        return this.http.get<HttpCustomResponse<UpgradeRequest>>(`${environment.apiUrl}/${this.baseUrl}/GetOpportunityForPublicPageById${id}`)
-    }
+  getById(id: number): Observable<HttpCustomResponse<UpgradeRequest>> {
+    return this.http.get<HttpCustomResponse<UpgradeRequest>>(
+      `${environment.apiUrl}/${this.baseUrl}/GetOpportunityForPublicPageById${id}`
+    );
+  }
 }

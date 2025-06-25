@@ -9,7 +9,7 @@ import { LangPipe } from '../../../../../../../../../shared/pipes/lang.pipe';
   selector: 'app-investment',
   imports: [ReactiveFormsModule, TranslatePipe, LangPipe],
   templateUrl: './investment.component.html',
-  styleUrl: './investment.component.scss'
+  styleUrl: './investment.component.scss',
 })
 export class InvestmentComponent {
   private readonly lookupService = inject(LookupService);

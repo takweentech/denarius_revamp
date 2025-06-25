@@ -4,8 +4,6 @@ import { Component } from '@angular/core';
   selector: 'app-showcase',
   imports: [],
   templateUrl: './showcase.component.html',
-  styleUrl: './showcase.component.scss'
+  styleUrl: './showcase.component.scss',
 })
-export class ShowcaseComponent {
-
-}
+export class ShowcaseComponent {}

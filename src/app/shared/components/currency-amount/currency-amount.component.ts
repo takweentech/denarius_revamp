@@ -1,16 +1,16 @@
-import { CommonModule } from "@angular/common";
-import { Component, Input, OnInit } from "@angular/core";
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   imports: [CommonModule],
-  selector: "app-currency-amount",
-  templateUrl: "./currency-amount.component.html",
-  styleUrls: ["./currency-amount.component.scss"],
+  selector: 'app-currency-amount',
+  templateUrl: './currency-amount.component.html',
+  styleUrls: ['./currency-amount.component.scss'],
 })
 export class CurrencyAmountComponent implements OnInit {
   @Input() amount: number = 0;
   @Input() size: number = 5;
-  @Input() extraClass: string = "";
+  @Input() extraClass: string = '';
   @Input() countUp: boolean = false;
   @Input() shorten: boolean = false;
 
@@ -46,24 +46,21 @@ export class CurrencyAmountComponent implements OnInit {
 
     const format = (num: number, suffix: string): string => {
       const rounded = parseFloat(num.toFixed(2));
-      return (
-        (rounded % 1 === 0 ? rounded.toFixed(0) : rounded.toString()) + suffix
-      );
+      return (rounded % 1 === 0 ? rounded.toFixed(0) : rounded.toString()) + suffix;
     };
 
-    if (abs >= 1_000_000_000)
-      return format(this.displayedAmount / 1_000_000_000, "B");
-    if (abs >= 1_000_000) return format(this.displayedAmount / 1_000_000, "M");
-    if (abs >= 1_000) return format(this.displayedAmount / 1_000, "K");
+    if (abs >= 1_000_000_000) return format(this.displayedAmount / 1_000_000_000, 'B');
+    if (abs >= 1_000_000) return format(this.displayedAmount / 1_000_000, 'M');
+    if (abs >= 1_000) return format(this.displayedAmount / 1_000, 'K');
 
     return Math.round(this.displayedAmount).toLocaleString();
   }
 
   get iconSizeClass(): string {
-    return "currency-icon-size-" + this.size;
+    return 'currency-icon-size-' + this.size;
   }
 
   get textMarginClass(): string {
-    return this.size === 5 || this.size === 6 ? "mt-1" : "mt-2";
+    return this.size === 5 || this.size === 6 ? 'mt-1' : 'mt-2';
   }
 }

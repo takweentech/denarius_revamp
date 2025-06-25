@@ -2,7 +2,7 @@ import { inject, Pipe, PipeTransform } from '@angular/core';
 import { TranslationService } from '../../core/services/translation.service';
 
 @Pipe({
-  name: 'lang'
+  name: 'lang',
 })
 export class LangPipe implements PipeTransform {
   private readonly translationService = inject(TranslationService);
@@ -11,5 +11,4 @@ export class LangPipe implements PipeTransform {
     if (!value) return '';
     return this.translationService.language === 'en' ? value.englishName : value.arabicName;
   }
-
 }

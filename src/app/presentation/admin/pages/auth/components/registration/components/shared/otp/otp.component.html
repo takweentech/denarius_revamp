@@ -1,9 +1,5 @@
-<form [formGroup]="formGroup"
-      class="d-flex flex-column text-center gap-4 align-items-center">
-  <h6 class="otp-instruction"> {{'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.FORM.OTP.LABEL' | translate}}</h6>
+<form [formGroup]="formGroup" class="d-flex flex-column text-center gap-4 align-items-center">
+  <h6 class="otp-instruction">{{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.FORM.OTP.LABEL' | translate }}</h6>
 
-  <ng-otp-input formControlName="otp"
-                dir="ltr"
-                [config]="{ length: 4 }"></ng-otp-input>
-
+  <ng-otp-input formControlName="otp" dir="ltr" [config]="{ length: 4 }"></ng-otp-input>
 </form>

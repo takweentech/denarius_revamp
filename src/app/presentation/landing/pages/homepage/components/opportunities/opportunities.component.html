@@ -4,15 +4,17 @@
   </h2>
   <div class="row g-4">
     @for (item of opportunities(); track $index) {
-    <div class="col-12 col-md-6 col-lg-4">
-      <app-opportunity-card [opportunity]="item"></app-opportunity-card>
-    </div>
+      <div class="col-12 col-md-6 col-lg-4">
+        <app-opportunity-card [opportunity]="item"></app-opportunity-card>
+      </div>
     }
   </div>
-  <a [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT"
-     class="text-primary justify-content-end d-flex gap-2 align-items-center fw-bold mt-4">
+  <a
+    [routerLink]="'/' + WEB_ROUTES.OPPORTUNITIES.ROOT"
+    class="text-primary justify-content-end d-flex gap-2 align-items-center fw-bold mt-4"
+  >
     <span class="text-decoration-underline">
-      {{ "OPPORTUNITIES.TITLE" | translate }}
+      {{ 'OPPORTUNITIES.TITLE' | translate }}
     </span>
     <i class="rotate fa-solid fa-arrow-left"></i>
   </a>

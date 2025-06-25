@@ -6,7 +6,7 @@ import { InvestorService } from '../../../../../../data/investor.service';
 import { finalize, takeUntil } from 'rxjs';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { BaseComponent } from '../../../../../../core/base/base.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, DecimalPipe } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -14,24 +14,23 @@ import { ProfileService } from '../../../../../../data/profile.service';
 
 @Component({
   selector: 'app-listing',
-  imports: [DatePipe, NgbPaginationModule, RouterLink, TranslatePipe
-  ],
+  imports: [DatePipe, DecimalPipe, NgbPaginationModule, RouterLink, TranslatePipe],
   templateUrl: './listing.component.html',
-  styleUrl: './listing.component.scss'
+  styleUrl: './listing.component.scss',
 })
 export class ListingComponent extends BaseComponent {
   private readonly tokenService = inject(TokenService);
   private readonly investorService = inject(InvestorService);
   private readonly profileService = inject(ProfileService);
+
   pagination: InvestmentFilter = {
     pageNumber: 1,
     pageSize: 5,
-    filter: {
-    },
+    filter: {},
     orderByValue: [
       {
-        colId: "id",
-        sort: "desc",
+        colId: 'id',
+        sort: 'desc',
       },
     ],
   };
@@ -42,18 +41,15 @@ export class ListingComponent extends BaseComponent {
   total = signal<number>(0);
   user: UserProfileData = this.tokenService.getUser();
 
-
   loadStatistics(): void {
     this.profileService
       .getInvestmentStatistics()
-      .pipe(
-        takeUntil(this.destroy$),
-      )
+      .pipe(takeUntil(this.destroy$))
       .subscribe({
-        next: (response) => {
-          this.statistics.set(response.data)
+        next: response => {
+          this.statistics.set(response.data);
         },
-        error: () => { },
+        error: () => {},
       });
   }
 
@@ -66,11 +62,11 @@ export class ListingComponent extends BaseComponent {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           this.investments.set(response.data.data);
           this.total.set(response.data.totalCount);
         },
-        error: () => { },
+        error: () => {},
       });
   }
 
@@ -83,5 +79,4 @@ export class ListingComponent extends BaseComponent {
     this.pagination.pageNumber = page;
     this.loadInvestments();
   }
-
 }

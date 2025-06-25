@@ -1,80 +1,82 @@
-@import "bootstrap/scss/functions";
-@import "bootstrap/scss/variables";
+@import 'bootstrap/scss/functions';
+@import 'bootstrap/scss/variables';
 
-$primary: #1A2B38; // set the $primary variable
-$secondary: #33EDFF; // set the $primary variable
-
-
+$primary: #1a2b38; // set the $primary variable
+$secondary: #33edff; // set the $primary variable
 
 // merge with existing $theme-colors map
-$theme-colors: map-merge($theme-colors, ("primary": $primary, "secondary": $secondary));
-
+$theme-colors: map-merge(
+  $theme-colors,
+  (
+    'primary': $primary,
+    'secondary': $secondary,
+  )
+);
 
 ul {
-    list-style-position: inside;
+  list-style-position: inside;
 }
 
-
 .bg-primary {
-    background-color: var(--primary-color) !important;
+  background-color: var(--primary-color) !important;
 }
 
 .bg-secondary {
-    background-color: var(--secondary-color) !important;
+  background-color: var(--secondary-color) !important;
 }
 
 .bg-success {
-    background-color: var(--success-color) !important;
+  background-color: var(--success-color) !important;
 }
 
 .bg-danger {
-    background-color: var(--danger-color) !important;
+  background-color: var(--danger-color) !important;
 }
 
 .bg-warning {
-    background-color: var(--warning-color) !important;
+  background-color: var(--warning-color) !important;
 }
 
 .bg-info {
-    background-color: var(--info-color) !important;
+  background-color: var(--info-color) !important;
 }
 
 .bg-light {
-    background-color: var(--light-color) !important;
+  background-color: var(--light-color) !important;
 }
 
 .bg-dark {
-    background-color: var(--dark-color) !important;
+  background-color: var(--dark-color) !important;
 }
 
 .text-primary {
-    color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
 }
 
 .text-secondary {
-    color: var(--secondary-color) !important;
+  color: var(--secondary-color) !important;
 }
 
 .text-success {
-    color: var(--success-color) !important;
+  color: var(--success-color) !important;
 }
 
 .text-danger {
-    color: var(--danger-color) !important;
+  color: var(--danger-color) !important;
 }
 
 .text-warning {
-    color: var(--warning-color) !important;
+  color: var(--warning-color) !important;
 }
 
 .text-info {
-    color: var(--info-color) !important;
+  color: var(--info-color) !important;
 }
 
 .text-light {
-    color: var(--light-color) !important;
+  color: var(--light-color) !important;
 }
 
 .text-dark {
-    color: var(--dark-color) !important;
+  color: var(--dark-color) !important;
 }

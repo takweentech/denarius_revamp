@@ -12,26 +12,25 @@ import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => GregorianDatepickerComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class GregorianDatepickerComponent implements ControlValueAccessor {
   value: string = '';
   minDate: NgbDateStruct = {
     day: 1,
     month: 1,
-    year: 1940
-  }
+    year: 1940,
+  };
   maxDate: NgbDateStruct = {
     day: new Date().getDate(),
     month: new Date().getMonth() + 1,
-    year: new Date().getFullYear()
-  }
+    year: new Date().getFullYear(),
+  };
 
   private onChange!: (value: string) => void;
   private onTouched!: () => void;
-
 
   public writeValue(value: string): void {
     this.value = value;

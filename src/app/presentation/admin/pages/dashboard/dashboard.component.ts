@@ -2,8 +2,8 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { UserProfileData } from '../../../../core/models/user';
 import { TokenService } from '../../../../core/services/token.service';
 import { InitialsPipe } from '../../../../shared/pipes/initials.pipe';
-import { TransactionChartComponent } from "./components/transaction-chart/transaction-chart.component";
-import { PerformanceChartComponent } from "./components/performance-chart/performance-chart.component";
+import { TransactionChartComponent } from './components/transaction-chart/transaction-chart.component';
+import { PerformanceChartComponent } from './components/performance-chart/performance-chart.component';
 import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { BaseComponent } from '../../../../core/base/base.component';
@@ -13,15 +13,23 @@ import { TransactionService } from '../../../../data/transaction.service';
 import { RouterLink } from '@angular/router';
 import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
 
-
 @Component({
   selector: 'app-dashboard',
-  imports: [InitialsPipe, TransactionChartComponent, PerformanceChartComponent, DatePipe, TranslatePipe, NgClass, RouterLink, DecimalPipe],
+  imports: [
+    InitialsPipe,
+    TransactionChartComponent,
+    PerformanceChartComponent,
+    DatePipe,
+    TranslatePipe,
+    RouterLink,
+    DecimalPipe,
+    NgClass,
+  ],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.scss'
+  styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent extends BaseComponent implements OnInit {
-  private readonly tokenService = inject(TokenService);
+  tokenService = inject(TokenService);
   private readonly investorService = inject(TransactionService);
   WEB_ROUTES = WEB_ROUTES;
   user: UserProfileData = this.tokenService.getUser();
@@ -31,14 +39,13 @@ export class DashboardComponent extends BaseComponent implements OnInit {
     filter: {},
     orderByValue: [
       {
-        colId: "id",
-        sort: "desc",
+        colId: 'id',
+        sort: 'desc',
       },
     ],
   };
   loading = signal<boolean>(false);
   transactions = signal<Transaction[]>([]);
-
 
   ngOnInit(): void {
     this.loadTransactions();
@@ -53,12 +60,10 @@ export class DashboardComponent extends BaseComponent implements OnInit {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           this.transactions.set(response.data);
         },
-        error: () => { },
+        error: () => {},
       });
   }
-
-
 }

@@ -1,4 +1,4 @@
 export enum InvestorType {
-    INDIVIDUAL = "individual",
-    COMPANY = "company",
+  INDIVIDUAL = 'individual',
+  COMPANY = 'company',
 }

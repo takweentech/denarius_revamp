@@ -17,7 +17,7 @@ import { Location } from '@angular/common';
   selector: 'app-registration',
   imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
   templateUrl: './registration.component.html',
-  styleUrl: './registration.component.scss'
+  styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
   private readonly registrationService = inject(RegistrationService);
@@ -38,7 +38,6 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
   signUpForm!: FormGroup;
 
-
   constructor() {
     super();
   }
@@ -49,16 +48,15 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
   initForm() {
     this.signUpForm = this.fb.group({});
-    this.steps.forEach((step) => {
+    this.steps.forEach(step => {
       const group = this.fb.group({});
       this.signUpForm.addControl(step.key, group);
-      step.controls?.forEach((control) => {
+      step.controls?.forEach(control => {
         group.addControl(control.key, this.fb.control(control.value ?? null, control.validators ?? []));
       });
-      group.setValidators(step.validators || [])
+      group.setValidators(step.validators || []);
     });
   }
-
 
   onNext() {
     const currentStep = this.steps[this.currentIndex() - 1];
@@ -72,7 +70,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         ...this.signUpForm.controls['financial'].value,
         ...this.signUpForm.controls['investment'].value,
         ...this.signUpForm.controls['disclosure'].value,
-      }
+      };
     }
 
     // Collect individual form values for last step
@@ -84,7 +82,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         ...this.signUpForm.controls['financial'].value,
         ...this.signUpForm.controls['investment'].value,
         ...this.signUpForm.controls['disclosure'].value,
-      }
+      };
     }
 
     // Collect company form values for last step
@@ -92,58 +90,55 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
       stepFormVal = {
         ...this.signUpForm.controls[currentStep.key].value,
         ...this.signUpForm.controls['business'].value,
-        ...this.signUpForm.controls['information'].value
-      }
+        ...this.signUpForm.controls['information'].value,
+      };
     }
-
 
     //Check if step isn't valid
     if (this.signUpForm.controls[currentStep.key].invalid) {
       this.signUpForm.controls[currentStep.key].markAllAsTouched();
-      return
+      return;
     }
 
     // No api handler case
     if (!currentStep.apiHandler) {
       this.stepperInstance.next();
       this.currentIndex.set(this.currentIndex() + 1);
-      return
+      return;
     }
 
     this.loading.set(true);
 
-    currentStep.apiHandler!(stepFormVal, this.tempToken, this.otpId, this.signUpForm.value)?.pipe(
-      takeUntil(this.destroy$),
-      finalize(() => this.loading.set(false))
-    ).subscribe({
-      next: (response: any) => {
-        if (response.status !== 200) {
-          this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
-        } else {
-          // Store OTP id and temporary token
-          if (currentStep.key === 'information') {
-            this.tempToken = response.data['token'];
-            this.otpId = response.data['otpId'];
+    currentStep.apiHandler!(stepFormVal, this.tempToken, this.otpId, this.signUpForm.value)
+      ?.pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loading.set(false))
+      )
+      .subscribe({
+        next: (response: any) => {
+          if (response.status !== 200) {
+            this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
+          } else {
+            // Store OTP id and temporary token
+            if (currentStep.key === 'information') {
+              this.tempToken = response.data['token'];
+              this.otpId = response.data['otpId'];
+            }
+
+            // Authenticate user
+            if (currentStep.key === 'absher') {
+              this.tokenService.setToken(response.data);
+              this.getUserProfile();
+              return;
+            }
+
+            //Next
+            this.stepperInstance.next();
+            this.currentIndex.set(this.currentIndex() + 1);
           }
-
-          // Authenticate user 
-          if (currentStep.key === 'absher') {
-            this.tokenService.setToken(response.data);
-            this.getUserProfile();
-            return
-          }
-
-
-          //Next
-          this.stepperInstance.next();
-          this.currentIndex.set(this.currentIndex() + 1);
-
-        }
-      }
-    })
-
+        },
+      });
   }
-
 
   onPrev() {
     this.stepperInstance.previous();
@@ -151,24 +146,24 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   }
 
   getUserProfile(): void {
-    this.profileService.getUserProfile().pipe(
-      takeUntil(this.destroy$),
-      finalize(() => this.loading.set(false)),
-    ).subscribe({
-      next: (response) => {
-        this.tokenService.setUser(response.data);
-        if (history.state['redirectionUrl']) {
-          this.router.navigateByUrl(history.state['redirectionUrl'])
-        } else {
-          this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
-        }
-      },
-      error: (err) => {
-
-      }
-    })
+    this.profileService
+      .getUserProfile()
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loading.set(false))
+      )
+      .subscribe({
+        next: response => {
+          this.tokenService.setUser(response.data);
+          if (history.state['redirectionUrl']) {
+            this.router.navigateByUrl(history.state['redirectionUrl']);
+          } else {
+            this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
+          }
+        },
+        error: err => {},
+      });
   }
-
 
   ngAfterViewInit(): void {
     setTimeout(() => {
@@ -180,7 +175,6 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
       }
     });
   }
-
 
   goBack(): void {
     this.location.back();

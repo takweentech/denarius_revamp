@@ -1,16 +1,16 @@
-import { Component, inject, OnInit } from "@angular/core";
-import { TranslateModule } from "@ngx-translate/core";
-import { BaseComponent } from "../../../../../../core/base/base.component";
-import { StrapiService } from "../../../../../../core/strapi/strapi.service";
-import { environment } from "../../../../../../../environments/environment";
-import AOS from "aos";
-import { ActivatedRoute } from "@angular/router";
+import { Component, inject, OnInit } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { BaseComponent } from '../../../../../../core/base/base.component';
+import { StrapiService } from '../../../../../../core/strapi/strapi.service';
+import { environment } from '../../../../../../../environments/environment';
+import AOS from 'aos';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: "app-partners",
+  selector: 'app-partners',
   imports: [TranslateModule],
-  templateUrl: "./partners.component.html",
-  styleUrl: "./partners.component.scss",
+  templateUrl: './partners.component.html',
+  styleUrl: './partners.component.scss',
 })
 export class PartnersComponent extends BaseComponent implements OnInit {
   partners!: any[];
@@ -18,7 +18,7 @@ export class PartnersComponent extends BaseComponent implements OnInit {
 
   private readonly strapiService = inject(StrapiService);
   private readonly activatedRoute = inject(ActivatedRoute);
-  content = this.activatedRoute.snapshot.data["content"]["partners"];
+  content = this.activatedRoute.snapshot.data['content']['partners'];
   constructor() {
     super();
     AOS.init();

@@ -1,31 +1,28 @@
-import { Component, inject, OnInit, signal } from "@angular/core";
-import { WEB_ROUTES } from "../../../../../../../../core/constants/routes.constants";
-import { TranslateModule } from "@ngx-translate/core";
-import { CurrencyPipe, DatePipe } from "@angular/common";
-import { ActivatedRoute, RouterModule } from "@angular/router";
-import { Opportunity } from "../../../../../../../../core/models/opportunity";
-import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
-import { TokenService } from "../../../../../../../../core/services/token.service";
-import { UserProfileData } from "../../../../../../../../core/models/user";
-import { BaseComponent } from "../../../../../../../../core/base/base.component";
-import { InvestmentService } from "../../../../../../../../data/investment.service";
-import { takeUntil } from "rxjs";
-import { SuccessComponent } from "../success/success.component";
-import { Investment, InvestmentPaymentResponse, InvestmentResponse } from "../../../../../../../../core/models/investment";
-import { ToastService } from "../../../../../../../../shared/components/toast/toast.service";
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { WEB_ROUTES } from '../../../../../../../../core/constants/routes.constants';
+import { TranslateModule } from '@ngx-translate/core';
+import { CurrencyPipe, DatePipe, DecimalPipe } from '@angular/common';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { Opportunity } from '../../../../../../../../core/models/opportunity';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { TokenService } from '../../../../../../../../core/services/token.service';
+import { UserProfileData } from '../../../../../../../../core/models/user';
+import { BaseComponent } from '../../../../../../../../core/base/base.component';
+import { InvestmentService } from '../../../../../../../../data/investment.service';
+import { takeUntil } from 'rxjs';
+import { SuccessComponent } from '../success/success.component';
+import {
+  Investment,
+  InvestmentPaymentResponse,
+  InvestmentResponse,
+} from '../../../../../../../../core/models/investment';
+import { ToastService } from '../../../../../../../../shared/components/toast/toast.service';
 
 @Component({
-  selector: "app-payment",
-  imports: [
-    TranslateModule,
-    RouterModule,
-    DatePipe,
-    CurrencyPipe,
-    ReactiveFormsModule,
-    SuccessComponent
-  ],
-  templateUrl: "./payment.component.html",
-  styleUrl: "./payment.component.scss",
+  selector: 'app-payment',
+  imports: [DecimalPipe, TranslateModule, RouterModule, DatePipe, CurrencyPipe, ReactiveFormsModule, SuccessComponent],
+  templateUrl: './payment.component.html',
+  styleUrl: './payment.component.scss',
 })
 export class PaymentComponent extends BaseComponent implements OnInit {
   private readonly activatedRoute = inject(ActivatedRoute);
@@ -44,30 +41,34 @@ export class PaymentComponent extends BaseComponent implements OnInit {
     this.getInvestment();
   }
 
-
   getInvestment(): void {
-    this.investmentService.invest(this.opportunity.id).pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.investment.set(response.data);
-      }
-    })
+    this.investmentService
+      .invest(this.opportunity.id)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.investment.set(response.data);
+        },
+      });
   }
-
 
   onConfirm() {
-    this.investmentService.payByWallet(this.opportunity.id, Number(this.numStock.value)).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        if (response.status === 200) {
-          this.paymentResponse = response.data;
-          this.mode = 'success';
-        } else {
-          this.toastService.show({ text: response.message, classname: 'bg-danger text-light', icon: 'fa-circle-exclamation' });
-        }
-      }
-    })
+    this.investmentService
+      .payByWallet(this.opportunity.id, Number(this.numStock.value))
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          if (response.status === 200) {
+            this.paymentResponse = response.data;
+            this.mode = 'success';
+          } else {
+            this.toastService.show({
+              text: response.message,
+              classname: 'bg-danger text-light',
+              icon: 'fa-circle-exclamation',
+            });
+          }
+        },
+      });
   }
-
-
 }

@@ -1,14 +1,14 @@
-import { Component, inject } from "@angular/core";
-import { TranslateModule } from "@ngx-translate/core";
-import { TranslationService } from "../../../../core/services/translation.service";
-import { environment } from "../../../../../environments/environment";
-import { ConfigService } from "../../../../core/services/config.service";
+import { Component, inject } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { TranslationService } from '../../../../core/services/translation.service';
+import { environment } from '../../../../../environments/environment';
+import { ConfigService } from '../../../../core/services/config.service';
 
 @Component({
-  selector: "app-footer",
+  selector: 'app-footer',
   imports: [TranslateModule],
-  templateUrl: "./footer.component.html",
-  styleUrl: "./footer.component.scss",
+  templateUrl: './footer.component.html',
+  styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
   translationService = inject(TranslationService);

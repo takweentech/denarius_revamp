@@ -43,84 +43,76 @@ export class FinancialComponent extends BaseComponent implements OnInit {
   }
 
   getJobTitle(): void {
-    this.lookupService.getJobTitle().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.jobTitleList.set(response);
-      },
-      error: (error) => {
-
-      }
-    })
+    this.lookupService
+      .getJobTitle()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.jobTitleList.set(response);
+        },
+        error: error => {},
+      });
   }
 
   getMartialStatus(): void {
-    this.lookupService.getMartialStatus().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.martialStatusList.set(response);
-      },
-      error: (error) => {
-
-      }
-    })
+    this.lookupService
+      .getMartialStatus()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.martialStatusList.set(response);
+        },
+        error: error => {},
+      });
   }
 
   getEmploymentStatus(): void {
-    this.lookupService.getEmploymentStatus().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.employmentStatusList.set(response);
-      },
-      error: (error) => {
-
-      }
-    })
+    this.lookupService
+      .getEmploymentStatus()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.employmentStatusList.set(response);
+        },
+        error: error => {},
+      });
   }
 
   getEducationLevel(): void {
-    this.lookupService.getEducationLevel().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.educationLevelList.set(response);
-      },
-      error: (error) => {
-
-      }
-    })
+    this.lookupService
+      .getEducationLevel()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.educationLevelList.set(response);
+        },
+        error: error => {},
+      });
   }
 
   getAnnualIncome(): void {
-    this.lookupService.getAnnualIncome().pipe(
-      takeUntil(this.destroy$)
-    ).subscribe({
-      next: (response) => {
-        this.annualIncomeList.set(response);
-      },
-      error: (error) => {
-
-      }
-    })
+    this.lookupService
+      .getAnnualIncome()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.annualIncomeList.set(response);
+        },
+        error: error => {},
+      });
   }
-
 
   getNetWorth(): void {
     {
-      this.lookupService.getNetWorth().pipe(
-        takeUntil(this.destroy$)
-      ).subscribe({
-        next: (response) => {
-          this.netWorthList.set(response);
-        },
-        error: (error) => {
-
-        }
-      })
+      this.lookupService
+        .getNetWorth()
+        .pipe(takeUntil(this.destroy$))
+        .subscribe({
+          next: response => {
+            this.netWorthList.set(response);
+          },
+          error: error => {},
+        });
     }
   }
-
 }
