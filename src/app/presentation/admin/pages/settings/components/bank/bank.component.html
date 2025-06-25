@@ -3,7 +3,7 @@
     <h4>{{ 'SETTINGS.BANK.TITLE' | translate }}</h4>
 
     <div class="col-xl-6 mt-4 col-12">
-      <label class="form-label">{{ 'SETTINGS.BANK.IBAN' | translate }}</label>
+      <label class="form-label">{{ "SETTINGS.BANK.IBAN" | translate }}</label>
       <input
         type="text"
         formControlName="iban"
@@ -13,11 +13,13 @@
     </div>
 
     <div class="col-xl-6 mt-4 col-12">
-      <label class="form-label">{{ 'SETTINGS.BANK.BANK_NAME' | translate }}</label>
+      <label class="form-label">{{
+        "SETTINGS.BANK.BANK_NAME" | translate
+      }}</label>
 
       <select formControlName="bankId" class="form-control">
         <option disabled selected>
-          {{ 'SETTINGS.BANK.SELECT_BANK' | translate }}
+          {{ "SETTINGS.BANK.SELECT_BANK" | translate }}
         </option>
         @for (item of bankList(); track $index) {
           <option [value]="item.id">{{ item.displayName }}</option>
@@ -26,8 +28,11 @@
     </div>
 
     <div class="col-xl-6 mt-4 col-12">
-      <label class="form-label">{{ 'SETTINGS.BANK.BENEFICIARY_NAME' | translate }}</label>
+      <label class="form-label">{{
+        "SETTINGS.BANK.BENEFICIARY_NAME" | translate
+      }}</label>
       <input
+        [readonly]="true"
         type="text"
         formControlName="accountBeneficiaryName"
         class="form-control rounded-3 bg-light"
@@ -41,7 +46,7 @@
 
     <div class="col-12 d-flex justify-content-end">
       <button (click)="onSave()" class="btn btn-primary mt-4">
-        {{ 'SETTINGS.BANK.UPDATE_BUTTON' | translate }}
+        {{ "SETTINGS.BANK.UPDATE_BUTTON" | translate }}
       </button>
     </div>
   </div>

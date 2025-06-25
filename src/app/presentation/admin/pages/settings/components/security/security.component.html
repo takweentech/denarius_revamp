@@ -4,11 +4,12 @@
     <div class="d-flex flex-column gap-3">
       <h5>{{ 'SETTINGS.SECURITY.CHANGE_PASSWORD_TITLE' | translate }}</h5>
       <div class="card-bg p-3 rounded-4">
-        <form [formGroup]="passwordForm" (submit)="savePassword()" class="row g-4 align-items-end">
+        <form [formGroup]="passwordForm" (submit)="savePassword()" class="row g-4">
           <div class="col-lg-6 col-xl-3 col-12">
             <label for="currentPassword" class="form-label">
               {{ 'SETTINGS.SECURITY.CURRENT_PASSWORD' | translate }}
             </label>
+
             <div class="input-group">
               <input
                 id="currentPassword"
@@ -30,10 +31,26 @@
                 }
               </span>
             </div>
+
+            <!-- Fixed height wrapper for consistent spacing -->
+            <div>
+              @if (
+                passwordForm.get('currentPassword')?.touched &&
+                passwordForm.get('currentPassword')?.hasError('required')
+              ) {
+                <small class="text-danger d-block">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+
+                  {{ 'VALIDATORS.REQUIRED' | translate }}
+                </small>
+              }
+            </div>
           </div>
 
           <div class="col-lg-6 col-xl-3 col-12">
-            <label for="newPassword" class="form-label">{{ 'SETTINGS.SECURITY.NEW_PASSWORD' | translate }}</label>
+            <label for="newPassword" class="form-label">
+              {{ 'SETTINGS.SECURITY.NEW_PASSWORD' | translate }}
+            </label>
 
             <div class="input-group">
               <input
@@ -54,6 +71,23 @@
                   ></i>
                 }
               </span>
+            </div>
+
+            <div class="position-relative" style="min-height: 48px">
+              @if (passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.hasError('required')) {
+                <small class="text-danger d-block mt-1">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+
+                  {{ 'VALIDATORS.REQUIRED' | translate }}
+                </small>
+              } @else if (
+                passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.hasError('pattern')
+              ) {
+                <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ 'VALIDATORS.INVALID_PASSWORD' | translate }}
+                </small>
+              }
             </div>
           </div>
 
@@ -81,13 +115,33 @@
                 }
               </span>
             </div>
-          </div>
+            @if (
+              passwordForm.get('confirmedPassword')?.hasError('required') &&
+              passwordForm.get('confirmedPassword')?.touched &&
+              !passwordForm.errors?.['confirmedValidator']
+            ) {
+              <small class="text-danger d-block mt-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
 
+                {{ 'VALIDATORS.REQUIRED' | translate }}
+              </small>
+            }
+            @if (
+              passwordForm.errors?.['confirmedValidator'] &&
+              !passwordForm.get('confirmedPassword')?.hasError('required')
+            ) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.PASSWORD_MATCH' | translate }}
+              </small>
+            }
+          </div>
           <div class="col-lg-12 col-xl-3 col-12">
+            <br />
             <button
               type="submit"
               [disabled]="loading() || passwordForm.invalid"
-              class="btn col-md-12 col-12 btn-primary"
+              class="btn mt-2 col-md-12 col-12 btn-primary"
             >
               {{ 'SETTINGS.SECURITY.CHANGE_PASSWORD_BUTTON' | translate }}
             </button>
@@ -99,7 +153,7 @@
     <div class="d-flex flex-column gap-3">
       <h5>{{ 'SETTINGS.SECURITY.CHANGE_PHONE_TITLE' | translate }}</h5>
       <div class="card-bg p-3 rounded-4">
-        <form [formGroup]="phoneForm" (submit)="savePhoneNumber()" class="row g-4 align-items-end">
+        <form [formGroup]="phoneForm" (submit)="savePhoneNumber()" class="row g-4">
           <div class="col-xl-4 col-12">
             <label for="newPhoneNumber" class="form-label">{{ 'SETTINGS.SECURITY.NEW_PHONE' | translate }}</label>
 
@@ -108,16 +162,46 @@
                 <span class="input-group-text" dir="ltr">+966</span>
               }
 
-              <input type="tel" class="form-control" formControlName="newPhoneNumber" placeholder="5xxxxxxxx" />
+              <input
+                maxlength="10"
+                type="tel"
+                class="form-control"
+                formControlName="newPhoneNumber"
+                placeholder="5xxxxxxxx"
+              />
 
               @if (translationService.language === 'ar') {
                 <span class="input-group-text" dir="ltr">+966</span>
               }
             </div>
+
+            <div class="error-wrapper mt-1">
+              @if (phoneForm.get('newPhoneNumber')?.errors?.['required'] && phoneForm.get('newPhoneNumber')?.touched) {
+                <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ 'VALIDATORS.REQUIRED' | translate }}
+                </small>
+              }
+              @if (
+                phoneForm.get('newPhoneNumber')?.errors?.['minlength'] ||
+                phoneForm.get('newPhoneNumber')?.errors?.['maxlength'] ||
+                phoneForm.get('newPhoneNumber')?.errors?.['pattern']
+              ) {
+                <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ 'VALIDATORS.INVALID_PHONE_NUMBER' | translate }}
+                </small>
+              }
+            </div>
           </div>
 
           <div class="col-xl-3 col-12">
-            <button type="submit" [disabled]="loading() || phoneForm.invalid" class="btn col-md-12 col-12 btn-primary">
+            <br />
+            <button
+              type="submit"
+              [disabled]="loading() || phoneForm.invalid"
+              class="btn col-md-12 col-12 mt-2 btn-primary"
+            >
               {{ 'SETTINGS.SECURITY.UPDATE_PHONE' | translate }}
             </button>
           </div>
@@ -131,13 +215,30 @@
     <div class="d-flex flex-column gap-3">
       <h5>{{ 'SETTINGS.SECURITY.CHANGE_EMAIL_TITLE' | translate }}</h5>
       <div class="card-bg p-3 rounded-4">
-        <form [formGroup]="emailForm" (submit)="saveEmail()" class="row g-4 align-items-end">
+        <form [formGroup]="emailForm" (submit)="saveEmail()" class="row g-4">
           <div class="col-xl-4 col-12">
             <label for="email" class="form-label">{{ 'SETTINGS.SECURITY.NEW_EMAIL' | translate }}</label>
             <input type="email" formControlName="email" id="email" dir="ltr" class="form-control" />
+            <div class="error-wrapper mt-1">
+              @if (emailForm.get('email')?.errors?.['required'] && emailForm.get('email')?.touched) {
+                <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ 'VALIDATORS.REQUIRED' | translate }}
+                </small>
+              }
+              @if (emailForm.get('email')?.errors?.['email']) {
+                <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ 'VALIDATORS.EMAIL' | translate }}
+                </small>
+              }
+            </div>
           </div>
+
           <div class="col-xl-3 col-12">
-            <button class="btn col-md-12 col-12 btn-primary" [disabled]="loading() || emailForm.invalid">
+            <br />
+
+            <button class="btn col-md-12 mt-2 col-12 btn-primary" [disabled]="loading() || emailForm.invalid">
               {{ 'SETTINGS.SECURITY.UPDATE_EMAIL' | translate }}
             </button>
           </div>

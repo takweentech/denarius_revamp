@@ -34,7 +34,6 @@
     } @else {
       <app-islamic-datepicker formControlName="birhtdate"></app-islamic-datepicker>
     }
-
     @if (formGroup.get('birhtdate')?.errors?.['required'] && formGroup.get('birhtdate')?.touched) {
       <small class="text-danger mt-1 d-flex align-items-center gap-1">
         <i class="fa-solid fa-circle-exclamation"></i>
@@ -59,7 +58,7 @@
         <span class="input-group-text" dir="ltr">+966</span>
       }
 
-      <input type="tel" class="form-control" formControlName="phoneNumber" placeholder="5xxxxxxxx" />
+      <input maxlength="10" type="tel" class="form-control" formControlName="phoneNumber" placeholder="5xxxxxxxx" />
 
       @if (translationService.language === 'ar') {
         <span class="input-group-text" dir="ltr">+966</span>
@@ -183,7 +182,7 @@
     @if (formGroup.get('terms')?.errors?.['required'] && formGroup.get('terms')?.touched) {
       <small class="text-danger mt-1 d-flex align-items-center gap-1">
         <i class="fa-solid fa-circle-exclamation"></i>
-        {{ 'You must agree to our terms and conditions' | translate }}
+        {{ 'VALIDATORS.TERMS' | translate }}
       </small>
     }
   </div>

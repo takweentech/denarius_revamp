@@ -35,29 +35,31 @@ export class RegistrationService {
   private steps: Record<StepType, Step<{}>[]> = {
     individual: [
       {
-        key: 'information',
-        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.DESCRIPTION',
+        key: "information",
+        title: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.TITLE",
+        description:
+          "AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.DESCRIPTION",
         component: InformationComponent,
-        apiHandler: (data: IndividualInitialSignUpDto) => this.initialIndividualInvestorSignUp(data),
+        apiHandler: (data: IndividualInitialSignUpDto) =>
+          this.initialIndividualInvestorSignUp(data),
         controls: [
           {
-            key: 'idNumber',
+            key: "idNumber",
             validators: [
               Validators.required,
               Validators.minLength(10),
               Validators.maxLength(10),
-              Validators.pattern('^(1|2)[0-9]{9}$'),
+              Validators.pattern("^(1|2)[0-9]{9}$"),
             ],
             // value: '1234567891'
           },
           {
-            key: 'birhtdate',
+            key: "birhtdate",
             validators: [Validators.required, minimumAgeValidator(18)],
             // value: new Date()
           },
           {
-            key: 'phoneNumber',
+            key: "phoneNumber",
             validators: [
               Validators.required,
               Validators.minLength(9),
@@ -67,61 +69,72 @@ export class RegistrationService {
             // value: '512345678'
           },
           {
-            key: 'email',
+            key: "email",
             validators: [Validators.required, Validators.email],
             // value: 'email@email.com'
           },
           {
-            key: 'password',
-            validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
+            key: "password",
+            validators: [
+              Validators.required,
+              Validators.pattern(REGEX_PATTERNS.PASSWORD),
+            ],
             // value: 'QWE47ab3c2@@'
           },
           {
-            key: 'confirmPassword',
-            validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
+            key: "confirmPassword",
+            validators: [
+              Validators.required,
+              Validators.pattern(REGEX_PATTERNS.PASSWORD),
+            ],
             // value: 'QWE47ab3c2@@'
           },
           {
-            key: 'terms',
+            key: "terms",
             validators: [Validators.requiredTrue],
           },
         ],
-        validators: [matchValidator('password', 'confirmPassword')],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.CTA',
+        validators: [matchValidator("password", "confirmPassword")],
+        nextButtonText:
+          "AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.CTA",
       },
       {
-        key: 'otp',
-        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.DESCRIPTION',
+        key: "otp",
+        title: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.TITLE",
+        description: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.DESCRIPTION",
         component: OtpComponent,
-        apiHandler: (data: IndividualOtpSignUpDto, token?: string, otpId?: string) =>
-          this.verifyIndividualInvestorOTP(data, token, otpId),
+        apiHandler: (
+          data: IndividualOtpSignUpDto,
+          token?: string,
+          otpId?: string
+        ) => this.verifyIndividualInvestorOTP(data, token, otpId),
         controls: [
           {
-            key: 'otp',
+            key: "otp",
             validators: [Validators.required, Validators.minLength(4)],
           },
         ],
         resolvedData: {},
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.CTA',
+        nextButtonText: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.CTA",
       },
       {
-        key: 'address',
-        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.DESCRIPTION',
+        key: "address",
+        title: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.TITLE",
+        description:
+          "AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.DESCRIPTION",
         component: AddressComponent,
         controls: [
           {
-            key: 'street',
+            key: "street",
             validators: [Validators.required],
           },
           {
-            key: 'district',
+            key: "district",
             validators: [Validators.required],
             value: 1,
           },
           {
-            key: 'city',
+            key: "city",
             validators: [Validators.required],
           },
           // {
@@ -129,246 +142,272 @@ export class RegistrationService {
           //   validators: [Validators.required]
           // },
           {
-            key: 'postalCode',
+            key: "postalCode",
             validators: [Validators.required],
           },
           {
-            key: 'additionalCode',
+            key: "additionalCode",
             validators: [Validators.required],
           },
         ],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.CTA',
+        nextButtonText: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.CTA",
       },
       {
-        key: 'financial',
-        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.DESCRIPTION',
+        key: "financial",
+        title: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.TITLE",
+        description:
+          "AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.DESCRIPTION",
         component: FinancialComponent,
         controls: [
           {
-            key: 'maritalStatus',
+            key: "maritalStatus",
             validators: [Validators.required],
           },
           {
-            key: 'familyMembersCount',
+            key: "familyMembersCount",
             validators: [Validators.required],
           },
           {
-            key: 'educationLevel',
+            key: "educationLevel",
             validators: [Validators.required],
           },
           {
-            key: 'employmentStatus',
+            key: "employmentStatus",
             validators: [Validators.required],
           },
           {
-            key: 'jobTitle',
+            key: "jobTitle",
             validators: [Validators.required],
           },
           {
-            key: 'yearsOfExperience',
+            key: "yearsOfExperience",
             validators: [Validators.required],
           },
           {
-            key: 'annualIncome',
+            key: "annualIncome",
             validators: [Validators.required],
           },
           {
-            key: 'netWealth',
+            key: "netWealth",
             validators: [Validators.required],
           },
         ],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.CTA',
+        nextButtonText: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.CTA",
       },
       {
-        key: 'investment',
-        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.DESCRIPTION',
+        key: "investment",
+        title: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.TITLE",
+        description:
+          "AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.DESCRIPTION",
         component: InvestmentComponent,
         controls: [
           {
-            key: 'riskTolerance',
+            key: "riskTolerance",
             validators: [Validators.required],
           },
           {
-            key: 'investmentExperience',
+            key: "investmentExperience",
             validators: [Validators.required],
           },
           {
-            key: 'investmentHorizon',
+            key: "investmentHorizon",
             validators: [Validators.required],
           },
           {
-            key: 'investmentGoal',
+            key: "investmentGoal",
             validators: [Validators.required],
           },
           {
-            key: 'isBeneficiary',
+            key: "isBeneficiary",
             validators: [Validators.required],
           },
           {
-            key: 'beneficiaryIdNumber',
+            key: "beneficiaryIdNumber",
             value: 0,
           },
         ],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.CTA',
+        nextButtonText: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.CTA",
       },
       {
-        key: 'disclosure',
-        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.DESCRIPTION',
+        key: "disclosure",
+        title: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.TITLE",
+        description:
+          "AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.DESCRIPTION",
         component: DisclosureComponent,
         controls: [
           {
-            key: 'workedInFinancialSector',
+            key: "workedInFinancialSector",
             validators: [Validators.required],
           },
           {
-            key: 'isBoardMember',
+            key: "isBoardMember",
             validators: [Validators.required],
           },
           {
-            key: 'hasRelationWithBoardMember',
+            key: "hasRelationWithBoardMember",
             validators: [Validators.required],
           },
           {
-            key: 'holdsHighPosition',
+            key: "holdsHighPosition",
             validators: [Validators.required],
           },
           {
-            key: 'hasRelativeInHighPosition',
+            key: "hasRelativeInHighPosition",
             validators: [Validators.required],
           },
           {
-            key: 'hasUSCitizenship',
+            key: "hasUSCitizenship",
             validators: [Validators.required],
           },
         ],
-        apiHandler: (data: IndividualCompletionDto, token?: string, otpId?: string) =>
-          this.completeIndividualInvestorRegestration(data, token),
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.CTA',
+        apiHandler: (
+          data: IndividualCompletionDto,
+          token?: string,
+          otpId?: string
+        ) => this.completeIndividualInvestorRegestration(data, token),
+        nextButtonText:
+          "AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.CTA",
       },
       {
-        key: 'absher',
-        title: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.DESCRIPTION',
+        key: "absher",
+        title: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.TITLE",
+        description:
+          "AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.DESCRIPTION",
         component: AbsherComponent,
         controls: [
           {
-            key: 'otp',
+            key: "otp",
             validators: [Validators.required],
           },
         ],
-        apiHandler: (data: IndividualFinalizationDto, token?: string, otpId?: string) =>
-          this.finalizeIndividualInvestorRegestration(data, token, otpId),
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.CTA',
+        apiHandler: (
+          data: IndividualFinalizationDto,
+          token?: string,
+          otpId?: string
+        ) => this.finalizeIndividualInvestorRegestration(data, token, otpId),
+        nextButtonText: "AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.CTA",
       },
     ],
     company: [
       {
-        key: 'information',
-        title: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.DESCRIPTION',
+        key: "information",
+        title: "AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.TITLE",
+        description:
+          "AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.DESCRIPTION",
         component: CompanyInformation,
         controls: [
           {
-            key: 'commercialRegistrationNumber',
+            key: "commercialRegistrationNumber",
             validators: [Validators.required],
           },
           {
-            key: 'authorizedPersonId',
+            key: "authorizedPersonId",
             validators: [Validators.required],
           },
           {
-            key: 'authorizedPersonBirthDate',
+            key: "authorizedPersonBirthDate",
             validators: [Validators.required],
           },
           {
-            key: 'mobileNumber',
+            key: "mobileNumber",
             validators: [Validators.required],
           },
           {
-            key: 'email',
+            key: "email",
             validators: [Validators.required],
           },
           {
-            key: 'password',
-            validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
+            key: "password",
+            validators: [
+              Validators.required,
+              Validators.pattern(REGEX_PATTERNS.PASSWORD),
+            ],
           },
           {
-            key: 'confirmPassword',
-            validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
+            key: "confirmPassword",
+            validators: [
+              Validators.required,
+              Validators.pattern(REGEX_PATTERNS.PASSWORD),
+            ],
           },
           {
-            key: 'acceptTerms',
-            validators: [Validators.required],
+            key: "acceptTerms",
+            validators: [Validators.requiredTrue],
           },
         ],
-        validators: [matchValidator('password', 'confirmPassword')],
-        apiHandler: (data: CompanyInitialSignUpDto, token?: string, otpId?: string) =>
-          this.initialCompanyInvestorSignUp(data),
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA',
+        validators: [matchValidator("password", "confirmPassword")],
+        apiHandler: (
+          data: CompanyInitialSignUpDto,
+          token?: string,
+          otpId?: string
+        ) => this.initialCompanyInvestorSignUp(data),
+        nextButtonText: "AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA",
       },
       {
-        key: 'otp',
-        title: 'AUTHENTICATION.REGISTRATION.COMPANY.OTP.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.COMPANY.OTP.DESCRIPTION',
+        key: "otp",
+        title: "AUTHENTICATION.REGISTRATION.COMPANY.OTP.TITLE",
+        description: "AUTHENTICATION.REGISTRATION.COMPANY.OTP.DESCRIPTION",
         component: OtpComponent,
-        apiHandler: (data: CompanyOtpSignUpDto, token?: string, otpId?: string) =>
-          this.verifyCompanyInvestorOTP(data, token, otpId),
+        apiHandler: (
+          data: CompanyOtpSignUpDto,
+          token?: string,
+          otpId?: string
+        ) => this.verifyCompanyInvestorOTP(data, token, otpId),
         controls: [
           {
-            key: 'otp',
+            key: "otp",
             validators: [Validators.required, Validators.minLength(4)],
           },
         ],
         resolvedData: {},
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA',
+        nextButtonText: "AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA",
       },
       {
-        key: 'business',
-        title: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.DESCRIPTION',
+        key: "business",
+        title: "AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.TITLE",
+        description: "AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.DESCRIPTION",
         component: BusinessComponent,
         controls: [
           {
-            key: 'annualRevenue',
+            key: "annualRevenue",
             validators: [Validators.required],
           },
           {
-            key: 'employeeCount',
+            key: "employeeCount",
             validators: [Validators.required],
           },
           {
-            key: 'investmentExperience',
+            key: "investmentExperience",
             validators: [Validators.required],
           },
           {
-            key: 'riskTolerance',
+            key: "riskTolerance",
             validators: [Validators.required],
           },
           {
-            key: 'establishmentContract',
+            key: "establishmentContract",
             validators: [Validators.required],
           },
         ],
         resolvedData: {},
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.CTA',
+        nextButtonText: "AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.CTA",
       },
       {
-        key: 'absher',
-        title: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.TITLE',
-        description: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.DESCRIPTION',
-        apiHandler: (data: CompanyFinalizationDto, token?: string, otpId?: string) =>
-          this.finalizeCompanyInvestorRegestration(data, token, otpId),
+        key: "absher",
+        title: "AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.TITLE",
+        description: "AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.DESCRIPTION",
+        apiHandler: (
+          data: CompanyFinalizationDto,
+          token?: string,
+          otpId?: string
+        ) => this.finalizeCompanyInvestorRegestration(data, token, otpId),
         component: AbsherComponent,
         controls: [
           {
             key: 'otp',
-            validators: [Validators.required],
           },
         ],
-        nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.CTA',
+        nextButtonText: "AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.CTA",
       },
     ],
   };
@@ -379,10 +418,12 @@ export class RegistrationService {
   }
 
   // Individual handlers
-  initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
+  initialIndividualInvestorSignUp(
+    data: IndividualInitialSignUpDto
+  ): Observable<HttpCustomResponse<{}>> {
     return this.registrationApiService.initialIndividualInvestorSignUp({
       ...data,
-      phoneNumber: '966' + data.phoneNumber,
+      phoneNumber: "966" + data.phoneNumber,
     });
   }
 
@@ -391,29 +432,50 @@ export class RegistrationService {
     token?: string,
     otpId?: string
   ): Observable<HttpCustomResponse<{}>> {
-    return this.registrationApiService.verifyIndividualInvestorOTP(data, token, otpId).pipe(
-      tap(response => {
-        const step = this.steps['individual'].find(item => item.key === 'address');
-        if (step) {
-          step.resolvedData = response.data;
-        }
-      })
+    return this.registrationApiService
+      .verifyIndividualInvestorOTP(data, token, otpId)
+      .pipe(
+        tap((response) => {
+          const step = this.steps["individual"].find(
+            (item) => item.key === "address"
+          );
+          if (step) {
+            step.resolvedData = response.data;
+          }
+        })
+      );
+  }
+
+  completeIndividualInvestorRegestration(
+    data: IndividualCompletionDto,
+    token?: string
+  ) {
+    return this.registrationApiService.completeIndividualInvestorRegestration(
+      data,
+      token
     );
   }
 
-  completeIndividualInvestorRegestration(data: IndividualCompletionDto, token?: string) {
-    return this.registrationApiService.completeIndividualInvestorRegestration(data, token);
-  }
-
-  finalizeIndividualInvestorRegestration(data: IndividualFinalizationDto, token?: string, otpId?: string) {
-    return this.registrationApiService.finalizeIndividualInvestorRegestration(data, token, otpId, data.otp);
+  finalizeIndividualInvestorRegestration(
+    data: IndividualFinalizationDto,
+    token?: string,
+    otpId?: string
+  ) {
+    return this.registrationApiService.finalizeIndividualInvestorRegestration(
+      data,
+      token,
+      otpId,
+      data.otp
+    );
   }
 
   // Company handlers
-  initialCompanyInvestorSignUp(data: CompanyInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
+  initialCompanyInvestorSignUp(
+    data: CompanyInitialSignUpDto
+  ): Observable<HttpCustomResponse<{}>> {
     return this.registrationApiService.initialCompanyInvestorSignUp({
       ...data,
-      mobileNumber: '966' + data.mobileNumber,
+      mobileNumber: "966" + data.mobileNumber,
     });
   }
 
@@ -422,17 +484,30 @@ export class RegistrationService {
     token?: string,
     otpId?: string
   ): Observable<HttpCustomResponse<{}>> {
-    return this.registrationApiService.verifyCompanyInvestorOTP(data, token, otpId).pipe(
-      tap(response => {
-        const step = this.steps['company'].find(item => item.key === 'business');
-        if (step) {
-          step.resolvedData = response.data;
-        }
-      })
-    );
+    return this.registrationApiService
+      .verifyCompanyInvestorOTP(data, token, otpId)
+      .pipe(
+        tap((response) => {
+          const step = this.steps["company"].find(
+            (item) => item.key === "business"
+          );
+          if (step) {
+            step.resolvedData = response.data;
+          }
+        })
+      );
   }
 
-  finalizeCompanyInvestorRegestration(data: CompanyFinalizationDto, token?: string, otpId?: string) {
-    return this.registrationApiService.finalizeCompanyInvestorRegestration(data, token, otpId, data.otp);
+  finalizeCompanyInvestorRegestration(
+    data: CompanyFinalizationDto,
+    token?: string,
+    otpId?: string
+  ) {
+    return this.registrationApiService.finalizeCompanyInvestorRegestration(
+      data,
+      token,
+      otpId,
+      data.otp
+    );
   }
 }

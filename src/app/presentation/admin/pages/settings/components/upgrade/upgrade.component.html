@@ -1,10 +1,12 @@
 <section class="py-4">
   <div class="d-flex justify-content-between">
     <h4 class="text-primary">
-      {{ 'SETTINGS.UPGRADE.SUB_TITLE' | translate }}
+      {{ "SETTINGS.UPGRADE.SUB_TITLE" | translate }}
     </h4>
 
-    <button (click)="onCreateRequest()" class="btn btn-primary">{{ 'SETTINGS.UPGRADE.CTA' | translate }}</button>
+    <button (click)="onCreateRequest()" class="btn btn-primary">
+      {{ "SETTINGS.UPGRADE.CTA" | translate }}
+    </button>
   </div>
 
   <div class="py-4 mt-2 bg-white rounded-4">
@@ -12,119 +14,158 @@
       <table class="fw-light backoffice-table table">
         <thead>
           <tr>
-            <th>{{ 'SETTINGS.UPGRADE.COLUMNS.DATE' | translate }}</th>
-            <th>{{ 'SETTINGS.UPGRADE.COLUMNS.STATUS' | translate }}</th>
-            <th>{{ 'SETTINGS.UPGRADE.COLUMNS.DOCUMENTS' | translate }}</th>
-            <th>{{ 'SETTINGS.UPGRADE.COLUMNS.NOTE' | translate }}</th>
+            <th>{{ "SETTINGS.UPGRADE.COLUMNS.DATE" | translate }}</th>
+            <th>{{ "SETTINGS.UPGRADE.COLUMNS.STATUS" | translate }}</th>
+            <th>{{ "SETTINGS.UPGRADE.COLUMNS.DOCUMENTS" | translate }}</th>
+            <th>{{ "SETTINGS.UPGRADE.COLUMNS.NOTE" | translate }}</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           @if (loading()) {
-            <tr>
-              <td colspan="5">
-                <div class="p-4">
-                  <h6 class="text-center">
-                    {{ 'SETTINGS.UPGRADE.LOADING' | translate }}
-                  </h6>
-                </div>
-              </td>
-            </tr>
-          } @else {
-            @if (requests().length) {
-              @for (request of requests(); track request.id) {
-                <tr>
-                  <td>{{ request.createdDate | date: 'short' }}</td>
-                  <td>{{ request.requestStatus }}</td>
-                  <td>
-                    <ul>
-                      @if (request.tradingActivityProofFilePath) {
-                        <li>
-                          <a
-                            target="_blank"
-                            class="text-primary text-decoration-underline"
-                            [href]="request.tradingActivityProofFilePath"
-                            >{{ 'SETTINGS.UPGRADE.FORM.TRADING_ACTIVITY.LABEL' | translate }}</a
-                          >
-                        </li>
-                      }
-                      @if (request.netAssetsProofFilePath) {
-                        <li>
-                          <a
-                            target="_blank"
-                            class="text-primary text-decoration-underline"
-                            [href]="request.netAssetsProofFilePath"
-                            >{{ 'SETTINGS.UPGRADE.FORM.NET_ASSETS.LABEL' | translate }}</a
-                          >
-                        </li>
-                      }
-                      @if (request.professionalCertificationFilePath) {
-                        <li>
-                          <a
-                            target="_blank"
-                            class="text-primary text-decoration-underline"
-                            [href]="request.professionalCertificationFilePath"
-                            >{{ 'SETTINGS.UPGRADE.FORM.PROFESSIONAL_CERTIFICATION.LABEL' | translate }}</a
-                          >
-                        </li>
-                      }
-                      @if (request.financialExperienceProofFilePath) {
-                        <li>
-                          <a
-                            target="_blank"
-                            class="text-primary text-decoration-underline"
-                            [href]="request.financialExperienceProofFilePath"
-                            >{{ 'SETTINGS.UPGRADE.FORM.FINANCIAL_EXPERIENCE.LABEL' | translate }}</a
-                          >
-                        </li>
-                      }
-                      @if (request.incomeAndCME1ProofFilePath) {
-                        <li>
-                          <a
-                            target="_blank"
-                            class="text-primary text-decoration-underline"
-                            [href]="request.incomeAndCME1ProofFilePath"
-                            >{{ 'SETTINGS.UPGRADE.FORM.INCOME_CME1.LABEL' | translate }}</a
-                          >
-                        </li>
-                      }
-                    </ul>
-                  </td>
-                  <td>{{ request.note }}</td>
-                </tr>
-              }
-            } @else {
-              <tr>
-                <td colspan="5">
-                  <div class="p-4 d-flex flex-column gap-4 align-items-center">
-                    <h6 class="text-center">
-                      {{ 'SETTINGS.UPGRADE.EMPTY' | translate }}
-                    </h6>
+          <tr>
+            <td colspan="5">
+              <div class="p-4">
+                <h6 class="text-center">
+                  {{ "SETTINGS.UPGRADE.LOADING" | translate }}
+                </h6>
+              </div>
+            </td>
+          </tr>
+          }@else { @if (requests().length) { @for (request of requests(); track
+          request.id) {
+          <tr>
+            <td>
+              <div class="w-fit" dir="ltr">
+                {{ request.createdDate | date : "dd/MM/yyyy hh:mm a" }}
+              </div>
+            </td>
+            <td>{{ request.requestStatus }}</td>
+            <td>
+              <ul>
+                @if (request.tradingActivityProofFilePath) {
+                <li>
+                  <a
+                    class="text-primary text-decoration-underline"
+                    role="button"
+                    (click)="
+                      downloadFile(
+                        request.id,
+                        extractFileName(request.tradingActivityProofFilePath)
+                      )
+                    "
+                  >
+                    {{
+                      "SETTINGS.UPGRADE.FORM.TRADING_ACTIVITY.LABEL" | translate
+                    }}
+                  </a>
+                </li>
+                } @if (request.netAssetsProofFilePath) {
+                <li>
+                  <a
+                    class="text-primary text-decoration-underline"
+                    role="button"
+                    (click)="
+                      downloadFile(
+                        request.id,
+                        extractFileName(request.netAssetsProofFilePath)
+                      )
+                    "
+                  >
+                    {{ "SETTINGS.UPGRADE.FORM.NET_ASSETS.LABEL" | translate }}
+                  </a>
+                </li>
+                } @if (request.professionalCertificationFilePath) {
+                <li>
+                  <a
+                    class="text-primary text-decoration-underline"
+                    role="button"
+                    (click)="
+                      downloadFile(
+                        request.id,
+                        extractFileName(
+                          request.professionalCertificationFilePath
+                        )
+                      )
+                    "
+                  >
+                    {{
+                      "SETTINGS.UPGRADE.FORM.PROFESSIONAL_CERTIFICATION.LABEL"
+                        | translate
+                    }}
+                  </a>
+                </li>
+                } @if (request.financialExperienceProofFilePath) {
+                <li>
+                  <a
+                    class="text-primary text-decoration-underline"
+                    role="button"
+                    (click)="
+                      downloadFile(
+                        request.id,
+                        extractFileName(
+                          request.financialExperienceProofFilePath
+                        )
+                      )
+                    "
+                  >
+                    {{
+                      "SETTINGS.UPGRADE.FORM.FINANCIAL_EXPERIENCE.LABEL"
+                        | translate
+                    }}
+                  </a>
+                </li>
+                } @if (request.incomeAndCME1ProofFilePath) {
+                <li>
+                  <a
+                    class="text-primary text-decoration-underline"
+                    role="button"
+                    (click)="
+                      downloadFile(
+                        request.id,
+                        extractFileName(request.incomeAndCME1ProofFilePath)
+                      )
+                    "
+                  >
+                    {{ "SETTINGS.UPGRADE.FORM.INCOME_CME1.LABEL" | translate }}
+                  </a>
+                </li>
+                }
+              </ul>
+            </td>
+            <td>{{ request.note }}</td>
+          </tr>
+          } }@else {
+          <tr>
+            <td colspan="5">
+              <div class="p-4 d-flex flex-column gap-4 align-items-center">
+                <h6 class="text-center">
+                  {{ "SETTINGS.UPGRADE.EMPTY" | translate }}
+                </h6>
 
-                    <button (click)="onCreateRequest()" class="btn btn-primary">
-                      {{ 'SETTINGS.UPGRADE.EMPTY_CTA' | translate }}
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            }
-          }
+                <button (click)="onCreateRequest()" class="btn btn-primary">
+                  {{ "SETTINGS.UPGRADE.EMPTY_CTA" | translate }}
+                </button>
+              </div>
+            </td>
+          </tr>
+          } }
         </tbody>
       </table>
     </div>
     @if (!loading() && requests().length) {
-      <nav class="d-flex justify-content-center my-4">
-        <ngb-pagination
-          [(page)]="pagination.pageNumber"
-          [pageSize]="pagination.pageSize"
-          [collectionSize]="total()"
-          [maxSize]="5"
-          [ellipses]="true"
-          (pageChange)="goToPage($event)"
-          size="md"
-        >
-        </ngb-pagination>
-      </nav>
+    <nav class="d-flex justify-content-center my-4">
+      <ngb-pagination
+        [(page)]="pagination.pageNumber"
+        [pageSize]="pagination.pageSize"
+        [collectionSize]="total()"
+        [maxSize]="5"
+        [ellipses]="true"
+        (pageChange)="goToPage($event)"
+        size="md"
+      >
+      </ngb-pagination>
+    </nav>
     }
   </div>
 </section>
