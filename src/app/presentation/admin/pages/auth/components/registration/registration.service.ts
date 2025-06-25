@@ -60,9 +60,9 @@ export class RegistrationService {
             key: 'phoneNumber',
             validators: [
               Validators.required,
-              Validators.minLength(9),
-              Validators.maxLength(9),
-              Validators.pattern(/^5\d{8}$/),
+              Validators.minLength(10),
+              Validators.maxLength(10),
+              Validators.pattern(/^5\d{9}$/),
             ],
             // value: '512345678'
           },
@@ -285,9 +285,9 @@ export class RegistrationService {
             key: 'mobileNumber',
             validators: [
               Validators.required,
-              Validators.minLength(9),
-              Validators.maxLength(9),
-              Validators.pattern(/^5\d{8}$/),
+              Validators.minLength(10),
+              Validators.maxLength(10),
+              Validators.pattern(/^5\d{9}$/),
             ],
             // value: '512345678'
           },
