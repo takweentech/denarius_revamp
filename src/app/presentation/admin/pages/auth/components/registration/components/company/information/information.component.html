@@ -13,12 +13,14 @@
         formControlName="commercialRegistrationNumber"
         type="text"
       />
-      @if (formGroup.get('commercialRegistrationNumber')?.errors?.['required']
-      && formGroup.get('commercialRegistrationNumber')?.touched ) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.REQUIRED" | translate }}
-      </small>
+      @if (
+        formGroup.get("commercialRegistrationNumber")?.errors?.["required"] &&
+        formGroup.get("commercialRegistrationNumber")?.touched
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.REQUIRED" | translate }}
+        </small>
       }
     </div>
 
@@ -29,22 +31,28 @@
       }}</label>
       <input
         class="form-control"
+        maxlength="10"
         formControlName="authorizedPersonId"
         type="text"
       />
-      @if (formGroup.get('authorizedPersonId')?.errors?.['required'] &&
-      formGroup.get('authorizedPersonId')?.touched ) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.REQUIRED" | translate }}
-      </small>
-      } @if (formGroup.get('authorizedPersonId')?.errors?.['minlength'] ||
-      formGroup.get('authorizedPersonId')?.errors?.['maxlength']
-      ||formGroup.get('authorizedPersonId')?.errors?.['pattern'] ) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.INVALID_ID_NUMBER" | translate }}
-      </small>
+      @if (
+        formGroup.get("authorizedPersonId")?.errors?.["required"] &&
+        formGroup.get("authorizedPersonId")?.touched
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.REQUIRED" | translate }}
+        </small>
+      }
+      @if (
+        formGroup.get("authorizedPersonId")?.errors?.["minlength"] ||
+        formGroup.get("authorizedPersonId")?.errors?.["maxlength"] ||
+        formGroup.get("authorizedPersonId")?.errors?.["pattern"]
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.INVALID_ID_NUMBER" | translate }}
+        </small>
       }
     </div>
   </div>
@@ -54,20 +62,23 @@
         "AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.BIRTH_DATE.LABEL"
           | translate
       }}</label>
-      @if (lang === 'en') {
-      <app-gregorian-datepicker
-        formControlName="authorizedPersonBirthDate"
-      ></app-gregorian-datepicker>
-      }@else{
-      <app-islamic-datepicker
-        formControlName="authorizedPersonBirthDate"
-      ></app-islamic-datepicker>
-      } @if (formGroup.get('authorizedPersonBirthDate')?.errors?.['required'] &&
-      formGroup.get('authorizedPersonBirthDate')?.touched ) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.REQUIRED" | translate }}
-      </small>
+      @if (lang === "en") {
+        <app-gregorian-datepicker
+          formControlName="authorizedPersonBirthDate"
+        ></app-gregorian-datepicker>
+      } @else {
+        <app-islamic-datepicker
+          formControlName="authorizedPersonBirthDate"
+        ></app-islamic-datepicker>
+      }
+      @if (
+        formGroup.get("authorizedPersonBirthDate")?.errors?.["required"] &&
+        formGroup.get("authorizedPersonBirthDate")?.touched
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.REQUIRED" | translate }}
+        </small>
       }
     </div>
     <div class="form-group col-12 col-md-6">
@@ -78,8 +89,8 @@
         }}
       </label>
       <div class="input-group">
-        @if (translationService.language === 'en') {
-        <span class="input-group-text" dir="ltr">+966</span>
+        @if (translationService.language === "en") {
+          <span class="input-group-text" dir="ltr">+966</span>
         }
 
         <input
@@ -89,29 +100,33 @@
           placeholder="5xxxxxxxx"
         />
 
-        @if (translationService.language === 'ar') {
-        <span class="input-group-text" dir="ltr">+966</span>
+        @if (translationService.language === "ar") {
+          <span class="input-group-text" dir="ltr">+966</span>
         }
       </div>
 
       <!-- Required Error -->
-      @if (formGroup.get('mobileNumber')?.errors?.['required'] &&
-      formGroup.get('mobileNumber')?.touched) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.REQUIRED" | translate }}
-      </small>
+      @if (
+        formGroup.get("mobileNumber")?.errors?.["required"] &&
+        formGroup.get("mobileNumber")?.touched
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.REQUIRED" | translate }}
+        </small>
       }
 
       <!-- Other Errors (pattern, minlength, maxlength) -->
-      @if ( (formGroup.get('mobileNumber')?.errors?.['minlength'] ||
-      formGroup.get('mobileNumber')?.errors?.['maxlength'] ||
-      formGroup.get('mobileNumber')?.errors?.['pattern']) &&
-      formGroup.get('mobileNumber')?.touched ) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.INVALID_PHONE_NUMBER" | translate }}
-      </small>
+      @if (
+        (formGroup.get("mobileNumber")?.errors?.["minlength"] ||
+          formGroup.get("mobileNumber")?.errors?.["maxlength"] ||
+          formGroup.get("mobileNumber")?.errors?.["pattern"]) &&
+        formGroup.get("mobileNumber")?.touched
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.INVALID_PHONE_NUMBER" | translate }}
+        </small>
       }
     </div>
   </div>
@@ -121,12 +136,14 @@
         | translate
     }}</label>
     <input class="form-control" formControlName="email" type="email" />
-    @if (formGroup.get('email')?.errors?.['required'] &&
-    formGroup.get('email')?.touched ) {
-    <small class="text-danger mt-1 d-flex align-items-center gap-1">
-      <i class="fa-solid fa-circle-exclamation"></i>
-      {{ "VALIDATORS.REQUIRED" | translate }}
-    </small>
+    @if (
+      formGroup.get("email")?.errors?.["required"] &&
+      formGroup.get("email")?.touched
+    ) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ "VALIDATORS.REQUIRED" | translate }}
+      </small>
     }
   </div>
   <div class="row">
@@ -145,30 +162,33 @@
         />
 
         <span class="input-group-text">
-          @if (password.type === 'password') {
-          <i
-            (click)="password.type = 'text'"
-            class="fa-solid fa-eye text-primary cursor-pointer"
-          ></i>
-          }@else {
-          <i
-            (click)="password.type = 'password'"
-            class="fa-solid fa-eye-slash text-primary cursor-pointer"
-          ></i>
+          @if (password.type === "password") {
+            <i
+              (click)="password.type = 'text'"
+              class="fa-solid fa-eye text-primary cursor-pointer"
+            ></i>
+          } @else {
+            <i
+              (click)="password.type = 'password'"
+              class="fa-solid fa-eye-slash text-primary cursor-pointer"
+            ></i>
           }
         </span>
       </div>
-      @if (formGroup.get('password')?.errors?.['required'] &&
-      formGroup.get('password')?.touched ) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.REQUIRED" | translate }}
-      </small>
-      } @if (formGroup.get('password')?.errors?.['pattern'] ) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.INVALID_PASSWORD" | translate }}
-      </small>
+      @if (
+        formGroup.get("password")?.errors?.["required"] &&
+        formGroup.get("password")?.touched
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.REQUIRED" | translate }}
+        </small>
+      }
+      @if (formGroup.get("password")?.errors?.["pattern"]) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.INVALID_PASSWORD" | translate }}
+        </small>
       }
     </div>
     <div class="form-group col-12 col-md-6">
@@ -186,38 +206,41 @@
         />
 
         <span class="input-group-text">
-          @if (confirmPassword.type === 'password') {
-          <i
-            (click)="confirmPassword.type = 'text'"
-            class="fa-solid fa-eye text-primary cursor-pointer"
-          ></i>
-          }@else {
-          <i
-            (click)="confirmPassword.type = 'password'"
-            class="fa-solid fa-eye-slash text-primary cursor-pointer"
-          ></i>
+          @if (confirmPassword.type === "password") {
+            <i
+              (click)="confirmPassword.type = 'text'"
+              class="fa-solid fa-eye text-primary cursor-pointer"
+            ></i>
+          } @else {
+            <i
+              (click)="confirmPassword.type = 'password'"
+              class="fa-solid fa-eye-slash text-primary cursor-pointer"
+            ></i>
           }
         </span>
       </div>
 
-      @if (formGroup.get('confirmPassword')?.errors?.['required'] &&
-      formGroup.get('confirmPassword')?.touched ) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.REQUIRED" | translate }}
-      </small>
-      } @if (formGroup.get('confirmPassword')?.errors?.['pattern'] ) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ "VALIDATORS.INVALID_PASSWORD" | translate }}
-      </small>
+      @if (
+        formGroup.get("confirmPassword")?.errors?.["required"] &&
+        formGroup.get("confirmPassword")?.touched
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.REQUIRED" | translate }}
+        </small>
+      }
+      @if (formGroup.get("confirmPassword")?.errors?.["pattern"]) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ "VALIDATORS.INVALID_PASSWORD" | translate }}
+        </small>
       }
     </div>
-    @if (formGroup.errors?.['confirmedValidator'] ) {
-    <small class="text-danger mt-1 d-flex align-items-center gap-1">
-      <i class="fa-solid fa-circle-exclamation"></i>
-      {{ "VALIDATORS.PASSWORD_MATCH" | translate }}
-    </small>
+    @if (formGroup.errors?.["confirmedValidator"]) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ "VALIDATORS.PASSWORD_MATCH" | translate }}
+      </small>
     }
   </div>
   <div class="d-flex align-items-center gap-2">
