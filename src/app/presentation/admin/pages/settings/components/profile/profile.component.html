@@ -26,7 +26,8 @@
         </div>
         <div class="col-md-6 col-12">
           <small>{{ 'SETTINGS.PROFILE.PHONE' | translate }}</small>
-          <h6 class="fw-bold mt-1 text-primary">+966{{ user()?.mobileNumber || 'N/A' }}</h6>
+          <!-- <h6 class="fw-bold mt-1 text-primary">{{ user()?.mobileNumber || 'N/A' }}</h6> -->
+          <h6 class="fw-bold mt-1 text-primary">{{ user()?.mobileNumber || 'N/A' }}</h6>
         </div>
         <div class="col-md-6 col-12">
           <small>{{ 'SETTINGS.PROFILE.ID_NUMBER' | translate }}</small>
@@ -37,14 +38,24 @@
         <div class="col-md-6 col-12">
           <small>{{ 'SETTINGS.PROFILE.ID_EXPIRY_DATE' | translate }}</small>
           <h6 class="fw-bold mt-1 text-primary">
-            {{ user()?.idExpiryDate | date }}
+            {{ user()?.idExpiryDate | date: 'dd/MM/yyyy' }}
           </h6>
         </div>
-        <div class="col-12">
+        <div class="col-md-6 col-12">
           <small>{{ 'SETTINGS.PROFILE.EMAIL' | translate }}</small>
           <h6 class="fw-bold mt-1 text-primary">
             {{ user()?.email }}
           </h6>
+        </div>
+        <div class="col-md-6 col-12">
+          <small>{{ 'SETTINGS.PROFILE.NATIONALITY' | translate }}</small>
+          @if (user()?.nationality) {
+            <h6 class="fw-bold mt-1 text-primary">
+              {{ user()?.nationality }}
+            </h6>
+          } @else {
+            <h6>-</h6>
+          }
         </div>
       </div>
       <div>

@@ -1,24 +1,17 @@
-import {
-  Component,
-  inject,
-  Input,
-  OnChanges,
-  signal,
-  SimpleChanges,
-} from "@angular/core";
-import { FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
-import { NgOtpInputComponent } from "ng-otp-input";
-import { TranslatePipe, TranslateService } from "@ngx-translate/core";
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { AccountService } from "../../../../../../../../data/account.service";
-import { BaseComponent } from "../../../../../../../../core/base/base.component";
-import { finalize, takeUntil } from "rxjs";
-import { ToastService } from "../../../../../../../../shared/components/toast/toast.service";
+import { Component, inject, Input, OnChanges, signal, SimpleChanges } from '@angular/core';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
+import { NgOtpInputComponent } from 'ng-otp-input';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { AccountService } from '../../../../../../../../data/account.service';
+import { BaseComponent } from '../../../../../../../../core/base/base.component';
+import { finalize, takeUntil } from 'rxjs';
+import { ToastService } from '../../../../../../../../shared/components/toast/toast.service';
 
 @Component({
-  selector: "app-otp",
-  templateUrl: "./otp.component.html",
-  styleUrls: ["./otp.component.scss"],
+  selector: 'app-otp',
+  templateUrl: './otp.component.html',
+  styleUrls: ['./otp.component.scss'],
   imports: [NgOtpInputComponent, ReactiveFormsModule, TranslatePipe],
 })
 export class OtpComponent extends BaseComponent implements OnChanges {
@@ -29,27 +22,27 @@ export class OtpComponent extends BaseComponent implements OnChanges {
   activeModal = inject(NgbActiveModal);
   @Input() newPhoneNumber!: string;
   @Input() requestId!: string;
-  @Input() mode!: "email" | "phone";
+  @Input() mode!: 'email' | 'phone';
   otp: FormControl = new FormControl(null, [Validators.required]);
   loading = signal<boolean>(false);
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.mode) {
       this.otp.setValidators([
-        Validators.minLength(this.mode === "email" ? 4 : 6),
-        Validators.maxLength(this.mode === "email" ? 4 : 6),
+        Validators.minLength(this.mode === 'email' ? 4 : 6),
+        Validators.maxLength(this.mode === 'email' ? 4 : 6),
       ]);
     }
   }
 
   get otpLength(): number {
-    return this.mode === "email" ? 4 : 6;
+    return this.mode === 'email' ? 4 : 6;
   }
   onOtpChange(value: string | null): void {
     if (!value) return;
 
     this.otp.setValue(value);
-    const requiredLength = this.mode === "email" ? 4 : 6;
+    const requiredLength = this.mode === 'email' ? 4 : 6;
 
     if (value.length === requiredLength && this.otp.valid) {
       this.onConfirm(); // Auto-submit
@@ -58,7 +51,7 @@ export class OtpComponent extends BaseComponent implements OnChanges {
   onConfirm(): void {
     if (this.otp.valid) {
       this.loading.set(true);
-      if (this.mode === "email") {
+      if (this.mode === 'email') {
         this.confirmEmail();
       } else {
         this.confirmPhone();
@@ -77,16 +70,14 @@ export class OtpComponent extends BaseComponent implements OnChanges {
         takeUntil(this.destroy$)
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           if (response.status === 200) {
-            this.activeModal.close("success");
+            this.activeModal.close('success');
           } else {
             this.toastService.show({
-              text: this.translate.instant(
-                "SETTINGS.SECURITY.OTP_CONFIRM_FAILED"
-              ),
-              classname: "bg-danger text-light",
-              icon: "fa-circle-exclamation",
+              text: this.translate.instant('SETTINGS.SECURITY.OTP_CONFIRM_FAILED'),
+              classname: 'bg-danger text-light',
+              icon: 'fa-circle-exclamation',
             });
           }
         },
@@ -101,14 +92,14 @@ export class OtpComponent extends BaseComponent implements OnChanges {
         takeUntil(this.destroy$)
       )
       .subscribe({
-        next: (response) => {
+        next: response => {
           if (response.status === 200) {
-            this.activeModal.close("success");
+            this.activeModal.close('success');
           } else {
             this.toastService.show({
               text: response.message,
-              classname: "bg-danger text-light",
-              icon: "fa-circle-exclamation",
+              classname: 'bg-danger text-light',
+              icon: 'fa-circle-exclamation',
             });
           }
         },
