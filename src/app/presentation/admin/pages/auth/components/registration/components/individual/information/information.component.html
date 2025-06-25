@@ -5,7 +5,7 @@
       {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.FORM.ID_NUMBER.LABEL' | translate }}
       <span class="text-danger">*</span></label
     >
-    <input class="form-control" dir="ltr" formControlName="idNumber" />
+    <input class="form-control" dir="ltr" maxlength="10" formControlName="idNumber" />
     @if (formGroup.get('idNumber')?.errors?.['required'] && formGroup.get('idNumber')?.touched) {
       <small class="text-danger mt-1 d-flex align-items-center gap-1">
         <i class="fa-solid fa-circle-exclamation"></i>
