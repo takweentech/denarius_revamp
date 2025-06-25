@@ -105,6 +105,7 @@ export interface UserInvestmentStatisticsData {
 }
 
 export interface UserBasicProfileData {
+  email: string;
   fullName: string;
   idNumber: string;
   nationality: string | null;

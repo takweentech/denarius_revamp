@@ -385,7 +385,6 @@ export class RegistrationService {
         controls: [
           {
             key: 'otp',
-            validators: [Validators.required],
           },
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.CTA',
