@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { InformationComponent } from './components/individual/information/information.component';
 import { InformationComponent as CompanyInformation } from './components/company/information/information.component';
 import { OtpComponent } from './components/shared/otp/otp.component';

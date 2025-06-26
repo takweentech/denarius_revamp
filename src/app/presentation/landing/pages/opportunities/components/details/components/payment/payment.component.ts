@@ -11,11 +11,7 @@ import { BaseComponent } from '../../../../../../../../core/base/base.component'
 import { InvestmentService } from '../../../../../../../../data/investment.service';
 import { takeUntil } from 'rxjs';
 import { SuccessComponent } from '../success/success.component';
-import {
-  Investment,
-  InvestmentPaymentResponse,
-  InvestmentResponse,
-} from '../../../../../../../../core/models/investment';
+import { InvestmentPaymentResponse, InvestmentResponse } from '../../../../../../../../core/models/investment';
 import { ToastService } from '../../../../../../../../shared/components/toast/toast.service';
 
 @Component({

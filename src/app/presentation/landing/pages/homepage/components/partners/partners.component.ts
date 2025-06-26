@@ -1,7 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { BaseComponent } from '../../../../../../core/base/base.component';
-import { StrapiService } from '../../../../../../core/strapi/strapi.service';
 import { environment } from '../../../../../../../environments/environment';
 import AOS from 'aos';
 import { ActivatedRoute } from '@angular/router';
@@ -15,8 +14,6 @@ import { ActivatedRoute } from '@angular/router';
 export class PartnersComponent extends BaseComponent implements OnInit {
   partners!: any[];
   CMS_ASSETS_URL = environment.cmsAssetsUrl;
-
-  private readonly strapiService = inject(StrapiService);
   private readonly activatedRoute = inject(ActivatedRoute);
   content = this.activatedRoute.snapshot.data['content']['partners'];
   constructor() {

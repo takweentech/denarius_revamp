@@ -8,7 +8,6 @@ import {
   UserBasicProfileData,
   UserInvestmentData,
   UserInvestmentStatisticsData,
-  UserPassword,
   UserPersonalData,
   UserProfileData,
   UserWalletData,

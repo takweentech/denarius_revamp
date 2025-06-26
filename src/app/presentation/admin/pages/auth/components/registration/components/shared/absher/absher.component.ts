@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Step } from '../../../models/registration.model';
 import { NgOtpInputComponent } from 'ng-otp-input';

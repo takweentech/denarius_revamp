@@ -1,5 +1,4 @@
-import { Component, inject, Input, OnChanges, SimpleChanges } from '@angular/core';
-import { Transaction } from '../../../../../../core/models/transaction';
+import { Component, inject } from '@angular/core';
 import { ChartOptions } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 import { UserProfileData } from '../../../../../../core/models/user';

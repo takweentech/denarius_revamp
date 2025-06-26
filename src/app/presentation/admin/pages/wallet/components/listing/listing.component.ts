@@ -9,7 +9,7 @@ import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { finalize, takeUntil } from 'rxjs';
 import { ProfileService } from '../../../../../../data/profile.service';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
 import { TransactionService } from '../../../../../../data/transaction.service';

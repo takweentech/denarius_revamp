@@ -2,17 +2,20 @@ import { inject, Injectable } from '@angular/core';
 import { AppConfig } from '../models/config';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { tap } from 'rxjs';
+import { finalize, tap } from 'rxjs';
+import { SplashScreenService } from './loading.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConfigService {
   private readonly http = inject(HttpClient);
+  private readonly loadingService = inject(SplashScreenService);
   private config!: AppConfig;
 
   loadConfig() {
     return this.http.get(environment.cmsUrl + '/config?populate=*').pipe(
+      finalize(() => this.loadingService.hide()),
       tap((data: any) => {
         this.config = {
           name: data.data.name,
