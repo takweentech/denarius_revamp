@@ -162,13 +162,14 @@
         {{ 'VALIDATORS.INVALID_PASSWORD' | translate }}
       </small>
     }
+    @if (formGroup.get('confirmPassword')?.errors?.['confirmedValidator']) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.PASSWORD_MATCH' | translate }}
+      </small>
+    }
   </div>
-  @if (formGroup.errors?.['confirmedValidator']) {
-    <small class="text-danger mt-1 d-flex align-items-center gap-1">
-      <i class="fa-solid fa-circle-exclamation"></i>
-      {{ 'VALIDATORS.PASSWORD_MATCH' | translate }}
-    </small>
-  }
+
   <div class="d-flex flex-column gap-1">
     <div class="d-flex align-items-center gap-2">
       <input type="checkbox" id="terms" formControlName="terms" class="m-0" />
