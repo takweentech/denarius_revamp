@@ -45,10 +45,9 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response: any) => {
-          const paged = response.data;
-          this.transactions.set(paged.data);
-          this.total.set(paged.totalCount);
+        next: response => {
+          this.transactions.set(response.data);
+          this.total.set(response.totalCount);
         },
         error: () => {},
       });
