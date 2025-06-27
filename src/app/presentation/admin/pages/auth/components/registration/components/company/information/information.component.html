@@ -16,15 +16,26 @@
         </small>
       }
     </div>
+
     <div class="form-group col-12 col-md-6">
       <label class="form-label">{{
         'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.COMMISSIONER_ID_NUMBER.LABEL' | translate
       }}</label>
-      <input class="form-control" formControlName="authorizedPersonId" type="text" />
+      <input class="form-control" maxlength="10" formControlName="authorizedPersonId" type="text" />
       @if (formGroup.get('authorizedPersonId')?.errors?.['required'] && formGroup.get('authorizedPersonId')?.touched) {
         <small class="text-danger mt-1 d-flex align-items-center gap-1">
           <i class="fa-solid fa-circle-exclamation"></i>
           {{ 'VALIDATORS.REQUIRED' | translate }}
+        </small>
+      }
+      @if (
+        formGroup.get('authorizedPersonId')?.errors?.['minlength'] ||
+        formGroup.get('authorizedPersonId')?.errors?.['maxlength'] ||
+        formGroup.get('authorizedPersonId')?.errors?.['pattern']
+      ) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ 'VALIDATORS.INVALID_ID_NUMBER' | translate }}
         </small>
       }
     </div>
@@ -50,9 +61,9 @@
       }
     </div>
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">{{
-        'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.PHONE_NUMBER.LABEL' | translate
-      }}</label>
+      <label class="form-label">
+        {{ 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.PHONE_NUMBER.LABEL' | translate }}
+      </label>
       <div class="input-group">
         @if (translationService.language === 'en') {
           <span class="input-group-text" dir="ltr">+966</span>
@@ -66,17 +77,30 @@
       </div>
 
       <!-- Required Error -->
+<<<<<<< HEAD
 
+=======
+>>>>>>> development
       @if (formGroup.get('mobileNumber')?.errors?.['required'] && formGroup.get('mobileNumber')?.touched) {
         <small class="text-danger mt-1 d-flex align-items-center gap-1">
           <i class="fa-solid fa-circle-exclamation"></i>
           {{ 'VALIDATORS.REQUIRED' | translate }}
         </small>
       }
+<<<<<<< HEAD
       @if (
         formGroup.get('mobileNumber')?.errors?.['minlength'] ||
         formGroup.get('mobileNumber')?.errors?.['maxlength'] ||
         formGroup.get('mobileNumber')?.errors?.['pattern']
+=======
+
+      <!-- Other Errors (pattern, minlength, maxlength) -->
+      @if (
+        (formGroup.get('mobileNumber')?.errors?.['minlength'] ||
+          formGroup.get('mobileNumber')?.errors?.['maxlength'] ||
+          formGroup.get('mobileNumber')?.errors?.['pattern']) &&
+        formGroup.get('mobileNumber')?.touched
+>>>>>>> development
       ) {
         <small class="text-danger mt-1 d-flex align-items-center gap-1">
           <i class="fa-solid fa-circle-exclamation"></i>

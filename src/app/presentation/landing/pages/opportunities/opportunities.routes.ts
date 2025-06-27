@@ -1,6 +1,6 @@
 import { Route } from '@angular/router';
 import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
-import { opportunityInvestResolver, opportunityResolver } from './opportunities.resolver';
+import { opportunityResolver } from './opportunities.resolver';
 import { authGuard } from '../../../../core/guards/auth.guard';
 
 export const OPPORTUNITIES_ROUTES: Route[] = [

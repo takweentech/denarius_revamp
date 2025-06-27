@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { HttpCustomResponse, HttpPagedResponse } from '../core/models/http';
-import { UpgradeRequest, UpgradeRequestFilter, UpgradeRequestPayload } from '../core/models/upgrade';
+import { UpgradeRequest, UpgradeRequestFilter } from '../core/models/upgrade';
 
 @Injectable({
   providedIn: 'root',

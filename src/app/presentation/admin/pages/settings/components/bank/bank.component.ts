@@ -1,9 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
-import { TokenService } from '../../../../../../core/services/token.service';
 import { ProfileService } from '../../../../../../data/profile.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { UserBankData, UserProfileData } from '../../../../../../core/models/user';
+import { UserBankData } from '../../../../../../core/models/user';
 import { LookupService } from '../../../../../../core/services/lookup.service';
 import { Lookup } from '../../../../../../core/models/lookup';
 import { BaseComponent } from '../../../../../../core/base/base.component';

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, inject, Input, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, OnInit, signal } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Step } from '../../../models/registration.model';
 import { LookupService } from '../../../../../../../../../core/services/lookup.service';

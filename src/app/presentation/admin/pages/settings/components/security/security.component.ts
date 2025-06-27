@@ -10,7 +10,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OtpComponent } from './components/otp/otp.component';
 import { matchValidator } from '../../../../../../core/validators/form.validators';
 import { REGEX_PATTERNS } from '../../../../../../core/constants/patterns.constants';
-import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-security',

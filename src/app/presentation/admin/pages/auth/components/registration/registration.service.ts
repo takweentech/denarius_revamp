@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { AbstractControl, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { InformationComponent } from './components/individual/information/information.component';
 import { InformationComponent as CompanyInformation } from './components/company/information/information.component';
 import { OtpComponent } from './components/shared/otp/otp.component';
@@ -60,9 +60,9 @@ export class RegistrationService {
             key: 'phoneNumber',
             validators: [
               Validators.required,
-              Validators.minLength(9),
-              Validators.maxLength(9),
-              Validators.pattern(/^5\d{8}$/),
+              Validators.minLength(10),
+              Validators.maxLength(10),
+              Validators.pattern(/^5\d{9}$/),
             ],
             // value: '512345678'
           },
@@ -272,6 +272,26 @@ export class RegistrationService {
         component: CompanyInformation,
         controls: [
           {
+            key: 'authorizedPersonId',
+            validators: [
+              Validators.required,
+              Validators.minLength(10),
+              Validators.maxLength(10),
+              Validators.pattern('^(1|2)[0-9]{9}$'),
+            ],
+            // value: '1234567891'
+          },
+          {
+            key: 'mobileNumber',
+            validators: [
+              Validators.required,
+              Validators.minLength(10),
+              Validators.maxLength(10),
+              Validators.pattern(/^5\d{9}$/),
+            ],
+            // value: '512345678'
+          },
+          {
             key: 'commercialRegistrationNumber',
             validators: [Validators.required],
           },
@@ -301,7 +321,7 @@ export class RegistrationService {
           },
           {
             key: 'acceptTerms',
-            validators: [Validators.requiredTrue],
+            validators: [Validators.required],
           },
         ],
         validators: [matchValidator('password', 'confirmPassword')],

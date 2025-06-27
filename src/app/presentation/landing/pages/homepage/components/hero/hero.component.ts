@@ -1,11 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import AOS from 'aos';
-import { StrapiService } from '../../../../../../core/strapi/strapi.service';
 import { NgStyle } from '@angular/common';
 import { environment } from '../../../../../../../environments/environment';
 import { BaseComponent } from '../../../../../../core/base/base.component';
-import { takeUntil } from 'rxjs';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 @Component({
@@ -19,7 +17,6 @@ export class HeroComponent extends BaseComponent implements OnInit {
 
   imagePath!: string;
   CMS_ASSETS_URL = environment.cmsAssetsUrl;
-  private readonly strapiService = inject(StrapiService);
   private readonly activatedRoute = inject(ActivatedRoute);
   content = this.activatedRoute.snapshot.data['content']['hero'];
   constructor() {
