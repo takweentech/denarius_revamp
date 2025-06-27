@@ -281,6 +281,7 @@ export class RegistrationService {
             ],
             // value: '1234567891'
           },
+
           {
             key: 'mobileNumber',
             validators: [
@@ -309,7 +310,7 @@ export class RegistrationService {
           },
           {
             key: 'email',
-            validators: [Validators.required],
+            validators: [Validators.required, Validators.email],
           },
           {
             key: 'password',
