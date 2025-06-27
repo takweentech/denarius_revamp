@@ -21,3 +21,9 @@ export interface UserEmailConfirm {
   requestId: string;
   otp: string;
 }
+export interface UserForgetPassword {
+  otp: string;
+  newPassword: string;
+  confirmedPassword: string;
+  requestId: string;
+}

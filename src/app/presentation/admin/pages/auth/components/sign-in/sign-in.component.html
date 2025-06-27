@@ -63,7 +63,12 @@
               {{ 'AUTHENTICATION.SIGN_IN.REMEMBER_ME' | translate }}
             </label>
           </div>
-          <a href="" class="text-primary"> {{ 'AUTHENTICATION.SIGN_IN.FORGOT_PASSWORD' | translate }} </a>
+          <a
+            [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.FORGOT_PASSWORD.ROOT"
+            class="text-primary"
+          >
+            {{ 'AUTHENTICATION.SIGN_IN.FORGOT_PASSWORD' | translate }}
+          </a>
         </div>
       </div>
       <button [disabled]="loading()" class="btn btn-primary p-3">{{ 'AUTHENTICATION.SIGN_IN.CTA' | translate }}</button>
