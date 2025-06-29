@@ -14,19 +14,18 @@ export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn) 
   const tokenService = inject(TokenService);
   const translationService = inject(TranslationService);
 
-  // Check if the request URL matches any excluded route
   const shouldExclude = EXCLUDED_URLS.some(url => req.url.includes(url));
   if (shouldExclude) {
     return next(req);
   }
 
   const token = tokenService.getToken();
+  let headers = req.headers.set('Accept-Language', translationService.language);
+
   if (token) {
-    const cloned = req.clone({
-      headers: req.headers.set('Authorization', `Bearer ${token}`).set('Accept-Language', translationService.language),
-    });
-    return next(cloned);
+    headers = headers.set('Authorization', `Bearer ${token}`);
   }
 
-  return next(req);
+  const cloned = req.clone({ headers });
+  return next(cloned);
 };
