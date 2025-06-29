@@ -11,7 +11,7 @@ import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { ProfileService } from '../../../../../../data/profile.service';
 import { InvestorType } from '../../../../../../core/enums/investor.enums';
-import { TranslatePipe } from '@ngx-translate/core';
+import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { Location } from '@angular/common';
 @Component({
   selector: 'app-registration',
@@ -20,6 +20,8 @@ import { Location } from '@angular/common';
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
+  private readonly translateService = inject(TranslateService);
+
   private readonly registrationService = inject(RegistrationService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
@@ -117,7 +119,12 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
       .subscribe({
         next: (response: any) => {
           if (response.status !== 200) {
-            this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
+            this.toastService.show({
+              text: this.translateService.instant(
+                'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.FORM.OTP.OTP_CONFIRM_FAILED'
+              ),
+              classname: 'bg-danger text-light',
+            });
           } else {
             // Store OTP id and temporary token
             if (currentStep.key === 'information') {

@@ -60,9 +60,9 @@ export class RegistrationService {
             key: 'phoneNumber',
             validators: [
               Validators.required,
-              Validators.minLength(10),
-              Validators.maxLength(10),
-              Validators.pattern(/^5\d{9}$/),
+              Validators.minLength(9),
+              Validators.maxLength(9),
+              Validators.pattern(REGEX_PATTERNS.PHONE_NUMBER),
             ],
             // value: '512345678'
           },
@@ -286,9 +286,9 @@ export class RegistrationService {
             key: 'mobileNumber',
             validators: [
               Validators.required,
-              Validators.minLength(10),
-              Validators.maxLength(10),
-              Validators.pattern(/^5\d{9}$/),
+              Validators.minLength(9),
+              Validators.maxLength(9),
+              Validators.pattern(REGEX_PATTERNS.PHONE_NUMBER),
             ],
             // value: '512345678'
           },
@@ -402,7 +402,7 @@ export class RegistrationService {
   initialIndividualInvestorSignUp(data: IndividualInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
     return this.registrationApiService.initialIndividualInvestorSignUp({
       ...data,
-      phoneNumber: '966' + data.phoneNumber,
+      phoneNumber: data.phoneNumber,
     });
   }
 
@@ -433,7 +433,7 @@ export class RegistrationService {
   initialCompanyInvestorSignUp(data: CompanyInitialSignUpDto): Observable<HttpCustomResponse<{}>> {
     return this.registrationApiService.initialCompanyInvestorSignUp({
       ...data,
-      mobileNumber: '966' + data.mobileNumber,
+      mobileNumber: data.mobileNumber,
     });
   }
 
