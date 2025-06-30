@@ -32,6 +32,10 @@ export const WEB_ROUTES = {
     DETAILS: 'details',
   },
   AUTH: {
+    FORGOT_PASSWORD: {
+      ROOT: 'forgot-password',
+      RESET_PASSWORD: 'password-reset',
+    },
     ROOT: 'auth',
     SIGN_UP: 'sign-up',
     SIGN_IN: 'sign-in',
