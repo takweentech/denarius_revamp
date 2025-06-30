@@ -44,8 +44,24 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
   ngOnInit(): void {
     this.initForm();
+    this.steps.forEach(step => {
+      if (step.key === 'otp') {
+        (step as any).inputs = {
+          onCompleted: () => this.onNext(),
+        };
+      }
+    });
   }
 
+  getStepInputs(item: any): Record<string, any> {
+    const inputs = {
+      formGroup: this.signUpForm.get(item.key),
+      step: item,
+      ...(item.inputs || {}), //  dynamically merge any custom step-specific inputs
+    };
+
+    return inputs;
+  }
   initForm() {
     this.signUpForm = this.fb.group({});
     this.steps.forEach(step => {
@@ -115,8 +131,6 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        // text: this.translateService.instant(
-        //   'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.FORM.OTP.OTP_CONFIRM_FAILED'
         next: (response: any) => {
           if (response.status !== 200) {
             this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
@@ -127,7 +141,6 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
               this.otpId = response.data['otpId'];
             }
 
-            // Authenticate user
             if (currentStep.key === 'absher') {
               this.tokenService.setToken(response.data);
               this.getUserProfile();
