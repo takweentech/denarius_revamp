@@ -151,7 +151,7 @@ export interface UserProfile {
   profileImageUrl: string;
   accountType: string;
   nationalId: string;
-  nationality: string | null;
+  nationality: string;
   startDate: string;
   expiryDate: string;
   mobileNumber: string;
