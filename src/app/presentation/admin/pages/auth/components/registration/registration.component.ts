@@ -115,6 +115,8 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         finalize(() => this.loading.set(false))
       )
       .subscribe({
+        // text: this.translateService.instant(
+        //   'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.FORM.OTP.OTP_CONFIRM_FAILED'
         next: (response: any) => {
           if (response.status !== 200) {
             this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });

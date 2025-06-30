@@ -58,7 +58,7 @@
         <span class="input-group-text" dir="ltr">+966</span>
       }
 
-      <input maxlength="10" type="tel" class="form-control" formControlName="phoneNumber" placeholder="5xxxxxxxx" />
+      <input maxlength="9" type="tel" class="form-control" formControlName="phoneNumber" placeholder="5xxxxxxxx" />
 
       @if (translationService.language === 'ar') {
         <span class="input-group-text" dir="ltr">+966</span>
@@ -162,13 +162,14 @@
         {{ 'VALIDATORS.INVALID_PASSWORD' | translate }}
       </small>
     }
+    @if (formGroup.get('confirmPassword')?.errors?.['confirmedValidator']) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.PASSWORD_MATCH' | translate }}
+      </small>
+    }
   </div>
-  @if (formGroup.errors?.['confirmedValidator']) {
-    <small class="text-danger mt-1 d-flex align-items-center gap-1">
-      <i class="fa-solid fa-circle-exclamation"></i>
-      {{ 'VALIDATORS.PASSWORD_MATCH' | translate }}
-    </small>
-  }
+
   <div class="d-flex flex-column gap-1">
     <div class="d-flex align-items-center gap-2">
       <input type="checkbox" id="terms" formControlName="terms" class="m-0" />

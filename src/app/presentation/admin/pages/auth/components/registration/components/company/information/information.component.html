@@ -5,7 +5,7 @@
         >{{ 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.COMMERCIAL_REGISTRATION_NUMBER.LABEL' | translate }}
         <span class="text-danger"></span
       ></label>
-      <input class="form-control" formControlName="commercialRegistrationNumber" type="text" />
+      <input class="form-control" maxlength="10" formControlName="commercialRegistrationNumber" type="text" />
       @if (
         formGroup.get('commercialRegistrationNumber')?.errors?.['required'] &&
         formGroup.get('commercialRegistrationNumber')?.touched
@@ -16,7 +16,6 @@
         </small>
       }
     </div>
-
     <div class="form-group col-12 col-md-6">
       <label class="form-label">{{
         'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.COMMISSIONER_ID_NUMBER.LABEL' | translate
@@ -61,15 +60,15 @@
       }
     </div>
     <div class="form-group col-12 col-md-6">
-      <label class="form-label">
-        {{ 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.PHONE_NUMBER.LABEL' | translate }}
-      </label>
+      <label class="form-label">{{
+        'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.FORM.PHONE_NUMBER.LABEL' | translate
+      }}</label>
       <div class="input-group">
         @if (translationService.language === 'en') {
           <span class="input-group-text" dir="ltr">+966</span>
         }
 
-        <input maxlength="10" type="tel" class="form-control" formControlName="mobileNumber" placeholder="5xxxxxxxx" />
+        <input maxlength="9" type="tel" class="form-control" formControlName="mobileNumber" placeholder="5xxxxxxxx" />
 
         @if (translationService.language === 'ar') {
           <span class="input-group-text" dir="ltr">+966</span>
@@ -77,19 +76,17 @@
       </div>
 
       <!-- Required Error -->
+
       @if (formGroup.get('mobileNumber')?.errors?.['required'] && formGroup.get('mobileNumber')?.touched) {
         <small class="text-danger mt-1 d-flex align-items-center gap-1">
           <i class="fa-solid fa-circle-exclamation"></i>
           {{ 'VALIDATORS.REQUIRED' | translate }}
         </small>
       }
-
-      <!-- Other Errors (pattern, minlength, maxlength) -->
       @if (
-        (formGroup.get('mobileNumber')?.errors?.['minlength'] ||
-          formGroup.get('mobileNumber')?.errors?.['maxlength'] ||
-          formGroup.get('mobileNumber')?.errors?.['pattern']) &&
-        formGroup.get('mobileNumber')?.touched
+        formGroup.get('mobileNumber')?.errors?.['minlength'] ||
+        formGroup.get('mobileNumber')?.errors?.['maxlength'] ||
+        formGroup.get('mobileNumber')?.errors?.['pattern']
       ) {
         <small class="text-danger mt-1 d-flex align-items-center gap-1">
           <i class="fa-solid fa-circle-exclamation"></i>
@@ -107,6 +104,12 @@
       <small class="text-danger mt-1 d-flex align-items-center gap-1">
         <i class="fa-solid fa-circle-exclamation"></i>
         {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+    }
+    @if (formGroup.get('email')?.errors?.['email']) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.EMAIL' | translate }}
       </small>
     }
   </div>
@@ -170,22 +173,29 @@
           {{ 'VALIDATORS.INVALID_PASSWORD' | translate }}
         </small>
       }
+      @if (formGroup.get('confirmPassword')?.errors?.['confirmedValidator']) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ 'VALIDATORS.PASSWORD_MATCH' | translate }}
+        </small>
+      }
     </div>
-    @if (formGroup.errors?.['confirmedValidator']) {
+  </div>
+  <div class="d-flex flex-column gap-1">
+    <div class="d-flex align-items-center gap-2">
+      <input type="checkbox" id="acceptTerms" formControlName="acceptTerms" class="m-0" />
+      <label for="acceptTerms" class="form-label mb-0">
+        {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.TERMS.LABEL' | translate }}
+        <a class="text-primary text-decoration-underline" href="">
+          {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.TERMS.LINK' | translate }}
+        </a>
+      </label>
+    </div>
+    @if (formGroup.get('acceptTerms')?.errors?.['required'] && formGroup.get('acceptTerms')?.touched) {
       <small class="text-danger mt-1 d-flex align-items-center gap-1">
         <i class="fa-solid fa-circle-exclamation"></i>
-        {{ 'VALIDATORS.PASSWORD_MATCH' | translate }}
+        {{ 'VALIDATORS.TERMS' | translate }}
       </small>
     }
-  </div>
-  <div class="d-flex align-items-center gap-2">
-    <input type="checkbox" id="terms" formControlName="acceptTerms" class="m-0" />
-    <label for="terms" class="form-label mb-0">
-      {{ 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.TERMS.LABEL' | translate }}
-
-      <a class="text-primary text-decoration-underline" href="">
-        {{ 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.TERMS.LINK' | translate }}
-      </a>
-    </label>
   </div>
 </form>

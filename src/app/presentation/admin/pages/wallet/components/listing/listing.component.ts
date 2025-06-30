@@ -1,6 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { UserProfileData } from '../../../../../../core/models/user';
-import { TokenService } from '../../../../../../core/services/token.service';
+import { UserProfileData, UserWalletData } from '../../../../../../core/models/user';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { DatePipe, DecimalPipe, NgClass, NgIf } from '@angular/common';
@@ -12,9 +11,9 @@ import { ProfileService } from '../../../../../../data/profile.service';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
-import { TransactionService } from '../../../../../../data/transaction.service';
 import { Transaction } from '../../../../../../core/models/transaction';
-
+import { TokenService } from '../../../../../../core/services/token.service';
+import { TransactionService } from '../../../../../../data/transaction.service';
 @Component({
   selector: 'app-listing',
   standalone: true,
@@ -23,17 +22,20 @@ import { Transaction } from '../../../../../../core/models/transaction';
   styleUrl: './listing.component.scss',
 })
 export class ListingComponent extends BaseComponent implements OnInit {
+  // private readonly investorService = inject(WithdrawalService);
   private readonly translate = inject(TranslateService);
-  private readonly investorService = inject(TransactionService);
-
-  private readonly WithdrawalService = inject(WithdrawalService);
   private readonly tokenService = inject(TokenService);
+  private readonly WithdrawalService = inject(WithdrawalService);
   private readonly profileService = inject(ProfileService);
+  private readonly transactionservice = inject(TransactionService);
   private toastService = inject(ToastService);
+  walletData: UserWalletData = {} as UserWalletData;
+  user: UserProfileData = this.tokenService.getUser();
+
   isSubmitting: boolean = false;
   showConfirmModal: boolean = false;
-  user: UserProfileData = this.tokenService.getUser();
   withdrawAmount: number = 0;
+
   pagination: any = {
     pageNumber: 1,
     pageSize: 5,
@@ -64,15 +66,17 @@ export class ListingComponent extends BaseComponent implements OnInit {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: response => {
-          console.log(response);
+        next: res => {
+          const data: UserWalletData = res.data;
+          this.walletData = data;
+          console.log('Wallet Data:', this.walletData);
         },
         error: () => {},
       });
   }
   loadTransactions(): void {
     this.loading.set(true);
-    this.investorService
+    this.transactionservice
       .getInvestorTransactionsPaged(this.pagination)
       .pipe(
         takeUntil(this.destroy$),

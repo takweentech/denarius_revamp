@@ -28,7 +28,7 @@ export class SecurityComponent extends BaseComponent {
 
   passwordForm: FormGroup = this.fb.group(
     {
-      currentPassword: [null, [Validators.required]],
+      currentPassword: [null, [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)]],
       newPassword: [null, [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)]],
       confirmedPassword: [null, Validators.required],
     },

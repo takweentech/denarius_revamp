@@ -64,14 +64,36 @@ export class IslamicDatepickerComponent implements ControlValueAccessor {
   minDate: NgbDateStruct = {
     day: 1,
     month: 1,
-    year: 1940,
+    year: 1340,
   };
-  maxDate: NgbDateStruct = {
-    day: new Date().getDate(),
-    month: new Date().getMonth() + 1,
-    year: new Date().getFullYear(),
-  };
+  maxDate: NgbDateStruct = (() => {
+    const today = new Date();
+    const hijriFormatter = new Intl.DateTimeFormat('ar-SA-u-ca-islamic', {
+      day: 'numeric',
+      month: 'numeric',
+      year: 'numeric',
+    });
 
+    const parts = hijriFormatter.formatToParts(today);
+    const hijriDate: Partial<NgbDateStruct> = {};
+
+    const convertArabicNumbers = (input: string): number => {
+      const arabicDigits = '٠١٢٣٤٥٦٧٨٩';
+      return +input.replace(/[٠-٩]/g, digit => arabicDigits.indexOf(digit).toString());
+    };
+
+    for (const part of parts) {
+      if (part.type === 'day') hijriDate.day = convertArabicNumbers(part.value);
+      if (part.type === 'month') hijriDate.month = convertArabicNumbers(part.value);
+      if (part.type === 'year') hijriDate.year = convertArabicNumbers(part.value);
+    }
+
+    return {
+      day: hijriDate.day!,
+      month: hijriDate.month!,
+      year: hijriDate.year!,
+    };
+  })();
   private onChange!: (value: string) => void;
   private onTouched!: () => void;
 

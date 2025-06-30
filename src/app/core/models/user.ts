@@ -93,7 +93,19 @@ export interface UserPersonalData {
   netWealth: number;
 }
 
-export interface UserWalletData {}
+export interface UserWalletData {
+  accountBeneficiary: string;
+  iban: string;
+  virtualBankName: string;
+  personalIBAN: string;
+  ibanBalance: number;
+  bankName: string;
+  totalInvestments: number;
+  totalProfits: number;
+  totalExpectedProfits: number;
+  totalDeposits: number;
+  totalWithdraws: number;
+}
 
 export interface UserInvestmentStatisticsData {
   totalInvestments: number;
@@ -139,7 +151,7 @@ export interface UserProfile {
   profileImageUrl: string;
   accountType: string;
   nationalId: string;
-  nationality: string | null;
+  nationality: string;
   startDate: string;
   expiryDate: string;
   mobileNumber: string;
@@ -147,12 +159,19 @@ export interface UserProfile {
 
 export interface InvestmentAccount {
   bankName: string;
-  accountHolderName: string;
+  virtualBankName: string; // ✅ جديد
+  accountHolderName: string; // نفس الـ Beneficiary
   accountNumber: string | null;
   iban: string | null;
-  balance: number;
+  personalIBAN: string; // ✅ جديد
+  balance: number; // يمثل ibanBalance بعد التحويل لرقم
   openingDate: string;
   expiryDate: string;
+  totalInvestments: number; // ✅ جديد
+  totalProfits: number; // ✅ جديد
+  totalExpectedProfits: number; // ✅ جديد
+  totalDeposits: number; // ✅ جديد
+  totalWithdraws: number; // ✅ جديد
 }
 
 export interface FinancialSummary {
