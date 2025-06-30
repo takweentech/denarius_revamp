@@ -9,6 +9,8 @@ import { TranslationService } from '../../../../../../core/services/translation.
 import { REGEX_PATTERNS } from '../../../../../../core/constants/patterns.constants';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { Router, RouterModule } from '@angular/router';
+import { finalize, takeUntil } from 'rxjs';
+import { BaseComponent } from '../../../../../../core/base/base.component';
 
 @Component({
   selector: 'app-forgot-password',
@@ -17,7 +19,7 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './forgot-password.component.html',
   styleUrl: './forgot-password.component.scss',
 })
-export class ForgotPasswordComponent {
+export class ForgotPasswordComponent extends BaseComponent {
   readonly loading = signal<boolean>(false);
 
   readonly translationService = inject(TranslationService);
@@ -47,69 +49,71 @@ export class ForgotPasswordComponent {
 
     const mobileNumber = this.form.value.phoneNumber;
 
-    this.accountService.forgetPassword(mobileNumber).subscribe({
-      next: (res: HttpCustomResponse<{ testOtp: number; token: string; requestId: string } | string>) => {
-        const fallback = this.translateService.instant('AUTHENTICATION.FORGOT_PASSWORD.ERROR_MESSAGE');
+    this.accountService
+      .forgetPassword(mobileNumber)
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loading.set(false))
+      )
+      .subscribe({
+        next: (res: HttpCustomResponse<{ testOtp: number; token: string; requestId: string } | string>) => {
+          const fallback = this.translateService.instant('AUTHENTICATION.FORGOT_PASSWORD.ERROR_MESSAGE');
 
-        if (typeof res.data !== 'string' && res.data) {
-          // ✅ Valid success case
-          const { requestId, token, testOtp } = res.data;
+          if (typeof res.data !== 'string' && res.data) {
+            // ✅ Valid success case
+            const { requestId, token, testOtp } = res.data;
 
-          localStorage.setItem('reset_request_id', requestId);
-          localStorage.setItem('reset_token', token);
-          localStorage.setItem('reset_otp_debug', testOtp.toString());
+            localStorage.setItem('reset_request_id', requestId);
+            localStorage.setItem('reset_token', token);
+            localStorage.setItem('reset_otp_debug', testOtp.toString());
+
+            this.toastService.show({
+              text: this.translateService.instant('AUTHENTICATION.FORGOT_PASSWORD.SUCCESS_MESSAGE'),
+              classname: 'bg-success text-light',
+            });
+
+            this.router.navigate([
+              this.WEB_ROUTES.AUTH.ROOT,
+              this.WEB_ROUTES.AUTH.FORGOT_PASSWORD.ROOT,
+              this.WEB_ROUTES.AUTH.FORGOT_PASSWORD.RESET_PASSWORD,
+              requestId,
+            ]);
+
+            console.log(
+              this.WEB_ROUTES.AUTH.ROOT,
+              this.WEB_ROUTES.AUTH.FORGOT_PASSWORD.ROOT,
+              this.WEB_ROUTES.AUTH.FORGOT_PASSWORD.RESET_PASSWORD,
+              requestId
+            );
+          } else {
+            // ✅ Fake success: backend returned 200 but no useful data → show error
+            const backendMsg = typeof res.data === 'string' && res.data ? res.data : fallback;
+
+            this.toastService.show({
+              text: backendMsg,
+              classname: 'bg-danger text-light',
+            });
+
+            this.error = backendMsg;
+          }
+        },
+
+        error: err => {
+          const fallback = this.translateService.instant('AUTHENTICATION.FORGOT_PASSWORD.ERROR_MESSAGE');
+
+          let backendMsg = err?.error?.message;
+
+          if (backendMsg === 'User not found') {
+            backendMsg = this.translateService.instant('AUTHENTICATION.FORGOT_PASSWORD.USER_NOT_FOUND');
+          }
+
+          this.error = backendMsg || fallback;
 
           this.toastService.show({
-            text: this.translateService.instant('AUTHENTICATION.FORGOT_PASSWORD.SUCCESS_MESSAGE'),
-            classname: 'bg-success text-light',
-          });
-
-          this.router.navigate([
-            this.WEB_ROUTES.AUTH.ROOT,
-            this.WEB_ROUTES.AUTH.FORGOT_PASSWORD.ROOT,
-            this.WEB_ROUTES.AUTH.FORGOT_PASSWORD.RESET_PASSWORD,
-            requestId,
-          ]);
-
-          console.log(
-            this.WEB_ROUTES.AUTH.ROOT,
-            this.WEB_ROUTES.AUTH.FORGOT_PASSWORD.ROOT,
-            this.WEB_ROUTES.AUTH.FORGOT_PASSWORD.RESET_PASSWORD,
-            requestId
-          );
-        } else {
-          // ✅ Fake success: backend returned 200 but no useful data → show error
-          const backendMsg = typeof res.data === 'string' && res.data ? res.data : fallback;
-
-          this.toastService.show({
-            text: backendMsg,
+            text: backendMsg || fallback,
             classname: 'bg-danger text-light',
           });
-
-          this.error = backendMsg;
-        }
-
-        this.loading.set(false);
-      },
-
-      error: err => {
-        const fallback = this.translateService.instant('AUTHENTICATION.FORGOT_PASSWORD.ERROR_MESSAGE');
-
-        let backendMsg = err?.error?.message;
-
-        if (backendMsg === 'User not found') {
-          backendMsg = this.translateService.instant('AUTHENTICATION.FORGOT_PASSWORD.USER_NOT_FOUND');
-        }
-
-        this.error = backendMsg || fallback;
-
-        this.toastService.show({
-          text: backendMsg || fallback,
-          classname: 'bg-danger text-light',
-        });
-
-        this.loading.set(false);
-      },
-    });
+        },
+      });
   }
 }
