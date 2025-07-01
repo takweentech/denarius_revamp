@@ -80,7 +80,7 @@
             <th>{{ 'TRANSACTIONS.DATE' | translate }}</th>
             <th>{{ 'TRANSACTIONS.AMOUNT' | translate }}</th>
             <th>{{ 'TRANSACTIONS.ACCOUNT' | translate }}</th>
-            <th>{{ 'TRANSACTIONS.DETAILS.DETAILS' | translate }}</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -117,7 +117,7 @@
                     {{ tx.transactionType }}
                   </td>
                   <td class="w-fit" dir="ltr">
-                    {{ tx.createDate | date: 'dd/MM/yyyy  hh:mm a' }}
+                    {{ tx.createDate | date: 'dd/MM/yyyy hh:mm a' }}
                   </td>
                   <td>
                     <div

@@ -10,10 +10,10 @@ import { finalize, takeUntil } from 'rxjs';
 import { ProfileService } from '../../../../../../data/profile.service';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
-import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
 import { Transaction } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
+import { WithdrawalService } from '../../../../../../data/withdrawal.service';
 @Component({
   selector: 'app-listing',
   standalone: true,
@@ -22,7 +22,6 @@ import { TransactionService } from '../../../../../../data/transaction.service';
   styleUrl: './listing.component.scss',
 })
 export class ListingComponent extends BaseComponent implements OnInit {
-  // private readonly investorService = inject(WithdrawalService);
   private readonly translate = inject(TranslateService);
   private readonly tokenService = inject(TokenService);
   private readonly WithdrawalService = inject(WithdrawalService);
