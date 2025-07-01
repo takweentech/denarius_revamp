@@ -11,7 +11,7 @@
           </div>
           <div>
             <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.AMOUNT' | translate }}</span>
-            <h6 class="fw-bold price-alignment mt-2">
+            <h6 class="fw-bold w-fit price-alignment mt-2">
               {{ transaction.amount | number: '1.0-2' }}
               <span class="icon-saudi_riyal"></span>
             </h6>
@@ -33,8 +33,8 @@
           </div>
           <div>
             <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.DATE' | translate }}</span>
-            <h6 class="fw-bold mt-2">
-              {{ transaction.createDate | date: 'dd MMM, y - h:mm a' }}
+            <h6 dir="ltr " class="fw-bold w-fit mt-2">
+              {{ transaction.createDate | date: 'dd/MM/yyyy  hh:mm a' }}
             </h6>
           </div>
           <div>
