@@ -62,10 +62,7 @@
                 <hr />
               </div>
 
-              <ng-container
-                *ngComponentOutlet="item.component; inputs: { formGroup: signUpForm.get(item.key), step: item }"
-              ></ng-container>
-
+              <ng-container *ngComponentOutlet="item.component; inputs: getStepInputs(item)"></ng-container>
               <div class="d-flex justify-content-center">
                 <div class="w-100 mx-auto">
                   <button type="button" [disabled]="loading()" (click)="onNext()" class="btn btn-primary p-3 w-100">

@@ -18,6 +18,7 @@ export interface Step<T> {
   resolvedData?: T;
   nextButtonText?: string;
   validators?: ValidatorFn[];
+  inputs?: Record<string, any>;
 }
 
 export interface IndividualAddress {}

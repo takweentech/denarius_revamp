@@ -13,4 +13,13 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class OtpComponent {
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
+
+  @Input() onCompleted!: () => void;
+
+  onOtpChange(code: string | null): void {
+    if (!code) return;
+    if (code.length === 4) {
+      this.onCompleted?.();
+    }
+  }
 }
