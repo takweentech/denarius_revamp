@@ -52,7 +52,7 @@ export class RegistrationService {
             // value: '1234567891'
           },
           {
-            key: 'birhtdate',
+            key: 'birthdate',
             validators: [Validators.required, minimumAgeValidator(18)],
             // value: new Date()
           },
