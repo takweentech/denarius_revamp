@@ -82,10 +82,14 @@ export class ListingComponent extends BaseComponent implements OnInit {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response: any) => {
-          const paged = response.data;
-          this.transactions.set(paged.data);
-          this.total.set(paged.totalCount);
+        next: response => {
+          this.total.set(response.data.totalCount);
+          const formatted = response.data.data.map(tx => ({
+            ...tx,
+            description: tx.description ? tx.description.replace(/,/g, '<br>') : null,
+          }));
+
+          this.transactions.set(formatted);
         },
         error: () => {},
       });

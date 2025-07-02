@@ -109,8 +109,9 @@
                           }"
                         ></i>
                       </div>
-                      <span class="ps-2">{{ tx.description || '-' }}</span>
+                      <span [innerHTML]="tx.description || '-'" class="ps-2"></span>
                     </div>
+                    <p></p>
                   </td>
                   <td>#{{ tx.refId }}</td>
                   <td>
@@ -127,6 +128,9 @@
                         'text-success': tx.transactionType !== 'Withdrawal' && tx.transactionType !== 'سحب',
                       }"
                     >
+                      @if (tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب') {
+                        -
+                      }
                       {{ tx.amount | number: '1.0-2' }}
                       <span class="icon-saudi_riyal"></span>
                     </div>

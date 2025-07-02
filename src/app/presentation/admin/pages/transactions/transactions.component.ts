@@ -48,6 +48,12 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
         next: response => {
           this.transactions.set(response.data.data);
           this.total.set(response.data.totalCount);
+          const formatted = response.data.data.map(tx => ({
+            ...tx,
+            description: tx.description ? tx.description.replace(/,/g, '<br>') : null,
+          }));
+
+          this.transactions.set(formatted);
         },
         error: () => {},
       });

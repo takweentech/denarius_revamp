@@ -222,7 +222,7 @@
                             }"
                           ></i>
                         </div>
-                        <span class="ps-2">{{ tx.description || '-' }}</span>
+                        <span [innerHTML]="tx.description || '-'" class="ps-2"></span>
                       </div>
                     </td>
                     <td>#{{ tx.refId }}</td>
