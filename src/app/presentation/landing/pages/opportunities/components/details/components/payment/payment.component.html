@@ -20,6 +20,29 @@
               [max]="investment()?.investorMaxLimitStockCount ?? null"
               [formControl]="numStock"
             />
+            <!-- required -->
+            @if (numStock.touched && numStock.hasError('required')) {
+              <small class="text-danger d-block mt-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.REQUIRED' | translate }}
+              </small>
+            }
+
+            <!-- min -->
+            @if (numStock.touched && numStock.hasError('min')) {
+              <small class="text-danger d-block mt-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'OPPOTUNITIES_PAYMENT.MIN_INVESTMENT' | translate }} : {{ investment()?.investorMinLimitStockCount }}
+              </small>
+            }
+
+            <!-- max -->
+            @if (numStock.touched && numStock.hasError('max')) {
+              <small class="text-danger d-block mt-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'OPPOTUNITIES_PAYMENT.MAX_INVESTMENT' | translate }} : {{ investment()?.investorMaxLimitStockCount }}
+              </small>
+            }
           </div>
           <div class="col-12 p-md-0 d-flex flex-column">
             <span
