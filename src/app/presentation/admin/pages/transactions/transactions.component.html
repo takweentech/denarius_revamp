@@ -104,8 +104,8 @@
                         <i
                           class="fas"
                           [ngClass]="{
-                            'fa-arrow-down': tx.transactionType === 'Withdrawal',
-                            'fa-arrow-up': tx.transactionType !== 'Withdrawal',
+                            'fa-arrow-down': tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب',
+                            'fa-arrow-up': tx.transactionType !== 'Withdrawal' && tx.transactionType !== 'سحب',
                           }"
                         ></i>
                       </div>
@@ -123,8 +123,8 @@
                     <div
                       class="d-flex price-alignment gap-1 w-fit"
                       [ngClass]="{
-                        'text-danger': tx.amount < 0,
-                        'text-success': tx.amount > 0,
+                        'text-danger': tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب',
+                        'text-success': tx.transactionType !== 'Withdrawal' && tx.transactionType !== 'سحب',
                       }"
                     >
                       {{ tx.amount | number: '1.0-2' }}
