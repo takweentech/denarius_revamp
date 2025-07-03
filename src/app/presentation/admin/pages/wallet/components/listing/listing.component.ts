@@ -53,6 +53,10 @@ export class ListingComponent extends BaseComponent implements OnInit {
   transactions = signal<Transaction[]>([]);
 
   ngOnInit(): void {
+    this.profileService.getUserProfile().subscribe(profile => {
+      this.user = profile.data;
+      this.tokenService.setUser(profile.data);
+    });
     this.loadTransactions();
     this.loadOperations();
   }

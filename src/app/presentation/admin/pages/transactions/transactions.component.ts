@@ -10,6 +10,7 @@ import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
 import { BaseComponent } from '../../../../core/base/base.component';
 import { finalize, takeUntil } from 'rxjs';
 import { TranslatePipe } from '@ngx-translate/core';
+import { ProfileService } from '../../../../data/profile.service';
 @Component({
   selector: 'app-transactions',
   imports: [TranslatePipe, NgClass, RouterModule, DecimalPipe, DatePipe, NgbPaginationModule],
@@ -17,6 +18,8 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './transactions.component.scss',
 })
 export class TransactionsComponent extends BaseComponent implements OnInit {
+  private readonly profileService = inject(ProfileService);
+
   private readonly tokenService = inject(TokenService);
   private readonly investorService = inject(TransactionService);
   pagination: TransactionFilter = {
@@ -46,7 +49,6 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
       )
       .subscribe({
         next: response => {
-          this.transactions.set(response.data.data);
           this.total.set(response.data.totalCount);
           const formatted = response.data.data.map(tx => ({
             ...tx,
@@ -60,6 +62,10 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.profileService.getUserProfile().subscribe(profile => {
+      this.user = profile.data;
+      this.tokenService.setUser(profile.data);
+    });
     this.loadTransactions();
   }
 
