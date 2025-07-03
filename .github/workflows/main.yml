@@ -1,0 +1,37 @@
+name: Angular Build
+
+on:
+  push:
+    branches: [development] # or your default branch
+  pull_request:
+    branches: [development]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20' # use your project’s node version
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Install Angular CLI globally
+      run: npm install -g @angular/cli
+
+    - name: Build Angular application
+      run: ng build --configuration production # or your custom configuration
+
+    # Optional: Upload built files as artifact
+    - name: Upload dist folder
+      uses: actions/upload-artifact@v4
+      with:
+        name: angular-dist
+        path: dist/
