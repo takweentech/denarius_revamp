@@ -27,7 +27,7 @@ jobs:
       run: npm install -g @angular/cli
 
     - name: Build Angular application
-      run: ng build --configuration production # or your custom configuration
+      run: ng build --configuration development # or your custom configuration
 
     # Optional: Upload built files as artifact
     - name: Upload dist folder
