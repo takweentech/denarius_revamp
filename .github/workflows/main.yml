@@ -1,54 +1,33 @@
-name: Angular Build
+name: Angular Build and Deploy
 
 on:
   push:
-    branches: [development] # or your default branch
-  pull_request:
-    branches: [development]
+    branches: [main]  # or 'development'
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '20' # use your project’s node version
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm install
 
-    - name: Install Angular CLI globally
-      run: npm install -g @angular/cli
+      - name: Build Angular App
+        run: npm run build -- --configuration=production
 
-    - name: Build Angular application
-      run: ng build --configuration development # or your custom configuration
-
-    # Optional: Upload built files as artifact
-    - name: Upload dist folder
-      uses: actions/upload-artifact@v4
-      with:
-        name: angular-dist
-        path: dist/
-
-  run_pull:
-    name: run pull
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Setup SSH key and known hosts
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-    - name: Connect and pull from server
-      run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git checkout ${{ secrets.MAIN_BRANCH }} && git pull"
-
-    - name: Cleanup SSH keys
-      run: rm -rf ~/.ssh
+      - name: Upload to server via SCP
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "dist/**"
+          target: "/var/www/html/"  # Replace with your server path
