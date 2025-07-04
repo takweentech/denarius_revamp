@@ -30,17 +30,17 @@
       }}<span class="text-danger">*</span></label
     >
     @if (lang === 'en') {
-      <app-gregorian-datepicker formControlName="birhtdate"></app-gregorian-datepicker>
+      <app-gregorian-datepicker formControlName="birthdate"></app-gregorian-datepicker>
     } @else {
-      <app-islamic-datepicker formControlName="birhtdate"></app-islamic-datepicker>
+      <app-islamic-datepicker formControlName="birthdate"></app-islamic-datepicker>
     }
-    @if (formGroup.get('birhtdate')?.errors?.['required'] && formGroup.get('birhtdate')?.touched) {
+    @if (formGroup.get('birthdate')?.errors?.['required'] && formGroup.get('birthdate')?.touched) {
       <small class="text-danger mt-1 d-flex align-items-center gap-1">
         <i class="fa-solid fa-circle-exclamation"></i>
         {{ 'VALIDATORS.REQUIRED' | translate }}
       </small>
     }
-    @if (formGroup.get('birhtdate')?.errors?.['minimumAge']) {
+    @if (formGroup.get('birthdate')?.errors?.['minimumAge']) {
       <small class="text-danger mt-1 d-flex align-items-center gap-1">
         <i class="fa-solid fa-circle-exclamation"></i>
         {{ 'VALIDATORS.MIN_AGE_18' | translate }}

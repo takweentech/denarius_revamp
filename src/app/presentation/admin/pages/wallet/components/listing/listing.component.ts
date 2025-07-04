@@ -13,7 +13,7 @@ import { ToastService } from '../../../../../../shared/components/toast/toast.se
 import { Transaction } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
-import { WithdrawalService } from '../../../../../../data/withdrawal.service';
+import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
 @Component({
   selector: 'app-listing',
   standalone: true,
@@ -82,10 +82,14 @@ export class ListingComponent extends BaseComponent implements OnInit {
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        next: (response) => {
-          const paged = response.data;
-          this.transactions.set(paged.data);
-          this.total.set(paged.totalCount);
+        next: response => {
+          this.total.set(response.data.totalCount);
+          const formatted = response.data.data.map(tx => ({
+            ...tx,
+            description: tx.description ? tx.description.replace(/,/g, '<br>') : null,
+          }));
+
+          this.transactions.set(formatted);
         },
         error: () => { },
       });

@@ -217,12 +217,12 @@
                           <i
                             class="fas"
                             [ngClass]="{
-                              'fa-arrow-down': tx.transactionType === 'Withdrawal',
-                              'fa-arrow-up': tx.transactionType !== 'Withdrawal',
+                              'fa-arrow-down': tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب',
+                              'fa-arrow-up': tx.transactionType !== 'Withdrawal' && tx.transactionType !== 'سحب',
                             }"
                           ></i>
                         </div>
-                        <span class="ps-2">{{ tx.description || '-' }}</span>
+                        <span [innerHTML]="tx.description || '-'" class="ps-2"></span>
                       </div>
                     </td>
                     <td>#{{ tx.refId }}</td>
@@ -236,11 +236,15 @@
                       <div
                         class="d-flex price-alignment gap-1 w-fit"
                         [ngClass]="{
-                          'text-danger': tx.amount < 0,
-                          'text-success': tx.amount > 0,
+                          'text-danger': tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب',
+                          'text-success': tx.transactionType !== 'Withdrawal' && tx.transactionType !== 'سحب',
                         }"
                       >
+                        @if (tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب') {
+                          -
+                        }
                         {{ tx.amount | number: '1.0-2' }}
+
                         <span class="icon-saudi_riyal"></span>
                       </div>
                     </td>

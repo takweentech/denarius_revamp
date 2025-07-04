@@ -1,15 +1,41 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
 
-export function minimumAgeValidator(minAge: number) {
+export function minimumAgeValidator(minAge: number): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
-    const birthDate = new Date(control.value);
+    if (!control.value) return null;
+
+    let birthDate: Date;
+
+    // Expecting value like: "1445-10-01"
+    const value = control.value.toString();
+    const isHijri = /^\d{4}-\d{1,2}-\d{1,2}$/.test(value) && value.startsWith('14');
+
+    if (isHijri) {
+      // Parse Hijri parts
+      const [hYearStr, hMonthStr, hDayStr] = value.split('-');
+      const hijriYear = Number(hYearStr);
+      const hijriMonth = Number(hMonthStr);
+      const hijriDay = Number(hDayStr);
+
+      // Rough Hijri → Gregorian conversion: Hijri ≈ Gregorian - 579
+      const approxGregorianYear = hijriYear + 579;
+
+      birthDate = new Date(approxGregorianYear, hijriMonth - 1, hijriDay + 10);
+    } else {
+      // Fallback: treat as normal Gregorian
+      birthDate = new Date(value);
+    }
+
+    if (isNaN(birthDate.getTime())) {
+      return { invalidDate: true };
+    }
+
     const today = new Date();
 
     let age = today.getFullYear() - birthDate.getFullYear();
     const monthDiff = today.getMonth() - birthDate.getMonth();
     const dayDiff = today.getDate() - birthDate.getDate();
 
-    // Adjust age if the birthday hasn’t occurred yet this year
     if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
       age--;
     }
