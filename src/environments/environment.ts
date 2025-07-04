@@ -4,5 +4,5 @@ export const environment = {
   apiUrl: 'https://sharikekapi.takweentech.sa/api/v1',
   cmsUrl: 'https://sharikekcms.paramej.com/api',
   cmsAssetsUrl: 'https://sharikekcms.paramej.com/',
-  version: '4.5',
+  version: '4.6',
 } as const;
