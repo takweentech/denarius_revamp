@@ -2,7 +2,7 @@ name: Angular Build and Deploy
 
 on:
   push:
-    branches: [main]  # or 'development'
+    branches: [development]
 
 jobs:
   build-and-deploy:
@@ -30,4 +30,4 @@ jobs:
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "dist/**"
-          target: "/var/www/html/"  # Replace with your server path
+          target: "/var/www/html/" 
