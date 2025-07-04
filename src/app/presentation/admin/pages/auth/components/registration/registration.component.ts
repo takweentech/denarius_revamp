@@ -35,9 +35,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   private stepperInstance!: Stepper;
   currentIndex = signal<number>(1);
   loading = signal<boolean>(false);
-
   signUpForm!: FormGroup;
-
   constructor() {
     super();
   }
@@ -56,6 +54,17 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
       });
       group.setValidators(step.validators || []);
     });
+
+
+    // Handle otp 
+    this.signUpForm.controls['otp'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
+      next: (val) => {
+        if (val?.otp?.length == 4) {
+          this.onNext();
+        }
+      }
+    });
+
   }
 
   onNext() {
@@ -163,7 +172,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
             this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
           }
         },
-        error: err => {},
+        error: err => { },
       });
   }
 

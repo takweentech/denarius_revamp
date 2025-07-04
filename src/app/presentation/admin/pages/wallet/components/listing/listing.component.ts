@@ -24,7 +24,7 @@ import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
 export class ListingComponent extends BaseComponent implements OnInit {
   private readonly translate = inject(TranslateService);
   private readonly tokenService = inject(TokenService);
-  private readonly WithdrawalService = inject(WithdrawalService);
+  private readonly withdrawalService = inject(WithdrawalService);
   private readonly profileService = inject(ProfileService);
   private readonly transactionservice = inject(TransactionService);
   private toastService = inject(ToastService);
@@ -74,7 +74,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
           this.walletData = data;
           console.log('Wallet Data:', this.walletData);
         },
-        error: () => {},
+        error: () => { },
       });
   }
   loadTransactions(): void {
@@ -95,14 +95,14 @@ export class ListingComponent extends BaseComponent implements OnInit {
 
           this.transactions.set(formatted);
         },
-        error: () => {},
+        error: () => { },
       });
   }
 
   confirmWithdrawal(): void {
     this.isSubmitting = true;
     this.showConfirmModal = false;
-    this.WithdrawalService.withdraw(this.withdrawAmount).subscribe({
+    this.withdrawalService.withdraw(this.withdrawAmount).pipe(takeUntil(this.destroy$)).subscribe({
       next: response => {
         const message = response.message?.trim();
 
