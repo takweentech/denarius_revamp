@@ -13,6 +13,7 @@ import { ProfileService } from '../../../../../../data/profile.service';
 import { InvestorType } from '../../../../../../core/enums/investor.enums';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Location } from '@angular/common';
+import { TranslationService } from '../../../../../../core/services/translation.service';
 @Component({
   selector: 'app-registration',
   imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
@@ -20,6 +21,7 @@ import { Location } from '@angular/common';
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
+  readonly translationService = inject(TranslationService);
   private readonly registrationService = inject(RegistrationService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
@@ -29,6 +31,8 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   private toastService = inject(ToastService);
   private readonly fb = inject(FormBuilder);
   steps = this.registrationService.getStepByType(this.activatedRoute.snapshot.params['type']);
+  lang: string = this.translationService.language;
+
   tempToken!: string;
   otpId!: string;
   @ViewChild('stepperRef', { static: false }) stepperRef!: ElementRef;
@@ -55,16 +59,14 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
       group.setValidators(step.validators || []);
     });
 
-
-    // Handle otp 
+    // Handle otp
     this.signUpForm.controls['otp'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
-      next: (val) => {
+      next: val => {
         if (val?.otp?.length == 4) {
           this.onNext();
         }
-      }
+      },
     });
-
   }
 
   onNext() {
@@ -172,7 +174,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
             this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
           }
         },
-        error: err => { },
+        error: err => {},
       });
   }
 
