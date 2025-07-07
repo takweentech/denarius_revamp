@@ -56,4 +56,7 @@ export const WEB_ROUTES = {
   ABOUT_US: {
     ROOT: 'about-us',
   },
+  TERMS: {
+    ROOT: 'terms',
+  },
 };

@@ -14,6 +14,7 @@ import { INVESTMENTS_ROUTES } from './presentation/admin/pages/investments/inves
 import { WALLET_ROUTES } from './presentation/admin/pages/wallet/wallet.routes';
 import { EARNINGS_ROUTES } from './presentation/admin/pages/earnings/earnings.routes';
 import { SETTINGS_ROUTES } from './presentation/admin/pages/settings/settings.routes';
+import { termsResolver } from './presentation/landing/pages/terms/terms.resolver';
 
 export const routes: Routes = [
   //Public
@@ -64,6 +65,17 @@ export const routes: Routes = [
                 loadComponent: () =>
                   import('./presentation/landing/pages/about-us/about-us.component').then(m => m.AboutUsComponent),
                 resolve: { content: aboutResolver },
+              },
+            ],
+          },
+          {
+            path: WEB_ROUTES.TERMS.ROOT,
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import('./presentation/landing/pages/terms/terms.component').then(m => m.TermsComponent),
+                resolve: { content: termsResolver },
               },
             ],
           },
