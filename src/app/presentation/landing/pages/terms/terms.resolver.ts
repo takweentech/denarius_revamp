@@ -8,7 +8,7 @@ export const termsResolver: ResolveFn<boolean> = (route, state) => {
   const translate = inject(TranslateService);
   const currentLang = translate.currentLang || translate.defaultLang || 'en';
 
-  const url = `/terms-and-condition?locale=${currentLang}&populate=header&populate=terms_content`;
+  const url = `/terms-and-condition?locale=${currentLang}&populate=terms_content`;
 
   return strapiService.getContentByPage(url);
 };
