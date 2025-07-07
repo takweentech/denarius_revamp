@@ -7,6 +7,7 @@ import { ConfigService } from './core/services/config.service';
 import { StrapiTranslateLoader } from './core/strapi/strapi-loader';
 import { authInterceptor } from './core/interceptors/token.interceptor';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
+import { provideMarkdown } from 'ngx-markdown';
 
 export function httpLoaderFactory() {
   return new StrapiTranslateLoader();
@@ -24,6 +25,7 @@ export const appConfig: ApplicationConfig = {
       deps: [ConfigService],
       multi: true,
     },
+    provideMarkdown(),
 
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(

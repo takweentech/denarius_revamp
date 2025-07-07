@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, HostListener, OnInit } from '@angular/core';
-import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { LangChangeEvent, TranslateModule, TranslateService } from '@ngx-translate/core';
 import { environment } from '../../../../../../../environments/environment';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import AOS from 'aos';
+import { StrapiService } from '../../../../../../core/strapi/strapi.service';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-cta',
@@ -13,19 +15,17 @@ import AOS from 'aos';
   styleUrl: './cta.component.scss',
 })
 export class CtaComponent extends BaseComponent implements OnInit {
+  private readonly strapiService = inject(StrapiService);
+  private readonly translateService = inject(TranslateService);
+  private readonly activatedRoute = inject(ActivatedRoute);
   imagePath!: string;
   CMS_ASSETS_URL = environment.cmsAssetsUrl;
-
-  private readonly activatedRoute = inject(ActivatedRoute);
+  currentLang: string = this.translateService.currentLang;
   content = this.activatedRoute.snapshot.data['content']['cta'];
 
-  constructor(private translate: TranslateService) {
+  constructor() {
     super();
     AOS.init();
-    this.currentLang = this.translate.currentLang || 'ar';
-    this.translate.onLangChange.subscribe(event => {
-      this.currentLang = event.lang;
-    });
   }
 
   ngOnInit(): void {
@@ -34,30 +34,19 @@ export class CtaComponent extends BaseComponent implements OnInit {
       this.imagePath = this.CMS_ASSETS_URL + image;
     }
 
-    this.updateScreenSize();
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
+      this.getContent();
+    })
   }
 
-  currentLang: string;
-  isSmallScreen: boolean = window.innerWidth < 768;
-  screenSize: string = '';
 
-  @HostListener('window:resize', ['$event'])
-  onResize(event?: Event) {
-    this.updateScreenSize();
+  getContent(): void {
+    this.strapiService.getContentByPage(`/homepage?locale=${this.translateService.currentLang}&populate=cta&populate=cta.box&populate=cta.image`).pipe(takeUntil(this.destroy$)).subscribe({
+      next: (response) => {
+        this.content = response.cta
+      }
+    })
   }
 
-  updateScreenSize() {
-    const width = window.innerWidth;
-    if (width < 576) {
-      this.screenSize = 'xs';
-    } else if (width >= 576 && width < 768) {
-      this.screenSize = 'sm';
-    } else if (width >= 768 && width < 992) {
-      this.screenSize = 'md';
-    } else if (width >= 992 && width < 1200) {
-      this.screenSize = 'lg';
-    } else {
-      this.screenSize = 'xl';
-    }
-  }
+
 }
