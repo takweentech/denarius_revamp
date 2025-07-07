@@ -1,42 +1,20 @@
 <div class="container">
   <div class="d-flex row justify-content-center">
     <!-- card -->
+    @for (item of content.values; track $index) {
     <div class="col-md-4 col-12 d-flex flex-column gap-4">
       <div class="text-center d-flex flex-column align-items-center gap-3 header-fixed">
-        <img class="vector" src="assets/icons/about-us/eye.svg" alt="" />
-        <p>{{ content.item[0].subtitle }}</p>
-        <h4 class="fw-bold">{{ content.item[0].title }}</h4>
+        <img class="vector"
+             [src]="CMS_ASSETS_URL + item?.image?.url"
+             alt="" />
+        <p>{{ item.subtitle }}</p>
+        <h4 class="fw-bold">{{ item.title }}</h4>
       </div>
 
       <p class="">
-        {{ content.item[0].description }}
+        {{ item.description }}
       </p>
     </div>
-
-    <!--  card  -->
-    <div class="col-md-4 col-12 d-flex flex-column gap-4">
-      <div class="text-center d-flex flex-column align-items-center gap-3 header-fixed">
-        <img class="vector" src="assets/icons/about-us/Rectangle.svg" alt="" />
-        <p>{{ content.item[1].subtitle }}</p>
-        <h4 class="fw-bold">{{ content.item[1].title }}</h4>
-      </div>
-
-      <p class="">
-        {{ content.item[1].description }}
-      </p>
-    </div>
-    <!--  card  -->
-
-    <div class="col-md-4 col-12 d-flex flex-column gap-4">
-      <div class="text-center d-flex flex-column align-items-center gap-3 header-fixed">
-        <img class="vector" src="assets/icons/about-us/Image.svg" alt="" />
-        <p>{{ content.item[2].subtitle }}</p>
-        <h4 class="fw-bold">{{ content.item[2].title }}</h4>
-      </div>
-
-      <p class="">
-        {{ content.item[2].description }}
-      </p>
-    </div>
+    }
   </div>
 </div>

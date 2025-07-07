@@ -1,0 +1,55 @@
+.hero {
+    background-image: url('/assets/images/homepage-hero.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 312px;
+    height: 35vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    &::after {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: var(--primary-color);
+        opacity: 0.8;
+        content: '';
+        height: 100%;
+        width: 100%;
+    }
+
+    img {
+        width: 100%;
+        max-width: 203px;
+        height: auto;
+        position: absolute;
+        top: 0%;
+        left: 0;
+        transform: translateY(-0%);
+        z-index: 1;
+    }
+
+    h1 {
+        font-weight: 700;
+        font-size: 60px;
+        line-height: 72px;
+        text-align: center;
+        color: #e9eceb;
+        margin-top: 4rem;
+        z-index: 2;
+        position: relative;
+    }
+
+    p {
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 21px;
+        color: #e9eceb;
+        z-index: 2;
+        position: relative;
+    }
+}
