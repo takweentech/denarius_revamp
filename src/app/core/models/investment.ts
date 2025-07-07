@@ -13,6 +13,7 @@ export interface InvestmentPaymentResponse {
 }
 
 export interface InvestmentResponse {
+  expectedReturn: number;
   opportunityId: number;
   opportunityStatus: number;
   opportunityStockCount: number;

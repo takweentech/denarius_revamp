@@ -48,13 +48,23 @@
             <span
               >{{ 'OPPOTUNITIES_PAYMENT.MIN_INVESTMENT' | translate }} =
               {{ investment()?.investorMinLimitStockCount }}
-              {{ 'OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE' | translate }}</span
-            >
+              {{ 'OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE' | translate }}
+              <span class="price-alignment d-inline-flex">
+                {{ investment()?.opportunityStockValue }}
+
+                <span class="icon-saudi_riyal"></span>
+              </span>
+            </span>
             <span
               >{{ 'OPPOTUNITIES_PAYMENT.MAX_INVESTMENT' | translate }} =
               {{ investment()?.investorMaxLimitStockCount }}
-              {{ 'OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE' | translate }}</span
-            >
+              {{ 'OPPOTUNITIES_PAYMENT.BONDS_WITH_VALUE' | translate }}
+              <span class="price-alignment d-inline-flex">
+                {{ investment()?.opportunityStockValue }}
+
+                <span class="icon-saudi_riyal"></span>
+              </span>
+            </span>
           </div>
           <div>
             <p>
@@ -73,11 +83,7 @@
               </span>
               <div>
                 <div class="d-flex price-alignment gap-1 w-fit align-items-center">
-                  {{
-                    numStock.value && opportunity.opportunityStockValue
-                      ? numStock.value && opportunity.opportunityStockValue
-                      : (0 | number: '1.0-2')
-                  }}
+                  {{ (numStock.value || 0) * (investment()?.opportunityStockValue || 0) }}
                   <span class="icon-saudi_riyal"></span>
                 </div>
               </div>
@@ -87,7 +93,12 @@
                 {{ 'OPPOTUNITIES_PAYMENT.TOTAL_EXPECTED_RETURN' | translate }}
               </span>
               <div class="d-flex price-alignment align-items-center gap-1 w-fit">
-                {{ 0 | number: '1.0-2' }}
+                {{
+                  ((numStock.value || 0) *
+                    (investment()?.expectedReturn || 0) *
+                    (investment()?.opportunityStockValue || 1)) /
+                    100 | number: '1.0-2'
+                }}
                 <span class="icon-saudi_riyal"></span>
               </div>
             </li>
@@ -143,11 +154,9 @@
             <span
               class="fw-semibold fs-5 price-alignment d-inline-flex col justify-content-end align-items-center gap-1"
             >
-              {{
-                numStock.value && opportunity.opportunityStockValue
-                  ? numStock.value && opportunity.opportunityStockValue
-                  : (0 | number: '1.0-2')
-              }}
+              {{ (numStock.value || 0) * (investment()?.opportunityStockValue || 0) }}
+
+              <br />
               <span class="icon-saudi_riyal"></span>
             </span>
           </div>

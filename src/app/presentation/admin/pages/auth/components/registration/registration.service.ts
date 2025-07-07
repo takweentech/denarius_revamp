@@ -52,7 +52,7 @@ export class RegistrationService {
             // value: '1234567891'
           },
           {
-            key: 'birthdate',
+            key: 'birhtdate',
             validators: [Validators.required, minimumAgeValidator(18)],
             // value: new Date()
           },
@@ -88,7 +88,7 @@ export class RegistrationService {
         ],
         validators: [matchValidator('password', 'confirmPassword')],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.CTA',
-        displayNextButton: true
+        displayNextButton: true,
       },
       {
         key: 'otp',
@@ -105,7 +105,7 @@ export class RegistrationService {
         ],
         resolvedData: {},
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.CTA',
-        displayNextButton: false
+        displayNextButton: false,
       },
       {
         key: 'address',
@@ -140,7 +140,7 @@ export class RegistrationService {
           },
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.CTA',
-        displayNextButton: true
+        displayNextButton: true,
       },
       {
         key: 'financial',
@@ -182,7 +182,7 @@ export class RegistrationService {
           },
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.CTA',
-        displayNextButton: true
+        displayNextButton: true,
       },
       {
         key: 'investment',
@@ -216,7 +216,7 @@ export class RegistrationService {
           },
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.CTA',
-        displayNextButton: true
+        displayNextButton: true,
       },
       {
         key: 'disclosure',
@@ -252,7 +252,7 @@ export class RegistrationService {
         apiHandler: (data: IndividualCompletionDto, token?: string, otpId?: string) =>
           this.completeIndividualInvestorRegestration(data, token),
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.CTA',
-        displayNextButton: true
+        displayNextButton: true,
       },
       {
         key: 'absher',
@@ -268,7 +268,7 @@ export class RegistrationService {
         apiHandler: (data: IndividualFinalizationDto, token?: string, otpId?: string) =>
           this.finalizeIndividualInvestorRegestration(data, token, otpId),
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.CTA',
-        displayNextButton: true
+        displayNextButton: true,
       },
     ],
     company: [
@@ -336,7 +336,7 @@ export class RegistrationService {
         apiHandler: (data: CompanyInitialSignUpDto, token?: string, otpId?: string) =>
           this.initialCompanyInvestorSignUp(data),
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA',
-        displayNextButton: true
+        displayNextButton: true,
       },
       {
         key: 'otp',
@@ -353,7 +353,7 @@ export class RegistrationService {
         ],
         resolvedData: {},
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA',
-        displayNextButton: false
+        displayNextButton: false,
       },
       {
         key: 'business',
@@ -384,7 +384,7 @@ export class RegistrationService {
         ],
         resolvedData: {},
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.CTA',
-        displayNextButton: true
+        displayNextButton: true,
       },
       {
         key: 'absher',
@@ -399,11 +399,11 @@ export class RegistrationService {
           },
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.CTA',
-        displayNextButton: true
+        displayNextButton: true,
       },
     ],
   };
-  constructor() { }
+  constructor() {}
 
   getStepByType(type: StepType): Step<{}>[] {
     return this.steps[type];
