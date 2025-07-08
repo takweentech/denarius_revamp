@@ -14,6 +14,7 @@ import { Transaction } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
 import { WithdrawalService } from '../../../../../../data/withdrawal.service';
+import { TransactionType } from '../../../../../../core/enums/investor.enums';
 @Component({
   selector: 'app-listing',
   standalone: true,
@@ -68,11 +69,11 @@ export class ListingComponent extends BaseComponent implements OnInit {
         next: res => {
           const data: UserWalletData = res.data;
           this.walletData = data;
-          console.log('Wallet Data:', this.walletData);
         },
         error: () => {},
       });
   }
+
   loadTransactions(): void {
     this.loading.set(true);
     this.transactionservice
@@ -89,7 +90,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
             description: tx.description ? tx.description.replace(/,/g, '<br>') : null,
           }));
 
-          this.transactions.set(formatted);
+          this.transactions.set(formatted.filter(item => item.transactionType === TransactionType.WITHDRAWAL));
         },
         error: () => {},
       });

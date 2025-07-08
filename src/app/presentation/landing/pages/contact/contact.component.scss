@@ -1,0 +1,151 @@
+.hero {
+  background-image: url('/assets/images/homepage-hero.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 312px;
+  height: 35vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--primary-color);
+    opacity: 0.8;
+    content: '';
+    height: 100%;
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+    max-width: 203px;
+    height: auto;
+    position: absolute;
+    top: 0%;
+    left: 0;
+    transform: translateY(-0%);
+    z-index: 1;
+  }
+
+  h1 {
+    font-weight: 700;
+    font-size: 60px;
+    line-height: 72px;
+    text-align: center;
+    color: #e9eceb;
+    margin-top: 4rem;
+    z-index: 2;
+    position: relative;
+  }
+
+  p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    color: #e9eceb;
+    z-index: 2;
+    position: relative;
+  }
+}
+.title {
+  white-space: pre-line;
+}
+
+.location-ar {
+  position: relative;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: var(--primary-color);
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    z-index: 1;
+  }
+
+  img {
+    margin-top: 70px;
+
+    position: relative;
+    z-index: 2;
+    width: 545px;
+    height: 700px;
+    display: block;
+  }
+}
+.location-en {
+  position: relative;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0;
+
+  &::before {
+    content: '';
+
+    position: absolute;
+    top: 0;
+
+    // left instade of right
+    right: 0;
+    left: auto;
+
+    width: 50%;
+    height: 100%;
+    background-color: var(--primary-color);
+
+    // border radius for right side
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 40px;
+
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+
+    z-index: 1;
+  }
+
+  img {
+    margin-top: 70px;
+    position: relative;
+    z-index: 2;
+    width: 545px;
+    height: 700px;
+    display: block;
+  }
+}
+.mobile-img {
+  display: none;
+
+  @media screen and (max-width: 768px) {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 0px;
+    margin-right: 0px;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.contact {
+  box-shadow: 0 120px 300px -20px rgba(25, 58, 75, 0.3);
+  padding-top: 3rem;
+  padding-bottom: 6rem;
+
+  @media (min-width: 768px) {
+    padding-top: 6rem;
+  }
+}

@@ -24,14 +24,26 @@
           class="border-0 bg-transparent fs-6 text-darkgray fw-bold d-flex align-items-center gap-2"
           (click)="onPrev()"
         >
-          <i class="fas fa-arrow-left"></i> {{ 'AUTHENTICATION.REGISTRATION.GENERAL.PREV_BTN' | translate }}
+          @if (lang === 'ar') {
+            <i class="fas fa-arrow-right"> </i>
+          }
+          @if (lang === 'en') {
+            <i class="fas fa-arrow-left"> </i>
+          }
+          {{ 'AUTHENTICATION.REGISTRATION.GENERAL.PREV_BTN' | translate }}
         </button>
       } @else {
         <a
           (click)="goBack()"
           class="border-0 bg-transparent text-primary fs-6 text-darkgray fw-bold d-flex align-items-center gap-2 cursor-pointer"
         >
-          <i class="fas fa-arrow-left"></i> {{ 'AUTHENTICATION.REGISTRATION.GENERAL.PREV_BTN' | translate }}
+          @if (lang === 'ar') {
+            <i class="fas fa-arrow-right"> </i>
+          }
+          @if (lang === 'en') {
+            <i class="fas fa-arrow-left"> </i>
+          }
+          {{ 'AUTHENTICATION.REGISTRATION.GENERAL.PREV_BTN' | translate }}
         </a>
       }
 

@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { InvestorType } from '../../../../../../core/enums/investor.enums';
 import { TranslatePipe } from '@ngx-translate/core';
+import { TranslationService } from '../../../../../../core/services/translation.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -11,6 +12,9 @@ import { TranslatePipe } from '@ngx-translate/core';
   styleUrl: './sign-up.component.scss',
 })
 export class SignUpComponent {
+  readonly translationService = inject(TranslationService);
+  lang: string = this.translationService.language;
+
   WEB_ROUTES = WEB_ROUTES;
   InvestorType = InvestorType;
   private readonly router = inject(Router);

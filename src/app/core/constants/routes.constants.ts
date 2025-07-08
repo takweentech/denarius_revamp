@@ -11,6 +11,9 @@ export const WEB_ROUTES = {
     INVESTMENT: 'investment',
     UPGRADE: 'upgrade',
   },
+  CONTACT: {
+    ROOT: 'contact',
+  },
   WALLET: {
     ROOT: 'wallet',
   },
@@ -55,5 +58,8 @@ export const WEB_ROUTES = {
   },
   ABOUT_US: {
     ROOT: 'about-us',
+  },
+  TERMS: {
+    ROOT: 'terms',
   },
 };

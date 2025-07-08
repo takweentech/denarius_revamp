@@ -13,6 +13,7 @@ import { ProfileService } from '../../../../../../data/profile.service';
 import { InvestorType } from '../../../../../../core/enums/investor.enums';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Location } from '@angular/common';
+import { TranslationService } from '../../../../../../core/services/translation.service';
 @Component({
   selector: 'app-registration',
   imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
@@ -20,6 +21,7 @@ import { Location } from '@angular/common';
   styleUrl: './registration.component.scss',
 })
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
+  readonly translationService = inject(TranslationService);
   private readonly registrationService = inject(RegistrationService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
@@ -30,6 +32,8 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   private readonly fb = inject(FormBuilder);
   private readonly vps = inject(ViewportScroller);
   steps = this.registrationService.getStepByType(this.activatedRoute.snapshot.params['type']);
+  lang: string = this.translationService.language;
+
   tempToken!: string;
   otpId!: string;
   @ViewChild('stepperRef', { static: false }) stepperRef!: ElementRef;

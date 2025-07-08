@@ -1,0 +1,26 @@
+<!-- header -->
+<section class="d-flex flex-column justify-content-center gap-2 text-center hero">
+  <div class="container position-relative">
+    <div class="d-flex flex-column gap-1">
+      <h1 class="title">
+        {{ content.title }}
+      </h1>
+      <!-- <h1>
+        خبرات استثمارية <br />
+        تخدم أهدافك
+      </h1> -->
+
+      <div class="d-flex gap-2 justify-content-center">
+        <!-- <p>الرئيسية</p>
+        <p>></p>
+        <p class="fw-bold">من نحن</p> -->
+        <p class="fw-bold">
+          {{ content.subtitle }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="container pt-6 pb-6">
+  <markdown [data]="content.terms_and_conditions_content"></markdown>
+</div>

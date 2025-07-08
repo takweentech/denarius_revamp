@@ -3,7 +3,7 @@
     <h5>{{ content.description }}</h5>
   </div>
   <div class="col-12 col-md-2 d-flex justify-content-md-end p-md-0">
-    <a href="">
+    <a [routerLink]="'/' + WEB_ROUTES.CONTACT.ROOT">
       <button class="btn btn-primary">{{ content.button }}</button>
     </a>
   </div>

@@ -175,7 +175,7 @@
       <input type="checkbox" id="terms" formControlName="terms" class="m-0" />
       <label for="terms" class="form-label mb-0">
         {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.TERMS.LABEL' | translate }}
-        <a class="text-primary text-decoration-underline" href="">
+        <a class="text-primary text-decoration-underline" [routerLink]="'/' + WEB_ROUTES.TERMS.ROOT">
           {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.TERMS.LINK' | translate }}
         </a>
       </label>

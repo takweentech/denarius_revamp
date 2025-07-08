@@ -1,17 +1,20 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { BaseComponent } from '../../../../../../../../core/base/base.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { takeUntil } from 'rxjs';
 import { StrapiService } from '../../../../../../../../core/strapi/strapi.service';
+import { WEB_ROUTES } from '../../../../../../../../core/constants/routes.constants';
 
 @Component({
   selector: 'app-contact',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent extends BaseComponent implements OnInit {
+  WEB_ROUTES = WEB_ROUTES;
+
   private readonly activatedRoute = inject(ActivatedRoute);
   content = this.activatedRoute.snapshot.data['content']['contact'];
   private readonly strapiService = inject(StrapiService);
