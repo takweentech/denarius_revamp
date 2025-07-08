@@ -19,19 +19,33 @@ export class AddressComponent extends BaseComponent implements OnInit {
   @Input() step!: Step<PersonalData>;
   private readonly lookupService = inject(LookupService);
   regionsList = signal<Lookup[]>([]);
+  citiesList = signal<Lookup[]>([]);
 
   ngOnInit(): void {
+    this.getSaudiCities();
     this.getSaudiRegions();
   }
 
   onSelectAddress(address: IndividualAddress): void {
     this.formGroup.setValue({
-      district: address.district,
+      district: this.regionsList().find(item => item.englishName === address.district)?.id || null,
       street: address.streetName,
-      city: address.city,
+      city: this.citiesList().find(item => item.englishName === address.city)?.id || null,
       postalCode: address.postCode,
       additionalCode: address.buildingNumber,
     });
+  }
+
+  getSaudiCities(): void {
+    this.lookupService
+      .getSaudiCities()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.citiesList.set(response);
+        },
+        error: error => {},
+      });
   }
 
   getSaudiRegions(): void {

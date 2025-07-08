@@ -11,6 +11,10 @@ export class LookupService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = 'Lookup';
 
+  getSaudiCities(): Observable<Lookup[]> {
+    return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/GetAllCities`);
+  }
+
   getSaudiRegions(): Observable<Lookup[]> {
     return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/SaudiRegions`);
   }

@@ -27,12 +27,14 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   private toastService = inject(ToastService);
   private readonly lookupService = inject(LookupService);
   regionsList = signal<Lookup[]>([]);
+  citiesList = signal<Lookup[]>([]);
   loading = signal<boolean>(false);
   sessionUserData = signal<UserProfileData | null>(this.tokenService.getUser());
   user = signal<UserBasicProfileData | null>(null);
   form!: FormGroup;
   uploadedImage = signal<string>('');
   ngOnInit(): void {
+    this.getSaudiCities();
     this.getSaudiRegions();
     this.initForm();
     this.profileService
@@ -97,6 +99,18 @@ export class ProfileComponent extends BaseComponent implements OnInit {
       .subscribe({
         next: response => {
           this.regionsList.set(response);
+        },
+        error: error => {},
+      });
+  }
+
+  getSaudiCities(): void {
+    this.lookupService
+      .getSaudiCities()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.citiesList.set(response);
         },
         error: error => {},
       });
