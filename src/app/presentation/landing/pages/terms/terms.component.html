@@ -21,4 +21,7 @@
     </div>
   </div>
 </section>
-<div class="container pt-6 pb-6" [innerHTML]="content.terms_and_conditions_content"></div>
+<div class="container pt-6 pb-6">
+  <markdown [data]="content.terms_and_conditions_content"></markdown>
+
+</div>
