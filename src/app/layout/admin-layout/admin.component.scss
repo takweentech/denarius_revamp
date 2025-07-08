@@ -1,12 +1,14 @@
 .content-wrapper {
   min-height: calc(100vh - 90px);
   background-color: #f5f7fa;
-  // padding: 2rem 3rem;
 }
 
 .sidebar-wrapper {
   max-width: 280px;
   width: 100%;
+  max-height: calc(100vh - 90px);
+  position: sticky;
+  top: 0;
 
   @media (max-width: 768px) {
     max-width: initial !important;
