@@ -23,14 +23,17 @@ export class OverviewComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
+    });
+  }
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/about?locale=${this.translateService.currentLang}&populate=overview&populate=overview.box`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.overview
-      }
-    })
+    this.strapiService
+      .getContentByPage(`/about?locale=${this.translateService.currentLang}&populate=overview&populate=overview.box`)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.overview;
+        },
+      });
   }
 }

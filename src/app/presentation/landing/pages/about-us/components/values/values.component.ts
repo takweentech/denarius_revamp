@@ -26,14 +26,19 @@ export class ValuesComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
+    });
+  }
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/about?locale=${this.translateService.currentLang}&populate=values&populate=values.values&populate=values.values.image`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.values
-      }
-    })
+    this.strapiService
+      .getContentByPage(
+        `/about?locale=${this.translateService.currentLang}&populate=values&populate=values.values&populate=values.values.image`
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.values;
+        },
+      });
   }
 }

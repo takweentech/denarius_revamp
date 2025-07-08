@@ -20,18 +20,22 @@ export class ComplianceComponent extends BaseComponent implements OnInit {
     super();
   }
 
-
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
+    });
+  }
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/homepage?locale=${this.translateService.currentLang}&populate=compliance&populate=compliance.box`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.compliance
-      }
-    })
+    this.strapiService
+      .getContentByPage(
+        `/homepage?locale=${this.translateService.currentLang}&populate=compliance&populate=compliance.box`
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.compliance;
+        },
+      });
   }
 }

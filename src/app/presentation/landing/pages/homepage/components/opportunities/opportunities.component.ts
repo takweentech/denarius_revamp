@@ -41,12 +41,11 @@ export class OpportunitiesComponent extends BaseComponent implements OnInit {
     ],
   };
 
-
   ngOnInit(): void {
     this.getOpportunities();
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
+    });
   }
 
   getOpportunities(): void {
@@ -60,12 +59,14 @@ export class OpportunitiesComponent extends BaseComponent implements OnInit {
       });
   }
 
-
   getContent(): void {
-    this.strapiService.getContentByPage(`/homepage?locale=${this.translateService.currentLang}&populate=opportunities`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.opportunities
-      }
-    })
+    this.strapiService
+      .getContentByPage(`/homepage?locale=${this.translateService.currentLang}&populate=opportunities`)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.opportunities;
+        },
+      });
   }
 }

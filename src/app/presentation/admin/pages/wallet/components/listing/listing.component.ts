@@ -70,7 +70,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
           this.walletData = data;
           console.log('Wallet Data:', this.walletData);
         },
-        error: () => { },
+        error: () => {},
       });
   }
   loadTransactions(): void {
@@ -91,49 +91,52 @@ export class ListingComponent extends BaseComponent implements OnInit {
 
           this.transactions.set(formatted);
         },
-        error: () => { },
+        error: () => {},
       });
   }
 
   confirmWithdrawal(): void {
     this.isSubmitting = true;
     this.showConfirmModal = false;
-    this.withdrawalService.withdraw(this.withdrawAmount).pipe(takeUntil(this.destroy$)).subscribe({
-      next: response => {
-        const message = response.message?.trim();
+    this.withdrawalService
+      .withdraw(this.withdrawAmount)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          const message = response.message?.trim();
 
-        if (response.status === 200) {
-          this.toastService.show({
-            text: message || '',
-            classname: 'bg-success text-light',
-            icon: 'fa-circle-check',
-          });
+          if (response.status === 200) {
+            this.toastService.show({
+              text: message || '',
+              classname: 'bg-success text-light',
+              icon: 'fa-circle-check',
+            });
 
-          this.showConfirmModal = false;
-        } else {
+            this.showConfirmModal = false;
+          } else {
+            this.toastService.show({
+              text: message || this.translate.instant('WALLET.WITHDRAW.FAILED'),
+              classname: 'bg-danger text-light',
+              icon: 'fa-circle-exclamation',
+            });
+
+            this.showConfirmModal = false;
+          }
+
+          this.isSubmitting = false;
+        },
+        error: err => {
+          console.error('Withdrawal Failed:', err);
           this.toastService.show({
-            text: message || this.translate.instant('WALLET.WITHDRAW.FAILED'),
+            text: this.translate.instant('WALLET.WITHDRAW.ERROR'),
             classname: 'bg-danger text-light',
             icon: 'fa-circle-exclamation',
           });
 
+          this.isSubmitting = false;
           this.showConfirmModal = false;
-        }
-
-        this.isSubmitting = false;
-      },
-      error: err => {
-        console.error('Withdrawal Failed:', err);
-        this.toastService.show({
-          text: this.translate.instant('WALLET.WITHDRAW.ERROR'),
-          classname: 'bg-danger text-light',
-          icon: 'fa-circle-exclamation',
-        });
-
-        this.isSubmitting = false;
-        this.showConfirmModal = false;
-      },
-    });
+        },
+      });
   }
 
   goToPage(page: number): void {

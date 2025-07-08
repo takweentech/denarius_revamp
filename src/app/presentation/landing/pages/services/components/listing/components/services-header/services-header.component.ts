@@ -23,14 +23,17 @@ export class ServicesHeaderComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
+    });
+  }
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/service?locale=${this.translateService.currentLang}&populate=header`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.header
-      }
-    })
+    this.strapiService
+      .getContentByPage(`/service?locale=${this.translateService.currentLang}&populate=header`)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.header;
+        },
+      });
   }
 }

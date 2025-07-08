@@ -23,15 +23,19 @@ export class DetailsComponent extends BaseComponent {
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
-
-  getContent(): void {
-    this.strapiService.getContentByPage(`/service-singles/${this.activatedRoute.snapshot.params['id']}?locale=${this.translateService.currentLang}&populate=image`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.service = response.data
-      }
-    })
+    });
   }
 
+  getContent(): void {
+    this.strapiService
+      .getContentByPage(
+        `/service-singles/${this.activatedRoute.snapshot.params['id']}?locale=${this.translateService.currentLang}&populate=image`
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.service = response.data;
+        },
+      });
+  }
 }
