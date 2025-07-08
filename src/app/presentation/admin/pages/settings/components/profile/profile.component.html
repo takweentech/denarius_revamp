@@ -2,21 +2,18 @@
   <div class="row">
     <div class="col-xl-2 col-12 d-flex justify-content-center">
       <div class="position-relative d-inline-block">
-        <label class="cursor-pointer"
-               for="profile-input">
-          <img [src]="uploadedImage() || sessionUserData()?.userProfile?.profileImageUrl"
-               class="rounded-circle mt-5 profile-img cursor-pointer"
-               alt="Profile" />
+        <label class="cursor-pointer" for="profile-input">
+          <img
+            [src]="uploadedImage() || sessionUserData()?.userProfile?.profileImageUrl"
+            class="rounded-circle mt-5 profile-img cursor-pointer"
+            alt="Profile"
+          />
           <div class="edit-icon">
             <i class="fas fa-pen"></i>
           </div>
         </label>
 
-        <input type="file"
-               id="profile-input"
-               class="d-none"
-               (change)="onProfileChange($event)"
-               accept="image/*" />
+        <input type="file" id="profile-input" class="d-none" (change)="onProfileChange($event)" accept="image/*" />
       </div>
     </div>
     <div class="col-xl-10 col-12">
@@ -53,105 +50,100 @@
         <div class="col-md-6 col-12">
           <small>{{ 'SETTINGS.PROFILE.NATIONALITY' | translate }}</small>
           @if (user()?.nationality) {
-          <h6 class="fw-bold mt-1 text-primary">
-            {{ user()?.nationality }}
-          </h6>
+            <h6 class="fw-bold mt-1 text-primary">
+              {{ user()?.nationality }}
+            </h6>
           } @else {
-          <h6>-</h6>
+            <h6>-</h6>
           }
         </div>
       </div>
       <div>
-        <form [formGroup]="form"
-              class="g-3 mt-2 row">
+        <form [formGroup]="form" class="g-3 mt-2 row">
           <div class="col-lg-6 col-12">
-            <label class="form-label"
-                   for="streetName">{{ 'SETTINGS.PROFILE.STREET_NAME' | translate }}</label>
-            <input type="text"
-                   id="streetName"
-                   formControlName="streetName"
-                   class="form-control"
-                   placeholder="{{ 'SETTINGS.PROFILE.STREET_NAME' | translate }}" />
+            <label class="form-label" for="streetName">{{ 'SETTINGS.PROFILE.STREET_NAME' | translate }}</label>
+            <input
+              type="text"
+              id="streetName"
+              formControlName="streetName"
+              class="form-control"
+              placeholder="{{ 'SETTINGS.PROFILE.STREET_NAME' | translate }}"
+            />
             @if (form.get('streetName')?.errors?.['required'] && form.get('streetName')?.touched) {
-            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-              <i class="fa-solid fa-circle-exclamation"></i>
-              {{ 'VALIDATORS.REQUIRED' | translate }}
-            </small>
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.REQUIRED' | translate }}
+              </small>
             }
           </div>
           <div class="col-lg-6 col-12">
-            <label class="form-label"
-                   for="district">{{ 'SETTINGS.PROFILE.DISTRICT' | translate }}</label>
-            <select id="district"
-                    formControlName="district"
-                    class="form-select form-control"
-                    aria-label="Default select example">
+            <label class="form-label" for="district">{{ 'SETTINGS.PROFILE.DISTRICT' | translate }}</label>
+            <select
+              id="district"
+              formControlName="district"
+              class="form-select form-control"
+              aria-label="Default select example"
+            >
               @for (item of regionsList(); track $index) {
-              <option [value]="item.id">{{ item | lang }}</option>
+                <option [value]="item.id">{{ item | lang }}</option>
               }
             </select>
             @if (form.get('district')?.errors?.['required'] && form.get('district')?.touched) {
-            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-              <i class="fa-solid fa-circle-exclamation"></i>
-              {{ 'VALIDATORS.REQUIRED' | translate }}
-            </small>
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.REQUIRED' | translate }}
+              </small>
             }
           </div>
           <div class="col-lg-6 col-12">
-            <label class="form-label"
-                   for="city">{{ 'SETTINGS.PROFILE.CITY' | translate }}</label>
-            <input type="text"
-                   id="city"
-                   formControlName="city"
-                   class="form-control"
-                   placeholder="{{ 'SETTINGS.PROFILE.CITY' | translate }}" />
+            <label class="form-label" for="city">{{ 'SETTINGS.PROFILE.CITY' | translate }}</label>
+            <input
+              type="text"
+              id="city"
+              formControlName="city"
+              class="form-control"
+              placeholder="{{ 'SETTINGS.PROFILE.CITY' | translate }}"
+            />
             @if (form.get('city')?.errors?.['required'] && form.get('city')?.touched) {
-            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-              <i class="fa-solid fa-circle-exclamation"></i>
-              {{ 'VALIDATORS.REQUIRED' | translate }}
-            </small>
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.REQUIRED' | translate }}
+              </small>
             }
           </div>
           <div class="col-lg-6 col-12">
-            <label class="form-label"
-                   for="postalCode">{{ 'SETTINGS.PROFILE.POSTAL_CODE' | translate }}</label>
-            <input type="text"
-                   id="postalCode"
-                   formControlName="postalCode"
-                   class="form-control"
-                   placeholder="12345" />
+            <label class="form-label" for="postalCode">{{ 'SETTINGS.PROFILE.POSTAL_CODE' | translate }}</label>
+            <input type="text" id="postalCode" formControlName="postalCode" class="form-control" placeholder="12345" />
             @if (form.get('postalCode')?.errors?.['required'] && form.get('postalCode')?.touched) {
-            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-              <i class="fa-solid fa-circle-exclamation"></i>
-              {{ 'VALIDATORS.REQUIRED' | translate }}
-            </small>
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.REQUIRED' | translate }}
+              </small>
             }
           </div>
           <div class="col-lg-6 col-12">
-            <label class="form-label"
-                   for="additionalCode">
+            <label class="form-label" for="additionalCode">
               {{ 'SETTINGS.PROFILE.ADDITIONAL_CODE' | translate }}
             </label>
-            <input type="text"
-                   id="additionalCode"
-                   formControlName="additionalCode"
-                   class="form-control"
-                   placeholder="12345" />
+            <input
+              type="text"
+              id="additionalCode"
+              formControlName="additionalCode"
+              class="form-control"
+              placeholder="12345"
+            />
             @if (form.get('additionalCode')?.errors?.['required'] && form.get('additionalCode')?.touched) {
-            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-              <i class="fa-solid fa-circle-exclamation"></i>
-              {{ 'VALIDATORS.REQUIRED' | translate }}
-            </small>
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.REQUIRED' | translate }}
+              </small>
             }
           </div>
         </form>
       </div>
     </div>
     <div class="col-12 mt-3 d-flex justify-content-end">
-      <button (click)="onSave()"
-              [disabled]="loading()"
-              class="btn rounded-3 btn-primary mt-4"
-              type="submit">
+      <button (click)="onSave()" [disabled]="loading()" class="btn rounded-3 btn-primary mt-4" type="submit">
         {{ 'SETTINGS.PROFILE.SAVE' | translate }}
       </button>
     </div>

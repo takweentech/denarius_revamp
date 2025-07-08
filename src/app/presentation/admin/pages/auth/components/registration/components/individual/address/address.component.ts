@@ -15,17 +15,14 @@ import { LangPipe } from '../../../../../../../../../shared/pipes/lang.pipe';
   styleUrl: './address.component.scss',
 })
 export class AddressComponent extends BaseComponent implements OnInit {
-
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<PersonalData>;
   private readonly lookupService = inject(LookupService);
   regionsList = signal<Lookup[]>([]);
 
-
   ngOnInit(): void {
     this.getSaudiRegions();
   }
-
 
   onSelectAddress(address: IndividualAddress): void {
     this.formGroup.setValue({
@@ -35,8 +32,7 @@ export class AddressComponent extends BaseComponent implements OnInit {
       postalCode: address.postCode,
       additionalCode: address.buildingNumber,
     });
-  };
-
+  }
 
   getSaudiRegions(): void {
     this.lookupService
@@ -46,8 +42,7 @@ export class AddressComponent extends BaseComponent implements OnInit {
         next: response => {
           this.regionsList.set(response);
         },
-        error: error => { },
+        error: error => {},
       });
   }
-
 }

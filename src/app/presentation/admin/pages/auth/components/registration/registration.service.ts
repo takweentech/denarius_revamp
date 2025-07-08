@@ -396,7 +396,7 @@ export class RegistrationService {
       },
     ],
   };
-  constructor() { }
+  constructor() {}
 
   getStepByType(type: StepType): Step<{}>[] {
     return this.steps[type];

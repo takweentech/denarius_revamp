@@ -86,10 +86,9 @@ export class ProfileComponent extends BaseComponent implements OnInit {
             });
           }
         },
-        error: error => { },
+        error: error => {},
       });
   }
-
 
   getSaudiRegions(): void {
     this.lookupService
@@ -99,10 +98,9 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         next: response => {
           this.regionsList.set(response);
         },
-        error: error => { },
+        error: error => {},
       });
   }
-
 
   onProfileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -126,7 +124,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         next: response => {
           this.setProfileImage(response.fileName);
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -138,7 +136,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         next: response => {
           this.getProfileImage();
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
