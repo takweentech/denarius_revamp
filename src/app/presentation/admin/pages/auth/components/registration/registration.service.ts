@@ -49,12 +49,10 @@ export class RegistrationService {
               Validators.maxLength(10),
               Validators.pattern('^(1|2)[0-9]{9}$'),
             ],
-            // value: '1234567891'
           },
           {
             key: 'birhtdate',
             validators: [Validators.required, minimumAgeValidator(18)],
-            // value: new Date()
           },
           {
             key: 'phoneNumber',
@@ -64,22 +62,18 @@ export class RegistrationService {
               Validators.maxLength(9),
               Validators.pattern(REGEX_PATTERNS.PHONE_NUMBER),
             ],
-            // value: '512345678'
           },
           {
             key: 'email',
             validators: [Validators.required, Validators.email],
-            // value: 'email@email.com'
           },
           {
             key: 'password',
             validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
-            // value: 'QWE47ab3c2@@'
           },
           {
             key: 'confirmPassword',
             validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
-            // value: 'QWE47ab3c2@@'
           },
           {
             key: 'terms',
@@ -120,7 +114,6 @@ export class RegistrationService {
           {
             key: 'district',
             validators: [Validators.required],
-            value: 1,
           },
           {
             key: 'city',
@@ -403,7 +396,7 @@ export class RegistrationService {
       },
     ],
   };
-  constructor() {}
+  constructor() { }
 
   getStepByType(type: StepType): Step<{}>[] {
     return this.steps[type];

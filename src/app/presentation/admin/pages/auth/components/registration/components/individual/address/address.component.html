@@ -23,93 +23,119 @@
     </div>
     <!-- Addresses -->
     @for (item of step.resolvedData?.address?.addressListList; track $index) {
-      <div class="col-12">
-        <div class="d-flex flex-column gap-1">
-          <small
-            >{{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.INDIVIDUAL_INFO.ADDRESS' | translate }} {{ $index + 1 }}
-          </small>
-          <div class="d-flex justify-content-between gap-1">
-            <span class="fw-bold"
-              >{{ item.district }}, {{ item.streetName }}, {{ item.city }}, {{ item.buildingNumber }},
-              {{ item.postCode }}</span
-            >
-            <button type="button" class="small badge bg-black" (click)="onSelectAddress(item)">
-              {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.INDIVIDUAL_INFO.ADDRESS_SELECT_BTN' | translate }}
-            </button>
-          </div>
+    <div class="col-12">
+      <div class="d-flex flex-column gap-1">
+        <small>{{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.INDIVIDUAL_INFO.ADDRESS' | translate }} {{ $index + 1
+          }}
+        </small>
+        <div class="d-flex justify-content-between gap-1">
+          <span class="fw-bold">{{ item.district }}, {{ item.streetName }}, {{ item.city }}, {{ item.buildingNumber }},
+            {{ item.postCode }}</span>
+          <button type="button"
+                  class="small badge bg-black"
+                  (click)="onSelectAddress(item)">
+            {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.INDIVIDUAL_INFO.ADDRESS_SELECT_BTN' | translate }}
+          </button>
         </div>
       </div>
+    </div>
     }
   </div>
 
-  <form [formGroup]="formGroup" class="row g-2 row g-1">
+  <form [formGroup]="formGroup"
+        class="row g-2 row g-1">
+
+    <!--  City  -->
+    <div class="form-group col-12 col-md-6">
+      <label for="city"
+             class="form-label small">{{
+        'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.FORM.CITY' | translate
+        }}</label>
+      <input type="text"
+             id="city"
+             formControlName="city"
+             class="form-control" />
+      @if (formGroup.get('city')?.errors?.['required'] && formGroup.get('city')?.touched) {
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
+      }
+    </div>
+
+
     <!--  District Name  -->
     <div class="form-group col-12 col-md-6">
-      <label for="district" class="form-label small">
-        {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.FORM.CITY' | translate }}</label
-      >
-      <input type="number" id="district" formControlName="district" class="form-control" />
+      <label for="district"
+             class="form-label small">
+        {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.FORM.DISTRICT' | translate }}</label>
+      <select id="district"
+              formControlName="district"
+              class="form-select form-control"
+              aria-label="Default select example">
+        @for (item of regionsList(); track $index) {
+        <option [value]="item.id">{{ item | lang }}</option>
+        }
+      </select>
       @if (formGroup.get('district')?.errors?.['required'] && formGroup.get('district')?.touched) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ 'VALIDATORS.REQUIRED' | translate }}
-        </small>
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
       }
     </div>
 
     <!--  Street Name  -->
     <div class="form-group col-12 col-md-6">
-      <label for="street" class="form-label small">
-        {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.FORM.STREET' | translate }}</label
-      >
-      <input type="text" id="street" formControlName="street" class="form-control" />
+      <label for="street"
+             class="form-label small">
+        {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.FORM.STREET' | translate }}</label>
+      <input type="text"
+             id="street"
+             formControlName="street"
+             class="form-control" />
       @if (formGroup.get('street')?.errors?.['required'] && formGroup.get('street')?.touched) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ 'VALIDATORS.REQUIRED' | translate }}
-        </small>
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
       }
     </div>
 
-    <!--  City  -->
-    <div class="form-group col-12 col-md-6">
-      <label for="city" class="form-label small">{{
-        'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.FORM.CITY' | translate
-      }}</label>
-      <input type="text" id="city" formControlName="city" class="form-control" />
-      @if (formGroup.get('city')?.errors?.['required'] && formGroup.get('city')?.touched) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ 'VALIDATORS.REQUIRED' | translate }}
-        </small>
-      }
-    </div>
 
     <!--  Postal Code  -->
     <div class="form-group col-12 col-md-6">
-      <label for="postalCode" class="form-label small">{{
+      <label for="postalCode"
+             class="form-label small">{{
         'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.FORM.POSTAL_CODE' | translate
-      }}</label>
-      <input type="text" id="postalCode" formControlName="postalCode" class="form-control" />
+        }}</label>
+      <input type="text"
+             id="postalCode"
+             formControlName="postalCode"
+             class="form-control" />
       @if (formGroup.get('postalCode')?.errors?.['required'] && formGroup.get('postalCode')?.touched) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ 'VALIDATORS.REQUIRED' | translate }}
-        </small>
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
       }
     </div>
 
     <!--  Additional Code  -->
     <div class="form-group col-12 col-md-6">
-      <label for="additionalCode" class="form-label small"
-        >{{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.FORM.ADDITIONAL_CODE' | translate }}
+      <label for="additionalCode"
+             class="form-label small">{{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.FORM.ADDITIONAL_CODE' |
+        translate }}
       </label>
-      <input type="text" id="additionalCode" formControlName="additionalCode" class="form-control" />
+      <input type="text"
+             id="additionalCode"
+             formControlName="additionalCode"
+             class="form-control" />
       @if (formGroup.get('additionalCode')?.errors?.['required'] && formGroup.get('additionalCode')?.touched) {
-        <small class="text-danger mt-1 d-flex align-items-center gap-1">
-          <i class="fa-solid fa-circle-exclamation"></i>
-          {{ 'VALIDATORS.REQUIRED' | translate }}
-        </small>
+      <small class="text-danger mt-1 d-flex align-items-center gap-1">
+        <i class="fa-solid fa-circle-exclamation"></i>
+        {{ 'VALIDATORS.REQUIRED' | translate }}
+      </small>
       }
     </div>
   </form>
