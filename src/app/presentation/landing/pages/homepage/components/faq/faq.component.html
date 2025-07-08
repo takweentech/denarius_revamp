@@ -9,24 +9,23 @@
       <div class="d-flex flex-column gap-4">
         <ul class="d-flex flex-column gap-3 list">
           <li class="d-flex gap-2 align-items-center">
-            <img src="assets/icons/bullet.svg"
-                 alt="" />
+            <img src="assets/icons/bullet.svg" alt="" />
             {{ content.point[0].tip }}
           </li>
           <li class="d-flex gap-2 align-items-center">
-            <img src="assets/icons/bullet.svg"
-                 alt="" />
+            <img src="assets/icons/bullet.svg" alt="" />
             {{ content.point[1].tip }}
           </li>
           <li class="d-flex gap-2 align-items-center">
-            <img src="assets/icons/bullet.svg"
-                 alt="" />
+            <img src="assets/icons/bullet.svg" alt="" />
             {{ content.point[2].tip }}
           </li>
         </ul>
-        <a class="text-start text-primary text-decoration-underline w-100"
-           [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_UP"
-           href="">
+        <a
+          class="text-start text-primary text-decoration-underline w-100"
+          [routerLink]="'/' + WEB_ROUTES.AUTH.ROOT + '/' + WEB_ROUTES.AUTH.SIGN_UP"
+          href=""
+        >
           {{ 'HOMEPAGE.FAQ.CTA' | translate }}
         </a>
       </div>
@@ -36,8 +35,7 @@
 
         <div ngbAccordion>
           <ng-container *ngFor="let item of content?.faqs; let i = index">
-            <div ngbAccordionItem
-                 [collapsed]="i !== 0">
+            <div ngbAccordionItem [collapsed]="i !== 0">
               <h2 ngbAccordionHeader>
                 <button ngbAccordionButton>
                   {{ item.question }}
@@ -56,8 +54,7 @@
 
     <div class="col-5 d-none d-md-flex">
       <div class="d-flex justify-content-end">
-        <img src="assets/images/phone.svg"
-             alt="" />
+        <img src="assets/images/phone.svg" alt="" />
       </div>
     </div>
   </div>

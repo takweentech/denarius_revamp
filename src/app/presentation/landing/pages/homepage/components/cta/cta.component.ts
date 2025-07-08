@@ -36,17 +36,19 @@ export class CtaComponent extends BaseComponent implements OnInit {
 
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
+    });
   }
-
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/homepage?locale=${this.translateService.currentLang}&populate=cta&populate=cta.box&populate=cta.image`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.cta
-      }
-    })
+    this.strapiService
+      .getContentByPage(
+        `/homepage?locale=${this.translateService.currentLang}&populate=cta&populate=cta.box&populate=cta.image`
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.cta;
+        },
+      });
   }
-
-
 }

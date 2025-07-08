@@ -7,4 +7,4 @@ import { TranslateModule } from '@ngx-translate/core';
   templateUrl: './licence.component.html',
   styleUrl: './licence.component.scss',
 })
-export class LicenceComponent { }
+export class LicenceComponent {}

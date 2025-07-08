@@ -9,25 +9,24 @@
   </h2>
   <div class="row g-4">
     @for (item of content.service_singles; track $index) {
-    <div class="col-12 col-md-6 col-lg-4">
-      <div class="d-flex flex-column gap-3">
-        <img class="rounded"
-             [src]="CMS_ASSETS_URL + item.image.url"
-             alt="" />
-        <h4>{{ item.title }}</h4>
-        <p>
-          {{ item.description }}
-        </p>
-        <div class="d-flex justify-content-end">
-          <a [routerLink]="'/' + WEB_ROUTES.SERVICES.ROOT + '/' + WEB_ROUTES.SERVICES.DETAILS + '/' + item.documentId	"
-             class="btn btn-sm btn-primary">
-            {{ item.button }}
-          </a>
+      <div class="col-12 col-md-6 col-lg-4">
+        <div class="d-flex flex-column gap-3">
+          <img class="rounded" [src]="CMS_ASSETS_URL + item.image.url" alt="" />
+          <h4>{{ item.title }}</h4>
+          <p>
+            {{ item.description }}
+          </p>
+          <div class="d-flex justify-content-end">
+            <a
+              [routerLink]="'/' + WEB_ROUTES.SERVICES.ROOT + '/' + WEB_ROUTES.SERVICES.DETAILS + '/' + item.documentId"
+              class="btn btn-sm btn-primary"
+            >
+              {{ item.button }}
+            </a>
+          </div>
         </div>
       </div>
-    </div>
     }
-
   </div>
 </section>
 

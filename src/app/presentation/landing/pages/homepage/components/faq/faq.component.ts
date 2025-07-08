@@ -26,15 +26,19 @@ export class FaqComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
-
+    });
+  }
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/homepage?locale=${this.translateService.currentLang}&populate=faq&populate=faq.point&populate=faq.faqs`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.faq
-      }
-    })
+    this.strapiService
+      .getContentByPage(
+        `/homepage?locale=${this.translateService.currentLang}&populate=faq&populate=faq.point&populate=faq.faqs`
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.faq;
+        },
+      });
   }
 }

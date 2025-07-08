@@ -14,6 +14,7 @@ import { Transaction } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
 import { WithdrawalService } from '../../../../../../data/withdrawal.service';
+import { TransactionType } from '../../../../../../core/enums/investor.enums';
 @Component({
   selector: 'app-listing',
   standalone: true,
@@ -68,11 +69,11 @@ export class ListingComponent extends BaseComponent implements OnInit {
         next: res => {
           const data: UserWalletData = res.data;
           this.walletData = data;
-          console.log('Wallet Data:', this.walletData);
         },
         error: () => { },
       });
   }
+
   loadTransactions(): void {
     this.loading.set(true);
     this.transactionservice
@@ -89,7 +90,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
             description: tx.description ? tx.description.replace(/,/g, '<br>') : null,
           }));
 
-          this.transactions.set(formatted);
+          this.transactions.set(formatted.filter(item => item.transactionType === TransactionType.WITHDRAWAL));
         },
         error: () => { },
       });
@@ -98,42 +99,45 @@ export class ListingComponent extends BaseComponent implements OnInit {
   confirmWithdrawal(): void {
     this.isSubmitting = true;
     this.showConfirmModal = false;
-    this.withdrawalService.withdraw(this.withdrawAmount).pipe(takeUntil(this.destroy$)).subscribe({
-      next: response => {
-        const message = response.message?.trim();
+    this.withdrawalService
+      .withdraw(this.withdrawAmount)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          const message = response.message?.trim();
 
-        if (response.status === 200) {
-          this.toastService.show({
-            text: message || '',
-            classname: 'bg-success text-light',
-            icon: 'fa-circle-check',
-          });
+          if (response.status === 200) {
+            this.toastService.show({
+              text: message || '',
+              classname: 'bg-success text-light',
+              icon: 'fa-circle-check',
+            });
 
-          this.showConfirmModal = false;
-        } else {
+            this.showConfirmModal = false;
+          } else {
+            this.toastService.show({
+              text: message || this.translate.instant('WALLET.WITHDRAW.FAILED'),
+              classname: 'bg-danger text-light',
+              icon: 'fa-circle-exclamation',
+            });
+
+            this.showConfirmModal = false;
+          }
+
+          this.isSubmitting = false;
+        },
+        error: err => {
+          console.error('Withdrawal Failed:', err);
           this.toastService.show({
-            text: message || this.translate.instant('WALLET.WITHDRAW.FAILED'),
+            text: this.translate.instant('WALLET.WITHDRAW.ERROR'),
             classname: 'bg-danger text-light',
             icon: 'fa-circle-exclamation',
           });
 
+          this.isSubmitting = false;
           this.showConfirmModal = false;
-        }
-
-        this.isSubmitting = false;
-      },
-      error: err => {
-        console.error('Withdrawal Failed:', err);
-        this.toastService.show({
-          text: this.translate.instant('WALLET.WITHDRAW.ERROR'),
-          classname: 'bg-danger text-light',
-          icon: 'fa-circle-exclamation',
-        });
-
-        this.isSubmitting = false;
-        this.showConfirmModal = false;
-      },
-    });
+        },
+      });
   }
 
   goToPage(page: number): void {

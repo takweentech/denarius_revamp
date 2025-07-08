@@ -32,14 +32,19 @@ export class ListingComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
+    });
+  }
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/service?locale=${this.translateService.currentLang}&populate=listing&populate=listing.service_singles&populate=listing.service_singles.image`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.listing
-      }
-    })
+    this.strapiService
+      .getContentByPage(
+        `/service?locale=${this.translateService.currentLang}&populate=listing&populate=listing.service_singles&populate=listing.service_singles.image`
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.listing;
+        },
+      });
   }
 }

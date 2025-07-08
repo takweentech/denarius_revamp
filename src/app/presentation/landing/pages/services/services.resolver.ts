@@ -19,4 +19,3 @@ export const serviceSingleResolver: ResolveFn<boolean> = (route, state) => {
   const url = `/service-singles/${route.params['id']}?locale=${currentLang}&populate=image`;
   return strapiService.getContentByPage(url);
 };
-

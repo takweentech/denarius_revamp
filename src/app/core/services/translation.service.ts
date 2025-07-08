@@ -9,7 +9,7 @@ export class TranslationService {
   public language!: string;
   public languageKey = 'sharikekPreferredLanguage';
 
-  constructor(private translateService: TranslateService) { }
+  constructor(private translateService: TranslateService) {}
 
   /**
    * Initializes i18n for the application.
@@ -31,7 +31,7 @@ export class TranslationService {
       next: () => {
         localStorage.setItem(this.languageKey, lang ? lang : this.language == 'ar' ? 'en' : 'ar');
         this.init(lang === 'ar' ? 'en' : 'ar');
-      }
+      },
     });
     // location.reload();
   }

@@ -2,7 +2,7 @@ import { AfterViewInit, Component, ElementRef, inject, OnInit, signal, ViewChild
 import { RegistrationService } from './registration.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import Stepper from 'bs-stepper';
-import { CommonModule } from '@angular/common';
+import { CommonModule, ViewportScroller } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from '../../../../../../core/base/base.component';
@@ -30,6 +30,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   private readonly router = inject(Router);
   private toastService = inject(ToastService);
   private readonly fb = inject(FormBuilder);
+  private readonly vps = inject(ViewportScroller);
   steps = this.registrationService.getStepByType(this.activatedRoute.snapshot.params['type']);
   lang: string = this.translationService.language;
 
@@ -115,6 +116,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
     if (!currentStep.apiHandler) {
       this.stepperInstance.next();
       this.currentIndex.set(this.currentIndex() + 1);
+      this.vps.scrollToPosition([0, 0]);
       return;
     }
 
@@ -148,6 +150,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
             //Next
             this.stepperInstance.next();
             this.currentIndex.set(this.currentIndex() + 1);
+            this.vps.scrollToPosition([0, 0]);
           }
         },
       });

@@ -78,13 +78,16 @@
           </div>
           <div class="col-lg-6 col-12">
             <label class="form-label" for="district">{{ 'SETTINGS.PROFILE.DISTRICT' | translate }}</label>
-            <input
-              type="text"
+            <select
               id="district"
               formControlName="district"
-              class="form-control"
-              placeholder="{{ 'SETTINGS.PROFILE.CITY' | translate }}"
-            />
+              class="form-select form-control"
+              aria-label="Default select example"
+            >
+              @for (item of regionsList(); track $index) {
+                <option [value]="item.id">{{ item | lang }}</option>
+              }
+            </select>
             @if (form.get('district')?.errors?.['required'] && form.get('district')?.touched) {
               <small class="text-danger mt-1 d-flex align-items-center gap-1">
                 <i class="fa-solid fa-circle-exclamation"></i>

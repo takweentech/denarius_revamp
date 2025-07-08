@@ -25,14 +25,19 @@ export class MembersComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
+    });
+  }
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/about?locale=${this.translateService.currentLang}&populate[0]=members&populate[1]=members.members&populate[2]=members.members.image`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.members
-      }
-    })
+    this.strapiService
+      .getContentByPage(
+        `/about?locale=${this.translateService.currentLang}&populate[0]=members&populate[1]=members.members&populate[2]=members.members.image`
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.members;
+        },
+      });
   }
 }

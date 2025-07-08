@@ -30,14 +30,17 @@ export class HeroComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
+    });
+  }
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/homepage?locale=${this.translateService.currentLang}&populate=hero&populate=hero.media`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.hero
-      }
-    })
+    this.strapiService
+      .getContentByPage(`/homepage?locale=${this.translateService.currentLang}&populate=hero&populate=hero.media`)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.hero;
+        },
+      });
   }
 }

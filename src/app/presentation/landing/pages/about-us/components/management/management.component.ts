@@ -25,14 +25,19 @@ export class ManagementComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
-    })
-  };
+    });
+  }
 
   getContent(): void {
-    this.strapiService.getContentByPage(`/about?locale=${this.translateService.currentLang}&populate[0]=management&populate[1]=management.members&populate[2]=management.members.image&populate[3]=management.structure`).pipe(takeUntil(this.destroy$)).subscribe({
-      next: (response) => {
-        this.content = response.management
-      }
-    })
+    this.strapiService
+      .getContentByPage(
+        `/about?locale=${this.translateService.currentLang}&populate[0]=management&populate[1]=management.members&populate[2]=management.members.image&populate[3]=management.structure`
+      )
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.content = response.management;
+        },
+      });
   }
 }

@@ -9,10 +9,13 @@ import { finalize, takeUntil } from 'rxjs';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { FileService } from '../../../../../../data/file.service';
+import { Lookup } from '../../../../../../core/models/lookup';
+import { LookupService } from '../../../../../../core/services/lookup.service';
+import { LangPipe } from '../../../../../../shared/pipes/lang.pipe';
 
 @Component({
   selector: 'app-profile',
-  imports: [TranslatePipe, DatePipe, ReactiveFormsModule],
+  imports: [TranslatePipe, DatePipe, ReactiveFormsModule, LangPipe],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
 })
@@ -22,12 +25,15 @@ export class ProfileComponent extends BaseComponent implements OnInit {
   private readonly fileService = inject(FileService);
   private readonly fb = inject(FormBuilder);
   private toastService = inject(ToastService);
+  private readonly lookupService = inject(LookupService);
+  regionsList = signal<Lookup[]>([]);
   loading = signal<boolean>(false);
   sessionUserData = signal<UserProfileData | null>(this.tokenService.getUser());
   user = signal<UserBasicProfileData | null>(null);
   form!: FormGroup;
   uploadedImage = signal<string>('');
   ngOnInit(): void {
+    this.getSaudiRegions();
     this.initForm();
     this.profileService
       .getBasicPersonalInformation()
@@ -79,6 +85,18 @@ export class ProfileComponent extends BaseComponent implements OnInit {
               icon: 'fa-circle-exclamation',
             });
           }
+        },
+        error: error => {},
+      });
+  }
+
+  getSaudiRegions(): void {
+    this.lookupService
+      .getSaudiRegions()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.regionsList.set(response);
         },
         error: error => {},
       });

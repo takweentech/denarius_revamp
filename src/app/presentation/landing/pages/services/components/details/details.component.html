@@ -1,30 +1,30 @@
 <!-- HERO -->
 <section class="d-flex flex-column justify-content-center gap-2 text-center hero">
-    <div class="container position-relative">
-        <div class="d-flex gap-3 flex-column">
-            <h1>
-                {{ service?.title }}
-            </h1>
-        </div>
+  <div class="container position-relative">
+    <div class="d-flex gap-3 flex-column">
+      <h1>
+        {{ service?.title }}
+      </h1>
     </div>
+  </div>
 </section>
-
 
 <!-- Text -->
 
 <section class="container mt-5 pb-6">
-    <div class="d-flex flex-column gap-3">
-        <img class="rounded"
-             (error)="service.image = '/assets/images/Takween-Logo.svg'"
-             [src]="CMS_ASSETS_URL + service?.image?.url"
-             alt="" />
-        <p>
-            {{ service.description }}
-        </p>
+  <div class="d-flex flex-column gap-3">
+    <img
+      class="rounded"
+      (error)="service.image = '/assets/images/Takween-Logo.svg'"
+      [src]="CMS_ASSETS_URL + service?.image?.url"
+      alt=""
+    />
+    <p>
+      {{ service.description }}
+    </p>
 
-        <div>
-            <markdown [data]="service.text"></markdown>
-        </div>
+    <div>
+      <markdown [data]="service.text"></markdown>
     </div>
-
+  </div>
 </section>
