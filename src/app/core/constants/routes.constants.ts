@@ -11,6 +11,9 @@ export const WEB_ROUTES = {
     INVESTMENT: 'investment',
     UPGRADE: 'upgrade',
   },
+  CONTACT: {
+    ROOT: 'contact',
+  },
   WALLET: {
     ROOT: 'wallet',
   },

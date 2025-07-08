@@ -15,6 +15,7 @@ import { WALLET_ROUTES } from './presentation/admin/pages/wallet/wallet.routes';
 import { EARNINGS_ROUTES } from './presentation/admin/pages/earnings/earnings.routes';
 import { SETTINGS_ROUTES } from './presentation/admin/pages/settings/settings.routes';
 import { termsResolver } from './presentation/landing/pages/terms/terms.resolver';
+import { contactResolver } from './presentation/landing/pages/contact/contact.resolver';
 
 export const routes: Routes = [
   //Public
@@ -76,6 +77,17 @@ export const routes: Routes = [
                 loadComponent: () =>
                   import('./presentation/landing/pages/terms/terms.component').then(m => m.TermsComponent),
                 resolve: { content: termsResolver },
+              },
+            ],
+          },
+          {
+            path: WEB_ROUTES.CONTACT.ROOT,
+            children: [
+              {
+                path: '',
+                loadComponent: () =>
+                  import('./presentation/landing/pages/contact/contact.component').then(m => m.ContactComponent),
+                resolve: { content: contactResolver },
               },
             ],
           },
