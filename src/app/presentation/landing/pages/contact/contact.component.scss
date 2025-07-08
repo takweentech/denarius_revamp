@@ -99,7 +99,7 @@
     position: absolute;
     top: 0;
 
-    // ✅ بدّل من left إلى right:
+    // left instade of right
     right: 0;
     left: auto;
 
@@ -107,7 +107,7 @@
     height: 100%;
     background-color: var(--primary-color);
 
-    // ✅ عكس الـ border-radius:
+    // border radius for right side
     border-top-right-radius: 40px;
     border-bottom-right-radius: 40px;
 
