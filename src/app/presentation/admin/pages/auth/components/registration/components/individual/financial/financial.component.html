@@ -107,46 +107,48 @@
   </div>
 
   <!-- Job Info -->
-  <!-- @if (formGroup.get('employmentStatus')?.value == 1 || formGroup.get('employmentStatus')?.value == 2) { -->
-  <div class="col-12 form-group">
-    <div class="bg-white bg-body-secondary p-2 py-3 rounded row mx-auto gx-2">
-      <div class="col-sm-6">
-        <label class="small" for="jobTitle">{{
-          'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.JOB_TITLE' | translate
-        }}</label>
+  @if (formGroup.get('employmentStatus')?.value == 1 || formGroup.get('employmentStatus')?.value == 2) {
+    <div class="col-12 form-group">
+      <div class="bg-white bg-body-secondary p-2 py-3 rounded row mx-auto gx-2">
+        <div class="col-sm-6">
+          <label class="small" for="jobTitle">{{
+            'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.JOB_TITLE' | translate
+          }}</label>
 
-        <select
-          id="jobTitle"
-          formControlName="jobTitle"
-          class="form-select form-control"
-          aria-label="Default select example"
-        >
-          @for (item of jobTitleList(); track $index) {
-            <option [value]="item.id">{{ item | lang }}</option>
+          <select
+            id="jobTitle"
+            formControlName="jobTitle"
+            class="form-select form-control"
+            aria-label="Default select example"
+          >
+            @for (item of jobTitleList(); track $index) {
+              <option [value]="item.id">{{ item | lang }}</option>
+            }
+          </select>
+          @if (formGroup.get('jobTitle')?.errors?.['required'] && formGroup.get('jobTitle')?.touched) {
+            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{ 'VALIDATORS.REQUIRED' | translate }}
+            </small>
           }
-        </select>
-        @if (formGroup.get('jobTitle')?.errors?.['required'] && formGroup.get('jobTitle')?.touched) {
-          <small class="text-danger mt-1 d-flex align-items-center gap-1">
-            <i class="fa-solid fa-circle-exclamation"></i>
-            {{ 'VALIDATORS.REQUIRED' | translate }}
-          </small>
-        }
-      </div>
-      <div class="col-sm-6">
-        <label class="small">{{
-          'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.YEARS_OF_SERVICE' | translate
-        }}</label>
-        <input type="number" formControlName="yearsOfExperience" class="form-control" />
-        @if (formGroup.get('yearsOfExperience')?.errors?.['required'] && formGroup.get('yearsOfExperience')?.touched) {
-          <small class="text-danger mt-1 d-flex align-items-center gap-1">
-            <i class="fa-solid fa-circle-exclamation"></i>
-            {{ 'VALIDATORS.REQUIRED' | translate }}
-          </small>
-        }
+        </div>
+        <div class="col-sm-6">
+          <label class="small">{{
+            'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.YEARS_OF_SERVICE' | translate
+          }}</label>
+          <input type="number" formControlName="yearsOfExperience" class="form-control" />
+          @if (
+            formGroup.get('yearsOfExperience')?.errors?.['required'] && formGroup.get('yearsOfExperience')?.touched
+          ) {
+            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{ 'VALIDATORS.REQUIRED' | translate }}
+            </small>
+          }
+        </div>
       </div>
     </div>
-  </div>
-  <!-- } -->
+  }
 
   <!-- Annual Income -->
   <div class="col-12 mt-2 form-group">

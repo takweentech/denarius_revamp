@@ -66,9 +66,28 @@
 
 <!-- Table -->
 <section class="mt-5">
-  <h5 class="card-title text-primary mb-3">
-    {{ 'TRANSACTIONS.DISTRIBUTION_TITLE' | translate }}
-  </h5>
+  <div class="d-flex justify-content-between gap-2 flex-wrap">
+    <h5 class="card-title text-primary mb-3">
+      {{ 'TRANSACTIONS.DISTRIBUTION_TITLE' | translate }}
+    </h5>
+    <ul class="d-flex gap-2 list-unstyled">
+      @for (item of statusList; track $index) {
+        <li>
+          <button
+            (click)="onFilterByStatus(item.value, $index)"
+            class="badge"
+            [ngClass]="{
+              'bg-primary': item.active,
+              'text-white': item.active,
+              'text-primary': !item.active,
+            }"
+          >
+            {{ item | lang | translate }}
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
   <div class="p-4 mt-2 bg-white rounded-4">
     <div class="table-responsive">
       <table class="fw-light justify-content-start backoffice-table table">

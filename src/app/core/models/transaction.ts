@@ -37,7 +37,7 @@ export interface Transaction {
 export interface TransactionFilter {
   pageNumber: number;
   pageSize: number;
-  filter?: {
+  filter: {
     statusId?: number;
     investorId?: number;
     paymentMethod?: number;

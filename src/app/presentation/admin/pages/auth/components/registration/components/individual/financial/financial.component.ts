@@ -1,5 +1,5 @@
 import { Component, inject, Input, OnInit, signal } from '@angular/core';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Step } from '../../../models/registration.model';
 import { LookupService } from '../../../../../../../../../core/services/lookup.service';
 import { BaseComponent } from '../../../../../../../../../core/base/base.component';
@@ -34,12 +34,22 @@ export class FinancialComponent extends BaseComponent implements OnInit {
     this.getJobTitle();
 
     // Listen for employment status change
-    // this.formGroup.controls['employmentStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => {
-    //   if (val !== 1 || val !== 2) {
-    //     this.formGroup.controls['jobTitle'].reset("");
-    //     this.formGroup.controls['yearsOfExperience'].reset("");
-    //   }
-    // })
+    this.formGroup.controls['employmentStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => {
+      console.log(val);
+
+      if (val !== 1 || val !== 2) {
+        this.formGroup.controls['jobTitle'].reset(null);
+        this.formGroup.controls['yearsOfExperience'].reset(null);
+        this.formGroup.controls['jobTitle'].removeValidators([Validators.required]);
+        this.formGroup.controls['yearsOfExperience'].removeValidators([Validators.required]);
+      } else {
+        this.formGroup.controls['jobTitle'].setValidators([Validators.required]);
+        this.formGroup.controls['yearsOfExperience'].setValidators([Validators.required]);
+      }
+
+      this.formGroup.controls['jobTitle'].updateValueAndValidity();
+      this.formGroup.controls['yearsOfExperience'].updateValueAndValidity();
+    });
   }
 
   getJobTitle(): void {

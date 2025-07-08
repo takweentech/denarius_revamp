@@ -10,14 +10,17 @@ import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
 import { BaseComponent } from '../../../../core/base/base.component';
 import { finalize, takeUntil } from 'rxjs';
 import { TranslatePipe } from '@ngx-translate/core';
+import { LookupService } from '../../../../core/services/lookup.service';
+import { LangPipe } from '../../../../shared/pipes/lang.pipe';
 @Component({
   selector: 'app-transactions',
-  imports: [TranslatePipe, NgClass, RouterModule, DecimalPipe, DatePipe, NgbPaginationModule],
+  imports: [TranslatePipe, NgClass, RouterModule, DecimalPipe, DatePipe, NgbPaginationModule, LangPipe],
   templateUrl: './transactions.component.html',
   styleUrl: './transactions.component.scss',
 })
 export class TransactionsComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
+  private readonly lookupService = inject(LookupService);
   private readonly investorService = inject(TransactionService);
   pagination: TransactionFilter = {
     pageNumber: 1,
@@ -35,6 +38,7 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
   loading = signal<boolean>(false);
   total = signal<number>(0);
   user: UserProfileData = this.tokenService.getUser();
+  statusList = this.lookupService.getTransactionStatus();
 
   loadTransactions(): void {
     this.loading.set(true);
@@ -64,6 +68,16 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
 
   goToPage(page: number): void {
     this.pagination.pageNumber = page;
+    this.loadTransactions();
+  }
+
+  onFilterByStatus(status?: number, index?: number): void {
+    this.statusList = this.statusList.map(item => ({
+      ...item,
+      active: false,
+    }));
+    this.statusList[index as number].active = true;
+    this.pagination.filter.statusId = status;
     this.loadTransactions();
   }
 }

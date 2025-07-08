@@ -60,6 +60,14 @@ export class LookupService {
     return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/InvestmentGoal`);
   }
 
+  getTransactionStatus(): Lookup[] {
+    return [
+      { active: true, englishName: 'TRANSACTIONS.FILTER.ALL', arabicName: 'TRANSACTIONS.FILTER.ALL', value: 0 },
+      { englishName: 'TRANSACTIONS.FILTER.INVEST', arabicName: 'TRANSACTIONS.FILTER.INVEST', value: 1 },
+      { englishName: 'TRANSACTIONS.FILTER.WITHDRAWAL', arabicName: 'TRANSACTIONS.FILTER.WITHDRAWAL', value: 2 },
+    ];
+  }
+
   getDividendStatus(): Lookup[] {
     return [
       { active: true, englishName: 'DIVIDENDS.FILTER.ALL', arabicName: 'DIVIDENDS.FILTER.ALL', value: 0 },
