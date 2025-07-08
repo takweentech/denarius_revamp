@@ -70,7 +70,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
           const data: UserWalletData = res.data;
           this.walletData = data;
         },
-        error: () => { },
+        error: () => {},
       });
   }
 
@@ -92,7 +92,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
 
           this.transactions.set(formatted.filter(item => item.transactionType === TransactionType.WITHDRAWAL));
         },
-        error: () => { },
+        error: () => {},
       });
   }
 

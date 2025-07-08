@@ -3,7 +3,6 @@ export enum InvestorType {
   COMPANY = 'company',
 }
 
-
 export enum TransactionType {
   INVEST = 'Invest',
   WITHDRAWAL = 'Withdrawal',

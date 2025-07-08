@@ -24,7 +24,6 @@ export class TermsComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.getContent();
     });

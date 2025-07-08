@@ -1,47 +1,50 @@
 <div class="container h-100">
-  <div class="bs-stepper d-flex flex-column w-100 h-100 mx-auto"
-       #stepperRef>
+  <div class="bs-stepper d-flex flex-column w-100 h-100 mx-auto" #stepperRef>
     <!-- HIDDEN -->
-    <div class="bs-stepper-header d-none"
-         role="tablist">
+    <div class="bs-stepper-header d-none" role="tablist">
       @for (item of steps; track $index) {
-      <div class="step"
-           [attr.data-target]="'#step-' + item.key">
-        <button type="button"
-                class="step-trigger p-0"
-                role="tab"
-                [attr.aria-controls]="'step-' + item.key"
-                [attr.key]="'step-' + item.key + '-trigger'">
-          <span class="bs-stepper-circle">{{ $index + 1 }}</span>
-          <span class="bs-stepper-label">{{ item.title }}</span>
-        </button>
-      </div>
+        <div class="step" [attr.data-target]="'#step-' + item.key">
+          <button
+            type="button"
+            class="step-trigger p-0"
+            role="tab"
+            [attr.aria-controls]="'step-' + item.key"
+            [attr.key]="'step-' + item.key + '-trigger'"
+          >
+            <span class="bs-stepper-circle">{{ $index + 1 }}</span>
+            <span class="bs-stepper-label">{{ item.title }}</span>
+          </button>
+        </div>
       }
     </div>
     <!-- HIDDEN -->
     <div class="d-flex col-12 justify-content-between align-items-center mb-3 z-index-1">
       @if (currentIndex() !== 1) {
-      <button class="border-0 bg-transparent fs-6 text-darkgray fw-bold d-flex align-items-center gap-2"
-              (click)="onPrev()">
-        @if (lang === 'ar') {
-        <i class="fas fa-arrow-right"> </i>
-        }
-        @if (lang === 'en') {
-        <i class="fas fa-arrow-left"> </i>
-        }
-        {{ 'AUTHENTICATION.REGISTRATION.GENERAL.PREV_BTN' | translate }}
-      </button>
+        <button
+          class="border-0 bg-transparent fs-6 text-darkgray fw-bold d-flex align-items-center gap-2"
+          (click)="onPrev()"
+        >
+          @if (lang === 'ar') {
+            <i class="fas fa-arrow-right"> </i>
+          }
+          @if (lang === 'en') {
+            <i class="fas fa-arrow-left"> </i>
+          }
+          {{ 'AUTHENTICATION.REGISTRATION.GENERAL.PREV_BTN' | translate }}
+        </button>
       } @else {
-      <a (click)="goBack()"
-         class="border-0 bg-transparent text-primary fs-6 text-darkgray fw-bold d-flex align-items-center gap-2 cursor-pointer">
-        @if (lang === 'ar') {
-        <i class="fas fa-arrow-right"> </i>
-        }
-        @if (lang === 'en') {
-        <i class="fas fa-arrow-left"> </i>
-        }
-        {{ 'AUTHENTICATION.REGISTRATION.GENERAL.PREV_BTN' | translate }}
-      </a>
+        <a
+          (click)="goBack()"
+          class="border-0 bg-transparent text-primary fs-6 text-darkgray fw-bold d-flex align-items-center gap-2 cursor-pointer"
+        >
+          @if (lang === 'ar') {
+            <i class="fas fa-arrow-right"> </i>
+          }
+          @if (lang === 'en') {
+            <i class="fas fa-arrow-left"> </i>
+          }
+          {{ 'AUTHENTICATION.REGISTRATION.GENERAL.PREV_BTN' | translate }}
+        </a>
       }
 
       <div>
@@ -55,38 +58,37 @@
         </div>
       </div>
     </div>
-    <form action=""
-          [formGroup]="signUpForm">
+    <form action="" [formGroup]="signUpForm">
       <div class="bs-stepper-content col-12 mt-4 p-0">
         @for (item of steps; track $index) {
-        <div [attr.id]="'step-' + item.key"
-             class="content"
-             role="tabpanel"
-             [attr.aria-labelledby]="'step-' + item.key + '-trigger'">
-          <div class="d-flex flex-column gap-4">
-            <div class="d-flex flex-column gap-2 justify-content-center text-center w-100">
-              <h3 class="fw-bold text-center">{{ item.title | translate }}</h3>
-              <h5 class="text-darkgray">{{ item.description | translate }}</h5>
-              <hr />
-            </div>
-
-            <ng-container
-                          *ngComponentOutlet="item.component; inputs: { formGroup: signUpForm.get(item.key), step: item }"></ng-container>
-
-            @if (item.displayNextButton) {
-            <div class="d-flex justify-content-center">
-              <div class="w-100 mx-auto">
-                <button type="button"
-                        [disabled]="loading()"
-                        (click)="onNext()"
-                        class="btn btn-primary p-3 w-100">
-                  {{ item?.nextButtonText ?? 'Next' | translate }}
-                </button>
+          <div
+            [attr.id]="'step-' + item.key"
+            class="content"
+            role="tabpanel"
+            [attr.aria-labelledby]="'step-' + item.key + '-trigger'"
+          >
+            <div class="d-flex flex-column gap-4">
+              <div class="d-flex flex-column gap-2 justify-content-center text-center w-100">
+                <h3 class="fw-bold text-center">{{ item.title | translate }}</h3>
+                <h5 class="text-darkgray">{{ item.description | translate }}</h5>
+                <hr />
               </div>
+
+              <ng-container
+                *ngComponentOutlet="item.component; inputs: { formGroup: signUpForm.get(item.key), step: item }"
+              ></ng-container>
+
+              @if (item.displayNextButton) {
+                <div class="d-flex justify-content-center">
+                  <div class="w-100 mx-auto">
+                    <button type="button" [disabled]="loading()" (click)="onNext()" class="btn btn-primary p-3 w-100">
+                      {{ item?.nextButtonText ?? 'Next' | translate }}
+                    </button>
+                  </div>
+                </div>
+              }
             </div>
-            }
           </div>
-        </div>
         }
       </div>
     </form>
