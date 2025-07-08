@@ -9,6 +9,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { BaseComponent } from '../../../../core/base/base.component';
 import { RouterLink } from '@angular/router';
 import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
+import { TranslationService } from '../../../../core/services/translation.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -25,6 +26,9 @@ import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
   styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent extends BaseComponent implements OnInit {
+  readonly translationService = inject(TranslationService);
+  lang: string = this.translationService.language;
+
   tokenService = inject(TokenService);
   WEB_ROUTES = WEB_ROUTES;
   user: UserProfileData = this.tokenService.getUser();

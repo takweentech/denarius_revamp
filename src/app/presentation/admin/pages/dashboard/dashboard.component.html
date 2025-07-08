@@ -173,7 +173,12 @@
             class="text-primary d-flex align-items-center gap-1 small"
           >
             {{ 'DASHBOARD.RECENT_TRANSACTIONS.VIEW_ALL' | translate }}
-            <i class="fas fa-arrow-right"></i>
+            @if (lang === 'en') {
+              <i class="fas fa-arrow-right"> </i>
+            }
+            @if (lang === 'ar') {
+              <i class="fas fa-arrow-left"> </i>
+            }
           </a>
         </div>
 
