@@ -29,7 +29,7 @@ export class PerformanceChartComponent {
     aspectRatio: 0.8,
   };
 
-  constructor() {}
+  constructor() { }
 
   orderDataBasedOnMonth(): number[] {
     const data: number[] = [];
@@ -37,7 +37,7 @@ export class PerformanceChartComponent {
     months.forEach((month, index: number) => {
       const total = this.user.investmentPerformance.performanceData
         .filter(item => item.month - 1 === index)
-        .map(item => item.value);
+        .map(item => item.value || 0);
 
       data.push(Math.max(...total));
     });

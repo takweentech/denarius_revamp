@@ -167,7 +167,9 @@
           <label for="terms">
             <span class="fw-light">
               {{ 'OPPOTUNITIES_PAYMENT.ACKNOWLEDGEMENT_TEXT' | translate }}
-              <a href="#" class="text-primary fw-bold">{{ 'OPPOTUNITIES_PAYMENT.TERMS_CONDITIONS' | translate }}</a>
+              <a [routerLink]="'/' + WEB_ROUTES.TERMS.ROOT" target="_blank" class="text-primary fw-bold">{{
+                'OPPOTUNITIES_PAYMENT.TERMS_CONDITIONS' | translate
+              }}</a>
               {{ 'OPPOTUNITIES_PAYMENT.ACKNOWLEDGEMENT_TEXT_CONTINUED' | translate }}
             </span>
           </label>

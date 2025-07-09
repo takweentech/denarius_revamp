@@ -9,16 +9,18 @@
         <div class="card bg-white py-2 px-3 h-100 mx-auto w-100 flex-row align-items-center g-4">
           <div class="row g-4 w-100">
             <div class="d-flex col-12 col-md-2 flex-column gap-1 align-items-center justify-content-center">
-              @if (tokenService.getUser().userProfile.profileImageUrl) {
-                <img
-                  [src]="tokenService.getUser().userProfile.profileImageUrl"
-                  alt="Profile"
-                  class="rounded-circle profile-image object-fit-cover"
-                />
-              } @else {
-                <div class="initials bg-primary d-flex justify-content-center align-items-center">
-                  <h3>{{ user.userProfile.fullName | initials }}</h3>
-                </div>
+              @if (tokenService.getUser().userProfile) {
+                @if (tokenService.getUser().userProfile.profileImageUrl) {
+                  <img
+                    [src]="tokenService.getUser().userProfile.profileImageUrl"
+                    alt="Profile"
+                    class="rounded-circle profile-image object-fit-cover"
+                  />
+                } @else {
+                  <div class="initials bg-primary d-flex justify-content-center align-items-center">
+                    <h3>{{ user.userProfile.fullName | initials }}</h3>
+                  </div>
+                }
               }
             </div>
 
@@ -183,41 +185,38 @@
         </div>
 
         <div class="row mx-0 g-2">
-          @for (tx of user.recentTransactions; track tx.id) {
-            <div class="card bg-white p-4 py-3 col-12">
-              <div class="row g-3 align-items-center">
-                <div class="col col-md-6 d-flex flex-column gap-1">
-                  <small> {{ 'TRANSACTIONS.DESCRIPTION' | translate }}</small>
-                  <p>{{ tx.description }}</p>
-                </div>
+          @if (user.recentTransactions.length) {
+            @for (tx of user.recentTransactions; track tx.id) {
+              <div class="card bg-white p-4 py-3 col-12">
+                <div class="row g-3 align-items-center">
+                  <div class="col col-md-6 d-flex flex-column gap-1">
+                    <small> {{ 'TRANSACTIONS.DESCRIPTION' | translate }}</small>
+                    <p>{{ tx.description }}</p>
+                  </div>
 
-                <div class="col d-flex flex-column gap-1">
-                  <small> {{ 'TRANSACTIONS.REF_ID' | translate }}</small>
-                  {{ tx.refId }}
-                </div>
+                  <div class="col d-flex flex-column gap-1">
+                    <small> {{ 'TRANSACTIONS.REF_ID' | translate }}</small>
+                    {{ tx.refId }}
+                  </div>
 
-                <div class="col d-flex flex-column gap-1">
-                  <small>{{ 'TRANSACTIONS.TYPE' | translate }}</small>
-                  {{ tx.transactionType }}
-                </div>
+                  <div class="col d-flex flex-column gap-1">
+                    <small>{{ 'TRANSACTIONS.TYPE' | translate }}</small>
+                    {{ tx.transactionType }}
+                  </div>
 
-                <div class="col d-flex flex-column gap-1">
-                  <small>{{ 'TRANSACTIONS.AMOUNT' | translate }}</small>
-                  <div
-                    class="d-flex price-alignment gap-1 w-fit"
-                    [ngClass]="{
-                      'text-danger': tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب',
-                      'text-success': tx.transactionType !== 'Withdrawal' && tx.transactionType !== 'سحب',
-                    }"
-                  >
-                    @if (tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب') {
-                      -
-                    }
-                    {{ tx.amount | number: '1.0-2' }}
-                    <span class="icon-saudi_riyal"></span>
+                  <div class="col d-flex flex-column gap-1">
+                    <small>{{ 'TRANSACTIONS.AMOUNT' | translate }}</small>
+                    <div class="d-flex price-alignment gap-1 w-fit">
+                      {{ tx.amount | number: '1.0-2' }}
+                      <span class="icon-saudi_riyal"></span>
+                    </div>
                   </div>
                 </div>
               </div>
+            }
+          } @else {
+            <div class="py-5 d-flex justify-content-center">
+              <p>No data available</p>
             </div>
           }
         </div>

@@ -1,2 +1,14 @@
-<canvas baseChart [type]="'pie'" [datasets]="pieChartDatasets" [labels]="pieChartLabels" [options]="pieChartOptions">
+@if (!empty) {
+<canvas baseChart
+        [type]="'pie'"
+        [datasets]="pieChartDatasets"
+        [labels]="pieChartLabels"
+        [options]="pieChartOptions">
 </canvas>
+
+}@else {
+
+<div class="py-5">
+    <p>No data available</p>
+</div>
+}
