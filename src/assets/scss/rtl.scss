@@ -31,5 +31,27 @@ body {
     .fa-arrow-left {
       transform: rotate(180deg);
     }
+
+
+    .page-item {
+
+      &:last-child {
+        .page-link {
+          border-top-left-radius: var(--bs-pagination-border-radius) !important;
+          border-bottom-left-radius: var(--bs-pagination-border-radius) !important;
+          border-top-right-radius: 0 !important;
+          border-bottom-right-radius: 0 !important;
+        }
+      }
+
+      &:first-child {
+        .page-link {
+          border-top-right-radius: var(--bs-pagination-border-radius) !important;
+          border-bottom-right-radius: var(--bs-pagination-border-radius) !important;
+          border-top-left-radius: 0 !important;
+          border-bottom-left-radius: 0 !important;
+        }
+      }
+    }
   }
 }
