@@ -33,7 +33,6 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   private readonly vps = inject(ViewportScroller);
   steps = this.registrationService.getStepByType(this.activatedRoute.snapshot.params['type']);
   lang: string = this.translationService.language;
-
   tempToken!: string;
   otpId!: string;
   @ViewChild('stepperRef', { static: false }) stepperRef!: ElementRef;

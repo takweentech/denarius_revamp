@@ -18,7 +18,7 @@ export class TransactionChartComponent {
   public pieChartLabels: string[] = Object.keys(this.user.financialDistribution).map(key => key.toUpperCase());
   public pieChartDatasets = [
     {
-      data: Object.values(this.user.financialDistribution).map(item => item ? item : 0),
+      data: Object.values(this.user.financialDistribution).map(item => (item ? item : 0)),
     },
   ];
 
@@ -26,6 +26,5 @@ export class TransactionChartComponent {
     responsive: false,
   };
 
-  constructor() {
-  }
+  constructor() {}
 }

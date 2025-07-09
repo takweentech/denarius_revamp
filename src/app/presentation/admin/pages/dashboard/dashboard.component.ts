@@ -4,7 +4,7 @@ import { TokenService } from '../../../../core/services/token.service';
 import { InitialsPipe } from '../../../../shared/pipes/initials.pipe';
 import { TransactionChartComponent } from './components/transaction-chart/transaction-chart.component';
 import { PerformanceChartComponent } from './components/performance-chart/performance-chart.component';
-import { DatePipe, DecimalPipe } from '@angular/common';
+import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { BaseComponent } from '../../../../core/base/base.component';
 import { RouterLink } from '@angular/router';
@@ -14,6 +14,7 @@ import { TranslationService } from '../../../../core/services/translation.servic
 @Component({
   selector: 'app-dashboard',
   imports: [
+    NgClass,
     InitialsPipe,
     TransactionChartComponent,
     PerformanceChartComponent,

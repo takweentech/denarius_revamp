@@ -10,11 +10,10 @@ import { finalize, takeUntil } from 'rxjs';
 import { ProfileService } from '../../../../../../data/profile.service';
 import { FormsModule } from '@angular/forms';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
-import { Transaction } from '../../../../../../core/models/transaction';
+import { Transaction, TransactionFilter } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
 import { WithdrawalService } from '../../../../../../data/withdrawal.service';
-import { TransactionType } from '../../../../../../core/enums/investor.enums';
 @Component({
   selector: 'app-listing',
   standalone: true,
@@ -35,8 +34,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
   isSubmitting: boolean = false;
   showConfirmModal: boolean = false;
   withdrawAmount: number = 0;
-
-  pagination: any = {
+  pagination: TransactionFilter = {
     pageNumber: 1,
     pageSize: 5,
     filter: {},
@@ -48,7 +46,6 @@ export class ListingComponent extends BaseComponent implements OnInit {
     ],
   };
   WEB_ROUTES = WEB_ROUTES;
-  investments = signal<any[]>([]);
   loading = signal<boolean>(false);
   total = signal<number>(0);
   transactions = signal<Transaction[]>([]);
@@ -57,6 +54,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
     this.loadTransactions();
     this.loadOperations();
   }
+
   loadOperations(): void {
     this.loading.set(true);
     this.profileService
@@ -76,6 +74,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
 
   loadTransactions(): void {
     this.loading.set(true);
+    this.pagination.filter.statusId = 1;
     this.transactionservice
       .getInvestorTransactionsPaged(this.pagination)
       .pipe(
@@ -90,7 +89,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
             description: tx.description ? tx.description.replace(/,/g, '<br>') : null,
           }));
 
-          this.transactions.set(formatted.filter(item => item.transactionType === TransactionType.WITHDRAWAL));
+          this.transactions.set(formatted);
         },
         error: () => {},
       });
@@ -142,7 +141,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
 
   goToPage(page: number): void {
     this.pagination.pageNumber = page;
-    this.loadOperations();
+    this.loadTransactions();
   }
 
   onBackdropClick(event: MouseEvent): void {

@@ -14,5 +14,4 @@ export class SidebarComponent {
   private readonly sidebarService = inject(SidebarService);
   sidebarItems = this.sidebarService.sidebarItems;
   public WEB_ROUTES = WEB_ROUTES;
-
 }

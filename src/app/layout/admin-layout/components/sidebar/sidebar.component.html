@@ -9,6 +9,14 @@
           </span>
         </a>
       </li>
+      <li class="justify-content-between text-center position-relative">
+        <a [routerLink]="item.route" [routerLinkActiveOptions]="{ exact: false }" routerLinkActive="active">
+          <i [class]="item.icon"></i>
+          <span class="sidebar-text fs-6 d-sm-none d-md-none d-lg-inline">
+            {{ item.label | translate }}
+          </span>
+        </a>
+      </li>
     }
   </ul>
 

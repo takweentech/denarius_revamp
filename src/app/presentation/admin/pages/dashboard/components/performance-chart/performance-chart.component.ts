@@ -29,7 +29,7 @@ export class PerformanceChartComponent {
     aspectRatio: 0.8,
   };
 
-  constructor() { }
+  constructor() {}
 
   orderDataBasedOnMonth(): number[] {
     const data: number[] = [];

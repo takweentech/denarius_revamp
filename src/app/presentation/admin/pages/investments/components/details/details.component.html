@@ -5,10 +5,7 @@
   </section>
 
   <section class="bg-white rounded-4 p-4 py-2">
-    <ul ngbNav
-        #nav="ngbNav"
-        [(activeId)]="active"
-        class="nav-tabs">
+    <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
       <!-- Investment information -->
       <li [ngbNavItem]="1">
         <button ngbNavLink>
@@ -40,8 +37,7 @@
               <h6>
                 {{ 'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.STOCK_COUNT' | translate }}
               </h6>
-              <div class="d-flex gap-2 w-fit"
-                   dir="ltr">
+              <div class="d-flex gap-2 w-fit" dir="ltr">
                 {{ investment.stockCount }}
               </div>
             </div>
@@ -57,12 +53,10 @@
               <h6>
                 {{ 'INVESTMENTS.DETAILS.INVESTMENT_INFORMATION.INVESTMENT_DATE' | translate }}
               </h6>
-              <span class="w-fit"
-                    dir="ltr">{{ investment.writingDate | date: 'dd/MM/yyyy hh:mm a' }}</span>
+              <span class="w-fit" dir="ltr">{{ investment.writingDate | date: 'dd/MM/yyyy hh:mm a' }}</span>
             </div>
             <div class="col-12 mt-5 justify-content-end row d-flex">
-              <button (click)="goBack()"
-                      class="col-12 rounded-4 col-lg-2 btn btn-primary">
+              <button (click)="goBack()" class="col-12 rounded-4 col-lg-2 btn btn-primary">
                 <span class="fw-light">{{ 'TRANSACTIONS.DETAILS.BACK' | translate }}</span>
               </button>
             </div>
@@ -104,54 +98,55 @@
               </thead>
               <tbody>
                 @for (item of earnings(); let i = $index; track i) {
-                <tr>
-                  <td>{{ i + 1 }}</td>
-                  <td>
-                    <span class="badge bg-success">{{ item.status }}</span>
-                  </td>
-                  <td class="justify-content-center">
-                    <div class="price-alignment justify-content-center">
-                      {{ item.totalPrincipal | number: '1.0-2' }}
-                      <span class="icon-saudi_riyal"></span>
-                    </div>
-                  </td>
-                  <td class="justify-content-center">
-                    <div class="price-alignment justify-content-center">
-                      {{ item.totalAgencyFee | number: '1.0-2' }}
-                      <span class="icon-saudi_riyal"></span>
-                    </div>
-                  </td>
-                  <td>
-                    {{ item.totalVat | number: '1.0-2' }}
-                  </td>
-                  <td>
-                    {{ item.net | number: '1.0-2' }}
-                  </td>
-                  <td>
-                    {{ item.maturityDate | date: 'dd/MM/yyyy' }}
-                  </td>
-                </tr>
+                  <tr>
+                    <td>{{ i + 1 }}</td>
+                    <td>
+                      <span class="badge bg-success">{{ item.status }}</span>
+                    </td>
+                    <td class="justify-content-center">
+                      <div class="price-alignment w-fit justify-content-center">
+                        {{ item.totalPrincipal | number: '1.0-2' }}
+                        <span class="icon-saudi_riyal"></span>
+                      </div>
+                    </td>
+                    <td class="justify-content-center">
+                      <div class="price-alignment w-fit justify-content-center">
+                        {{ item.totalAgencyFee | number: '1.0-2' }}
+                        <span class="icon-saudi_riyal"></span>
+                      </div>
+                    </td>
+                    <td>
+                      {{ item.totalVat | number: '1.0-2' }}
+                    </td>
+                    <td>
+                      {{ item.net | number: '1.0-2' }}
+                    </td>
+                    <td>
+                      {{ item.maturityDate | date: 'dd/MM/yyyy' }}
+                    </td>
+                  </tr>
                 }
               </tbody>
             </table>
           </div>
           @if (!loading() && earnings().length) {
-          <nav class="d-flex justify-content-center my-4">
-            <ngb-pagination [(page)]="pagination.pageNumber"
-                            [pageSize]="pagination.pageSize"
-                            [collectionSize]="total()"
-                            [maxSize]="5"
-                            [ellipses]="true"
-                            (pageChange)="goToPage($event)"
-                            size="md">
-            </ngb-pagination>
-          </nav>
+            <nav class="d-flex justify-content-center my-4">
+              <ngb-pagination
+                [(page)]="pagination.pageNumber"
+                [pageSize]="pagination.pageSize"
+                [collectionSize]="total()"
+                [maxSize]="5"
+                [ellipses]="true"
+                (pageChange)="goToPage($event)"
+                size="md"
+              >
+              </ngb-pagination>
+            </nav>
           }
         </ng-template>
       </li>
     </ul>
     <hr class="m-0" />
-    <div [ngbNavOutlet]="nav"
-         class="mt-2"></div>
+    <div [ngbNavOutlet]="nav" class="mt-2"></div>
   </section>
 </main>
