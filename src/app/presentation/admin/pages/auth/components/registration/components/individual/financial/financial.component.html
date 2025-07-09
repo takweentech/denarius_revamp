@@ -26,31 +26,47 @@
     }
   </div>
 
-  <!-- Family Members -->
-  <div class="col-12 col-md-6 form-group">
-    <label class="form-label">{{
-      'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.NUMBER_OF_FAMILY_MEMBERS' | translate
-    }}</label>
-    <input type="number" formControlName="familyMembersCount" class="form-control" min="0" max="10" />
-    @if (formGroup.get('familyMembersCount')?.errors?.['required'] && formGroup.get('familyMembersCount')?.touched) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ 'VALIDATORS.REQUIRED' | translate }}
-      </small>
-    }
-    @if (formGroup.get('familyMembersCount')?.errors?.['min']) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ 'VALIDATORS.MIN_VALUE' | translate: { min: 0 } }}
-      </small>
-    }
-    @if (formGroup.get('familyMembersCount')?.errors?.['max']) {
-      <small class="text-danger mt-1 d-flex align-items-center gap-1">
-        <i class="fa-solid fa-circle-exclamation"></i>
-        {{ 'VALIDATORS.MAX_VALUE' | translate: { max: 10 } }}
-      </small>
-    }
-  </div>
+  @if (
+    formGroup.get('maritalStatus')?.value === 2 ||
+    formGroup.get('maritalStatus')?.value === 3 ||
+    formGroup.get('maritalStatus')?.value === 4
+  ) {
+    <!-- Family Members -->
+    <div class="col-12 col-md-6 form-group">
+      <label class="form-label">{{
+        'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.NUMBER_OF_FAMILY_MEMBERS' | translate
+      }}</label>
+      <input
+        type="number"
+        formControlName="familyMembersCount"
+        class="form-control"
+        [min]="formGroup.get('maritalStatus')?.value === 2 ? 2 : 1"
+        max="10"
+      />
+      @if (formGroup.get('familyMembersCount')?.errors?.['required'] && formGroup.get('familyMembersCount')?.touched) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ 'VALIDATORS.REQUIRED' | translate }}
+        </small>
+      }
+      @if (formGroup.get('familyMembersCount')?.errors?.['min']) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          @if (formGroup.get('maritalStatus')?.value === 2) {
+            {{ 'VALIDATORS.MIN_VALUE' | translate: { min: 2 } }}
+          } @else {
+            {{ 'VALIDATORS.MIN_VALUE_ONE' | translate }}
+          }
+        </small>
+      }
+      @if (formGroup.get('familyMembersCount')?.errors?.['max']) {
+        <small class="text-danger mt-1 d-flex align-items-center gap-1">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          {{ 'VALIDATORS.MAX_VALUE' | translate: { max: 10 } }}
+        </small>
+      }
+    </div>
+  }
 
   <!-- Education Level -->
   <div class="col-12 form-group">
@@ -136,13 +152,19 @@
           <label class="small">{{
             'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.YEARS_OF_SERVICE' | translate
           }}</label>
-          <input type="number" formControlName="yearsOfExperience" class="form-control" />
+          <input type="number" formControlName="yearsOfExperience" min="0" class="form-control" />
           @if (
             formGroup.get('yearsOfExperience')?.errors?.['required'] && formGroup.get('yearsOfExperience')?.touched
           ) {
             <small class="text-danger mt-1 d-flex align-items-center gap-1">
               <i class="fa-solid fa-circle-exclamation"></i>
               {{ 'VALIDATORS.REQUIRED' | translate }}
+            </small>
+          }
+          @if (formGroup.get('yearsOfExperience')?.errors?.['min'] && formGroup.get('yearsOfExperience')?.touched) {
+            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{ 'VALIDATORS.INVALID_YEARS' | translate: { min: 0 } }}
             </small>
           }
         </div>
