@@ -3,14 +3,18 @@ import { TranslateModule } from '@ngx-translate/core';
 import { TranslationService } from '../../../../core/services/translation.service';
 import { environment } from '../../../../../environments/environment';
 import { ConfigService } from '../../../../core/services/config.service';
+import { RouterLink } from '@angular/router';
+import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
 
 @Component({
   selector: 'app-footer',
-  imports: [TranslateModule],
+  imports: [TranslateModule, RouterLink],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
+  WEB_ROUTES = WEB_ROUTES;
+
   translationService = inject(TranslationService);
   private configService = inject(ConfigService);
   APP_CONFIG = this.configService.getConfig();
