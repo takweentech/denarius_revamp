@@ -1,16 +1,14 @@
 <nav class="d-flex flex-column sidebar p-3 px-md-0 h-100">
   <ul class="list-unstyled gap-2 sidebar-menu rounded-4 py-2 py-d-0 d-sm-flex flex-column w-100">
     @for (item of sidebarItems; track $index) {
-    <li class="justify-content-between text-center position-relative">
-      <a [routerLink]="item.route"
-         [routerLinkActiveOptions]="{ exact: false }"
-         routerLinkActive="active">
-        <i [class]="item.icon"></i>
-        <span class="sidebar-text fs-6 d-sm-none d-md-none d-lg-inline">
-          {{ item.label | translate }}
-        </span>
-      </a>
-    </li>
+      <li class="justify-content-between text-center position-relative">
+        <a [routerLink]="item.route" [routerLinkActiveOptions]="{ exact: false }" routerLinkActive="active">
+          <i [class]="item.icon"></i>
+          <span class="sidebar-text fs-6 d-sm-none d-md-none d-lg-inline">
+            {{ item.label | translate }}
+          </span>
+        </a>
+      </li>
     }
   </ul>
 
@@ -19,14 +17,10 @@
       <div class="d-flex gap-3 align-items-center">
         <i class="fa-solid fa-headset fs-1"></i>
 
-        <h6>
-          Need assistance ?
-        </h6>
+        <h6>Need assistance ?</h6>
       </div>
 
-      <a [routerLink]="'/' + WEB_ROUTES.CONTACT.ROOT"
-         target="_blank"
-         class="btn btn-sm btn-white w-100 fw-bold">
+      <a [routerLink]="'/' + WEB_ROUTES.CONTACT.ROOT" target="_blank" class="btn btn-sm btn-white w-100 fw-bold">
         Contact Support
       </a>
     </div>

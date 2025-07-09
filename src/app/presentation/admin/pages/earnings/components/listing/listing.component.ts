@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { TranslatePipe } from '@ngx-translate/core';
+import { LangChangeEvent, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
@@ -35,6 +35,8 @@ export class ListingComponent extends BaseComponent implements OnInit {
   private readonly lookupService = inject(LookupService);
   private readonly fb = inject(FormBuilder);
   readonly translationService = inject(TranslationService);
+  readonly translateService = inject(TranslateService);
+
   dateError = signal<boolean>(false);
   lang: string = this.translationService.language;
   pagination: DividendFilter = {
@@ -58,6 +60,14 @@ export class ListingComponent extends BaseComponent implements OnInit {
     endDate: [null],
   });
 
+  ngOnInit(): void {
+    this.loadDividends();
+
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
+      this.lang = event.lang;
+    });
+  }
+
   loadDividends(): void {
     this.loading.set(true);
     this.investorService
@@ -73,10 +83,6 @@ export class ListingComponent extends BaseComponent implements OnInit {
         },
         error: () => {},
       });
-  }
-
-  ngOnInit(): void {
-    this.loadDividends();
   }
 
   goToPage(page: number): void {
