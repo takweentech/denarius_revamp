@@ -63,8 +63,8 @@ export class LookupService {
   getTransactionStatus(): Lookup[] {
     return [
       { active: true, englishName: 'TRANSACTIONS.FILTER.ALL', arabicName: 'TRANSACTIONS.FILTER.ALL', value: 0 },
-      { englishName: 'TRANSACTIONS.FILTER.INVEST', arabicName: 'TRANSACTIONS.FILTER.INVEST', value: 1 },
-      { englishName: 'TRANSACTIONS.FILTER.WITHDRAWAL', arabicName: 'TRANSACTIONS.FILTER.WITHDRAWAL', value: 2 },
+      { englishName: 'TRANSACTIONS.FILTER.INVEST', arabicName: 'TRANSACTIONS.FILTER.INVEST', value: 2 },
+      { englishName: 'TRANSACTIONS.FILTER.WITHDRAWAL', arabicName: 'TRANSACTIONS.FILTER.WITHDRAWAL', value: 1 },
     ];
   }
 
