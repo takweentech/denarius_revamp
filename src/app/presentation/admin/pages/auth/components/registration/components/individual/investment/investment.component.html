@@ -138,7 +138,7 @@
   </div>
 
   <!--Beneficiary ID number-->
-  @if (formGroup.get('isBeneficiary')?.value === 0) {
+  @if (formGroup.get('isBeneficiary')?.value === 1) {
     <div class="form-group col-12 form-group">
       <label class="form-label">
         {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.BENEFICIARY_ID' | translate }}

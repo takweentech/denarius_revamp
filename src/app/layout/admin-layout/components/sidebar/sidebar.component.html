@@ -9,6 +9,14 @@
           </span>
         </a>
       </li>
+      <li class="justify-content-between text-center position-relative">
+        <a [routerLink]="item.route" [routerLinkActiveOptions]="{ exact: false }" routerLinkActive="active">
+          <i [class]="item.icon"></i>
+          <span class="sidebar-text fs-6 d-sm-none d-md-none d-lg-inline">
+            {{ item.label | translate }}
+          </span>
+        </a>
+      </li>
     }
   </ul>
 
@@ -17,11 +25,13 @@
       <div class="d-flex gap-3 align-items-center">
         <i class="fa-solid fa-headset fs-1"></i>
 
-        <h6>Need assistance ?</h6>
+        <h6>
+          {{ 'LAYOUT.SIDEBAR.NEED_ASSISTANCE' | translate }}
+        </h6>
       </div>
 
       <a [routerLink]="'/' + WEB_ROUTES.CONTACT.ROOT" target="_blank" class="btn btn-sm btn-white w-100 fw-bold">
-        Contact Support
+        {{ 'LAYOUT.SIDEBAR.CONTACT_SUPPORT' | translate }}
       </a>
     </div>
   </div>

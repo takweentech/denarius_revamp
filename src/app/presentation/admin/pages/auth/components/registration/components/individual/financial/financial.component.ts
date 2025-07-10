@@ -32,14 +32,28 @@ export class FinancialComponent extends BaseComponent implements OnInit {
     this.getEmploymentStatus();
     this.getMartialStatus();
     this.getJobTitle();
+    // Listen for marital status change
+    this.formGroup.controls['maritalStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(value => {
+      const familyControl = this.formGroup.controls['familyMembersCount'];
 
+      if (value === 1) {
+        familyControl.clearValidators();
+        familyControl.setValue(1, { emitEvent: false });
+      } else {
+        const min = value === 2 ? 2 : 1;
+
+        familyControl.setValidators([Validators.required, Validators.min(min), Validators.max(10)]);
+      }
+
+      familyControl.updateValueAndValidity();
+    });
     // Listen for employment status change
     this.formGroup.controls['employmentStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => {
       console.log(val);
 
-      if (val !== 1 || val !== 2) {
-        this.formGroup.controls['jobTitle'].reset(null);
-        this.formGroup.controls['yearsOfExperience'].reset(null);
+      if (val !== 1 && val !== 2) {
+        this.formGroup.controls['jobTitle'].reset(0);
+        this.formGroup.controls['yearsOfExperience'].reset(0);
         this.formGroup.controls['jobTitle'].removeValidators([Validators.required]);
         this.formGroup.controls['yearsOfExperience'].removeValidators([Validators.required]);
       } else {
