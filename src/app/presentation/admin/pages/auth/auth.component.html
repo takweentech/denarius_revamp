@@ -9,7 +9,11 @@
       class="text-decoration-none cursor-pointer text-primary position-absolute top-1 end-1"
     >
       <i class="fa-solid fa-globe"></i>
-      {{ translationService.language === 'en' ? 'Arabic' : 'English' }}
+      {{
+        translationService.language === 'en'
+          ? ('LAYOUT.FOOTER.ARABIC' | translate)
+          : ('LAYOUT.FOOTER.ENGLISH' | translate)
+      }}
     </a>
     <div class="col-md-10 col-lg-10 h-100 col-xl-8 content-container d-flex align-items-center mx-auto">
       <router-outlet></router-outlet>

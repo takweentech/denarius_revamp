@@ -39,7 +39,11 @@
               class="text-decoration-none cursor-pointer text-primary d-flex gap-2 align-items-center"
             >
               <i class="fa-solid fa-globe"></i>
-              {{ translationService.language === 'en' ? 'Arabic' : 'English' }}
+              {{
+                translationService.language === 'en'
+                  ? ('LAYOUT.FOOTER.ARABIC' | translate)
+                  : ('LAYOUT.FOOTER.ENGLISH' | translate)
+              }}
             </a>
           </button>
           <button (click)="onLogout()" class="text-danger d-flex gap-2 align-items-center" ngbDropdownItem>
