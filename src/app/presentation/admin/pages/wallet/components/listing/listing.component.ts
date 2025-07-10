@@ -1,5 +1,5 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { UserProfileData, UserWalletData } from '../../../../../../core/models/user';
+import { UserInvestmentStatisticsData, UserProfileData, UserWalletData } from '../../../../../../core/models/user';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { DatePipe, DecimalPipe, NgClass, NgIf } from '@angular/common';
@@ -13,7 +13,7 @@ import { ToastService } from '../../../../../../shared/components/toast/toast.se
 import { Transaction, TransactionFilter } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
-import { WithdrawalService } from '../../../../../../data/withdrawal.service';
+import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
 @Component({
   selector: 'app-listing',
   standalone: true,
@@ -30,6 +30,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
   private toastService = inject(ToastService);
   walletData: UserWalletData = {} as UserWalletData;
   user: UserProfileData = this.tokenService.getUser();
+  statistics = signal<UserInvestmentStatisticsData | null>(null);
 
   isSubmitting: boolean = false;
   showConfirmModal: boolean = false;
@@ -53,6 +54,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.loadTransactions();
     this.loadOperations();
+    this.loadStatistics();
   }
 
   loadOperations(): void {
@@ -71,7 +73,17 @@ export class ListingComponent extends BaseComponent implements OnInit {
         error: () => {},
       });
   }
-
+  loadStatistics(): void {
+    this.profileService
+      .getInvestmentStatistics()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.statistics.set(response.data);
+        },
+        error: () => {},
+      });
+  }
   loadTransactions(): void {
     this.loading.set(true);
     this.pagination.filter.statusId = 1;
