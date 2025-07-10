@@ -52,8 +52,8 @@ export class FinancialComponent extends BaseComponent implements OnInit {
       console.log(val);
 
       if (val !== 1 && val !== 2) {
-        this.formGroup.controls['jobTitle'].reset(null);
-        this.formGroup.controls['yearsOfExperience'].reset(null);
+        this.formGroup.controls['jobTitle'].reset(0);
+        this.formGroup.controls['yearsOfExperience'].reset(0);
         this.formGroup.controls['jobTitle'].removeValidators([Validators.required]);
         this.formGroup.controls['yearsOfExperience'].removeValidators([Validators.required]);
       } else {
