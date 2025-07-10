@@ -9,7 +9,8 @@
 
         <div class="d-flex flex-column gap-1">
           <span>{{ 'TRANSACTIONS.TOTAL_DEPOSIT' | translate }}</span>
-          <div class="fw-semibold d-flex price-alignment gap-1 w-fit" dir="ltr">
+          <div class="fw-semibold d-flex price-alignment gap-1 w-fit"
+               dir="ltr">
             {{ user.financialSummary.totalDeposits | number: '1.0-2' }}
             <span class="icon-saudi_riyal"></span>
           </div>
@@ -19,12 +20,14 @@
     <div class="col-md-12 col-lg-6 col-xl-3">
       <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
         <div class="icon danger">
-          <img src="assets/icons/invoice-dollar.svg" alt="" />
+          <img src="assets/icons/invoice-dollar.svg"
+               alt="" />
         </div>
 
         <div class="d-flex flex-column gap-1">
           <span>{{ 'TRANSACTIONS.TOTAL_INVESTMENTS' | translate }}</span>
-          <div class="fw-semibold d-flex price-alignment gap-1 w-fit" dir="ltr">
+          <div class="fw-semibold d-flex price-alignment gap-1 w-fit"
+               dir="ltr">
             {{ user.financialSummary.totalInvestments | number: '1.0-2' }}
             <span class="icon-saudi_riyal"></span>
           </div>
@@ -34,12 +37,14 @@
     <div class="col-md-12 col-lg-6 col-xl-3">
       <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
         <div class="icon primary">
-          <img src="assets/icons/earnings.svg" alt="" />
+          <img src="assets/icons/earnings.svg"
+               alt="" />
         </div>
 
         <div class="d-flex flex-column gap-1">
           <span>{{ 'TRANSACTIONS.TOTAL_EARNINGS' | translate }}</span>
-          <div class="fw-semibold d-flex price-alignment gap-1 w-fit" dir="ltr">
+          <div class="fw-semibold d-flex price-alignment gap-1 w-fit"
+               dir="ltr">
             {{ user.financialSummary.totalProfits | number: '1.0-2' }}
             <span class="icon-saudi_riyal"></span>
           </div>
@@ -49,12 +54,14 @@
     <div class="col-md-12 col-lg-6 col-xl-3">
       <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
         <div class="icon warning">
-          <img src="assets/icons/money-tag.svg" alt="" />
+          <img src="assets/icons/money-tag.svg"
+               alt="" />
         </div>
 
         <div class="d-flex flex-column gap-1">
           <span>{{ 'TRANSACTIONS.TOTAL_EXPECTED_EARNINGS' | translate }}</span>
-          <div class="fw-semibold d-flex price-alignment gap-1 w-fit" dir="ltr">
+          <div class="fw-semibold d-flex price-alignment gap-1 w-fit"
+               dir="ltr">
             {{ user.financialSummary.expectedProfits | number: '1.0-2' }}
             <span class="icon-saudi_riyal"></span>
           </div>
@@ -72,19 +79,17 @@
     </h5>
     <ul class="d-flex gap-2 list-unstyled">
       @for (item of statusList; track $index) {
-        <li>
-          <button
-            (click)="onFilterByStatus(item.value, $index)"
-            class="badge"
-            [ngClass]="{
+      <li>
+        <button (click)="onFilterByStatus(item.value, $index)"
+                class="badge"
+                [ngClass]="{
               'bg-primary': item.active,
               'text-white': item.active,
               'text-primary': !item.active,
-            }"
-          >
-            {{ item | lang | translate }}
-          </button>
-        </li>
+            }">
+          {{ item | lang | translate }}
+        </button>
+      </li>
       }
     </ul>
   </div>
@@ -104,103 +109,97 @@
         </thead>
         <tbody>
           @if (loading()) {
-            <tr>
-              <td colspan="7">
-                <div class="p-4">
-                  <h6 class="text-center">
-                    {{ 'TRANSACTIONS.LOADING' | translate }}
-                  </h6>
-                </div>
-              </td>
-            </tr>
+          <tr>
+            <td colspan="7">
+              <div class="p-4">
+                <h6 class="text-center">
+                  {{ 'TRANSACTIONS.LOADING' | translate }}
+                </h6>
+              </div>
+            </td>
+          </tr>
           } @else {
-            @if (transactions().length) {
-              @for (tx of transactions(); track tx.id) {
-                <tr class="">
-                  <td>
-                    <div class="d-flex align-items-center justify-content-start gap-2">
-                      <div class="arrow-circle">
-                        <i
-                          class="fas"
-                          [ngClass]="{
+          @if (transactions().length) {
+          @for (tx of transactions(); track tx.id) {
+          <tr class="">
+            <td>
+              <div class="d-flex align-items-center justify-content-start gap-2">
+                <div class="arrow-circle">
+                  <i class="fas"
+                     [ngClass]="{
                             'fa-arrow-down': tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب',
                             'fa-arrow-up': tx.transactionType !== 'Withdrawal' && tx.transactionType !== 'سحب',
-                          }"
-                        ></i>
-                      </div>
-                      <span [innerHTML]="tx.description || '-'" class="ps-2"></span>
-                    </div>
-                    <p></p>
-                  </td>
-                  <td>#{{ tx.refId }}</td>
-                  <td>
-                    {{ tx.transactionType }}
-                  </td>
-                  <td class="w-fit" dir="ltr">
-                    {{ tx.createDate | date: 'dd/MM/yyyy hh:mm a' }}
-                  </td>
-                  <td>
-                    <div
-                      class="d-flex price-alignment gap-1 w-fit"
-                      [ngClass]="{
+                          }"></i>
+                </div>
+                <span [innerHTML]="tx.description || '-'"
+                      class="ps-2"></span>
+              </div>
+              <p></p>
+            </td>
+            <td>#{{ tx.refId }}</td>
+            <td>
+              {{ tx.transactionType }}
+            </td>
+            <td class="w-fit"
+                dir="ltr">
+              {{ tx.createDate | date: 'dd/MM/yyyy hh:mm a' }}
+            </td>
+            <td>
+              <div class="d-flex price-alignment gap-1 w-fit"
+                   [ngClass]="{
                         'text-danger': tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب',
                         'text-success': tx.transactionType !== 'Withdrawal' && tx.transactionType !== 'سحب',
-                      }"
-                    >
-                      @if (tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب') {
-                        -
-                      }
-                      {{ tx.amount | number: '1.0-2' }}
-                      <span class="icon-saudi_riyal"></span>
-                    </div>
-                  </td>
-                  <td>
-                    <span>
-                      {{ tx.accountNumber || '-' }}
-                    </span>
-                  </td>
-                  <td>
-                    <div class="d-flex justify-content-end">
-                      <a
-                        [routerLink]="
+                      }">
+                @if (tx.transactionType === 'Withdrawal' || tx.transactionType === 'سحب') {
+                -
+                }
+                {{ tx.amount | number: '1.0-2' }}
+                <span class="icon-saudi_riyal"></span>
+              </div>
+            </td>
+            <td>
+              <span>
+                {{ tx.accountNumber || '-' }}
+              </span>
+            </td>
+            <td>
+              <div class="d-flex justify-content-end">
+                <a [routerLink]="
                           '/' + WEB_ROUTES.TRANSACTIONS.ROOT + '/' + WEB_ROUTES.TRANSACTIONS.DETAILS + '/' + tx.id
                         "
-                        class="btn btn-sm btn-outline-primary w-fit"
-                      >
-                        <i class="fas fa-eye"></i>
-                      </a>
-                    </div>
-                  </td>
-                </tr>
-              }
-            } @else {
-              <tr>
-                <td colspan="7">
-                  <div class="p-4">
-                    <h6 class="text-center">
-                      {{ 'TRANSACTIONS.EMPTY' | translate }}
-                    </h6>
-                  </div>
-                </td>
-              </tr>
-            }
+                   class="btn btn-sm btn-outline-primary w-fit">
+                  <i class="fas fa-eye"></i>
+                </a>
+              </div>
+            </td>
+          </tr>
+          }
+          } @else {
+          <tr>
+            <td colspan="7">
+              <div class="p-4">
+                <h6 class="text-center">
+                  {{ 'TRANSACTIONS.EMPTY' | translate }}
+                </h6>
+              </div>
+            </td>
+          </tr>
+          }
           }
         </tbody>
       </table>
     </div>
     @if (!loading() && transactions().length) {
-      <nav class="d-flex justify-content-center my-4">
-        <ngb-pagination
-          [(page)]="pagination.pageNumber"
-          [pageSize]="pagination.pageSize"
-          [collectionSize]="total()"
-          [maxSize]="5"
-          [ellipses]="true"
-          (pageChange)="goToPage($event)"
-          size="md"
-        >
-        </ngb-pagination>
-      </nav>
+    <nav class="d-flex justify-content-center my-4">
+      <ngb-pagination [(page)]="pagination.pageNumber"
+                      [pageSize]="pagination.pageSize"
+                      [collectionSize]="total()"
+                      [maxSize]="5"
+                      [ellipses]="true"
+                      (pageChange)="goToPage($event)"
+                      size="md">
+      </ngb-pagination>
+    </nav>
     }
   </div>
 </section>
