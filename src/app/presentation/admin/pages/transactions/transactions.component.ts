@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { TokenService } from '../../../../core/services/token.service';
-import { UserProfileData } from '../../../../core/models/user';
+import { UserInvestmentStatisticsData, UserProfileData } from '../../../../core/models/user';
 import { TransactionService } from '../../../../data/transaction.service';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { Transaction, TransactionFilter } from '../../../../core/models/transaction';
@@ -12,6 +12,7 @@ import { finalize, takeUntil } from 'rxjs';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LookupService } from '../../../../core/services/lookup.service';
 import { LangPipe } from '../../../../shared/pipes/lang.pipe';
+import { ProfileService } from '../../../../data/profile.service';
 @Component({
   selector: 'app-transactions',
   imports: [TranslatePipe, NgClass, RouterModule, DecimalPipe, DatePipe, NgbPaginationModule, LangPipe],
@@ -22,6 +23,9 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
   private readonly lookupService = inject(LookupService);
   private readonly investorService = inject(TransactionService);
+  private readonly profileService = inject(ProfileService);
+  statistics = signal<UserInvestmentStatisticsData | null>(null);
+
   pagination: TransactionFilter = {
     pageNumber: 1,
     pageSize: 10,
@@ -61,8 +65,19 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
         error: () => {},
       });
   }
-
+  loadStatistics(): void {
+    this.profileService
+      .getInvestmentStatistics()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.statistics.set(response.data);
+        },
+        error: () => {},
+      });
+  }
   ngOnInit(): void {
+    this.loadStatistics();
     this.loadTransactions();
   }
 
