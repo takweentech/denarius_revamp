@@ -35,22 +35,17 @@ export class FinancialComponent extends BaseComponent implements OnInit {
     // Listen for marital status change
     this.formGroup.controls['maritalStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(value => {
       const familyControl = this.formGroup.controls['familyMembersCount'];
-
       if (value === 1) {
         familyControl.clearValidators();
-        familyControl.setValue(1, { emitEvent: false });
+        familyControl.setValue(0);
       } else {
-        const min = value === 2 ? 2 : 1;
-
-        familyControl.setValidators([Validators.required, Validators.min(min), Validators.max(10)]);
+        familyControl.setValidators([Validators.required]);
       }
 
       familyControl.updateValueAndValidity();
     });
     // Listen for employment status change
     this.formGroup.controls['employmentStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => {
-      console.log(val);
-
       if (val !== 1 && val !== 2) {
         this.formGroup.controls['jobTitle'].reset(0);
         this.formGroup.controls['yearsOfExperience'].reset(0);
@@ -74,7 +69,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.jobTitleList.set(response);
         },
-        error: error => {},
+        error: error => { },
       });
   }
 
@@ -86,7 +81,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.martialStatusList.set(response);
         },
-        error: error => {},
+        error: error => { },
       });
   }
 
@@ -98,7 +93,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.employmentStatusList.set(response);
         },
-        error: error => {},
+        error: error => { },
       });
   }
 
@@ -110,7 +105,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.educationLevelList.set(response);
         },
-        error: error => {},
+        error: error => { },
       });
   }
 
@@ -122,7 +117,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.annualIncomeList.set(response);
         },
-        error: error => {},
+        error: error => { },
       });
   }
 
@@ -135,7 +130,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
           next: response => {
             this.netWorthList.set(response);
           },
-          error: error => {},
+          error: error => { },
         });
     }
   }
