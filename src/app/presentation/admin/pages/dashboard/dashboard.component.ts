@@ -1,5 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { UserProfileData } from '../../../../core/models/user';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { UserInvestmentStatisticsData, UserProfileData } from '../../../../core/models/user';
 import { TokenService } from '../../../../core/services/token.service';
 import { InitialsPipe } from '../../../../shared/pipes/initials.pipe';
 import { TransactionChartComponent } from './components/transaction-chart/transaction-chart.component';
@@ -10,6 +10,8 @@ import { BaseComponent } from '../../../../core/base/base.component';
 import { RouterLink } from '@angular/router';
 import { WEB_ROUTES } from '../../../../core/constants/routes.constants';
 import { TranslationService } from '../../../../core/services/translation.service';
+import { ProfileService } from '../../../../data/profile.service';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,10 +30,25 @@ import { TranslationService } from '../../../../core/services/translation.servic
 })
 export class DashboardComponent extends BaseComponent implements OnInit {
   readonly translationService = inject(TranslationService);
+  private readonly profileService = inject(ProfileService);
+  statistics = signal<UserInvestmentStatisticsData | null>(null);
   lang: string = this.translationService.language;
 
   tokenService = inject(TokenService);
   WEB_ROUTES = WEB_ROUTES;
   user: UserProfileData = this.tokenService.getUser();
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.loadStatistics();
+  }
+  loadStatistics(): void {
+    this.profileService
+      .getInvestmentStatistics()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.statistics.set(response.data);
+        },
+        error: () => {},
+      });
+  }
 }
