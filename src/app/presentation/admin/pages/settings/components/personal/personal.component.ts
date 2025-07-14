@@ -80,6 +80,34 @@ export class PersonalComponent extends BaseComponent implements OnInit {
       annualIncome: [data?.annualIncome, Validators.required],
       netWealth: [data?.netWealth, Validators.required],
     });
+
+    // Listen for marital status change
+    this.form.controls['maritalStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(value => {
+      const familyControl = this.form.controls['familyMembersCount'];
+      if (value === 1) {
+        familyControl.clearValidators();
+        familyControl.setValue(0);
+      } else {
+        familyControl.setValidators([Validators.required]);
+      }
+
+      familyControl.updateValueAndValidity();
+    });
+    // Listen for employment status change
+    this.form.controls['employmentStatus'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(val => {
+      if (val !== 1 && val !== 2) {
+        this.form.controls['jobTitle'].reset(0);
+        this.form.controls['yearsOfExperience'].reset(0);
+        this.form.controls['jobTitle'].removeValidators([Validators.required]);
+        this.form.controls['yearsOfExperience'].removeValidators([Validators.required]);
+      } else {
+        this.form.controls['jobTitle'].setValidators([Validators.required]);
+        this.form.controls['yearsOfExperience'].setValidators([Validators.required]);
+      }
+
+      this.form.controls['jobTitle'].updateValueAndValidity();
+      this.form.controls['yearsOfExperience'].updateValueAndValidity();
+    });
   }
 
   onSave() {
@@ -116,20 +144,4 @@ export class PersonalComponent extends BaseComponent implements OnInit {
         error: error => {},
       });
   }
-  // onNumberInput(event: Event) {
-  //   console.log("onNumberInput");
-  //   const input = event.target as HTMLInputElement;
-  //   let value = Number(input.value);
-
-  //   // Allow empty input
-  //   if (input.value === "") return;
-
-  //   if (value < 0) {
-  //     input.value = "0";
-  //     this.form.get("familyMembersCount")?.setValue(0);
-  //   } else if (value > 10) {
-  //     input.value = "10";
-  //     this.form.get("familyMembersCount")?.setValue(10);
-  //   }
-  // }
 }

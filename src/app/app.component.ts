@@ -14,7 +14,7 @@ import { BaseComponent } from './core/base/base.component';
   templateUrl: './app.component.html',
 })
 export class AppComponent extends BaseComponent implements OnInit {
-  title = 'denarius';
+  title = 'sharikek';
   private translationService = inject(TranslationService);
   private profileService = inject(ProfileService);
   private tokenService = inject(TokenService);

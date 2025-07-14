@@ -31,31 +31,37 @@
         </div>
 
         <!-- Family Members -->
-        <div class="col-12 col-md-6 form-group">
-          <label class="form-label">{{
-            'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.NUMBER_OF_FAMILY_MEMBERS' | translate
-          }}</label>
-          <input type="number" formControlName="familyMembersCount" class="form-control" min="0" max="10" />
+        @if (
+          form.get('maritalStatus')?.value === 2 ||
+          form.get('maritalStatus')?.value === 3 ||
+          form.get('maritalStatus')?.value === 4
+        ) {
+          <div class="col-12 col-md-6 form-group">
+            <label class="form-label">{{
+              'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.NUMBER_OF_FAMILY_MEMBERS' | translate
+            }}</label>
+            <input type="number" formControlName="familyMembersCount" class="form-control" min="0" max="10" />
 
-          @if (form.get('familyMembersCount')?.errors?.['required'] && form.get('familyMembersCount')?.touched) {
-            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-              <i class="fa-solid fa-circle-exclamation"></i>
-              {{ 'VALIDATORS.REQUIRED' | translate }}
-            </small>
-          }
-          @if (form.get('familyMembersCount')?.errors?.['min']) {
-            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-              <i class="fa-solid fa-circle-exclamation"></i>
-              {{ 'VALIDATORS.MIN_VALUE' | translate: { min: 0 } }}
-            </small>
-          }
-          @if (form.get('familyMembersCount')?.errors?.['max']) {
-            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-              <i class="fa-solid fa-circle-exclamation"></i>
-              {{ 'VALIDATORS.MAX_VALUE' | translate: { max: 10 } }}
-            </small>
-          }
-        </div>
+            @if (form.get('familyMembersCount')?.errors?.['required'] && form.get('familyMembersCount')?.touched) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.REQUIRED' | translate }}
+              </small>
+            }
+            @if (form.get('familyMembersCount')?.errors?.['min']) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.MIN_VALUE' | translate: { min: 0 } }}
+              </small>
+            }
+            @if (form.get('familyMembersCount')?.errors?.['max']) {
+              <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                {{ 'VALIDATORS.MAX_VALUE' | translate: { max: 10 } }}
+              </small>
+            }
+          </div>
+        }
       </div>
 
       <!-- Education Level -->
@@ -113,46 +119,46 @@
       </div>
 
       <!-- Job Info -->
-      <!-- @if (form.get('employmentStatus')?.value == 1 || form.get('employmentStatus')?.value == 2) { -->
-      <div class="col-12 form-group">
-        <div class="bg-white bg-body-secondary p-2 py-3 rounded row mx-auto gx-2">
-          <div class="col-sm-6">
-            <label class="form-label">{{
-              'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.JOB_TITLE' | translate
-            }}</label>
+      @if (form.get('employmentStatus')?.value == 1 || form.get('employmentStatus')?.value == 2) {
+        <div class="col-12 form-group">
+          <div class="bg-white bg-body-secondary p-2 py-3 rounded row mx-auto gx-2">
+            <div class="col-sm-6">
+              <label class="form-label">{{
+                'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.JOB_TITLE' | translate
+              }}</label>
 
-            <select
-              id="jobTitle"
-              formControlName="jobTitle"
-              class="form-select form-control"
-              aria-label="Default select example"
-            >
-              @for (item of jobTitleList(); track $index) {
-                <option [value]="item.id">{{ item | lang }}</option>
+              <select
+                id="jobTitle"
+                formControlName="jobTitle"
+                class="form-select form-control"
+                aria-label="Default select example"
+              >
+                @for (item of jobTitleList(); track $index) {
+                  <option [value]="item.id">{{ item | lang }}</option>
+                }
+              </select>
+              @if (form.get('jobTitle')?.errors?.['required'] && form.get('jobTitle')?.touched) {
+                <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ 'VALIDATORS.REQUIRED' | translate }}
+                </small>
               }
-            </select>
-            @if (form.get('jobTitle')?.errors?.['required'] && form.get('jobTitle')?.touched) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                {{ 'VALIDATORS.REQUIRED' | translate }}
-              </small>
-            }
-          </div>
-          <div class="col-sm-6">
-            <label class="form-label">{{
-              'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.YEARS_OF_SERVICE' | translate
-            }}</label>
-            <input type="number" formControlName="yearsOfExperience" class="form-control" min="0" />
-            @if (form.get('yearsOfExperience')?.errors?.['required'] && form.get('yearsOfExperience')?.touched) {
-              <small class="text-danger mt-1 d-flex align-items-center gap-1">
-                <i class="fa-solid fa-circle-exclamation"></i>
-                {{ 'VALIDATORS.REQUIRED' | translate }}
-              </small>
-            }
+            </div>
+            <div class="col-sm-6">
+              <label class="form-label">{{
+                'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.FORM.YEARS_OF_SERVICE' | translate
+              }}</label>
+              <input type="number" formControlName="yearsOfExperience" class="form-control" min="0" />
+              @if (form.get('yearsOfExperience')?.errors?.['required'] && form.get('yearsOfExperience')?.touched) {
+                <small class="text-danger mt-1 d-flex align-items-center gap-1">
+                  <i class="fa-solid fa-circle-exclamation"></i>
+                  {{ 'VALIDATORS.REQUIRED' | translate }}
+                </small>
+              }
+            </div>
           </div>
         </div>
-      </div>
-      <!-- } -->
+      }
 
       <!-- Annual Income -->
       <div class="col-12 mt-4 form-group">
@@ -210,7 +216,7 @@
     </div>
 
     <div class="col-12 d-flex justify-content-end">
-      <button (click)="onSave()" class="btn btn-primary mt-4">
+      <button (click)="onSave()" [disabled]="loading()" class="btn btn-primary mt-4">
         {{ 'SETTINGS.INFO.CTA' | translate }}
       </button>
     </div>
