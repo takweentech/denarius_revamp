@@ -144,6 +144,7 @@ export interface UserInvestmentData {
   investmentHorizon: number;
   investmentGoal: number;
   isBeneficiary: number;
+  beneficiaryIdNumber?: number;
 }
 
 export interface UserProfile {

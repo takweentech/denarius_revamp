@@ -205,7 +205,7 @@ export class RegistrationService {
           },
           {
             key: 'beneficiaryIdNumber',
-            value: 0,
+            validators: [],
           },
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.CTA',

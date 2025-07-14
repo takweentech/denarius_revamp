@@ -108,9 +108,25 @@
           }
         </div>
       </div>
+
+      <!--Beneficiary ID number-->
+      @if (form.get('isBeneficiary')?.value === 1) {
+        <div class="form-group col-xl-6 col-12">
+          <label class="form-label">
+            {{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.FORM.BENEFICIARY_ID' | translate }}
+          </label>
+          <input class="form-control" maxlength="10" formControlName="beneficiaryIdNumber" placeholder="0123456789" />
+          @if (form.get('beneficiaryIdNumber')?.errors?.['required'] && form.get('beneficiaryIdNumber')?.touched) {
+            <small class="text-danger mt-1 d-flex align-items-center gap-1">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{ 'VALIDATORS.REQUIRED' | translate }}
+            </small>
+          }
+        </div>
+      }
     </div>
     <div class="col-12 d-flex justify-content-end">
-      <button (click)="onSave()" class="btn btn-primary mt-4">
+      <button (click)="onSave()" [disabled]="loading()" class="btn btn-primary mt-4">
         {{ 'SETTINGS.INVESTMENT.UPDATE_BUTTON' | translate }}
       </button>
     </div>

@@ -27,7 +27,12 @@ export class InvestmentComponent extends BaseComponent implements OnInit {
       const beneficiaryControl = this.formGroup.controls['beneficiaryIdNumber'];
 
       if (value === 1) {
-        beneficiaryControl.setValidators([Validators.required]);
+        beneficiaryControl.setValidators([
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+          Validators.pattern('^(1|2)[0-9]{9}$'),
+        ]);
       } else {
         beneficiaryControl.clearValidators();
         beneficiaryControl.reset(null);
