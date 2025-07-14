@@ -25,6 +25,7 @@ export class ConfigService {
           theme: {
             primaryColor: data.data.primaryColor,
             secondaryColor: data.data.secondaryColor,
+            warningColor: data.data.warningColor,
             dangerColor: data.data.dangerColor,
             successColor: data.data.successColor,
           },
@@ -48,5 +49,6 @@ export class ConfigService {
     document.documentElement.style.setProperty('--secondary-color', this.config.theme.secondaryColor);
     document.documentElement.style.setProperty('--danger-color', this.config.theme.dangerColor);
     document.documentElement.style.setProperty('--success-color', this.config.theme.successColor);
+    document.documentElement.style.setProperty('--warning-color', this.config.theme.warningColor);
   }
 }

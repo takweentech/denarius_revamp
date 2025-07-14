@@ -68,13 +68,8 @@ export class LookupService {
     ];
   }
 
-  getDividendStatus(): Lookup[] {
-    return [
-      { active: true, englishName: 'DIVIDENDS.FILTER.ALL', arabicName: 'DIVIDENDS.FILTER.ALL', value: 0 },
-      { englishName: 'DIVIDENDS.FILTER.DISTRIBUTED', arabicName: 'DIVIDENDS.FILTER.DISTRIBUTED', value: 1 },
-      { englishName: 'DIVIDENDS.FILTER.PENDING', arabicName: 'DIVIDENDS.FILTER.PENDING', value: 2 },
-      { englishName: 'DIVIDENDS.FILTER.DELAYED', arabicName: 'DIVIDENDS.FILTER.DELAYED', value: 3 },
-    ];
+  getDividendStatus(): Observable<Lookup[]> {
+    return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/InvestorDividendStatus`);
   }
 
   getMartialStatusList() {

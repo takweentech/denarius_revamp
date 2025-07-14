@@ -7,10 +7,10 @@
           {{ 'DIVIDENDS.TITLE' | translate }}
         </h5>
         <ul class="d-flex gap-2 list-unstyled">
-          @for (item of statusList; track $index) {
+          @for (item of statusList(); track $index) {
             <li>
               <button
-                (click)="onFilterByStatus(item.value, $index)"
+                (click)="onFilterByStatus(item.id, $index)"
                 class="badge"
                 [ngClass]="{
                   'bg-primary': item.active,
@@ -18,7 +18,7 @@
                   'text-primary': !item.active,
                 }"
               >
-                {{ item | lang | translate }}
+                {{ item | lang | translate | titlecase }}
               </button>
             </li>
           }
@@ -72,13 +72,21 @@
               <div class="card row justify-content-center d-flex bg-white p-3 w-100">
                 <div class="col-md-12 row col-sm-12 d-flex align-items-center">
                   <div class="col-md-1 col-sm-12">
-                    <span class="badge bg-success">{{ item.status }}</span>
+                    @if (item.status.toLocaleLowerCase() == diviendStatusEnum.DISTRIBUTED) {
+                      <span class="badge bg-success">{{ item.status }}</span>
+                    }
+                    @if (item.status.toLocaleLowerCase() == diviendStatusEnum.NOT_YET_DUE) {
+                      <span class="badge bg-warning">{{ item.status }}</span>
+                    }
+                    @if (item.status.toLocaleLowerCase() == diviendStatusEnum.LATE) {
+                      <span class="badge bg-dark-subtle">{{ item.status }}</span>
+                    }
                   </div>
 
-                  <div class="d-flex col-md col-sm-12 col-6 flex-column gap-2">
-                    <small> {{ 'DIVIDENDS.LISTING.PRODUCT_NAME' | translate }}</small>
-                    <h6>{{ item.opportunityName }}</h6>
-                  </div>
+                  <!-- <div class="d-flex col-md col-sm-12 col-6 flex-column gap-2">
+              <small> {{ 'DIVIDENDS.LISTING.PRODUCT_NAME' | translate }}</small> 
+              <h6>{{ item.opportunityName }}</h6>
+            </div> -->
                   <div class="col d-flex flex-column gap-2">
                     <small>{{ 'DIVIDENDS.LISTING.SEQUENCE_NUMBER' | translate }}</small>
                     <span class="w-fit">{{ item.id }}</span>
