@@ -1,0 +1,27 @@
+<form [formGroup]="formGroup" class="d-flex flex-column text-center gap-4 align-items-center">
+  <h6 class="otp-instruction">{{ 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.FORM.OTP.LABEL' | translate }}</h6>
+
+  <ng-otp-input
+    formControlName="otp"
+    dir="ltr"
+    [config]="{
+      length: 4,
+      allowNumbersOnly: true,
+    }"
+  ></ng-otp-input>
+
+  @if (displayResendOtp) {
+    <button class="btn btn-primary btn-sm" (click)="onResendOtp()" [disabled]="otpCountdown() !== 0">
+      <p class="small">
+        {{
+          otpCountdown() === 0
+            ? ('AUTHENTICATION.OTP.RESEND_OTP' | translate)
+            : ('AUTHENTICATION.OTP.RESEND_OTP_IN' | translate) +
+              otpCountdown() +
+              ' ' +
+              ('AUTHENTICATION.OTP.SECONDS' | translate)
+        }}
+      </p>
+    </button>
+  }
+</form>

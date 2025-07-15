@@ -2,7 +2,6 @@ import { inject, Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { InformationComponent } from './components/individual/information/information.component';
 import { InformationComponent as CompanyInformation } from './components/company/information/information.component';
-import { OtpComponent } from './components/shared/otp/otp.component';
 import { AddressComponent } from './components/individual/address/address.component';
 import { InvestmentComponent } from './components/individual/investment/investment.component';
 import { DisclosureComponent } from './components/individual/disclosure/disclosure.component';
@@ -24,6 +23,7 @@ import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
 import { matchValidator, minimumAgeValidator } from '../../../../../../core/validators/form.validators';
 import { REGEX_PATTERNS } from '../../../../../../core/constants/patterns.constants';
+import { OtpComponent } from '../otp/otp.component';
 
 type StepType = 'individual' | 'company';
 

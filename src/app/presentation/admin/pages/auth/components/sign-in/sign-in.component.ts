@@ -9,16 +9,20 @@ import { BaseComponent } from '../../../../../../core/base/base.component';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { ProfileService } from '../../../../../../data/profile.service';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { SignInModes } from '../../enums/auth.enum';
+import { TranslationService } from '../../../../../../core/services/translation.service';
+import { OtpComponent } from '../otp/otp.component';
 
 @Component({
   selector: 'app-sign-in',
-  imports: [RouterLink, ReactiveFormsModule, TranslatePipe],
+  imports: [RouterLink, ReactiveFormsModule, TranslatePipe, OtpComponent],
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
 })
 export class SignInComponent extends BaseComponent {
   WEB_ROUTES = WEB_ROUTES;
   private readonly registrationService = inject(RegistrationApiService);
+  readonly translationService = inject(TranslationService);
   private readonly translateService = inject(TranslateService);
   private readonly profileService = inject(ProfileService);
   private readonly router = inject(Router);
@@ -31,18 +35,23 @@ export class SignInComponent extends BaseComponent {
     password: [null, Validators.required],
     rememberMe: true,
   });
+  otpForm: FormGroup = this.fb.group({
+    otp: [null, Validators.required],
+  });
+  signInModes = SignInModes;
+  mode: SignInModes = SignInModes.FORM;
 
-  onSignIn(): void {
+  validateSignIn(): void {
     if (this.form.valid) {
       this.loading.set(true);
       this.registrationService
-        .signIn(this.form.value)
+        .validateSignIn(this.form.value)
         .pipe(
           takeUntil(this.destroy$),
           finalize(() => this.loading.set(false))
         )
         .subscribe({
-          next: (response: any) => {
+          next: response => {
             if (response.status !== 200) {
               if (response.message === 'Incorrect login information') {
                 this.toastService.show({
@@ -57,14 +66,45 @@ export class SignInComponent extends BaseComponent {
               }
               return;
             }
-            this.tokenService.setToken(response.data);
-            this.getUserProfile();
+            // Set OTP mode
+            this.mode = this.signInModes.OTP;
+            // Listen for OTP change
+            this.otpForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
+              next: val => {
+                if (val.otp.length === 4) {
+                  this.signIn(response.data.token, val.otp, response.data.requestId);
+                }
+              },
+            });
           },
           error: err => {},
         });
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  signIn(token: string, otp: string, requestId: string): void {
+    this.registrationService
+      .signIn(token, otp, requestId)
+      .pipe(
+        takeUntil(this.destroy$),
+        finalize(() => this.loading.set(false))
+      )
+      .subscribe({
+        next: response => {
+          if (response.status === 200) {
+            this.tokenService.setToken(response.data as string);
+            this.getUserProfile();
+          } else {
+            this.toastService.show({
+              text: response.message,
+              classname: 'bg-danger text-light',
+            });
+          }
+        },
+        error: err => {},
+      });
   }
 
   getUserProfile(): void {
