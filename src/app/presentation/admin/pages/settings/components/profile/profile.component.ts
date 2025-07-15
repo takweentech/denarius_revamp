@@ -88,7 +88,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
             });
           }
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -100,7 +100,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         next: response => {
           this.regionsList.set(response);
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -112,7 +112,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         next: response => {
           this.citiesList.set(response);
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -138,7 +138,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         next: response => {
           this.setProfileImage(response.fileName);
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -150,7 +150,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
         next: response => {
           this.getProfileImage();
         },
-        error: error => { },
+        error: error => {},
       });
   }
 

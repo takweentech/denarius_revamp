@@ -39,13 +39,13 @@ export class MainComponent extends BaseComponent {
   onInvest(): void {
     this.router.navigateByUrl(
       '/' +
-      WEB_ROUTES.OPPORTUNITIES.ROOT +
-      '/' +
-      WEB_ROUTES.OPPORTUNITIES.DETAILS +
-      '/' +
-      this.opportunity.id +
-      '/' +
-      WEB_ROUTES.OPPORTUNITIES.PAYMENT
+        WEB_ROUTES.OPPORTUNITIES.ROOT +
+        '/' +
+        WEB_ROUTES.OPPORTUNITIES.DETAILS +
+        '/' +
+        this.opportunity.id +
+        '/' +
+        WEB_ROUTES.OPPORTUNITIES.PAYMENT
     );
   }
 }

@@ -3,7 +3,7 @@ import { TranslationService } from '../../core/services/translation.service';
 
 @Pipe({
   name: 'lang',
-  pure: false
+  pure: false,
 })
 export class LangPipe implements PipeTransform {
   private readonly translationService = inject(TranslationService);

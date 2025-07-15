@@ -28,12 +28,12 @@
               <div class="row g-2 align-items-center">
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{ 'DASHBOARD.PERSONAL_INFORMATION.FULLNAME' | translate }}</small>
-                  <span class="text-lg fw-bold">{{ user.userProfile.fullName }}</span>
+                  <span class="text-lg fw-bold">{{ tokenService.getUser().userProfile.fullName }}</span>
                 </div>
 
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{ 'DASHBOARD.PERSONAL_INFORMATION.NATIONALITY' | translate }}</small>
-                  <span class="text-lg fw-bold">{{ user.userProfile.nationality || '-' }}</span>
+                  <span class="text-lg fw-bold">{{ tokenService.getUser().userProfile.nationality || '-' }}</span>
                 </div>
                 <div class="col-6 col-md-6 col-lg-4 d-flex flex-column">
                   <small>{{ 'DASHBOARD.PERSONAL_INFORMATION.ID_NUMBER' | translate }}</small>
@@ -64,11 +64,11 @@
           <div class="row g-2">
             <div class="col-6 d-flex flex-column">
               <small>{{ 'DASHBOARD.WALLET.BENEFICIARY_NAME' | translate }}</small>
-              <span class="text-lg fw-bold">{{ user.investmentAccount.accountHolderName }}</span>
+              <span class="text-lg fw-bold">{{ tokenService.getUser().investmentAccount.accountHolderName }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ 'DASHBOARD.WALLET.BANK_NAME' | translate }}</small>
-              <span class="text-lg fw-bold">{{ user.investmentAccount.bankName || '-' }}</span>
+              <span class="text-lg fw-bold">{{ tokenService.getUser().investmentAccount.bankName || '-' }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ 'DASHBOARD.WALLET.ACCOUNT_NUMBER' | translate }}</small>
