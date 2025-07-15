@@ -11,14 +11,18 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { RouterLink } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ProfileService } from '../../../../../../data/profile.service';
+import { TranslationService } from '../../../../../../core/services/translation.service';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-listing',
-  imports: [DatePipe, DecimalPipe, NgbPaginationModule, RouterLink, TranslatePipe],
+  imports: [DatePipe, DecimalPipe, NgbPaginationModule, RouterLink, TranslatePipe, ReactiveFormsModule],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss',
 })
 export class ListingComponent extends BaseComponent {
+  readonly translationService = inject(TranslationService);
+
   private readonly tokenService = inject(TokenService);
   private readonly investorService = inject(InvestorService);
   private readonly profileService = inject(ProfileService);
@@ -40,6 +44,7 @@ export class ListingComponent extends BaseComponent {
   loading = signal<boolean>(false);
   total = signal<number>(0);
   user: UserProfileData = this.tokenService.getUser();
+  search: FormControl<string | null> = new FormControl('');
 
   loadStatistics(): void {
     this.profileService
@@ -73,6 +78,13 @@ export class ListingComponent extends BaseComponent {
   ngOnInit(): void {
     this.loadStatistics();
     this.loadInvestments();
+
+    this.search.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
+      next: val => {
+        this.pagination.filter[this.translationService.language === 'en' ? 'nameEn' : 'nameAr'] = val as string;
+        this.loadInvestments();
+      },
+    });
   }
 
   goToPage(page: number): void {

@@ -57,7 +57,7 @@ export interface Investment {
 export interface InvestmentFilter {
   pageNumber: number;
   pageSize: number;
-  filter?: {
+  filter: {
     statusId?: number;
     investorId?: number;
     nameEn?: string;

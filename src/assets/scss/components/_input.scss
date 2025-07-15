@@ -32,10 +32,16 @@
     cursor: not-allowed;
     color: #a1a1a1;
   }
+
+  &.form-control-sm {
+    height: 36px;
+  }
 }
+
 .form-label {
   font-weight: $font-weight-medium;
 }
+
 input.ng-touched.ng-invalid {
   border-color: #e74c3c;
 }
