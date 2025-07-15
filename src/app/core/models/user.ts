@@ -158,20 +158,22 @@ export interface UserProfile {
 }
 
 export interface InvestmentAccount {
+  personalAccountNumber: string;
+  virtualAccountNumber: string;
   bankName: string;
-  virtualBankName: string; // ✅ جديد
-  accountHolderName: string; // نفس الـ Beneficiary
+  virtualBankName: string;
+  accountHolderName: string;
   accountNumber: string | null;
   iban: string | null;
-  personalIBAN: string; // ✅ جديد
-  balance: number; // يمثل ibanBalance بعد التحويل لرقم
+  personalIBAN: string;
+  balance: number;
   openingDate: string;
   expiryDate: string;
-  totalInvestments: number; // ✅ جديد
-  totalProfits: number; // ✅ جديد
-  totalExpectedProfits: number; // ✅ جديد
-  totalDeposits: number; // ✅ جديد
-  totalWithdraws: number; // ✅ جديد
+  totalInvestments: number;
+  totalProfits: number;
+  totalExpectedProfits: number;
+  totalDeposits: number;
+  totalWithdraws: number;
 }
 
 export interface FinancialSummary {

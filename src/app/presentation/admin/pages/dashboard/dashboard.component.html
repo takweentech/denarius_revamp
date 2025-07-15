@@ -72,11 +72,11 @@
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ 'DASHBOARD.WALLET.ACCOUNT_NUMBER' | translate }}</small>
-              <span class="text-lg fw-bold">{{ user.investmentAccount.accountNumber || '-' }}</span>
+              <span class="text-lg fw-bold">{{ user.investmentAccount.virtualAccountNumber || '-' }}</span>
             </div>
             <div class="col-6 d-flex flex-column">
               <small>{{ 'DASHBOARD.WALLET.IBAN' | translate }}</small>
-              <span class="text-lg fw-bold">{{ user.investmentAccount.iban || '-' }}</span>
+              <span class="text-lg fw-bold">{{ user.investmentAccount.personalAccountNumber || '-' }}</span>
             </div>
           </div>
         </div>
