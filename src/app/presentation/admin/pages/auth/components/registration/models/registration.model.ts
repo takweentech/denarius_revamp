@@ -19,9 +19,10 @@ export interface Step<T> {
   nextButtonText?: string;
   validators?: ValidatorFn[];
   displayNextButton?: boolean;
+  skip?: boolean;
 }
 
-export interface IndividualAddress {}
+export interface IndividualAddress { }
 
 export interface PersonalData {
   dateOfBirthH: string;

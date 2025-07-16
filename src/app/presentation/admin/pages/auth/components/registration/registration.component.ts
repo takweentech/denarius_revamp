@@ -42,6 +42,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   currentIndex = signal<number>(1);
   loading = signal<boolean>(false);
   signUpForm!: FormGroup;
+  verifiedNumber!: string;
   constructor() {
     super();
   }
@@ -89,7 +90,24 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
   onNext() {
     const currentStep = this.steps[this.currentIndex() - 1];
+    const nextStep = this.steps[this.currentIndex()];
     let stepFormVal = this.signUpForm.controls[currentStep.key].value;
+
+    // Handle changed verified phone numer
+    if (this.currentIndex() == 1 && this.verifiedNumber) {
+      if (this.verifiedNumber !== this.signUpForm.controls['information'].value.phoneNumber) {
+        this.steps[this.currentIndex()].skip = false;
+        this.signUpForm.controls[nextStep.key].reset();
+      }
+    }
+
+    // Handle step skip
+    if (nextStep.skip) {
+      this.stepperInstance.to(this.currentIndex() + 2);
+      this.currentIndex.set(this.currentIndex() + 2);
+      this.vps.scrollToPosition([0, 0]);
+      return
+    }
 
     // Collect form values from disclosure
     if (currentStep.key === 'disclosure') {
@@ -165,6 +183,12 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
               return;
             }
 
+            // Remove OTP step once verified
+            if (currentStep.key === 'otp') {
+              this.verifiedNumber = this.signUpForm.controls['information'].value.phoneNumber;
+              this.steps[this.currentIndex() - 1].skip = true;
+            }
+
             //Next
             this.stepperInstance.next();
             this.currentIndex.set(this.currentIndex() + 1);
@@ -172,9 +196,17 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
           }
         },
       });
+
   }
 
   onPrev() {
+
+    if (this.steps[this.currentIndex() - 2].skip) {
+      this.currentIndex.set(this.currentIndex() - 2);
+      this.stepperInstance.to(this.currentIndex() - 2);
+      return
+    }
+
     this.stepperInstance.previous();
     this.currentIndex.set(this.currentIndex() - 1);
   }
@@ -195,7 +227,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
             this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
           }
         },
-        error: err => {},
+        error: err => { },
       });
   }
 
