@@ -49,10 +49,12 @@ export class RegistrationService {
               Validators.maxLength(10),
               Validators.pattern('^(1|2)[0-9]{9}$'),
             ],
+            // value: '1243243256',
           },
           {
             key: 'birhtdate',
             validators: [Validators.required, minimumAgeValidator(18)],
+            value: new Date(),
           },
           {
             key: 'phoneNumber',
@@ -62,22 +64,27 @@ export class RegistrationService {
               Validators.maxLength(9),
               Validators.pattern(REGEX_PATTERNS.PHONE_NUMBER),
             ],
+            // value: '546456456',
           },
           {
             key: 'email',
             validators: [Validators.required, Validators.email],
+            // value: 'email123@ooo.com',
           },
           {
             key: 'password',
             validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
+            // value: 'P@ssw0rd',
           },
           {
             key: 'confirmPassword',
             validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
+            // value: 'P@ssw0rd',
           },
           {
             key: 'terms',
             validators: [Validators.requiredTrue],
+            // value: true,
           },
         ],
         validators: [matchValidator('password', 'confirmPassword')],

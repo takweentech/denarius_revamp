@@ -4,7 +4,7 @@ import { HttpCustomResponse } from '../../../../../../../core/models/http';
 
 export interface StepControl {
   key: string;
-  value?: string | number | Date;
+  value?: string | number | Date | boolean;
   validators?: ValidatorFn[];
 }
 

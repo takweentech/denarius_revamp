@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,6 +12,7 @@ import { TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { SignInModes } from '../../enums/auth.enum';
 import { TranslationService } from '../../../../../../core/services/translation.service';
 import { OtpComponent } from '../otp/otp.component';
+import { OtpService } from '../otp/otp.service';
 
 @Component({
   selector: 'app-sign-in',
@@ -19,9 +20,10 @@ import { OtpComponent } from '../otp/otp.component';
   templateUrl: './sign-in.component.html',
   styleUrl: './sign-in.component.scss',
 })
-export class SignInComponent extends BaseComponent {
+export class SignInComponent extends BaseComponent implements OnInit {
   WEB_ROUTES = WEB_ROUTES;
   private readonly registrationService = inject(RegistrationApiService);
+  private readonly otpService = inject(OtpService);
   readonly translationService = inject(TranslationService);
   private readonly translateService = inject(TranslateService);
   private readonly profileService = inject(ProfileService);
@@ -40,6 +42,17 @@ export class SignInComponent extends BaseComponent {
   });
   signInModes = SignInModes;
   mode: SignInModes = SignInModes.FORM;
+
+  ngOnInit(): void {
+    // Handle otp resend
+    this.otpService.resendPerformedSource.pipe(takeUntil(this.destroy$)).subscribe({
+      next: state => {
+        if (state) {
+          this.validateSignIn();
+        }
+      },
+    });
+  }
 
   validateSignIn(): void {
     if (this.form.valid) {
@@ -68,6 +81,8 @@ export class SignInComponent extends BaseComponent {
             }
             // Set OTP mode
             this.mode = this.signInModes.OTP;
+            // Init OTP countdown
+            this.otpService.initCountdown();
             // Listen for OTP change
             this.otpForm.valueChanges.pipe(takeUntil(this.destroy$)).subscribe({
               next: val => {

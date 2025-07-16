@@ -14,6 +14,7 @@ import { InvestorType } from '../../../../../../core/enums/investor.enums';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Location } from '@angular/common';
 import { TranslationService } from '../../../../../../core/services/translation.service';
+import { OtpService } from '../otp/otp.service';
 @Component({
   selector: 'app-registration',
   imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
@@ -23,6 +24,7 @@ import { TranslationService } from '../../../../../../core/services/translation.
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
   readonly translationService = inject(TranslationService);
   private readonly registrationService = inject(RegistrationService);
+  private readonly otpService = inject(OtpService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
@@ -46,6 +48,22 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
   ngOnInit(): void {
     this.initForm();
+
+    // Handle otp resend
+    this.otpService.resendPerformedSource.pipe(takeUntil(this.destroy$)).subscribe({
+      next: state => {
+        if (state) {
+          const currentStep = this.steps[this.currentIndex() - 1];
+          this.steps.find(item => item.key === 'information')?.apiHandler!(
+            this.signUpForm.controls[currentStep.key].value
+          )
+            ?.pipe(takeUntil(this.destroy$))
+            .subscribe(() => {
+              this.otpService.initCountdown();
+            });
+        }
+      },
+    });
   }
 
   initForm() {
@@ -127,18 +145,19 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        // text: this.translateService.instant(
-        //   'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.FORM.OTP.OTP_CONFIRM_FAILED'
         next: (response: any) => {
           if (response.status !== 200) {
             this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
           } else {
+            // Init OTP countdown
+            if (currentStep.key === 'information') {
+              this.otpService.initCountdown();
+            }
             // Store OTP id and temporary token
             if (currentStep.key === 'information') {
               this.tempToken = response.data['token'];
               this.otpId = response.data['otpId'];
             }
-
             // Authenticate user
             if (currentStep.key === 'absher') {
               this.tokenService.setToken(response.data);

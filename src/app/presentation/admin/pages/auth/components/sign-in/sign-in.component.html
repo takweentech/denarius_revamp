@@ -93,7 +93,7 @@
     }
     <!-- OTP -->
     @if (mode === signInModes.OTP) {
-      <app-otp [displayResendOtp]="true" (resendOtp)="validateSignIn()" [formGroup]="otpForm"></app-otp>
+      <app-otp [formGroup]="otpForm"></app-otp>
     }
   </div>
 </div>
