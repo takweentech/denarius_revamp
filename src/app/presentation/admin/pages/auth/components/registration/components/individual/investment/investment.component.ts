@@ -17,6 +17,8 @@ export class InvestmentComponent extends BaseComponent implements OnInit {
   private readonly lookupService = inject(LookupService);
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
+  @Input() requestId!: string;
+  @Input() displayResendOtp!: boolean;
   investmentExperienceList = this.lookupService.getInvestmentExperienceList();
   riskToleranceList = this.lookupService.getRiskToleranceList();
   investmentPeriodList = this.lookupService.getInvestmentPeriodList();

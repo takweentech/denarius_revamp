@@ -65,7 +65,18 @@
               </div>
 
               <ng-container
-                *ngComponentOutlet="item.component; inputs: { formGroup: signUpForm.get(item.key), step: item }"
+                *ngComponentOutlet="
+                  item.component;
+                  inputs: {
+                    formGroup: signUpForm.get(item.key),
+                    step: item,
+                    requestId: item.key === 'otp' ? otpId : undefined,
+                    displayResendOtp: item.key === 'otp',
+                  };
+                  outputs: {
+                    resendOtp: item.key === 'otp' ? onOtpResend : undefined,
+                  }
+                "
               ></ng-container>
 
               @if (item.displayNextButton) {

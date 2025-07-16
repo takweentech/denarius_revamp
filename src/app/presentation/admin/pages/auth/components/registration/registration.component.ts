@@ -23,6 +23,7 @@ import { TranslationService } from '../../../../../../core/services/translation.
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
   readonly translationService = inject(TranslationService);
   private readonly registrationService = inject(RegistrationService);
+
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);

@@ -16,6 +16,8 @@ export class BusinessComponent {
   private readonly lookupService = inject(LookupService);
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<CompanyData>;
+  @Input() requestId!: string;
+  @Input() displayResendOtp!: boolean;
   investmentExperienceList = this.lookupService.getInvestmentExperienceList();
   riskToleranceList = this.lookupService.getRiskToleranceList();
 

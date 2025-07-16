@@ -9,19 +9,17 @@
       allowNumbersOnly: true,
     }"
   ></ng-otp-input>
-
-  @if (displayResendOtp) {
-    <button class="btn btn-primary btn-sm" (click)="onResendOtp()" [disabled]="otpCountdown() !== 0">
-      <p class="small">
-        {{
-          otpCountdown() === 0
-            ? ('AUTHENTICATION.OTP.RESEND_OTP' | translate)
-            : ('AUTHENTICATION.OTP.RESEND_OTP_IN' | translate) +
-              otpCountdown() +
-              ' ' +
-              ('AUTHENTICATION.OTP.SECONDS' | translate)
-        }}
-      </p>
-    </button>
-  }
+  <button class="btn btn-primary btn-sm" (click)="onResendOtp()" [disabled]="otpCountdown() !== 0">
+    <p class="small">
+      {{
+        otpCountdown() === 0
+          ? ('AUTHENTICATION.OTP.RESEND_OTP' | translate)
+          : ('AUTHENTICATION.OTP.RESEND_OTP_IN' | translate) +
+            otpCountdown() +
+            ' ' +
+            ('AUTHENTICATION.OTP.SECONDS' | translate)
+      }}
+    </p>
+  </button>
+  @if (displayResendOtp) {}
 </form>
