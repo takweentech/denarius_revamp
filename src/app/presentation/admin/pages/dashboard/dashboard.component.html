@@ -141,7 +141,7 @@
           <div class="d-flex flex-column gap-1">
             <span>{{ 'DASHBOARD.STATS.TOTAL_EXPECTED_EARNINGS' | translate }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
-              <span class="fw-semibold">{{ user.financialSummary.expectedProfits | number: '1.0-2' }} </span>
+              <span class="fw-semibold">{{ statistics()?.totalExpectedProfits | number: '1.0-2' }} </span>
               <span class="icon-saudi_riyal"></span>
             </div>
           </div>

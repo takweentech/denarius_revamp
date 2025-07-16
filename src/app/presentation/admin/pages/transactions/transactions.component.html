@@ -55,7 +55,7 @@
         <div class="d-flex flex-column gap-1">
           <span>{{ 'TRANSACTIONS.TOTAL_EXPECTED_EARNINGS' | translate }}</span>
           <div class="fw-semibold d-flex price-alignment gap-1 w-fit" dir="ltr">
-            {{ user.financialSummary.expectedProfits | number: '1.0-2' }}
+            {{ statistics()?.totalExpectedProfits | number: '1.0-2' }}
             <span class="icon-saudi_riyal"></span>
           </div>
         </div>
