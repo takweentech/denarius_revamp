@@ -15,6 +15,7 @@ export class DisclosureComponent {
   private readonly lookupService = inject(LookupService);
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
-
+  @Input() requestId!: string;
+  @Input() displayResendOtp!: boolean;
   yesNoLists = this.lookupService.getYesNoOptions();
 }

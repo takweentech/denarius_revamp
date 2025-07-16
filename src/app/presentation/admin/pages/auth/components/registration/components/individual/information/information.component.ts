@@ -24,7 +24,8 @@ export class InformationComponent extends BaseComponent implements OnInit {
   lang: string = this.translationService.language;
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
-
+  @Input() requestId!: string;
+  @Input() displayResendOtp!: boolean;
   ngOnInit(): void {
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.lang = event.lang;

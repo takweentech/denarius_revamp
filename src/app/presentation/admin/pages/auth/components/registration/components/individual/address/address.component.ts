@@ -17,6 +17,8 @@ import { LangPipe } from '../../../../../../../../../shared/pipes/lang.pipe';
 export class AddressComponent extends BaseComponent implements OnInit {
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<PersonalData>;
+  @Input() requestId!: string;
+  @Input() displayResendOtp!: boolean;
   private readonly lookupService = inject(LookupService);
   regionsList = signal<Lookup[]>([]);
   citiesList = signal<Lookup[]>([]);

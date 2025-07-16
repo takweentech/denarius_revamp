@@ -13,13 +13,14 @@ import {
   IndividualOtpSignUpDto,
   SignInDto,
 } from '../core/models/registration';
+import { TokenService } from '../core/services/token.service';
 @Injectable({
   providedIn: 'root',
 })
 export class RegistrationApiService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = 'Accounts';
-
+  private readonly tokenService = inject(TokenService);
   signIn(token: string, otp: string, requestId: string): Observable<HttpCustomResponse<{}>> {
     return this.http.post<HttpCustomResponse<{}>>(
       `${environment.apiUrl}/${this.baseUrl}/Login`,
@@ -100,7 +101,15 @@ export class RegistrationApiService {
       { headers: { Authorization: token as string } }
     );
   }
-
+  resendOtp(requestId: string): Observable<HttpCustomResponse<{ otpId: string }>> {
+    const token = this.tokenService.getToken();
+    return this.http.get<HttpCustomResponse<{ otpId: string }>>(`${environment.apiUrl}/OTP/ResendOTP`, {
+      params: { requestId },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+  }
   finalizeCompanyInvestorRegestration(
     data: CompanyFinalizationDto,
     token?: string,

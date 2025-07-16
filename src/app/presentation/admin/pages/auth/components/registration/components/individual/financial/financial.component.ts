@@ -18,6 +18,8 @@ export class FinancialComponent extends BaseComponent implements OnInit {
   private readonly lookupService = inject(LookupService);
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
+  @Input() requestId!: string;
+  @Input() displayResendOtp!: boolean;
   martialStatusList = signal<Lookup[]>([]);
   employmentStatusList = signal<Lookup[]>([]);
   educationLevelList = signal<Lookup[]>([]);

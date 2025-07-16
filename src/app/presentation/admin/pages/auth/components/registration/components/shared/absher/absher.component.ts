@@ -13,4 +13,6 @@ import { TranslatePipe } from '@ngx-translate/core';
 export class AbsherComponent {
   @Input() formGroup!: FormGroup;
   @Input() step!: Step<{}>;
+  @Input() requestId!: string;
+  @Input() displayResendOtp!: boolean;
 }
