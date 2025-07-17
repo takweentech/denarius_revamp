@@ -149,9 +149,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
     // No api handler case
     if (!currentStep.apiHandler) {
-      this.stepperInstance.next();
-      this.currentIndex.set(this.currentIndex() + 1);
-      this.vps.scrollToPosition([0, 0]);
+      this.next();
       return;
     }
 
@@ -169,12 +167,9 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
           } else {
             // Init OTP countdown
             if (currentStep.key === 'information') {
-              this.otpService.initCountdown();
-            }
-            // Store OTP id and temporary token
-            if (currentStep.key === 'information') {
               this.tempToken = response.data['token'];
               this.otpId = response.data['otpId'];
+              this.otpService.initCountdown();
             }
             // Authenticate user
             if (currentStep.key === 'absher') {
@@ -182,17 +177,14 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
               this.getUserProfile();
               return;
             }
-
-            // Remove OTP step once verified
+            // Skip OTP step if phone numer is verified
             if (currentStep.key === 'otp') {
               this.verifiedNumber = this.signUpForm.controls['information'].value.phoneNumber;
               this.steps[this.currentIndex() - 1].skip = true;
             }
 
             //Next
-            this.stepperInstance.next();
-            this.currentIndex.set(this.currentIndex() + 1);
-            this.vps.scrollToPosition([0, 0]);
+            this.next();
           }
         },
       });
@@ -200,16 +192,27 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   }
 
   onPrev() {
-
     if (this.steps[this.currentIndex() - 2].skip) {
       this.currentIndex.set(this.currentIndex() - 2);
       this.stepperInstance.to(this.currentIndex() - 2);
       return
     }
 
+    this.prev();
+  }
+
+  next() {
+    this.stepperInstance.next();
+    this.currentIndex.set(this.currentIndex() + 1);
+    this.vps.scrollToPosition([0, 0]);
+  }
+
+  prev() {
     this.stepperInstance.previous();
     this.currentIndex.set(this.currentIndex() - 1);
+    this.vps.scrollToPosition([0, 0]);
   }
+
 
   getUserProfile(): void {
     this.profileService
