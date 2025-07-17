@@ -102,11 +102,11 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
     }
 
     // Handle step skip
-    if (nextStep.skip) {
+    if (nextStep?.skip) {
       this.stepperInstance.to(this.currentIndex() + 2);
       this.currentIndex.set(this.currentIndex() + 2);
       this.vps.scrollToPosition([0, 0]);
-      return
+      return;
     }
 
     // Collect form values from disclosure
@@ -188,14 +188,13 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
           }
         },
       });
-
   }
 
   onPrev() {
     if (this.steps[this.currentIndex() - 2].skip) {
       this.currentIndex.set(this.currentIndex() - 2);
       this.stepperInstance.to(this.currentIndex() - 2);
-      return
+      return;
     }
 
     this.prev();
@@ -213,7 +212,6 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
     this.vps.scrollToPosition([0, 0]);
   }
 
-
   getUserProfile(): void {
     this.profileService
       .getUserProfile()
@@ -230,7 +228,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
             this.router.navigate(['/' + WEB_ROUTES.DASHBOARD.ROOT]);
           }
         },
-        error: err => { },
+        error: err => {},
       });
   }
 

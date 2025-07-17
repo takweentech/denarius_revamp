@@ -22,7 +22,7 @@ export interface Step<T> {
   skip?: boolean;
 }
 
-export interface IndividualAddress { }
+export interface IndividualAddress {}
 
 export interface PersonalData {
   dateOfBirthH: string;
