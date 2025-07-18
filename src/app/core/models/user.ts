@@ -173,6 +173,8 @@ export interface InvestmentAccount {
   totalExpectedProfits: number; // ✅ جديد
   totalDeposits: number; // ✅ جديد
   totalWithdraws: number; // ✅ جديد
+  personalAccountNumber: string;
+  virtualAccountNumber: string;
 }
 
 export interface FinancialSummary {
