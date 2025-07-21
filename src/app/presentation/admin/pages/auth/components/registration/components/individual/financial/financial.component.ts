@@ -69,7 +69,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.jobTitleList.set(response);
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -81,7 +81,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.martialStatusList.set(response);
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -93,7 +93,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.employmentStatusList.set(response);
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -105,7 +105,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.educationLevelList.set(response);
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -117,7 +117,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
         next: response => {
           this.annualIncomeList.set(response);
         },
-        error: error => { },
+        error: error => {},
       });
   }
 
@@ -130,7 +130,7 @@ export class FinancialComponent extends BaseComponent implements OnInit {
           next: response => {
             this.netWorthList.set(response);
           },
-          error: error => { },
+          error: error => {},
         });
     }
   }

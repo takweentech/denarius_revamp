@@ -20,8 +20,19 @@ export class RegistrationApiService {
   private readonly http = inject(HttpClient);
   private readonly baseUrl = 'Accounts';
 
-  signIn(data: SignInDto): Observable<HttpCustomResponse<{}>> {
-    return this.http.post<HttpCustomResponse<{}>>(`${environment.apiUrl}/${this.baseUrl}/AdminLogin`, data);
+  signIn(token: string, otp: string, requestId: string): Observable<HttpCustomResponse<{}>> {
+    return this.http.post<HttpCustomResponse<{}>>(
+      `${environment.apiUrl}/${this.baseUrl}/Login`,
+      {},
+      { headers: { Authorization: token }, params: { otp, requestId } }
+    );
+  }
+
+  validateSignIn(data: SignInDto): Observable<HttpCustomResponse<{ token: string; requestId: string }>> {
+    return this.http.post<HttpCustomResponse<{ token: string; requestId: string }>>(
+      `${environment.apiUrl}/${this.baseUrl}/ValidateLogin`,
+      data
+    );
   }
 
   // Individual

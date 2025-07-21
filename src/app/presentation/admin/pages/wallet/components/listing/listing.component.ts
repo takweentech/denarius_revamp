@@ -13,7 +13,7 @@ import { ToastService } from '../../../../../../shared/components/toast/toast.se
 import { Transaction, TransactionFilter } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
-import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
+import { WithdrawalService } from '../../../../../../data/withdrawal.service';
 @Component({
   selector: 'app-listing',
   standalone: true,

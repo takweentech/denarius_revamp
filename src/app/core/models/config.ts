@@ -8,5 +8,6 @@ export interface AppConfig {
     secondaryColor: string;
     dangerColor: string;
     successColor: string;
+    warningColor: string;
   };
 }

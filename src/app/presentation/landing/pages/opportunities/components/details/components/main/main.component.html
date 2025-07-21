@@ -129,7 +129,12 @@
       </div>
       <div class="d-flex flex-column gap-2 mb-4">
         <label class="small">{{ 'OPPORTUNITIES_DETAILS.SELECT_SUKUK_NUMBER' | translate }}</label>
-        <input [formControl]="numStock" class="form-control col-12 shadow-sm border-0 rounded-1" type="number" />
+        <input
+          [formControl]="numStock"
+          [min]="1"
+          class="form-control col-12 shadow-sm border-0 rounded-1"
+          type="number"
+        />
       </div>
       <ul class="list-unstyled">
         <li class="d-flex justify-content-between py-2 border-bottom">

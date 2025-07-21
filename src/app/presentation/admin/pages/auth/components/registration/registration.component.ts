@@ -14,6 +14,7 @@ import { InvestorType } from '../../../../../../core/enums/investor.enums';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Location } from '@angular/common';
 import { TranslationService } from '../../../../../../core/services/translation.service';
+import { OtpService } from '../otp/otp.service';
 @Component({
   selector: 'app-registration',
   imports: [CommonModule, ReactiveFormsModule, TranslatePipe],
@@ -23,6 +24,7 @@ import { TranslationService } from '../../../../../../core/services/translation.
 export class RegistrationComponent extends BaseComponent implements AfterViewInit, OnInit {
   readonly translationService = inject(TranslationService);
   private readonly registrationService = inject(RegistrationService);
+  private readonly otpService = inject(OtpService);
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
   private readonly profileService = inject(ProfileService);
@@ -40,12 +42,29 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
   currentIndex = signal<number>(1);
   loading = signal<boolean>(false);
   signUpForm!: FormGroup;
+  verifiedNumber!: string;
   constructor() {
     super();
   }
 
   ngOnInit(): void {
     this.initForm();
+
+    // Handle otp resend
+    this.otpService.resendPerformedSource.pipe(takeUntil(this.destroy$)).subscribe({
+      next: state => {
+        if (state) {
+          const currentStep = this.steps[this.currentIndex() - 1];
+          this.steps.find(item => item.key === 'information')?.apiHandler!(
+            this.signUpForm.controls[currentStep.key].value
+          )
+            ?.pipe(takeUntil(this.destroy$))
+            .subscribe(() => {
+              this.otpService.initCountdown();
+            });
+        }
+      },
+    });
   }
 
   initForm() {
@@ -71,7 +90,24 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
   onNext() {
     const currentStep = this.steps[this.currentIndex() - 1];
+    const nextStep = this.steps[this.currentIndex()];
     let stepFormVal = this.signUpForm.controls[currentStep.key].value;
+
+    // Handle changed verified phone numer
+    if (this.currentIndex() == 1 && this.verifiedNumber) {
+      if (this.verifiedNumber !== this.signUpForm.controls['information'].value.phoneNumber) {
+        this.steps[this.currentIndex()].skip = false;
+        this.signUpForm.controls[nextStep.key].reset();
+      }
+    }
+
+    // Handle step skip
+    if (nextStep?.skip) {
+      this.stepperInstance.to(this.currentIndex() + 2);
+      this.currentIndex.set(this.currentIndex() + 2);
+      this.vps.scrollToPosition([0, 0]);
+      return;
+    }
 
     // Collect form values from disclosure
     if (currentStep.key === 'disclosure') {
@@ -113,9 +149,7 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
 
     // No api handler case
     if (!currentStep.apiHandler) {
-      this.stepperInstance.next();
-      this.currentIndex.set(this.currentIndex() + 1);
-      this.vps.scrollToPosition([0, 0]);
+      this.next();
       return;
     }
 
@@ -127,37 +161,55 @@ export class RegistrationComponent extends BaseComponent implements AfterViewIni
         finalize(() => this.loading.set(false))
       )
       .subscribe({
-        // text: this.translateService.instant(
-        //   'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.FORM.OTP.OTP_CONFIRM_FAILED'
         next: (response: any) => {
           if (response.status !== 200) {
             this.toastService.show({ text: response.message, classname: 'bg-danger text-light' });
           } else {
-            // Store OTP id and temporary token
+            // Init OTP countdown
             if (currentStep.key === 'information') {
               this.tempToken = response.data['token'];
               this.otpId = response.data['otpId'];
+              this.otpService.initCountdown();
             }
-
             // Authenticate user
             if (currentStep.key === 'absher') {
               this.tokenService.setToken(response.data);
               this.getUserProfile();
               return;
             }
+            // Skip OTP step if phone numer is verified
+            if (currentStep.key === 'otp') {
+              this.verifiedNumber = this.signUpForm.controls['information'].value.phoneNumber;
+              this.steps[this.currentIndex() - 1].skip = true;
+            }
 
             //Next
-            this.stepperInstance.next();
-            this.currentIndex.set(this.currentIndex() + 1);
-            this.vps.scrollToPosition([0, 0]);
+            this.next();
           }
         },
       });
   }
 
   onPrev() {
+    if (this.steps[this.currentIndex() - 2].skip) {
+      this.currentIndex.set(this.currentIndex() - 2);
+      this.stepperInstance.to(this.currentIndex() - 2);
+      return;
+    }
+
+    this.prev();
+  }
+
+  next() {
+    this.stepperInstance.next();
+    this.currentIndex.set(this.currentIndex() + 1);
+    this.vps.scrollToPosition([0, 0]);
+  }
+
+  prev() {
     this.stepperInstance.previous();
     this.currentIndex.set(this.currentIndex() - 1);
+    this.vps.scrollToPosition([0, 0]);
   }
 
   getUserProfile(): void {

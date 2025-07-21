@@ -32,9 +32,7 @@ body {
       transform: rotate(180deg);
     }
 
-
     .page-item {
-
       &:last-child {
         .page-link {
           border-top-left-radius: var(--bs-pagination-border-radius) !important;

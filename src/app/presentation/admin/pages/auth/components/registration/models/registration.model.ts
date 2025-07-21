@@ -4,7 +4,7 @@ import { HttpCustomResponse } from '../../../../../../../core/models/http';
 
 export interface StepControl {
   key: string;
-  value?: string | number | Date;
+  value?: string | number | Date | boolean;
   validators?: ValidatorFn[];
 }
 
@@ -19,6 +19,7 @@ export interface Step<T> {
   nextButtonText?: string;
   validators?: ValidatorFn[];
   displayNextButton?: boolean;
+  skip?: boolean;
 }
 
 export interface IndividualAddress {}

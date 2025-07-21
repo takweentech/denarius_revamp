@@ -144,6 +144,7 @@ export interface UserInvestmentData {
   investmentHorizon: number;
   investmentGoal: number;
   isBeneficiary: number;
+  beneficiaryIdNumber?: number;
 }
 
 export interface UserProfile {
@@ -169,11 +170,21 @@ export interface InvestmentAccount {
   balance: number;
   openingDate: string;
   expiryDate: string;
+<<<<<<< HEAD
   totalInvestments: number;
   totalProfits: number;
   totalExpectedProfits: number;
   totalDeposits: number;
   totalWithdraws: number;
+=======
+  totalInvestments: number; // ✅ جديد
+  totalProfits: number; // ✅ جديد
+  totalExpectedProfits: number; // ✅ جديد
+  totalDeposits: number; // ✅ جديد
+  totalWithdraws: number; // ✅ جديد
+  personalAccountNumber: string;
+  virtualAccountNumber: string;
+>>>>>>> development
 }
 
 export interface FinancialSummary {

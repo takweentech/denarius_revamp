@@ -19,7 +19,7 @@ export class MainComponent extends BaseComponent {
   private readonly activatedRoute = inject(ActivatedRoute);
   private readonly tokenService = inject(TokenService);
   private readonly router = inject(Router);
-  numStock: FormControl<number | null> = new FormControl(0);
+  numStock: FormControl<number | null> = new FormControl(1);
   opportunity: Opportunity = this.activatedRoute.snapshot.data['opportunity']?.data;
   WEB_ROUTES = WEB_ROUTES;
   isAuthenticated: boolean = this.tokenService.isAuthenticated();

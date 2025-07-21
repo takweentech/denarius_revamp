@@ -67,7 +67,7 @@ export class ProfileComponent extends BaseComponent implements OnInit {
     this.loading.set(true);
 
     this.profileService
-      .saveBasicPersonalInformation(this.form.value)
+      .saveBasicPersonalInformation({ ...this.form.value, city: Number(this.form.value.city) })
       .pipe(
         finalize(() => this.loading.set(false)),
         takeUntil(this.destroy$)

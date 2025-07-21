@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
@@ -16,7 +16,8 @@ import { NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
     },
   ],
 })
-export class GregorianDatepickerComponent implements ControlValueAccessor {
+export class GregorianDatepickerComponent implements ControlValueAccessor, OnChanges {
+  @Input() allowFutureDate!: boolean;
   value: string = '';
   minDate: NgbDateStruct = {
     day: 1,
@@ -31,6 +32,16 @@ export class GregorianDatepickerComponent implements ControlValueAccessor {
 
   private onChange!: (value: string) => void;
   private onTouched!: () => void;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['allowFutureDate'].currentValue) {
+      this.maxDate = {
+        day: 1,
+        month: 1,
+        year: 2050,
+      };
+    }
+  }
 
   public writeValue(value: string): void {
     this.value = value;

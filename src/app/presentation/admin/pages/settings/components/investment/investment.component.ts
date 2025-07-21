@@ -43,6 +43,25 @@ export class InvestmentComponent extends BaseComponent {
       investmentHorizon: [data?.investmentHorizon, Validators.required],
       investmentGoal: [data?.investmentGoal, Validators.required],
       isBeneficiary: [data?.isBeneficiary, Validators.required],
+      beneficiaryIdNumber: [data?.beneficiaryIdNumber],
+    });
+
+    this.form.controls['isBeneficiary'].valueChanges.pipe(takeUntil(this.destroy$)).subscribe(value => {
+      const beneficiaryControl = this.form.controls['beneficiaryIdNumber'];
+
+      if (value === 1) {
+        beneficiaryControl.setValidators([
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(10),
+          Validators.pattern('^(1|2)[0-9]{9}$'),
+        ]);
+      } else {
+        beneficiaryControl.clearValidators();
+        beneficiaryControl.reset(null);
+      }
+
+      beneficiaryControl.updateValueAndValidity();
     });
   }
 

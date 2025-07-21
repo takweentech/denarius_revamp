@@ -1,4 +1,4 @@
-import { Component, forwardRef, Injectable } from '@angular/core';
+import { Component, forwardRef, Injectable, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 import {
@@ -59,7 +59,9 @@ export class IslamicI18n extends NgbDatepickerI18n {
     },
   ],
 })
-export class IslamicDatepickerComponent implements ControlValueAccessor {
+export class IslamicDatepickerComponent implements ControlValueAccessor, OnChanges {
+  @Input() allowFutureDate!: boolean;
+
   value: string = '';
   minDate: NgbDateStruct = {
     day: 1,
@@ -96,6 +98,16 @@ export class IslamicDatepickerComponent implements ControlValueAccessor {
   })();
   private onChange!: (value: string) => void;
   private onTouched!: () => void;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['allowFutureDate'].currentValue) {
+      this.maxDate = {
+        day: 1,
+        month: 1,
+        year: 1500,
+      };
+    }
+  }
 
   public writeValue(value: string): void {
     this.value = value;

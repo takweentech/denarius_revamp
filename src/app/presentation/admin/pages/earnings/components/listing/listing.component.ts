@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { LangChangeEvent, TranslatePipe, TranslateService } from '@ngx-translate/core';
 import { WEB_ROUTES } from '../../../../../../core/constants/routes.constants';
-import { DatePipe, DecimalPipe, NgClass } from '@angular/common';
+import { DatePipe, DecimalPipe, NgClass, TitleCasePipe } from '@angular/common';
 import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { finalize, takeUntil } from 'rxjs';
@@ -13,6 +13,8 @@ import { LangPipe } from '../../../../../../shared/pipes/lang.pipe';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { TranslationService } from '../../../../../../core/services/translation.service';
 import { IslamicDatepickerComponent } from '../../../../../../shared/components/islamic-datepicker/islamic-datepicker.component';
+import { Lookup } from '../../../../../../core/models/lookup';
+import { DiviendStatus } from '../../../../../../core/enums/investor.enums';
 
 @Component({
   selector: 'app-listing',
@@ -26,6 +28,7 @@ import { IslamicDatepickerComponent } from '../../../../../../shared/components/
     NgClass,
     LangPipe,
     ReactiveFormsModule,
+    TitleCasePipe,
   ],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss',
@@ -54,18 +57,34 @@ export class ListingComponent extends BaseComponent implements OnInit {
   earnings = signal<Dividend[]>([]);
   loading = signal<boolean>(false);
   total = signal<number>(0);
-  statusList = this.lookupService.getDividendStatus();
+  statusList = signal<Lookup[]>([]);
   filterForm: FormGroup = this.fb.group({
     startDate: [null],
     endDate: [null],
   });
+  diviendStatusEnum = DiviendStatus;
 
   ngOnInit(): void {
     this.loadDividends();
+    this.loadStatuses();
 
     this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
       this.lang = event.lang;
     });
+  }
+
+  loadStatuses(): void {
+    this.lookupService
+      .getDividendStatus()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.statusList.set([
+            { englishName: 'DIVIDENDS.FILTER.ALL', arabicName: 'DIVIDENDS.FILTER.ALL', id: 0, active: true },
+            ...response,
+          ]);
+        },
+      });
   }
 
   loadDividends(): void {
@@ -91,11 +110,12 @@ export class ListingComponent extends BaseComponent implements OnInit {
   }
 
   onFilterByStatus(status?: number, index?: number): void {
-    this.statusList = this.statusList.map(item => ({
-      ...item,
-      active: false,
-    }));
-    this.statusList[index as number].active = true;
+    this.statusList.set(
+      this.statusList().map((item, i: number) => ({
+        ...item,
+        active: i == index,
+      }))
+    );
     this.pagination.filter.statusId = status;
     this.loadDividends();
   }

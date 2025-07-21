@@ -2,7 +2,6 @@ import { inject, Injectable } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { InformationComponent } from './components/individual/information/information.component';
 import { InformationComponent as CompanyInformation } from './components/company/information/information.component';
-import { OtpComponent } from './components/shared/otp/otp.component';
 import { AddressComponent } from './components/individual/address/address.component';
 import { InvestmentComponent } from './components/individual/investment/investment.component';
 import { DisclosureComponent } from './components/individual/disclosure/disclosure.component';
@@ -24,6 +23,7 @@ import { HttpCustomResponse } from '../../../../../../core/models/http';
 import { Step } from './models/registration.model';
 import { matchValidator, minimumAgeValidator } from '../../../../../../core/validators/form.validators';
 import { REGEX_PATTERNS } from '../../../../../../core/constants/patterns.constants';
+import { OtpComponent } from '../otp/otp.component';
 
 type StepType = 'individual' | 'company';
 
@@ -49,10 +49,12 @@ export class RegistrationService {
               Validators.maxLength(10),
               Validators.pattern('^(1|2)[0-9]{9}$'),
             ],
+            // value: '1243243256',
           },
           {
             key: 'birhtdate',
             validators: [Validators.required, minimumAgeValidator(18)],
+            // value: new Date(),
           },
           {
             key: 'phoneNumber',
@@ -62,27 +64,33 @@ export class RegistrationService {
               Validators.maxLength(9),
               Validators.pattern(REGEX_PATTERNS.PHONE_NUMBER),
             ],
+            // value: '546456456',
           },
           {
             key: 'email',
             validators: [Validators.required, Validators.email],
+            // value: 'email123@ooo.com',
           },
           {
             key: 'password',
             validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
+            // value: 'P@ssw0rd',
           },
           {
             key: 'confirmPassword',
             validators: [Validators.required, Validators.pattern(REGEX_PATTERNS.PASSWORD)],
+            // value: 'P@ssw0rd',
           },
           {
             key: 'terms',
             validators: [Validators.requiredTrue],
+            // value: true,
           },
         ],
         validators: [matchValidator('password', 'confirmPassword')],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INFORMATION.CTA',
         displayNextButton: true,
+        skip: false,
       },
       {
         key: 'otp',
@@ -100,6 +108,7 @@ export class RegistrationService {
         resolvedData: {},
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.OTP.CTA',
         displayNextButton: false,
+        skip: false,
       },
       {
         key: 'address',
@@ -134,6 +143,7 @@ export class RegistrationService {
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ADDRESS.CTA',
         displayNextButton: true,
+        skip: false,
       },
       {
         key: 'financial',
@@ -176,6 +186,7 @@ export class RegistrationService {
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.FINANCIAL.CTA',
         displayNextButton: true,
+        skip: false,
       },
       {
         key: 'investment',
@@ -205,11 +216,12 @@ export class RegistrationService {
           },
           {
             key: 'beneficiaryIdNumber',
-            value: 0,
+            validators: [],
           },
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.INVESTMENT.CTA',
         displayNextButton: true,
+        skip: false,
       },
       {
         key: 'disclosure',
@@ -246,6 +258,7 @@ export class RegistrationService {
           this.completeIndividualInvestorRegestration(data, token),
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.DISCLOSURES.CTA',
         displayNextButton: true,
+        skip: false,
       },
       {
         key: 'absher',
@@ -262,6 +275,7 @@ export class RegistrationService {
           this.finalizeIndividualInvestorRegestration(data, token, otpId),
         nextButtonText: 'AUTHENTICATION.REGISTRATION.INDIVIDUAL.ABSHER.CTA',
         displayNextButton: true,
+        skip: false,
       },
     ],
     company: [
@@ -330,6 +344,7 @@ export class RegistrationService {
           this.initialCompanyInvestorSignUp(data),
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA',
         displayNextButton: true,
+        skip: false,
       },
       {
         key: 'otp',
@@ -347,6 +362,7 @@ export class RegistrationService {
         resolvedData: {},
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.INFORMATION.CTA',
         displayNextButton: false,
+        skip: false,
       },
       {
         key: 'business',
@@ -378,6 +394,7 @@ export class RegistrationService {
         resolvedData: {},
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.BUSINESS.CTA',
         displayNextButton: true,
+        skip: false,
       },
       {
         key: 'absher',
@@ -393,6 +410,7 @@ export class RegistrationService {
         ],
         nextButtonText: 'AUTHENTICATION.REGISTRATION.COMPANY.ABSHER.CTA',
         displayNextButton: true,
+        skip: false,
       },
     ],
   };

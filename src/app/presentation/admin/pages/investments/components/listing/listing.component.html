@@ -2,10 +2,11 @@
   <!-- Stats -->
   <section>
     <div class="row g-2">
-      <div class="col-md-12 col-lg-6 col-xl-4">
+      <!-- Total invested -->
+      <div class="col">
         <div class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
           <div class="icon danger">
-            <img src="assets/icons/invoice-dollar.svg" alt="" />
+            <i class="fa-solid fa-money-bill-trend-up"></i>
           </div>
 
           <div class="d-flex flex-column gap-1">
@@ -17,10 +18,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-lg-6 col-xl-4">
+      <!-- Total investments -->
+      <div class="col">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
-          <div class="icon danger">
-            <img src="assets/icons/investmentsNumber.svg" alt="" />
+          <div class="icon primary">
+            <i class="fas fa-layer-group"></i>
           </div>
 
           <div class="d-flex flex-column gap-1">
@@ -32,10 +34,11 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-lg-6 col-xl-4">
+      <!-- Total earnings -->
+      <div class="col">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
-          <div class="icon primary">
-            <img src="assets/icons/earnings.svg" alt="" />
+          <div class="icon success">
+            <i class="fa-solid fa-money-bill"></i>
           </div>
 
           <div class="d-flex flex-column gap-1">
@@ -47,15 +50,67 @@
           </div>
         </div>
       </div>
+      <!-- Total expected profits -->
+      <div class="col">
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
+          <div class="icon primary">
+            <i class="fa fa-chart-line"></i>
+          </div>
+
+          <div class="d-flex flex-column gap-1">
+            <span>{{ 'INVESTMENTS.STATS.TOTAL_EXPECTED_PROFITS' | translate }}</span>
+            <div class="fw-semibold d-flex price-alignment w-fit gap-1">
+              {{ statistics()?.totalExpectedProfits | number: '1.0-2' }}
+              <span class="icon-saudi_riyal"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Total withdrawals -->
+      <div class="col">
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
+          <div class="icon warning">
+            <i class="fa fa-arrow-up-right-dots"></i>
+          </div>
+
+          <div class="d-flex flex-column gap-1">
+            <span>{{ 'INVESTMENTS.STATS.TOTAL_WITHDRAWALS' | translate }}</span>
+            <div class="fw-semibold d-flex price-alignment w-fit gap-1">
+              {{ statistics()?.totalWithdraws | number: '1.0-2' }}
+              <span class="icon-saudi_riyal"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- Listing -->
   <section>
     <div class="col-md-12 d-flex flex-column gap-3">
-      <h5 class="card-title text-primary">
-        {{ 'INVESTMENTS.MY_INVESTMENTS.TITLE' | translate }}
-      </h5>
+      <div class="d-flex gap-2 align-items-center justify-content-between">
+        <h5 class="card-title text-primary">
+          {{ 'INVESTMENTS.MY_INVESTMENTS.TITLE' | translate }}
+        </h5>
+
+        <div class="form-group">
+          <div class="input-group">
+            @if (translationService.language === 'en') {
+              <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+            }
+
+            <input
+              [formControl]="search"
+              class="form-control form-control-sm"
+              [placeholder]="'INVESTMENTS.SEARCH_PLACEHOLDER' | translate"
+            />
+
+            @if (translationService.language === 'ar') {
+              <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+            }
+          </div>
+        </div>
+      </div>
       <div class="row mx-0 g-3">
         @if (loading()) {
           <div class="py-3">
@@ -69,7 +124,6 @@
                   <div class="col d-flex gap-4 align-items-center">
                     <span class="badge bg-success">{{ item.status }}</span>
                     <div class="d-flex flex-column gap-2">
-                      <small> {{ 'INVESTMENTS.MY_INVESTMENTS.PRODUCT_NAME' | translate }}</small>
                       <h6>{{ item.name }}</h6>
                     </div>
                   </div>

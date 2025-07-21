@@ -7,6 +7,7 @@ import { TokenService } from './core/services/token.service';
 import { takeUntil } from 'rxjs';
 import { ProfileService } from './data/profile.service';
 import { BaseComponent } from './core/base/base.component';
+import { LangChangeEvent, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -14,10 +15,11 @@ import { BaseComponent } from './core/base/base.component';
   templateUrl: './app.component.html',
 })
 export class AppComponent extends BaseComponent implements OnInit {
-  title = 'denarius';
+  title = 'sharikek';
   private translationService = inject(TranslationService);
   private profileService = inject(ProfileService);
   private tokenService = inject(TokenService);
+  readonly translateService = inject(TranslateService);
 
   constructor() {
     super();
@@ -25,6 +27,12 @@ export class AppComponent extends BaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.translateService.onLangChange.pipe(takeUntil(this.destroy$)).subscribe((event: LangChangeEvent) => {
+      this.getProfile();
+    });
+  }
+
+  getProfile(): void {
     if (this.tokenService.isAuthenticated()) {
       this.profileService
         .getUserProfile()
