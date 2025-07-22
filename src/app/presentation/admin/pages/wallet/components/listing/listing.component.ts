@@ -8,16 +8,27 @@ import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { BaseComponent } from '../../../../../../core/base/base.component';
 import { finalize, takeUntil } from 'rxjs';
 import { ProfileService } from '../../../../../../data/profile.service';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ToastService } from '../../../../../../shared/components/toast/toast.service';
 import { Transaction, TransactionFilter } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
 import { WithdrawalService } from '../../../../../../data/withdrawal.service';
+import { WithrawalMinMax } from '../../../../../../core/models/wallet';
 @Component({
   selector: 'app-listing',
   standalone: true,
-  imports: [DecimalPipe, NgClass, TranslatePipe, NgIf, DatePipe, FormsModule, RouterLink, NgbPagination],
+  imports: [
+    DecimalPipe,
+    NgClass,
+    TranslatePipe,
+    NgIf,
+    DatePipe,
+    FormsModule,
+    RouterLink,
+    NgbPagination,
+    ReactiveFormsModule,
+  ],
   templateUrl: './listing.component.html',
   styleUrl: './listing.component.scss',
 })
@@ -31,10 +42,10 @@ export class ListingComponent extends BaseComponent implements OnInit {
   walletData: UserWalletData = {} as UserWalletData;
   user: UserProfileData = this.tokenService.getUser();
   statistics = signal<UserInvestmentStatisticsData | null>(null);
-
+  withdrawalMinMax = signal<WithrawalMinMax>({ min: 0, max: 0, balance: 0 });
   isSubmitting: boolean = false;
   showConfirmModal: boolean = false;
-  withdrawAmount: number = 0;
+  withdrawAmount: FormControl<number> = new FormControl(0, { nonNullable: true, validators: [Validators.required] });
   pagination: TransactionFilter = {
     pageNumber: 1,
     pageSize: 5,
@@ -55,6 +66,25 @@ export class ListingComponent extends BaseComponent implements OnInit {
     this.loadTransactions();
     this.loadOperations();
     this.loadStatistics();
+    this.loadMinMax();
+  }
+
+  loadMinMax(): void {
+    this.withdrawalService
+      .getMinMax()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: response => {
+          this.withdrawalMinMax.set(response.data);
+          this.withdrawAmount.setValue(response.data.min);
+        },
+        error: err => {
+          this.toastService.show({
+            text: err.message,
+            classname: 'bg-danger text-light',
+          });
+        },
+      });
   }
 
   loadOperations(): void {
@@ -111,7 +141,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
     this.isSubmitting = true;
     this.showConfirmModal = false;
     this.withdrawalService
-      .withdraw(this.withdrawAmount)
+      .withdraw(this.withdrawAmount.value as number)
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: response => {
@@ -158,5 +188,13 @@ export class ListingComponent extends BaseComponent implements OnInit {
 
   onBackdropClick(event: MouseEvent): void {
     this.showConfirmModal = false;
+  }
+
+  incrementWithdrawal(): void {
+    this.withdrawAmount.setValue(this.withdrawAmount.value + 1);
+  }
+
+  decrementWithdrawal(): void {
+    this.withdrawAmount.setValue(this.withdrawAmount.value - 1);
   }
 }

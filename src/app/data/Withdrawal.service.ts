@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { HttpCustomResponse } from '../core/models/http';
+import { WithrawalMinMax } from '../core/models/wallet';
 
 @Injectable({
   providedIn: 'root',
@@ -19,5 +20,9 @@ export class WithdrawalService {
       {},
       { params }
     );
+  }
+
+  getMinMax(): Observable<HttpCustomResponse<WithrawalMinMax>> {
+    return this.http.get<HttpCustomResponse<WithrawalMinMax>>(`${environment.apiUrl}/${this.baseUrl}/GetMinMax`);
   }
 }

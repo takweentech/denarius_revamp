@@ -33,11 +33,13 @@
     opacity: 0;
     transform: scale(0.9);
   }
+
   to {
     opacity: 1;
     transform: scale(1);
   }
 }
+
 .arrow-circle {
   border: 2px solid;
   border-radius: 50%;
@@ -47,4 +49,60 @@
   align-items: center;
   justify-content: center;
   font-size: 14px;
+}
+
+.withdraw-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  max-width: 400px;
+
+  .controls {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    button {
+      background-color: var(--primary-color);
+      color: white;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .main-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 110px;
+  }
+
+  input {
+    width: 100%;
+    border-radius: 4px;
+    padding-inline-start: 40px;
+    padding-inline-end: 120px;
+
+    &.ng-invalid {
+      border: 1px solid var(--primary-color);
+    }
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type='number'] {
+    -moz-appearance: textfield;
+  }
 }
