@@ -160,12 +160,12 @@ export interface UserProfile {
 
 export interface InvestmentAccount {
   bankName: string;
-  virtualBankName: string; // ✅ جديد
-  accountHolderName: string; // نفس الـ Beneficiary
+  virtualBankName: string;
+  accountHolderName: string;
   accountNumber: string | null;
   iban: string | null;
-  personalIBAN: string; // ✅ جديد
-  balance: number; // يمثل ibanBalance بعد التحويل لرقم
+  personalIBAN: string;
+  balance: number;
   openingDate: string;
   expiryDate: string;
   totalInvestments: number; // ✅ جديد

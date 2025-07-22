@@ -1,4 +1,5 @@
 export interface Dividend {
+  sequence: number;
   id: number;
   totalPrincipal: number;
   totalDividence: number;
