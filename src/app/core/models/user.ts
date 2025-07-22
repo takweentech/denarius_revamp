@@ -159,8 +159,6 @@ export interface UserProfile {
 }
 
 export interface InvestmentAccount {
-  personalAccountNumber: string;
-  virtualAccountNumber: string;
   bankName: string;
   virtualBankName: string;
   accountHolderName: string;
@@ -170,13 +168,6 @@ export interface InvestmentAccount {
   balance: number;
   openingDate: string;
   expiryDate: string;
-<<<<<<< HEAD
-  totalInvestments: number;
-  totalProfits: number;
-  totalExpectedProfits: number;
-  totalDeposits: number;
-  totalWithdraws: number;
-=======
   totalInvestments: number; // ✅ جديد
   totalProfits: number; // ✅ جديد
   totalExpectedProfits: number; // ✅ جديد
@@ -184,7 +175,6 @@ export interface InvestmentAccount {
   totalWithdraws: number; // ✅ جديد
   personalAccountNumber: string;
   virtualAccountNumber: string;
->>>>>>> development
 }
 
 export interface FinancialSummary {

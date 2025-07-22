@@ -8,110 +8,117 @@
         </h5>
         <ul class="d-flex gap-2 list-unstyled">
           @for (item of statusList(); track $index) {
-            <li>
-              <button
-                (click)="onFilterByStatus(item.id, $index)"
-                class="badge"
-                [ngClass]="{
+          <li>
+            <button (click)="onFilterByStatus(item.id, $index)"
+                    class="badge"
+                    [ngClass]="{
                   'bg-primary': item.active,
                   'text-white': item.active,
                   'text-primary': !item.active,
-                }"
-              >
-                {{ item | lang | translate | titlecase }}
-              </button>
-            </li>
+                }">
+              {{ item | lang | translate | titlecase }}
+            </button>
+          </li>
           }
         </ul>
       </div>
       <div class="card p-4 gap-4">
-        <form class="row" [formGroup]="filterForm">
+        <form class="row"
+              [formGroup]="filterForm">
           <div class="form-group col-6">
-            <label for="" class="form-label">{{ 'DIVIDENDS.FILTER.FROM' | translate }}</label>
+            <label for=""
+                   class="form-label">{{ 'DIVIDENDS.FILTER.FROM' | translate }}</label>
             @if (lang === 'en') {
-              <app-gregorian-datepicker [allowFutureDate]="true" formControlName="startDate"></app-gregorian-datepicker>
+            <app-gregorian-datepicker [allowFutureDate]="true"
+                                      formControlName="startDate"></app-gregorian-datepicker>
             } @else {
-              <app-islamic-datepicker [allowFutureDate]="true" formControlName="startDate"></app-islamic-datepicker>
+            <app-islamic-datepicker [allowFutureDate]="true"
+                                    formControlName="startDate"></app-islamic-datepicker>
             }
           </div>
           <div class="form-group col-6">
-            <label for="" class="form-label">{{ 'DIVIDENDS.FILTER.TO' | translate }}</label>
+            <label for=""
+                   class="form-label">{{ 'DIVIDENDS.FILTER.TO' | translate }}</label>
             @if (lang === 'en') {
-              <app-gregorian-datepicker [allowFutureDate]="true" formControlName="endDate"></app-gregorian-datepicker>
+            <app-gregorian-datepicker [allowFutureDate]="true"
+                                      formControlName="endDate"></app-gregorian-datepicker>
             } @else {
-              <app-islamic-datepicker [allowFutureDate]="true" formControlName="endDate"></app-islamic-datepicker>
+            <app-islamic-datepicker [allowFutureDate]="true"
+                                    formControlName="endDate"></app-islamic-datepicker>
             }
           </div>
           @if (dateError()) {
-            <small class="text-danger mt-1 d-flex align-items-center gap-1">
-              <i class="fa-solid fa-circle-exclamation"></i>
-              {{ 'VALIDATORS.DATE_ERROR' | translate }}
-            </small>
+          <small class="text-danger mt-1 d-flex align-items-center gap-1">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            {{ 'VALIDATORS.DATE_ERROR' | translate }}
+          </small>
           }
         </form>
 
         <div class="d-flex justify-content-end gap-2">
-          <button (click)="onReset()" class="btn btn-sm btn-outline-primary">
+          <button (click)="onReset()"
+                  class="btn btn-sm btn-outline-primary">
             {{ 'DIVIDENDS.FILTER.RESET' | translate }}
           </button>
-          <button (click)="onFilterByDate()" class="btn btn-sm btn-primary">
+          <button (click)="onFilterByDate()"
+                  class="btn btn-sm btn-primary">
             {{ 'DIVIDENDS.FILTER.SEARCH' | translate }}
           </button>
         </div>
       </div>
       <div class="row mx-0 d-flex justify-content-center gap-3">
         @if (loading()) {
-          <div class="py-4">
-            <h6 class="text-center">
-              {{ 'DIVIDENDS.LOADING' | translate }}
-            </h6>
-          </div>
+        <div class="py-4">
+          <h6 class="text-center">
+            {{ 'DIVIDENDS.LOADING' | translate }}
+          </h6>
+        </div>
         } @else {
-          @if (earnings().length) {
-            @for (item of earnings(); track $index) {
-              <div class="card row justify-content-center d-flex bg-white p-3 w-100">
-                <div class="col-md-12 row col-sm-12 d-flex align-items-center">
-                  <div class="col-md-1 col-sm-12">
-                    @if (item.status.toLocaleLowerCase() == diviendStatusEnum.DISTRIBUTED) {
-                      <span class="badge bg-success">{{ item.status }}</span>
-                    }
-                    @if (item.status.toLocaleLowerCase() == diviendStatusEnum.NOT_YET_DUE) {
-                      <span class="badge bg-warning">{{ item.status }}</span>
-                    }
-                    @if (item.status.toLocaleLowerCase() == diviendStatusEnum.LATE) {
-                      <span class="badge bg-dark-subtle">{{ item.status }}</span>
-                    }
-                  </div>
+        @if (earnings().length) {
+        @for (item of earnings(); track $index) {
+        <div class="card row justify-content-center d-flex bg-white p-3 w-100">
+          <div class="col-md-12 row col-sm-12 d-flex align-items-center">
+            <div class="col-md-1 col-sm-12">
+              @if (item.status.toLocaleLowerCase() == diviendStatusEnum.DISTRIBUTED) {
+              <span class="badge bg-success">{{ item.status }}</span>
+              }
+              @if (item.status.toLocaleLowerCase() == diviendStatusEnum.NOT_YET_DUE) {
+              <span class="badge bg-warning">{{ item.status }}</span>
+              }
+              @if (item.status.toLocaleLowerCase() == diviendStatusEnum.LATE) {
+              <span class="badge bg-dark-subtle">{{ item.status }}</span>
+              }
+            </div>
 
-                  <div class="d-flex col-md col-sm-12 col-6 flex-column gap-2">
-                    <!-- <small> {{ 'DIVIDENDS.LISTING.PRODUCT_NAME' | translate }}</small> -->
+            <!-- <div class="d-flex col-md col-sm-12 col-6 flex-column gap-2">
+                     <small> {{ 'DIVIDENDS.LISTING.PRODUCT_NAME' | translate }}</small> 
                     <h6>{{ item.opportunityName }}</h6>
-                  </div>
-                  <div class="col d-flex flex-column gap-2">
-                    <small>{{ 'DIVIDENDS.LISTING.SEQUENCE_NUMBER' | translate }}</small>
-                    <span class="w-fit">{{ item.sequence }}</span>
-                  </div>
-                  <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
-                    <small> {{ 'DIVIDENDS.LISTING.TOTAL_DIVIDENCE' | translate }}</small>
-                    <div class="d-flex gap-1 price-alignment w-fit">
-                      {{ item.totalDividence | number: '1.0-2' }}<span class="icon-saudi_riyal"></span>
-                    </div>
-                  </div>
-                  <!--  Fees -->
-                  <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
-                    <small>{{ 'DIVIDENDS.LISTING.TOTAL_AGENCY_FEE' | translate }}</small>
-                    <div class="d-flex gap-1 price-alignment w-fit">
-                      {{ item.totalAgencyFee | number: '1.0-2' }}<span class="icon-saudi_riyal"></span>
-                    </div>
-                  </div>
-                  <!--  VAT -->
-                  <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
-                    <small>{{ 'DIVIDENDS.LISTING.TOTAL_VAT' | translate }}</small>
-                    <div class="d-flex gap-1 price-alignment w-fit">
-                      {{ item.totalVat | number: '1.0-2' }}<span class="icon-saudi_riyal"></span>
-                    </div>
-                  </div>
-                  <!-- <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
+                  </div> -->
+            <div class="col d-flex flex-column gap-2">
+              <small>{{ 'DIVIDENDS.LISTING.SEQUENCE_NUMBER' | translate }}</small>
+              <span class="w-fit">{{ item.sequence }}</span>
+            </div>
+            <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
+              <small> {{ 'DIVIDENDS.LISTING.TOTAL_DIVIDENCE' | translate }}</small>
+              <div class="d-flex gap-1 price-alignment w-fit">
+                {{ item.totalDividence | number: '1.0-2' }}<span class="icon-saudi_riyal"></span>
+              </div>
+            </div>
+            <!--  Fees -->
+            <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
+              <small>{{ 'DIVIDENDS.LISTING.TOTAL_AGENCY_FEE' | translate }}</small>
+              <div class="d-flex gap-1 price-alignment w-fit">
+                {{ item.totalAgencyFee | number: '1.0-2' }}<span class="icon-saudi_riyal"></span>
+              </div>
+            </div>
+            <!--  VAT -->
+            <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
+              <small>{{ 'DIVIDENDS.LISTING.TOTAL_VAT' | translate }}</small>
+              <div class="d-flex gap-1 price-alignment w-fit">
+                {{ item.totalVat | number: '1.0-2' }}<span class="icon-saudi_riyal"></span>
+              </div>
+            </div>
+            <!-- <div class="col-6 col-md col-sm-12 d-flex flex-column gap-2">
                     <small>{{ 'DIVIDENDS.LISTING.TOTAL_PRINCIPAL' | translate }}</small>
                     <div class="d-flex gap-1 price-alignment w-fit">
                       {{ item.totalPrincipal | number: '1.0-2' }}<span class="icon-saudi_riyal"></span>
@@ -126,37 +133,36 @@
                     </div>
                   </div> -->
 
-                  <div class="col d-flex flex-column gap-2">
-                    <small>{{ 'DIVIDENDS.LISTING.MATURITY_DATE' | translate }}</small>
-                    <span dir="ltr" class="w-fit">{{ item.maturityDate | date: 'dd/MM/yyyy' }}</span>
-                  </div>
-                </div>
-              </div>
-            }
-          } @else {
-            <div class="py-4">
-              <h6 class="text-center">
-                {{ 'DIVIDENDS.EMPTY' | translate }}
-              </h6>
+            <div class="col d-flex flex-column gap-2">
+              <small>{{ 'DIVIDENDS.LISTING.MATURITY_DATE' | translate }}</small>
+              <span dir="ltr"
+                    class="w-fit">{{ item.maturityDate | date: 'dd/MM/yyyy' }}</span>
             </div>
-          }
+          </div>
+        </div>
+        }
+        } @else {
+        <div class="py-4">
+          <h6 class="text-center">
+            {{ 'DIVIDENDS.EMPTY' | translate }}
+          </h6>
+        </div>
+        }
         }
       </div>
     </div>
 
     @if (!loading() && earnings().length) {
-      <nav class="d-flex justify-content-center my-4">
-        <ngb-pagination
-          [(page)]="pagination.pageNumber"
-          [pageSize]="pagination.pageSize"
-          [collectionSize]="total()"
-          [maxSize]="5"
-          [ellipses]="true"
-          (pageChange)="goToPage($event)"
-          size="md"
-        >
-        </ngb-pagination>
-      </nav>
+    <nav class="d-flex justify-content-center my-4">
+      <ngb-pagination [(page)]="pagination.pageNumber"
+                      [pageSize]="pagination.pageSize"
+                      [collectionSize]="total()"
+                      [maxSize]="5"
+                      [ellipses]="true"
+                      (pageChange)="goToPage($event)"
+                      size="md">
+      </ngb-pagination>
+    </nav>
     }
   </section>
 </main>
