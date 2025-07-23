@@ -3,7 +3,7 @@
   <section>
     <div class="row g-2">
       <!-- Total invested -->
-      <div class="col">
+      <div class="col-md-12 col-lg-12 col-xl-2">
         <div class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
           <div class="icon danger">
             <i class="fa-solid fa-money-bill-trend-up"></i>
@@ -19,7 +19,7 @@
         </div>
       </div>
       <!-- Total investments -->
-      <div class="col">
+      <div class="col-md-12 col-lg-12 col-xl-2">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon primary">
             <i class="fas fa-layer-group"></i>
@@ -35,7 +35,7 @@
         </div>
       </div>
       <!-- Total earnings -->
-      <div class="col">
+      <div class="col-md-12 col-lg-12 col-xl-2">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon success">
             <i class="fa-solid fa-money-bill"></i>
@@ -51,7 +51,7 @@
         </div>
       </div>
       <!-- Total expected profits -->
-      <div class="col">
+      <div class="col-md-12 col-lg-12 col-xl-2">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon primary">
             <i class="fa fa-chart-line"></i>
@@ -67,7 +67,7 @@
         </div>
       </div>
       <!-- Total withdrawals -->
-      <div class="col">
+      <div class="col-md-12 col-lg-12 col-xl-2">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon warning">
             <i class="fa fa-arrow-up-right-dots"></i>
@@ -77,6 +77,22 @@
             <span>{{ 'INVESTMENTS.STATS.TOTAL_WITHDRAWALS' | translate }}</span>
             <div class="fw-semibold d-flex price-alignment w-fit gap-1">
               {{ statistics()?.totalWithdraws | number: '1.0-2' }}
+              <span class="icon-saudi_riyal"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Total Deposits -->
+      <div class="col-md-12 col-lg-12 col-xl-2">
+        <div class="card stats-card bg-white py-3 px-3 d-flex align-items-center flex-row gap-3 h-100">
+          <div class="icon success fs-1">
+            <span class="icon-saudi_riyal"></span>
+          </div>
+
+          <div class="d-flex flex-column gap-1">
+            <span>{{ 'DASHBOARD.STATS.TOTAL_DEPOSIT' | translate }}</span>
+            <div class="d-flex price-alignment w-fit gap-1">
+              <span class="fw-semibold">{{ statistics()?.totalDeposits | number: '1.0-2' }} </span>
               <span class="icon-saudi_riyal"></span>
             </div>
           </div>

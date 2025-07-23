@@ -13,7 +13,7 @@ import { ToastService } from '../../../../../../shared/components/toast/toast.se
 import { Transaction, TransactionFilter } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
-import { WithdrawalService } from '../../../../../../data/withdrawal.service';
+import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
 import { WithrawalMinMax } from '../../../../../../core/models/wallet';
 @Component({
   selector: 'app-listing',
@@ -65,7 +65,6 @@ export class ListingComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.loadTransactions();
     this.loadOperations();
-    this.loadStatistics();
     this.loadMinMax();
   }
 
@@ -103,17 +102,7 @@ export class ListingComponent extends BaseComponent implements OnInit {
         error: () => {},
       });
   }
-  loadStatistics(): void {
-    this.profileService
-      .getInvestmentStatistics()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: response => {
-          this.statistics.set(response.data);
-        },
-        error: () => {},
-      });
-  }
+
   loadTransactions(): void {
     this.loading.set(true);
     this.pagination.filter.statusId = 1;
