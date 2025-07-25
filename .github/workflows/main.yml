@@ -42,7 +42,7 @@ on: [push]
 
 jobs:
   test-runner:
-    runs-on: [self-hosted, windows-latest]
+    runs-on: self-hosted
     steps:
       - name: Hello World
         run: echo "Runner is alive and working"
