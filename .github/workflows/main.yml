@@ -36,14 +36,15 @@
 #       shell: pwsh
 
 
-name: Simple Test
+# .github/workflows/test.yml
+name: simple
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
-  simple:
-    runs-on: self-hosted
+  test:
+    runs-on: [self-hosted, windows]
     steps:
-      - name: Echo test message
+      - name: Hello
         run: echo "Hello from self-hosted runner"
-        shell: pwsh
