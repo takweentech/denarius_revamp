@@ -36,13 +36,14 @@
 #       shell: pwsh
 
 
-name: Self-hosted Runner Test
+name: Simple Test
 
 on: [push]
 
 jobs:
-  test-runner:
+  simple:
     runs-on: self-hosted
     steps:
-      - name: Hello World
-        run: echo "Runner is alive and working"
+      - name: Echo test message
+        run: echo "Hello from self-hosted runner"
+        shell: pwsh
