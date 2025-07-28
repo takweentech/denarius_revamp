@@ -38,6 +38,7 @@ export interface TransactionFilter {
   pageNumber: number;
   pageSize: number;
   filter: {
+    type?: number;
     statusId?: number;
     investorId?: number;
     paymentMethod?: number;

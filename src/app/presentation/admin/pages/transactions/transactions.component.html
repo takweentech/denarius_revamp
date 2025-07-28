@@ -74,7 +74,7 @@
       @for (item of statusList; track $index) {
         <li>
           <button
-            (click)="onFilterByStatus(item.value, $index)"
+            (click)="onFilterByType(item.value, $index)"
             class="badge"
             [ngClass]="{
               'bg-primary': item.active,

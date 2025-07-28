@@ -86,13 +86,22 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
     this.loadTransactions();
   }
 
-  onFilterByStatus(status?: number, index?: number): void {
+  // onFilterByStatus(status?: number, index?: number): void {
+  //   this.statusList = this.statusList.map(item => ({
+  //     ...item,
+  //     active: false,
+  //   }));
+  //   this.statusList[index as number].active = true;
+  //   this.pagination.filter.statusId = status;
+  //   this.loadTransactions();
+  // }
+  onFilterByType(status?: number, index?: number): void {
     this.statusList = this.statusList.map(item => ({
       ...item,
       active: false,
     }));
     this.statusList[index as number].active = true;
-    this.pagination.filter.statusId = status;
+    this.pagination.filter.type = status;
     this.loadTransactions();
   }
 }
