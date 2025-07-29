@@ -59,7 +59,9 @@ export class LookupService {
   getInvestmentGoal(): Observable<Lookup[]> {
     return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/InvestmentGoal`);
   }
-
+  getTransactionType(): Observable<Lookup[]> {
+    return this.http.get<Lookup[]>(`${environment.apiUrl}/${this.baseUrl}/GetAllTransactionType`);
+  }
   getTransactionStatus(): Lookup[] {
     return [
       { active: true, englishName: 'TRANSACTIONS.FILTER.ALL', arabicName: 'TRANSACTIONS.FILTER.ALL', value: 0 },
