@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div class="col-md-12 col-lg-12 col-xl">
+      <!-- <div class="col-md-12 col-lg-12 col-xl">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
           <div class="icon success">
             <i class="fa-solid fa-money-bill-trend-up"></i>
@@ -32,23 +32,7 @@
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="col-md-12 col-lg-12 col-xl">
-        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
-          <div class="icon success">
-            <i class="fa-solid fa-money-bill"></i>
-          </div>
-
-          <div class="d-flex flex-column gap-1">
-            <span>{{ 'WALLET.STATS.TOTAL_EARNINGS' | translate }}</span>
-            <div class="d-flex price-alignment w-fit gap-1">
-              <span class="fw-semibold">{{ walletData.totalProfits | number: '1.0-2' }} </span>
-              <span class="icon-saudi_riyal"></span>
-            </div>
-          </div>
-        </div>
-      </div>
+      </div> -->
 
       <div class="col-md-12 col-lg-12 col-xl">
         <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
@@ -65,16 +49,37 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-lg-12 col-xl">
-        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
+      <!-- <div class="col-md-12 col-lg-12 col-xl">
+        <div
+          class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100"
+        >
           <div class="icon warning">
             <img src="assets/icons/money-tag.svg" alt="" />
           </div>
 
           <div class="d-flex flex-column gap-1">
-            <span>{{ 'DASHBOARD.STATS.TOTAL_EXPECTED_EARNINGS' | translate }}</span>
+            <span>{{
+              "DASHBOARD.STATS.TOTAL_EXPECTED_EARNINGS" | translate
+            }}</span>
             <div class="d-flex price-alignment w-fit gap-1">
-              <span class="fw-semibold">{{ walletData.totalExpectedProfits | number: '1.0-2' }} </span>
+              <span class="fw-semibold"
+                >{{ walletData.totalExpectedProfits | number : "1.0-2" }}
+              </span>
+              <span class="icon-saudi_riyal"></span>
+            </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="col-md-12 col-lg-12 col-xl">
+        <div class="card stats-card bg-white py-3 px-3 d-flex flex-row align-items-center gap-3 h-100">
+          <div class="icon success">
+            <i class="fa-solid fa-money-bill"></i>
+          </div>
+
+          <div class="d-flex flex-column gap-1">
+            <span>{{ 'WALLET.STATS.TOTAL_EARNINGS' | translate }}</span>
+            <div class="d-flex price-alignment w-fit gap-1">
+              <span class="fw-semibold">{{ walletData.totalProfits | number: '1.0-2' }} </span>
               <span class="icon-saudi_riyal"></span>
             </div>
           </div>

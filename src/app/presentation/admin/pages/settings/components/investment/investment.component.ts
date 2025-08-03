@@ -105,7 +105,7 @@ export class InvestmentComponent extends BaseComponent {
         next: response => {
           if (response.status == 200) {
             this.toastService.show({
-              text: 'Investment information was successfully saved',
+              text: response.message,
               classname: 'bg-success text-light',
               icon: 'fa-circle-check',
             });
