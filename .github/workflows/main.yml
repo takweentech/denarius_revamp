@@ -1,15 +1,35 @@
-name: Test Self-Hosted Runner (cmd echo)
+name: Build Angular App
 
 on:
   push:
-    branches: [ "development" ]
-  workflow_dispatch:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
 
 jobs:
-  test-runner:
-    runs-on: self-hosted
+  build:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Say Hello via cmd
-        shell: cmd
-        run: echo Hello from CMD
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # or your Angular supported version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular app
+        run: npm run build -- --configuration production
+
+      # Optionally, you can upload the build artifacts
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: angular-build
+          path: dist/
