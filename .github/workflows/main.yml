@@ -1,45 +1,36 @@
-name: Build and Test
+name: Build and Deploy Angular to IIS
 
 on:
   push:
-    branches: [development]
+    branches:
+      - development
 
 jobs:
-  build:
-    name: Build & Test
-    runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [12.x]
+  build-and-deploy:
+    runs-on: self-hosted
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Cache node modules
-        uses: actions/cache@v1
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
-            
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v1.4.2
-        with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 18
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: npm ci
-          
-      - name: Run Unit Tests
-        run: npm run ci:test
 
-      - name: Clean Distribution Directory
-        run: npm run ci:clean
-        
-      - name: Build Application
-        run: npm run ci:build
-      
-      - name: List Files in Distribution Directory
-        run: ls -R ./dist
+      - name: Build Angular app
+        run: npm run build -- --configuration production
+
+      - name: Copy build to IIS folder
+        run: |
+          # Replace this with the path to your IIS root folder
+          $iisPath = "C:\inetpub\wwwroot\your-app"
+          $buildOutput = "dist/your-project-name"
+          if (Test-Path $iisPath) {
+            Remove-Item "$iisPath\*" -Recurse -Force
+          }
+          Copy-Item "$buildOutput\*" $iisPath -Recurse -Force
+        shell: pwsh
