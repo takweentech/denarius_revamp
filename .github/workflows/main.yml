@@ -1,34 +1,19 @@
-name: Build Angular App
-
-on:
+# --For angular 17+ version that support Node.js 18.x
+ name: Deploy Angular Appon:
   push:
     branches:
-      - development
-  pull_request:
-    branches:
-      - development
-
-jobs:
+      - development:
   build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Angular app
-        run: npm run build -- --configuration production
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: angular-build
-          path: dist/
+    runs-on: ubuntu-latest    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+- name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x' # Use Node.js 18.x, which is compatible with Angular 17 and 18
+    - name: Install dependencies
+      run: npm ci # Use npm ci for faster installs and CI consistency
+    - name: Build Angular project
+      run: npm run build -- --configuration production # Update to match your build script
+    - name: Run tests
+      run: npm test
