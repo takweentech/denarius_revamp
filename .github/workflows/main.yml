@@ -1,4 +1,4 @@
-name: Test Build and Deploy Angular to IIS
+name: Build and Deploy Angular to IIS
 
 on:
   push:
