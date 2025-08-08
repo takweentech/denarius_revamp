@@ -1,4 +1,4 @@
-name: Build and Deploy Angular to IIS
+name: Test Self-Hosted Runner
 
 on:
   push:
@@ -6,40 +6,18 @@ on:
       - development
 
 jobs:
-  build-and-deploy:
+  test-runner:
     runs-on: self-hosted
 
     steps:
-      # 1️⃣ Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Set up Node.js (you can remove this if your runner already has Node + Angular CLI installed globally)
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+      - name: Say hello
+        run: echo "✅ Runner is working on $(hostname) at $(date)"
 
-      # 3️⃣ Install dependencies
-      - name: Install dependencies
-        run: npm ci
-        working-directory: ./your-angular-project
+      - name: List files in repo
+        run: ls -la
 
-      # 4️⃣ Build Angular app
-      - name: Build Angular app
-        run: npm run build -- --configuration production
-        working-directory: ./your-angular-project
-
-      # 5️⃣ Replace or modify files in a specific directory
-      - name: Replace files in config directory
-        run: |
-          echo "Replacing config files..."
-          cp ./custom-files/config.json ./your-angular-project/dist/my-app/assets/config/config.json
-          rm -f ./your-angular-project/dist/my-app/assets/config/old-file.txt
-
-      # 6️⃣ Deploy to IIS directory
-      - name: Deploy to IIS
-        run: |
-          echo "Deploying to IIS folder..."
-          rm -rf "C:/inetpub/wwwroot/my-angular-app/*"
-          cp -r ./your-angular-project/dist/my-app/* "C:/inetpub/wwwroot/my-angular-app/"
+      - name: Create a test file
+        run: echo "This is a runner test" > runner-test.txt
