@@ -1,4 +1,4 @@
-name: Test Self-Hosted Runner
+name: Runner Ping
 
 on:
   push:
@@ -6,18 +6,8 @@ on:
       - development
 
 jobs:
-  test-runner:
+  ping:
     runs-on: self-hosted
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
       - name: Say hello
-        run: echo "✅ Runner is working on $(hostname) at $(date)"
-
-      - name: List files in repo
-        run: ls -la
-
-      - name: Create a test file
-        run: echo "This is a runner test" > runner-test.txt
+        run: echo "✅ Runner is alive on $(hostname) at $(date)"
