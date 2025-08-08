@@ -1,4 +1,4 @@
-name: Runner Ping
+name: Runner Test
 
 on:
   push:
