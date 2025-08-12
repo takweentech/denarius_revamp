@@ -13,8 +13,10 @@ import { ToastService } from '../../../../../../shared/components/toast/toast.se
 import { Transaction, TransactionFilter } from '../../../../../../core/models/transaction';
 import { TokenService } from '../../../../../../core/services/token.service';
 import { TransactionService } from '../../../../../../data/transaction.service';
-import { WithdrawalService } from '../../../../../../data/withdrawal.service';
+import { WithdrawalService } from '../../../../../../data/Withdrawal.service';
 import { WithrawalMinMax } from '../../../../../../core/models/wallet';
+import { LookupService } from '../../../../../../core/services/lookup.service';
+import { Lookup } from '../../../../../../core/models/lookup';
 @Component({
   selector: 'app-listing',
   standalone: true,
@@ -37,19 +39,25 @@ export class ListingComponent extends BaseComponent implements OnInit {
   private readonly tokenService = inject(TokenService);
   private readonly withdrawalService = inject(WithdrawalService);
   private readonly profileService = inject(ProfileService);
-  private readonly transactionservice = inject(TransactionService);
+  private readonly investorService = inject(TransactionService);
+  private readonly lookupService = inject(LookupService);
+
   private toastService = inject(ToastService);
   walletData: UserWalletData = {} as UserWalletData;
   user: UserProfileData = this.tokenService.getUser();
   statistics = signal<UserInvestmentStatisticsData | null>(null);
   withdrawalMinMax = signal<WithrawalMinMax>({ min: 0, max: 0, balance: 0 });
+  transactionTypes = signal<Lookup[]>([]);
+
   isSubmitting: boolean = false;
   showConfirmModal: boolean = false;
   withdrawAmount: FormControl<number> = new FormControl(0, { nonNullable: true, validators: [Validators.required] });
   pagination: TransactionFilter = {
     pageNumber: 1,
     pageSize: 5,
-    filter: {},
+    filter: {
+      type: 3,
+    },
     orderByValue: [
       {
         colId: 'id',
@@ -65,7 +73,6 @@ export class ListingComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.loadTransactions();
     this.loadOperations();
-    this.loadStatistics();
     this.loadMinMax();
   }
 
@@ -103,21 +110,10 @@ export class ListingComponent extends BaseComponent implements OnInit {
         error: () => {},
       });
   }
-  loadStatistics(): void {
-    this.profileService
-      .getInvestmentStatistics()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe({
-        next: response => {
-          this.statistics.set(response.data);
-        },
-        error: () => {},
-      });
-  }
+
   loadTransactions(): void {
     this.loading.set(true);
-    this.pagination.filter.statusId = 1;
-    this.transactionservice
+    this.investorService
       .getInvestorTransactionsPaged(this.pagination)
       .pipe(
         takeUntil(this.destroy$),
@@ -136,7 +132,25 @@ export class ListingComponent extends BaseComponent implements OnInit {
         error: () => {},
       });
   }
-
+  loadTransactionTypes(): void {
+    this.lookupService.getTransactionType().subscribe(res => {
+      const types = [
+        {
+          value: undefined,
+          englishName: 'TRANSACTIONS.FILTER.ALL',
+          arabicName: 'TRANSACTIONS.FILTER.ALL',
+          active: true,
+        },
+        ...res.map(t => ({
+          value: t.id,
+          englishName: t.englishName,
+          arabicName: t.arabicName,
+          active: false,
+        })),
+      ];
+      this.transactionTypes.set(types);
+    });
+  }
   confirmWithdrawal(): void {
     this.isSubmitting = true;
     this.showConfirmModal = false;

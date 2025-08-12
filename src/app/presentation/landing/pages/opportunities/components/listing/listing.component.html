@@ -24,7 +24,9 @@
   <!-- Pagination -->
   @if (opportunities().length < total() && opportunities().length) {
     <div class="col d-flex justify-content-center">
-      <button (click)="onLoadMore()" class="btn btn-primary">Load more</button>
+      <button (click)="onLoadMore()" class="btn btn-primary">
+        {{ 'INVESTMENT_OPPORTUNITIES.LOAD_MORE' | translate }}
+      </button>
     </div>
   }
 </section>

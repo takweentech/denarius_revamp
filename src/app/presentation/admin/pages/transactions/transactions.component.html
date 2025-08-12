@@ -71,10 +71,10 @@
       {{ 'TRANSACTIONS.DISTRIBUTION_TITLE' | translate }}
     </h5>
     <ul class="d-flex gap-2 list-unstyled">
-      @for (item of statusList; track $index) {
+      @for (item of transactionTypes(); track $index) {
         <li>
           <button
-            (click)="onFilterByStatus(item.value, $index)"
+            (click)="onFilterByType(item.value, $index)"
             class="badge"
             [ngClass]="{
               'bg-primary': item.active,

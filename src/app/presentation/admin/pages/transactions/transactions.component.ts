@@ -13,6 +13,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { LookupService } from '../../../../core/services/lookup.service';
 import { LangPipe } from '../../../../shared/pipes/lang.pipe';
 import { ProfileService } from '../../../../data/profile.service';
+import { Lookup } from '../../../../core/models/lookup';
 @Component({
   selector: 'app-transactions',
   imports: [TranslatePipe, NgClass, RouterModule, DecimalPipe, DatePipe, NgbPaginationModule, LangPipe],
@@ -42,8 +43,7 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
   loading = signal<boolean>(false);
   total = signal<number>(0);
   user: UserProfileData = this.tokenService.getUser();
-  statusList = this.lookupService.getTransactionStatus();
-
+  transactionTypes = signal<Lookup[]>([]);
   loadTransactions(): void {
     this.loading.set(true);
     this.investorService
@@ -79,20 +79,66 @@ export class TransactionsComponent extends BaseComponent implements OnInit {
   ngOnInit(): void {
     this.loadStatistics();
     this.loadTransactions();
+    this.lookupService.getTransactionType().subscribe(res => {
+      const types = [
+        {
+          value: undefined,
+          englishName: 'TRANSACTIONS.FILTER.ALL',
+          arabicName: 'TRANSACTIONS.FILTER.ALL',
+          active: true,
+        },
+        ...res.map(t => ({
+          value: t.id, // 👈 use id as value
+          englishName: t.englishName,
+          arabicName: t.arabicName,
+          active: false,
+        })),
+      ];
+      this.transactionTypes.set(types);
+    });
   }
-
+  loadTransactionTypes(): void {
+    this.lookupService.getTransactionType().subscribe(res => {
+      const types = [
+        {
+          value: undefined,
+          englishName: 'TRANSACTIONS.FILTER.ALL',
+          arabicName: 'TRANSACTIONS.FILTER.ALL',
+          active: true,
+        },
+        ...res.map(t => ({
+          value: t.id,
+          englishName: t.englishName,
+          arabicName: t.arabicName,
+          active: false,
+        })),
+      ];
+      this.transactionTypes.set(types);
+    });
+  }
   goToPage(page: number): void {
     this.pagination.pageNumber = page;
     this.loadTransactions();
   }
 
-  onFilterByStatus(status?: number, index?: number): void {
-    this.statusList = this.statusList.map(item => ({
+  // onFilterByStatus(status?: number, index?: number): void {
+  //   this.statusList = this.statusList.map((item) => ({
+  //     ...item,
+  //     active: false,
+  //   }));
+  //   this.statusList[index as number].active = true;
+  //   this.pagination.filter.statusId = status;
+  //   this.loadTransactions();
+  // }
+  onFilterByType(type?: number, index?: number): void {
+    const updatedTypes = this.transactionTypes().map((item, i) => ({
       ...item,
-      active: false,
+      active: i === index,
     }));
-    this.statusList[index as number].active = true;
-    this.pagination.filter.statusId = status;
+    this.transactionTypes.set(updatedTypes);
+
+    // 👇 update the payload
+    this.pagination.filter.type = type;
     this.loadTransactions();
   }
 }
